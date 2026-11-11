@@ -1,0 +1,36 @@
+{
+ "responseHeader": {
+  "status": 0,
+  "QTime": 181,
+  "params": {
+   "query": "collection:computerchronicles AND mediatype:movies",
+   "qin": "collection:computerchronicles AND mediatype:movies",
+   "fields": "identifier,title,date,downloads",
+   "wt": "json",
+   "sort": "downloads desc",
+   "rows": 3,
+   "start": 0
+  }
+ },
+ "response": {
+  "numFound": 634,
+  "start": 0,
+  "docs": [
+   {
+    "downloads": 200366,
+    "identifier": "CC517_commodore_64",
+    "title": "Commodore 64"
+   },
+   {
+    "downloads": 124118,
+    "identifier": "GaryKild",
+    "title": "Gary Kildall Special"
+   },
+   {
+    "downloads": 80520,
+    "identifier": "CC501_hypercard",
+    "title": "Hypercard"
+   }
+  ]
+ }
+}
