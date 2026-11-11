@@ -7,9 +7,13 @@ import 'package:media_kit_video/media_kit_video.dart';
 import 'package:window_manager/window_manager.dart';
 
 import '../engine/tv_engine.dart';
+import '../guide/guide_model.dart';
 import '../input/actions.dart';
 import '../player/player_controller.dart';
 import 'channel_logo.dart';
+import 'guide_overlay.dart';
+
+enum TvMode { watch, guide, menu }
 
 /// The whole TV: a 4:3 frame holding the video, STAND BY card, info banner and number entry.
 class TvScreen extends StatefulWidget {
@@ -28,6 +32,10 @@ class _TvScreenState extends State<TvScreen> {
   bool _banner = false;
   bool _muted = false;
   double _volume = 80;
+  TvMode mode = TvMode.watch;
+  GuideModel? _guide;
+  Timer? _warmTimer;
+  final _focus = FocusNode();
 
   @override
   void initState() {
@@ -63,10 +71,51 @@ class _TvScreenState extends State<TvScreen> {
     if (c != null) tv.tune(c);
   }
 
+  void _openGuide() {
+    final now = DateTime.now();
+    final engine = tv.engine;
+    final g = GuideModel(
+      channels: engine.channels,
+      slotsFor: (c) => engine.guideFor(c, now),
+      now: now,
+      tunableNumbers: {for (final c in engine.tunable) c.number},
+    );
+    final i = engine.channels.indexWhere((c) => c.number == tv.channel?.number);
+    if (i >= 0) g.selectedRow = i; // open on the channel being watched
+    _entryTimer?.cancel();
+    entry.clear();
+    setState(() {
+      _guide = g;
+      mode = TvMode.guide;
+    });
+  }
+
+  void _closeGuide() {
+    _warmTimer?.cancel();
+    setState(() {
+      _guide = null;
+      mode = TvMode.watch;
+    });
+    _focus.requestFocus();
+  }
+
+  /// Warms the highlighted channel once the highlight rests for 400 ms.
+  void _highlight(Channel c) {
+    _warmTimer?.cancel();
+    _warmTimer = Timer(const Duration(milliseconds: 400), () {
+      unawaited(tv.warm(c).catchError((Object e) => tv.log('warm ${c.number} error: $e')));
+    });
+  }
+
   KeyEventResult _onKey(FocusNode node, KeyEvent event) {
     if (event is KeyUpEvent) return KeyEventResult.ignored;
     final b = keyboardBindings[event.logicalKey];
     if (b == null) return KeyEventResult.ignored;
+    // The guide handles its own keys; only volume, mute and fullscreen reach the TV while it is open.
+    if (mode != TvMode.watch &&
+        !const {TvAction.mute, TvAction.volumeUp, TvAction.volumeDown, TvAction.toggleFullscreen}.contains(b.action)) {
+      return KeyEventResult.handled;
+    }
     if (event is KeyRepeatEvent &&
         !const {
           TvAction.channelUp,
@@ -107,8 +156,10 @@ class _TvScreenState extends State<TvScreen> {
         windowManager.isFullScreen().then((f) {
           if (f) windowManager.setFullScreen(false);
         });
-      case TvAction.guide || TvAction.menu:
-        break; // built in the guide/menu plan
+      case TvAction.guide:
+        _openGuide();
+      case TvAction.menu:
+        break; // built in the menu task
     }
     return KeyEventResult.handled;
   }
@@ -125,12 +176,15 @@ class _TvScreenState extends State<TvScreen> {
     tv.removeListener(_changed);
     _entryTimer?.cancel();
     _bannerTimer?.cancel();
+    _warmTimer?.cancel();
+    _focus.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Focus(
+      focusNode: _focus,
       autofocus: true,
       onKeyEvent: _onKey,
       child: GestureDetector(
@@ -156,6 +210,16 @@ class _TvScreenState extends State<TvScreen> {
                   if (_banner && !tv.standBy) InfoBanner(airing: tv.airing),
                   if (entry.text.isNotEmpty)
                     Positioned(top: 24, right: 32, child: _digits(entry.text)),
+                  if (_guide != null)
+                    GuideOverlay(
+                      model: _guide!,
+                      onHighlight: _highlight,
+                      onClose: _closeGuide,
+                      onTune: (c) {
+                        _closeGuide();
+                        tv.tune(c);
+                      },
+                    ),
                 ],
               ),
             ),
