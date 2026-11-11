@@ -7,10 +7,15 @@ import 'models.dart';
 /// Video preference per episode: the "NNNKb MPEG4" derivative closest to
 /// 512 kbps, then "h.264", then plain "MPEG4", then "h.264 HD", then any .mp4.
 /// "HiRes MPEG4" copies are ignored. Audio items use the MP3 files.
+///
+/// A candidate whose bitrate (size / length) is above [maxKbps] is skipped so
+/// 1080p-only items don't make a channel slow to start; an episode with no
+/// candidate under the cap is left out. `maxKbps: null` turns the cap off.
 List<Entry> pickEntries(
   ItemMeta meta, {
   double minSeconds = 60,
   double maxSeconds = 6 * 3600,
+  double? maxKbps = 3000,
 }) {
   final audio = meta.mediatype == 'audio';
   final groups = <String, List<ArchiveFile>>{};
@@ -25,10 +30,14 @@ List<Entry> pickEntries(
   final entries = <_Picked>[];
   for (final e in groups.entries) {
     final files = e.value..sort((a, b) => _rank(a, audio)!.compareTo(_rank(b, audio)!));
-    final best = files.first;
-    final length = best.length ?? lengthByStem[e.key];
-    if (length == null || length < minSeconds || length > maxSeconds) continue;
-    entries.add(_Picked(e.key, best, length));
+    for (final f in files) {
+      final length = f.length ?? lengthByStem[e.key];
+      if (length == null || length < minSeconds || length > maxSeconds) continue;
+      final kbps = f.size == null ? null : f.size! * 8 / length / 1000;
+      if (maxKbps != null && kbps != null && kbps > maxKbps) continue;
+      entries.add(_Picked(e.key, f, length));
+      break;
+    }
   }
 
   entries.sort((a, b) => naturalCompare(a.stem, b.stem));
@@ -59,12 +68,17 @@ class _Picked {
   _Picked(this.stem, this.file, this.length);
 }
 
-/// File name without folder-less extension and without a "_512kb" style suffix,
-/// so all the encodes of one episode share a stem.
+/// File name without its extension and without Archive's encode suffixes
+/// ("_512kb", ".ia", and stacked ones like "_64kb_512kb"), so every encode of
+/// one episode shares a stem.
 String _stem(String name) {
   final dot = name.lastIndexOf('.');
-  final base = dot > 0 ? name.substring(0, dot) : name;
-  return base.replaceFirst(RegExp(r'_\d+kb$', caseSensitive: false), '');
+  var base = dot > 0 ? name.substring(0, dot) : name;
+  final suffix = RegExp(r'(\.ia|_\d+kb)$', caseSensitive: false);
+  while (suffix.hasMatch(base)) {
+    base = base.replaceFirst(suffix, '');
+  }
+  return base;
 }
 
 String _pretty(String stem) => stem.split('/').last.replaceAll('_', ' ').trim();

@@ -26,6 +26,7 @@ ItemMeta loadMeta(String fixtureName) {
 }
 
 void main() {
+  pickerRegressionTests();
   test('real single-file item: picks the 512Kb file and ignores HiRes copies', () {
     final entries = pickEntries(loadMeta('meta_single.json'));
     expect(entries, hasLength(1));
@@ -77,5 +78,28 @@ void main() {
     final names = ['Ep 10', 'Ep 2', 'ep 1', 'Ep 2b'];
     names.sort(naturalCompare);
     expect(names, ['ep 1', 'Ep 2', 'Ep 2b', 'Ep 10']);
+  });
+}
+
+void pickerRegressionTests() {
+  test('stacked encode suffixes (_64kb_512kb, .ia) collapse to one entry per episode', () {
+    const files = [
+      ArchiveFile('Show1984_512kb.mp4', format: '512Kb MPEG4', size: 125013711, length: 1720.25),
+      ArchiveFile('Show1984_64kb_512kb.mp4', format: '512Kb MPEG4', size: 125050982, length: 1720.15),
+      ArchiveFile('Show1984_64kb.ia.mp4', format: 'MPEG4', size: 173506051, length: 1720.26),
+      ArchiveFile('Show1984_256kb.ia.mp4', format: 'MPEG4', size: 173866299, length: 1720.26),
+    ];
+    final entries = pickEntries(const ItemMeta('Show1984', files: files));
+    expect(entries, hasLength(1));
+    expect(entries.single.file, endsWith('512kb.mp4'));
+  });
+
+  test('bitrate cap skips 1080p-only episodes, picks an under-cap candidate when there is one', () {
+    const heavy = ArchiveFile('Ep1.mp4', format: 'h.264', size: 3750000000, length: 1320); // about 22,700 kbps
+    const light = ArchiveFile('Ep2_512kb.mp4', format: '512Kb MPEG4', size: 85000000, length: 1320);
+    const heavy2 = ArchiveFile('Ep2.mp4', format: 'h.264', size: 3000000000, length: 1320);
+    final entries = pickEntries(const ItemMeta('x', files: [heavy, light, heavy2]));
+    expect(entries.map((e) => e.file), ['Ep2_512kb.mp4']);
+    expect(pickEntries(const ItemMeta('x', files: [heavy]), maxKbps: null).map((e) => e.file), ['Ep1.mp4']);
   });
 }
