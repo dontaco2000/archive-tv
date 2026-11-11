@@ -10,6 +10,7 @@ import 'package:window_manager/window_manager.dart';
 import '../engine/tv_engine.dart';
 import '../guide/guide_model.dart';
 import '../input/actions.dart';
+import '../input/gamepad.dart';
 import '../player/player_controller.dart';
 import '../settings/settings_store.dart';
 import '../settings/window_prefs.dart';
@@ -279,6 +280,9 @@ class _TvScreenState extends State<TvScreen> {
 
   KeyEventResult _onKey(FocusNode node, KeyEvent event) {
     if (event is KeyUpEvent) return KeyEventResult.ignored;
+    // Pad buttons were already re-sent as keyboard keys (input/gamepad.dart); swallow the raw
+    // button so Android can't turn an unhandled B into Back.
+    if (gamepadKeys.containsKey(event.logicalKey)) return KeyEventResult.handled;
     final b = keyboardBindings[event.logicalKey];
     if (b == null) return KeyEventResult.ignored;
     // The "Next: ..." card takes OK (play now) and Back (cancel, return to live).

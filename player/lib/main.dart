@@ -11,6 +11,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:window_manager/window_manager.dart';
 
 import 'engine/tv_engine.dart';
+import 'input/gamepad.dart';
 import 'player/player_controller.dart';
 import 'settings/rotating_log.dart';
 import 'settings/settings_store.dart';
@@ -90,6 +91,7 @@ Future<void> main(List<String> args) async {
   final tv = PlayerController(engine, log: log);
   tv.setVolume(settings.muted ? 0 : settings.volume);
   runApp(MaterialApp(debugShowCheckedModeBanner: false, home: TvScreen(controller: tv, settings: settings, store: store, windowPrefs: windowPrefs)));
+  installGamepad(log: log); // pads act as the keyboard: XInput on Windows, button keys on Android
 
   // Remember the channel being watched so the next launch starts there.
   tv.addListener(() {
