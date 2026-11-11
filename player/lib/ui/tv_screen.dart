@@ -11,6 +11,7 @@ import '../guide/guide_model.dart';
 import '../input/actions.dart';
 import '../player/player_controller.dart';
 import '../settings/settings_store.dart';
+import '../settings/window_prefs.dart';
 import 'channel_logo.dart';
 import 'guide_overlay.dart';
 import 'menu_overlay.dart';
@@ -22,7 +23,8 @@ class TvScreen extends StatefulWidget {
   final PlayerController controller;
   final Settings settings;
   final SettingsStore store;
-  const TvScreen({super.key, required this.controller, required this.settings, required this.store});
+  final WindowPrefs windowPrefs;
+  const TvScreen({super.key, required this.controller, required this.settings, required this.store, required this.windowPrefs});
 
   @override
   State<TvScreen> createState() => _TvScreenState();
@@ -220,12 +222,10 @@ class _TvScreenState extends State<TvScreen> {
       case TvAction.favorite:
         _toggleFavorite();
       case TvAction.toggleFullscreen:
-        windowManager.isFullScreen().then(
-          (f) => windowManager.setFullScreen(!f),
-        );
+        widget.windowPrefs.toggleFullScreen();
       case TvAction.back:
         windowManager.isFullScreen().then((f) {
-          if (f) windowManager.setFullScreen(false);
+          if (f) widget.windowPrefs.setFullScreen(false);
         });
       case TvAction.guide:
         _openGuide();
@@ -260,9 +260,7 @@ class _TvScreenState extends State<TvScreen> {
       autofocus: true,
       onKeyEvent: _onKey,
       child: GestureDetector(
-        onDoubleTap: () => windowManager.isFullScreen().then(
-          (f) => windowManager.setFullScreen(!f),
-        ),
+        onDoubleTap: widget.windowPrefs.toggleFullScreen,
         child: Scaffold(
           backgroundColor: Colors.black,
           body: Center(

@@ -38,7 +38,7 @@ Future<void> main(List<String> args) async {
       if (settings.startFullscreen || settings.fullscreen) await windowManager.setFullScreen(true);
     },
   );
-  WindowPrefs(settings, store, log).attach();
+  final windowPrefs = WindowPrefs(settings, store, log)..attach();
 
   final configFile = File(p.join(dataDir.path, 'channels.json'));
   if (!configFile.existsSync()) configFile.writeAsStringSync(defaultChannelsJson);
@@ -55,7 +55,7 @@ Future<void> main(List<String> args) async {
   }
   final tv = PlayerController(engine, log: log);
   tv.setVolume(settings.muted ? 0 : settings.volume);
-  runApp(MaterialApp(debugShowCheckedModeBanner: false, home: TvScreen(controller: tv, settings: settings, store: store)));
+  runApp(MaterialApp(debugShowCheckedModeBanner: false, home: TvScreen(controller: tv, settings: settings, store: store, windowPrefs: windowPrefs)));
 
   // Build pools one channel at a time; start on the first channel that has content,
   // but never override a channel the viewer already picked.

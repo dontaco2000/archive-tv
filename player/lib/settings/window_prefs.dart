@@ -49,9 +49,18 @@ class WindowPrefs with WindowListener {
   bool _altEnter(KeyEvent e) {
     if (e is! KeyDownEvent || !HardwareKeyboard.instance.isAltPressed) return false;
     if (e.logicalKey != LogicalKeyboardKey.enter && e.logicalKey != LogicalKeyboardKey.numpadEnter) return false;
-    windowManager.isFullScreen().then((f) => windowManager.setFullScreen(!f));
+    toggleFullScreen();
     return true;
   }
+
+  /// All fullscreen changes go through here: window_manager on Windows only reports
+  /// entering fullscreen for maximized windows, so the listener alone would miss most.
+  Future<void> setFullScreen(bool on) async {
+    await windowManager.setFullScreen(on);
+    _changed();
+  }
+
+  Future<void> toggleFullScreen() async => setFullScreen(!await windowManager.isFullScreen());
 
   void _changed() {
     _debounce?.cancel();
