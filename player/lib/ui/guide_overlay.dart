@@ -179,9 +179,10 @@ class _GuideOverlayState extends State<GuideOverlay> {
             for (final c in r.cells)
               () {
                 final sel = selectedRow && (c.slot == null || c.slot == slot);
+                final w = (c.endFraction - c.startFraction) * box.maxWidth;
                 return Positioned(
                   left: c.startFraction * box.maxWidth,
-                  width: (c.endFraction - c.startFraction) * box.maxWidth,
+                  width: w,
                   top: 0,
                   bottom: 0,
                   child: Container(
@@ -190,7 +191,8 @@ class _GuideOverlayState extends State<GuideOverlay> {
                     padding: const EdgeInsets.symmetric(horizontal: 4),
                     alignment: Alignment.centerLeft,
                     color: sel ? _yellow : _cellBg,
-                    child: _text(c.label, _style(font, sel ? Colors.black : Colors.white, bold: sel)),
+                    // Under about four characters wide a title is just stray letters; leave the cell blank.
+                    child: w < font * 2.5 ? null : _text(c.label, _style(font, sel ? Colors.black : Colors.white, bold: sel)),
                   ),
                 );
               }(),
