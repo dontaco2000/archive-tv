@@ -1,0 +1,74 @@
+import 'dart:convert';
+import 'dart:io';
+
+class Settings {
+  Set<int> favorites = {};
+  double volume = 80;
+  bool muted = false;
+  bool startFullscreen = false;
+  bool cornerBug = true;
+  double? windowX, windowY, windowW, windowH;
+  bool fullscreen = false;
+
+  Settings();
+
+  Map<String, dynamic> toJson() => {
+        'favorites': favorites.toList()..sort(),
+        'volume': volume,
+        'muted': muted,
+        'startFullscreen': startFullscreen,
+        'cornerBug': cornerBug,
+        'windowX': windowX,
+        'windowY': windowY,
+        'windowW': windowW,
+        'windowH': windowH,
+        'fullscreen': fullscreen,
+      };
+
+  factory Settings.fromJson(Map<String, dynamic> j) {
+    final s = Settings();
+    double? num_(String k) => j[k] is num ? (j[k] as num).toDouble() : null;
+    bool bool_(String k, bool d) => j[k] is bool ? j[k] as bool : d;
+    if (j['favorites'] is List) {
+      s.favorites = (j['favorites'] as List).whereType<int>().toSet();
+    }
+    final v = num_('volume');
+    if (v != null) s.volume = v.clamp(0, 100).toDouble();
+    s.muted = bool_('muted', s.muted);
+    s.startFullscreen = bool_('startFullscreen', s.startFullscreen);
+    s.cornerBug = bool_('cornerBug', s.cornerBug);
+    s.windowX = num_('windowX');
+    s.windowY = num_('windowY');
+    s.windowW = num_('windowW');
+    s.windowH = num_('windowH');
+    s.fullscreen = bool_('fullscreen', s.fullscreen);
+    return s;
+  }
+}
+
+class SettingsStore {
+  final File file;
+  SettingsStore(this.file);
+
+  Settings load() {
+    try {
+      final j = jsonDecode(file.readAsStringSync());
+      if (j is Map<String, dynamic>) return Settings.fromJson(j);
+    } catch (_) {}
+    return Settings();
+  }
+
+  void save(Settings s) {
+    file.parent.createSync(recursive: true);
+    final tmp = File('${file.path}.tmp');
+    tmp.writeAsStringSync(jsonEncode(s.toJson()), flush: true);
+    tmp.renameSync(file.path);
+  }
+}
+
+/// Returns true if the channel is now a favorite.
+bool toggleFavorite(Settings s, int channelNumber) {
+  if (s.favorites.remove(channelNumber)) return false;
+  s.favorites.add(channelNumber);
+  return true;
+}
