@@ -10,3 +10,4 @@ export 'src/query_builder.dart';
 export 'src/scheduler.dart';
 export 'src/seeded_random.dart';
 export 'src/stores.dart';
+export 'src/title_cleaner.dart';

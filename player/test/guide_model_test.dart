@@ -57,6 +57,16 @@ void main() {
     expect(m.windowStart, DateTime(2026, 11, 11, 10, 30));
   });
 
+  test('cell labels are cleaned file names', () {
+    final m = GuideModel(
+      channels: [a],
+      now: now,
+      tunableNumbers: {1},
+      slotsFor: (_) => [slot('Martha.Speaks.S01E39.1080p.WEB-DL.AAC2.0.H.264-NTb', h, 600)],
+    );
+    expect(m.rowsInView(1).single.cells.single.label, 'Martha Speaks S01E39');
+  });
+
   test('slot straddling the window start is clipped but keeps its title', () {
     final cell = model().rowsInView(4).first.cells.first;
     expect(cell.label, 'A1');

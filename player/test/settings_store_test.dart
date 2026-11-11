@@ -44,7 +44,7 @@ void main() {
     expect(s.volume, 80);
     expect(s.favorites, isEmpty);
     expect(s.windowW, isNull);
-    expect(s.cornerBug, true);
+    expect(s.cornerBug, false);
   });
 
   test('corrupt JSON gives defaults', () {

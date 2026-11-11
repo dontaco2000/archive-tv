@@ -61,7 +61,9 @@ class _TvScreenState extends State<TvScreen> {
   void _showBanner([Duration d = const Duration(seconds: 5)]) {
     _banner = true;
     _bannerTimer?.cancel();
-    _bannerTimer = Timer(d, () => setState(() => _banner = false));
+    _bannerTimer = Timer(d, () {
+      if (mounted) setState(() => _banner = false);
+    });
   }
 
   /// Flips to the next/previous tunable channel (wrapping), favorites only when that is on.
@@ -275,6 +277,13 @@ class _TvScreenState extends State<TvScreen> {
                     fit: BoxFit.contain,
                     controls: NoVideoControls,
                   ),
+                  // Corner bug: the channel's logo, small and faint, while a channel plays.
+                  if (settings.cornerBug && !tv.standBy && tv.channel != null)
+                    Positioned(
+                      top: 16,
+                      right: 16,
+                      child: Opacity(opacity: 0.5, child: ChannelLogo(channel: tv.channel!, height: 48)),
+                    ),
                   if (tv.standBy)
                     StandByCard(channel: tv.channel, message: tv.message),
                   if (_banner && !tv.standBy) InfoBanner(airing: tv.airing),
@@ -435,7 +444,7 @@ class InfoBanner extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '${a.slot.entry.title}  (${_left(a.remaining)})',
+                    '${cleanTitle(a.slot.entry.title)}  (${_left(a.remaining)})',
                     style: const TextStyle(
                       color: Color(0xFFFFE08A),
                       fontSize: 20,
@@ -444,7 +453,7 @@ class InfoBanner extends StatelessWidget {
                   ),
                   if (a.next != null)
                     Text(
-                      'Next: ${a.next!.entry.title}',
+                      'Next: ${cleanTitle(a.next!.entry.title)}',
                       style: const TextStyle(
                         color: Color(0xFF9EC8FF),
                         fontSize: 18,

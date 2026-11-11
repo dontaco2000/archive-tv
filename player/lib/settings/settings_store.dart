@@ -6,7 +6,7 @@ class Settings {
   double volume = 80;
   bool muted = false;
   bool startFullscreen = false;
-  bool cornerBug = true;
+  bool cornerBug = false; // spec 5.10: off by default
   bool favoritesOnly = false;
   double? windowX, windowY, windowW, windowH;
   bool fullscreen = false;

@@ -94,7 +94,7 @@ class GuideModel {
     return GuideRow(c, true, [
       for (final s in _slotsOf(c))
         if (s.end.isAfter(windowStart) && s.start.isBefore(end))
-          GuideCell(s, s.entry.title, frac(s.start).clamp(0.0, 1.0), frac(s.end).clamp(0.0, 1.0)),
+          GuideCell(s, cleanTitle(s.entry.title), frac(s.start).clamp(0.0, 1.0), frac(s.end).clamp(0.0, 1.0)),
     ]);
   }
 }
