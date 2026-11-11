@@ -11,19 +11,13 @@ import 'package:window_manager/window_manager.dart';
 import 'engine/tv_engine.dart';
 import 'player/player_controller.dart';
 import 'settings/settings_store.dart';
+import 'settings/window_prefs.dart';
 import 'ui/tv_screen.dart';
 
 Future<void> main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
   MediaKit.ensureInitialized();
   await windowManager.ensureInitialized();
-  await windowManager.waitUntilReadyToShow(
-    const WindowOptions(size: Size(960, 720), minimumSize: Size(640, 480), center: true, title: 'Archive TV'),
-    () async {
-      await windowManager.setAspectRatio(4 / 3); // windowed mode keeps the 4:3 shape
-      await windowManager.show();
-    },
-  );
 
   final dataDir = Directory(p.join((await getApplicationSupportDirectory()).path, 'ArchiveTV'))..createSync(recursive: true);
   final logFile = File(p.join(dataDir.path, 'archive_tv.log'));
@@ -32,6 +26,19 @@ Future<void> main(List<String> args) async {
     debugPrint(line);
     logFile.writeAsStringSync('$line\n', mode: FileMode.append);
   }
+
+  final store = SettingsStore(File(p.join(dataDir.path, 'settings.json')));
+  final settings = store.load();
+  await windowManager.waitUntilReadyToShow(
+    const WindowOptions(size: Size(960, 720), minimumSize: Size(640, 480), center: true, title: 'Archive TV'),
+    () async {
+      await windowManager.setAspectRatio(4 / 3); // windowed mode keeps the 4:3 shape
+      await WindowPrefs.restoreBounds(settings).catchError((Object e) => log('window restore failed: $e'));
+      await windowManager.show();
+      if (settings.startFullscreen || settings.fullscreen) await windowManager.setFullScreen(true);
+    },
+  );
+  WindowPrefs(settings, store, log).attach();
 
   final configFile = File(p.join(dataDir.path, 'channels.json'));
   if (!configFile.existsSync()) configFile.writeAsStringSync(defaultChannelsJson);
@@ -46,8 +53,6 @@ Future<void> main(List<String> args) async {
         home: ErrorScreen(message: 'Cannot read channels.json\n\n${e is ConfigException ? e.message : e}\n\n${configFile.path}')));
     return;
   }
-  final store = SettingsStore(File(p.join(dataDir.path, 'settings.json')));
-  final settings = store.load();
   final tv = PlayerController(engine, log: log);
   tv.setVolume(settings.muted ? 0 : settings.volume);
   runApp(MaterialApp(debugShowCheckedModeBanner: false, home: TvScreen(controller: tv, settings: settings, store: store)));
