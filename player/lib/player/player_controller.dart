@@ -26,7 +26,8 @@ class PlayerController extends ChangeNotifier {
 
   int _generation = 0; // bumped on every tune so a stale open can't clear a newer STAND BY
   StreamSubscription<bool>? _completedSub;
-  Timer? _stallTimer;
+  Timer? _slotTimer; // re-tunes when the airing slot ends
+  Timer? _retryTimer; // re-tunes a NO SIGNAL channel after a while
 
   PlayerController(this.engine, {void Function(String)? log}) : log = log ?? ((_) {}) {
     final native = player.platform;
@@ -40,22 +41,46 @@ class PlayerController extends ChangeNotifier {
       native.setProperty('video-aspect-override', 'no');
     }
     _completedSub = player.stream.completed.listen((done) {
-      if (done && channel != null) tune(channel!);
+      // Only a file that ended with its slot moves on; one that ends early waits for the slot timer.
+      final a = airing;
+      if (done && channel != null && a != null && !DateTime.now().isBefore(a.slot.end.subtract(const Duration(milliseconds: 500)))) {
+        _safeTune(channel!);
+      }
     });
+  }
+
+  void _safeTune(Channel c) => unawaited(tune(c).catchError((Object e) => log('tune ${c.number} error: $e')));
+
+  void _noSignal(Channel c) {
+    message = 'NO SIGNAL';
+    notifyListeners();
+    _retryTimer?.cancel();
+    _retryTimer = Timer(const Duration(seconds: 30), () => _safeTune(c));
   }
 
   /// Joins [c] as it airs now. If the file can't be opened, moves on to the next slot.
   Future<void> tune(Channel c, {int attempt = 0}) async {
     final gen = ++_generation;
+    _slotTimer?.cancel();
+    _retryTimer?.cancel();
     channel = c;
     standBy = true;
     message = null;
     notifyListeners();
+    try {
+      await _tune(c, gen, attempt);
+    } on Object catch (e) {
+      log('tune ${c.number} error: $e');
+      if (gen == _generation) _noSignal(c);
+    }
+  }
 
+  Future<void> _tune(Channel c, int gen, int attempt) async {
     await engine.ensurePool(c);
     final a = engine.airing(c, DateTime.now());
     if (gen != _generation) return;
     if (a == null) {
+      airing = null;
       message = 'OFF AIR';
       notifyListeners();
       return;
@@ -85,19 +110,21 @@ class PlayerController extends ChangeNotifier {
       await firstFrame.future.timeout(const Duration(seconds: 15));
       if (gen != _generation) return;
       tuneTimes.insert(0, sw.elapsedMilliseconds);
+      if (tuneTimes.length > 50) tuneTimes.removeLast();
       log('tune ${c.number} ${c.name}: first frame in ${sw.elapsedMilliseconds} ms after open (resolve $resolveMs ms) (${a.slot.entry.title} @ ${a.offsetSeconds.round()}s)');
       standBy = false;
       notifyListeners();
+      _slotTimer = Timer(a.slot.end.difference(DateTime.now()), () => _safeTune(c));
     } on Object catch (e) {
       log('tune ${c.number} failed: $e');
       if (gen != _generation) return;
       if (attempt >= 2) {
-        message = 'NO SIGNAL';
-        notifyListeners();
+        _noSignal(c);
         return;
       }
       // Skip to the next item at its start, keeping STAND BY up.
       await Future<void>.delayed(const Duration(seconds: 1));
+      if (gen != _generation) return; // the viewer flipped away; don't pull them back
       await tune(c, attempt: attempt + 1);
     } finally {
       await sub.cancel();
@@ -135,7 +162,9 @@ class PlayerController extends ChangeNotifier {
   @override
   void dispose() {
     _completedSub?.cancel();
-    _stallTimer?.cancel();
+    _slotTimer?.cancel();
+    _retryTimer?.cancel();
+    _http.close();
     player.dispose();
     super.dispose();
   }

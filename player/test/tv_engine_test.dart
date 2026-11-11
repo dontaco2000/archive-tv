@@ -96,6 +96,23 @@ void main() {
     expect(broken.tunable.map((c) => c.name), contains('Bytes'));
   });
 
+  test('concurrent ensurePool calls share one build', () async {
+    final bytes = engine.channels.first;
+    await Future.wait([engine.ensurePool(bytes), engine.ensurePool(bytes)]);
+    expect(api.searches, 1);
+  });
+
+  test('an empty build is not saved, and a later ensurePool builds normally', () async {
+    final bytes = engine.channels.first;
+    final empty = TvEngine.open(configText: configText, dataDir: dir, api: FakeApi({}));
+    await empty.ensurePool(bytes);
+    expect(empty.tunable, isEmpty);
+    expect(File('${dir.path}/pools/pool-2.json').existsSync(), isFalse);
+    await empty.ensurePool(bytes); // retried, not cached as empty
+    await engine.ensurePool(bytes);
+    expect(engine.tunable.map((c) => c.name), contains('Bytes'));
+  });
+
   test('guideFor covers 12 hours and planWeek saves seven days', () async {
     final bytes = engine.channels.first;
     await engine.ensurePool(bytes);

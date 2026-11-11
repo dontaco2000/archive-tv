@@ -34,8 +34,11 @@ class _TvScreenState extends State<TvScreen> {
     tv.addListener(_changed);
   }
 
+  bool _wasStandBy = true;
+
   void _changed() {
-    if (!tv.standBy) _showBanner();
+    if (_wasStandBy && !tv.standBy) _showBanner();
+    _wasStandBy = tv.standBy;
     if (mounted) setState(() {});
   }
 
@@ -50,7 +53,7 @@ class _TvScreenState extends State<TvScreen> {
     final list = tv.engine.tunable;
     if (list.isEmpty) return;
     final i = list.indexWhere((c) => c.number == tv.channel?.number);
-    final next = list[((i < 0 ? 0 : i) + step) % list.length];
+    final next = list[((i < 0 ? (step > 0 ? -1 : 0) : i) + step) % list.length];
     tv.tune(next);
   }
 
@@ -63,6 +66,10 @@ class _TvScreenState extends State<TvScreen> {
     if (event is KeyUpEvent) return KeyEventResult.ignored;
     final b = keyboardBindings[event.logicalKey];
     if (b == null) return KeyEventResult.ignored;
+    if (event is KeyRepeatEvent &&
+        !const {TvAction.channelUp, TvAction.channelDown, TvAction.volumeUp, TvAction.volumeDown}.contains(b.action)) {
+      return KeyEventResult.handled;
+    }
     switch (b.action) {
       case TvAction.channelUp:
         _flip(1);
@@ -141,6 +148,30 @@ class _TvScreenState extends State<TvScreen> {
 
   Widget _digits(String t) => Text(t,
       style: const TextStyle(color: Colors.greenAccent, fontSize: 56, fontFamily: 'Consolas', fontWeight: FontWeight.bold));
+}
+
+/// Shown instead of the TV when channels.json can't be read.
+class ErrorScreen extends StatelessWidget {
+  final String message;
+  const ErrorScreen({super.key, required this.message});
+
+  @override
+  Widget build(BuildContext context) => Scaffold(
+        backgroundColor: Colors.black,
+        body: Center(
+          child: AspectRatio(
+            aspectRatio: 4 / 3,
+            child: Container(
+              color: Colors.black,
+              alignment: Alignment.center,
+              padding: const EdgeInsets.all(32),
+              child: Text(message,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(color: Color(0xFF9EC8FF), fontSize: 24, fontFamily: 'Consolas')),
+            ),
+          ),
+        ),
+      );
 }
 
 class StandByCard extends StatelessWidget {

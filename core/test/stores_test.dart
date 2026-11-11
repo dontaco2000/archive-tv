@@ -34,6 +34,18 @@ void main() {
     expect(dir.listSync().where((f) => f.path.contains('day-5-')), hasLength(5));
   });
 
+  test('a day is read from disk once, then served from memory', () {
+    final dir = Directory.systemTemp.createTempSync('snapmem');
+    addTearDown(() => dir.deleteSync(recursive: true));
+    final store = SnapshotStore(dir);
+    final first = store.day(5, day, pool);
+    for (final f in dir.listSync()) {
+      f.deleteSync();
+    }
+    final again = store.day(5, day, [entry('zzz', 40)]);
+    expect(again.map((s) => s.entry.id), first.map((s) => s.entry.id));
+  });
+
   test('pool store round-trips and blocklist filters by entry or item', () {
     final dir = Directory.systemTemp.createTempSync('pool');
     addTearDown(() => dir.deleteSync(recursive: true));

@@ -1,5 +1,7 @@
+import 'dart:async';
 import 'dart:io';
 
+import 'package:archive_tv_core/archive_tv_core.dart';
 import 'package:flutter/material.dart';
 import 'package:media_kit/media_kit.dart';
 import 'package:path/path.dart' as p;
@@ -33,16 +35,26 @@ Future<void> main(List<String> args) async {
   final configFile = File(p.join(dataDir.path, 'channels.json'));
   if (!configFile.existsSync()) configFile.writeAsStringSync(defaultChannelsJson);
 
-  final engine = TvEngine.open(configText: configFile.readAsStringSync(), dataDir: dataDir, log: log);
+  final TvEngine engine;
+  try {
+    engine = TvEngine.open(configText: configFile.readAsStringSync(), dataDir: dataDir, log: log);
+  } on Object catch (e) {
+    log('channels.json error: $e');
+    runApp(MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: ErrorScreen(message: 'Cannot read channels.json\n\n${e is ConfigException ? e.message : e}\n\n${configFile.path}')));
+    return;
+  }
   final tv = PlayerController(engine, log: log);
   runApp(MaterialApp(debugShowCheckedModeBanner: false, home: TvScreen(controller: tv)));
 
-  // Start on the first channel that has content.
+  // Build pools one channel at a time; start on the first channel that has content,
+  // but never override a channel the viewer already picked.
   for (final c in engine.channels) {
     await engine.ensurePool(c);
+    if (tv.channel == null && engine.tunable.isNotEmpty) unawaited(tv.tune(engine.tunable.first));
   }
   final first = engine.tunable;
-  if (first.isNotEmpty) await tv.tune(first.first);
 
   // `--latency-test`: flip through the channels a few times, log first-frame times, then quit.
   if (args.contains('--latency-test')) {

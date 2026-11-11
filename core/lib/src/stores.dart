@@ -58,17 +58,24 @@ class SnapshotStore {
   final Directory dir;
   SnapshotStore(this.dir);
 
+  final Map<String, List<Entry>> _orders = {}; // '<channel>-<dayKey>' -> unfiltered day order
+
   File _f(int channel, DateTime day) => _file(dir, 'day-$channel-${dayKey(day)}.json');
 
   /// The schedule for [day] (a local DateTime), from the saved order, making
   /// and saving it from [pool] if absent; [blocklist] entries are removed.
   List<Slot> day(int channel, DateTime day, List<Entry> pool, {Blocklist? blocklist}) {
-    final f = _f(channel, day);
-    final saved = _readJson(f) as List?;
-    var order = saved != null
-        ? [for (final e in saved.cast<Map<String, dynamic>>()) Entry.fromJson(e)]
-        : dayOrder(pool, 'ch$channel', day);
-    if (saved == null && order.isNotEmpty) _writeJson(f, [for (final e in order) e.toJson()]);
+    final key = '$channel-${dayKey(day)}';
+    var order = _orders[key];
+    if (order == null) {
+      final f = _f(channel, day);
+      final saved = _readJson(f) as List?;
+      order = saved != null
+          ? [for (final e in saved.cast<Map<String, dynamic>>()) Entry.fromJson(e)]
+          : dayOrder(pool, 'ch$channel', day);
+      if (saved == null && order.isNotEmpty) _writeJson(f, [for (final e in order) e.toJson()]);
+      if (order.isNotEmpty) _orders[key] = order; // empty days are not cached: the pool may fill later
+    }
     if (blocklist != null) order = blocklist.apply(order);
     return layoutDay(order, day);
   }
@@ -84,6 +91,7 @@ class SnapshotStore {
   void prune(DateTime today) {
     if (!dir.existsSync()) return;
     final cutoff = dayKey(today);
+    _orders.removeWhere((k, _) => k.substring(k.indexOf('-') + 1).compareTo(cutoff) < 0);
     for (final f in dir.listSync().whereType<File>()) {
       final m = RegExp(r'day-\d+-(\d{4}-\d{2}-\d{2})\.json$').firstMatch(f.path);
       if (m != null && m.group(1)!.compareTo(cutoff) < 0) f.deleteSync();

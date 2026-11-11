@@ -54,9 +54,18 @@ class TvEngine {
           if (c.type == 'archive' && _pool.containsKey(c.number) && !isOffAir(_pool[c.number]!, config.minContentSeconds)) c,
       ];
 
+  final Map<int, Future<void>> _building = {};
+
   /// Loads the channel's pool from disk, or builds it from Archive when missing or older than a day.
-  Future<void> ensurePool(Channel channel, {Duration maxAge = const Duration(days: 1)}) async {
-    if (channel.type != 'archive' || _pool.containsKey(channel.number)) return;
+  /// Concurrent callers for the same channel share one build.
+  Future<void> ensurePool(Channel channel, {Duration maxAge = const Duration(days: 1)}) {
+    if (channel.type != 'archive' || _pool.containsKey(channel.number)) return Future.value();
+    return _building[channel.number] ??= _ensurePool(channel, maxAge).whenComplete(() {
+      _building.remove(channel.number);
+    });
+  }
+
+  Future<void> _ensurePool(Channel channel, Duration maxAge) async {
     final saved = pools.load(channel.number);
     final age = pools.age(channel.number);
     if (saved != null && age != null && age < maxAge) {
@@ -65,11 +74,11 @@ class TvEngine {
     }
     try {
       final built = await buildPool(channel, config, api, log: log);
-      if (built.isEmpty && saved != null) {
+      if (built.isEmpty) {
         // buildPool logs failed searches and returns what it has; an empty result means
-        // the refresh failed, so keep the pool we already had instead of replacing it.
-        log('${channel.name}: refresh found nothing, keeping the saved pool');
-        _pool[channel.number] = blocklist.apply(saved);
+        // the refresh failed. Never save it; keep the pool we already had, if any.
+        log('${channel.name}: build found nothing${saved != null ? ', keeping the saved pool' : ''}');
+        if (saved != null) _pool[channel.number] = blocklist.apply(saved);
         return;
       }
       pools.save(channel.number, built);
