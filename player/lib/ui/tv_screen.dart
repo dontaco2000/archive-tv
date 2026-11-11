@@ -16,6 +16,7 @@ import '../remote/remote_server.dart';
 import '../settings/settings_store.dart';
 import '../settings/window_prefs.dart';
 import '../weather/weather.dart';
+import 'about_overlay.dart';
 import 'channel_logo.dart';
 import 'guide_overlay.dart';
 import 'menu_overlay.dart';
@@ -23,7 +24,7 @@ import 'arcade_entry.dart';
 import 'on_demand_overlay.dart';
 import 'weather_web.dart';
 
-enum TvMode { watch, guide, menu, onDemand, location }
+enum TvMode { watch, guide, menu, onDemand, location, about }
 
 /// The whole TV: a 4:3 frame holding the video, STAND BY card, info banner and number entry.
 class TvScreen extends StatefulWidget {
@@ -72,11 +73,19 @@ class _TvScreenState extends State<TvScreen> {
     // (e.g. the music's first frame) looks like a channel change and drops the loaded WeatherStar page.
     _shown = tv.channel;
     tv.addListener(_changed);
+    if (!settings.noticeAccepted) mode = TvMode.about; // one-time content notice
     widget.remote
       ?..state = _remoteState
       ..volume = _setVolume
       ..channel = _remoteTune
       ..logo = _logoBytes;
+    final r = widget.remote;
+    if (r != null) {
+      _remoteWatch = Timer.periodic(const Duration(seconds: 1), (_) {
+        final open = r.isWindowOpen();
+        if (open != _remoteOpen && mounted) setState(() => _remoteOpen = open);
+      });
+    }
   }
 
   // ---- Remote control (remote/remote_server.dart). Its buttons arrive as key presses; these cover the rest.
@@ -125,11 +134,31 @@ class _TvScreenState extends State<TvScreen> {
     }
   }
 
-  void _openRemote() {
+  /// R key, menu item and the REMOTE corner button: open the remote window if closed, else close it.
+  Future<void> _toggleRemote() async {
     final r = widget.remote;
     if (r == null) return;
-    _flash('Opening remote...');
-    unawaited(r.openWindow());
+    if (!_remoteOpen) _flash('Opening remote...');
+    final open = await r.toggleWindow();
+    if (!mounted) return;
+    setState(() => _remoteOpen = open);
+    if (!open) _flash('Remote closed');
+  }
+
+  // Remote window state, re-read each second so closing it with its X turns the button back to OFF.
+  bool _remoteOpen = false;
+  Timer? _remoteWatch;
+
+  // The REMOTE corner button shows while the mouse moves over the window, and fades 3 s after it stops.
+  bool _mouseActive = false;
+  Timer? _mouseTimer;
+
+  void _mouseMoved() {
+    _mouseTimer?.cancel();
+    _mouseTimer = Timer(const Duration(seconds: 3), () {
+      if (mounted) setState(() => _mouseActive = false);
+    });
+    if (!_mouseActive) setState(() => _mouseActive = true);
   }
 
   bool _wasStandBy = true;
@@ -247,12 +276,15 @@ class _TvScreenState extends State<TvScreen> {
   /// Saves and applies settings after any change; a failed save is logged, never fatal.
   void _settingsChanged([Settings? _]) {
     tv.setVolume(settings.muted ? 0 : settings.volume);
+    unawaited(tv.setLeveling(settings.volumeLeveling));
     final r = widget.remote;
     if (r != null) {
       r.ensurePin(); // first LAN enable makes the PIN; saved below
-      unawaited(r.start().then((_) {
-        if (mounted) setState(() {}); // the menu shows the LAN address once it is known
-      }));
+      unawaited(
+        r.start().then((_) {
+          if (mounted) setState(() {}); // the menu shows the LAN address once it is known
+        }),
+      );
     }
     _webFailed = false; // e.g. switched back to the WeatherStar view: try the page again
     try {
@@ -280,6 +312,15 @@ class _TvScreenState extends State<TvScreen> {
   void _closeMenu() {
     setState(() => mode = TvMode.watch);
     _focus.requestFocus();
+  }
+
+  /// Closing About (or the first-run notice) counts as having seen the content notice.
+  void _closeAbout() {
+    if (!settings.noticeAccepted) {
+      settings.noticeAccepted = true;
+      _settingsChanged();
+    }
+    _closeMenu();
   }
 
   /// Blocks the airing entry for good and re-tunes, which lands on the next item.
@@ -453,7 +494,7 @@ class _TvScreenState extends State<TvScreen> {
         _openOverlay(TvMode.onDemand);
       case TvAction.remote:
         if (widget.remote == null) return KeyEventResult.ignored;
-        _openRemote();
+        unawaited(_toggleRemote());
     }
     return KeyEventResult.handled;
   }
@@ -463,6 +504,8 @@ class _TvScreenState extends State<TvScreen> {
   void _systemBack() {
     if (mode == TvMode.guide) {
       _closeGuide();
+    } else if (mode == TvMode.about) {
+      _closeAbout();
     } else if (mode != TvMode.watch) {
       _closeMenu();
     } else if (_next != null) {
@@ -490,6 +533,8 @@ class _TvScreenState extends State<TvScreen> {
     _warmTimer?.cancel();
     _flashTimer?.cancel();
     _nextTimer?.cancel();
+    _remoteWatch?.cancel();
+    _mouseTimer?.cancel();
     _focus.dispose();
     _http.close();
     super.dispose();
@@ -506,124 +551,167 @@ class _TvScreenState extends State<TvScreen> {
         focusNode: _focus,
         autofocus: true,
         onKeyEvent: _onKey,
-        child: GestureDetector(
-          onDoubleTap: widget.windowPrefs?.toggleFullScreen,
-          child: Scaffold(
-            backgroundColor: Colors.black,
-            body: Center(
-              child: AspectRatio(
-                aspectRatio: 4 / 3,
-                child: Stack(
-                  fit: StackFit.expand,
-                  children: [
-                    // Widescreen video is letterboxed inside the 4:3 frame, never stretched or cropped.
-                    Video(controller: tv.video, fit: BoxFit.contain, controls: NoVideoControls),
-                    // The weather channel shows the WeatherStar 4000+ page (spec 5.8); the player only carries its music.
-                    if (_weather)
-                      WeatherLayers(
-                        key: ValueKey(_webTune),
-                        place: settings.weatherPlace,
-                        web: _webWeather,
-                        webLoaded: _webLoaded,
-                        url: weatherStarUrl(
-                            place: settings.weatherPlace, lat: settings.weatherLat, lon: settings.weatherLon, light: weatherStarLight),
-                        load: () => fetchWeather(_http, Place(settings.weatherPlace, settings.weatherLat, settings.weatherLon)),
-                        onLoaded: () {
-                          tv.log('weatherstar page loaded');
-                          if (mounted) setState(() => _webLoaded = true);
-                        },
-                        onFailed: (why) {
-                          tv.log('weatherstar page failed ($why): native weather screens instead');
-                          if (mounted) setState(() => _webFailed = true);
-                        },
-                      ),
-                    // Corner bug: the channel's logo, small and faint, while a channel plays.
-                    if (settings.cornerBug && !tv.standBy && tv.channel != null && !_weather && tv.onDemand == null)
-                      Positioned(
-                        top: 16,
-                        right: 16,
-                        child: Opacity(opacity: 0.5, child: ChannelLogo(channel: tv.channel!, height: 48)),
-                      ),
-                    if (tv.standBy && !_weather) StandByCard(channel: tv.channel, message: tv.message),
-                    if (_banner && _weather) InfoBanner(channel: tv.channel, airing: tv.airing, weatherPlace: settings.weatherPlace),
-                    if (_banner && !tv.standBy && !_weather) InfoBanner(channel: tv.channel, airing: tv.airing, onDemand: tv.onDemand),
-                    if (entry.text.isNotEmpty) Positioned(top: 24, right: 32, child: _digits(entry.text)),
-                    if (_guide != null)
-                      GuideOverlay(
-                        model: _guide!,
-                        onHighlight: _highlight,
-                        onClose: _closeGuide,
-                        onTune: (c) {
-                          _closeGuide();
-                          tv.tune(c);
-                        },
-                      ),
-                    if (mode == TvMode.menu)
-                      MenuOverlay(
-                        settings: settings,
-                        current: tv.channel,
-                        onChanged: _settingsChanged,
-                        onBlockCurrent: _blockCurrent,
-                        onRefresh: _refresh,
-                        onClose: _closeMenu,
-                        onOnDemand: () => _openOverlay(TvMode.onDemand),
-                        onWeatherLocation: () => _openOverlay(TvMode.location),
-                        onOpenRemote: widget.remote == null
-                            ? null
-                            : () {
-                                _closeMenu();
-                                _openRemote();
-                              },
-                        remoteLanInfo: widget.remote == null || !settings.remoteLan
-                            ? null
-                            : 'Phone: ${widget.remote!.lanUrl ?? 'finding address...'}  PIN ${settings.remotePin ?? '-'}',
-                      ),
-                    if (mode == TvMode.onDemand)
-                      OnDemandOverlay(
-                        channels: [for (final c in tv.engine.tunable) if (c.type == 'archive') c],
-                        poolOf: tv.engine.poolOf,
-                        onPlay: (c, e) {
-                          _closeMenu();
-                          unawaited(tv.playOnDemand(c, e));
-                        },
-                        onClose: _closeMenu,
-                      ),
-                    if (mode == TvMode.location)
-                      ArcadePrompt(
-                        title: 'WEATHER LOCATION',
-                        hint: 'City or ZIP code. Up/Down: letter, Left/Right: move\nEnter: save, Esc: cancel',
-                        onDone: _setLocation,
-                        onCancel: _closeMenu,
-                      ),
-                    if (tv.onDemand != null && !tv.standBy && _next == null)
-                      Positioned(
-                        top: 16,
-                        right: 16,
-                        child: Container(
-                          color: const Color(0xCCB71C1C),
-                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                          child: const Text('ON DEMAND',
-                              style: TextStyle(color: Colors.white, fontSize: 18, fontFamily: 'Consolas', fontWeight: FontWeight.bold)),
+        child: MouseRegion(
+          onHover: widget.remote == null ? null : (_) => _mouseMoved(),
+          child: Stack(
+            fit: StackFit.expand,
+            children: [
+              GestureDetector(
+                onDoubleTap: widget.windowPrefs?.toggleFullScreen,
+                child: Scaffold(
+                  backgroundColor: Colors.black,
+                  body: LayoutBuilder(
+                    builder: (context, box) => Center(
+                      child: AspectRatio(
+                        aspectRatio: frameAspect(box.maxWidth, box.maxHeight),
+                        child: Stack(
+                          fit: StackFit.expand,
+                          children: [
+                            // Widescreen video is letterboxed inside the 4:3 frame, never stretched or cropped.
+                            Video(controller: tv.video, fit: BoxFit.contain, controls: NoVideoControls),
+                            // The weather channel shows the WeatherStar 4000+ page (spec 5.8); the player only carries its music.
+                            if (_weather)
+                              WeatherLayers(
+                                key: ValueKey(_webTune),
+                                place: settings.weatherPlace,
+                                web: _webWeather,
+                                webLoaded: _webLoaded,
+                                url: weatherStarUrl(
+                                  place: settings.weatherPlace,
+                                  lat: settings.weatherLat,
+                                  lon: settings.weatherLon,
+                                  light: weatherStarLight,
+                                ),
+                                load: () => fetchWeather(_http, Place(settings.weatherPlace, settings.weatherLat, settings.weatherLon)),
+                                onLoaded: () {
+                                  tv.log('weatherstar page loaded');
+                                  if (mounted) setState(() => _webLoaded = true);
+                                },
+                                onFailed: (why) {
+                                  tv.log('weatherstar page failed ($why): native weather screens instead');
+                                  if (mounted) setState(() => _webFailed = true);
+                                },
+                              ),
+                            // Corner bug: the channel's logo, small and faint, while a channel plays.
+                            if (settings.cornerBug && !tv.standBy && tv.channel != null && !_weather && tv.onDemand == null)
+                              Positioned(
+                                top: 16,
+                                right: 16,
+                                child: Opacity(opacity: 0.5, child: ChannelLogo(channel: tv.channel!, height: 48)),
+                              ),
+                            if (tv.standBy && !_weather) StandByCard(channel: tv.channel, message: tv.message),
+                            if (_banner && _weather)
+                              InfoBanner(channel: tv.channel, airing: tv.airing, weatherPlace: settings.weatherPlace),
+                            if (_banner && !tv.standBy && !_weather)
+                              InfoBanner(channel: tv.channel, airing: tv.airing, onDemand: tv.onDemand),
+                            if (entry.text.isNotEmpty) Positioned(top: 24, right: 32, child: _digits(entry.text)),
+                            if (_guide != null)
+                              GuideOverlay(
+                                model: _guide!,
+                                onHighlight: _highlight,
+                                onClose: _closeGuide,
+                                onTune: (c) {
+                                  _closeGuide();
+                                  tv.tune(c);
+                                },
+                              ),
+                            if (mode == TvMode.menu)
+                              MenuOverlay(
+                                settings: settings,
+                                current: tv.channel,
+                                onChanged: _settingsChanged,
+                                onBlockCurrent: _blockCurrent,
+                                onRefresh: _refresh,
+                                onClose: _closeMenu,
+                                onOnDemand: () => _openOverlay(TvMode.onDemand),
+                                onWeatherLocation: () => _openOverlay(TvMode.location),
+                                onAbout: () => _openOverlay(TvMode.about),
+                                levelingAvailable: tv.levelingAvailable,
+                                onOpenRemote: widget.remote == null
+                                    ? null
+                                    : () {
+                                        _closeMenu();
+                                        unawaited(_toggleRemote());
+                                      },
+                                remoteOpen: _remoteOpen,
+                                remoteLanInfo: widget.remote == null || !settings.remoteLan
+                                    ? null
+                                    : 'Phone: ${widget.remote!.lanUrl ?? 'finding address...'}  PIN ${settings.remotePin ?? '-'}',
+                              ),
+                            if (mode == TvMode.onDemand)
+                              OnDemandOverlay(
+                                channels: [
+                                  for (final c in tv.engine.tunable)
+                                    if (c.type == 'archive') c,
+                                ],
+                                poolOf: tv.engine.poolOf,
+                                onPlay: (c, e) {
+                                  _closeMenu();
+                                  unawaited(tv.playOnDemand(c, e));
+                                },
+                                onClose: _closeMenu,
+                              ),
+                            if (mode == TvMode.location)
+                              ArcadePrompt(
+                                title: 'WEATHER LOCATION',
+                                hint: 'City or ZIP code. Up/Down: letter, Left/Right: move\nEnter: save, Esc: cancel',
+                                onDone: _setLocation,
+                                onCancel: _closeMenu,
+                              ),
+                            if (mode == TvMode.about) AboutOverlay(firstRun: !settings.noticeAccepted, onClose: _closeAbout),
+                            if (tv.onDemand != null && !tv.standBy && _next == null)
+                              Positioned(
+                                top: 16,
+                                right: 16,
+                                child: Container(
+                                  color: const Color(0xCCB71C1C),
+                                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                                  child: const Text(
+                                    'ON DEMAND',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                      fontFamily: 'Consolas',
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            if (_next != null) NextCard(entry: _next!, secondsLeft: _nextLeft),
+                            if (_flashText != null)
+                              Positioned(
+                                top: 24,
+                                left: 32,
+                                child: Container(
+                                  color: const Color(0xE6101A5C),
+                                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                                  child: Text(
+                                    _flashText!,
+                                    style: const TextStyle(color: Color(0xFFFFEB3B), fontSize: 24, fontFamily: 'Consolas'),
+                                  ),
+                                ),
+                              ),
+                          ],
                         ),
                       ),
-                    if (_next != null) NextCard(entry: _next!, secondsLeft: _nextLeft),
-                    if (_flashText != null)
-                      Positioned(
-                        top: 24,
-                        left: 32,
-                        child: Container(
-                          color: const Color(0xE6101A5C),
-                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                          child: Text(
-                            _flashText!,
-                            style: const TextStyle(color: Color(0xFFFFEB3B), fontSize: 24, fontFamily: 'Consolas'),
-                          ),
-                        ),
-                      ),
-                  ],
+                    ),
+                  ),
                 ),
               ),
-            ),
+              if (widget.remote != null)
+                Positioned(
+                  top: 10,
+                  right: 10,
+                  child: IgnorePointer(
+                    ignoring: !_mouseActive,
+                    child: AnimatedOpacity(
+                      opacity: _mouseActive ? 1 : 0,
+                      duration: const Duration(milliseconds: 400),
+                      child: RemoteCornerButton(on: _remoteOpen, onTap: () => unawaited(_toggleRemote())),
+                    ),
+                  ),
+                ),
+            ],
           ),
         ),
       ),
@@ -732,9 +820,15 @@ class InfoBanner extends StatelessWidget {
                     '${ch.number}  ${ch.name.toUpperCase()}',
                     style: const TextStyle(color: Colors.white, fontSize: 26, fontFamily: 'Consolas', fontWeight: FontWeight.bold),
                   ),
-                  Text(lines[0], style: const TextStyle(color: Color(0xFFFFE08A), fontSize: 20, fontFamily: 'Consolas')),
+                  Text(
+                    lines[0],
+                    style: const TextStyle(color: Color(0xFFFFE08A), fontSize: 20, fontFamily: 'Consolas'),
+                  ),
                   if (lines.length > 1)
-                    Text(lines[1], style: const TextStyle(color: Color(0xFF9EC8FF), fontSize: 18, fontFamily: 'Consolas')),
+                    Text(
+                      lines[1],
+                      style: const TextStyle(color: Color(0xFF9EC8FF), fontSize: 18, fontFamily: 'Consolas'),
+                    ),
                 ],
               ),
             ),
@@ -753,17 +847,56 @@ class NextCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Center(
-        child: Container(
-          color: const Color(0xEE0A0A3A),
-          padding: const EdgeInsets.all(28),
-          child: Column(mainAxisSize: MainAxisSize.min, children: [
-            Text('Next: ${cleanTitle(entry.title)}',
-                textAlign: TextAlign.center,
-                style: const TextStyle(color: Colors.white, fontSize: 28, fontFamily: 'Consolas', fontWeight: FontWeight.bold)),
-            const SizedBox(height: 12),
-            Text('Starting in $secondsLeft...   OK: play now   Back: live TV',
-                style: const TextStyle(color: Color(0xFF9EC8FF), fontSize: 20, fontFamily: 'Consolas')),
-          ]),
+    child: Container(
+      color: const Color(0xEE0A0A3A),
+      padding: const EdgeInsets.all(28),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            'Next: ${cleanTitle(entry.title)}',
+            textAlign: TextAlign.center,
+            style: const TextStyle(color: Colors.white, fontSize: 28, fontFamily: 'Consolas', fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 12),
+          Text(
+            'Starting in $secondsLeft...   OK: play now   Back: live TV',
+            style: const TextStyle(color: Color(0xFF9EC8FF), fontSize: 20, fontFamily: 'Consolas'),
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
+/// The REMOTE ON/OFF button in the window's top-right corner (Windows). Not focusable: a click
+/// never takes the keyboard away from the TV.
+class RemoteCornerButton extends StatelessWidget {
+  final bool on;
+  final VoidCallback onTap;
+  const RemoteCornerButton({super.key, required this.on, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) => MouseRegion(
+    cursor: SystemMouseCursors.click,
+    child: GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+        decoration: BoxDecoration(
+          color: const Color(0xF0101A5C),
+          border: Border.all(color: const Color(0xFFFFEB3B), width: 2),
         ),
-      );
+        child: Text(
+          'REMOTE: ${on ? 'ON' : 'OFF'}',
+          style: TextStyle(
+            color: on ? const Color(0xFFFFEB3B) : Colors.white,
+            fontSize: 20,
+            fontFamily: 'Consolas',
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+    ),
+  );
 }

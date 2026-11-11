@@ -7,6 +7,7 @@ import 'package:media_kit/media_kit.dart';
 import 'package:media_kit_video/media_kit_video.dart';
 
 import '../engine/tv_engine.dart';
+import '../settings/settings_store.dart';
 import 'stall_watch.dart';
 
 /// Owns the single libmpv player. `tune` shows STAND BY, opens the airing file
@@ -47,8 +48,15 @@ class PlayerController extends ChangeNotifier {
     }
     // Sound problems are otherwise invisible: log mpv's audio-output errors and warnings.
     _logSub = player.stream.log.listen((l) {
-      if (l.prefix == 'ao' || l.prefix == 'audio' || l.text.toLowerCase().contains('audio device')) {
+      // Also audio filter (volume leveling) failures: mpv then drops the filter and plays unfiltered.
+      if (const {'ao', 'audio', 'af', 'lavfi', 'user_filter_wrapper'}.contains(l.prefix) ||
+          l.text.toLowerCase().contains('audio device') ||
+          l.text.contains('Disabling filter')) {
         this.log('mpv ${l.level} ${l.prefix}: ${l.text.trim()}');
+      }
+      // The filter chain is only built when audio starts: a libmpv without these lavfi filters fails here.
+      if (levelingAvailable && (l.prefix == 'lavfi' || (l.prefix == 'user_filter_wrapper' && l.text.contains('failed')))) {
+        unawaited(_levelingUnavailable(reopen: true));
       }
     });
     _completedSub = player.stream.completed.listen((done) {
@@ -294,6 +302,51 @@ class PlayerController extends ChangeNotifier {
   }
 
   void setVolume(double v) => player.setVolume(v.clamp(0, 100));
+
+  String? _leveling;
+
+  /// False once libmpv has shown it can't build the leveling filters (the menu then says so).
+  bool levelingAvailable = true;
+
+  /// [reopen]: the chain failed while audio started, and mpv then plays that file without sound;
+  /// clear the filters and reopen what was playing so the sound comes back.
+  Future<void> _levelingUnavailable({bool reopen = false}) async {
+    levelingAvailable = false;
+    log('volume leveling: filters not available in this libmpv, playing unfiltered${reopen ? ' (reopening)' : ''}');
+    final native = player.platform;
+    if (native is NativePlayer) await native.setProperty('af', '').catchError((Object _) {});
+    notifyListeners();
+    if (!reopen) return;
+    final c = channel, od = onDemand;
+    if (c == null) return;
+    if (od != null) {
+      unawaited(playOnDemand(c, od, from: player.state.position));
+    } else {
+      _safeTune(c);
+    }
+  }
+
+  /// Volume leveling through mpv's audio filter chain (one setting for live, On Demand and weather music).
+  /// If this libmpv can't build the filter, mpv keeps the old chain: we log it and clear the chain, so
+  /// sound always plays, unfiltered at worst.
+  Future<void> setLeveling(String mode) async {
+    if (mode == _leveling) return; // re-setting af restarts the audio chain: only on a real change
+    _leveling = mode;
+    final native = player.platform;
+    if (native is! NativePlayer || !levelingAvailable) return;
+    final af = levelingFilter(mode);
+    try {
+      await native.setProperty('af', af);
+      final got = await native.getProperty('af');
+      if (af.isNotEmpty && !got.contains(af.contains('alimiter') ? 'alimiter' : 'dynaudnorm')) {
+        await _levelingUnavailable();
+      } else {
+        log('volume leveling $mode (af="$got")');
+      }
+    } on Object catch (e) {
+      log('volume leveling $mode failed: $e');
+    }
+  }
 
   @override
   void dispose() {

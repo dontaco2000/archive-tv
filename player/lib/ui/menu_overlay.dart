@@ -11,7 +11,7 @@ const _panel = Color(0xE6101A5C); // same dark translucent blue as the guide
 const _yellow = Color(0xFFFFEB3B);
 const _cellBg = Color(0xFF1E2C8A);
 
-enum _Item { onDemand, favorite, favoritesOnly, volume, mute, startFullscreen, cornerBug, block, refresh, weatherMode, weatherLocation, openRemote, remoteLan, remoteInfo, close }
+enum _Item { onDemand, favorite, favoritesOnly, volume, mute, leveling, startFullscreen, cornerBug, block, refresh, weatherMode, weatherLocation, openRemote, remoteLan, remoteInfo, about, close }
 
 /// Settings menu over the right half of the frame. Changes are made on [settings] in place
 /// and reported through [onChanged]; the screen saves and applies them.
@@ -26,9 +26,16 @@ class MenuOverlay extends StatefulWidget {
   final VoidCallback onClose;
   final VoidCallback? onOnDemand;
   final VoidCallback? onWeatherLocation;
+  final VoidCallback? onAbout;
 
-  /// Windows only: opens the remote window (null hides the remote items).
+  /// False when the player's libmpv can't build the leveling filters.
+  final bool levelingAvailable;
+
+  /// Windows only: opens / closes the remote window (null hides the remote items).
   final VoidCallback? onOpenRemote;
+
+  /// Whether the remote window is open (the remote item shows ON/OFF and toggles it).
+  final bool remoteOpen;
 
   /// The phone address and PIN, shown while the remote is on Wi-Fi.
   final String? remoteLanInfo;
@@ -43,8 +50,11 @@ class MenuOverlay extends StatefulWidget {
     required this.onClose,
     this.onOnDemand,
     this.onWeatherLocation,
+    this.onAbout,
+    this.levelingAvailable = true,
     this.onOpenRemote,
     this.remoteLanInfo,
+    this.remoteOpen = false,
   });
 
   @override
@@ -119,6 +129,10 @@ class _MenuOverlayState extends State<MenuOverlay> {
         _change(() => s.remoteLan = !s.remoteLan);
       case _Item.remoteInfo:
         break;
+      case _Item.leveling:
+        _change(() => s.volumeLeveling = cycleLeveling(s.volumeLeveling, dir == 0 ? 1 : dir));
+      case _Item.about:
+        if (dir == 0) widget.onAbout?.call();
     }
   }
 
@@ -155,6 +169,8 @@ class _MenuOverlayState extends State<MenuOverlay> {
       _Item.favoritesOnly => 'Flip favorites only: ${_onOff(s.favoritesOnly)}',
       _Item.volume => 'Volume ${'#' * (s.volume ~/ 5)}${'.' * (20 - s.volume ~/ 5)} ${s.volume.round()}',
       _Item.mute => 'Mute: ${_onOff(s.muted)}',
+      _Item.leveling => 'Volume leveling: ${s.volumeLeveling.toUpperCase()}${widget.levelingAvailable ? '' : ' (not available)'}',
+      _Item.about => 'About',
       _Item.startFullscreen => 'Start fullscreen: ${_onOff(s.startFullscreen)}',
       _Item.cornerBug => 'Corner bug: ${_onOff(s.cornerBug)}',
       _Item.block => 'Block this item',
@@ -163,7 +179,7 @@ class _MenuOverlayState extends State<MenuOverlay> {
       _Item.onDemand => 'On Demand',
       _Item.weatherMode => 'Weather view: ${s.weatherMode == 'native' ? 'CLASSIC' : 'WEATHERSTAR'}',
       _Item.weatherLocation => 'Weather: ${s.weatherPlace}',
-      _Item.openRemote => 'Open remote',
+      _Item.openRemote => 'Remote window: ${_onOff(widget.remoteOpen)}',
       _Item.remoteLan => 'Remote on Wi-Fi: ${_onOff(s.remoteLan)}',
       _Item.remoteInfo => widget.remoteLanInfo ?? '',
     };

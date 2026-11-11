@@ -4,6 +4,7 @@ import 'dart:io';
 class Settings {
   Set<int> favorites = {};
   double volume = 80;
+  /// Mute lasts for this run only: the app always starts unmuted (not saved, not restored).
   bool muted = false;
   bool startFullscreen = false;
   bool cornerBug = false; // spec 5.10: off by default
@@ -27,12 +28,17 @@ class Settings {
   bool remoteLan = false;
   String? remotePin;
 
+  /// Evens out loudness between channels and programs: 'off', 'normal' or 'strong' (see [levelingFilter]).
+  String volumeLeveling = 'normal';
+
+  /// The one-time content notice was shown and dismissed.
+  bool noticeAccepted = false;
+
   Settings();
 
   Map<String, dynamic> toJson() => {
         'favorites': favorites.toList()..sort(),
         'volume': volume,
-        'muted': muted,
         'startFullscreen': startFullscreen,
         'cornerBug': cornerBug,
         'favoritesOnly': favoritesOnly,
@@ -48,6 +54,8 @@ class Settings {
         'weatherMode': weatherMode,
         'remoteLan': remoteLan,
         'remotePin': remotePin,
+        'volumeLeveling': volumeLeveling,
+        'noticeAccepted': noticeAccepted,
       };
 
   factory Settings.fromJson(Map<String, dynamic> j) {
@@ -59,7 +67,6 @@ class Settings {
     }
     final v = num_('volume');
     if (v != null) s.volume = v.clamp(0, 100).toDouble();
-    s.muted = bool_('muted', s.muted);
     s.startFullscreen = bool_('startFullscreen', s.startFullscreen);
     s.cornerBug = bool_('cornerBug', s.cornerBug);
     s.favoritesOnly = bool_('favoritesOnly', s.favoritesOnly);
@@ -79,6 +86,8 @@ class Settings {
     s.remoteLan = bool_('remoteLan', s.remoteLan);
     final pin = j['remotePin'];
     if (pin is String && RegExp(r'^\d{4}$').hasMatch(pin)) s.remotePin = pin;
+    if (levelingModes.contains(j['volumeLeveling'])) s.volumeLeveling = j['volumeLeveling'] as String;
+    s.noticeAccepted = bool_('noticeAccepted', s.noticeAccepted);
     return s;
   }
 }
@@ -109,3 +118,22 @@ bool toggleFavorite(Settings s, int channelNumber) {
   s.favorites.add(channelNumber);
   return true;
 }
+
+const levelingModes = ['off', 'normal', 'strong'];
+
+/// The leveling mode [dir] steps (+1/-1, wrapping) from [current].
+String cycleLeveling(String current, int dir) {
+  final i = levelingModes.indexOf(current);
+  return levelingModes[((i < 0 ? 1 : i) + dir) % levelingModes.length];
+}
+
+/// mpv `af` value for a leveling mode ('' = no filter). Plain filter names (not `lavfi=[...]`), so mpv
+/// rejects a filter its libavfilter lacks when the property is set, instead of failing later and dropping audio. Tuned on Archive samples, see _build/leveling-report.md:
+/// normal = dynaudnorm aiming at an RMS level (channel-to-channel spread 16.5 LU -> 2.7 LU),
+/// strong = faster dynaudnorm + compressor + limiter (also flattens loud/quiet moments within a program).
+String levelingFilter(String mode) => switch (mode) {
+      'normal' => 'dynaudnorm=f=250:g=15:p=0.9:m=10:r=0.15',
+      'strong' => 'dynaudnorm=f=100:g=7:p=0.9:m=20:r=0.15,'
+          'acompressor=threshold=-22dB:ratio=4:attack=10:release=200:makeup=1.6,alimiter=limit=0.95',
+      _ => '',
+    };

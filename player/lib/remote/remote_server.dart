@@ -56,7 +56,9 @@ class RemoteServer {
   void Function(int number) channel = (_) {};
   Future<List<int>?> Function(int number) logo = (_) async => null;
 
-  RemoteServer(this.settings, {void Function(String)? log}) : log = log ?? ((_) {});
+  RemoteServer(this.settings, {void Function(String)? log}) : log = log ?? ((_) {}) {
+    launchWindow = openWindow;
+  }
 
   HttpServer? _server;
   int port = firstPort;
@@ -114,6 +116,30 @@ class RemoteServer {
     } on Object catch (e) {
       log('remote: could not open a window: $e');
     }
+  }
+
+  /// Window hooks, replaceable in tests.
+  bool Function() isWindowOpen = remoteWindowOpen;
+  void Function() closeWindow = closeRemoteWindow;
+  Future<void> Function() launchWindow = () async {};
+
+  /// R key, menu item and the REMOTE corner button: opens the window if it is closed, else closes it.
+  /// Returns whether it is now open.
+  Future<bool> toggleWindow() async {
+    if (isWindowOpen()) {
+      closeWindow();
+      log('remote: window closed');
+      return false;
+    }
+    await launchWindow();
+    return true;
+  }
+
+  /// App shutdown: the remote window goes with the TV.
+  void closeWindowOnExit() {
+    if (!isWindowOpen()) return;
+    closeWindow();
+    log('remote: window closed with the app');
   }
 
   Future<void> stop() async {

@@ -26,6 +26,9 @@ void main() {
     expect(keyboardBindings[LogicalKeyboardKey.pageUp]!.action, TvAction.channelUp);
     expect(keyboardBindings[LogicalKeyboardKey.arrowDown]!.action, TvAction.channelDown);
     expect(keyboardBindings[LogicalKeyboardKey.f11]!.action, TvAction.toggleFullscreen);
+    expect(keyboardBindings[LogicalKeyboardKey.space]!.action, TvAction.mute); // Space and U mute
+    expect(keyboardBindings[LogicalKeyboardKey.keyU]!.action, TvAction.mute);
+    expect(keyboardBindings[LogicalKeyboardKey.mediaPlayPause]!.action, TvAction.mute);
     final seven = keyboardBindings[LogicalKeyboardKey.digit7]!;
     expect(seven.action, TvAction.digit);
     expect(seven.digit, 7);

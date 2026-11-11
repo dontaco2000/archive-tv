@@ -77,6 +77,21 @@ Future<void> openRemoteWindow(String url, {void Function(String)? log}) async {
   log?.call('remote: opened in the default browser');
 }
 
+final _user32 = _User32(); // lazy: only touched on Windows
+
+/// True while the remote window is on screen, however it was opened (or handed to a running Edge).
+bool remoteWindowOpen() {
+  final h = _user32.find(_title);
+  return h != 0 && _user32.visible(h);
+}
+
+/// Closes the remote window (found by its title, so also one Edge took over from another launch).
+/// Its Edge instance has its own profile, so closing its only window ends that process.
+void closeRemoteWindow() {
+  final h = _user32.find(_title);
+  if (h != 0) _user32.close(h);
+}
+
 List<String> _browserPaths() {
   final env = Platform.environment;
   final bases = [env['ProgramFiles(x86)'], env['ProgramFiles'], env['LOCALAPPDATA']].whereType<String>();
@@ -100,6 +115,11 @@ class _User32 {
   late final _showWindow = _d.lookupFunction<Int32 Function(IntPtr, Int32), int Function(int, int)>('ShowWindow');
   late final _isVisible = _d.lookupFunction<Int32 Function(IntPtr), int Function(int)>('IsWindowVisible');
   late final _setForeground = _d.lookupFunction<Int32 Function(IntPtr), int Function(int)>('SetForegroundWindow');
+  late final _postMessage =
+      _d.lookupFunction<Int32 Function(IntPtr, Uint32, IntPtr, IntPtr), int Function(int, int, int, int)>('PostMessageW');
+
+  bool visible(int h) => _isVisible(h) != 0;
+  void close(int h) => _postMessage(h, 0x0010 /* WM_CLOSE */, 0, 0);
 
   int find(String title, [String? cls]) {
     final t = title.toNativeUtf16(), c = cls?.toNativeUtf16() ?? nullptr;

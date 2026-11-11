@@ -27,4 +27,17 @@ void main() {
     const left = Rect.fromLTWH(-1920, 0, 1920, 1040);
     expect(clampToScreen(const Rect.fromLTWH(-100, 10, 960, 720), left), const Rect.fromLTWH(-960, 10, 960, 720));
   });
+
+  test('snap4x3 keeps the width and makes the client area 4:3 (title bar and borders excluded)', () {
+    // 960x720 outer with a 31 px title bar and 8 px side borders: client 944x689 -> 944x708, so outer 960x739.
+    expect(snap4x3(const Size(960, 720), const Size(944, 689)), const Size(960, 739));
+    expect(snap4x3(const Size(800, 600), const Size(800, 600)), const Size(800, 600)); // no frame
+  });
+
+  test('frameAspect fills areas within 1.5% of 4:3, else stays 4:3', () {
+    expect(frameAspect(944, 708), closeTo(4 / 3, 1e-9));
+    expect(frameAspect(944, 700), 944 / 700); // 1.1% off: fill
+    expect(frameAspect(1920, 1080), 4 / 3); // fullscreen 16:9 keeps the pillarbox
+    expect(frameAspect(960, 689), 4 / 3); // 3% off: 4:3 with bars
+  });
 }

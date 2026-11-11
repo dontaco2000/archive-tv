@@ -105,4 +105,39 @@ void main() {
     expect((await call('GET', '/api/state', headers: local)).$1, 200); // this PC never needs the PIN
     expect(keys, ['menu']);
   });
+
+  test('toggleWindow opens when closed, closes when open (also after the user closed it)', () async {
+    var open = false;
+    final calls = <String>[];
+    server
+      ..isWindowOpen = (() => open)
+      ..launchWindow = () async {
+        calls.add('launch');
+        open = true;
+      }
+      ..closeWindow = () {
+        calls.add('close');
+        open = false;
+      };
+    expect(await server.toggleWindow(), isTrue);
+    expect(await server.toggleWindow(), isFalse);
+    expect(await server.toggleWindow(), isTrue);
+    open = false; // closed with its own X
+    expect(await server.toggleWindow(), isTrue);
+    expect(calls, ['launch', 'close', 'launch', 'launch']);
+  });
+
+  test('app shutdown closes an open remote window, and leaves a closed one alone', () {
+    var open = true, closes = 0;
+    server
+      ..isWindowOpen = (() => open)
+      ..closeWindow = () {
+        closes++;
+        open = false;
+      };
+    server.closeWindowOnExit();
+    expect((open, closes), (false, 1));
+    server.closeWindowOnExit();
+    expect(closes, 1);
+  });
 }

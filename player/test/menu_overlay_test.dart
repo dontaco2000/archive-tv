@@ -48,6 +48,8 @@ void main() {
     await key(t, LogicalKeyboardKey.arrowUp, 3);
     expect(selected(t), 'Close');
     await key(t, LogicalKeyboardKey.arrowUp);
+    expect(selected(t), 'About');
+    await key(t, LogicalKeyboardKey.arrowUp);
     expect(selected(t), 'Weather: Hattiesburg, Mississippi');
   });
 
@@ -70,7 +72,7 @@ void main() {
     await key(t, LogicalKeyboardKey.arrowDown);
     await key(t, LogicalKeyboardKey.enter);
     expect(r.settings.favorites, {4});
-    await key(t, LogicalKeyboardKey.arrowDown, 6);
+    await key(t, LogicalKeyboardKey.arrowDown, 7);
     expect(selected(t), 'Block this item');
     await key(t, LogicalKeyboardKey.enter);
     expect(r.calls, ['block']);
@@ -78,12 +80,12 @@ void main() {
     expect(r.calls, ['block', 'close']);
   });
 
-  testWidgets('remote items: Open remote calls back, Wi-Fi toggles, LAN info shows; hidden without a remote', (t) async {
+  testWidgets('remote items: Remote window calls back, Wi-Fi toggles, LAN info shows; hidden without a remote', (t) async {
     await pump(t);
-    expect(find.text('Open remote'), findsNothing);
+    expect(find.textContaining('Remote window'), findsNothing);
     final r = await pump(t, remote: true, lanInfo: 'Phone: http://192.168.1.5:8765/remote  PIN 1234');
-    await key(t, LogicalKeyboardKey.arrowUp, 4); // Close, LAN info, Wi-Fi, Open remote
-    expect(selected(t), 'Open remote');
+    await key(t, LogicalKeyboardKey.arrowUp, 5); // Close, About, LAN info, Wi-Fi, Open remote
+    expect(selected(t), 'Remote window: OFF');
     await key(t, LogicalKeyboardKey.enter);
     expect(r.calls, ['remote']);
     await key(t, LogicalKeyboardKey.arrowDown);
@@ -91,5 +93,36 @@ void main() {
     await key(t, LogicalKeyboardKey.enter);
     expect(r.settings.remoteLan, isTrue);
     expect(find.textContaining('PIN 1234'), findsOneWidget);
+  });
+
+  testWidgets('Volume leveling cycles with Enter/Right/Left; About calls back', (t) async {
+    final calls = <String>[];
+    final settings = Settings();
+    await t.pumpWidget(MaterialApp(
+      home: Scaffold(
+        body: MenuOverlay(
+          settings: settings,
+          current: ch,
+          onChanged: (_) {},
+          onBlockCurrent: () {},
+          onRefresh: () {},
+          onClose: () {},
+          onAbout: () => calls.add('about'),
+        ),
+      ),
+    ));
+    await t.pump();
+    await key(t, LogicalKeyboardKey.arrowDown, 5);
+    expect(selected(t), 'Volume leveling: NORMAL');
+    await key(t, LogicalKeyboardKey.enter);
+    expect(selected(t), 'Volume leveling: STRONG');
+    await key(t, LogicalKeyboardKey.arrowRight);
+    expect(settings.volumeLeveling, 'off');
+    await key(t, LogicalKeyboardKey.arrowLeft);
+    expect(selected(t), 'Volume leveling: STRONG');
+    await key(t, LogicalKeyboardKey.arrowUp, 7); // past the top, wrapping to Close, then About
+    expect(selected(t), 'About');
+    await key(t, LogicalKeyboardKey.enter);
+    expect(calls, ['about']);
   });
 }

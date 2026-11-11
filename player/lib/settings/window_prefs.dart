@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:screen_retriever/screen_retriever.dart';
 import 'package:window_manager/window_manager.dart';
 
@@ -17,6 +18,18 @@ Rect clampToScreen(Rect saved, Rect screen) {
     w,
     h,
   );
+}
+
+/// Outer window size whose client area is exactly 4:3 for the same width: [outer] minus [client]
+/// is the title bar and borders, which the 4:3 shape must not include.
+Size snap4x3(Size outer, Size client) => Size(outer.width, (client.width * 3 / 4 + outer.height - client.height).roundToDouble());
+
+/// Aspect of the TV frame in a [w] x [h] area: 4:3, but an area within 1.5% of 4:3 is filled
+/// (no thin black bars from rounding); fullscreen 16:9 keeps its 4:3 pillarbox.
+double frameAspect(double w, double h) {
+  if (w <= 0 || h <= 0) return 4 / 3;
+  final a = w / h;
+  return (a / (4 / 3) - 1).abs() < 0.015 ? a : 4 / 3;
 }
 
 /// Remembers window size, position and fullscreen in [Settings] (saved 500 ms after the last change),
@@ -41,8 +54,12 @@ class WindowPrefs with WindowListener {
     await windowManager.setBounds(clampToScreen(saved, home));
   }
 
+  /// Runs when the TV window is closed (X, Alt+F4), just before the app goes away.
+  void Function()? onClose;
+
   void attach() {
     windowManager.addListener(this);
+    unawaited(windowManager.setPreventClose(true)); // so onWindowClose can run onClose first
     HardwareKeyboard.instance.addHandler(_altEnter);
   }
 
@@ -86,7 +103,37 @@ class WindowPrefs with WindowListener {
   }
 
   @override
-  void onWindowResized() => _changed();
+  Future<void> onWindowClose() async {
+    try {
+      onClose?.call();
+    } on Object catch (e) {
+      log('on close: $e');
+    } finally {
+      await windowManager.destroy();
+    }
+  }
+
+  /// Windowed: sets the height so the client area (not the whole window) is 4:3, and lets the live
+  /// drag keep that shape. Runs after a drag ends ('resized'), on launch, never while maximized/fullscreen.
+  Future<void> snapToFourThree() async {
+    try {
+      if (await windowManager.isFullScreen() || await windowManager.isMaximized()) return;
+      final view = WidgetsBinding.instance.platformDispatcher.views.first;
+      final client = view.physicalSize / view.devicePixelRatio;
+      if (client.isEmpty) return;
+      final b = await windowManager.getBounds();
+      final t = snap4x3(b.size, client);
+      if ((t.height - b.height).abs() > 1) await windowManager.setSize(t);
+      await windowManager.setAspectRatio(t.width / t.height);
+    } on Object catch (e) {
+      log('4:3 snap failed: $e');
+    }
+  }
+
+  @override
+  void onWindowResized() {
+    unawaited(snapToFourThree().then((_) => _changed()));
+  }
   @override
   void onWindowMoved() => _changed();
   @override

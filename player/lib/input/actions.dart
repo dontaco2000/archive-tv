@@ -21,11 +21,12 @@ final Map<LogicalKeyboardKey, KeyBinding> keyboardBindings = {
   LogicalKeyboardKey.keyM: const KeyBinding(TvAction.menu),
   LogicalKeyboardKey.keyF: const KeyBinding(TvAction.favorite),
   LogicalKeyboardKey.keyU: const KeyBinding(TvAction.mute),
+  LogicalKeyboardKey.space: const KeyBinding(TvAction.mute),
   LogicalKeyboardKey.equal: const KeyBinding(TvAction.volumeUp),
   LogicalKeyboardKey.minus: const KeyBinding(TvAction.volumeDown),
   LogicalKeyboardKey.f11: const KeyBinding(TvAction.toggleFullscreen),
   LogicalKeyboardKey.keyO: const KeyBinding(TvAction.onDemand),
-  LogicalKeyboardKey.keyR: const KeyBinding(TvAction.remote), // Windows: opens the remote window
+  LogicalKeyboardKey.keyR: const KeyBinding(TvAction.remote), // Windows: opens / closes the remote window
   LogicalKeyboardKey.enter: const KeyBinding(TvAction.ok),
   LogicalKeyboardKey.escape: const KeyBinding(TvAction.back),
   // Android TV / Fire TV remote. Select opens the guide when no digits are pending, and Back

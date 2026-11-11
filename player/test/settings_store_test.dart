@@ -32,7 +32,7 @@ void main() {
     final r = SettingsStore(file).load();
     expect(r.favorites, {3, 7});
     expect(r.volume, 42);
-    expect(r.muted, true);
+    expect(r.muted, false); // mute is never restored: the app always starts with sound
     expect(r.startFullscreen, true);
     expect(r.cornerBug, false);
     expect(r.favoritesOnly, true);
@@ -82,5 +82,40 @@ void main() {
     expect(file.existsSync(), true);
     expect(dir.listSync().map((e) => e.path).where((p) => p.endsWith('.tmp')),
         isEmpty);
+  });
+
+  test('volume leveling: default normal (also for old files), round-trip, bad value ignored, cycle, filters', () {
+    expect(Settings().volumeLeveling, 'normal');
+    file.writeAsStringSync(jsonEncode({'volume': 50})); // settings.json from before 0.5
+    final old = SettingsStore(file).load();
+    expect(old.volumeLeveling, 'normal');
+    expect(old.noticeAccepted, isFalse);
+    SettingsStore(file).save(old
+      ..volumeLeveling = 'strong'
+      ..noticeAccepted = true);
+    final back = SettingsStore(file).load();
+    expect(back.volumeLeveling, 'strong');
+    expect(back.noticeAccepted, isTrue);
+    expect(Settings.fromJson({'volumeLeveling': 'max'}).volumeLeveling, 'normal');
+
+    expect(cycleLeveling('off', 1), 'normal');
+    expect(cycleLeveling('normal', 1), 'strong');
+    expect(cycleLeveling('strong', 1), 'off');
+    expect(cycleLeveling('off', -1), 'strong');
+    expect(cycleLeveling('bogus', 1), 'strong');
+
+    expect(levelingFilter('off'), '');
+    expect(levelingFilter('normal'), 'dynaudnorm=f=250:g=15:p=0.9:m=10:r=0.15');
+    expect(levelingFilter('strong'), allOf(startsWith('dynaudnorm='), contains(',acompressor='), endsWith(',alimiter=limit=0.95')));
+  });
+
+  test('a saved mute (old settings.json) is ignored at startup; the volume level is kept', () {
+    file.writeAsStringSync(jsonEncode({'volume': 100, 'muted': true}));
+    final s = SettingsStore(file).load();
+    expect(s.muted, isFalse);
+    expect(s.volume, 100);
+    SettingsStore(file).save(s..muted = true);
+    expect(jsonDecode(file.readAsStringSync()), isNot(contains('muted')));
+    expect(Settings.fromJson({'volume': 0}).volume, 0); // volume 0 stays 0
   });
 }

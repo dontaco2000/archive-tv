@@ -55,13 +55,14 @@ Future<void> main(List<String> args) async {
     await windowManager.waitUntilReadyToShow(
       const WindowOptions(size: Size(960, 720), minimumSize: Size(640, 480), center: true, title: 'Archive TV'),
       () async {
-        await windowManager.setAspectRatio(4 / 3); // windowed mode keeps the 4:3 shape
         await WindowPrefs.restoreBounds(settings).catchError((Object e) => log('window restore failed: $e'));
         await windowManager.show();
         if (settings.startFullscreen || settings.fullscreen) await windowManager.setFullScreen(true);
       },
     );
     windowPrefs = WindowPrefs(settings, store, log)..attach();
+    // Windowed mode keeps a 4:3 client area (the title bar is not part of the picture).
+    unawaited(Future<void>.delayed(const Duration(milliseconds: 300), windowPrefs.snapToFourThree));
   }
 
   final configFile = File(p.join(dataDir.path, 'channels.json'));
@@ -94,6 +95,7 @@ Future<void> main(List<String> args) async {
   }
   final tv = PlayerController(engine, log: log);
   tv.setVolume(settings.muted ? 0 : settings.volume);
+  unawaited(tv.setLeveling(settings.volumeLeveling));
   // Remote control window (Windows only): a local web page that presses the same keys as the keyboard.
   RemoteServer? remote;
   if (Platform.isWindows) {
@@ -101,6 +103,7 @@ Future<void> main(List<String> args) async {
     if (remote.ensurePin()) store.save(settings);
     await remote.start().catchError((Object e) => log('remote: start failed: $e'));
   }
+  windowPrefs?.onClose = remote?.closeWindowOnExit;
   runApp(MaterialApp(
       debugShowCheckedModeBanner: false,
       home: TvScreen(controller: tv, settings: settings, store: store, windowPrefs: windowPrefs, remote: remote)));

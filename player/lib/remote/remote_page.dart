@@ -74,7 +74,7 @@ const remotePage = r'''<!DOCTYPE html>
 </style>
 </head>
 <body>
-<div class="remote" id="remote" title="Keys: arrows, Enter, Esc, 0-9, G guide, M menu, I info, F fav, O on demand, U mute, +/- volume, PgUp/PgDn channel">
+<div class="remote" id="remote" title="Keys: arrows, Enter, Esc, 0-9, G guide, M menu, I info, F fav, O on demand, U/Space mute, R remote on/off, +/- volume, PgUp/PgDn channel">
   <div class="lcd">
     <span class="brand">ARCHIVE TV</span>
     <img id="logo" alt="">
@@ -190,9 +190,16 @@ const remotePage = r'''<!DOCTYPE html>
   $('logo').onload = () => $('logo').style.visibility = 'visible';
   $('logo').onerror = () => $('logo').style.visibility = 'hidden';
 
+  // The TV app closes this window when it exits; if it went away without doing so (crash), the
+  // remote closes itself after about 5 s without an answer (only works in its own app window).
+  let misses = 0;
   async function poll() {
-    try { render(await api('/api/state')); }
-    catch (e) { if (e.message !== 'pin') { $('title').textContent = 'NO SIGNAL - is Archive TV running?'; } }
+    try { render(await api('/api/state')); misses = 0; }
+    catch (e) {
+      if (e.message === 'pin') return;
+      $('title').textContent = 'NO SIGNAL - is Archive TV running?';
+      if (++misses >= 5 && location.hostname === '127.0.0.1') window.close();
+    }
   }
 
   async function send(path, body) {
@@ -219,7 +226,7 @@ const remotePage = r'''<!DOCTYPE html>
   }
 
   const keymap = { ArrowUp:'up', ArrowDown:'down', ArrowLeft:'left', ArrowRight:'right', Enter:'ok', Escape:'back', Backspace:'back',
-    g:'guide', m:'menu', i:'info', f:'favorite', o:'ondemand', u:'mute', '+':'volUp', '=':'volUp', '-':'volDown',
+    g:'guide', m:'menu', i:'info', f:'favorite', o:'ondemand', u:'mute', ' ':'mute', '+':'volUp', '=':'volUp', '-':'volDown',
     PageUp:'channelUp', PageDown:'channelDown', F11:'fullscreen' };
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && document.querySelector('.panel.open')) { closeAll(); e.preventDefault(); return; }
