@@ -11,6 +11,9 @@ class Settings {
   double? windowX, windowY, windowW, windowH;
   bool fullscreen = false;
 
+  /// The channel watched last; the app starts there.
+  int? lastChannel;
+
   Settings();
 
   Map<String, dynamic> toJson() => {
@@ -25,6 +28,7 @@ class Settings {
         'windowW': windowW,
         'windowH': windowH,
         'fullscreen': fullscreen,
+        'lastChannel': lastChannel,
       };
 
   factory Settings.fromJson(Map<String, dynamic> j) {
@@ -45,6 +49,7 @@ class Settings {
     s.windowW = num_('windowW');
     s.windowH = num_('windowH');
     s.fullscreen = bool_('fullscreen', s.fullscreen);
+    s.lastChannel = j['lastChannel'] is int ? j['lastChannel'] as int : null;
     return s;
   }
 }

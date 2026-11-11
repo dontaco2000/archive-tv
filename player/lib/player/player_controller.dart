@@ -7,6 +7,7 @@ import 'package:media_kit/media_kit.dart';
 import 'package:media_kit_video/media_kit_video.dart';
 
 import '../engine/tv_engine.dart';
+import 'stall_watch.dart';
 
 /// Owns the single libmpv player. `tune` shows STAND BY, opens the airing file
 /// at its offset, and clears STAND BY on the first frame.
@@ -28,6 +29,7 @@ class PlayerController extends ChangeNotifier {
   StreamSubscription<bool>? _completedSub;
   Timer? _slotTimer; // re-tunes when the airing slot ends
   Timer? _retryTimer; // re-tunes a NO SIGNAL channel after a while
+  Timer? _stallTimer; // watches for playback that stops moving after the first frame
 
   PlayerController(this.engine, {void Function(String)? log}) : log = log ?? ((_) {}) {
     final native = player.platform;
@@ -49,7 +51,22 @@ class PlayerController extends ChangeNotifier {
     });
   }
 
-  void _safeTune(Channel c) => unawaited(tune(c).catchError((Object e) => log('tune ${c.number} error: $e')));
+  void _safeTune(Channel c, {int attempt = 0}) =>
+      unawaited(tune(c, attempt: attempt).catchError((Object e) => log('tune ${c.number} error: $e')));
+
+  /// After the first frame: if the position stops moving for 8 s while playing, [onStall] runs once.
+  void _watchStall(int gen, VoidCallback onStall) {
+    _stallTimer?.cancel();
+    final w = StallWatch(now: DateTime.now());
+    _stallTimer = Timer.periodic(const Duration(seconds: 2), (t) {
+      if (gen != _generation) return t.cancel();
+      final s = player.state;
+      if (w.check(s.position, DateTime.now(), paused: !s.playing || s.completed)) {
+        t.cancel();
+        onStall();
+      }
+    });
+  }
 
   void _noSignal(Channel c) {
     message = 'NO SIGNAL';
@@ -63,6 +80,7 @@ class PlayerController extends ChangeNotifier {
     final gen = ++_generation;
     _slotTimer?.cancel();
     _retryTimer?.cancel();
+    _stallTimer?.cancel();
     channel = c;
     standBy = true;
     message = null;
@@ -121,6 +139,12 @@ class PlayerController extends ChangeNotifier {
       standBy = false;
       notifyListeners();
       _slotTimer = Timer(a.slot.end.difference(DateTime.now()), () => _safeTune(c));
+      // A stall counts as a failed first try: re-resolve and rejoin; if that fails too, the item is skipped.
+      _watchStall(gen, () {
+        log('tune ${c.number}: playback stalled (${a.slot.entry.id}), retrying');
+        _direct.remove(a.slot.entry.url);
+        _safeTune(c, attempt: 1);
+      });
     } on Object catch (e) {
       log('tune ${c.number} failed: $e');
       if (gen != _generation) return;
@@ -170,6 +194,12 @@ class PlayerController extends ChangeNotifier {
     if (a != null) await resolveUrl(a.slot.entry.url);
   }
 
+  /// Re-tunes if the slot being shown has already ended (e.g. the machine slept past it).
+  void retuneIfStale() {
+    final c = channel, a = airing;
+    if (c != null && a != null && !DateTime.now().isBefore(a.slot.end)) _safeTune(c);
+  }
+
   void setVolume(double v) => player.setVolume(v.clamp(0, 100));
 
   @override
@@ -177,6 +207,7 @@ class PlayerController extends ChangeNotifier {
     _completedSub?.cancel();
     _slotTimer?.cancel();
     _retryTimer?.cancel();
+    _stallTimer?.cancel();
     _http.close();
     player.dispose();
     super.dispose();

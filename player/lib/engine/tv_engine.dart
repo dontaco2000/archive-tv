@@ -172,4 +172,22 @@ class TvEngine {
     snapshots.ensureWeek(channel.number, now, _pool[channel.number] ?? const []);
     snapshots.prune(now);
   }
+
+  /// The once-a-day job (launch and each local midnight): rebuilds pools older than [maxAge],
+  /// saves the new week's days, deletes past ones and probes the next 12 hours of every channel.
+  Future<void> dailyRefresh(DateTime now, {Duration maxAge = const Duration(days: 1)}) async {
+    for (final c in channels) {
+      if (c.sources.isEmpty) continue;
+      final age = pools.age(c.number);
+      final stale = age == null || age >= maxAge;
+      try {
+        await ensurePool(c, maxAge: stale ? Duration.zero : maxAge);
+      } on Object catch (e) {
+        log('daily refresh ${c.name}: $e');
+      }
+      planWeek(c, now);
+      if (!stale) _queueProbe(c); // fresh builds already queued their probe
+    }
+    log('daily refresh done');
+  }
 }

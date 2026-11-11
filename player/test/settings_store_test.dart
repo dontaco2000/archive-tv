@@ -26,7 +26,8 @@ void main() {
       ..windowY = 20
       ..windowW = 800
       ..windowH = 600
-      ..fullscreen = true;
+      ..fullscreen = true
+      ..lastChannel = 21;
     SettingsStore(file).save(s);
     final r = SettingsStore(file).load();
     expect(r.favorites, {3, 7});
@@ -37,6 +38,7 @@ void main() {
     expect(r.favoritesOnly, true);
     expect([r.windowX, r.windowY, r.windowW, r.windowH], [10, 20, 800, 600]);
     expect(r.fullscreen, true);
+    expect(r.lastChannel, 21);
   });
 
   test('missing file gives defaults', () {

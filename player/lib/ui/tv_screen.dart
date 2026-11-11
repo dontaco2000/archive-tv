@@ -133,15 +133,26 @@ class _TvScreenState extends State<TvScreen> {
     unawaited(tv.tune(c));
   }
 
-  /// Rebuilds every pool from Archive in the background, one channel at a time.
+  bool _refreshing = false;
+
+  /// Rebuilds every pool from Archive in the background, one channel at a time (one run at once).
   void _refresh() {
     _closeMenu();
+    if (_refreshing) {
+      _flash('Refresh already running');
+      return;
+    }
+    _refreshing = true;
     _flash('Refreshing channels...');
     unawaited(() async {
-      for (final c in tv.engine.channels) {
-        await tv.engine.ensurePool(c, maxAge: Duration.zero).catchError((Object e) => tv.log('refresh ${c.number} error: $e'));
+      try {
+        for (final c in tv.engine.channels) {
+          await tv.engine.ensurePool(c, maxAge: Duration.zero).catchError((Object e) => tv.log('refresh ${c.number} error: $e'));
+        }
+        tv.log('refresh done');
+      } finally {
+        _refreshing = false;
       }
-      tv.log('refresh done');
     }());
   }
 

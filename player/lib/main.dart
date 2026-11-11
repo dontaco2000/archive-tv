@@ -12,6 +12,7 @@ import 'package:window_manager/window_manager.dart';
 
 import 'engine/tv_engine.dart';
 import 'player/player_controller.dart';
+import 'settings/rotating_log.dart';
 import 'settings/settings_store.dart';
 import 'settings/window_prefs.dart';
 import 'ui/tv_screen.dart';
@@ -28,11 +29,15 @@ Future<void> main(List<String> args) async {
   }
 
   final dataDir = Directory(p.join((await getApplicationSupportDirectory()).path, 'ArchiveTV'))..createSync(recursive: true);
-  final logFile = File(p.join(dataDir.path, 'archive_tv.log'));
+  final logFile = RotatingLog(File(p.join(dataDir.path, 'archive_tv.log'))); // 2 MB, keeps .1 and .2
   void log(String m) {
     final line = '${DateTime.now().toIso8601String()} $m';
     debugPrint(line);
-    logFile.writeAsStringSync('$line\n', mode: FileMode.append);
+    try {
+      logFile.write(line);
+    } on FileSystemException {
+      // logging must never take the app down
+    }
   }
 
   final store = SettingsStore(File(p.join(dataDir.path, 'settings.json')));
@@ -69,13 +74,50 @@ Future<void> main(List<String> args) async {
   tv.setVolume(settings.muted ? 0 : settings.volume);
   runApp(MaterialApp(debugShowCheckedModeBanner: false, home: TvScreen(controller: tv, settings: settings, store: store, windowPrefs: windowPrefs)));
 
+  // Remember the channel being watched so the next launch starts there.
+  tv.addListener(() {
+    final n = tv.channel?.number;
+    if (n == null || n == settings.lastChannel) return;
+    settings.lastChannel = n;
+    try {
+      store.save(settings);
+    } on Object catch (e) {
+      log('settings save failed: $e');
+    }
+  });
+  bool isTunable(Channel c) => engine.tunable.any((t) => t.number == c.number);
+  final last = settings.lastChannel == null ? null : engine.config.channel(settings.lastChannel!);
+  if (last != null) {
+    await engine.ensurePool(last);
+    if (isTunable(last)) unawaited(tv.tune(last));
+  }
+
   // Build pools one channel at a time; start on the first channel that has content,
   // but never override a channel the viewer already picked.
   for (final c in engine.channels) {
     await engine.ensurePool(c);
+    engine.planWeek(c, DateTime.now());
     if (tv.channel == null && engine.tunable.isNotEmpty) unawaited(tv.tune(engine.tunable.first));
   }
   final first = engine.tunable;
+
+  // Midnight: refresh day-old pools, save the new week, probe the new day, stay on the right slot.
+  // Checked once a minute (not one long timer) so sleep/hibernate and DST can't make it miss.
+  var today = dayKey(DateTime.now());
+  var refreshing = false;
+  Timer.periodic(const Duration(minutes: 1), (_) async {
+    final now = DateTime.now();
+    if (dayKey(now) == today || refreshing) return;
+    today = dayKey(now);
+    refreshing = true;
+    log('new day $today: daily refresh');
+    tv.retuneIfStale();
+    try {
+      await engine.dailyRefresh(now);
+    } finally {
+      refreshing = false;
+    }
+  });
 
   // `--latency-test`: flip through the channels a few times, log first-frame times, then quit.
   if (args.contains('--latency-test')) {

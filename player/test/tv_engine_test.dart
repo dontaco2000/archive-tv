@@ -179,6 +179,19 @@ void main() {
     final saved = Directory('${dir.path}/days').listSync().where((f) => f.path.contains('day-2-'));
     expect(saved, hasLength(7));
   });
+
+  test('dailyRefresh rebuilds only stale pools, plans the new week and drops past days', () async {
+    final bytes = engine.channels.first;
+    await engine.ensurePool(bytes);
+    engine.planWeek(bytes, DateTime(2026, 11, 10)); // yesterday's week
+    await engine.dailyRefresh(DateTime(2026, 11, 11, 0, 0, 1));
+    expect(api.searches, 2); // Bytes is fresh and kept; Thin had no pool and is built
+    await engine.dailyRefresh(DateTime(2026, 11, 11, 0, 0, 1), maxAge: Duration.zero);
+    expect(api.searches, 4); // both rebuilt
+    final days = Directory('${dir.path}/days').listSync().map((f) => f.path).where((p) => p.contains('day-2-')).toList();
+    expect(days.any((p) => p.contains('2026-11-10')), isFalse);
+    expect(days.any((p) => p.contains('2026-11-17')), isTrue);
+  });
 }
 
 class _Failing implements ArchiveApi {
