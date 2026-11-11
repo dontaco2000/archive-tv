@@ -1,0 +1,14 @@
+name: archive_tv_core
+description: Channel config, Internet Archive client, pool builder and scheduler for Archive TV (pure Dart, no Flutter).
+version: 0.1.0
+publish_to: none
+
+environment:
+  sdk: ^3.5.0
+
+dependencies:
+  http: ^1.2.2
+
+dev_dependencies:
+  lints: ^5.0.0
+  test: ^1.25.0
