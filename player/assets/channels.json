@@ -1,0 +1,407 @@
+{
+  "yearRange": [
+    1980,
+    2010
+  ],
+  "fallbackStart": 1960,
+  "minContentHours": 2,
+  "blockCollections": [
+    "adultvhs"
+  ],
+  "excludeIdentifiers": [],
+  "channels": [
+    {
+      "number": 2,
+      "name": "Funnies",
+      "logo": "Logos/4x3/funnies.png",
+      "genre": "Kids & Animation",
+      "sources": [
+        {
+          "query": "subject:(cartoon OR cartoons)"
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "name": "Sakura",
+      "logo": "Logos/4x3/sakura.png",
+      "genre": "Kids & Animation",
+      "sources": [
+        {
+          "query": "subject:anime AND (language:(eng OR english) OR title:(dub OR dubbed OR \"english sub\" OR \"hard-coded\" OR hardsub)) AND -language:(spa OR fre OR ger OR ita OR por OR rus)"
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "name": "Playroom",
+      "logo": "Logos/4x3/playroom.png",
+      "genre": "Kids & Animation",
+      "sources": [
+        {
+          "query": "subject:(\"children's television\" OR \"kids tv\" OR preschool) OR title:(pingu OR \"little bear\" OR \"blue's clues\" OR \"bear in the big blue house\")"
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "name": "Storytime",
+      "logo": "Logos/4x3/storytime.png",
+      "genre": "Kids & Animation",
+      "sources": [
+        {
+          "query": "title:(\"sesame street\" OR \"reading rainbow\" OR \"dragon tales\" OR cyberchase OR wordgirl OR \"super why\" OR \"dinosaur train\" OR \"martha speaks\" OR \"electric company\" OR \"between the lions\" OR \"3-2-1 contact\" OR wishbone OR \"sid the science kid\") OR subject:(\"sesame street\")"
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "name": "Teaser",
+      "logo": "Logos/4x3/teaser.png",
+      "genre": "Movies",
+      "sources": [
+        {
+          "query": "collection:movie_trailers AND subject:comedy"
+        },
+        {
+          "query": "collection:movie_trailers AND subject:action"
+        },
+        {
+          "query": "collection:movie_trailers AND subject:drama"
+        },
+        {
+          "query": "collection:movie_trailers AND subject:horror"
+        },
+        {
+          "query": "collection:movie_trailers AND subject:(\"science fiction\" OR sci-fi)"
+        },
+        {
+          "query": "collection:movie_trailers AND subject:animation"
+        },
+        {
+          "query": "collection:movie_trailers AND subject:thriller"
+        },
+        {
+          "query": "subject:trailer AND title:(trailer OR \"tv spot\" OR \"tv spots\") AND -title:(\"trailer park\" OR \"park boys\") AND -subject:(\"video game\" OR videogame OR \"video games\")"
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "name": "Haunt",
+      "logo": "Logos/4x3/haunt.png",
+      "genre": "Movies",
+      "sources": [
+        {
+          "query": "subject:horror AND collection:(moviesandfilms OR vhsvault OR feature_films OR opensource_movies OR television) AND -collection:movie_trailers AND -subject:(anime OR ova)"
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "name": "Warp",
+      "logo": "Logos/4x3/warp.png",
+      "genre": "Movies",
+      "sources": [
+        {
+          "query": "subject:(\"sci-fi\" OR \"science fiction\" OR fantasy) AND collection:(moviesandfilms OR vhsvault OR feature_films OR opensource_movies OR television) AND -collection:movie_trailers AND -subject:(anime OR ova)"
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "name": "Drive-In",
+      "logo": "Logos/4x3/drive-in.png",
+      "genre": "Movies",
+      "sources": [
+        {
+          "query": "collection:feature_films AND -language:(tur OR ger OR fre OR ita OR spa OR por OR rus OR jpn OR chi OR kor)"
+        }
+      ]
+    },
+    {
+      "number": 20,
+      "name": "Chuckles",
+      "logo": "Logos/4x3/chuckles.png",
+      "genre": "TV",
+      "sources": [
+        {
+          "query": "subject:(sitcom OR sitcoms) OR title:(\"malcolm in the middle\" OR newsradio)"
+        }
+      ]
+    },
+    {
+      "number": 21,
+      "name": "Winners",
+      "logo": "Logos/4x3/winners.png",
+      "genre": "TV",
+      "sources": [
+        {
+          "query": "subject:(\"game show\" OR \"game shows\") AND -title:(\"this or that\") AND -identifier:(TT* OR T-T*)"
+        },
+        {
+          "query": "title:(\"remote control\" OR \"mtv next\" OR \"singled out\" OR \"idiot box\" OR \"parental control\" OR \"room raiders\" OR \"price is right\" OR \"family feud\" OR jeopardy OR \"wheel of fortune\" OR \"match game\" OR \"hollywood squares\" OR \"press your luck\" OR \"card sharks\") AND -collection:tvnews"
+        }
+      ]
+    },
+    {
+      "number": 22,
+      "name": "Jingle",
+      "logo": "Logos/4x3/jingle.png",
+      "genre": "TV",
+      "sources": [
+        {
+          "query": "collection:(classic_tv_commercials OR classic_tv_commercials_emperor OR vhscommercials OR tv_ads) AND title:(commercial OR commercials OR ads OR promos OR \"tv spots\" OR cm)"
+        },
+        {
+          "query": "subject:(commercial OR commercials) AND title:(commercial OR commercials)"
+        }
+      ]
+    },
+    {
+      "number": 23,
+      "name": "Hotline",
+      "logo": "Logos/4x3/hotline.png",
+      "genre": "TV",
+      "sources": [
+        {
+          "query": "subject:(infomercial OR infomercials)"
+        }
+      ]
+    },
+    {
+      "number": 24,
+      "name": "Camcorder",
+      "logo": "Logos/4x3/camcorder.png",
+      "genre": "TV",
+      "sources": [
+        {
+          "query": "subject:(\"home movie\" OR \"home movies\") AND -title:(cbeebies OR \"adult swim\")"
+        },
+        {
+          "collection": "home_movies"
+        }
+      ]
+    },
+    {
+      "number": 26,
+      "name": "Cablecast",
+      "logo": "Logos/4x3/cablecast.png",
+      "genre": "TV",
+      "sources": [
+        {
+          "query": "subject:(\"public access\" OR \"cable access\" OR \"community access\" OR \"public-access\")"
+        }
+      ]
+    },
+    {
+      "number": 27,
+      "name": "Porch",
+      "logo": "Logos/4x3/porch.png",
+      "genre": "TV",
+      "sources": [
+        {
+          "query": "title:(\"dukes of hazzard\" OR \"hee haw\" OR \"andy griffith\" OR \"beverly hillbillies\" OR \"green acres\" OR \"petticoat junction\" OR \"smokey and the bandit\") AND -collection:tvnews"
+        },
+        {
+          "query": "title:(\"grand ole opry\" OR \"country music videos\" OR cmt OR \"nashville now\" OR bluegrass OR \"southern gospel\" OR \"country music\") AND -collection:tvnews"
+        },
+        {
+          "query": "title:(nascar OR \"monster jam\" OR \"monster trucks\" OR \"tractor pull\" OR \"tractor pulling\" OR rodeo OR \"bass fishing\" OR \"deer hunting\" OR \"duck hunting\") AND -collection:(tvnews OR videogameprev OR gamevideos) AND -title:(nasa OR \"george w bush\" OR punkcast)"
+        }
+      ]
+    },
+    {
+      "number": 28,
+      "name": "Simmer",
+      "logo": "Logos/4x3/simmer.png",
+      "genre": "TV",
+      "sources": [
+        {
+          "query": "subject:cooking AND -title:(tampopo OR \"pie in the sky\" OR cbeebies OR promos OR trailer)"
+        },
+        {
+          "query": "title:(\"iron chef\" OR \"julia child\" OR \"french chef\" OR \"baking with julia\" OR \"two fat ladies\" OR \"frugal gourmet\" OR emeril OR \"jacques pepin\" OR \"great chefs\" OR \"cajun chef\") AND -title:(\"iron chef ashland\")"
+        },
+        {
+          "identifiers": [
+            "minced-pork-yan-can-cook-kqed-480p-30fps-h-264-128kbit-aac",
+            "yan-can-cook-pbs-202608",
+            "chinese-banquet-yan-can-cook-kqed"
+          ],
+          "ignoreYear": true
+        }
+      ],
+      "yearRange": [
+        1960,
+        2010
+      ]
+    },
+    {
+      "number": 29,
+      "name": "Lighthouse",
+      "logo": "Logos/4x3/lighthouse.png",
+      "genre": "TV",
+      "sources": [
+        {
+          "query": "title:(\"tbn praise the lord\" OR \"praise the lord archive\" OR \"charles stanley\" OR \"billy graham\" OR \"adventures in odyssey\" OR veggietales OR \"precious memories\" OR \"strolling down memory lane\" OR gaither OR \"jimmy swaggart\" OR \"robert schuller\" OR \"hour of power\")"
+        }
+      ]
+    },
+    {
+      "number": 30,
+      "name": "Dispatch",
+      "logo": "Logos/4x3/dispatch.png",
+      "genre": "News & Docs",
+      "sources": [
+        {
+          "query": "collection:tvnews AND language:(eng OR english) AND -identifier:(AZT_* OR NHK_* OR NTV_* OR IRAQ_*) AND -title:(\"live with regis\")",
+          "minDownloads": 200
+        }
+      ]
+    },
+    {
+      "number": 31,
+      "name": "Lens",
+      "logo": "Logos/4x3/lens.png",
+      "genre": "News & Docs",
+      "sources": [
+        {
+          "query": "subject:documentary AND -title:(\"real sex\")"
+        }
+      ]
+    },
+    {
+      "number": 32,
+      "name": "Byte",
+      "logo": "Logos/4x3/byte.png",
+      "genre": "News & Docs",
+      "sources": [
+        {
+          "collection": "computerchronicles"
+        }
+      ]
+    },
+    {
+      "number": 33,
+      "name": "Cumulus",
+      "logo": "Logos/4x3/cumulus.png",
+      "genre": "News & Docs",
+      "type": "weatherstar",
+      "location": "auto"
+    },
+    {
+      "number": 34,
+      "name": "Commons",
+      "logo": "Logos/4x3/commons.png",
+      "genre": "News & Docs",
+      "sources": [
+        {
+          "query": "title:(\"cosmos a personal voyage\" OR \"cosmos: a personal voyage\" OR \"bridging world history\" OR annenberg OR \"mister rogers\" OR \"joy of painting\" OR \"bob ross\" OR frontline OR nova OR \"american experience\" OR masterpiece) AND -title:(\"a nova onda\" OR \"uma viagem\" OR \"camping cosmos\" OR \"medal of honor\" OR \"nova scotia\")"
+        },
+        {
+          "query": "subject:(\"public television\" OR \"public broadcasting\") AND -title:(\"pbs kids\" OR \"program break\")"
+        }
+      ]
+    },
+    {
+      "number": 40,
+      "name": "Jukebox",
+      "logo": "Logos/4x3/jukebox.png",
+      "genre": "Music & Sports",
+      "sources": [
+        {
+          "query": "title:(\"music video\" OR \"music videos\" OR \"mtv hits\" OR \"mtv:\" OR vh1 OR \"top 100 countdown\" OR \"video countdown\" OR \"first four hours\" OR \"ultimate video collection\") AND -title:(jackass OR beavis OR \"aeon flux\" OR \"amv hell\" OR loop OR nude) AND -subject:(anime OR amv)"
+        }
+      ]
+    },
+    {
+      "number": 41,
+      "name": "Setlist",
+      "logo": "Logos/4x3/setlist.png",
+      "genre": "Music & Sports",
+      "sources": [
+        {
+          "query": "(subject:(concert OR \"live performance\" OR \"live concert\" OR festival) OR title:(\"in concert\" OR \"live at\" OR unplugged OR \"austin city limits\")) AND subject:(music OR concert OR band OR rock OR jazz OR blues OR punk OR metal) AND -collection:tvnews AND -title:(disney OR mickey OR \"live at daybreak\" OR \"bamboo room\")"
+        }
+      ]
+    },
+    {
+      "number": 43,
+      "name": "Ringside",
+      "logo": "Logos/4x3/ringside.png",
+      "genre": "Music & Sports",
+      "sources": [
+        {
+          "query": "title:(wwf OR wwe OR \"world wrestling\" OR wrestlemania OR summerslam OR \"royal rumble\" OR \"survivor series\") AND -title:(divas OR bikini OR interview OR rai OR cyberring OR powerdisk) AND -collection:(tvnews OR videogameprev OR gamevideos)"
+        },
+        {
+          "query": "title:(wcw OR nwa OR ecw OR \"ring of honor\" OR tna) AND -title:(divas OR bikini OR interview OR rai OR cyberring OR powerdisk) AND -collection:(tvnews OR videogameprev OR gamevideos)"
+        },
+        {
+          "query": "title:(njpw OR \"new japan\" OR \"pro wrestling\" OR \"all japan\") AND -title:(divas OR bikini OR interview OR rai OR cyberring OR powerdisk) AND -collection:(tvnews OR videogameprev OR gamevideos)"
+        }
+      ]
+    },
+    {
+      "number": 44,
+      "name": "Sideline",
+      "logo": "Logos/4x3/sideline.png",
+      "genre": "Music & Sports",
+      "sources": [
+        {
+          "query": "subject:sports AND title:(game OR championship OR \"super bowl\" OR nfl OR nba OR mlb OR \"world series\" OR nhl OR ncaa OR olympics OR highlights OR football OR baseball OR basketball OR hockey OR golf OR tennis OR ufc OR boxing OR soccer OR \"champions league\" OR \"world cup\") AND -title:(galactik OR software OR \"sporty baby\" OR swimsuit OR trailer OR commercials OR news OR wwe OR wwf) AND -collection:(tvnews OR videogameprev OR gamevideos)"
+        }
+      ]
+    },
+    {
+      "number": 45,
+      "name": "Sweat",
+      "logo": "Logos/4x3/sweat.png",
+      "genre": "Music & Sports",
+      "sources": [
+        {
+          "query": "title:(\"richard simmons\" OR sweatin OR \"denise austin\" OR \"billy blanks\" OR \"tae bo\" OR \"body electric\" OR \"20 minute workout\" OR \"buns of steel\" OR \"jack lalanne\" OR \"gilad step\" OR \"gilad aerobics\" OR \"jane fonda workout\" OR \"workout starring jane fonda\" OR \"start up with jane fonda\" OR \"jane fonda lower body\" OR \"jane fonda prime time\")"
+        }
+      ],
+      "yearRange": [
+        1960,
+        2010
+      ]
+    },
+    {
+      "number": 50,
+      "name": "Overseas",
+      "logo": "Logos/4x3/overseas.png",
+      "genre": "International",
+      "sources": [
+        {
+          "query": "subject:(bbc OR itv OR \"channel 4\" OR \"australian television\" OR \"british television\") AND -collection:tvnews AND -title:(pokemon OR \"world news\" OR \"tokyo bound\" OR everwood OR tweenies OR balamory OR \"peter rabbit\")"
+        }
+      ]
+    },
+    {
+      "number": 51,
+      "name": "Maple",
+      "logo": "Logos/4x3/maple.png",
+      "genre": "International",
+      "sources": [
+        {
+          "query": "subject:(cbc OR ctv OR \"city tv\" OR ytv OR teletoon OR muchmusic OR cfl OR \"global television\") OR title:(\"red green\" OR \"corner gas\" OR \"kids in the hall\" OR sctv OR degrassi OR \"mr. meaty\" OR \"due south\" OR reboot) AND -collection:tvnews AND -title:(\"planet earth\" OR cybersix OR \"bob the builder\" OR romeo OR \"dragon ball\" OR hamtaro OR \"recorded vhs\" OR \"cbc morning\")"
+        }
+      ]
+    },
+    {
+      "number": 52,
+      "name": "Worldview",
+      "logo": "Logos/4x3/worldview.png",
+      "genre": "International",
+      "sources": [
+        {
+          "query": "(title:(\"english dub\" OR \"english dubbed\" OR \"eng sub\" OR \"english subtitles\" OR \"hard-coded\" OR hardsub) OR description:(\"english dub\" OR \"english subtitles\")) AND -subject:(anime OR cartoon OR cartoons) AND -title:(gundam OR anpanman OR zorori OR \"sonic x\" OR \"ultimate muscle\" OR lain OR godzilla OR \"maison ikkoku\")",
+          "minDownloads": 2000
+        }
+      ]
+    }
+  ]
+}

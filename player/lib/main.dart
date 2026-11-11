@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:archive_tv_core/archive_tv_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:media_kit/media_kit.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
@@ -41,7 +42,8 @@ Future<void> main(List<String> args) async {
   final windowPrefs = WindowPrefs(settings, store, log)..attach();
 
   final configFile = File(p.join(dataDir.path, 'channels.json'));
-  if (!configFile.existsSync()) configFile.writeAsStringSync(defaultChannelsJson);
+  // The bundled config seeds the data folder once; after that the copy there is the user's to edit.
+  if (!configFile.existsSync()) configFile.writeAsStringSync(await rootBundle.loadString('assets/channels.json'));
 
   final TvEngine engine;
   try {
@@ -83,17 +85,3 @@ Future<void> main(List<String> args) async {
     exit(0);
   }
 }
-
-/// Used only when the user has no channels.json yet; the real file lives in the app's data folder.
-const defaultChannelsJson = '''
-{
-  "yearRange": [1980, 2010],
-  "fallbackStart": 1960,
-  "minContentHours": 2,
-  "blockCollections": ["adultvhs"],
-  "channels": [
-    {"number": 2, "name": "Bytes", "genre": "Tech", "sources": [{"collection": "computerchronicles"}]},
-    {"number": 3, "name": "Funnies", "genre": "Cartoons", "sources": [{"query": "subject:(animation OR cartoon)", "minDownloads": 2000}]}
-  ]
-}
-''';
