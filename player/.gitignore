@@ -49,3 +49,7 @@ app.*.map.json
 
 # Gradle output for the Android build
 /android/build/
+
+# Fetched by windows/fetch_libmpv.ps1 (too big for git)
+/third_party/libmpv/*
+!/third_party/libmpv/README.txt

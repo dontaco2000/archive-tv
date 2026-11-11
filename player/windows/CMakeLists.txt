@@ -87,6 +87,19 @@ if(PLUGIN_BUNDLED_LIBRARIES)
     COMPONENT Runtime)
 endif()
 
+# Full-FFmpeg libmpv (volume-leveling filters) replaces media_kit's stripped one.
+# Installed after PLUGIN_BUNDLED_LIBRARIES so it overwrites that copy. See third_party/libmpv/README.txt.
+set(FULL_LIBMPV "${CMAKE_CURRENT_SOURCE_DIR}/../third_party/libmpv/libmpv-2.dll")
+execute_process(
+  # PSModulePath unset: inherited from pwsh it hides Windows PowerShell's own cmdlets.
+  COMMAND "${CMAKE_COMMAND}" -E env --unset=PSModulePath powershell -NoProfile -ExecutionPolicy Bypass -File "${CMAKE_CURRENT_SOURCE_DIR}/fetch_libmpv.ps1"
+  RESULT_VARIABLE FETCH_LIBMPV_RESULT)
+if(NOT FETCH_LIBMPV_RESULT EQUAL 0)
+  message(FATAL_ERROR "fetch_libmpv.ps1 failed (${FETCH_LIBMPV_RESULT})")
+endif()
+install(FILES "${FULL_LIBMPV}" DESTINATION "${INSTALL_BUNDLE_LIB_DIR}"
+  COMPONENT Runtime)
+
 # Copy the native assets provided by the build.dart from all packages.
 set(NATIVE_ASSETS_DIR "${PROJECT_BUILD_DIR}native_assets/windows/")
 install(DIRECTORY "${NATIVE_ASSETS_DIR}"
