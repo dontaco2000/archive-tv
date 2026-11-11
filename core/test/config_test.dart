@@ -77,4 +77,13 @@ void main() {
     expectError('{"yearRange":"1980","channels":[{"number":1,"name":"A","sources":[{"query":"x"}]}]}',
         'two years');
   });
+
+  test('wrong-typed values are ConfigException, not TypeError', () {
+    expectError(
+        '{"channels":[{"number":2,"name":"A","sources":[{"query":"x","ignoreYear":"true"}]}]}',
+        'wrong type');
+    expectError('{"channels":[{"number":2,"name":5,"sources":[{"query":"x"}]}]}', 'name');
+    expectError(
+        '{"channels":[{"number":2,"name":"A","genre":5,"sources":[{"query":"x"}]}]}', 'wrong type');
+  });
 }

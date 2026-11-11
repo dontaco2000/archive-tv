@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:archive_tv_core/archive_tv_core.dart';
@@ -45,5 +46,39 @@ void main() {
     final block = Blocklist.load(dir)..add('a/f.mp4')..add('c');
     expect(block.apply(pool).map((e) => e.itemId), ['b', 'd']);
     expect(Blocklist.load(dir).ids, {'a/f.mp4', 'c'}); // persisted
+  });
+
+  test('blocking an item removes it from a saved day and later slots still tile', () {
+    final dir = Directory.systemTemp.createTempSync('snapblock');
+    addTearDown(() => dir.deleteSync(recursive: true));
+    final store = SnapshotStore(dir);
+    final first = store.day(5, day, pool);
+    final victim = first[1].entry;
+    final block = Blocklist.load(dir)..add(victim.id);
+
+    final after = store.day(5, day, [entry('zzz', 40)], blocklist: block);
+    expect(after.any((s) => s.entry.id == victim.id), isFalse);
+    expect(after.first.start, day);
+    expect(after.last.end, DateTime(2026, 11, 12));
+    for (var i = 1; i < after.length; i++) {
+      expect(after[i].start, after[i - 1].end);
+    }
+  });
+
+  test('corrupt files behave as missing and are rebuilt', () {
+    final dir = Directory.systemTemp.createTempSync('corrupt');
+    addTearDown(() => dir.deleteSync(recursive: true));
+    final sep = Platform.pathSeparator;
+    File('${dir.path}${sep}pool-5.json').writeAsStringSync('{"entries": [');
+    expect(PoolStore(dir).load(5), isNull);
+    File('${dir.path}${sep}blocked.json').writeAsStringSync('');
+    expect(Blocklist.load(dir).ids, isEmpty);
+    File('${dir.path}${sep}blocked.json').writeAsStringSync('[not json');
+    expect(Blocklist.load(dir).ids, isEmpty);
+
+    File('${dir.path}${sep}day-5-2026-11-11.json').writeAsStringSync('garbage');
+    final slots = SnapshotStore(dir).day(5, day, pool);
+    expect(slots, isNotEmpty);
+    expect(jsonDecode(File('${dir.path}${sep}day-5-2026-11-11.json').readAsStringSync()), isList);
   });
 }

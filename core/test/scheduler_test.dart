@@ -68,4 +68,30 @@ void main() {
     expect(g.last.start.isBefore(DateTime(2026, 11, 12, 8)), isTrue);
     expect(g.any((s) => s.start.day == 12), isTrue);
   });
+
+  test('dayOrder does not depend on the input order of the pool', () {
+    final a = dayOrder(pool, 'ch5', day).map((e) => e.id);
+    final b = dayOrder(pool.reversed.toList(), 'ch5', day).map((e) => e.id);
+    expect(b, a);
+  });
+
+  test('a Slot round-trips through JSON to the same instants', () {
+    final s = Slot(pool.first, DateTime(2026, 11, 11, 3, 15), DateTime(2026, 11, 11, 3, 40));
+    final back = Slot.fromJson(s.toJson());
+    expect(back.start, s.start);
+    expect(back.end, s.end);
+    expect(back.start.isUtc, isFalse);
+    expect(s.toJson()['start'], endsWith('Z'));
+  });
+
+  test('layoutDay on a DST day runs local midnight to local midnight', () {
+    for (final d in [DateTime(2026, 11, 1), DateTime(2026, 3, 8)]) {
+      final slots = layoutDay(dayOrder(pool, 'ch5', d), d);
+      expect(slots.first.start, DateTime(d.year, d.month, d.day));
+      expect(slots.last.end, DateTime(d.year, d.month, d.day + 1));
+      for (var i = 1; i < slots.length; i++) {
+        expect(slots[i].start, slots[i - 1].end);
+      }
+    }
+  });
 }

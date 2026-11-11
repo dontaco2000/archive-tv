@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:archive_tv_core/src/archive_client.dart';
@@ -7,7 +8,10 @@ import 'package:test/test.dart';
 
 String fixture(String name) => File('test/fixtures/$name').readAsStringSync();
 
-ArchiveClient clientFor(MockClientHandler handler, {int maxAttempts = 3}) => ArchiveClient(
+ArchiveClient clientFor(MockClientHandler handler,
+        {int maxAttempts = 3, Duration requestTimeout = const Duration(seconds: 30)}) =>
+    ArchiveClient(
+      requestTimeout: requestTimeout,
       client: MockClient(handler),
       retryDelay: Duration.zero,
       maxAttempts: maxAttempts,
@@ -85,6 +89,28 @@ void main() {
     });
     await expectLater(notFound.metadata('x'), throwsA(isA<ArchiveException>()));
     expect(calls, 1);
+  });
+
+  test('connection errors are retried, then succeed', () async {
+    var calls = 0;
+    final client = clientFor((req) async {
+      calls++;
+      if (calls < 3) throw http.ClientException('reset');
+      return http.Response('{}', 200);
+    });
+    expect(await client.metadata('x'), isNull);
+    expect(calls, 3);
+  });
+
+  test('persistent connection errors end in ArchiveException', () async {
+    final client = clientFor((req) async => throw http.ClientException('down'));
+    await expectLater(client.metadata('x'), throwsA(isA<ArchiveException>()));
+  });
+
+  test('a request that never completes times out into ArchiveException', () async {
+    final client = clientFor((req) => Completer<http.Response>().future,
+        maxAttempts: 2, requestTimeout: const Duration(milliseconds: 50));
+    await expectLater(client.metadata('x'), throwsA(isA<ArchiveException>()));
   });
 
   test('parseLength handles seconds and clock formats', () {

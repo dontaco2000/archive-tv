@@ -13,6 +13,14 @@ class ConfigException implements Exception {
 
 /// Parses and validates the text of `channels.json`.
 ChannelConfig parseChannelConfig(String jsonText) {
+  try {
+    return _parse(jsonText);
+  } on TypeError catch (e) {
+    throw ConfigException('channels.json has a value of the wrong type: $e');
+  }
+}
+
+ChannelConfig _parse(String jsonText) {
   final Object? decoded;
   try {
     decoded = jsonDecode(jsonText);

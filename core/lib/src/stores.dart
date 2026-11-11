@@ -6,11 +6,20 @@ import 'scheduler.dart';
 
 File _file(Directory dir, String name) => File('${dir.path}${Platform.pathSeparator}$name');
 
-Object? _readJson(File f) => f.existsSync() ? jsonDecode(f.readAsStringSync()) : null;
+/// Null if the file is missing, empty or corrupt (so it gets rebuilt).
+Object? _readJson(File f) {
+  if (!f.existsSync()) return null;
+  try {
+    final text = f.readAsStringSync();
+    return text.trim().isEmpty ? null : jsonDecode(text);
+  } on FormatException {
+    return null;
+  }
+}
 
 void _writeJson(File f, Object value) {
   f.parent.createSync(recursive: true);
-  final tmp = File('${f.path}.tmp')..writeAsStringSync(jsonEncode(value));
+  final tmp = File('${f.path}.tmp')..writeAsStringSync(jsonEncode(value), flush: true);
   tmp.renameSync(f.path); // never leave a half-written file behind
 }
 
@@ -41,24 +50,27 @@ class PoolStore {
   }
 }
 
-/// Day schedules saved once made, so a pool refresh never rewrites the week
-/// the guide already shows. Past days are deleted.
+/// Each day's shuffled entry order, saved once made, so a pool refresh never
+/// reshuffles the week the guide already shows. Saving the order (not finished
+/// slots) keeps days editable: a blocked item drops out and later times shift.
+/// Past days are deleted.
 class SnapshotStore {
   final Directory dir;
   SnapshotStore(this.dir);
 
   File _f(int channel, DateTime day) => _file(dir, 'day-$channel-${dayKey(day)}.json');
 
-  /// The saved schedule for [day], making and saving it from [pool] if absent.
-  List<Slot> day(int channel, DateTime day, List<Entry> pool) {
+  /// The schedule for [day] (a local DateTime), from the saved order, making
+  /// and saving it from [pool] if absent; [blocklist] entries are removed.
+  List<Slot> day(int channel, DateTime day, List<Entry> pool, {Blocklist? blocklist}) {
     final f = _f(channel, day);
     final saved = _readJson(f) as List?;
-    if (saved != null) {
-      return [for (final s in saved.cast<Map<String, dynamic>>()) Slot.fromJson(s)];
-    }
-    final slots = scheduleDay(pool, 'ch$channel', day);
-    if (slots.isNotEmpty) _writeJson(f, [for (final s in slots) s.toJson()]);
-    return slots;
+    var order = saved != null
+        ? [for (final e in saved.cast<Map<String, dynamic>>()) Entry.fromJson(e)]
+        : dayOrder(pool, 'ch$channel', day);
+    if (saved == null && order.isNotEmpty) _writeJson(f, [for (final e in order) e.toJson()]);
+    if (blocklist != null) order = blocklist.apply(order);
+    return layoutDay(order, day);
   }
 
   /// Makes sure today and the next [days] - 1 days are saved.

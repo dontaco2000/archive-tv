@@ -58,6 +58,7 @@ class ArchiveClient implements ArchiveApi {
   final String userAgent;
   final int maxAttempts;
   final Duration retryDelay;
+  final Duration requestTimeout;
 
   ArchiveClient({
     http.Client? client,
@@ -65,6 +66,7 @@ class ArchiveClient implements ArchiveApi {
     this.userAgent = 'ArchiveTV/0.1 (personal retro TV app)',
     this.maxAttempts = 3,
     this.retryDelay = const Duration(seconds: 2),
+    this.requestTimeout = const Duration(seconds: 30),
   }) : _http = client ?? http.Client();
 
   @override
@@ -113,15 +115,25 @@ class ArchiveClient implements ArchiveApi {
     );
   }
 
-  /// GET with a few retries on 429 and 5xx responses.
+  /// GET with a timeout, retrying on 429, 5xx, timeouts and connection errors.
   Future<String> _get(Uri uri) async {
     for (var attempt = 1;; attempt++) {
-      final res = await _http.get(uri, headers: {'User-Agent': userAgent});
-      if (res.statusCode == 200) return utf8.decode(res.bodyBytes);
-      final retryable = res.statusCode == 429 || res.statusCode >= 500;
-      if (!retryable || attempt >= maxAttempts) {
-        throw ArchiveException('GET $uri failed with HTTP ${res.statusCode}');
+      String? failure;
+      try {
+        final res = await _http
+            .get(uri, headers: {'User-Agent': userAgent})
+            .timeout(requestTimeout);
+        if (res.statusCode == 200) return utf8.decode(res.bodyBytes);
+        failure = 'HTTP ${res.statusCode}';
+        if (res.statusCode != 429 && res.statusCode < 500) {
+          throw ArchiveException('GET $uri failed with $failure');
+        }
+      } on TimeoutException {
+        failure = 'a timeout';
+      } on http.ClientException catch (e) {
+        failure = 'a connection error (${e.message})';
       }
+      if (attempt >= maxAttempts) throw ArchiveException('GET $uri failed with $failure');
       await Future<void>.delayed(retryDelay * attempt);
     }
   }

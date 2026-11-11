@@ -12,17 +12,18 @@ class Slot {
 
   Map<String, dynamic> toJson() => {
         'entry': entry.toJson(),
-        'start': start.toIso8601String(),
-        'end': end.toIso8601String(),
+        'start': start.toUtc().toIso8601String(),
+        'end': end.toUtc().toIso8601String(),
       };
 
   factory Slot.fromJson(Map<String, dynamic> j) => Slot(
         Entry.fromJson(j['entry'] as Map<String, dynamic>),
-        DateTime.parse(j['start'] as String),
-        DateTime.parse(j['end'] as String),
+        DateTime.parse(j['start'] as String).toLocal(),
+        DateTime.parse(j['end'] as String).toLocal(),
       );
 }
 
+/// [d] must be a local DateTime (its y/m/d are the local calendar day).
 String dayKey(DateTime d) =>
     '${d.year.toString().padLeft(4, '0')}-${d.month.toString().padLeft(2, '0')}-${d.day.toString().padLeft(2, '0')}';
 
@@ -30,15 +31,22 @@ String dayKey(DateTime d) =>
 bool isOffAir(List<Entry> pool, int minSeconds) =>
     pool.fold(0.0, (s, e) => s + e.durationSeconds) < minSeconds;
 
-/// The whole local day for [day]: the pool shuffled by a seed from
-/// `channelKey|date` (same inputs, same order, on every device), played back to
-/// back from local midnight, repeating if the pool is shorter than a day.
-List<Slot> scheduleDay(List<Entry> pool, String channelKey, DateTime day) {
+/// The shuffled play order for [day] (a local DateTime): the pool sorted by
+/// entry id, then shuffled by a seed from `channelKey|date`. Same entries, same
+/// order, on every device regardless of the order [pool] arrived in.
+List<Entry> dayOrder(List<Entry> pool, String channelKey, DateTime day) {
   if (pool.isEmpty) return [];
+  final sorted = [...pool]..sort((a, b) => a.id.compareTo(b.id));
+  return seededShuffle(sorted, stableHash('$channelKey|${dayKey(day)}'));
+}
+
+/// Lays [order] out back to back from local midnight of [day] (a local
+/// DateTime) to the next local midnight, repeating if shorter than a day and
+/// cutting the last slot at midnight.
+List<Slot> layoutDay(List<Entry> order, DateTime day) {
+  if (order.isEmpty) return [];
   final start = DateTime(day.year, day.month, day.day);
   final end = DateTime(day.year, day.month, day.day + 1);
-  final order = seededShuffle(pool, stableHash('$channelKey|${dayKey(start)}'));
-
   final slots = <Slot>[];
   var t = start;
   for (var i = 0; t.isBefore(end); i++) {
@@ -51,6 +59,10 @@ List<Slot> scheduleDay(List<Entry> pool, String channelKey, DateTime day) {
   }
   return slots;
 }
+
+/// The whole local day for [day] (must be a local DateTime).
+List<Slot> scheduleDay(List<Entry> pool, String channelKey, DateTime day) =>
+    layoutDay(dayOrder(pool, channelKey, day), day);
 
 /// The slot playing at [t], or null if [slots] doesn't cover it.
 Slot? slotAt(List<Slot> slots, DateTime t) {

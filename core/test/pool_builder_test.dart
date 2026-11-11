@@ -6,12 +6,14 @@ class FakeApi implements ArchiveApi {
   final Map<String, (int, int)> items;
   final List<String> queries = [];
   final Set<String> failing;
+  final String? failQuery; // searches containing this text throw
 
-  FakeApi(this.items, {this.failing = const {}});
+  FakeApi(this.items, {this.failing = const {}, this.failQuery});
 
   @override
   Future<List<ItemSummary>> search(String query, {int rows = 100, int page = 1}) async {
     queries.add(query);
+    if (failQuery != null && query.contains(failQuery!)) throw ArchiveException('search down');
     // Honour only the date clause, like the real thing would.
     final m = RegExp(r'date:\[(\d{4})-01-01 TO (\d{4})-12-31\]').firstMatch(query);
     return [
@@ -71,6 +73,18 @@ void main() {
     final pool = await buildPool(channel, config(), api, log: logs.add);
     expect(pool.map((e) => e.itemId), ['a']);
     expect(logs.any((l) => l.contains('skip bad')), isTrue);
+  });
+
+  test('a failing source is skipped, the other source still builds the pool', () async {
+    final logs = <String>[];
+    const two = Channel(number: 5, name: 'Funnies', sources: [
+      Source(query: 'subject:broken'),
+      Source(query: 'subject:cartoon'),
+    ]);
+    final api = FakeApi({'a': (1990, 180)}, failQuery: 'broken');
+    final pool = await buildPool(two, config(), api, log: logs.add);
+    expect(pool.map((e) => e.itemId), ['a']);
+    expect(logs.any((l) => l.contains('skip source')), isTrue);
   });
 
   test('weatherstar channels have no pool', () async {

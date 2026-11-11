@@ -43,7 +43,13 @@ Future<List<Entry>> _collect(
 
   for (final source in channel.sources) {
     final query = buildQuery(source, range: range, blockCollections: config.blockCollections);
-    final hits = await api.search(query, rows: itemsPerSource);
+    final List<ItemSummary> hits;
+    try {
+      hits = await api.search(query, rows: itemsPerSource);
+    } on ArchiveException catch (e) {
+      log?.call('${channel.name}: skip source $query: $e'); // keep what other sources gave
+      continue;
+    }
     for (final hit in hits) {
       if (config.excludeIdentifiers.contains(hit.identifier)) continue;
       if (!seenItems.add(hit.identifier)) continue;
