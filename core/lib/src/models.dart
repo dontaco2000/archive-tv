@@ -105,6 +105,9 @@ class Entry {
   /// File size in bytes, if Archive reported it.
   final int? size;
 
+  /// Whether the mp4 index is at the front (see `probeFaststart`); null = not probed.
+  final bool? faststart;
+
   const Entry({
     required this.id,
     required this.itemId,
@@ -113,7 +116,19 @@ class Entry {
     required this.durationSeconds,
     required this.url,
     this.size,
+    this.faststart,
   });
+
+  Entry copyWith({bool? faststart}) => Entry(
+        id: id,
+        itemId: itemId,
+        file: file,
+        title: title,
+        durationSeconds: durationSeconds,
+        url: url,
+        size: size,
+        faststart: faststart ?? this.faststart,
+      );
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -123,6 +138,7 @@ class Entry {
         'duration': durationSeconds,
         'url': url,
         if (size != null) 'size': size,
+        if (faststart != null) 'faststart': faststart,
       };
 
   factory Entry.fromJson(Map<String, dynamic> j) => Entry(
@@ -133,5 +149,6 @@ class Entry {
         durationSeconds: (j['duration'] as num).toDouble(),
         url: j['url'] as String,
         size: j['size'] as int?,
+        faststart: j['faststart'] as bool?,
       );
 }
