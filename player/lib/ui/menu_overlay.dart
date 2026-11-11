@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:archive_tv_core/archive_tv_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -40,6 +42,8 @@ class MenuOverlay extends StatefulWidget {
 class _MenuOverlayState extends State<MenuOverlay> {
   final _focus = FocusNode();
   int _sel = 0;
+  // Android TV is always fullscreen, so its menu has no window-mode item.
+  final _items = [for (final i in _Item.values) if (!Platform.isAndroid || i != _Item.startFullscreen) i];
   Settings get s => widget.settings;
 
   @override
@@ -64,7 +68,7 @@ class _MenuOverlayState extends State<MenuOverlay> {
 
   /// Left/Right (dir -1/+1) or Enter (dir 0) on the selected item.
   void _activate(int dir) {
-    final item = _Item.values[_sel];
+    final item = _items[_sel];
     switch (item) {
       case _Item.volume:
         if (dir != 0) _change(() => s.volume = (s.volume + 5 * dir).clamp(0, 100).toDouble());
@@ -92,17 +96,20 @@ class _MenuOverlayState extends State<MenuOverlay> {
     if (e is KeyUpEvent) return KeyEventResult.ignored;
     final k = e.logicalKey;
     final repeat = e is KeyRepeatEvent;
-    final n = _Item.values.length;
+    final n = _items.length;
     if (k == LogicalKeyboardKey.arrowUp) {
       setState(() => _sel = (_sel - 1) % n);
     } else if (k == LogicalKeyboardKey.arrowDown) {
       setState(() => _sel = (_sel + 1) % n);
     } else if (k == LogicalKeyboardKey.arrowLeft || k == LogicalKeyboardKey.arrowRight) {
       // Only the volume repeats while held; toggles flip once per press.
-      if (!repeat || _Item.values[_sel] == _Item.volume) _activate(k == LogicalKeyboardKey.arrowLeft ? -1 : 1);
-    } else if (k == LogicalKeyboardKey.enter) {
+      if (!repeat || _items[_sel] == _Item.volume) _activate(k == LogicalKeyboardKey.arrowLeft ? -1 : 1);
+    } else if (k == LogicalKeyboardKey.enter || k == LogicalKeyboardKey.select) {
       if (!repeat) _activate(0);
-    } else if (k == LogicalKeyboardKey.escape || k == LogicalKeyboardKey.keyM) {
+    } else if (k == LogicalKeyboardKey.escape ||
+        k == LogicalKeyboardKey.keyM ||
+        k == LogicalKeyboardKey.goBack ||
+        k == LogicalKeyboardKey.contextMenu) {
       if (!repeat) widget.onClose();
     } else {
       return KeyEventResult.ignored; // F, volume, mute, fullscreen fall through to the TV screen
@@ -142,7 +149,7 @@ class _MenuOverlayState extends State<MenuOverlay> {
             color: _panel,
             padding: const EdgeInsets.all(8),
             child: LayoutBuilder(builder: (context, box) {
-              final unit = box.maxHeight / (_Item.values.length + 1); // title + items
+              final unit = box.maxHeight / (_items.length + 1); // title + items
               final font = (unit * 0.4).clamp(9.0, 26.0);
               TextStyle style(Color color, {bool bold = false}) =>
                   TextStyle(fontFamily: _font, fontSize: font, color: color, fontWeight: bold ? FontWeight.bold : null);
@@ -151,7 +158,7 @@ class _MenuOverlayState extends State<MenuOverlay> {
                   height: unit,
                   child: Align(alignment: Alignment.centerLeft, child: Text('MENU', style: style(_yellow, bold: true))),
                 ),
-                for (final (i, item) in _Item.values.indexed)
+                for (final (i, item) in _items.indexed)
                   Container(
                     key: i == _sel ? MenuOverlay.selectedKey : null,
                     height: unit - 2,

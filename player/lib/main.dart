@@ -19,7 +19,13 @@ import 'ui/tv_screen.dart';
 Future<void> main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
   MediaKit.ensureInitialized();
-  await windowManager.ensureInitialized();
+  // Android TV / Fire TV: always fullscreen landscape, no window to manage.
+  final desktop = !Platform.isAndroid;
+  if (desktop) {
+    await windowManager.ensureInitialized();
+  } else {
+    await SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+  }
 
   final dataDir = Directory(p.join((await getApplicationSupportDirectory()).path, 'ArchiveTV'))..createSync(recursive: true);
   final logFile = File(p.join(dataDir.path, 'archive_tv.log'));
@@ -31,16 +37,19 @@ Future<void> main(List<String> args) async {
 
   final store = SettingsStore(File(p.join(dataDir.path, 'settings.json')));
   final settings = store.load();
-  await windowManager.waitUntilReadyToShow(
-    const WindowOptions(size: Size(960, 720), minimumSize: Size(640, 480), center: true, title: 'Archive TV'),
-    () async {
-      await windowManager.setAspectRatio(4 / 3); // windowed mode keeps the 4:3 shape
-      await WindowPrefs.restoreBounds(settings).catchError((Object e) => log('window restore failed: $e'));
-      await windowManager.show();
-      if (settings.startFullscreen || settings.fullscreen) await windowManager.setFullScreen(true);
-    },
-  );
-  final windowPrefs = WindowPrefs(settings, store, log)..attach();
+  WindowPrefs? windowPrefs;
+  if (desktop) {
+    await windowManager.waitUntilReadyToShow(
+      const WindowOptions(size: Size(960, 720), minimumSize: Size(640, 480), center: true, title: 'Archive TV'),
+      () async {
+        await windowManager.setAspectRatio(4 / 3); // windowed mode keeps the 4:3 shape
+        await WindowPrefs.restoreBounds(settings).catchError((Object e) => log('window restore failed: $e'));
+        await windowManager.show();
+        if (settings.startFullscreen || settings.fullscreen) await windowManager.setFullScreen(true);
+      },
+    );
+    windowPrefs = WindowPrefs(settings, store, log)..attach();
+  }
 
   final configFile = File(p.join(dataDir.path, 'channels.json'));
   // The bundled config seeds the data folder once; after that the copy there is the user's to edit.

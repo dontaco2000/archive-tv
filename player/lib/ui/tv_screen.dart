@@ -23,8 +23,9 @@ class TvScreen extends StatefulWidget {
   final PlayerController controller;
   final Settings settings;
   final SettingsStore store;
-  final WindowPrefs windowPrefs;
-  const TvScreen({super.key, required this.controller, required this.settings, required this.store, required this.windowPrefs});
+  /// Null on Android TV / Fire TV, which are always fullscreen.
+  final WindowPrefs? windowPrefs;
+  const TvScreen({super.key, required this.controller, required this.settings, required this.store, this.windowPrefs});
 
   @override
   State<TvScreen> createState() => _TvScreenState();
@@ -209,7 +210,12 @@ class _TvScreenState extends State<TvScreen> {
         _entryTimer = Timer(const Duration(milliseconds: 1500), _commitEntry);
         setState(() {});
       case TvAction.ok:
-        _commitEntry();
+        // The remote's centre button opens the guide unless a channel number is being typed.
+        if (event.logicalKey == LogicalKeyboardKey.select && entry.text.isEmpty) {
+          _openGuide();
+        } else {
+          _commitEntry();
+        }
       case TvAction.info:
         setState(_showBanner);
       case TvAction.mute:
@@ -218,16 +224,20 @@ class _TvScreenState extends State<TvScreen> {
       case TvAction.volumeUp:
         settings.volume = (settings.volume + 5).clamp(0, 100).toDouble();
         _settingsChanged();
+        _flash('Volume ${settings.volume.round()}');
       case TvAction.volumeDown:
         settings.volume = (settings.volume - 5).clamp(0, 100).toDouble();
         _settingsChanged();
+        _flash('Volume ${settings.volume.round()}');
       case TvAction.favorite:
         _toggleFavorite();
       case TvAction.toggleFullscreen:
-        widget.windowPrefs.toggleFullScreen();
+        widget.windowPrefs?.toggleFullScreen();
       case TvAction.back:
+        final w = widget.windowPrefs;
+        if (w == null) return KeyEventResult.ignored; // Android: Back while watching leaves the app
         windowManager.isFullScreen().then((f) {
-          if (f) widget.windowPrefs.setFullScreen(false);
+          if (f) w.setFullScreen(false);
         });
       case TvAction.guide:
         _openGuide();
@@ -262,7 +272,7 @@ class _TvScreenState extends State<TvScreen> {
       autofocus: true,
       onKeyEvent: _onKey,
       child: GestureDetector(
-        onDoubleTap: widget.windowPrefs.toggleFullScreen,
+        onDoubleTap: widget.windowPrefs?.toggleFullScreen,
         child: Scaffold(
           backgroundColor: Colors.black,
           body: Center(

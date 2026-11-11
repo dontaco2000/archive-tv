@@ -10,7 +10,7 @@ class KeyBinding {
   const KeyBinding(this.action, [this.digit]);
 }
 
-/// Keyboard mapping table. Android TV's D-pad and the game controller map to the same actions later.
+/// Keyboard and TV-remote mapping table (Android TV's D-pad arrives as arrow keys).
 final Map<LogicalKeyboardKey, KeyBinding> keyboardBindings = {
   LogicalKeyboardKey.arrowUp: const KeyBinding(TvAction.channelUp),
   LogicalKeyboardKey.pageUp: const KeyBinding(TvAction.channelUp),
@@ -26,6 +26,17 @@ final Map<LogicalKeyboardKey, KeyBinding> keyboardBindings = {
   LogicalKeyboardKey.f11: const KeyBinding(TvAction.toggleFullscreen),
   LogicalKeyboardKey.enter: const KeyBinding(TvAction.ok),
   LogicalKeyboardKey.escape: const KeyBinding(TvAction.back),
+  // Android TV / Fire TV remote. Select opens the guide when no digits are pending (see TvScreen).
+  LogicalKeyboardKey.select: const KeyBinding(TvAction.ok),
+  LogicalKeyboardKey.goBack: const KeyBinding(TvAction.back),
+  LogicalKeyboardKey.contextMenu: const KeyBinding(TvAction.menu),
+  LogicalKeyboardKey.mediaPlayPause: const KeyBinding(TvAction.mute),
+  LogicalKeyboardKey.channelUp: const KeyBinding(TvAction.channelUp),
+  LogicalKeyboardKey.channelDown: const KeyBinding(TvAction.channelDown),
+  LogicalKeyboardKey.mediaFastForward: const KeyBinding(TvAction.channelUp),
+  LogicalKeyboardKey.mediaRewind: const KeyBinding(TvAction.channelDown),
+  LogicalKeyboardKey.arrowRight: const KeyBinding(TvAction.volumeUp),
+  LogicalKeyboardKey.arrowLeft: const KeyBinding(TvAction.volumeDown),
   LogicalKeyboardKey.digit0: const KeyBinding(TvAction.digit, 0),
   LogicalKeyboardKey.digit1: const KeyBinding(TvAction.digit, 1),
   LogicalKeyboardKey.digit2: const KeyBinding(TvAction.digit, 2),

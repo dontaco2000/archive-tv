@@ -33,6 +33,15 @@ void main() {
     expect(keyboardBindings[LogicalKeyboardKey.keyF]!.action, TvAction.favorite);
   });
 
+  test('TV remote keys map to TV actions', () {
+    expect(keyboardBindings[LogicalKeyboardKey.select]!.action, TvAction.ok);
+    expect(keyboardBindings[LogicalKeyboardKey.goBack]!.action, TvAction.back);
+    expect(keyboardBindings[LogicalKeyboardKey.contextMenu]!.action, TvAction.menu);
+    expect(keyboardBindings[LogicalKeyboardKey.mediaPlayPause]!.action, TvAction.mute);
+    expect(keyboardBindings[LogicalKeyboardKey.channelUp]!.action, TvAction.channelUp);
+    expect(keyboardBindings[LogicalKeyboardKey.arrowLeft]!.action, TvAction.volumeDown);
+  });
+
   test('flipTarget honours favorites only, falling back to all channels', () {
     final chs = [for (final n in [2, 3, 5, 8]) Channel(number: n, name: 'C$n')];
     int? flip(int? cur, int step, Set<int> favs, bool only) =>
