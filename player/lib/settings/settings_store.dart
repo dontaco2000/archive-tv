@@ -19,6 +19,10 @@ class Settings {
   double weatherLat = 31.3271;
   double weatherLon = -89.2903;
 
+  /// Weather channel picture: 'web' (the real WeatherStar 4000+ page) or 'native' (the app's own screens,
+  /// also the fallback when the page can't load).
+  String weatherMode = 'web';
+
   Settings();
 
   Map<String, dynamic> toJson() => {
@@ -37,6 +41,7 @@ class Settings {
         'weatherPlace': weatherPlace,
         'weatherLat': weatherLat,
         'weatherLon': weatherLon,
+        'weatherMode': weatherMode,
       };
 
   factory Settings.fromJson(Map<String, dynamic> j) {
@@ -64,6 +69,7 @@ class Settings {
       s.weatherLat = lat;
       s.weatherLon = lon;
     }
+    if (const {'web', 'native'}.contains(j['weatherMode'])) s.weatherMode = j['weatherMode'] as String;
     return s;
   }
 }

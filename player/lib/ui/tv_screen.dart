@@ -20,7 +20,7 @@ import 'guide_overlay.dart';
 import 'menu_overlay.dart';
 import 'arcade_entry.dart';
 import 'on_demand_overlay.dart';
-import 'weatherstar.dart';
+import 'weather_web.dart';
 
 enum TvMode { watch, guide, menu, onDemand, location }
 
@@ -55,9 +55,18 @@ class _TvScreenState extends State<TvScreen> {
 
   bool get _weather => tv.channel?.type == 'weatherstar';
 
+  // WeatherStar 4000+ page state for the current tune; the native screens cover it until it loads
+  // and replace it if it fails.
+  bool _webFailed = false, _webLoaded = false;
+  int _webTune = 0;
+  bool get _webWeather => useWebWeather(settings.weatherMode, webAvailable: webViewAvailable, pageFailed: _webFailed);
+
   @override
   void initState() {
     super.initState();
+    // The startup tune can happen before this screen listens; without this the first later notify
+    // (e.g. the music's first frame) looks like a channel change and drops the loaded WeatherStar page.
+    _shown = tv.channel;
     tv.addListener(_changed);
   }
 
@@ -66,7 +75,11 @@ class _TvScreenState extends State<TvScreen> {
 
   void _changed() {
     if (_wasStandBy && !tv.standBy) _showBanner();
-    if (_weather && tv.channel != _shown) _showBanner(); // the weather picture is up at once, music or not
+    if (tv.channel != _shown) {
+      if (_weather) _showBanner(); // the weather picture is up at once, music or not
+      _webFailed = _webLoaded = false; // every tune tries the WeatherStar page again...
+      _webTune++; // ...in a fresh WebView, so "loaded" always belongs to the page on screen
+    }
     _wasStandBy = tv.standBy;
     _shown = tv.channel;
     if (tv.onDemandEnded && !_endHandled) {
@@ -172,6 +185,7 @@ class _TvScreenState extends State<TvScreen> {
   /// Saves and applies settings after any change; a failed save is logged, never fatal.
   void _settingsChanged([Settings? _]) {
     tv.setVolume(settings.muted ? 0 : settings.volume);
+    _webFailed = false; // e.g. switched back to the WeatherStar view: try the page again
     try {
       widget.store.save(settings);
     } on Object catch (e) {
@@ -430,11 +444,24 @@ class _TvScreenState extends State<TvScreen> {
                   children: [
                     // Widescreen video is letterboxed inside the 4:3 frame, never stretched or cropped.
                     Video(controller: tv.video, fit: BoxFit.contain, controls: NoVideoControls),
-                    // The weather channel draws its own screens; the player only carries its music.
+                    // The weather channel shows the WeatherStar 4000+ page (spec 5.8); the player only carries its music.
                     if (_weather)
-                      WeatherStarScreen(
-                        key: ValueKey(settings.weatherPlace),
+                      WeatherLayers(
+                        key: ValueKey(_webTune),
+                        place: settings.weatherPlace,
+                        web: _webWeather,
+                        webLoaded: _webLoaded,
+                        url: weatherStarUrl(
+                            place: settings.weatherPlace, lat: settings.weatherLat, lon: settings.weatherLon, light: weatherStarLight),
                         load: () => fetchWeather(_http, Place(settings.weatherPlace, settings.weatherLat, settings.weatherLon)),
+                        onLoaded: () {
+                          tv.log('weatherstar page loaded');
+                          if (mounted) setState(() => _webLoaded = true);
+                        },
+                        onFailed: (why) {
+                          tv.log('weatherstar page failed ($why): native weather screens instead');
+                          if (mounted) setState(() => _webFailed = true);
+                        },
                       ),
                     // Corner bug: the channel's logo, small and faint, while a channel plays.
                     if (settings.cornerBug && !tv.standBy && tv.channel != null && !_weather && tv.onDemand == null)

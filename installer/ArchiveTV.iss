@@ -2,7 +2,7 @@
 ; ISCC ArchiveTV.iss [/DReleaseDir=...] [/DCrtDir=...]
 
 #define AppName "Archive TV"
-#define AppVersion "0.2.0"
+#define AppVersion "0.3.0"
 #define AppExe "archive_tv_player.exe"
 #ifndef ReleaseDir
   #define ReleaseDir "C:\src\at_rel\player\build\windows\x64\runner\Release"
@@ -52,3 +52,29 @@ Name: "{userdesktop}\{#AppName}"; Filename: "{app}\{#AppExe}"; IconFilename: "{a
 Filename: "{app}\{#AppExe}"; Description: "{cm:LaunchProgram,{#AppName}}"; Flags: nowait postinstall skipifsilent
 
 ; User data (%APPDATA%\com.example\archive_tv_player) is never touched by the uninstaller.
+
+[Code]
+// The weather channel's WeatherStar page needs the WebView2 runtime (built into Windows 11 and
+// most Windows 10). If it is missing, fetch Microsoft's bootstrapper and install it per-user.
+// Any failure is ignored: the app then shows its native weather screens.
+const WV2Key = '\Microsoft\EdgeUpdate\Clients\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}';
+
+function HasWebView2(Root: Integer; Key: String): Boolean;
+var V: String;
+begin
+  Result := RegQueryStringValue(Root, Key, 'pv', V) and (V <> '') and (V <> '0.0.0.0');
+end;
+
+procedure CurStepChanged(CurStep: TSetupStep);
+var RC: Integer;
+begin
+  if CurStep <> ssPostInstall then Exit;
+  if HasWebView2(HKLM, 'SOFTWARE\WOW6432Node' + WV2Key) or HasWebView2(HKCU, 'Software' + WV2Key) then Exit;
+  try
+    DownloadTemporaryFile('https://go.microsoft.com/fwlink/p/?LinkId=2124703', 'MicrosoftEdgeWebview2Setup.exe', '', nil);
+    Exec(ExpandConstant('{tmp}\MicrosoftEdgeWebview2Setup.exe'), '/silent /install', '', SW_HIDE, ewWaitUntilTerminated, RC);
+    Log(Format('WebView2 bootstrapper exit code %d', [RC]));
+  except
+    Log('WebView2 runtime not installed: ' + GetExceptionMessage);
+  end;
+end;

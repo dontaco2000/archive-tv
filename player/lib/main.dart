@@ -17,6 +17,7 @@ import 'settings/rotating_log.dart';
 import 'settings/settings_store.dart';
 import 'settings/window_prefs.dart';
 import 'ui/tv_screen.dart';
+import 'ui/weather_web.dart';
 
 Future<void> main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -43,6 +44,8 @@ Future<void> main(List<String> args) async {
       // logging must never take the app down
     }
   }
+
+  await initWebView(windows: Platform.isWindows, dataDir: p.join(dataDir.path, 'webview2'), log: log);
 
   final store = SettingsStore(File(p.join(dataDir.path, 'settings.json')));
   final settings = store.load();
