@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:archive_tv_core/archive_tv_core.dart';
+import 'package:http/http.dart' as http;
 import 'package:path/path.dart' as p;
 
 /// What is on a channel at one moment: the slot, how far into it we are, and what follows.
@@ -23,16 +24,23 @@ class TvEngine {
   final PoolStore pools;
   final SnapshotStore snapshots;
   final Blocklist blocklist;
+
+  /// Files found slow to start (mp4 index at the end), kept out of schedules; saved as slow.json.
+  final Blocklist slow;
+
+  /// Probes upcoming files after each fresh pool build; null turns probing off (tests).
+  final http.Client? probeClient;
   final void Function(String) log;
   final Map<int, List<Entry>> _pool = {};
 
-  TvEngine._(this.config, this.api, this.pools, this.snapshots, this.blocklist, this.log);
+  TvEngine._(this.config, this.api, this.pools, this.snapshots, this.blocklist, this.slow, this.probeClient, this.log);
 
   /// [configText] is the contents of channels.json; [dataDir] holds pools, snapshots, blocklist.
   factory TvEngine.open({
     required String configText,
     required Directory dataDir,
     ArchiveApi? api,
+    http.Client? probeClient,
     void Function(String)? log,
   }) {
     return TvEngine._(
@@ -41,6 +49,8 @@ class TvEngine {
       PoolStore(Directory(p.join(dataDir.path, 'pools'))),
       SnapshotStore(Directory(p.join(dataDir.path, 'days'))),
       Blocklist.load(dataDir),
+      Blocklist.load(dataDir, name: 'slow.json'),
+      probeClient,
       log ?? (_) {},
     );
   }
@@ -84,6 +94,7 @@ class TvEngine {
       }
       pools.save(channel.number, built);
       _pool[channel.number] = blocklist.apply(built);
+      _queueProbe(channel);
     } on Object catch (e) {
       log('pool build failed for ${channel.name}: $e'); // fall back to a stale pool if there is one
       if (saved != null) _pool[channel.number] = blocklist.apply(saved);
@@ -100,7 +111,47 @@ class TvEngine {
   }
 
   List<Slot> _day(Channel c, DateTime day) => snapshots.day(c.number, day, _pool[c.number] ?? const [],
-      blocklist: _skipped.ids.isEmpty ? blocklist : blocklist.union(_skipped));
+      blocklist: blocklist.union(_skipped).union(slow));
+
+  Future<void> _probing = Future.value();
+
+  /// Background probe after a fresh build, one channel at a time.
+  void _queueProbe(Channel c) {
+    final client = probeClient;
+    if (client == null) return;
+    _probing = _probing.then((_) async {
+      try {
+        await probeUpcoming(c, DateTime.now(), client);
+      } on Object catch (e) {
+        log('probe ${c.name} failed: $e');
+      }
+    });
+  }
+
+  /// Probes the files due to air on [c] in the next 12 hours (not the one airing at [now])
+  /// and moves slow-start ones into [slow], unless that would leave the channel too thin.
+  /// ponytail: only the upcoming window is probed: whole pools are ~27k files (hours of
+  /// requests); later files get their turn at the next daily refresh. Returns how many were slow.
+  Future<int> probeUpcoming(Channel c, DateTime now, http.Client client, {int concurrency = 6}) async {
+    final seen = <String>{};
+    final todo = [
+      for (final s in guideFor(c, now))
+        if (s.start.isAfter(now) && seen.add(s.entry.id)) s.entry,
+    ];
+    final bad = <Entry>[];
+    await forEachLimited(todo, concurrency, (e) async {
+      if (await probeFaststart(client, e.url) == Faststart.no) bad.add(e);
+    });
+    final badIds = {for (final e in bad) e.id};
+    final left = (_pool[c.number] ?? const <Entry>[]).where((e) => !badIds.contains(e.id) && !slow.ids.contains(e.id));
+    if (bad.isNotEmpty && !isOffAir(left.toList(), config.minContentSeconds)) {
+      for (final id in badIds) {
+        slow.add(id);
+      }
+    }
+    log('${c.name}: probed ${todo.length} upcoming, ${bad.length} slow to start');
+    return bad.length;
+  }
 
   /// What is airing on [channel] at [now], or null if it has no content.
   Airing? airing(Channel channel, DateTime now) {

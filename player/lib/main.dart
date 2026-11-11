@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:archive_tv_core/archive_tv_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:http/http.dart' as http;
 import 'package:media_kit/media_kit.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
@@ -47,7 +48,7 @@ Future<void> main(List<String> args) async {
 
   final TvEngine engine;
   try {
-    engine = TvEngine.open(configText: configFile.readAsStringSync(), dataDir: dataDir, log: log);
+    engine = TvEngine.open(configText: configFile.readAsStringSync(), dataDir: dataDir, probeClient: http.Client(), log: log);
   } on Object catch (e) {
     log('channels.json error: $e');
     runApp(MaterialApp(

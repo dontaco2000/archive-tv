@@ -112,8 +112,9 @@ class Blocklist {
   /// A new in-memory list holding the ids of both; later adds to either are not reflected.
   Blocklist union(Blocklist other) => Blocklist._(null, {...ids, ...other.ids});
 
-  factory Blocklist.load(Directory dir) {
-    final f = _file(dir, 'blocked.json');
+  /// The list saved as [name] in [dir] (the viewer's blocks by default).
+  factory Blocklist.load(Directory dir, {String name = 'blocked.json'}) {
+    final f = _file(dir, name);
     final saved = (_readJson(f) as List?)?.cast<String>() ?? const <String>[];
     return Blocklist._(f, {...saved});
   }

@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:archive_tv_core/archive_tv_core.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart' as http;
+import 'package:http/testing.dart';
 import 'package:archive_tv_player/engine/tv_engine.dart';
 
 /// Archive stand-in: each item is one video of the given minutes.
@@ -81,6 +83,33 @@ void main() {
       expect(slots[i].start, slots[i - 1].end);
     }
     expect(TvEngine.open(configText: configText, dataDir: dir, api: api).blocklist.ids, isEmpty);
+  });
+
+  test('probeUpcoming keeps slow-start files out of the schedule and remembers them', () async {
+    final bytes = engine.channels.first;
+    await engine.ensurePool(bytes);
+    final probed = <String>[];
+    // File b has its mp4 index at the end; a and c are faststart.
+    final client = MockClient((req) async {
+      probed.add(req.url.path);
+      final boxes = req.url.path.endsWith('/b.mp4') ? 'ftypmdatmoov' : 'ftypmoovmdat';
+      return http.Response.bytes(boxes.codeUnits, 206);
+    });
+    final now = DateTime(2026, 11, 11, 15, 20, 5);
+    expect(await engine.probeUpcoming(bytes, now, client), 1);
+    expect(probed.toSet(), {'/download/a/a.mp4', '/download/b/b.mp4', '/download/c/c.mp4'});
+    expect(probed, hasLength(3)); // each file once, however often it airs
+    expect(engine.guideFor(bytes, now).any((s) => s.entry.itemId == 'b'), isFalse);
+    expect(TvEngine.open(configText: configText, dataDir: dir, api: api).slow.ids, {'b/b.mp4'});
+  });
+
+  test('probeUpcoming never makes a channel too thin', () async {
+    final thin = TvEngine.open(configText: configText, dataDir: dir, api: FakeApi({'a': 70, 'b': 60}));
+    final bytes = thin.channels.first;
+    await thin.ensurePool(bytes);
+    final allSlow = MockClient((_) async => http.Response.bytes('ftypmdatmoov'.codeUnits, 206));
+    expect(await thin.probeUpcoming(bytes, DateTime(2026, 11, 11, 15), allSlow), 2);
+    expect(thin.slow.ids, isEmpty);
   });
 
   test('airing at the last slot of the day looks ahead to the first slot of tomorrow', () async {

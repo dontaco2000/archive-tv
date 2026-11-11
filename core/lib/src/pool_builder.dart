@@ -40,7 +40,7 @@ Future<List<Entry>> buildPool(
   }
   if (probeClient != null) {
     final tagged = List<Entry?>.filled(pool.length, null);
-    await _forEachLimited(List.generate(pool.length, (i) => i), concurrency, (i) async {
+    await forEachLimited(List.generate(pool.length, (i) => i), concurrency, (i) async {
       final f = await probeFaststart(probeClient, pool[i].url);
       tagged[i] = pool[i].copyWith(faststart: f == Faststart.unknown ? null : f == Faststart.yes);
     });
@@ -52,7 +52,7 @@ Future<List<Entry>> buildPool(
 }
 
 /// Runs [fn] over [items] with at most [limit] in flight (simple worker pool).
-Future<void> _forEachLimited<T>(Iterable<T> items, int limit, Future<void> Function(T) fn) async {
+Future<void> forEachLimited<T>(Iterable<T> items, int limit, Future<void> Function(T) fn) async {
   final it = items.iterator;
   Future<void> worker() async {
     while (it.moveNext()) {
@@ -95,7 +95,7 @@ Future<List<Entry>> _collect(
 
   final byId = <String, Entry>{};
   var done = 0;
-  await _forEachLimited(hitsToFetch, concurrency, (id) async {
+  await forEachLimited(hitsToFetch, concurrency, (id) async {
     try {
       final meta = await api.metadata(id);
       if (meta != null) {

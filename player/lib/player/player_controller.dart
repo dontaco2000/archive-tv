@@ -104,6 +104,12 @@ class PlayerController extends ChangeNotifier {
         firstFrame.complete();
       }
     });
+    // A file the server refuses (401/403/404) fails now instead of after the 15 s timeout.
+    final errSub = player.stream.error.listen((e) {
+      if (!firstFrame.isCompleted && (e.contains('Failed to open') || e.contains('HTTP error'))) {
+        firstFrame.completeError(StateError(e));
+      }
+    });
     try {
       await player.open(Media(url, start: start), play: true);
       armed = true;
@@ -134,6 +140,7 @@ class PlayerController extends ChangeNotifier {
       await tune(c, attempt: attempt + 1);
     } finally {
       await sub.cancel();
+      await errSub.cancel();
     }
   }
 
