@@ -1,0 +1,15 @@
+{
+  "metadata": {"identifier": "toon-series-1", "title": "Toon Series (Complete)", "mediatype": "movies", "date": "1994-09-10"},
+  "files": [
+    {"name": "Toon Series - S01E10.mkv", "format": "Matroska", "size": "400000000", "length": "1320.5", "source": "original"},
+    {"name": "Toon Series - S01E10.mp4", "format": "h.264", "size": "100000000", "length": "1320.5", "source": "derivative"},
+    {"name": "Toon Series - S01E02.mkv", "format": "Matroska", "size": "400000000", "length": "1318.0", "source": "original"},
+    {"name": "Toon Series - S01E02.mp4", "format": "h.264", "size": "99000000", "length": "1318.0", "source": "derivative"},
+    {"name": "Toon Series - S01E01.mkv", "format": "Matroska", "size": "410000000", "length": "00:22:05", "source": "original"},
+    {"name": "Toon Series - S01E01_512kb.mp4", "format": "512Kb MPEG4", "size": "50000000", "length": "1325", "source": "derivative"},
+    {"name": "Toon Series - S01E01.mp4", "format": "h.264", "size": "101000000", "length": "1325", "source": "derivative"},
+    {"name": "Extras/Intro.mp4", "format": "h.264", "size": "2000000", "length": "30", "source": "derivative"},
+    {"name": "Toon Series.torrent", "format": "Archive BitTorrent", "size": "20000", "source": "metadata"},
+    {"name": "__ia_thumb.jpg", "format": "Item Tile", "size": "9000", "source": "original"}
+  ]
+}

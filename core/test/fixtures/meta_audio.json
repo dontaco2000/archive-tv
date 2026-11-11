@@ -1,0 +1,9 @@
+{
+  "metadata": {"identifier": "smooth-jazz-1992", "title": "Smooth Jazz Hour 1992", "mediatype": "audio", "date": "1992-03-01"},
+  "files": [
+    {"name": "01 Intro.mp3", "format": "VBR MP3", "size": "5000000", "length": "312.7", "title": "Intro Groove"},
+    {"name": "01 Intro.flac", "format": "Flac", "size": "30000000", "length": "312.7"},
+    {"name": "02 Night Drive.mp3", "format": "VBR MP3", "size": "6000000", "length": "04:45"},
+    {"name": "cover.jpg", "format": "JPEG", "size": "100000"}
+  ]
+}
