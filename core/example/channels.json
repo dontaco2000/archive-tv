@@ -1,0 +1,22 @@
+{
+  "yearRange": [1980, 2010],
+  "fallbackStart": 1960,
+  "minContentHours": 2,
+  "blockCollections": ["adultvhs"],
+  "excludeIdentifiers": [],
+  "channels": [
+    {
+      "number": 2,
+      "name": "Bytes",
+      "genre": "Tech",
+      "sources": [{"collection": "computerchronicles"}]
+    },
+    {
+      "number": 3,
+      "name": "Funnies",
+      "genre": "Cartoons",
+      "sources": [{"query": "subject:(cartoon) AND collection:(classic_cartoons)", "minDownloads": 500}]
+    },
+    {"number": 1, "name": "Cumulus", "genre": "Weather", "type": "weatherstar", "location": "auto"}
+  ]
+}
