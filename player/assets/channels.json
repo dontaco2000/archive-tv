@@ -184,6 +184,20 @@
       ]
     },
     {
+      "number": 25,
+      "name": "Headliner",
+      "logo": "Logos/4x3/headliner.png",
+      "genre": "TV",
+      "sources": [
+        {
+          "query": "subject:(\"stand-up comedy\" OR \"stand up comedy\" OR \"standup comedy\" OR \"stand-up comedian\" OR \"stand up comedian\") AND -collection:tvnews AND -title:(newscast OR \"jeff foxworthy show\" OR quran OR \"dr. sex\" OR workaholics OR \"stewart lee\" OR \"whose line\")"
+        },
+        {
+          "query": "title:(\"comedy central presents\" OR \"evening at the improv\" OR \"comic strip live\" OR \"def comedy jam\" OR \"comedy club\" OR \"comedy special\" OR \"stand up special\" OR \"standup special\" OR \"stand-up special\" OR \"george carlin\" OR \"richard pryor\" OR \"eddie murphy\" OR \"robin williams\" OR \"brian regan\" OR \"jeff foxworthy\" OR \"sam kinison\" OR \"bill hicks\" OR \"steve martin\" OR \"rodney dangerfield\") AND -collection:tvnews AND -title:(newscast OR \"jeff foxworthy show\" OR quran OR \"dr. sex\" OR workaholics OR roast)"
+        }
+      ]
+    },
+    {
       "number": 26,
       "name": "Cablecast",
       "logo": "Logos/4x3/cablecast.png",
@@ -293,7 +307,9 @@
       "location": "auto",
       "sources": [
         {
-          "identifiers": ["smooth-jazz-fm-1991"],
+          "identifiers": [
+            "smooth-jazz-fm-1991"
+          ],
           "mediatype": "audio",
           "ignoreYear": true
         }
