@@ -330,6 +330,25 @@
       ]
     },
     {
+      "number": 35,
+      "name": "Patrol",
+      "logo": "Logos/4x3/patrol.png",
+      "genre": "News & Docs",
+      "sources": [
+        {
+          "query": "title:(cops OR \"real cops\" OR \"cops reloaded\" OR \"cops special\" OR \"cops too hot\" OR \"real stories of the highway patrol\" OR \"police women\" OR \"scariest police chases\" OR \"world's scariest police chases\" OR \"police chases\" OR \"police pursuits\") AND -collection:tvnews AND -language:(fre OR French OR chi OR jpn OR ger OR spa OR rus OR ita OR por OR ara) AND -title:(\"music moments\" OR \"rock and roll\" OR \"girl 27\" OR \"daniel called\" OR fucked OR \"when cops go bad\" OR brutality OR \"sam hyde\" OR \"timmy throws\" OR contra OR committee OR battlefield OR cartoon OR katt OR sayanim OR kappy OR \"mega drive\" OR \"married with children\" OR \"combat cops\" OR \"officer vi\" OR \"fight scene\" OR \"caught in the middle\" OR \"williamstown\" OR \"fox cops\" OR \"durham cops\" OR \"parker stands\" OR \"stray dog\" OR \"future cops\" OR \"star cops\" OR \"beast cops\" OR \"animal cops\" OR \"a.c.a.b\" OR acab OR keystone OR keaton OR \"karma police\" OR atari OR \"i love cops\" OR \"alexis\" OR \"all cops are\" OR \"kerberos\" OR \"life on mars\" OR \"angel cop\" OR \"tokyo private\" OR \"let's be cops\" OR \"funky cops\" OR \"paris cops\" OR \"no good cops\" OR \"who cops out\" OR \"highway patrol s\" OR \"adam 12\" OR \"the bill\")"
+        },
+        {
+          "query": "title:(\"police interceptors\" OR \"traffic cops\" OR \"motorway patrol\" OR \"police camera action\" OR \"road wars\" OR \"blues and twos\" OR \"police ten 7\" OR \"road cops\" OR \"highway cops\" OR \"border security\" OR \"police stop\") AND -title:(hearing OR trump OR president OR immigrants OR \"house.hbs\" OR \"twitter\") AND -collection:tvnews AND -language:(fre OR French OR chi OR jpn OR ger OR spa OR rus OR ita OR por OR ara) AND -title:(\"stray dog\" OR \"future cops\" OR \"star cops\" OR \"beast cops\" OR \"animal cops\" OR \"a.c.a.b\" OR acab OR keystone OR keaton OR \"karma police\" OR atari OR \"i love cops\" OR \"alexis\" OR \"all cops are\" OR \"kerberos\" OR \"life on mars\" OR \"angel cop\" OR \"tokyo private\" OR \"let's be cops\" OR \"funky cops\" OR \"paris cops\" OR \"no good cops\" OR \"who cops out\" OR \"highway patrol s\" OR \"adam 12\" OR \"the bill\")"
+        },
+        {
+          "identifiers": [
+            "CopsVHSTapes"
+          ]
+        }
+      ]
+    },
+    {
       "number": 40,
       "name": "Jukebox",
       "logo": "Logos/4x3/jukebox.png",
