@@ -17,9 +17,11 @@ import '../weather/weather.dart';
 import 'channel_logo.dart';
 import 'guide_overlay.dart';
 import 'menu_overlay.dart';
+import 'arcade_entry.dart';
+import 'on_demand_overlay.dart';
 import 'weatherstar.dart';
 
-enum TvMode { watch, guide, menu }
+enum TvMode { watch, guide, menu, onDemand, location }
 
 /// The whole TV: a 4:3 frame holding the video, STAND BY card, info banner and number entry.
 class TvScreen extends StatefulWidget {
@@ -66,7 +68,76 @@ class _TvScreenState extends State<TvScreen> {
     if (_weather && tv.channel != _shown) _showBanner(); // the weather picture is up at once, music or not
     _wasStandBy = tv.standBy;
     _shown = tv.channel;
+    if (tv.onDemandEnded && !_endHandled) {
+      _endHandled = true;
+      _offerNext();
+    }
+    if (!tv.onDemandEnded) _endHandled = false;
     if (mounted) setState(() {});
+  }
+
+  // Play next episode: a 5 s "Next: ..." card after an On Demand title ends.
+  bool _endHandled = false;
+  Entry? _next;
+  int _nextLeft = 0;
+  Timer? _nextTimer;
+
+  void _offerNext() {
+    final c = tv.channel, e = tv.onDemand;
+    if (c == null || e == null) return;
+    final n = nextEpisode(tv.engine.poolOf(c), e);
+    if (n == null) {
+      _flash('End of series: back to live');
+      tv.returnToLive();
+      return;
+    }
+    _next = n;
+    _nextLeft = 5;
+    _nextTimer?.cancel();
+    _nextTimer = Timer.periodic(const Duration(seconds: 1), (_) {
+      if (--_nextLeft <= 0) {
+        _playNext();
+      } else if (mounted) {
+        setState(() {});
+      }
+    });
+  }
+
+  void _cancelNext() {
+    _nextTimer?.cancel();
+    if (mounted) setState(() => _next = null);
+  }
+
+  void _playNext() {
+    final c = tv.channel, n = _next;
+    _cancelNext();
+    if (c != null && n != null) unawaited(tv.playOnDemand(c, n));
+  }
+
+  void _openOverlay(TvMode m) {
+    _entryTimer?.cancel();
+    entry.clear();
+    setState(() => mode = m);
+  }
+
+  /// Looks up a typed city or ZIP and makes it the weather location.
+  Future<void> _setLocation(String text) async {
+    _closeMenu();
+    if (text.isEmpty) return;
+    _flash('Looking up $text...');
+    try {
+      final p = await geocode(_http, text);
+      if (p == null) return _flash('Not found: $text');
+      settings
+        ..weatherPlace = p.name
+        ..weatherLat = p.lat
+        ..weatherLon = p.lon;
+      _settingsChanged();
+      _flash('Weather: ${p.name}');
+    } on Object catch (e) {
+      tv.log('geocode $text failed: $e');
+      _flash('Lookup failed');
+    }
   }
 
   void _showBanner([Duration d = const Duration(seconds: 5)]) {
@@ -210,6 +281,17 @@ class _TvScreenState extends State<TvScreen> {
     if (event is KeyUpEvent) return KeyEventResult.ignored;
     final b = keyboardBindings[event.logicalKey];
     if (b == null) return KeyEventResult.ignored;
+    // The "Next: ..." card takes OK (play now) and Back (cancel, return to live).
+    if (_next != null && mode == TvMode.watch && (b.action == TvAction.ok || b.action == TvAction.back)) {
+      if (event is KeyRepeatEvent) return KeyEventResult.handled;
+      if (b.action == TvAction.ok) {
+        _playNext();
+      } else {
+        _cancelNext();
+        tv.returnToLive();
+      }
+      return KeyEventResult.handled;
+    }
     // The guide and menu handle their own keys; only favorite, volume, mute and fullscreen reach the TV while open.
     if (mode != TvMode.watch &&
         !const {TvAction.favorite, TvAction.mute, TvAction.volumeUp, TvAction.volumeDown, TvAction.toggleFullscreen}.contains(b.action)) {
@@ -218,6 +300,23 @@ class _TvScreenState extends State<TvScreen> {
     if (event is KeyRepeatEvent &&
         !const {TvAction.channelUp, TvAction.channelDown, TvAction.volumeUp, TvAction.volumeDown}.contains(b.action)) {
       return KeyEventResult.handled;
+    }
+    // On Demand playback: OK pauses, Left/Right skip 10 s, Back returns to live.
+    if (tv.onDemand != null && mode == TvMode.watch) {
+      final k = event.logicalKey;
+      if (k == LogicalKeyboardKey.arrowLeft || k == LogicalKeyboardKey.arrowRight) {
+        tv.seekBy(Duration(seconds: k == LogicalKeyboardKey.arrowLeft ? -10 : 10));
+        return KeyEventResult.handled;
+      }
+      if (b.action == TvAction.ok && entry.text.isEmpty) {
+        _flash(tv.player.state.playing ? 'Paused' : 'Play');
+        tv.togglePause();
+        return KeyEventResult.handled;
+      }
+      if (b.action == TvAction.back) {
+        tv.returnToLive();
+        return KeyEventResult.handled;
+      }
     }
     switch (b.action) {
       case TvAction.channelUp:
@@ -272,8 +371,13 @@ class _TvScreenState extends State<TvScreen> {
   void _systemBack() {
     if (mode == TvMode.guide) {
       _closeGuide();
-    } else if (mode == TvMode.menu) {
+    } else if (mode != TvMode.watch) {
       _closeMenu();
+    } else if (_next != null) {
+      _cancelNext();
+      tv.returnToLive();
+    } else if (tv.onDemand != null) {
+      tv.returnToLive();
     } else {
       SystemNavigator.pop();
     }
@@ -293,6 +397,7 @@ class _TvScreenState extends State<TvScreen> {
     _bannerTimer?.cancel();
     _warmTimer?.cancel();
     _flashTimer?.cancel();
+    _nextTimer?.cancel();
     _focus.dispose();
     _http.close();
     super.dispose();
@@ -328,7 +433,7 @@ class _TvScreenState extends State<TvScreen> {
                         load: () => fetchWeather(_http, Place(settings.weatherPlace, settings.weatherLat, settings.weatherLon)),
                       ),
                     // Corner bug: the channel's logo, small and faint, while a channel plays.
-                    if (settings.cornerBug && !tv.standBy && tv.channel != null && !_weather)
+                    if (settings.cornerBug && !tv.standBy && tv.channel != null && !_weather && tv.onDemand == null)
                       Positioned(
                         top: 16,
                         right: 16,
@@ -336,7 +441,7 @@ class _TvScreenState extends State<TvScreen> {
                       ),
                     if (tv.standBy && !_weather) StandByCard(channel: tv.channel, message: tv.message),
                     if (_banner && _weather) InfoBanner(channel: tv.channel, airing: tv.airing, weatherPlace: settings.weatherPlace),
-                    if (_banner && !tv.standBy && !_weather) InfoBanner(channel: tv.channel, airing: tv.airing),
+                    if (_banner && !tv.standBy && !_weather) InfoBanner(channel: tv.channel, airing: tv.airing, onDemand: tv.onDemand),
                     if (entry.text.isNotEmpty) Positioned(top: 24, right: 32, child: _digits(entry.text)),
                     if (_guide != null)
                       GuideOverlay(
@@ -356,7 +461,38 @@ class _TvScreenState extends State<TvScreen> {
                         onBlockCurrent: _blockCurrent,
                         onRefresh: _refresh,
                         onClose: _closeMenu,
+                        onOnDemand: () => _openOverlay(TvMode.onDemand),
+                        onWeatherLocation: () => _openOverlay(TvMode.location),
                       ),
+                    if (mode == TvMode.onDemand)
+                      OnDemandOverlay(
+                        channels: [for (final c in tv.engine.tunable) if (c.type == 'archive') c],
+                        poolOf: tv.engine.poolOf,
+                        onPlay: (c, e) {
+                          _closeMenu();
+                          unawaited(tv.playOnDemand(c, e));
+                        },
+                        onClose: _closeMenu,
+                      ),
+                    if (mode == TvMode.location)
+                      ArcadePrompt(
+                        title: 'WEATHER LOCATION',
+                        hint: 'City or ZIP code. Up/Down: letter, Left/Right: move\nEnter: save, Esc: cancel',
+                        onDone: _setLocation,
+                        onCancel: _closeMenu,
+                      ),
+                    if (tv.onDemand != null && !tv.standBy && _next == null)
+                      Positioned(
+                        top: 16,
+                        right: 16,
+                        child: Container(
+                          color: const Color(0xCCB71C1C),
+                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                          child: const Text('ON DEMAND',
+                              style: TextStyle(color: Colors.white, fontSize: 18, fontFamily: 'Consolas', fontWeight: FontWeight.bold)),
+                        ),
+                      ),
+                    if (_next != null) NextCard(entry: _next!, secondsLeft: _nextLeft),
                     if (_flashText != null)
                       Positioned(
                         top: 24,
@@ -446,15 +582,20 @@ class InfoBanner extends StatelessWidget {
 
   /// Set on the weather channel: the banner names the place, and the music if any.
   final String? weatherPlace;
-  const InfoBanner({super.key, this.channel, this.airing, this.weatherPlace});
+
+  /// Set while playing On Demand: the banner shows that title instead of the live slot.
+  final Entry? onDemand;
+  const InfoBanner({super.key, this.channel, this.airing, this.weatherPlace, this.onDemand});
 
   String _left(Duration d) => '${d.inMinutes} min left';
 
   @override
   Widget build(BuildContext context) {
-    final a = airing, ch = channel ?? airing?.channel, place = weatherPlace;
-    if (ch == null || (a == null && place == null)) return const SizedBox.shrink();
-    final lines = place != null
+    final a = airing, ch = channel ?? airing?.channel, place = weatherPlace, od = onDemand;
+    if (ch == null || (a == null && place == null && od == null)) return const SizedBox.shrink();
+    final lines = od != null
+        ? ['On Demand: ${cleanTitle(od.title)}', '${(od.durationSeconds / 60).round()} min  (OK pause, Left/Right skip, Back: live)']
+        : place != null
         ? ['Local weather for $place', if (a != null) 'Music: ${cleanTitle(a.slot.entry.title)}']
         : ['${cleanTitle(a!.slot.entry.title)}  (${_left(a.remaining)})', if (a.next != null) 'Next: ${cleanTitle(a.next!.entry.title)}'];
     return Align(
@@ -488,4 +629,27 @@ class InfoBanner extends StatelessWidget {
       ),
     );
   }
+}
+
+/// "Next: ..." countdown shown when an On Demand title ends and the series has another episode.
+class NextCard extends StatelessWidget {
+  final Entry entry;
+  final int secondsLeft;
+  const NextCard({super.key, required this.entry, required this.secondsLeft});
+
+  @override
+  Widget build(BuildContext context) => Center(
+        child: Container(
+          color: const Color(0xEE0A0A3A),
+          padding: const EdgeInsets.all(28),
+          child: Column(mainAxisSize: MainAxisSize.min, children: [
+            Text('Next: ${cleanTitle(entry.title)}',
+                textAlign: TextAlign.center,
+                style: const TextStyle(color: Colors.white, fontSize: 28, fontFamily: 'Consolas', fontWeight: FontWeight.bold)),
+            const SizedBox(height: 12),
+            Text('Starting in $secondsLeft...   OK: play now   Back: live TV',
+                style: const TextStyle(color: Color(0xFF9EC8FF), fontSize: 20, fontFamily: 'Consolas')),
+          ]),
+        ),
+      );
 }

@@ -39,16 +39,18 @@ void main() {
 
   testWidgets('arrows move the highlight and wrap', (t) async {
     await pump(t);
-    expect(selected(t), startsWith('Favorite 4 Funnies'));
-    await key(t, LogicalKeyboardKey.arrowDown);
+    expect(selected(t), 'On Demand');
+    await key(t, LogicalKeyboardKey.arrowDown, 2);
     expect(selected(t), startsWith('Flip favorites only'));
-    await key(t, LogicalKeyboardKey.arrowUp, 2);
+    await key(t, LogicalKeyboardKey.arrowUp, 3);
     expect(selected(t), 'Close');
+    await key(t, LogicalKeyboardKey.arrowUp);
+    expect(selected(t), 'Weather: Hattiesburg, Mississippi');
   });
 
   testWidgets('Enter on Mute reports muted, Left/Right adjust volume', (t) async {
     final r = await pump(t);
-    await key(t, LogicalKeyboardKey.arrowDown, 3);
+    await key(t, LogicalKeyboardKey.arrowDown, 4);
     expect(selected(t), 'Mute: OFF');
     await key(t, LogicalKeyboardKey.enter);
     expect(r.changed.single.muted, isTrue);
@@ -62,6 +64,7 @@ void main() {
 
   testWidgets('Enter on Favorite toggles the current channel; Block calls onBlockCurrent; Esc closes', (t) async {
     final r = await pump(t);
+    await key(t, LogicalKeyboardKey.arrowDown);
     await key(t, LogicalKeyboardKey.enter);
     expect(r.settings.favorites, {4});
     await key(t, LogicalKeyboardKey.arrowDown, 6);

@@ -45,6 +45,11 @@ class PlayerController extends ChangeNotifier {
       native.setProperty('audio-fallback-to-null', 'yes');
     }
     _completedSub = player.stream.completed.listen((done) {
+      if (done && onDemand != null && !standBy && !onDemandEnded) {
+        onDemandEnded = true; // the screen offers the next episode or returns to live
+        notifyListeners();
+        return;
+      }
       // Only a file that ended with its slot moves on; one that ends early waits for the slot timer.
       final a = airing;
       if (done && channel != null && a != null && !DateTime.now().isBefore(a.slot.end.subtract(const Duration(milliseconds: 500)))) {
@@ -84,6 +89,9 @@ class PlayerController extends ChangeNotifier {
     _retryTimer?.cancel();
     _stallTimer?.cancel();
     channel = c;
+    onDemand = null;
+    onDemandEnded = false;
+    _live = null;
     standBy = true;
     message = null;
     notifyListeners();
@@ -121,26 +129,8 @@ class PlayerController extends ChangeNotifier {
     if (gen != _generation) return;
 
     final sw = Stopwatch()..start();
-    final start = Duration(milliseconds: (a.offsetSeconds * 1000).round());
-    final firstFrame = Completer<void>();
-    // Position events left over from the previous channel must not count as the first frame:
-    // only a position in [start, start + 5 s], seen after open() returned, does.
-    var armed = false;
-    final sub = player.stream.position.listen((pos) {
-      if (armed && !firstFrame.isCompleted && pos > start && pos < start + const Duration(seconds: 5)) {
-        firstFrame.complete();
-      }
-    });
-    // A file the server refuses (401/403/404) fails now instead of after the 15 s timeout.
-    final errSub = player.stream.error.listen((e) {
-      if (!firstFrame.isCompleted && (e.contains('Failed to open') || e.contains('HTTP error'))) {
-        firstFrame.completeError(StateError(e));
-      }
-    });
     try {
-      await player.open(Media(url, start: start), play: true);
-      armed = true;
-      await firstFrame.future.timeout(const Duration(seconds: 15));
+      await _openAt(url, Duration(milliseconds: (a.offsetSeconds * 1000).round()));
       if (gen != _generation) return;
       tuneTimes.insert(0, sw.elapsedMilliseconds);
       if (tuneTimes.length > 50) tuneTimes.removeLast();
@@ -171,10 +161,97 @@ class PlayerController extends ChangeNotifier {
       await Future<void>.delayed(const Duration(seconds: 1));
       if (gen != _generation) return; // the viewer flipped away; don't pull them back
       await tune(c, attempt: attempt + 1);
+    }
+  }
+
+  /// Opens [url] at [start] and returns on the first frame; throws if the server refuses
+  /// the file or nothing plays within 15 s.
+  Future<void> _openAt(String url, Duration start) async {
+    final firstFrame = Completer<void>();
+    // Position events left over from the previous file must not count as the first frame:
+    // only a position in [start, start + 5 s], seen after open() returned, does.
+    var armed = false;
+    final sub = player.stream.position.listen((pos) {
+      if (armed && !firstFrame.isCompleted && pos > start && pos < start + const Duration(seconds: 5)) {
+        firstFrame.complete();
+      }
+    });
+    // A file the server refuses (401/403/404) fails now instead of after the 15 s timeout.
+    final errSub = player.stream.error.listen((e) {
+      if (!firstFrame.isCompleted && (e.contains('Failed to open') || e.contains('HTTP error'))) {
+        firstFrame.completeError(StateError(e));
+      }
+    });
+    try {
+      await player.open(Media(url, start: start), play: true);
+      armed = true;
+      await firstFrame.future.timeout(const Duration(seconds: 15));
     } finally {
       await sub.cancel();
       await errSub.cancel();
     }
+  }
+
+  /// The title playing On Demand (null while watching live), and the live channel to go back to.
+  Entry? onDemand;
+  Channel? _live;
+
+  /// True once the On Demand title has played to its end (the screen offers the next episode).
+  bool onDemandEnded = false;
+
+  /// Plays [e] from [from] (default the start) outside the live schedule.
+  Future<void> playOnDemand(Channel c, Entry e, {Duration from = Duration.zero}) async {
+    final gen = ++_generation;
+    _slotTimer?.cancel();
+    _retryTimer?.cancel();
+    _stallTimer?.cancel();
+    if (onDemand == null) _live = channel;
+    channel = c;
+    airing = null;
+    onDemand = e;
+    onDemandEnded = false;
+    standBy = true;
+    message = null;
+    notifyListeners();
+    try {
+      await _openAt(await resolveUrl(e.url), from);
+      if (gen != _generation) return;
+      log('on demand ${c.name}: ${e.id} from ${from.inSeconds}s');
+      standBy = false;
+      notifyListeners();
+      _watchStall(gen, () {
+        log('on demand ${e.id}: playback stalled, reopening');
+        _direct.remove(e.url);
+        unawaited(playOnDemand(c, e, from: player.state.position));
+      });
+    } on Object catch (err) {
+      log('on demand ${e.id} failed: $err');
+      if (gen != _generation) return;
+      message = 'NO SIGNAL';
+      notifyListeners();
+    }
+  }
+
+  /// Leaves On Demand and rejoins the live channel it was started from, as it airs now.
+  void returnToLive() {
+    final c = _live ?? channel;
+    if (c != null) _safeTune(c);
+  }
+
+  void togglePause() => unawaited(player.playOrPause());
+
+  Duration? _seekTo;
+  DateTime _seekAt = DateTime(0);
+
+  /// Skips by [d]; quick repeated presses add up even before the player reports the new position.
+  void seekBy(Duration d) {
+    final now = DateTime.now();
+    final from = _seekTo != null && now.difference(_seekAt) < const Duration(seconds: 2) ? _seekTo! : player.state.position;
+    var to = from + d;
+    if (to < Duration.zero) to = Duration.zero;
+    _seekTo = to;
+    _seekAt = now;
+    unawaited(player.seek(to));
   }
 
   final Map<String, String> _direct = {};

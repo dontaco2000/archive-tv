@@ -57,6 +57,9 @@ class TvEngine {
 
   List<Channel> get channels => config.channels;
 
+  /// The channel's loaded pool (blocked items already removed); empty if not loaded.
+  List<Entry> poolOf(Channel c) => _pool[c.number] ?? const [];
+
   /// Channels that can be tuned now: archive channels whose pool has enough content,
   /// plus weather channels (always on; their music is optional).
   /// Call [ensurePool] first for channels you want considered.

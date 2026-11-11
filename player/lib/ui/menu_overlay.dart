@@ -11,7 +11,7 @@ const _panel = Color(0xE6101A5C); // same dark translucent blue as the guide
 const _yellow = Color(0xFFFFEB3B);
 const _cellBg = Color(0xFF1E2C8A);
 
-enum _Item { favorite, favoritesOnly, volume, mute, startFullscreen, cornerBug, block, refresh, close }
+enum _Item { onDemand, favorite, favoritesOnly, volume, mute, startFullscreen, cornerBug, block, refresh, weatherLocation, close }
 
 /// Settings menu over the right half of the frame. Changes are made on [settings] in place
 /// and reported through [onChanged]; the screen saves and applies them.
@@ -24,6 +24,8 @@ class MenuOverlay extends StatefulWidget {
   final VoidCallback onBlockCurrent;
   final VoidCallback onRefresh;
   final VoidCallback onClose;
+  final VoidCallback? onOnDemand;
+  final VoidCallback? onWeatherLocation;
 
   const MenuOverlay({
     super.key,
@@ -33,6 +35,8 @@ class MenuOverlay extends StatefulWidget {
     required this.onBlockCurrent,
     required this.onRefresh,
     required this.onClose,
+    this.onOnDemand,
+    this.onWeatherLocation,
   });
 
   @override
@@ -89,6 +93,10 @@ class _MenuOverlayState extends State<MenuOverlay> {
         if (dir == 0) widget.onRefresh();
       case _Item.close:
         if (dir == 0) widget.onClose();
+      case _Item.onDemand:
+        if (dir == 0) widget.onOnDemand?.call();
+      case _Item.weatherLocation:
+        if (dir == 0) widget.onWeatherLocation?.call();
     }
   }
 
@@ -130,6 +138,8 @@ class _MenuOverlayState extends State<MenuOverlay> {
       _Item.block => 'Block this item',
       _Item.refresh => 'Refresh channels',
       _Item.close => 'Close',
+      _Item.onDemand => 'On Demand',
+      _Item.weatherLocation => 'Weather: ${s.weatherPlace}',
     };
   }
 
