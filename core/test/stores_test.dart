@@ -60,6 +60,18 @@ void main() {
     expect(Blocklist.load(dir).ids, {'a/f.mp4', 'c'}); // persisted
   });
 
+  test('session blocklist hides ids without touching disk', () {
+    final block = Blocklist.session()..add('c');
+    expect(block.apply(pool).map((e) => e.itemId), ['a', 'b', 'd']);
+    final dir = Directory.systemTemp.createTempSync('sess');
+    addTearDown(() => dir.deleteSync(recursive: true));
+    final persistent = Blocklist.load(dir)..add('a');
+    final both = persistent.union(block);
+    expect(both.ids, {'a', 'c'});
+    expect(Blocklist.load(dir).ids, {'a'}); // union and session add wrote nothing
+    expect(dir.listSync(), hasLength(1)); // only blocked.json
+  });
+
   test('blocking an item removes it from a saved day and later slots still tile', () {
     final dir = Directory.systemTemp.createTempSync('snapblock');
     addTearDown(() => dir.deleteSync(recursive: true));

@@ -67,6 +67,22 @@ void main() {
     expect(engine.airing(bytes, now)!.slot.entry.id, a.slot.entry.id);
   });
 
+  test('markBad drops the item from airing and the guide, slots still tile, nothing on disk', () async {
+    final bytes = engine.channels.first;
+    await engine.ensurePool(bytes);
+    final now = DateTime(2026, 11, 11, 15, 20, 5);
+    final bad = engine.airing(bytes, now)!.slot.entry.id;
+    engine.markBad(bytes, bad);
+    expect(engine.airing(bytes, now)!.slot.entry.id, isNot(bad));
+    final slots = engine.guideFor(bytes, DateTime(2026, 11, 11, 0, 0, 1), hours: 24);
+    expect(slots.any((s) => s.entry.id == bad), isFalse);
+    expect(slots.first.start, DateTime(2026, 11, 11));
+    for (var i = 1; i < slots.length; i++) {
+      expect(slots[i].start, slots[i - 1].end);
+    }
+    expect(TvEngine.open(configText: configText, dataDir: dir, api: api).blocklist.ids, isEmpty);
+  });
+
   test('airing at the last slot of the day looks ahead to the first slot of tomorrow', () async {
     final bytes = engine.channels.first;
     await engine.ensurePool(bytes);

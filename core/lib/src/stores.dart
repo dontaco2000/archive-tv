@@ -101,10 +101,16 @@ class SnapshotStore {
 
 /// Entry ids the user blocked ("never play this"), kept across rebuilds.
 class Blocklist {
-  final File _f;
+  final File? _f; // null: in-memory only
   final Set<String> ids;
 
   Blocklist._(this._f, this.ids);
+
+  /// In-memory list (nothing is written), e.g. items that failed to play this session.
+  Blocklist.session() : this._(null, {});
+
+  /// A new in-memory list holding the ids of both; later adds to either are not reflected.
+  Blocklist union(Blocklist other) => Blocklist._(null, {...ids, ...other.ids});
 
   factory Blocklist.load(Directory dir) {
     final f = _file(dir, 'blocked.json');
@@ -114,7 +120,8 @@ class Blocklist {
 
   void add(String id) {
     ids.add(id);
-    _writeJson(_f, ids.toList()..sort());
+    final f = _f;
+    if (f != null) _writeJson(f, ids.toList()..sort());
   }
 
   /// [pool] without blocked entries (matched by entry id or by whole item id).

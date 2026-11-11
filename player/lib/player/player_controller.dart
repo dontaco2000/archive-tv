@@ -118,11 +118,17 @@ class PlayerController extends ChangeNotifier {
     } on Object catch (e) {
       log('tune ${c.number} failed: $e');
       if (gen != _generation) return;
-      if (attempt >= 2) {
+      // Attempts go: even = first try of an item, odd = its retry. Two items get tried, then NO SIGNAL.
+      if (attempt >= 4) {
         _noSignal(c);
         return;
       }
-      // Skip to the next item at its start, keeping STAND BY up.
+      if (attempt.isEven) {
+        _direct.remove(a.slot.entry.url); // the cached redirect may be stale: re-resolve once
+      } else {
+        engine.markBad(c, a.slot.entry.id); // failed twice: skip it, the next tune lands on another item
+      }
+      // Keep STAND BY up while retrying.
       await Future<void>.delayed(const Duration(seconds: 1));
       if (gen != _generation) return; // the viewer flipped away; don't pull them back
       await tune(c, attempt: attempt + 1);

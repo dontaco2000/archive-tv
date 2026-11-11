@@ -89,8 +89,17 @@ class TvEngine {
     }
   }
 
-  List<Slot> _day(Channel c, DateTime day) =>
-      snapshots.day(c.number, day, _pool[c.number] ?? const [], blocklist: blocklist);
+  final Blocklist _skipped = Blocklist.session(); // items that failed to play this run
+
+  /// Drops [entryId] from [channel]'s schedule for this session (nothing saved);
+  /// the next [airing]/[guideFor] re-lays the day out without it.
+  void markBad(Channel channel, String entryId) {
+    log('${channel.name}: skipping $entryId for this session');
+    _skipped.add(entryId);
+  }
+
+  List<Slot> _day(Channel c, DateTime day) => snapshots.day(c.number, day, _pool[c.number] ?? const [],
+      blocklist: _skipped.ids.isEmpty ? blocklist : blocklist.union(_skipped));
 
   /// What is airing on [channel] at [now], or null if it has no content.
   Airing? airing(Channel channel, DateTime now) {
