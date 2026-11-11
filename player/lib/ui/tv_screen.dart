@@ -9,6 +9,7 @@ import 'package:window_manager/window_manager.dart';
 import '../engine/tv_engine.dart';
 import '../input/actions.dart';
 import '../player/player_controller.dart';
+import 'channel_logo.dart';
 
 /// The whole TV: a 4:3 frame holding the video, STAND BY card, info banner and number entry.
 class TvScreen extends StatefulWidget {
@@ -67,7 +68,12 @@ class _TvScreenState extends State<TvScreen> {
     final b = keyboardBindings[event.logicalKey];
     if (b == null) return KeyEventResult.ignored;
     if (event is KeyRepeatEvent &&
-        !const {TvAction.channelUp, TvAction.channelDown, TvAction.volumeUp, TvAction.volumeDown}.contains(b.action)) {
+        !const {
+          TvAction.channelUp,
+          TvAction.channelDown,
+          TvAction.volumeUp,
+          TvAction.volumeDown,
+        }.contains(b.action)) {
       return KeyEventResult.handled;
     }
     switch (b.action) {
@@ -94,7 +100,9 @@ class _TvScreenState extends State<TvScreen> {
         _volume = (_volume - 5).clamp(0, 100);
         tv.setVolume(_volume);
       case TvAction.toggleFullscreen:
-        windowManager.isFullScreen().then((f) => windowManager.setFullScreen(!f));
+        windowManager.isFullScreen().then(
+          (f) => windowManager.setFullScreen(!f),
+        );
       case TvAction.back:
         windowManager.isFullScreen().then((f) {
           if (f) windowManager.setFullScreen(false);
@@ -126,19 +134,30 @@ class _TvScreenState extends State<TvScreen> {
       autofocus: true,
       onKeyEvent: _onKey,
       child: GestureDetector(
-        onDoubleTap: () => windowManager.isFullScreen().then((f) => windowManager.setFullScreen(!f)),
+        onDoubleTap: () => windowManager.isFullScreen().then(
+          (f) => windowManager.setFullScreen(!f),
+        ),
         child: Scaffold(
           backgroundColor: Colors.black,
           body: Center(
             child: AspectRatio(
               aspectRatio: 4 / 3,
-              child: Stack(fit: StackFit.expand, children: [
-                // Widescreen video is letterboxed inside the 4:3 frame, never stretched or cropped.
-                Video(controller: tv.video, fit: BoxFit.contain, controls: NoVideoControls),
-                if (tv.standBy) StandByCard(channel: tv.channel, message: tv.message),
-                if (_banner && !tv.standBy) InfoBanner(airing: tv.airing),
-                if (entry.text.isNotEmpty) Positioned(top: 24, right: 32, child: _digits(entry.text)),
-              ]),
+              child: Stack(
+                fit: StackFit.expand,
+                children: [
+                  // Widescreen video is letterboxed inside the 4:3 frame, never stretched or cropped.
+                  Video(
+                    controller: tv.video,
+                    fit: BoxFit.contain,
+                    controls: NoVideoControls,
+                  ),
+                  if (tv.standBy)
+                    StandByCard(channel: tv.channel, message: tv.message),
+                  if (_banner && !tv.standBy) InfoBanner(airing: tv.airing),
+                  if (entry.text.isNotEmpty)
+                    Positioned(top: 24, right: 32, child: _digits(entry.text)),
+                ],
+              ),
             ),
           ),
         ),
@@ -146,8 +165,15 @@ class _TvScreenState extends State<TvScreen> {
     );
   }
 
-  Widget _digits(String t) => Text(t,
-      style: const TextStyle(color: Colors.greenAccent, fontSize: 56, fontFamily: 'Consolas', fontWeight: FontWeight.bold));
+  Widget _digits(String t) => Text(
+    t,
+    style: const TextStyle(
+      color: Colors.greenAccent,
+      fontSize: 56,
+      fontFamily: 'Consolas',
+      fontWeight: FontWeight.bold,
+    ),
+  );
 }
 
 /// Shown instead of the TV when channels.json can't be read.
@@ -157,21 +183,27 @@ class ErrorScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        backgroundColor: Colors.black,
-        body: Center(
-          child: AspectRatio(
-            aspectRatio: 4 / 3,
-            child: Container(
-              color: Colors.black,
-              alignment: Alignment.center,
-              padding: const EdgeInsets.all(32),
-              child: Text(message,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(color: Color(0xFF9EC8FF), fontSize: 24, fontFamily: 'Consolas')),
+    backgroundColor: Colors.black,
+    body: Center(
+      child: AspectRatio(
+        aspectRatio: 4 / 3,
+        child: Container(
+          color: Colors.black,
+          alignment: Alignment.center,
+          padding: const EdgeInsets.all(32),
+          child: Text(
+            message,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              color: Color(0xFF9EC8FF),
+              fontSize: 24,
+              fontFamily: 'Consolas',
             ),
           ),
         ),
-      );
+      ),
+    ),
+  );
 }
 
 class StandByCard extends StatelessWidget {
@@ -181,17 +213,34 @@ class StandByCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        color: const Color(0xFF0A0A3A),
-        alignment: Alignment.center,
-        child: Column(mainAxisSize: MainAxisSize.min, children: [
-          if (channel != null)
-            Text('${channel!.number}  ${channel!.name.toUpperCase()}',
-                style: const TextStyle(color: Colors.white, fontSize: 40, fontFamily: 'Consolas', fontWeight: FontWeight.bold)),
-          const SizedBox(height: 16),
-          Text(message ?? 'STAND BY...',
-              style: const TextStyle(color: Color(0xFF9EC8FF), fontSize: 28, fontFamily: 'Consolas')),
-        ]),
-      );
+    color: const Color(0xFF0A0A3A),
+    alignment: Alignment.center,
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        if (channel != null) ChannelLogo(channel: channel!, height: 140),
+        if (channel != null)
+          Text(
+            '${channel!.number}  ${channel!.name.toUpperCase()}',
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 40,
+              fontFamily: 'Consolas',
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        const SizedBox(height: 16),
+        Text(
+          message ?? 'STAND BY...',
+          style: const TextStyle(
+            color: Color(0xFF9EC8FF),
+            fontSize: 28,
+            fontFamily: 'Consolas',
+          ),
+        ),
+      ],
+    ),
+  );
 }
 
 class InfoBanner extends StatelessWidget {
@@ -210,14 +259,47 @@ class InfoBanner extends StatelessWidget {
         width: double.infinity,
         color: const Color(0xCC0A0A3A),
         padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 16),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
-          Text('${a.channel.number}  ${a.channel.name.toUpperCase()}',
-              style: const TextStyle(color: Colors.white, fontSize: 26, fontFamily: 'Consolas', fontWeight: FontWeight.bold)),
-          Text('${a.slot.entry.title}  (${_left(a.remaining)})',
-              style: const TextStyle(color: Color(0xFFFFE08A), fontSize: 20, fontFamily: 'Consolas')),
-          if (a.next != null)
-            Text('Next: ${a.next!.entry.title}', style: const TextStyle(color: Color(0xFF9EC8FF), fontSize: 18, fontFamily: 'Consolas')),
-        ]),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            ChannelLogo(channel: a.channel, height: 64),
+            const SizedBox(width: 20),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    '${a.channel.number}  ${a.channel.name.toUpperCase()}',
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 26,
+                      fontFamily: 'Consolas',
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    '${a.slot.entry.title}  (${_left(a.remaining)})',
+                    style: const TextStyle(
+                      color: Color(0xFFFFE08A),
+                      fontSize: 20,
+                      fontFamily: 'Consolas',
+                    ),
+                  ),
+                  if (a.next != null)
+                    Text(
+                      'Next: ${a.next!.entry.title}',
+                      style: const TextStyle(
+                        color: Color(0xFF9EC8FF),
+                        fontSize: 18,
+                        fontFamily: 'Consolas',
+                      ),
+                    ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
