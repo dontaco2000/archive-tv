@@ -1,0 +1,58 @@
+import 'package:flutter/services.dart';
+
+/// What the viewer asked for, independent of which device asked.
+enum TvAction { channelUp, channelDown, digit, info, guide, menu, mute, volumeUp, volumeDown, toggleFullscreen, ok, back }
+
+class KeyBinding {
+  final TvAction action;
+  final int? digit;
+  const KeyBinding(this.action, [this.digit]);
+}
+
+/// Keyboard mapping table. Android TV's D-pad and the game controller map to the same actions later.
+final Map<LogicalKeyboardKey, KeyBinding> keyboardBindings = {
+  LogicalKeyboardKey.arrowUp: const KeyBinding(TvAction.channelUp),
+  LogicalKeyboardKey.pageUp: const KeyBinding(TvAction.channelUp),
+  LogicalKeyboardKey.arrowDown: const KeyBinding(TvAction.channelDown),
+  LogicalKeyboardKey.pageDown: const KeyBinding(TvAction.channelDown),
+  LogicalKeyboardKey.keyI: const KeyBinding(TvAction.info),
+  LogicalKeyboardKey.keyG: const KeyBinding(TvAction.guide),
+  LogicalKeyboardKey.keyM: const KeyBinding(TvAction.menu),
+  LogicalKeyboardKey.keyU: const KeyBinding(TvAction.mute),
+  LogicalKeyboardKey.equal: const KeyBinding(TvAction.volumeUp),
+  LogicalKeyboardKey.minus: const KeyBinding(TvAction.volumeDown),
+  LogicalKeyboardKey.f11: const KeyBinding(TvAction.toggleFullscreen),
+  LogicalKeyboardKey.enter: const KeyBinding(TvAction.ok),
+  LogicalKeyboardKey.escape: const KeyBinding(TvAction.back),
+  LogicalKeyboardKey.digit0: const KeyBinding(TvAction.digit, 0),
+  LogicalKeyboardKey.digit1: const KeyBinding(TvAction.digit, 1),
+  LogicalKeyboardKey.digit2: const KeyBinding(TvAction.digit, 2),
+  LogicalKeyboardKey.digit3: const KeyBinding(TvAction.digit, 3),
+  LogicalKeyboardKey.digit4: const KeyBinding(TvAction.digit, 4),
+  LogicalKeyboardKey.digit5: const KeyBinding(TvAction.digit, 5),
+  LogicalKeyboardKey.digit6: const KeyBinding(TvAction.digit, 6),
+  LogicalKeyboardKey.digit7: const KeyBinding(TvAction.digit, 7),
+  LogicalKeyboardKey.digit8: const KeyBinding(TvAction.digit, 8),
+  LogicalKeyboardKey.digit9: const KeyBinding(TvAction.digit, 9),
+};
+
+/// Accumulates digits into a channel number (last three digits kept).
+/// The screen commits it after a pause or on OK.
+class NumberEntry {
+  String _text = '';
+  String get text => _text;
+
+  void add(int digit) {
+    final t = '$_text$digit';
+    _text = t.length > 3 ? t.substring(t.length - 3) : t;
+  }
+
+  /// The entered channel number, clearing the buffer; null if nothing was entered.
+  int? commit() {
+    final n = int.tryParse(_text);
+    _text = '';
+    return n;
+  }
+
+  void clear() => _text = '';
+}
