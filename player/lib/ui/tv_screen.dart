@@ -10,15 +10,19 @@ import '../engine/tv_engine.dart';
 import '../guide/guide_model.dart';
 import '../input/actions.dart';
 import '../player/player_controller.dart';
+import '../settings/settings_store.dart';
 import 'channel_logo.dart';
 import 'guide_overlay.dart';
+import 'menu_overlay.dart';
 
 enum TvMode { watch, guide, menu }
 
 /// The whole TV: a 4:3 frame holding the video, STAND BY card, info banner and number entry.
 class TvScreen extends StatefulWidget {
   final PlayerController controller;
-  const TvScreen({super.key, required this.controller});
+  final Settings settings;
+  final SettingsStore store;
+  const TvScreen({super.key, required this.controller, required this.settings, required this.store});
 
   @override
   State<TvScreen> createState() => _TvScreenState();
@@ -30,8 +34,9 @@ class _TvScreenState extends State<TvScreen> {
   Timer? _entryTimer;
   Timer? _bannerTimer;
   bool _banner = false;
-  bool _muted = false;
-  double _volume = 80;
+  String? _flashText;
+  Timer? _flashTimer;
+  Settings get settings => widget.settings;
   TvMode mode = TvMode.watch;
   GuideModel? _guide;
   Timer? _warmTimer;
@@ -57,13 +62,76 @@ class _TvScreenState extends State<TvScreen> {
     _bannerTimer = Timer(d, () => setState(() => _banner = false));
   }
 
-  /// Flips to the next/previous tunable channel (wrapping).
+  /// Flips to the next/previous tunable channel (wrapping), favorites only when that is on.
   void _flip(int step) {
-    final list = tv.engine.tunable;
-    if (list.isEmpty) return;
-    final i = list.indexWhere((c) => c.number == tv.channel?.number);
-    final next = list[((i < 0 ? (step > 0 ? -1 : 0) : i) + step) % list.length];
-    tv.tune(next);
+    final next = flipTarget(tv.engine.tunable, tv.channel?.number, step,
+        favorites: settings.favorites, favoritesOnly: settings.favoritesOnly);
+    if (next != null) tv.tune(next);
+  }
+
+  void _flash(String text) {
+    _flashTimer?.cancel();
+    _flashTimer = Timer(const Duration(seconds: 2), () {
+      if (mounted) setState(() => _flashText = null);
+    });
+    setState(() => _flashText = text);
+  }
+
+  /// Saves and applies settings after any change; a failed save is logged, never fatal.
+  void _settingsChanged([Settings? _]) {
+    tv.setVolume(settings.muted ? 0 : settings.volume);
+    try {
+      widget.store.save(settings);
+    } on Object catch (e) {
+      tv.log('settings save failed: $e');
+    }
+    if (mounted) setState(() {});
+  }
+
+  void _toggleFavorite() {
+    final c = tv.channel;
+    if (c == null) return;
+    final added = toggleFavorite(settings, c.number);
+    _settingsChanged();
+    _flash(added ? 'Added to favorites' : 'Removed from favorites');
+  }
+
+  void _openMenu() {
+    _entryTimer?.cancel();
+    entry.clear();
+    setState(() => mode = TvMode.menu);
+  }
+
+  void _closeMenu() {
+    setState(() => mode = TvMode.watch);
+    _focus.requestFocus();
+  }
+
+  /// Blocks the airing entry for good and re-tunes, which lands on the next item.
+  void _blockCurrent() {
+    final c = tv.channel, a = tv.airing;
+    _closeMenu();
+    if (c == null || a == null) return;
+    try {
+      tv.engine.blocklist.add(a.slot.entry.id);
+    } on Object catch (e) {
+      tv.log('blocklist save failed: $e'); // still blocked for this run
+    }
+    tv.log('${c.name}: blocked ${a.slot.entry.id}');
+    _flash('Blocked');
+    unawaited(tv.tune(c));
+  }
+
+  /// Rebuilds every pool from Archive in the background, one channel at a time.
+  void _refresh() {
+    _closeMenu();
+    _flash('Refreshing channels...');
+    unawaited(() async {
+      for (final c in tv.engine.channels) {
+        await tv.engine.ensurePool(c, maxAge: Duration.zero).catchError((Object e) => tv.log('refresh ${c.number} error: $e'));
+      }
+      tv.log('refresh done');
+    }());
   }
 
   void _tuneNumber(int n) {
@@ -111,9 +179,10 @@ class _TvScreenState extends State<TvScreen> {
     if (event is KeyUpEvent) return KeyEventResult.ignored;
     final b = keyboardBindings[event.logicalKey];
     if (b == null) return KeyEventResult.ignored;
-    // The guide handles its own keys; only volume, mute and fullscreen reach the TV while it is open.
+    // The guide and menu handle their own keys; only favorite, volume, mute and fullscreen reach the TV while open.
     if (mode != TvMode.watch &&
-        !const {TvAction.mute, TvAction.volumeUp, TvAction.volumeDown, TvAction.toggleFullscreen}.contains(b.action)) {
+        !const {TvAction.favorite, TvAction.mute, TvAction.volumeUp, TvAction.volumeDown, TvAction.toggleFullscreen}
+            .contains(b.action)) {
       return KeyEventResult.handled;
     }
     if (event is KeyRepeatEvent &&
@@ -140,14 +209,16 @@ class _TvScreenState extends State<TvScreen> {
       case TvAction.info:
         setState(_showBanner);
       case TvAction.mute:
-        _muted = !_muted;
-        tv.setVolume(_muted ? 0 : _volume);
+        settings.muted = !settings.muted;
+        _settingsChanged();
       case TvAction.volumeUp:
-        _volume = (_volume + 5).clamp(0, 100);
-        tv.setVolume(_volume);
+        settings.volume = (settings.volume + 5).clamp(0, 100).toDouble();
+        _settingsChanged();
       case TvAction.volumeDown:
-        _volume = (_volume - 5).clamp(0, 100);
-        tv.setVolume(_volume);
+        settings.volume = (settings.volume - 5).clamp(0, 100).toDouble();
+        _settingsChanged();
+      case TvAction.favorite:
+        _toggleFavorite();
       case TvAction.toggleFullscreen:
         windowManager.isFullScreen().then(
           (f) => windowManager.setFullScreen(!f),
@@ -159,7 +230,7 @@ class _TvScreenState extends State<TvScreen> {
       case TvAction.guide:
         _openGuide();
       case TvAction.menu:
-        break; // built in the menu task
+        _openMenu();
     }
     return KeyEventResult.handled;
   }
@@ -177,6 +248,7 @@ class _TvScreenState extends State<TvScreen> {
     _entryTimer?.cancel();
     _bannerTimer?.cancel();
     _warmTimer?.cancel();
+    _flashTimer?.cancel();
     _focus.dispose();
     super.dispose();
   }
@@ -219,6 +291,28 @@ class _TvScreenState extends State<TvScreen> {
                         _closeGuide();
                         tv.tune(c);
                       },
+                    ),
+                  if (mode == TvMode.menu)
+                    MenuOverlay(
+                      settings: settings,
+                      current: tv.channel,
+                      onChanged: _settingsChanged,
+                      onBlockCurrent: _blockCurrent,
+                      onRefresh: _refresh,
+                      onClose: _closeMenu,
+                    ),
+                  if (_flashText != null)
+                    Positioned(
+                      top: 24,
+                      left: 32,
+                      child: Container(
+                        color: const Color(0xE6101A5C),
+                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                        child: Text(
+                          _flashText!,
+                          style: const TextStyle(color: Color(0xFFFFEB3B), fontSize: 24, fontFamily: 'Consolas'),
+                        ),
+                      ),
                     ),
                 ],
               ),

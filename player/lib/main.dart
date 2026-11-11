@@ -10,6 +10,7 @@ import 'package:window_manager/window_manager.dart';
 
 import 'engine/tv_engine.dart';
 import 'player/player_controller.dart';
+import 'settings/settings_store.dart';
 import 'ui/tv_screen.dart';
 
 Future<void> main(List<String> args) async {
@@ -45,8 +46,11 @@ Future<void> main(List<String> args) async {
         home: ErrorScreen(message: 'Cannot read channels.json\n\n${e is ConfigException ? e.message : e}\n\n${configFile.path}')));
     return;
   }
+  final store = SettingsStore(File(p.join(dataDir.path, 'settings.json')));
+  final settings = store.load();
   final tv = PlayerController(engine, log: log);
-  runApp(MaterialApp(debugShowCheckedModeBanner: false, home: TvScreen(controller: tv)));
+  tv.setVolume(settings.muted ? 0 : settings.volume);
+  runApp(MaterialApp(debugShowCheckedModeBanner: false, home: TvScreen(controller: tv, settings: settings, store: store)));
 
   // Build pools one channel at a time; start on the first channel that has content,
   // but never override a channel the viewer already picked.

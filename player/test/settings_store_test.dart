@@ -21,6 +21,7 @@ void main() {
       ..muted = true
       ..startFullscreen = true
       ..cornerBug = false
+      ..favoritesOnly = true
       ..windowX = 10
       ..windowY = 20
       ..windowW = 800
@@ -33,6 +34,7 @@ void main() {
     expect(r.muted, true);
     expect(r.startFullscreen, true);
     expect(r.cornerBug, false);
+    expect(r.favoritesOnly, true);
     expect([r.windowX, r.windowY, r.windowW, r.windowH], [10, 20, 800, 600]);
     expect(r.fullscreen, true);
   });

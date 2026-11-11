@@ -1,7 +1,8 @@
+import 'package:archive_tv_core/archive_tv_core.dart';
 import 'package:flutter/services.dart';
 
 /// What the viewer asked for, independent of which device asked.
-enum TvAction { channelUp, channelDown, digit, info, guide, menu, mute, volumeUp, volumeDown, toggleFullscreen, ok, back }
+enum TvAction { channelUp, channelDown, digit, info, guide, menu, favorite, mute, volumeUp, volumeDown, toggleFullscreen, ok, back }
 
 class KeyBinding {
   final TvAction action;
@@ -18,6 +19,7 @@ final Map<LogicalKeyboardKey, KeyBinding> keyboardBindings = {
   LogicalKeyboardKey.keyI: const KeyBinding(TvAction.info),
   LogicalKeyboardKey.keyG: const KeyBinding(TvAction.guide),
   LogicalKeyboardKey.keyM: const KeyBinding(TvAction.menu),
+  LogicalKeyboardKey.keyF: const KeyBinding(TvAction.favorite),
   LogicalKeyboardKey.keyU: const KeyBinding(TvAction.mute),
   LogicalKeyboardKey.equal: const KeyBinding(TvAction.volumeUp),
   LogicalKeyboardKey.minus: const KeyBinding(TvAction.volumeDown),
@@ -35,6 +37,19 @@ final Map<LogicalKeyboardKey, KeyBinding> keyboardBindings = {
   LogicalKeyboardKey.digit8: const KeyBinding(TvAction.digit, 8),
   LogicalKeyboardKey.digit9: const KeyBinding(TvAction.digit, 9),
 };
+
+/// The channel [step] away from [current] (wrapping) among [tunable]; with [favoritesOnly],
+/// only favorites are visited, unless none of the tunable channels is a favorite.
+Channel? flipTarget(List<Channel> tunable, int? current, int step, {Set<int> favorites = const {}, bool favoritesOnly = false}) {
+  var list = tunable;
+  if (favoritesOnly) {
+    final favs = [for (final c in tunable) if (favorites.contains(c.number)) c];
+    if (favs.isNotEmpty) list = favs;
+  }
+  if (list.isEmpty) return null;
+  final i = list.indexWhere((c) => c.number == current);
+  return list[((i < 0 ? (step > 0 ? -1 : 0) : i) + step) % list.length];
+}
 
 /// Accumulates digits into a channel number (last three digits kept).
 /// The screen commits it after a pause or on OK.

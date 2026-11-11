@@ -58,8 +58,9 @@ class TvEngine {
 
   /// Loads the channel's pool from disk, or builds it from Archive when missing or older than a day.
   /// Concurrent callers for the same channel share one build.
+  /// [maxAge] zero forces a rebuild even when the pool is already loaded (menu "Refresh channels").
   Future<void> ensurePool(Channel channel, {Duration maxAge = const Duration(days: 1)}) {
-    if (channel.type != 'archive' || _pool.containsKey(channel.number)) return Future.value();
+    if (channel.type != 'archive' || (maxAge > Duration.zero && _pool.containsKey(channel.number))) return Future.value();
     return _building[channel.number] ??= _ensurePool(channel, maxAge).whenComplete(() {
       _building.remove(channel.number);
     });

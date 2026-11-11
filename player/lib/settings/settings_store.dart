@@ -7,6 +7,7 @@ class Settings {
   bool muted = false;
   bool startFullscreen = false;
   bool cornerBug = true;
+  bool favoritesOnly = false;
   double? windowX, windowY, windowW, windowH;
   bool fullscreen = false;
 
@@ -18,6 +19,7 @@ class Settings {
         'muted': muted,
         'startFullscreen': startFullscreen,
         'cornerBug': cornerBug,
+        'favoritesOnly': favoritesOnly,
         'windowX': windowX,
         'windowY': windowY,
         'windowW': windowW,
@@ -37,6 +39,7 @@ class Settings {
     s.muted = bool_('muted', s.muted);
     s.startFullscreen = bool_('startFullscreen', s.startFullscreen);
     s.cornerBug = bool_('cornerBug', s.cornerBug);
+    s.favoritesOnly = bool_('favoritesOnly', s.favoritesOnly);
     s.windowX = num_('windowX');
     s.windowY = num_('windowY');
     s.windowW = num_('windowW');

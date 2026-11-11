@@ -104,6 +104,16 @@ void main() {
     expect(api.searches, 2);
   });
 
+  test('maxAge zero rebuilds a pool that is already loaded', () async {
+    final bytes = engine.channels.first;
+    await engine.ensurePool(bytes);
+    await engine.ensurePool(bytes);
+    expect(api.searches, 1); // loaded pool is kept
+    await engine.ensurePool(bytes, maxAge: Duration.zero);
+    expect(api.searches, 2);
+    expect(engine.tunable.map((c) => c.name), contains('Bytes'));
+  });
+
   test('a failed rebuild falls back to the stale pool', () async {
     final bytes = engine.channels.first;
     await engine.ensurePool(bytes);
