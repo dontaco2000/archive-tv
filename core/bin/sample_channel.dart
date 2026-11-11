@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:http/http.dart' as http;
+
 import 'package:archive_tv_core/archive_tv_core.dart';
 
 /// Usage: `dart run bin/sample_channel.dart CHANNELS_JSON CHANNEL_NUMBER [ITEMS]`
@@ -19,10 +21,13 @@ Future<void> main(List<String> args) async {
   final items = args.length > 2 ? int.parse(args[2]) : 30;
 
   final api = ArchiveClient();
-  final pool = await buildPool(channel, config, api, itemsPerSource: items, log: print);
+  final probe = http.Client();
+  final pool = await buildPool(channel, config, api, itemsPerSource: items, probeClient: probe, log: print);
   final hours = pool.fold(0.0, (s, e) => s + e.durationSeconds) / 3600;
   print('${channel.number} ${channel.name}: ${pool.length} entries, ${hours.toStringAsFixed(1)} h'
       '${isOffAir(pool, config.minContentSeconds) ? '  (OFF AIR)' : ''}');
+  print('  faststart yes/no/unknown: ${pool.where((e) => e.faststart == true).length}/'
+      '${pool.where((e) => e.faststart == false).length}/${pool.where((e) => e.faststart == null).length}');
   for (final e in pool.take(8)) {
     print('  ${(e.durationSeconds / 60).round().toString().padLeft(4)} min  ${e.title}  ${e.url}');
   }
@@ -32,5 +37,6 @@ Future<void> main(List<String> args) async {
     final t = '${s.start.hour.toString().padLeft(2, '0')}:${s.start.minute.toString().padLeft(2, '0')}';
     print('  $t  ${s.entry.title}');
   }
+  probe.close();
   api.close();
 }

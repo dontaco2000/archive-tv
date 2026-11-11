@@ -1,4 +1,8 @@
+import 'dart:math';
+
 import 'package:archive_tv_core/archive_tv_core.dart';
+import 'package:http/http.dart' as http;
+import 'package:http/testing.dart';
 import 'package:test/test.dart';
 
 /// Archive stand-in: [items] maps identifier -> (year, minutes of one video).
@@ -8,7 +12,11 @@ class FakeApi implements ArchiveApi {
   final Set<String> failing;
   final String? failQuery; // searches containing this text throw
 
-  FakeApi(this.items, {this.failing = const {}, this.failQuery});
+  final bool slow; // metadata yields so calls overlap
+  int inFlight = 0;
+  int maxInFlight = 0;
+
+  FakeApi(this.items, {this.failing = const {}, this.failQuery, this.slow = false});
 
   @override
   Future<List<ItemSummary>> search(String query, {int rows = 100, int page = 1}) async {
@@ -25,6 +33,17 @@ class FakeApi implements ArchiveApi {
 
   @override
   Future<ItemMeta?> metadata(String identifier) async {
+    inFlight++;
+    maxInFlight = max(maxInFlight, inFlight);
+    try {
+      if (slow) await Future.delayed(Duration(milliseconds: 5 + identifier.length * 3));
+      return _meta(identifier);
+    } finally {
+      inFlight--;
+    }
+  }
+
+  ItemMeta? _meta(String identifier) {
     if (failing.contains(identifier)) throw ArchiveException('boom');
     final item = items[identifier];
     if (item == null) return null;
@@ -90,5 +109,45 @@ void main() {
   test('weatherstar channels have no pool', () async {
     const wx = Channel(number: 1, name: 'Cumulus', type: 'weatherstar');
     expect(await buildPool(wx, config(), FakeApi({})), isEmpty);
+  });
+
+  group('concurrency, progress, probe', () {
+    final twenty = {for (var i = 0; i < 20; i++) 'item${'x' * (i % 5)}$i': (1990, 10)};
+
+    test('never more than 4 metadata calls in flight; progress reaches 20/20', () async {
+      final api = FakeApi(twenty, slow: true);
+      final prog = <(int, int)>[];
+      await buildPool(channel, config(minHours: 1), api, onProgress: (d, t) => prog.add((d, t)));
+      expect(api.maxInFlight, inInclusiveRange(2, 4));
+      expect(prog.last, (20, 20));
+      expect(prog, hasLength(20));
+    });
+
+    test('same content and id-sorted order for any concurrency', () async {
+      final a = await buildPool(channel, config(minHours: 1), FakeApi(twenty, slow: true), concurrency: 1);
+      final b = await buildPool(channel, config(minHours: 1), FakeApi(twenty, slow: true), concurrency: 8);
+      expect(a.map((e) => e.id).toList(), b.map((e) => e.id).toList());
+      final ids = a.map((e) => e.id).toList();
+      expect(ids, [...ids]..sort());
+    });
+
+    // item names ending in an even digit have the index at the front.
+    http.Client probe() => MockClient((req) async {
+          final fast = RegExp(r'[02468]\.mp4').hasMatch(req.url.path);
+          return http.Response(fast ? 'xxmoovxxmdat' : 'xxmdatxxmoov', 206);
+        });
+    final ten = {for (var i = 0; i < 10; i++) 'it$i': (1990, 30)};
+
+    test('plenty of content: non-faststart entries are dropped', () async {
+      final pool = await buildPool(channel, config(minHours: 1), FakeApi(ten), probeClient: probe());
+      expect(pool, hasLength(5));
+      expect(pool.every((e) => e.faststart == true), isTrue);
+    });
+
+    test('thin channel keeps non-faststart entries, tagged', () async {
+      final pool = await buildPool(channel, config(minHours: 4), FakeApi(ten), probeClient: probe());
+      expect(pool, hasLength(10));
+      expect(pool.where((e) => e.faststart == false), hasLength(5));
+    });
   });
 }
