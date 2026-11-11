@@ -1,0 +1,118 @@
+import 'dart:io';
+
+import 'package:archive_tv_core/archive_tv_core.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:archive_tv_player/engine/tv_engine.dart';
+
+/// Archive stand-in: each item is one video of the given minutes.
+class FakeApi implements ArchiveApi {
+  final Map<String, int> minutes;
+  int searches = 0;
+  FakeApi(this.minutes);
+
+  @override
+  Future<List<ItemSummary>> search(String query, {int rows = 100, int page = 1}) async {
+    searches++;
+    return [for (final id in minutes.keys) ItemSummary(id)];
+  }
+
+  @override
+  Future<ItemMeta?> metadata(String identifier) async => ItemMeta(identifier, title: identifier, files: [
+        ArchiveFile('$identifier.mp4', format: 'h.264', length: minutes[identifier]! * 60.0),
+      ]);
+}
+
+const configText = '''
+{
+  "channels": [
+    {"number": 2, "name": "Bytes", "sources": [{"query": "x"}]},
+    {"number": 3, "name": "Thin", "sources": [{"query": "y"}]},
+    {"number": 9, "name": "Cumulus", "type": "weatherstar"}
+  ]
+}
+''';
+
+void main() {
+  late Directory dir;
+  late FakeApi api;
+  late TvEngine engine;
+
+  setUp(() {
+    dir = Directory.systemTemp.createTempSync('engine');
+    api = FakeApi({'a': 60, 'b': 45, 'c': 90});
+    engine = TvEngine.open(configText: configText, dataDir: dir, api: api);
+  });
+  tearDown(() => dir.deleteSync(recursive: true));
+
+  test('tunable lists only archive channels with at least 2 hours of content', () async {
+    for (final c in engine.channels) {
+      await engine.ensurePool(c);
+    }
+    expect(engine.tunable.map((c) => c.name), ['Bytes', 'Thin']); // 195 min each; weatherstar excluded
+    final thinApi = FakeApi({'a': 30});
+    final thin = TvEngine.open(configText: configText, dataDir: Directory.systemTemp.createTempSync('thin'), api: thinApi);
+    await thin.ensurePool(thin.channels.first);
+    expect(thin.tunable, isEmpty);
+  });
+
+  test('airing gives the slot, offset into it and the next slot', () async {
+    final bytes = engine.channels.first;
+    await engine.ensurePool(bytes);
+    final now = DateTime(2026, 11, 11, 15, 20, 5);
+    final a = engine.airing(bytes, now)!;
+    expect(!now.isBefore(a.slot.start) && now.isBefore(a.slot.end), isTrue);
+    expect(a.offsetSeconds, closeTo(now.difference(a.slot.start).inMilliseconds / 1000, 0.001));
+    expect(a.next!.start, a.slot.end);
+    // Same moment, same answer (deterministic across calls and restarts).
+    expect(engine.airing(bytes, now)!.slot.entry.id, a.slot.entry.id);
+  });
+
+  test('airing at the last slot of the day looks ahead to the first slot of tomorrow', () async {
+    final bytes = engine.channels.first;
+    await engine.ensurePool(bytes);
+    final a = engine.airing(bytes, DateTime(2026, 11, 11, 23, 59, 59))!;
+    expect(a.next!.start, DateTime(2026, 11, 12));
+  });
+
+  test('a saved pool is reused within a day and rebuilt after', () async {
+    final bytes = engine.channels.first;
+    await engine.ensurePool(bytes);
+    expect(api.searches, 1);
+
+    final again = TvEngine.open(configText: configText, dataDir: dir, api: api);
+    await again.ensurePool(bytes);
+    expect(api.searches, 1); // loaded from disk
+
+    final stale = TvEngine.open(configText: configText, dataDir: dir, api: api);
+    await stale.ensurePool(bytes, maxAge: Duration.zero);
+    expect(api.searches, 2);
+  });
+
+  test('a failed rebuild falls back to the stale pool', () async {
+    final bytes = engine.channels.first;
+    await engine.ensurePool(bytes);
+    final broken = TvEngine.open(configText: configText, dataDir: dir, api: _Failing());
+    await broken.ensurePool(bytes, maxAge: Duration.zero);
+    expect(broken.tunable.map((c) => c.name), contains('Bytes'));
+  });
+
+  test('guideFor covers 12 hours and planWeek saves seven days', () async {
+    final bytes = engine.channels.first;
+    await engine.ensurePool(bytes);
+    final now = DateTime(2026, 11, 11, 20);
+    final g = engine.guideFor(bytes, now);
+    expect(g.first.start.isAfter(now), isFalse);
+    expect(g.last.start.isBefore(now.add(const Duration(hours: 12))), isTrue);
+    engine.planWeek(bytes, now);
+    final saved = Directory('${dir.path}/days').listSync().where((f) => f.path.contains('day-2-'));
+    expect(saved, hasLength(7));
+  });
+}
+
+class _Failing implements ArchiveApi {
+  @override
+  Future<List<ItemSummary>> search(String query, {int rows = 100, int page = 1}) => throw ArchiveException('offline');
+
+  @override
+  Future<ItemMeta?> metadata(String identifier) => throw ArchiveException('offline');
+}
