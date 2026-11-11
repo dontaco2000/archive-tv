@@ -371,6 +371,24 @@
       ]
     },
     {
+      "number": 42,
+      "name": "Boogie",
+      "logo": "Logos/4x3/boogie.png",
+      "genre": "Music & Sports",
+      "yearRange": [
+        1960,
+        2010
+      ],
+      "sources": [
+        {
+          "query": "title:(\"soul train\" OR \"solid gold\" OR \"dance party usa\" OR \"american bandstand\" OR \"club mtv\" OR \"the grind\" OR \"dance fever\" OR \"top of the pops\" OR \"video soul\" OR \"night tracks\" OR \"friday night videos\" OR shindig OR \"hullabaloo\" OR \"disco\" OR \"dance competition\" OR \"dancing\") AND mediatype:movies AND -collection:tvnews AND -language:(spa OR por OR pol OR hin OR fre OR ger OR rus OR ita) AND -title:(wiggles OR \"home movies\" OR nude OR fucking OR porno OR sensual OR \"bear in the big\" OR cbeebies OR \"bob esponja\" OR \"disco polo\" OR \"roller boogie\" OR skatetown OR \"disco biscuits\" OR \"hypnotic eye\" OR \"disco dancer\" OR zingzillas OR balamory OR \"italo disco\" OR remix OR \"dj panduro\" OR \"dance plus\")"
+        },
+        {
+          "query": "subject:(\"dance party\" OR \"dance show\" OR disco OR \"soul train\" OR \"american bandstand\" OR \"dance music television\") AND -collection:tvnews AND -language:(spa OR por OR pol OR hin OR fre OR ger OR rus OR ita) AND -title:(wiggles OR \"home movies\" OR nude OR fucking OR porno OR sensual OR \"bear in the big\" OR cbeebies OR \"bob esponja\" OR \"disco polo\" OR \"roller boogie\" OR skatetown OR \"disco biscuits\" OR \"hypnotic eye\" OR \"disco dancer\" OR zingzillas OR balamory OR \"italo disco\" OR remix OR \"dj panduro\" OR \"dance plus\")"
+        }
+      ]
+    },
+    {
       "number": 43,
       "name": "Ringside",
       "logo": "Logos/4x3/ringside.png",
