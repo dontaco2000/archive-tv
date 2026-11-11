@@ -23,6 +23,7 @@ class TvScreen extends StatefulWidget {
   final PlayerController controller;
   final Settings settings;
   final SettingsStore store;
+
   /// Null on Android TV / Fire TV, which are always fullscreen.
   final WindowPrefs? windowPrefs;
   const TvScreen({super.key, required this.controller, required this.settings, required this.store, this.windowPrefs});
@@ -69,8 +70,13 @@ class _TvScreenState extends State<TvScreen> {
 
   /// Flips to the next/previous tunable channel (wrapping), favorites only when that is on.
   void _flip(int step) {
-    final next = flipTarget(tv.engine.tunable, tv.channel?.number, step,
-        favorites: settings.favorites, favoritesOnly: settings.favoritesOnly);
+    final next = flipTarget(
+      tv.engine.tunable,
+      tv.channel?.number,
+      step,
+      favorites: settings.favorites,
+      favoritesOnly: settings.favoritesOnly,
+    );
     if (next != null) tv.tune(next);
   }
 
@@ -186,17 +192,11 @@ class _TvScreenState extends State<TvScreen> {
     if (b == null) return KeyEventResult.ignored;
     // The guide and menu handle their own keys; only favorite, volume, mute and fullscreen reach the TV while open.
     if (mode != TvMode.watch &&
-        !const {TvAction.favorite, TvAction.mute, TvAction.volumeUp, TvAction.volumeDown, TvAction.toggleFullscreen}
-            .contains(b.action)) {
+        !const {TvAction.favorite, TvAction.mute, TvAction.volumeUp, TvAction.volumeDown, TvAction.toggleFullscreen}.contains(b.action)) {
       return KeyEventResult.handled;
     }
     if (event is KeyRepeatEvent &&
-        !const {
-          TvAction.channelUp,
-          TvAction.channelDown,
-          TvAction.volumeUp,
-          TvAction.volumeDown,
-        }.contains(b.action)) {
+        !const {TvAction.channelUp, TvAction.channelDown, TvAction.volumeUp, TvAction.volumeDown}.contains(b.action)) {
       return KeyEventResult.handled;
     }
     switch (b.action) {
@@ -235,7 +235,7 @@ class _TvScreenState extends State<TvScreen> {
         widget.windowPrefs?.toggleFullScreen();
       case TvAction.back:
         final w = widget.windowPrefs;
-        if (w == null) return KeyEventResult.ignored; // Android: Back while watching leaves the app
+        if (w == null) return KeyEventResult.ignored; // Android's Back key arrives as a route pop: see _systemBack
         windowManager.isFullScreen().then((f) {
           if (f) w.setFullScreen(false);
         });
@@ -245,6 +245,18 @@ class _TvScreenState extends State<TvScreen> {
         _openMenu();
     }
     return KeyEventResult.handled;
+  }
+
+  /// The Android remote's Back key (a route pop, never a key event): closes the guide or menu,
+  /// otherwise leaves the app.
+  void _systemBack() {
+    if (mode == TvMode.guide) {
+      _closeGuide();
+    } else if (mode == TvMode.menu) {
+      _closeMenu();
+    } else {
+      SystemNavigator.pop();
+    }
   }
 
   void _commitEntry() {
@@ -267,71 +279,71 @@ class _TvScreenState extends State<TvScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Focus(
-      focusNode: _focus,
-      autofocus: true,
-      onKeyEvent: _onKey,
-      child: GestureDetector(
-        onDoubleTap: widget.windowPrefs?.toggleFullScreen,
-        child: Scaffold(
-          backgroundColor: Colors.black,
-          body: Center(
-            child: AspectRatio(
-              aspectRatio: 4 / 3,
-              child: Stack(
-                fit: StackFit.expand,
-                children: [
-                  // Widescreen video is letterboxed inside the 4:3 frame, never stretched or cropped.
-                  Video(
-                    controller: tv.video,
-                    fit: BoxFit.contain,
-                    controls: NoVideoControls,
-                  ),
-                  // Corner bug: the channel's logo, small and faint, while a channel plays.
-                  if (settings.cornerBug && !tv.standBy && tv.channel != null)
-                    Positioned(
-                      top: 16,
-                      right: 16,
-                      child: Opacity(opacity: 0.5, child: ChannelLogo(channel: tv.channel!, height: 48)),
-                    ),
-                  if (tv.standBy)
-                    StandByCard(channel: tv.channel, message: tv.message),
-                  if (_banner && !tv.standBy) InfoBanner(airing: tv.airing),
-                  if (entry.text.isNotEmpty)
-                    Positioned(top: 24, right: 32, child: _digits(entry.text)),
-                  if (_guide != null)
-                    GuideOverlay(
-                      model: _guide!,
-                      onHighlight: _highlight,
-                      onClose: _closeGuide,
-                      onTune: (c) {
-                        _closeGuide();
-                        tv.tune(c);
-                      },
-                    ),
-                  if (mode == TvMode.menu)
-                    MenuOverlay(
-                      settings: settings,
-                      current: tv.channel,
-                      onChanged: _settingsChanged,
-                      onBlockCurrent: _blockCurrent,
-                      onRefresh: _refresh,
-                      onClose: _closeMenu,
-                    ),
-                  if (_flashText != null)
-                    Positioned(
-                      top: 24,
-                      left: 32,
-                      child: Container(
-                        color: const Color(0xE6101A5C),
-                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                        child: Text(
-                          _flashText!,
-                          style: const TextStyle(color: Color(0xFFFFEB3B), fontSize: 24, fontFamily: 'Consolas'),
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, _) {
+        if (!didPop) _systemBack();
+      },
+      child: Focus(
+        focusNode: _focus,
+        autofocus: true,
+        onKeyEvent: _onKey,
+        child: GestureDetector(
+          onDoubleTap: widget.windowPrefs?.toggleFullScreen,
+          child: Scaffold(
+            backgroundColor: Colors.black,
+            body: Center(
+              child: AspectRatio(
+                aspectRatio: 4 / 3,
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    // Widescreen video is letterboxed inside the 4:3 frame, never stretched or cropped.
+                    Video(controller: tv.video, fit: BoxFit.contain, controls: NoVideoControls),
+                    // Corner bug: the channel's logo, small and faint, while a channel plays.
+                    if (settings.cornerBug && !tv.standBy && tv.channel != null)
+                      Positioned(
+                        top: 16,
+                        right: 16,
+                        child: Opacity(opacity: 0.5, child: ChannelLogo(channel: tv.channel!, height: 48)),
+                      ),
+                    if (tv.standBy) StandByCard(channel: tv.channel, message: tv.message),
+                    if (_banner && !tv.standBy) InfoBanner(airing: tv.airing),
+                    if (entry.text.isNotEmpty) Positioned(top: 24, right: 32, child: _digits(entry.text)),
+                    if (_guide != null)
+                      GuideOverlay(
+                        model: _guide!,
+                        onHighlight: _highlight,
+                        onClose: _closeGuide,
+                        onTune: (c) {
+                          _closeGuide();
+                          tv.tune(c);
+                        },
+                      ),
+                    if (mode == TvMode.menu)
+                      MenuOverlay(
+                        settings: settings,
+                        current: tv.channel,
+                        onChanged: _settingsChanged,
+                        onBlockCurrent: _blockCurrent,
+                        onRefresh: _refresh,
+                        onClose: _closeMenu,
+                      ),
+                    if (_flashText != null)
+                      Positioned(
+                        top: 24,
+                        left: 32,
+                        child: Container(
+                          color: const Color(0xE6101A5C),
+                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                          child: Text(
+                            _flashText!,
+                            style: const TextStyle(color: Color(0xFFFFEB3B), fontSize: 24, fontFamily: 'Consolas'),
+                          ),
                         ),
                       ),
-                    ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
@@ -342,12 +354,7 @@ class _TvScreenState extends State<TvScreen> {
 
   Widget _digits(String t) => Text(
     t,
-    style: const TextStyle(
-      color: Colors.greenAccent,
-      fontSize: 56,
-      fontFamily: 'Consolas',
-      fontWeight: FontWeight.bold,
-    ),
+    style: const TextStyle(color: Colors.greenAccent, fontSize: 56, fontFamily: 'Consolas', fontWeight: FontWeight.bold),
   );
 }
 
@@ -369,11 +376,7 @@ class ErrorScreen extends StatelessWidget {
           child: Text(
             message,
             textAlign: TextAlign.center,
-            style: const TextStyle(
-              color: Color(0xFF9EC8FF),
-              fontSize: 24,
-              fontFamily: 'Consolas',
-            ),
+            style: const TextStyle(color: Color(0xFF9EC8FF), fontSize: 24, fontFamily: 'Consolas'),
           ),
         ),
       ),
@@ -397,21 +400,12 @@ class StandByCard extends StatelessWidget {
         if (channel != null)
           Text(
             '${channel!.number}  ${channel!.name.toUpperCase()}',
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 40,
-              fontFamily: 'Consolas',
-              fontWeight: FontWeight.bold,
-            ),
+            style: const TextStyle(color: Colors.white, fontSize: 40, fontFamily: 'Consolas', fontWeight: FontWeight.bold),
           ),
         const SizedBox(height: 16),
         Text(
           message ?? 'STAND BY...',
-          style: const TextStyle(
-            color: Color(0xFF9EC8FF),
-            fontSize: 28,
-            fontFamily: 'Consolas',
-          ),
+          style: const TextStyle(color: Color(0xFF9EC8FF), fontSize: 28, fontFamily: 'Consolas'),
         ),
       ],
     ),
@@ -446,29 +440,16 @@ class InfoBanner extends StatelessWidget {
                 children: [
                   Text(
                     '${a.channel.number}  ${a.channel.name.toUpperCase()}',
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 26,
-                      fontFamily: 'Consolas',
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: const TextStyle(color: Colors.white, fontSize: 26, fontFamily: 'Consolas', fontWeight: FontWeight.bold),
                   ),
                   Text(
                     '${cleanTitle(a.slot.entry.title)}  (${_left(a.remaining)})',
-                    style: const TextStyle(
-                      color: Color(0xFFFFE08A),
-                      fontSize: 20,
-                      fontFamily: 'Consolas',
-                    ),
+                    style: const TextStyle(color: Color(0xFFFFE08A), fontSize: 20, fontFamily: 'Consolas'),
                   ),
                   if (a.next != null)
                     Text(
                       'Next: ${cleanTitle(a.next!.entry.title)}',
-                      style: const TextStyle(
-                        color: Color(0xFF9EC8FF),
-                        fontSize: 18,
-                        fontFamily: 'Consolas',
-                      ),
+                      style: const TextStyle(color: Color(0xFF9EC8FF), fontSize: 18, fontFamily: 'Consolas'),
                     ),
                 ],
               ),

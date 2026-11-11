@@ -35,7 +35,6 @@ void main() {
 
   test('TV remote keys map to TV actions', () {
     expect(keyboardBindings[LogicalKeyboardKey.select]!.action, TvAction.ok);
-    expect(keyboardBindings[LogicalKeyboardKey.goBack]!.action, TvAction.back);
     expect(keyboardBindings[LogicalKeyboardKey.contextMenu]!.action, TvAction.menu);
     expect(keyboardBindings[LogicalKeyboardKey.mediaPlayPause]!.action, TvAction.mute);
     expect(keyboardBindings[LogicalKeyboardKey.channelUp]!.action, TvAction.channelUp);

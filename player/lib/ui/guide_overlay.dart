@@ -91,7 +91,7 @@ class _GuideOverlayState extends State<GuideOverlay> {
       setState(() => m.moveTime(const Duration(minutes: 30)));
     } else if (k == LogicalKeyboardKey.enter || k == LogicalKeyboardKey.select) {
       if (!repeat) widget.onTune(m.selectedChannel);
-    } else if (k == LogicalKeyboardKey.escape || k == LogicalKeyboardKey.keyG || k == LogicalKeyboardKey.goBack) {
+    } else if (k == LogicalKeyboardKey.escape || k == LogicalKeyboardKey.keyG) {
       if (!repeat) widget.onClose();
     } else {
       return KeyEventResult.ignored; // volume, mute, fullscreen fall through to the TV screen

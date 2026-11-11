@@ -26,9 +26,9 @@ final Map<LogicalKeyboardKey, KeyBinding> keyboardBindings = {
   LogicalKeyboardKey.f11: const KeyBinding(TvAction.toggleFullscreen),
   LogicalKeyboardKey.enter: const KeyBinding(TvAction.ok),
   LogicalKeyboardKey.escape: const KeyBinding(TvAction.back),
-  // Android TV / Fire TV remote. Select opens the guide when no digits are pending (see TvScreen).
+  // Android TV / Fire TV remote. Select opens the guide when no digits are pending, and Back
+  // arrives as a route pop, not a key (both in TvScreen).
   LogicalKeyboardKey.select: const KeyBinding(TvAction.ok),
-  LogicalKeyboardKey.goBack: const KeyBinding(TvAction.back),
   LogicalKeyboardKey.contextMenu: const KeyBinding(TvAction.menu),
   LogicalKeyboardKey.mediaPlayPause: const KeyBinding(TvAction.mute),
   LogicalKeyboardKey.channelUp: const KeyBinding(TvAction.channelUp),

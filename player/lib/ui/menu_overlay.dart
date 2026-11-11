@@ -108,7 +108,6 @@ class _MenuOverlayState extends State<MenuOverlay> {
       if (!repeat) _activate(0);
     } else if (k == LogicalKeyboardKey.escape ||
         k == LogicalKeyboardKey.keyM ||
-        k == LogicalKeyboardKey.goBack ||
         k == LogicalKeyboardKey.contextMenu) {
       if (!repeat) widget.onClose();
     } else {
