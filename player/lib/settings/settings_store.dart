@@ -23,6 +23,10 @@ class Settings {
   /// also the fallback when the page can't load).
   String weatherMode = 'web';
 
+  /// Remote control reachable from phones on the LAN (off: this PC only), and its 4-digit PIN.
+  bool remoteLan = false;
+  String? remotePin;
+
   Settings();
 
   Map<String, dynamic> toJson() => {
@@ -42,6 +46,8 @@ class Settings {
         'weatherLat': weatherLat,
         'weatherLon': weatherLon,
         'weatherMode': weatherMode,
+        'remoteLan': remoteLan,
+        'remotePin': remotePin,
       };
 
   factory Settings.fromJson(Map<String, dynamic> j) {
@@ -70,6 +76,9 @@ class Settings {
       s.weatherLon = lon;
     }
     if (const {'web', 'native'}.contains(j['weatherMode'])) s.weatherMode = j['weatherMode'] as String;
+    s.remoteLan = bool_('remoteLan', s.remoteLan);
+    final pin = j['remotePin'];
+    if (pin is String && RegExp(r'^\d{4}$').hasMatch(pin)) s.remotePin = pin;
     return s;
   }
 }

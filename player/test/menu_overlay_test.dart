@@ -8,7 +8,8 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   const ch = Channel(number: 4, name: 'Funnies');
 
-  Future<({Settings settings, List<Settings> changed, List<String> calls})> pump(WidgetTester t) async {
+  Future<({Settings settings, List<Settings> changed, List<String> calls})> pump(WidgetTester t,
+      {bool remote = false, String? lanInfo}) async {
     final settings = Settings();
     final changed = <Settings>[], calls = <String>[];
     await t.pumpWidget(MaterialApp(
@@ -20,6 +21,8 @@ void main() {
           onBlockCurrent: () => calls.add('block'),
           onRefresh: () => calls.add('refresh'),
           onClose: () => calls.add('close'),
+          onOpenRemote: remote ? () => calls.add('remote') : null,
+          remoteLanInfo: lanInfo,
         ),
       ),
     ));
@@ -73,5 +76,20 @@ void main() {
     expect(r.calls, ['block']);
     await key(t, LogicalKeyboardKey.escape);
     expect(r.calls, ['block', 'close']);
+  });
+
+  testWidgets('remote items: Open remote calls back, Wi-Fi toggles, LAN info shows; hidden without a remote', (t) async {
+    await pump(t);
+    expect(find.text('Open remote'), findsNothing);
+    final r = await pump(t, remote: true, lanInfo: 'Phone: http://192.168.1.5:8765/remote  PIN 1234');
+    await key(t, LogicalKeyboardKey.arrowUp, 4); // Close, LAN info, Wi-Fi, Open remote
+    expect(selected(t), 'Open remote');
+    await key(t, LogicalKeyboardKey.enter);
+    expect(r.calls, ['remote']);
+    await key(t, LogicalKeyboardKey.arrowDown);
+    expect(selected(t), 'Remote on Wi-Fi: OFF');
+    await key(t, LogicalKeyboardKey.enter);
+    expect(r.settings.remoteLan, isTrue);
+    expect(find.textContaining('PIN 1234'), findsOneWidget);
   });
 }

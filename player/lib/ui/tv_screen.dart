@@ -12,6 +12,7 @@ import '../guide/guide_model.dart';
 import '../input/actions.dart';
 import '../input/gamepad.dart';
 import '../player/player_controller.dart';
+import '../remote/remote_server.dart';
 import '../settings/settings_store.dart';
 import '../settings/window_prefs.dart';
 import '../weather/weather.dart';
@@ -32,7 +33,10 @@ class TvScreen extends StatefulWidget {
 
   /// Null on Android TV / Fire TV, which are always fullscreen.
   final WindowPrefs? windowPrefs;
-  const TvScreen({super.key, required this.controller, required this.settings, required this.store, this.windowPrefs});
+
+  /// The remote-control server (Windows only); null hides the remote menu items and R key.
+  final RemoteServer? remote;
+  const TvScreen({super.key, required this.controller, required this.settings, required this.store, this.windowPrefs, this.remote});
 
   @override
   State<TvScreen> createState() => _TvScreenState();
@@ -68,6 +72,64 @@ class _TvScreenState extends State<TvScreen> {
     // (e.g. the music's first frame) looks like a channel change and drops the loaded WeatherStar page.
     _shown = tv.channel;
     tv.addListener(_changed);
+    widget.remote
+      ?..state = _remoteState
+      ..volume = _setVolume
+      ..channel = _remoteTune
+      ..logo = _logoBytes;
+  }
+
+  // ---- Remote control (remote/remote_server.dart). Its buttons arrive as key presses; these cover the rest.
+
+  Map<String, Object?> _remoteState() {
+    final c = tv.channel, a = tv.airing, od = tv.onDemand;
+    return {
+      'channel': c == null ? null : {'number': c.number, 'name': c.name},
+      'title': od != null ? cleanTitle(od.title) : (a == null ? null : cleanTitle(a.slot.entry.title)),
+      'minutesLeft': od == null && a != null ? a.remaining.inMinutes : null,
+      'onDemand': od != null,
+      'standBy': tv.standBy,
+      'message': tv.message,
+      'volume': settings.volume.round(),
+      'muted': settings.muted,
+      'mode': mode.name.toLowerCase(),
+      'favorite': c != null && settings.favorites.contains(c.number),
+      'entry': entry.text,
+    };
+  }
+
+  void _setVolume(int level) {
+    settings
+      ..volume = level.toDouble()
+      ..muted = false;
+    _settingsChanged();
+    _flash('Volume $level');
+  }
+
+  void _remoteTune(int n) {
+    if (mode == TvMode.guide) {
+      _closeGuide();
+    } else if (mode != TvMode.watch) {
+      _closeMenu();
+    }
+    _tuneNumber(n);
+  }
+
+  Future<List<int>?> _logoBytes(int n) async {
+    final c = tv.engine.config.channel(n);
+    if (c == null) return null;
+    try {
+      return (await rootBundle.load(logoAsset(c.name))).buffer.asUint8List();
+    } on Object {
+      return null;
+    }
+  }
+
+  void _openRemote() {
+    final r = widget.remote;
+    if (r == null) return;
+    _flash('Opening remote...');
+    unawaited(r.openWindow());
   }
 
   bool _wasStandBy = true;
@@ -185,6 +247,13 @@ class _TvScreenState extends State<TvScreen> {
   /// Saves and applies settings after any change; a failed save is logged, never fatal.
   void _settingsChanged([Settings? _]) {
     tv.setVolume(settings.muted ? 0 : settings.volume);
+    final r = widget.remote;
+    if (r != null) {
+      r.ensurePin(); // first LAN enable makes the PIN; saved below
+      unawaited(r.start().then((_) {
+        if (mounted) setState(() {}); // the menu shows the LAN address once it is known
+      }));
+    }
     _webFailed = false; // e.g. switched back to the WeatherStar view: try the page again
     try {
       widget.store.save(settings);
@@ -380,6 +449,11 @@ class _TvScreenState extends State<TvScreen> {
         _openGuide();
       case TvAction.menu:
         _openMenu();
+      case TvAction.onDemand:
+        _openOverlay(TvMode.onDemand);
+      case TvAction.remote:
+        if (widget.remote == null) return KeyEventResult.ignored;
+        _openRemote();
     }
     return KeyEventResult.handled;
   }
@@ -494,6 +568,15 @@ class _TvScreenState extends State<TvScreen> {
                         onClose: _closeMenu,
                         onOnDemand: () => _openOverlay(TvMode.onDemand),
                         onWeatherLocation: () => _openOverlay(TvMode.location),
+                        onOpenRemote: widget.remote == null
+                            ? null
+                            : () {
+                                _closeMenu();
+                                _openRemote();
+                              },
+                        remoteLanInfo: widget.remote == null || !settings.remoteLan
+                            ? null
+                            : 'Phone: ${widget.remote!.lanUrl ?? 'finding address...'}  PIN ${settings.remotePin ?? '-'}',
                       ),
                     if (mode == TvMode.onDemand)
                       OnDemandOverlay(

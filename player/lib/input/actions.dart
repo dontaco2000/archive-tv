@@ -2,7 +2,7 @@ import 'package:archive_tv_core/archive_tv_core.dart';
 import 'package:flutter/services.dart';
 
 /// What the viewer asked for, independent of which device asked.
-enum TvAction { channelUp, channelDown, digit, info, guide, menu, favorite, mute, volumeUp, volumeDown, toggleFullscreen, ok, back }
+enum TvAction { channelUp, channelDown, digit, info, guide, menu, favorite, mute, volumeUp, volumeDown, toggleFullscreen, ok, back, onDemand, remote }
 
 class KeyBinding {
   final TvAction action;
@@ -24,6 +24,8 @@ final Map<LogicalKeyboardKey, KeyBinding> keyboardBindings = {
   LogicalKeyboardKey.equal: const KeyBinding(TvAction.volumeUp),
   LogicalKeyboardKey.minus: const KeyBinding(TvAction.volumeDown),
   LogicalKeyboardKey.f11: const KeyBinding(TvAction.toggleFullscreen),
+  LogicalKeyboardKey.keyO: const KeyBinding(TvAction.onDemand),
+  LogicalKeyboardKey.keyR: const KeyBinding(TvAction.remote), // Windows: opens the remote window
   LogicalKeyboardKey.enter: const KeyBinding(TvAction.ok),
   LogicalKeyboardKey.escape: const KeyBinding(TvAction.back),
   // Android TV / Fire TV remote. Select opens the guide when no digits are pending, and Back

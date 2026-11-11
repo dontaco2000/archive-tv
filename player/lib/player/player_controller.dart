@@ -27,6 +27,7 @@ class PlayerController extends ChangeNotifier {
 
   int _generation = 0; // bumped on every tune so a stale open can't clear a newer STAND BY
   StreamSubscription<bool>? _completedSub;
+  StreamSubscription<PlayerLog>? _logSub;
   Timer? _slotTimer; // re-tunes when the airing slot ends
   Timer? _retryTimer; // re-tunes a NO SIGNAL channel after a while
   Timer? _stallTimer; // watches for playback that stops moving after the first frame
@@ -44,6 +45,12 @@ class PlayerController extends ChangeNotifier {
       // No usable sound device must not freeze audio-only files (weather music): play on silently.
       native.setProperty('audio-fallback-to-null', 'yes');
     }
+    // Sound problems are otherwise invisible: log mpv's audio-output errors and warnings.
+    _logSub = player.stream.log.listen((l) {
+      if (l.prefix == 'ao' || l.prefix == 'audio' || l.text.toLowerCase().contains('audio device')) {
+        this.log('mpv ${l.level} ${l.prefix}: ${l.text.trim()}');
+      }
+    });
     _completedSub = player.stream.completed.listen((done) {
       if (done && onDemand != null && !standBy && !onDemandEnded) {
         onDemandEnded = true; // the screen offers the next episode or returns to live
@@ -291,6 +298,7 @@ class PlayerController extends ChangeNotifier {
   @override
   void dispose() {
     _completedSub?.cancel();
+    _logSub?.cancel();
     _slotTimer?.cancel();
     _retryTimer?.cancel();
     _stallTimer?.cancel();

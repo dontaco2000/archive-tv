@@ -56,7 +56,7 @@ List<(LogicalKeyboardKey, bool)> buttonChanges(int before, int now) => [
         if ((before & bit) != (now & bit)) (key, (now & bit) != 0),
     ];
 
-KeyEvent _event(LogicalKeyboardKey k, {required bool down, bool repeat = false}) {
+KeyEvent keyEvent(LogicalKeyboardKey k, {required bool down, bool repeat = false}) {
   final physical = PhysicalKeyboardKey(k.keyId);
   if (repeat) return KeyRepeatEvent(physicalKey: physical, logicalKey: k, timeStamp: Duration.zero);
   return down
@@ -66,8 +66,14 @@ KeyEvent _event(LogicalKeyboardKey k, {required bool down, bool repeat = false})
 
 /// Delivers [e] the way a real key press would be: to the focused widget, then up its parents,
 /// until one handles it.
+/// While the window is inactive (e.g. the remote window has focus) Flutter parks focus on the root
+/// scope; keys then go to the node that had focus last.
 bool dispatchKey(KeyEvent e) {
-  for (FocusNode? n = FocusManager.instance.primaryFocus; n != null; n = n.parent) {
+  final fm = FocusManager.instance;
+  var start = fm.primaryFocus;
+  final last = _lastFocus;
+  if ((start == null || start == fm.rootScope) && last != null && (last.context?.mounted ?? false)) start = last;
+  for (FocusNode? n = start; n != null; n = n.parent) {
     final r = n.onKeyEvent?.call(n, e);
     if (r == KeyEventResult.handled) return true;
     if (r == KeyEventResult.skipRemainingHandlers) return false;
@@ -80,12 +86,27 @@ bool dispatchKey(KeyEvent e) {
 /// it so Android never turns an unhandled B into Back). On Windows it also polls XInput
 /// (no plugin: xinput1_4.dll through dart:ffi).
 void installGamepad({void Function(String)? log, bool? pollXInput}) {
+  trackFocus();
   HardwareKeyboard.instance.addHandler((e) {
     final k = gamepadKeys[e.logicalKey];
-    if (k != null) dispatchKey(_event(k, down: e is! KeyUpEvent, repeat: e is KeyRepeatEvent));
+    if (k != null) dispatchKey(keyEvent(k, down: e is! KeyUpEvent, repeat: e is KeyRepeatEvent));
     return false;
   });
-  if (pollXInput ?? Platform.isWindows) _XInput.start((k, {required bool down, bool repeat = false}) => dispatchKey(_event(k, down: down, repeat: repeat)), log);
+  if (pollXInput ?? Platform.isWindows) _XInput.start((k, {required bool down, bool repeat = false}) => dispatchKey(keyEvent(k, down: down, repeat: repeat)), log);
+}
+
+FocusNode? _lastFocus;
+bool _tracking = false;
+
+/// Remembers the last real focus so [dispatchKey] still reaches it while the window is inactive.
+void trackFocus() {
+  if (_tracking) return;
+  _tracking = true;
+  final fm = FocusManager.instance;
+  fm.addListener(() {
+    final f = fm.primaryFocus;
+    if (f != null && f != fm.rootScope) _lastFocus = f;
+  });
 }
 
 typedef _Send = void Function(LogicalKeyboardKey k, {required bool down, bool repeat});

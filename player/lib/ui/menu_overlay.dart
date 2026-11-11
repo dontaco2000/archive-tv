@@ -11,7 +11,7 @@ const _panel = Color(0xE6101A5C); // same dark translucent blue as the guide
 const _yellow = Color(0xFFFFEB3B);
 const _cellBg = Color(0xFF1E2C8A);
 
-enum _Item { onDemand, favorite, favoritesOnly, volume, mute, startFullscreen, cornerBug, block, refresh, weatherMode, weatherLocation, close }
+enum _Item { onDemand, favorite, favoritesOnly, volume, mute, startFullscreen, cornerBug, block, refresh, weatherMode, weatherLocation, openRemote, remoteLan, remoteInfo, close }
 
 /// Settings menu over the right half of the frame. Changes are made on [settings] in place
 /// and reported through [onChanged]; the screen saves and applies them.
@@ -27,6 +27,12 @@ class MenuOverlay extends StatefulWidget {
   final VoidCallback? onOnDemand;
   final VoidCallback? onWeatherLocation;
 
+  /// Windows only: opens the remote window (null hides the remote items).
+  final VoidCallback? onOpenRemote;
+
+  /// The phone address and PIN, shown while the remote is on Wi-Fi.
+  final String? remoteLanInfo;
+
   const MenuOverlay({
     super.key,
     required this.settings,
@@ -37,6 +43,8 @@ class MenuOverlay extends StatefulWidget {
     required this.onClose,
     this.onOnDemand,
     this.onWeatherLocation,
+    this.onOpenRemote,
+    this.remoteLanInfo,
   });
 
   @override
@@ -46,8 +54,14 @@ class MenuOverlay extends StatefulWidget {
 class _MenuOverlayState extends State<MenuOverlay> {
   final _focus = FocusNode();
   int _sel = 0;
-  // Android TV is always fullscreen, so its menu has no window-mode item.
-  final _items = [for (final i in _Item.values) if (!Platform.isAndroid || i != _Item.startFullscreen) i];
+  // Android TV is always fullscreen, so its menu has no window-mode item; the remote is Windows only.
+  List<_Item> get _items => [
+        for (final i in _Item.values)
+          if (!(Platform.isAndroid && i == _Item.startFullscreen) &&
+              !(widget.onOpenRemote == null && (i == _Item.openRemote || i == _Item.remoteLan)) &&
+              !(widget.remoteLanInfo == null && i == _Item.remoteInfo))
+            i,
+      ];
   Settings get s => widget.settings;
 
   @override
@@ -99,6 +113,12 @@ class _MenuOverlayState extends State<MenuOverlay> {
         _change(() => s.weatherMode = s.weatherMode == 'native' ? 'web' : 'native');
       case _Item.weatherLocation:
         if (dir == 0) widget.onWeatherLocation?.call();
+      case _Item.openRemote:
+        if (dir == 0) widget.onOpenRemote?.call();
+      case _Item.remoteLan:
+        _change(() => s.remoteLan = !s.remoteLan);
+      case _Item.remoteInfo:
+        break;
     }
   }
 
@@ -143,6 +163,9 @@ class _MenuOverlayState extends State<MenuOverlay> {
       _Item.onDemand => 'On Demand',
       _Item.weatherMode => 'Weather view: ${s.weatherMode == 'native' ? 'CLASSIC' : 'WEATHERSTAR'}',
       _Item.weatherLocation => 'Weather: ${s.weatherPlace}',
+      _Item.openRemote => 'Open remote',
+      _Item.remoteLan => 'Remote on Wi-Fi: ${_onOff(s.remoteLan)}',
+      _Item.remoteInfo => widget.remoteLanInfo ?? '',
     };
   }
 

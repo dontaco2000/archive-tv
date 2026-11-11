@@ -13,6 +13,7 @@ import 'package:window_manager/window_manager.dart';
 import 'engine/tv_engine.dart';
 import 'input/gamepad.dart';
 import 'player/player_controller.dart';
+import 'remote/remote_server.dart';
 import 'settings/rotating_log.dart';
 import 'settings/settings_store.dart';
 import 'settings/window_prefs.dart';
@@ -93,8 +94,21 @@ Future<void> main(List<String> args) async {
   }
   final tv = PlayerController(engine, log: log);
   tv.setVolume(settings.muted ? 0 : settings.volume);
-  runApp(MaterialApp(debugShowCheckedModeBanner: false, home: TvScreen(controller: tv, settings: settings, store: store, windowPrefs: windowPrefs)));
+  // Remote control window (Windows only): a local web page that presses the same keys as the keyboard.
+  RemoteServer? remote;
+  if (Platform.isWindows) {
+    remote = RemoteServer(settings, log: log);
+    if (remote.ensurePin()) store.save(settings);
+    await remote.start().catchError((Object e) => log('remote: start failed: $e'));
+  }
+  runApp(MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: TvScreen(controller: tv, settings: settings, store: store, windowPrefs: windowPrefs, remote: remote)));
   installGamepad(log: log); // pads act as the keyboard: XInput on Windows, button keys on Android
+  if (args.contains('--remote') && remote != null) {
+    // After the TV window has its restored bounds / fullscreen, so the remote lands beside it.
+    unawaited(Future<void>.delayed(const Duration(milliseconds: 1500), remote.openWindow));
+  }
 
   // Remember the channel being watched so the next launch starts there.
   tv.addListener(() {
