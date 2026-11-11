@@ -50,11 +50,11 @@ void main() {
     for (final c in engine.channels) {
       await engine.ensurePool(c);
     }
-    expect(engine.tunable.map((c) => c.name), ['Bytes', 'Thin']); // 195 min each; weatherstar excluded
+    expect(engine.tunable.map((c) => c.name), ['Bytes', 'Thin', 'Cumulus']); // 195 min each; weather is always on
     final thinApi = FakeApi({'a': 30});
     final thin = TvEngine.open(configText: configText, dataDir: Directory.systemTemp.createTempSync('thin'), api: thinApi);
     await thin.ensurePool(thin.channels.first);
-    expect(thin.tunable, isEmpty);
+    expect(thin.tunable.map((c) => c.name), ['Cumulus']);
   });
 
   test('airing gives the slot, offset into it and the next slot', () async {
@@ -161,7 +161,7 @@ void main() {
     final bytes = engine.channels.first;
     final empty = TvEngine.open(configText: configText, dataDir: dir, api: FakeApi({}));
     await empty.ensurePool(bytes);
-    expect(empty.tunable, isEmpty);
+    expect(empty.tunable.map((c) => c.name), ['Cumulus']);
     expect(File('${dir.path}/pools/pool-2.json').existsSync(), isFalse);
     await empty.ensurePool(bytes); // retried, not cached as empty
     await engine.ensurePool(bytes);

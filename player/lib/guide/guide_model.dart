@@ -85,6 +85,7 @@ class GuideModel {
   }
 
   GuideRow _row(Channel c) {
+    if (c.type == 'weatherstar') return GuideRow(c, true, [GuideCell(null, 'WeatherStar: Local Forecast', 0, 1)]);
     if (!_tunable(c)) {
       return GuideRow(c, false, [GuideCell(null, c.type == 'archive' ? 'OFF AIR' : 'NOT AVAILABLE', 0, 1)]);
     }

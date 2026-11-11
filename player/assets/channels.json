@@ -290,7 +290,14 @@
       "logo": "Logos/4x3/cumulus.png",
       "genre": "News & Docs",
       "type": "weatherstar",
-      "location": "auto"
+      "location": "auto",
+      "sources": [
+        {
+          "identifiers": ["smooth-jazz-fm-1991"],
+          "mediatype": "audio",
+          "ignoreYear": true
+        }
+      ]
     },
     {
       "number": 34,

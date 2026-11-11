@@ -14,6 +14,11 @@ class Settings {
   /// The channel watched last; the app starts there.
   int? lastChannel;
 
+  /// Weather channel location (Open-Meteo); set from the menu by city or ZIP.
+  String weatherPlace = 'Hattiesburg, Mississippi';
+  double weatherLat = 31.3271;
+  double weatherLon = -89.2903;
+
   Settings();
 
   Map<String, dynamic> toJson() => {
@@ -29,6 +34,9 @@ class Settings {
         'windowH': windowH,
         'fullscreen': fullscreen,
         'lastChannel': lastChannel,
+        'weatherPlace': weatherPlace,
+        'weatherLat': weatherLat,
+        'weatherLon': weatherLon,
       };
 
   factory Settings.fromJson(Map<String, dynamic> j) {
@@ -50,6 +58,12 @@ class Settings {
     s.windowH = num_('windowH');
     s.fullscreen = bool_('fullscreen', s.fullscreen);
     s.lastChannel = j['lastChannel'] is int ? j['lastChannel'] as int : null;
+    final lat = num_('weatherLat'), lon = num_('weatherLon');
+    if (j['weatherPlace'] is String && lat != null && lon != null) {
+      s.weatherPlace = j['weatherPlace'] as String;
+      s.weatherLat = lat;
+      s.weatherLon = lon;
+    }
     return s;
   }
 }

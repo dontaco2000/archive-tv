@@ -44,6 +44,13 @@ void main() {
     expect(c.channel(99), isNull);
   });
 
+  test('a weatherstar channel may list music sources', () {
+    final c = parseChannelConfig('{"channels":[{"number":33,"name":"Cumulus","type":"weatherstar",'
+        '"sources":[{"identifiers":["jazz"],"mediatype":"audio","ignoreYear":true}]}]}');
+    final s = c.channel(33)!.sources.single;
+    expect([s.identifiers, s.mediatype, s.ignoreYear], [['jazz'], 'audio', true]);
+  });
+
   test('applies defaults when optional settings are missing', () {
     final c = parseChannelConfig(
         '{"channels":[{"number":1,"name":"A","sources":[{"collection":"x"}]}]}');

@@ -111,6 +111,12 @@ void main() {
     expect(await buildPool(wx, config(), FakeApi({})), isEmpty);
   });
 
+  test('a weatherstar channel with music sources gets a pool of them', () async {
+    const wx = Channel(number: 1, name: 'Cumulus', type: 'weatherstar', sources: [Source(query: 'jazz')]);
+    final pool = await buildPool(wx, config(minHours: 1), FakeApi({'a': (1990, 90)}));
+    expect(pool.map((e) => e.itemId), ['a']);
+  });
+
   group('concurrency, progress, probe', () {
     final twenty = {for (var i = 0; i < 20; i++) 'item${'x' * (i % 5)}$i': (1990, 10)};
 

@@ -41,6 +41,8 @@ class PlayerController extends ChangeNotifier {
       native.setProperty('demuxer-lavf-probesize', '262144');
       native.setProperty('demuxer-lavf-analyzeduration', '0.5');
       native.setProperty('video-aspect-override', 'no');
+      // No usable sound device must not freeze audio-only files (weather music): play on silently.
+      native.setProperty('audio-fallback-to-null', 'yes');
     }
     _completedSub = player.stream.completed.listen((done) {
       // Only a file that ended with its slot moves on; one that ends early waits for the slot timer.
@@ -97,6 +99,13 @@ class PlayerController extends ChangeNotifier {
     await engine.ensurePool(c);
     final a = engine.airing(c, DateTime.now());
     if (gen != _generation) return;
+    if (a == null && c.type == 'weatherstar') {
+      // Weather without music: nothing to play, the weather screens are the picture.
+      airing = null;
+      await player.stop();
+      notifyListeners();
+      return;
+    }
     if (a == null) {
       airing = null;
       message = 'OFF AIR';

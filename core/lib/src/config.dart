@@ -62,16 +62,12 @@ ChannelConfig _parse(String jsonText) {
     if (type != 'archive' && type != 'weatherstar') {
       throw ConfigException('channel $number has unknown type "$type"');
     }
-    final sources = <Source>[];
-    if (type == 'archive') {
-      final rawSources = raw['sources'];
-      if (rawSources is! List || rawSources.isEmpty) {
-        throw ConfigException('channel $number ($name) needs at least one source');
-      }
-      for (final s in rawSources) {
-        sources.add(_source(s, number));
-      }
+    // Archive channels need sources; a weatherstar channel may list some for its background music.
+    final rawSources = raw['sources'];
+    if (type == 'archive' && (rawSources is! List || rawSources.isEmpty)) {
+      throw ConfigException('channel $number ($name) needs at least one source');
     }
+    final sources = [for (final s in (rawSources as List? ?? const [])) _source(s, number)];
     channels.add(Channel(
       number: number,
       name: name.trim(),

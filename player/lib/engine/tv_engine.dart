@@ -57,11 +57,14 @@ class TvEngine {
 
   List<Channel> get channels => config.channels;
 
-  /// Channels that can be tuned now: archive channels whose pool has enough content.
+  /// Channels that can be tuned now: archive channels whose pool has enough content,
+  /// plus weather channels (always on; their music is optional).
   /// Call [ensurePool] first for channels you want considered.
   List<Channel> get tunable => [
         for (final c in config.channels)
-          if (c.type == 'archive' && _pool.containsKey(c.number) && !isOffAir(_pool[c.number]!, config.minContentSeconds)) c,
+          if (c.type == 'weatherstar' ||
+              (_pool.containsKey(c.number) && !isOffAir(_pool[c.number]!, config.minContentSeconds)))
+            c,
       ];
 
   final Map<int, Future<void>> _building = {};
@@ -70,7 +73,7 @@ class TvEngine {
   /// Concurrent callers for the same channel share one build.
   /// [maxAge] zero forces a rebuild even when the pool is already loaded (menu "Refresh channels").
   Future<void> ensurePool(Channel channel, {Duration maxAge = const Duration(days: 1)}) {
-    if (channel.type != 'archive' || (maxAge > Duration.zero && _pool.containsKey(channel.number))) return Future.value();
+    if (channel.sources.isEmpty || (maxAge > Duration.zero && _pool.containsKey(channel.number))) return Future.value();
     return _building[channel.number] ??= _ensurePool(channel, maxAge).whenComplete(() {
       _building.remove(channel.number);
     });
@@ -118,7 +121,7 @@ class TvEngine {
   /// Background probe after a fresh build, one channel at a time.
   void _queueProbe(Channel c) {
     final client = probeClient;
-    if (client == null) return;
+    if (client == null || c.type != 'archive') return; // the probe reads mp4 boxes; weather music is mp3
     _probing = _probing.then((_) async {
       try {
         await probeUpcoming(c, DateTime.now(), client);

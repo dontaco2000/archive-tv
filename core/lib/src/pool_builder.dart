@@ -29,7 +29,7 @@ Future<List<Entry>> buildPool(
   void Function(String message)? log,
   void Function(int done, int total)? onProgress,
 }) async {
-  if (channel.type != 'archive') return [];
+  if (channel.sources.isEmpty) return []; // e.g. a weatherstar channel without music
   final base = channel.yearRange ?? config.yearRange;
 
   var pool = await _collect(channel, config, api, base, itemsPerSource, concurrency, log, onProgress);

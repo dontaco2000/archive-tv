@@ -39,7 +39,7 @@ class Source {
 }
 
 /// One channel from `channels.json`. [type] is `archive` (Archive video) or
-/// `weatherstar` (the live weather web page, no sources).
+/// `weatherstar` (the weather screens; its optional [sources] are background music).
 class Channel {
   final int number;
   final String name;

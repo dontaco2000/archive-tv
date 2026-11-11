@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:archive_tv_core/archive_tv_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:http/http.dart' as http;
 import 'package:media_kit_video/media_kit_video.dart';
 import 'package:window_manager/window_manager.dart';
 
@@ -12,9 +13,11 @@ import '../input/actions.dart';
 import '../player/player_controller.dart';
 import '../settings/settings_store.dart';
 import '../settings/window_prefs.dart';
+import '../weather/weather.dart';
 import 'channel_logo.dart';
 import 'guide_overlay.dart';
 import 'menu_overlay.dart';
+import 'weatherstar.dart';
 
 enum TvMode { watch, guide, menu }
 
@@ -45,6 +48,9 @@ class _TvScreenState extends State<TvScreen> {
   GuideModel? _guide;
   Timer? _warmTimer;
   final _focus = FocusNode();
+  final _http = http.Client(); // weather data
+
+  bool get _weather => tv.channel?.type == 'weatherstar';
 
   @override
   void initState() {
@@ -53,10 +59,13 @@ class _TvScreenState extends State<TvScreen> {
   }
 
   bool _wasStandBy = true;
+  Channel? _shown;
 
   void _changed() {
     if (_wasStandBy && !tv.standBy) _showBanner();
+    if (_weather && tv.channel != _shown) _showBanner(); // the weather picture is up at once, music or not
     _wasStandBy = tv.standBy;
+    _shown = tv.channel;
     if (mounted) setState(() {});
   }
 
@@ -285,6 +294,7 @@ class _TvScreenState extends State<TvScreen> {
     _warmTimer?.cancel();
     _flashTimer?.cancel();
     _focus.dispose();
+    _http.close();
     super.dispose();
   }
 
@@ -311,15 +321,22 @@ class _TvScreenState extends State<TvScreen> {
                   children: [
                     // Widescreen video is letterboxed inside the 4:3 frame, never stretched or cropped.
                     Video(controller: tv.video, fit: BoxFit.contain, controls: NoVideoControls),
+                    // The weather channel draws its own screens; the player only carries its music.
+                    if (_weather)
+                      WeatherStarScreen(
+                        key: ValueKey(settings.weatherPlace),
+                        load: () => fetchWeather(_http, Place(settings.weatherPlace, settings.weatherLat, settings.weatherLon)),
+                      ),
                     // Corner bug: the channel's logo, small and faint, while a channel plays.
-                    if (settings.cornerBug && !tv.standBy && tv.channel != null)
+                    if (settings.cornerBug && !tv.standBy && tv.channel != null && !_weather)
                       Positioned(
                         top: 16,
                         right: 16,
                         child: Opacity(opacity: 0.5, child: ChannelLogo(channel: tv.channel!, height: 48)),
                       ),
-                    if (tv.standBy) StandByCard(channel: tv.channel, message: tv.message),
-                    if (_banner && !tv.standBy) InfoBanner(airing: tv.airing),
+                    if (tv.standBy && !_weather) StandByCard(channel: tv.channel, message: tv.message),
+                    if (_banner && _weather) InfoBanner(channel: tv.channel, airing: tv.airing, weatherPlace: settings.weatherPlace),
+                    if (_banner && !tv.standBy && !_weather) InfoBanner(channel: tv.channel, airing: tv.airing),
                     if (entry.text.isNotEmpty) Positioned(top: 24, right: 32, child: _digits(entry.text)),
                     if (_guide != null)
                       GuideOverlay(
@@ -424,15 +441,22 @@ class StandByCard extends StatelessWidget {
 }
 
 class InfoBanner extends StatelessWidget {
+  final Channel? channel;
   final Airing? airing;
-  const InfoBanner({super.key, this.airing});
+
+  /// Set on the weather channel: the banner names the place, and the music if any.
+  final String? weatherPlace;
+  const InfoBanner({super.key, this.channel, this.airing, this.weatherPlace});
 
   String _left(Duration d) => '${d.inMinutes} min left';
 
   @override
   Widget build(BuildContext context) {
-    final a = airing;
-    if (a == null) return const SizedBox.shrink();
+    final a = airing, ch = channel ?? airing?.channel, place = weatherPlace;
+    if (ch == null || (a == null && place == null)) return const SizedBox.shrink();
+    final lines = place != null
+        ? ['Local weather for $place', if (a != null) 'Music: ${cleanTitle(a.slot.entry.title)}']
+        : ['${cleanTitle(a!.slot.entry.title)}  (${_left(a.remaining)})', if (a.next != null) 'Next: ${cleanTitle(a.next!.entry.title)}'];
     return Align(
       alignment: Alignment.bottomCenter,
       child: Container(
@@ -442,7 +466,7 @@ class InfoBanner extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            ChannelLogo(channel: a.channel, height: 64),
+            ChannelLogo(channel: ch, height: 64),
             const SizedBox(width: 20),
             Expanded(
               child: Column(
@@ -450,18 +474,12 @@ class InfoBanner extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    '${a.channel.number}  ${a.channel.name.toUpperCase()}',
+                    '${ch.number}  ${ch.name.toUpperCase()}',
                     style: const TextStyle(color: Colors.white, fontSize: 26, fontFamily: 'Consolas', fontWeight: FontWeight.bold),
                   ),
-                  Text(
-                    '${cleanTitle(a.slot.entry.title)}  (${_left(a.remaining)})',
-                    style: const TextStyle(color: Color(0xFFFFE08A), fontSize: 20, fontFamily: 'Consolas'),
-                  ),
-                  if (a.next != null)
-                    Text(
-                      'Next: ${cleanTitle(a.next!.entry.title)}',
-                      style: const TextStyle(color: Color(0xFF9EC8FF), fontSize: 18, fontFamily: 'Consolas'),
-                    ),
+                  Text(lines[0], style: const TextStyle(color: Color(0xFFFFE08A), fontSize: 20, fontFamily: 'Consolas')),
+                  if (lines.length > 1)
+                    Text(lines[1], style: const TextStyle(color: Color(0xFF9EC8FF), fontSize: 18, fontFamily: 'Consolas')),
                 ],
               ),
             ),

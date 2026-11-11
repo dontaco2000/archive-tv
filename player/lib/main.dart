@@ -28,7 +28,10 @@ Future<void> main(List<String> args) async {
     await SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
   }
 
-  final dataDir = Directory(p.join((await getApplicationSupportDirectory()).path, 'ArchiveTV'))..createSync(recursive: true);
+  // Test switches: --data-dir=<folder> (use a copy instead of the real data folder), --channel=<n> (start there).
+  String? arg(String name) => args.where((a) => a.startsWith('--$name=')).map((a) => a.substring(name.length + 3)).firstOrNull;
+  final dataDir = Directory(arg('data-dir') ?? p.join((await getApplicationSupportDirectory()).path, 'ArchiveTV'))
+    ..createSync(recursive: true);
   final logFile = RotatingLog(File(p.join(dataDir.path, 'archive_tv.log'))); // 2 MB, keeps .1 and .2
   void log(String m) {
     final line = '${DateTime.now().toIso8601String()} $m';
@@ -57,8 +60,22 @@ Future<void> main(List<String> args) async {
   }
 
   final configFile = File(p.join(dataDir.path, 'channels.json'));
-  // The bundled config seeds the data folder once; after that the copy there is the user's to edit.
-  if (!configFile.existsSync()) configFile.writeAsStringSync(await rootBundle.loadString('assets/channels.json'));
+  // The bundled config seeds the data folder; the copy there is the user's to edit. A copy nobody
+  // edited (still equal to the bundle it was seeded from) follows app updates, the old one kept as .bak.
+  final seededFile = File(p.join(dataDir.path, 'channels.bundled.json'));
+  final bundled = await rootBundle.loadString('assets/channels.json');
+  if (!configFile.existsSync()) {
+    configFile.writeAsStringSync(bundled);
+  } else {
+    final current = configFile.readAsStringSync();
+    // ponytail: installs from before 0.2 have no channels.bundled.json, so their copy is taken as unedited (backed up).
+    if (current != bundled && (!seededFile.existsSync() || seededFile.readAsStringSync() == current)) {
+      configFile.copySync('${configFile.path}.bak');
+      configFile.writeAsStringSync(bundled);
+      log('channels.json updated to the bundled version (old copy: channels.json.bak)');
+    }
+  }
+  seededFile.writeAsStringSync(bundled);
 
   final TvEngine engine;
   try {
@@ -86,7 +103,8 @@ Future<void> main(List<String> args) async {
     }
   });
   bool isTunable(Channel c) => engine.tunable.any((t) => t.number == c.number);
-  final last = settings.lastChannel == null ? null : engine.config.channel(settings.lastChannel!);
+  final startAt = int.tryParse(arg('channel') ?? '') ?? settings.lastChannel;
+  final last = startAt == null ? null : engine.config.channel(startAt);
   if (last != null) {
     await engine.ensurePool(last);
     if (isTunable(last)) unawaited(tv.tune(last));
