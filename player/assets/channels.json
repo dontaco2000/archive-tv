@@ -255,8 +255,10 @@
       "genre": "News & Docs",
       "sources": [
         {
-          "query": "collection:tvnews AND language:(eng OR english) AND -identifier:(AZT_* OR NHK_* OR NTV_* OR IRAQ_*) AND -title:(\"live with regis\")",
-          "minDownloads": 200
+          "query": "subject:(\"news broadcast\" OR newscast OR \"evening news\" OR \"local news\" OR \"tv news\" OR \"television news\") AND -collection:(tvnews OR tvarchive) AND -title:(japanese OR japan)"
+        },
+        {
+          "query": "title:(newscast OR \"evening news\" OR \"nightly news\" OR \"eyewitness news\" OR \"world news tonight\" OR \"action news\") AND -collection:(tvnews OR tvarchive)"
         }
       ]
     },

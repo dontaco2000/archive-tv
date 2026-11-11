@@ -74,6 +74,15 @@ void main() {
     expect(pickEntries(meta, minSeconds: 10, maxSeconds: 50).map((e) => e.file), ['a.mp4']);
   });
 
+  test('private files and history/ old versions are skipped', () {
+    final meta = ItemMeta('x', files: const [
+      ArchiveFile('news.mp4', format: 'h.264', length: 3600, private: true),
+      ArchiveFile('history/files/ep.mp4.~1~', format: 'h.264', length: 600),
+      ArchiveFile('ep.mp4', format: 'h.264', length: 600),
+    ]);
+    expect(pickEntries(meta).map((e) => e.file), ['ep.mp4']);
+  });
+
   test('naturalCompare orders numbers by value', () {
     final names = ['Ep 10', 'Ep 2', 'ep 1', 'Ep 2b'];
     names.sort(naturalCompare);

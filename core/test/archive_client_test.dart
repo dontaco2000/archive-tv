@@ -91,6 +91,13 @@ void main() {
     expect(calls, 1);
   });
 
+  test('metadata reads the private flag of restricted files', () async {
+    final client = clientFor((req) async => http.Response(
+        '{"metadata":{"title":"t"},"files":[{"name":"a.mp4","private":"true"},{"name":"b.mp4"}]}', 200));
+    final files = (await client.metadata('x'))!.files;
+    expect(files.map((f) => f.private), [true, false]);
+  });
+
   test('connection errors are retried, then succeed', () async {
     var calls = 0;
     final client = clientFor((req) async {

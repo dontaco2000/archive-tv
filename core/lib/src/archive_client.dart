@@ -21,7 +21,10 @@ class ArchiveFile {
   final double? length;
   final String? title;
 
-  const ArchiveFile(this.name, {this.format, this.size, this.length, this.title});
+  /// Archive marks files of access-restricted items (e.g. TV News) private: downloads get 401/403.
+  final bool private;
+
+  const ArchiveFile(this.name, {this.format, this.size, this.length, this.title, this.private = false});
 }
 
 /// An item's metadata: its title, media type and files.
@@ -110,6 +113,7 @@ class ArchiveClient implements ArchiveApi {
             size: int.tryParse('${f['size'] ?? ''}'),
             length: parseLength(f['length']),
             title: f['title'] as String?,
+            private: '${f['private']}' == 'true',
           ),
       ],
     );

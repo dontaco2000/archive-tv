@@ -22,6 +22,8 @@ List<Entry> pickEntries(
   final lengthByStem = <String, double>{};
 
   for (final f in meta.files) {
+    // Private files can't be downloaded; history/ holds replaced old versions ("x.mp4.~1~").
+    if (f.private || f.name.startsWith('history/')) continue;
     final stem = _stem(f.name);
     if (f.length != null) lengthByStem.putIfAbsent(stem, () => f.length!);
     if (_rank(f, audio) != null) groups.putIfAbsent(stem, () => []).add(f);
