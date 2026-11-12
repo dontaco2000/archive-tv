@@ -13,6 +13,7 @@ import '../guide/guide_model.dart';
 import '../input/actions.dart';
 import '../input/gamepad.dart';
 import '../player/captions.dart';
+import '../player/picture.dart';
 import '../player/player_controller.dart';
 import '../remote/remote_server.dart';
 import '../settings/settings_store.dart';
@@ -113,6 +114,7 @@ class _TvScreenState extends State<TvScreen> {
       'leveling': settings.volumeLeveling,
       'levelingAvailable': tv.levelingAvailable,
       'weatherMode': settings.weatherMode,
+      'picture': settings.picture,
       'remoteLan': settings.remoteLan,
     };
   }
@@ -138,6 +140,9 @@ class _TvScreenState extends State<TvScreen> {
         settings.volumeLeveling = value as String;
       case 'weatherMode':
         settings.weatherMode = value as String;
+      case 'picture':
+        settings.picture = value as String;
+        _flash('Picture: ${settings.picture.toUpperCase()}');
     }
     _settingsChanged();
   }
@@ -305,6 +310,7 @@ class _TvScreenState extends State<TvScreen> {
     tv.setVolume(settings.muted ? 0 : settings.volume);
     unawaited(tv.setLeveling(settings.volumeLeveling));
     unawaited(tv.setCaptions(settings.captionsOn));
+    unawaited(tv.setPicture(settings.picture));
     final r = widget.remote;
     if (r != null) {
       r.ensurePin(); // first LAN enable makes the PIN; saved below
@@ -520,6 +526,10 @@ class _TvScreenState extends State<TvScreen> {
         _openMenu();
       case TvAction.onDemand:
         _openOverlay(TvMode.onDemand);
+      case TvAction.picture:
+        settings.picture = cyclePicture(settings.picture, 1);
+        _settingsChanged();
+        _flash('Picture: ${settings.picture.toUpperCase()}');
       case TvAction.remote:
         if (widget.remote == null) return KeyEventResult.ignored;
         unawaited(_toggleRemote());
@@ -595,18 +605,14 @@ class _TvScreenState extends State<TvScreen> {
                         child: Stack(
                           fit: StackFit.expand,
                           children: [
-                            // Widescreen video is letterboxed inside the 4:3 frame, never stretched or cropped.
+                            // Widescreen video is letterboxed inside the 4:3 frame, never stretched; Picture FILL
+                            // covers the frame instead (overflow cropped), and baked-in borders are cut (tv.crop).
                             // Captions sit at the bottom of the 4:3 frame, sized from its height (captions.dart).
-                            Video(
-                              controller: tv.video,
-                              fit: BoxFit.contain,
-                              controls: NoVideoControls,
-                              subtitleViewConfiguration: captionStyle(
-                                min(box.maxHeight, box.maxWidth / frameAspect(box.maxWidth, box.maxHeight)),
-                                settings.captionSize,
-                                visible: tv.captionState == 'on' || tv.captionState == 'forced',
-                              ),
-                            ),
+                            _video(captionStyle(
+                              min(box.maxHeight, box.maxWidth / frameAspect(box.maxWidth, box.maxHeight)),
+                              settings.captionSize,
+                              visible: tv.captionState == 'on' || tv.captionState == 'forced',
+                            )),
                             // The weather channel shows the WeatherStar 4000+ page (spec 5.8); the player only carries its music.
                             if (_weather)
                               WeatherLayers(
@@ -753,6 +759,51 @@ class _TvScreenState extends State<TvScreen> {
           ),
         ),
       ),
+    );
+  }
+
+  /// The video, cut to [PlayerController.crop] when the file has baked-in borders. Captions then go on top
+  /// of the frame instead of inside the cropped video, where they would be cut or scaled with it.
+  Widget _video(SubtitleViewConfiguration captions) {
+    final fit = settings.picture == 'fill' ? BoxFit.cover : BoxFit.contain;
+    final c = tv.crop, p = tv.player.state.videoParams;
+    final dw = (p.dw ?? 0).toDouble(), dh = (p.dh ?? 0).toDouble();
+    if (c == null || dw <= 0 || dh <= 0) {
+      return Video(controller: tv.video, fit: fit, controls: NoVideoControls, subtitleViewConfiguration: captions);
+    }
+    return Stack(
+      fit: StackFit.expand,
+      children: [
+        ClipRect(
+          child: FittedBox(
+            fit: fit,
+            child: SizedBox(
+              width: dw * c.w,
+              height: dh * c.h,
+              child: ClipRect(
+                child: Stack(
+                  clipBehavior: Clip.none,
+                  children: [
+                    Positioned(
+                      left: -dw * c.x,
+                      top: -dh * c.y,
+                      width: dw,
+                      height: dh,
+                      child: Video(
+                        controller: tv.video,
+                        fit: BoxFit.fill,
+                        controls: NoVideoControls,
+                        subtitleViewConfiguration: const SubtitleViewConfiguration(visible: false),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+        if (captions.visible) SubtitleView(controller: tv.video, configuration: captions),
+      ],
     );
   }
 

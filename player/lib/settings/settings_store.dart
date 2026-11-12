@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 
+import '../player/picture.dart';
+
 class Settings {
   Set<int> favorites = {};
   double volume = 80;
@@ -38,6 +40,9 @@ class Settings {
   bool captionsOn = false;
   int captionSize = 4;
 
+  /// Picture: 'auto' (crop baked-in black borders), 'fill' (also cover the frame) or 'off' (see picture.dart).
+  String picture = 'auto';
+
   Settings();
 
   Map<String, dynamic> toJson() => {
@@ -62,6 +67,7 @@ class Settings {
         'noticeAccepted': noticeAccepted,
         'captionsOn': captionsOn,
         'captionSize': captionSize,
+        'picture': picture,
       };
 
   factory Settings.fromJson(Map<String, dynamic> j) {
@@ -95,6 +101,7 @@ class Settings {
     if (levelingModes.contains(j['volumeLeveling'])) s.volumeLeveling = j['volumeLeveling'] as String;
     s.noticeAccepted = bool_('noticeAccepted', s.noticeAccepted);
     s.captionsOn = bool_('captionsOn', s.captionsOn);
+    if (pictureModes.contains(j['picture'])) s.picture = j['picture'] as String;
     if (j['captionSize'] is int) s.captionSize = (j['captionSize'] as int).clamp(1, 7);
     return s;
   }

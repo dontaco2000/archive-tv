@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:archive_tv_core/archive_tv_core.dart';
 import 'package:flutter/foundation.dart';
@@ -9,6 +10,7 @@ import 'package:media_kit_video/media_kit_video.dart';
 import '../engine/tv_engine.dart';
 import '../settings/settings_store.dart';
 import 'captions.dart';
+import 'picture.dart';
 import 'stall_watch.dart';
 
 /// Owns the single libmpv player. `tune` shows STAND BY, opens the airing file
@@ -67,9 +69,19 @@ class PlayerController extends ChangeNotifier {
           l.text.contains('Disabling filter')) {
         this.log('mpv ${l.level} ${l.prefix}: ${l.text.trim()}');
       }
+      // The Picture filters (vf) failed: mpv names them right after the lavfi error.
+      if (l.prefix == 'vf' && l.text.contains('atv_')) {
+        _vfFailedAt = DateTime.now();
+        if (pictureAvailable) unawaited(_pictureUnavailable(l.text.trim()));
+      }
       // The filter chain is only built when audio starts: a libmpv without these lavfi filters fails here.
+      // The same lavfi messages come from the Picture filters, so wait to hear which chain failed.
       if (levelingAvailable && (l.prefix == 'lavfi' || (l.prefix == 'user_filter_wrapper' && l.text.contains('failed')))) {
-        unawaited(_levelingUnavailable(reopen: true));
+        Timer(const Duration(milliseconds: 300), () {
+          if (levelingAvailable && DateTime.now().difference(_vfFailedAt) > const Duration(seconds: 1)) {
+            unawaited(_levelingUnavailable(reopen: true));
+          }
+        });
       }
     });
     _completedSub = player.stream.completed.listen((done) {
@@ -222,9 +234,11 @@ class PlayerController extends ChangeNotifier {
       captionState = 'off';
       _captioned = null;
       await resetCaptions(mpv).catchError((Object e) => log('captions reset failed: $e'));
+      _resetCrop(); // every file is measured afresh
       await player.open(Media(url, start: start), play: true);
       armed = true;
       await firstFrame.future.timeout(const Duration(seconds: 15));
+      _watchCrop();
     } finally {
       await sub.cancel();
       await errSub.cancel();
@@ -365,6 +379,112 @@ class PlayerController extends ChangeNotifier {
 
   void setVolume(double v) => player.setVolume(v.clamp(0, 100));
 
+  /// Picture setting ('auto', 'fill', 'off', see picture.dart). Auto and fill both measure the borders here;
+  /// the screen crops the picture to [crop] (fill also covers the frame).
+  String picture = 'off';
+
+  /// False once this libmpv has refused the cropdetect filter (e.g. Android's direct MediaCodec frames):
+  /// the picture then plays uncropped.
+  bool pictureAvailable = true;
+
+  /// The baked-in borders to cut from the file on screen, as fractions of the frame (left, top, width,
+  /// height); null = none (or still measuring).
+  ///
+  /// The crop is done by the screen, not by an mpv crop filter: media_kit sizes its video texture from
+  /// `video-params` (before filters), so a vf crop only shrinks the picture inside the old frame.
+  ({double x, double y, double w, double h})? crop;
+
+  CropRect? _decided; // for the file on screen: null = still measuring, full frame = no crop
+  Timer? _cropTimer;
+
+  bool get _detecting => picture != 'off' && pictureAvailable;
+  DateTime _vfFailedAt = DateTime(0);
+  String _hwdec = 'auto';
+
+  void _setCrop(CropRect? c, int srcW, int srcH) {
+    final next = c == null || (c.w == srcW && c.h == srcH) ? null : (x: c.x / srcW, y: c.y / srcH, w: c.w / srcW, h: c.h / srcH);
+    if (next == crop) return;
+    crop = next;
+    notifyListeners();
+  }
+
+  /// The filter can't run here: play uncropped (and hardware-decoded) for the rest of this run.
+  Future<void> _pictureUnavailable(String why) async {
+    pictureAvailable = false;
+    _cropTimer?.cancel();
+    _setCrop(null, 0, 0);
+    log('picture: cropdetect not available, playing uncropped ($why)');
+    final native = player.platform;
+    if (native is! NativePlayer) return;
+    await native.setProperty('vf', '').catchError((Object _) {});
+    await native.setProperty('hwdec', _hwdec = 'auto').catchError((Object _) {});
+  }
+
+  /// Turns mpv's border detector (vf) on or off for the setting. Never throws.
+  Future<void> _setVf() async {
+    final native = player.platform;
+    if (native is! NativePlayer) return;
+    final vf = _detecting ? cropdetectFilter : '';
+    // Software filters can't read GPU frames: on Windows decode with copy-back while detecting. Android keeps
+    // direct MediaCodec (copy-back is too heavy for a Fire Stick), so its filter fails and it stays uncropped.
+    final hw = vf.isNotEmpty && !Platform.isAndroid ? 'auto-copy' : 'auto';
+    try {
+      if (hw != _hwdec) await native.setProperty('hwdec', _hwdec = hw);
+      await native.setProperty('vf', vf);
+      if (vf.isNotEmpty && !(await native.getProperty('vf')).contains('cropdetect')) throw StateError('vf not taken');
+    } on Object catch (e) {
+      await _pictureUnavailable('$e'); // mpv keeps the old chain when it can't build the new one
+    }
+  }
+
+  /// After the first frame: reads cropdetect once a second and crops to what [decideCrop] settles on.
+  /// mpv builds a fresh filter chain (so a fresh cropdetect box) for every file.
+  void _watchCrop() {
+    _cropTimer?.cancel();
+    final native = player.platform;
+    if (!_detecting || native is! NativePlayer || channel?.type == 'weatherstar') return;
+    final gen = _generation;
+    final samples = <CropRect?>[];
+    _cropTimer = Timer.periodic(const Duration(seconds: 1), (t) async {
+      try {
+        if (gen != _generation || !_detecting) return t.cancel();
+        final w = int.tryParse(await native.getProperty('width')) ?? 0;
+        final h = int.tryParse(await native.getProperty('height')) ?? 0;
+        if (w <= 0 || h <= 0) return; // audio only, or not up yet
+        samples.add(parseCropdetect(await native.getProperty('vf-metadata/atv_cd')));
+        if (samples.length > 10) samples.removeAt(0);
+        final next = decideCrop(samples, w, h);
+        if (gen != _generation || next == null || !cropShouldChange(_decided, next, w, h)) return;
+        _decided = next;
+        final none = next.w == w && next.h == h;
+        log('picture: ${w}x$h -> ${none ? 'no crop' : 'crop $next'}');
+        _setCrop(next, w, h);
+        if (none) t.cancel(); // nothing left to widen
+      } on Object catch (e) {
+        t.cancel();
+        log('picture: detection stopped: $e');
+      }
+    });
+  }
+
+  /// Forgets the crop of the file on screen.
+  void _resetCrop() {
+    _cropTimer?.cancel();
+    _decided = null;
+    _setCrop(null, 0, 0);
+  }
+
+  /// The Picture setting: applies at once to the file on screen (detection restarts from scratch).
+  Future<void> setPicture(String mode) async {
+    if (mode == picture) return;
+    final wasDetecting = _detecting;
+    picture = mode;
+    if (_detecting == wasDetecting) return; // auto <-> fill: same crop, the screen changes the fit
+    _resetCrop();
+    await _setVf();
+    if (!standBy) _watchCrop();
+  }
+
   String? _leveling;
 
   /// False once libmpv has shown it can't build the leveling filters (the menu then says so).
@@ -417,6 +537,7 @@ class PlayerController extends ChangeNotifier {
     _slotTimer?.cancel();
     _retryTimer?.cancel();
     _stallTimer?.cancel();
+    _cropTimer?.cancel();
     _http.close();
     player.dispose();
     super.dispose();

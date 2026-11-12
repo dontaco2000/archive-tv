@@ -113,6 +113,7 @@ const remotePage = r'''<!DOCTYPE html>
       <div id="sample">Sample caption</div>
       <div class="row" id="setLeveling"><span>LEVELING</span><button data-v="off">OFF</button><button data-v="normal">NORM</button><button data-v="strong">STRONG</button></div>
       <div class="row" id="setWeather"><span>WEATHER</span><button data-v="web">WXSTAR</button><button data-v="native">CLASSIC</button></div>
+      <div class="row" id="setPicture"><span>PICTURE</span><button data-v="auto">AUTO</button><button data-v="fill">FILL</button><button data-v="off">OFF</button></div>
       <div class="row"><span>WI-FI</span><b id="wifi">--</b></div>
     </div>
   </div>
@@ -224,6 +225,7 @@ const remotePage = r'''<!DOCTYPE html>
   $('sizeUp').onclick = () => st && setting('captionSize', Math.min(7, st.captionSize + 1));
   document.querySelectorAll('#setLeveling button').forEach(b => b.onclick = () => setting('leveling', b.dataset.v));
   document.querySelectorAll('#setWeather button').forEach(b => b.onclick = () => setting('weatherMode', b.dataset.v));
+  document.querySelectorAll('#setPicture button').forEach(b => b.onclick = () => setting('picture', b.dataset.v));
   const notes = { forced: 'Foreign: English subs forced', none: 'No captions on this show', on: 'Showing captions', off: '' };
   function renderSettings(s) {
     $('ccBtn').classList.toggle('on', !!s.captionsOn || s.captions === 'forced');
@@ -235,6 +237,7 @@ const remotePage = r'''<!DOCTYPE html>
     $('sample').style.fontSize = (8 + s.captionSize * 1.5) + 'px';
     document.querySelectorAll('#setLeveling button').forEach(b => b.classList.toggle('sel', b.dataset.v === s.leveling));
     document.querySelectorAll('#setWeather button').forEach(b => b.classList.toggle('sel', b.dataset.v === s.weatherMode));
+    document.querySelectorAll('#setPicture button').forEach(b => b.classList.toggle('sel', b.dataset.v === s.picture));
     $('wifi').textContent = s.remoteLan ? 'ON (phones can connect)' : 'OFF (this PC only)';
   }
 

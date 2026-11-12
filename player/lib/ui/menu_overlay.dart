@@ -4,6 +4,7 @@ import 'package:archive_tv_core/archive_tv_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../player/picture.dart';
 import '../settings/settings_store.dart';
 
 const _font = 'Consolas';
@@ -11,7 +12,7 @@ const _panel = Color(0xE6101A5C); // same dark translucent blue as the guide
 const _yellow = Color(0xFFFFEB3B);
 const _cellBg = Color(0xFF1E2C8A);
 
-enum _Item { onDemand, favorite, favoritesOnly, volume, mute, leveling, captions, captionSize, startFullscreen, cornerBug, block, refresh, weatherMode, weatherLocation, openRemote, remoteLan, remoteInfo, about, close }
+enum _Item { onDemand, favorite, favoritesOnly, volume, mute, leveling, captions, captionSize, picture, startFullscreen, cornerBug, block, refresh, weatherMode, weatherLocation, openRemote, remoteLan, remoteInfo, about, close }
 
 /// Settings menu over the right half of the frame. Changes are made on [settings] in place
 /// and reported through [onChanged]; the screen saves and applies them.
@@ -135,6 +136,8 @@ class _MenuOverlayState extends State<MenuOverlay> {
         if (dir == 0) widget.onAbout?.call();
       case _Item.captions:
         _change(() => s.captionsOn = !s.captionsOn);
+      case _Item.picture:
+        _change(() => s.picture = cyclePicture(s.picture, dir == 0 ? 1 : dir));
       case _Item.captionSize:
         // Left/Right step and stop at the ends; Enter steps up and wraps.
         _change(() => s.captionSize = dir == 0 ? s.captionSize % 7 + 1 : (s.captionSize + dir).clamp(1, 7));
@@ -178,6 +181,7 @@ class _MenuOverlayState extends State<MenuOverlay> {
       _Item.about => 'About',
       _Item.captions => 'Captions: ${_onOff(s.captionsOn)}',
       _Item.captionSize => 'Caption size ${'#' * s.captionSize}${'.' * (7 - s.captionSize)} ${s.captionSize}',
+      _Item.picture => 'Picture: ${s.picture.toUpperCase()}',
       _Item.startFullscreen => 'Start fullscreen: ${_onOff(s.startFullscreen)}',
       _Item.cornerBug => 'Corner bug: ${_onOff(s.cornerBug)}',
       _Item.block => 'Block this item',

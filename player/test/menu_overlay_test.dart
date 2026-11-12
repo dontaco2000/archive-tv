@@ -72,7 +72,13 @@ void main() {
     await key(t, LogicalKeyboardKey.arrowDown);
     await key(t, LogicalKeyboardKey.enter);
     expect(r.settings.favorites, {4});
-    await key(t, LogicalKeyboardKey.arrowDown, 9);
+    await key(t, LogicalKeyboardKey.arrowDown, 7);
+    expect(selected(t), 'Picture: AUTO');
+    await key(t, LogicalKeyboardKey.enter);
+    expect(r.settings.picture, 'fill');
+    await key(t, LogicalKeyboardKey.arrowRight);
+    expect(selected(t), 'Picture: OFF');
+    await key(t, LogicalKeyboardKey.arrowDown, 3);
     expect(selected(t), 'Block this item');
     await key(t, LogicalKeyboardKey.enter);
     expect(r.calls, ['block']);

@@ -6,6 +6,7 @@ import 'dart:math';
 import 'package:flutter/services.dart';
 
 import '../input/gamepad.dart';
+import '../player/picture.dart';
 import '../settings/settings_store.dart';
 import 'remote_page.dart';
 import 'remote_window.dart';
@@ -55,7 +56,7 @@ class RemoteServer {
   void Function(int level) volume = (_) {};
   void Function(int number) channel = (_) {};
 
-  /// A checked POST /api/setting: captionsOn (bool), captionSize (int 1-7), leveling, weatherMode.
+  /// A checked POST /api/setting: captionsOn (bool), captionSize (int 1-7), leveling, weatherMode, picture.
   void Function(String name, Object value) setting = (_, _) {};
   Future<List<int>?> Function(int number) logo = (_) async => null;
 
@@ -257,6 +258,7 @@ class RemoteServer {
         'captionSize' when value is int => value.clamp(1, 7),
         'leveling' when levelingModes.contains(value) => value,
         'weatherMode' when value == 'web' || value == 'native' => value,
+        'picture' when pictureModes.contains(value) => value,
         _ => null,
       };
 

@@ -83,18 +83,21 @@ void main() {
     expect((await call('POST', '/api/setting', body: {'name': 'captionSize', 'value': 9})).$1, 200);
     expect((await call('POST', '/api/setting', body: {'name': 'leveling', 'value': 'strong'})).$1, 200);
     expect((await call('POST', '/api/setting', body: {'name': 'weatherMode', 'value': 'native'})).$1, 200);
+    expect((await call('POST', '/api/setting', body: {'name': 'picture', 'value': 'fill'})).$1, 200);
     for (final bad in [
       {'name': 'captionsOn', 'value': 'yes'},
       {'name': 'captionSize', 'value': 2.5},
       {'name': 'leveling', 'value': 'max'},
       {'name': 'weatherMode', 'value': 'radar'},
+      {'name': 'picture', 'value': 'zoom'},
+      {'name': 'picture', 'value': true},
       {'name': 'remoteLan', 'value': true},
       {'name': 'volume', 'value': 10},
       {'value': true},
     ]) {
       expect((await call('POST', '/api/setting', body: bad)).$1, 400, reason: '$bad');
     }
-    expect(sets, [('captionsOn', true), ('captionSize', 7), ('leveling', 'strong'), ('weatherMode', 'native')]);
+    expect(sets, [('captionsOn', true), ('captionSize', 7), ('leveling', 'strong'), ('weatherMode', 'native'), ('picture', 'fill')]);
     // Same rules as the other POSTs.
     const on = {'name': 'captionsOn', 'value': true};
     expect((await call('POST', '/api/setting', headers: local, body: on)).$1, 403);
@@ -111,7 +114,7 @@ void main() {
 
   test('the page has the CC button and a settings view with every control, and no REMOTE toggle', () async {
     final page = (await call('GET', '/remote', headers: local)).$3 as String;
-    for (final id in ['ccBtn', 'settings', 'setCaptions', 'sizeDown', 'sizeUp', 'sizeLevel', 'sample', 'setLeveling', 'setWeather', 'wifi']) {
+    for (final id in ['ccBtn', 'settings', 'setCaptions', 'sizeDown', 'sizeUp', 'sizeLevel', 'sample', 'setLeveling', 'setWeather', 'setPicture', 'wifi']) {
       expect(page, contains('id="$id"'), reason: id);
     }
     expect(page, contains("'/api/setting'"));

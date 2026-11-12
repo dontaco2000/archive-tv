@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:archive_tv_player/player/picture.dart';
 import 'package:archive_tv_player/settings/settings_store.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -132,5 +133,17 @@ void main() {
     expect(Settings.fromJson({'captionSize': 12}).captionSize, 7);
     expect(Settings.fromJson({'captionSize': '5'}).captionSize, 4);
     expect(Settings.fromJson({'captionsOn': 'yes'}).captionsOn, isFalse);
+  });
+
+  test('picture: auto by default (also for old files), cycles auto -> fill -> off, round-trips, bad values ignored', () {
+    expect(Settings().picture, 'auto');
+    file.writeAsStringSync(jsonEncode({'volume': 50}));
+    expect(SettingsStore(file).load().picture, 'auto');
+    expect([for (var m = 'auto', i = 0; i < 4; i++, m = cyclePicture(m, 1)) m], ['auto', 'fill', 'off', 'auto']);
+    expect(cyclePicture('auto', -1), 'off');
+    expect(cyclePicture('bogus', 1), 'fill');
+    SettingsStore(file).save(Settings()..picture = 'off');
+    expect(SettingsStore(file).load().picture, 'off');
+    expect(Settings.fromJson({'picture': 'zoom'}).picture, 'auto');
   });
 }
