@@ -98,7 +98,11 @@ class Channel {
   /// Themed weekday/time-of-day blocks ("Saturday Morning Cartoons"), filled from chosen sources.
   final List<TimeBlock> timeBlocks;
 
+  /// Can include mature content (`"mature": true`): the parental "Lock mature channels" preset locks it.
+  final bool mature;
+
   const Channel({
+    this.mature = false,
     this.timeBlocks = const [],
     required this.number,
     required this.name,

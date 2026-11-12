@@ -26,6 +26,12 @@ void expectError(String json, String text) {
 }
 
 void main() {
+  test('"mature": true marks a channel; default is false', () {
+    final c = parseChannelConfig('{"channels": [{"number": 2, "name": "A", "mature": true, "sources": [{"query": "x"}]},'
+        '{"number": 3, "name": "B", "sources": [{"query": "x"}]}]}');
+    expect([for (final ch in c.channels) ch.mature], [true, false]);
+  });
+
   test('parses a valid config', () {
     final c = parseChannelConfig(_good);
     expect(c.yearRange, const YearRange(1980, 2010));
