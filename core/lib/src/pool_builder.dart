@@ -34,7 +34,9 @@ Future<List<Entry>> buildPool(
   if (channel.sources.isEmpty) return []; // e.g. a weatherstar channel without music
   final base = channel.yearRange ?? config.yearRange;
 
-  final metas = <String, ItemMeta?>{}; // each item is fetched once, however often the range widens
+  // Each item is fetched once, however often the range widens. Only its picked entries are kept (not the item's
+  // whole file list, thousands of files for big packs) to stay light on 1 GB devices.
+  final metas = <String, List<Entry>>{};
   var pool = await _collect(channel, config, api, base, itemsPerSource, concurrency, log, onProgress, metas);
   final baseIds = {for (final e in pool) e.id};
   // Counts toward the minimum: comprehensible, and not a silent film the widening brought in.
@@ -106,7 +108,7 @@ Future<List<Entry>> _collect(
   int concurrency,
   void Function(String)? log,
   void Function(int, int)? onProgress,
-  Map<String, ItemMeta?> metas,
+  Map<String, List<Entry>> metas,
 ) async {
   final sourceOf = <String, Source>{}; // item -> the first source that found it
   final hitsToFetch = <String>[];
@@ -132,14 +134,19 @@ Future<List<Entry>> _collect(
   var done = 0;
   await forEachLimited(hitsToFetch, concurrency, (id) async {
     try {
-      final meta = metas.containsKey(id) ? metas[id] : metas[id] = await api.metadata(id);
-      if (meta != null) {
-        final maxS = sourceOf[id]?.maxSeconds;
-        for (final e in pickEntries(meta,
-            minSeconds: (channel.minSeconds ?? (channel.shortContent != null ? 60 : 120)).toDouble(),
-            maxSeconds: maxS == null ? 6 * 3600 : maxS.toDouble())) {
-          byId.putIfAbsent(e.id, () => e);
-        }
+      final maxS = sourceOf[id]?.maxSeconds;
+      final key = '$id|$maxS'; // the picks depend on the finding source's maxSeconds
+      var picks = metas[key];
+      if (picks == null) {
+        final meta = await api.metadata(id);
+        picks = metas[key] = meta == null
+            ? const []
+            : pickEntries(meta,
+                minSeconds: (channel.minSeconds ?? (channel.shortContent != null ? 60 : 120)).toDouble(),
+                maxSeconds: maxS == null ? 6 * 3600 : maxS.toDouble());
+      }
+      for (final e in picks) {
+        byId.putIfAbsent(e.id, () => e);
       }
     } on ArchiveException catch (e) {
       log?.call('skip $id: $e'); // one bad item must not sink the channel

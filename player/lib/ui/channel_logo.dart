@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:archive_tv_core/archive_tv_core.dart';
 import 'package:flutter/material.dart';
 
@@ -12,8 +14,11 @@ class ChannelLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final h = height;
     return Image.asset(logoAsset(channel.name),
-        height: height,
+        height: h,
+        // 1024 px logos decode to 4 MB each: on Android decode at the size shown (1 GB sticks).
+        cacheHeight: Platform.isAndroid && h != null ? (h * MediaQuery.devicePixelRatioOf(context)).ceil() : null,
         fit: BoxFit.contain,
         errorBuilder: (_, _, _) => Text(channel.name,
             style: const TextStyle(color: Colors.white, fontSize: 20, fontFamily: 'Consolas', fontWeight: FontWeight.bold)));

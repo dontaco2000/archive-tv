@@ -42,10 +42,13 @@ class TvEngine {
   /// Probes upcoming files after each fresh pool build; null turns probing off (tests).
   final http.Client? probeClient;
   final void Function(String) log;
+
+  /// Archive metadata fetches in flight during a pool build (lower on 1 GB Android TV sticks).
+  final int buildConcurrency;
   final Map<int, List<Entry>> _pool = {};
 
   TvEngine._(this.config, this.api, this.pools, this.snapshots, this.blocklist, this.slow, this.noSubs, this.probeClient,
-      this.log);
+      this.log, this.buildConcurrency);
 
   /// [configText] is the contents of channels.json; [dataDir] holds pools, snapshots, blocklist.
   factory TvEngine.open({
@@ -54,6 +57,7 @@ class TvEngine {
     ArchiveApi? api,
     http.Client? probeClient,
     void Function(String)? log,
+    int buildConcurrency = 4,
   }) {
     return TvEngine._(
       parseChannelConfig(configText),
@@ -65,6 +69,7 @@ class TvEngine {
       Blocklist.load(dataDir, name: 'nosubs.json'),
       probeClient,
       log ?? (_) {},
+      buildConcurrency,
     );
   }
 
@@ -120,7 +125,7 @@ class TvEngine {
       return;
     }
     try {
-      final built = await buildPool(channel, config, api, log: log);
+      final built = await buildPool(channel, config, api, concurrency: buildConcurrency, log: log);
       if (built.isEmpty) {
         // buildPool logs failed searches and returns what it has; an empty result means
         // the refresh failed. Never save it; keep the pool we already had, if any.

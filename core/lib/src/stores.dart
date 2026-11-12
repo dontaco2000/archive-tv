@@ -67,7 +67,19 @@ class PoolStore {
 
   /// How old the saved pool is, or null if none.
   Duration? age(int channel) {
-    final j = _readJson(_f(channel)) as Map<String, dynamic>?;
+    // `builtAt` is written first: read the file's head, not the whole (up to 2 MB) pool.
+    final f = _f(channel);
+    if (!f.existsSync()) return null;
+    final raf = f.openSync();
+    final String head;
+    try {
+      head = latin1.decode(raf.readSync(80));
+    } finally {
+      raf.closeSync();
+    }
+    final m = RegExp(r'^\{"builtAt":"([^"]+)"').firstMatch(head);
+    if (m != null) return DateTime.now().difference(DateTime.parse(m.group(1)!));
+    final j = _readJson(f) as Map<String, dynamic>?;
     if (j == null) return null;
     return DateTime.now().difference(DateTime.parse(j['builtAt'] as String));
   }
@@ -109,7 +121,20 @@ class SnapshotStore {
       {Blocklist? blocklist, List<SerialBlock> Function(DateTime day)? serials, bool Function(Entry)? inShuffle}) {
     final key = '$channel-${dayKey(day)}';
     final f = _f(channel, day);
-    var snap = _days[key] ?? _read(f);
+    var snap = _days[key];
+    if (snap == null) {
+      snap = _read(f);
+      // A saved day is a whole shuffled pool: share the pool's Entry objects instead of keeping a second
+      // copy of every entry per day (49 channels x 7 days of copies ran a 1 GB Fire Stick out of memory).
+      if (snap != null) {
+        final byId = {for (final e in pool) e.id: e};
+        Entry same(Entry e) => byId[e.id] ?? e;
+        snap = (
+          [for (final e in snap.$1) same(e)],
+          [for (final b in snap.$2) b.withEpisodes([for (final e in b.episodes) same(e)])]
+        );
+      }
+    }
     var dirty = false;
     if (snap == null) {
       snap = (dayOrder(pool, 'ch$channel', day), const <SerialBlock>[]);
@@ -146,7 +171,10 @@ class SnapshotStore {
   void ensureWeek(int channel, DateTime today, List<Entry> pool,
       {int days = 7, List<SerialBlock> Function(DateTime day)? serials}) {
     for (var i = 0; i < days; i++) {
-      day(channel, DateTime(today.year, today.month, today.day + i), pool, serials: serials);
+      final d = DateTime(today.year, today.month, today.day + i);
+      // A saved day needs no reading unless serial blocks may have to be added to it.
+      if (serials == null && _f(channel, d).existsSync()) continue;
+      day(channel, d, pool, serials: serials);
     }
   }
 

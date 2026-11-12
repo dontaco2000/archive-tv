@@ -46,6 +46,14 @@ void main() {
     expect(again.map((s) => s.entry.id), first.map((s) => s.entry.id));
   });
 
+  test('a day read from disk shares the pool\'s Entry objects (no second copy per day)', () {
+    final dir = Directory.systemTemp.createTempSync('snapshare');
+    addTearDown(() => dir.deleteSync(recursive: true));
+    SnapshotStore(dir).day(5, day, pool);
+    final read = SnapshotStore(dir).day(5, day, pool); // a fresh store reads the file
+    expect(read.every((s) => pool.any((e) => identical(e, s.entry))), isTrue);
+  });
+
   test('pool store round-trips and blocklist filters by entry or item', () {
     final dir = Directory.systemTemp.createTempSync('pool');
     addTearDown(() => dir.deleteSync(recursive: true));

@@ -24,7 +24,8 @@ class Settings {
 
   /// Weather channel picture: 'web' (the real WeatherStar 4000+ page) or 'native' (the app's own screens,
   /// also the fallback when the page can't load).
-  String weatherMode = 'web';
+  /// Android TV sticks (1 GB) start on 'native': the page's WebView costs ~140 MB. Saved there under [_weatherKey].
+  String weatherMode = Platform.isAndroid ? 'native' : 'web';
 
   /// Remote control reachable from phones on the LAN (off: this PC only), and its 4-digit PIN.
   bool remoteLan = false;
@@ -63,7 +64,7 @@ class Settings {
         'weatherPlace': weatherPlace,
         'weatherLat': weatherLat,
         'weatherLon': weatherLon,
-        'weatherMode': weatherMode,
+        _weatherKey: weatherMode,
         'remoteLan': remoteLan,
         'remotePin': remotePin,
         'volumeLeveling': volumeLeveling,
@@ -98,7 +99,7 @@ class Settings {
       s.weatherLat = lat;
       s.weatherLon = lon;
     }
-    if (const {'web', 'native'}.contains(j['weatherMode'])) s.weatherMode = j['weatherMode'] as String;
+    if (const {'web', 'native'}.contains(j[_weatherKey])) s.weatherMode = j[_weatherKey] as String;
     s.remoteLan = bool_('remoteLan', s.remoteLan);
     final pin = j['remotePin'];
     if (pin is String && RegExp(r'^\d{4}$').hasMatch(pin)) s.remotePin = pin;
@@ -115,6 +116,9 @@ class Settings {
     return s;
   }
 }
+
+/// Android uses its own key, so older Android settings (which saved the then-default 'web') start native.
+final _weatherKey = Platform.isAndroid ? 'weatherModeTv' : 'weatherMode';
 
 class SettingsStore {
   final File file;

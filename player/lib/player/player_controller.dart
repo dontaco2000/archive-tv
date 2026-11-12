@@ -17,7 +17,8 @@ import 'stall_watch.dart';
 /// at its offset, and clears STAND BY on the first frame.
 class PlayerController extends ChangeNotifier {
   final TvEngine engine;
-  final Player player = Player(configuration: const PlayerConfiguration(bufferSize: 16 * 1024 * 1024));
+  // bufferSize is mpv's forward and back demuxer cache each; 1 GB Android sticks get half.
+  final Player player = Player(configuration: PlayerConfiguration(bufferSize: (Platform.isAndroid ? 8 : 16) << 20));
   late final VideoController video = VideoController(player);
   final void Function(String) log;
 

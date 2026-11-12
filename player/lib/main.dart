@@ -41,6 +41,8 @@ void main(List<String> args) {
 
 Future<void> _main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
+  // Fire TV sticks have 1 GB: decoded images (channel logos) stay under 24 MB instead of Flutter's 100 MB.
+  if (Platform.isAndroid) PaintingBinding.instance.imageCache.maximumSizeBytes = 24 << 20;
   FlutterError.onError = (d) {
     FlutterError.presentError(d);
     _uncaught('flutter', d.exception, d.stack);
@@ -119,7 +121,12 @@ Future<void> _main(List<String> args) async {
 
   final TvEngine engine;
   try {
-    engine = TvEngine.open(configText: configFile.readAsStringSync(), dataDir: dataDir, probeClient: http.Client(), log: log);
+    engine = TvEngine.open(
+        configText: configFile.readAsStringSync(),
+        dataDir: dataDir,
+        probeClient: http.Client(),
+        log: log,
+        buildConcurrency: Platform.isAndroid ? 2 : 4);
   } on Object catch (e) {
     log('channels.json error: $e');
     runApp(MaterialApp(
@@ -167,7 +174,8 @@ Future<void> _main(List<String> args) async {
   bool isTunable(Channel c) => engine.tunable.any((t) => t.number == c.number);
   final startAt = int.tryParse(arg('channel') ?? '') ?? settings.lastChannel;
   final last = startAt == null ? null : engine.config.channel(startAt);
-  if (last != null) {
+  // A 1 GB Android TV stick can't start on the weather page while pools build: start on the first channel instead.
+  if (last != null && !(Platform.isAndroid && last.type == 'weatherstar' && arg('channel') == null)) {
     await engine.ensurePool(last);
     if (isTunable(last)) unawaited(tv.tune(last));
   }
