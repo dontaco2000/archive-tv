@@ -12,7 +12,7 @@ const _panel = Color(0xE6101A5C); // same dark translucent blue as the guide
 const _yellow = Color(0xFFFFEB3B);
 const _cellBg = Color(0xFF1E2C8A);
 
-enum _Item { onDemand, favorite, favoritesOnly, volume, mute, leveling, captions, captionSize, picture, startFullscreen, cornerBug, block, refresh, weatherMode, weatherLocation, openRemote, remoteLan, remoteInfo, lastError, openLog, credits, about, close }
+enum _Item { onDemand, favorite, favoritesOnly, volume, mute, leveling, captions, captionSize, picture, startFullscreen, cornerBug, block, wrongChannel, sleep, refresh, weatherMode, weatherLocation, openRemote, remoteLan, remoteInfo, lastError, openLog, credits, about, close }
 
 /// "Last error: none", or its first line (the menu clips it); Enter copies the whole text.
 String lastErrorLabel(String? e) {
@@ -56,6 +56,14 @@ class MenuOverlay extends StatefulWidget {
   /// The phone address and PIN, shown while the remote is on Wi-Fi.
   final String? remoteLanInfo;
 
+  /// "Wrong channel for this program": skip it and keep it off this channel (null hides the item).
+  final VoidCallback? onWrongChannel;
+
+  /// Steps the sleep timer (null hides the item); [sleepStep] is the chosen step (0 off), [sleepLeft] minutes left.
+  final VoidCallback? onSleep;
+  final int sleepStep;
+  final int? sleepLeft;
+
   const MenuOverlay({
     super.key,
     required this.settings,
@@ -75,6 +83,10 @@ class MenuOverlay extends StatefulWidget {
     this.onOpenRemote,
     this.remoteLanInfo,
     this.remoteOpen = false,
+    this.onWrongChannel,
+    this.onSleep,
+    this.sleepStep = 0,
+    this.sleepLeft,
   });
 
   @override
@@ -90,7 +102,9 @@ class _MenuOverlayState extends State<MenuOverlay> {
           if (!(Platform.isAndroid && i == _Item.startFullscreen) &&
               !(widget.onOpenRemote == null && (i == _Item.openRemote || i == _Item.remoteLan)) &&
               !(widget.remoteLanInfo == null && i == _Item.remoteInfo) &&
-              !(widget.onOpenLogFolder == null && i == _Item.openLog))
+              !(widget.onOpenLogFolder == null && i == _Item.openLog) &&
+              !(widget.onWrongChannel == null && i == _Item.wrongChannel) &&
+              !(widget.onSleep == null && i == _Item.sleep))
             i,
       ];
   Settings get s => widget.settings;
@@ -134,6 +148,10 @@ class _MenuOverlayState extends State<MenuOverlay> {
         _change(() => s.cornerBug = !s.cornerBug);
       case _Item.block:
         if (dir == 0) widget.onBlockCurrent();
+      case _Item.wrongChannel:
+        if (dir == 0) widget.onWrongChannel?.call();
+      case _Item.sleep:
+        widget.onSleep?.call(); // Enter, Left and Right all step it
       case _Item.refresh:
         if (dir == 0) widget.onRefresh();
       case _Item.close:
@@ -214,6 +232,8 @@ class _MenuOverlayState extends State<MenuOverlay> {
       _Item.startFullscreen => 'Start fullscreen: ${_onOff(s.startFullscreen)}',
       _Item.cornerBug => 'Corner bug: ${_onOff(s.cornerBug)}',
       _Item.block => 'Block this item',
+      _Item.wrongChannel => 'Wrong channel for this program',
+      _Item.sleep => widget.sleepStep == 0 ? 'Sleep timer: OFF' : 'Sleep timer: ${widget.sleepStep} MIN (${widget.sleepLeft ?? widget.sleepStep} min left)',
       _Item.refresh => 'Refresh channels',
       _Item.close => 'Close',
       _Item.onDemand => 'On Demand',

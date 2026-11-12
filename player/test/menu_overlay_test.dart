@@ -136,6 +136,38 @@ void main() {
     expect(calls, ['about']);
   });
 
+  testWidgets('Wrong channel and Sleep timer items follow Block and call back (Android reaches them here)', (t) async {
+    final calls = <String>[];
+    Widget menu(int step, int? left) => MaterialApp(
+          home: Scaffold(
+            body: MenuOverlay(
+              settings: Settings(),
+              current: ch,
+              onChanged: (_) {},
+              onBlockCurrent: () {},
+              onRefresh: () {},
+              onClose: () {},
+              onWrongChannel: () => calls.add('wrong'),
+              onSleep: () => calls.add('sleep'),
+              sleepStep: step,
+              sleepLeft: left,
+            ),
+          ),
+        );
+    await t.pumpWidget(menu(0, null));
+    await t.pump();
+    await key(t, LogicalKeyboardKey.arrowDown, 12); // ... Corner bug, Block this item, Wrong channel
+    expect(selected(t), 'Wrong channel for this program');
+    await key(t, LogicalKeyboardKey.enter);
+    await key(t, LogicalKeyboardKey.arrowDown);
+    expect(selected(t), 'Sleep timer: OFF');
+    await key(t, LogicalKeyboardKey.enter);
+    await key(t, LogicalKeyboardKey.arrowRight);
+    expect(calls, ['wrong', 'sleep', 'sleep']);
+    await t.pumpWidget(menu(30, 12));
+    expect(selected(t), 'Sleep timer: 30 MIN (12 min left)');
+  });
+
   testWidgets('Captions toggles; Caption size steps 1-7 (Left/Right clamp, Enter wraps)', (t) async {
     final r = await pump(t);
     await key(t, LogicalKeyboardKey.arrowDown, 6);

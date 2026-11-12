@@ -103,7 +103,7 @@ const remotePage = r'''<!DOCTYPE html>
 </style>
 </head>
 <body>
-<div class="remote" id="remote" title="Keys: arrows, Enter, Esc, 0-9, G guide, M menu, I info, F fav, O on demand, U/Space mute, +/- volume, PgUp/PgDn channel">
+<div class="remote" id="remote" title="Keys: arrows, Enter, Esc, 0-9, G guide, M menu, I info, F fav, O on demand, L last channel, T sleep, U/Space mute, +/- volume, PgUp/PgDn channel">
   <div class="top"><button id="power" title="Power: turn Archive TV off (tap twice)" aria-label="Power off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 3v9"/><path d="M6.3 6.3a8 8 0 1 0 11.4 0"/></svg><span id="powerTxt"></span></button><button class="mute" data-key="mute" id="mute">MUTE</button></div>
   <div class="lcd">
     <span class="brand">ARCHIVE TV</span>
@@ -157,8 +157,10 @@ const remotePage = r'''<!DOCTYPE html>
     <button data-key="volUp" title="Volume up">+</button>
   </div>
 
-  <div class="grid g2">
+  <div class="grid g4">
     <button id="numOpen" title="Number pad">123</button>
+    <button data-key="last" title="Last channel: back to the one before">LAST</button>
+    <button data-key="sleep" id="sleep" title="Sleep timer: Off, 15, 30, 60, 90, 120 min">SLEEP</button>
     <button data-key="fullscreen" title="Fullscreen">FULL</button>
   </div>
 </div>
@@ -261,6 +263,8 @@ const remotePage = r'''<!DOCTYPE html>
     $('mode').textContent = s.mode === 'watch' ? '' : s.mode.toUpperCase();
     if (!dragging) setVol(s.volume, s.muted);
     $('fav').classList.toggle('fav-on', !!s.favorite);
+    $('sleep').textContent = s.sleep == null ? 'SLEEP' : 'SLP ' + s.sleep;
+    $('sleep').classList.toggle('fav-on', s.sleep != null);
     const n = c ? c.number : null;
     if (n !== logoFor) { logoFor = n; $('logo').style.visibility = 'hidden'; if (n != null) $('logo').src = '/logo/' + n + '.png'; }
   }
@@ -316,7 +320,7 @@ const remotePage = r'''<!DOCTYPE html>
 
   const keymap = { ArrowUp:'up', ArrowDown:'down', ArrowLeft:'left', ArrowRight:'right', Enter:'ok', Escape:'back', Backspace:'back',
     g:'guide', m:'menu', i:'info', f:'favorite', o:'ondemand', u:'mute', ' ':'mute', '+':'volUp', '=':'volUp', '-':'volDown',
-    PageUp:'channelUp', PageDown:'channelDown', F11:'fullscreen', '[':'audioEarlier', ']':'audioLater', '\\':'audioReset' };
+    PageUp:'channelUp', PageDown:'channelDown', F11:'fullscreen', '[':'audioEarlier', ']':'audioLater', '\\':'audioReset', t:'sleep', l:'last' };
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && document.querySelector('.panel.open')) { closeAll(); e.preventDefault(); return; }
     if ((e.key === 'Escape' || e.key === 'Backspace') && lcd.classList.contains('set')) { toggleSettings(false); e.preventDefault(); return; }

@@ -57,4 +57,22 @@ void main() {
     expect(flip(2, 1, {99}, true), 3); // favorite not tunable: all channels
     expect(flipTarget(const [], 2, 1), isNull);
   });
+
+  test('T, L and X: sleep timer, last channel, wrong channel', () {
+    expect(keyboardBindings[LogicalKeyboardKey.keyT]!.action, TvAction.sleep);
+    expect(keyboardBindings[LogicalKeyboardKey.keyL]!.action, TvAction.lastChannel);
+    expect(keyboardBindings[LogicalKeyboardKey.keyX]!.action, TvAction.wrongChannel);
+  });
+
+  test('sleep steps cycle Off/15/30/60/90/120 and minutes left round up', () {
+    var s = 0;
+    final seen = [for (var i = 0; i < 6; i++) s = nextSleepStep(s)];
+    expect(seen, [15, 30, 60, 90, 120, 0]);
+    final now = DateTime(2026, 11, 12, 22);
+    expect(sleepMinutesLeft(null, now), isNull);
+    expect(sleepMinutesLeft(now.add(const Duration(minutes: 30)), now), 30);
+    expect(sleepMinutesLeft(now.add(const Duration(seconds: 61)), now), 2);
+    expect(sleepMinutesLeft(now.add(const Duration(seconds: 1)), now), 1);
+    expect(sleepMinutesLeft(now.subtract(const Duration(seconds: 5)), now), 0);
+  });
 }

@@ -62,6 +62,8 @@ void main() {
     expect(remoteKeys['volUp'], LogicalKeyboardKey.equal);
     expect(remoteKeys['channelDown'], LogicalKeyboardKey.pageDown);
     expect(remoteKeys['7'], LogicalKeyboardKey.digit7);
+    expect(remoteKeys['sleep'], LogicalKeyboardKey.keyT);
+    expect(remoteKeys['last'], LogicalKeyboardKey.keyL);
     expect((await call('POST', '/api/key', body: {'key': 'guide'})).$1, 200);
     expect((await call('POST', '/api/key', body: {'key': 'launchMissiles'})).$1, 400);
     expect(keys, ['guide']);
@@ -145,6 +147,8 @@ void main() {
     expect(page, contains('TAP AGAIN'));
     expect(page, contains('3000'));
     expect(page, isNot(contains('data-key="power"'))); // not a key: no keyboard shortcut can quit
+    expect(page, contains('data-key="sleep"'));
+    expect(page, contains('data-key="last"'));
   });
 
   test('POSTs need X-Remote; foreign Host or Origin is rejected', () async {

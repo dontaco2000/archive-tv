@@ -2,7 +2,7 @@ import 'package:archive_tv_core/archive_tv_core.dart';
 import 'package:flutter/services.dart';
 
 /// What the viewer asked for, independent of which device asked.
-enum TvAction { channelUp, channelDown, digit, info, guide, menu, favorite, mute, volumeUp, volumeDown, toggleFullscreen, ok, back, onDemand, remote, picture, audioEarlier, audioLater, audioReset }
+enum TvAction { channelUp, channelDown, digit, info, guide, menu, favorite, mute, volumeUp, volumeDown, toggleFullscreen, ok, back, onDemand, remote, picture, audioEarlier, audioLater, audioReset, sleep, lastChannel, wrongChannel }
 
 class KeyBinding {
   final TvAction action;
@@ -31,6 +31,9 @@ final Map<LogicalKeyboardKey, KeyBinding> keyboardBindings = {
   LogicalKeyboardKey.bracketLeft: const KeyBinding(TvAction.audioEarlier), // A/V sync nudge, saved per item
   LogicalKeyboardKey.bracketRight: const KeyBinding(TvAction.audioLater),
   LogicalKeyboardKey.backslash: const KeyBinding(TvAction.audioReset),
+  LogicalKeyboardKey.keyT: const KeyBinding(TvAction.sleep), // sleep timer: Off -> 15 -> 30 -> 60 -> 90 -> 120 min
+  LogicalKeyboardKey.keyL: const KeyBinding(TvAction.lastChannel), // back to the previous channel (flip between two)
+  LogicalKeyboardKey.keyX: const KeyBinding(TvAction.wrongChannel), // this program is on the wrong channel: skip + block here
   LogicalKeyboardKey.enter: const KeyBinding(TvAction.ok),
   LogicalKeyboardKey.escape: const KeyBinding(TvAction.back),
   // Android TV / Fire TV remote. Select opens the guide when no digits are pending, and Back
@@ -88,4 +91,17 @@ class NumberEntry {
   }
 
   void clear() => _text = '';
+}
+
+/// Sleep timer steps in minutes (0 = off), cycled by T, the menu and the remote's SLEEP.
+const sleepSteps = [0, 15, 30, 60, 90, 120];
+
+/// The step after [current] (wrapping to off).
+int nextSleepStep(int current) => sleepSteps[(sleepSteps.indexOf(current) + 1) % sleepSteps.length];
+
+/// Whole minutes left until [at] (rounded up, so "1 min" shows until it fires); null when off.
+int? sleepMinutesLeft(DateTime? at, DateTime now) {
+  if (at == null) return null;
+  final s = at.difference(now).inSeconds;
+  return s <= 0 ? 0 : (s + 59) ~/ 60;
 }

@@ -125,6 +125,7 @@ class _TvScreenState extends State<TvScreen> {
       'picture': settings.picture,
       'audioDelay': tv.itemId == null ? 0 : settings.audioDelays[tv.itemId] ?? 0,
       'remoteLan': settings.remoteLan,
+      'sleep': sleepMinutesLeft(_sleepAt, DateTime.now()),
     };
   }
 
@@ -204,10 +205,97 @@ class _TvScreenState extends State<TvScreen> {
 
   bool _wasStandBy = true;
   Channel? _shown;
+  Channel? _previous; // the channel before this one (this run only; startup resumes settings.lastChannel)
+
+  /// L key / remote LAST: back to the previous channel, so two presses flip between two channels.
+  void _lastChannel() {
+    final p = _previous;
+    if (p == null) return _flash('No last channel');
+    unawaited(tv.tune(p));
+  }
+
+  /// X key / menu: the program on screen doesn't belong on this channel. Logged for audits
+  /// (wrong_channel.jsonl), its item kept off this channel for good, and on to what airs next.
+  void _wrongChannel() {
+    if (mode != TvMode.watch) _closeMenu();
+    final c = tv.channel, e = tv.onDemand ?? tv.airing?.slot.entry;
+    if (c == null || e == null || _weather) return _flash('Nothing to remove');
+    tv.engine.markWrongChannel(c, e);
+    _flash('REMOVED FROM THIS CHANNEL');
+    if (tv.onDemand != null) {
+      _cancelNext();
+      tv.returnToLive();
+    } else {
+      unawaited(tv.tune(c));
+    }
+  }
+
+  // ---- Sleep timer: T, the menu item and the remote's SLEEP step Off/15/30/60/90/120 min. When it runs out a
+  // 20 s "Going to sleep" card comes up (any key stays), the sound fades over its last 10 s, then the app turns off.
+  int _sleepStep = 0;
+  DateTime? _sleepAt;
+  int? _sleepCard; // seconds left on the card; null while it isn't up
+  Timer? _sleepTimer;
+
+  void _cycleSleep() {
+    _sleepTimer?.cancel();
+    _sleepStep = nextSleepStep(_sleepStep);
+    _sleepAt = _sleepStep == 0 ? null : DateTime.now().add(Duration(minutes: _sleepStep));
+    if (_sleepAt != null) _sleepTimer = Timer.periodic(const Duration(seconds: 1), (_) => _sleepTick());
+    _flash(_sleepStep == 0 ? 'SLEEP OFF' : 'SLEEP $_sleepStep MIN');
+  }
+
+  void _sleepTick() {
+    final at = _sleepAt;
+    if (at == null || !mounted) return;
+    if (_sleepCard == null) {
+      if (DateTime.now().isBefore(at)) {
+        if (mode == TvMode.menu || _banner) setState(() {}); // minutes left in the menu item / SLEEP marker
+        return;
+      }
+      if (_guide != null) {
+        _closeGuide();
+      } else if (mode != TvMode.watch) {
+        _closeMenu();
+      }
+      _sleepCard = 20;
+    } else {
+      _sleepCard = _sleepCard! - 1;
+    }
+    final left = _sleepCard!;
+    if (left <= 10 && !settings.muted) tv.setVolume(settings.volume * left / 10);
+    if (left <= 0) {
+      _sleepTimer?.cancel();
+      unawaited(_goToSleep());
+    }
+    setState(() {});
+  }
+
+  /// Any key on the "Going to sleep" card: the timer is off and the sound comes back.
+  void _stayAwake() {
+    _sleepTimer?.cancel();
+    _sleepStep = 0;
+    _sleepAt = _sleepCard = null;
+    tv.setVolume(settings.muted ? 0 : settings.volume);
+    _flash('SLEEP OFF');
+  }
+
+  /// Windows: the same clean shutdown as the window's X and the remote's POWER. Android: stop and go to the
+  /// home screen so the stick can sleep.
+  Future<void> _goToSleep() async {
+    tv.log('sleep timer: turning off');
+    if (!Platform.isAndroid) return windowManager.close();
+    await tv.player.stop();
+    _sleepStep = 0;
+    _sleepAt = _sleepCard = null;
+    tv.setVolume(settings.muted ? 0 : settings.volume); // a later resume of this run plays at the usual level
+    await SystemNavigator.pop();
+  }
 
   void _changed() {
     if (_wasStandBy && !tv.standBy) _showBanner();
     if (tv.channel != _shown) {
+      if (_shown != null && tv.channel != null) _previous = _shown; // L / LAST flips back to it
       if (_weather) _showBanner(); // the weather picture is up at once, music or not
       _webFailed = _webLoaded = false; // every tune tries the WeatherStar page again...
       _webTune++; // ...in a fresh WebView, so "loaded" always belongs to the page on screen
@@ -487,6 +575,10 @@ class _TvScreenState extends State<TvScreen> {
     // Pad buttons were already re-sent as keyboard keys (input/gamepad.dart); swallow the raw
     // button so Android can't turn an unhandled B into Back.
     if (gamepadKeys.containsKey(event.logicalKey)) return KeyEventResult.handled;
+    if (_sleepCard != null) {
+      if (event is! KeyRepeatEvent) _stayAwake(); // any key keeps the TV on
+      return KeyEventResult.handled;
+    }
     final b = keyboardBindings[event.logicalKey];
     if (b == null) return KeyEventResult.ignored;
     // The "Next: ..." card takes OK (play now) and Back (cancel, return to live).
@@ -585,6 +677,12 @@ class _TvScreenState extends State<TvScreen> {
         _nudgeAudio(audioDelayStepMs);
       case TvAction.audioReset:
         _nudgeAudio(0);
+      case TvAction.sleep:
+        _cycleSleep();
+      case TvAction.lastChannel:
+        _lastChannel();
+      case TvAction.wrongChannel:
+        _wrongChannel();
     }
     return KeyEventResult.handled;
   }
@@ -592,7 +690,9 @@ class _TvScreenState extends State<TvScreen> {
   /// The Android remote's Back key (a route pop, never a key event): closes the guide or menu,
   /// otherwise leaves the app.
   void _systemBack() {
-    if (mode == TvMode.guide) {
+    if (_sleepCard != null) {
+      _stayAwake();
+    } else if (mode == TvMode.guide) {
       _closeGuide();
     } else if (mode == TvMode.about) {
       _closeAbout();
@@ -628,6 +728,7 @@ class _TvScreenState extends State<TvScreen> {
     _nextTimer?.cancel();
     _remoteWatch?.cancel();
     _mouseTimer?.cancel();
+    _sleepTimer?.cancel();
     _focus.dispose();
     _http.close();
     super.dispose();
@@ -702,7 +803,12 @@ class _TvScreenState extends State<TvScreen> {
                             if (_banner && _weather)
                               InfoBanner(channel: tv.channel, airing: tv.airing, weatherPlace: settings.weatherPlace),
                             if (_banner && !tv.standBy && !_weather)
-                              InfoBanner(channel: tv.channel, airing: tv.airing, onDemand: tv.onDemand),
+                              InfoBanner(
+                                channel: tv.channel,
+                                airing: tv.airing,
+                                onDemand: tv.onDemand,
+                                sleepMinutes: sleepMinutesLeft(_sleepAt, DateTime.now()),
+                              ),
                             if (entry.text.isNotEmpty) Positioned(top: 24, right: 32, child: _digits(entry.text)),
                             if (_guide != null)
                               GuideOverlay(
@@ -742,6 +848,10 @@ class _TvScreenState extends State<TvScreen> {
                                         unawaited(_toggleRemote());
                                       },
                                 remoteOpen: _remoteOpen,
+                                onWrongChannel: _wrongChannel,
+                                onSleep: _cycleSleep,
+                                sleepStep: _sleepStep,
+                                sleepLeft: sleepMinutesLeft(_sleepAt, DateTime.now()),
                                 remoteLanInfo: widget.remote == null || !settings.remoteLan
                                     ? null
                                     : 'Phone: ${widget.remote!.lanUrl ?? 'finding address...'}  PIN ${settings.remotePin ?? '-'}',
@@ -792,6 +902,7 @@ class _TvScreenState extends State<TvScreen> {
                                 ),
                               ),
                             if (_next != null) NextCard(entry: _next!, secondsLeft: _nextLeft),
+                            if (_sleepCard != null) SleepCard(secondsLeft: _sleepCard!),
                             if (_flashText != null)
                               Positioned(
                                 top: 24,
@@ -978,7 +1089,10 @@ class InfoBanner extends StatelessWidget {
 
   /// Set while playing On Demand: the banner shows that title instead of the live slot.
   final Entry? onDemand;
-  const InfoBanner({super.key, this.channel, this.airing, this.weatherPlace, this.onDemand});
+
+  /// Minutes left on the sleep timer (null: off): a SLEEP marker at the right.
+  final int? sleepMinutes;
+  const InfoBanner({super.key, this.channel, this.airing, this.weatherPlace, this.onDemand, this.sleepMinutes});
 
   String _left(Duration d) => '${d.inMinutes} min left';
 
@@ -1023,11 +1137,44 @@ class InfoBanner extends StatelessWidget {
                 ],
               ),
             ),
+            if (sleepMinutes != null)
+              Text(
+                'SLEEP $sleepMinutes',
+                style: const TextStyle(color: Color(0xFFFFEB3B), fontSize: 20, fontFamily: 'Consolas', fontWeight: FontWeight.bold),
+              ),
           ],
         ),
       ),
     );
   }
+}
+
+/// The sleep timer ran out: shown for 20 s before the TV turns off; any key keeps it on.
+class SleepCard extends StatelessWidget {
+  final int secondsLeft;
+  const SleepCard({super.key, required this.secondsLeft});
+
+  @override
+  Widget build(BuildContext context) => Center(
+    child: Container(
+      color: const Color(0xEE0A0A3A),
+      padding: const EdgeInsets.all(28),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const Text(
+            'Going to sleep...',
+            style: TextStyle(color: Colors.white, fontSize: 32, fontFamily: 'Consolas', fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 12),
+          Text(
+            'Press any key to stay   ($secondsLeft)',
+            style: const TextStyle(color: Color(0xFF9EC8FF), fontSize: 22, fontFamily: 'Consolas'),
+          ),
+        ],
+      ),
+    ),
+  );
 }
 
 /// "Next: ..." countdown shown when an On Demand title ends and the series has another episode.
