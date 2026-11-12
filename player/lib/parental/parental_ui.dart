@@ -118,7 +118,7 @@ class PinPromptState extends State<PinPrompt> {
               child: Column(mainAxisSize: MainAxisSize.min, children: [
                 Text('$lockMarker ${r.title}', style: _style(30, Colors.white, bold: true)),
                 const SizedBox(height: 8),
-                Text(r.hint ?? 'Enter the parental PIN', style: _style(22, r.hint == null ? const Color(0xFF9EC8FF) : const Color(0xFFFF8A80))),
+                Text(r.hint ?? 'Enter the parental PIN', style: _style(22, r.hint?.startsWith('Wrong') == true ? const Color(0xFFFF8A80) : const Color(0xFF9EC8FF))),
                 const SizedBox(height: 16),
                 Row(mainAxisSize: MainAxisSize.min, children: [
                   for (var i = 0; i < 4; i++)
@@ -288,8 +288,8 @@ class _ParentalOverlayState extends State<ParentalOverlay> {
               return Column(children: [
                 line('$lockMarker PARENTAL CONTROLS', _yellow, bold: true),
                 // The menu text documents the model (user decision 2026-11-12).
-                line('Lock ON: locked channels need the PIN. The PIN turns', const Color(0xFF9EC8FF)),
-                line('it OFF until you turn it ON again. Family lock, not security.', const Color(0xFF9EC8FF)),
+                line('Lock ON: locked channels need the PIN.', const Color(0xFF9EC8FF)),
+                line('The PIN turns it OFF until turned ON. Family lock only.', const Color(0xFF9EC8FF)),
                 for (final (i, r) in rows.indexed.skip(_scroll).take(_visible))
                   Container(
                     key: i == _sel ? ParentalOverlay.selectedKey : null,

@@ -149,10 +149,13 @@ class _TvScreenState extends State<TvScreen> {
   /// Tuning a locked channel (PlayerController.onLocked): the PIN turns the lock OFF, then it tunes.
   void _askUnlock(Channel c) => _parental.unlockFor('${c.number} ${c.name.toUpperCase()}', () => unawaited(tv.tune(c)));
 
-  /// The lock just went ON: leave the channel on screen if it is a locked one.
+  /// The lock just went ON: leave the channel on screen if it is a locked one (for the next open channel up).
   void _leaveLocked() {
     final c = tv.channel;
-    if (c != null && tv.isLocked(c)) _flip(1);
+    if (c == null || !tv.isLocked(c)) return;
+    final open = settings.parental.openChannels(tv.engine.tunable);
+    final next = open.where((o) => o.number > c.number).firstOrNull ?? open.firstOrNull;
+    if (next != null) unawaited(tv.tune(next));
   }
 
   void _setVolume(int level) {
