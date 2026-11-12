@@ -46,6 +46,9 @@ class TvEngine {
   /// Audit trail of "wrong channel" presses, one JSON object per line (wrong_channel.jsonl).
   final File wrongLog;
 
+  /// Dead-link strikes and the dead list (dead.json, kept off every channel); see [checkLinks].
+  final LinkHealth health;
+
   /// Probes upcoming files after each fresh pool build; null turns probing off (tests).
   final http.Client? probeClient;
   final void Function(String) log;
@@ -56,7 +59,7 @@ class TvEngine {
   final Map<int, List<Entry>> _pool = {};
 
   TvEngine._(this.config, this.api, this.pools, this.snapshots, this.blocklist, this.slow, this.noSubs, this.wrong, this.wrongLog,
-      this.probeClient, this.log, this.buildConcurrency);
+      this.health, this.probeClient, this.log, this.buildConcurrency);
 
   /// [configText] is the contents of channels.json, [ratedText] of rated.json (null: no R list, default
   /// window); [dataDir] holds pools, snapshots, blocklist.
@@ -79,6 +82,7 @@ class TvEngine {
       Blocklist.load(dataDir, name: 'nosubs.json'),
       ChannelBlocklist.load(dataDir),
       File(p.join(dataDir.path, 'wrong_channel.jsonl')),
+      LinkHealth.load(dataDir),
       probeClient,
       log ?? (_) {},
       buildConcurrency,
@@ -246,8 +250,8 @@ class TvEngine {
           ? null
           : (d) => dayBlocks(c, _serials[c.number] ?? const [], _pool[c.number] ?? const [], d);
 
-  /// The viewer's blocks plus the channel's wrong-channel items.
-  Blocklist _blocked(Channel c) => blocklist.union(wrong.forChannel(c.number));
+  /// The viewer's blocks plus the channel's wrong-channel items and dead links.
+  Blocklist _blocked(Channel c) => blocklist.union(wrong.forChannel(c.number)).union(health.dead);
 
   /// "Wrong channel for this program": logs [e] to [wrongLog] and keeps its item off [c] for good
   /// (other channels still air it). The next [airing]/[guideFor] re-lays the day without it.
@@ -350,6 +354,44 @@ class TvEngine {
     }
     log('${c.name}: probed ${todo.length} upcoming, ${bad.length} slow to start');
     return bad.length;
+  }
+
+  /// How many files the link checker has found gone from Archive (menu "Dead links found").
+  int get deadLinks => health.dead.ids.length;
+
+  /// One dead-link pass: HEADs every file due to air in the next [hours] hours on each channel (not the ones
+  /// airing now), through [checker] (throttled, see [DeadLinkChecker]). [onlyStruck]: just the files with a first
+  /// miss waiting for their second check. A file found dead leaves the pools now and the guide at its next
+  /// layout (saved days keep their order, so only later slots of that day shift, as for a blocked item).
+  /// Returns how many files became dead.
+  /// ponytail: a dead id leaves the whole day's order, so on a pool under 24 h (files repeat within the day) an
+  /// earlier, already-aired copy drops too and shifts what airs now, as markBad does; real pools are far bigger.
+  Future<int> checkLinks(DateTime now, DeadLinkChecker checker, {int hours = 12, bool onlyStruck = false}) async {
+    var found = 0;
+    final sw = Stopwatch()..start(); // strike times run on from [now] (passes take a while)
+    for (final c in channels) {
+      if (checker.gaveUp) break;
+      final seen = <String>{};
+      final List<Entry> todo;
+      try {
+        todo = [
+          for (final s in guideFor(c, now, hours: hours))
+            if (s.start.isAfter(now) && seen.add(s.entry.id) && (!onlyStruck || health.struck(s.entry.id))) s.entry,
+        ];
+      } on Object catch (e) {
+        log('link check ${c.name}: $e');
+        continue;
+      }
+      if (todo.isEmpty) continue;
+      final dead = await checker.checkChannel(c.number, c.name, todo, now: () => now.add(sw.elapsed));
+      if (dead.isEmpty) continue;
+      found += dead.length;
+      for (final n in _pool.keys.toList()) {
+        _pool[n] = health.dead.apply(_pool[n]!); // the same file can sit on several channels
+      }
+      poolsChanged.value++; // open guides re-lay without it
+    }
+    return found;
   }
 
   /// What is airing on [channel] at [now], or null if it has no content.

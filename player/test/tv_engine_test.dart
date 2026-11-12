@@ -217,6 +217,46 @@ void main() {
     expect(again.statusOf(bytes), PoolStatus.ready);
   });
 
+  test('checkLinks: a file missing on two passes an hour apart leaves pools and guide; earlier slots stay put', () async {
+    // 30 one-hour items: each airs once a day, as on a real channel
+    final big = FakeApi({for (var i = 0; i < 30; i++) 'i$i': 60});
+    final e = TvEngine.open(configText: configText, dataDir: dir, api: big);
+    final bytes = e.channels.first;
+    await e.ensurePool(bytes);
+    final now = DateTime(2026, 11, 11, 15, 20, 5);
+    final before = e.guideFor(bytes, now);
+    final victim = before[3].entry;
+    final asked = <String>[];
+    final client = MockClient((req) async {
+      asked.add('${req.method} ${req.url.path}');
+      return http.Response('', req.url.path.endsWith('/${victim.file}') ? 404 : 200);
+    });
+    DeadLinkChecker checker() => DeadLinkChecker(client, e.health, delay: Duration.zero);
+    expect(await e.checkLinks(now, checker()), 0);
+    expect(asked.every((a) => a.startsWith('HEAD ')), isTrue);
+    expect(asked, isNot(contains('HEAD /download/${before[0].entry.id}'))); // airing now: not checked
+    expect(e.health.struck(victim.id), isTrue);
+    expect(e.guideFor(bytes, now).any((s) => s.entry.id == victim.id), isTrue); // one miss changes nothing
+
+    asked.clear();
+    expect(await e.checkLinks(now.add(const Duration(minutes: 61)), checker(), onlyStruck: true), 1);
+    expect(asked, ['HEAD /download/${victim.id}']);
+    expect(e.deadLinks, 1);
+    expect(e.poolOf(bytes).any((x) => x.id == victim.id), isFalse);
+    final after = e.guideFor(bytes, now);
+    expect(after.any((s) => s.entry.id == victim.id), isFalse);
+    for (var i = 0; i < 3; i++) {
+      expect((after[i].entry.id, after[i].start), (before[i].entry.id, before[i].start));
+    }
+    expect(after[3].start, before[3].start); // the next file moves up into the dead one's slot
+    expect(File('${dir.path}/dead_links.log').readAsStringSync(), contains('ch 2 Bytes'));
+
+    final again = TvEngine.open(configText: configText, dataDir: dir, api: big); // restart: still gone
+    await again.ensurePool(bytes);
+    expect(again.deadLinks, 1);
+    expect(again.poolOf(bytes).any((x) => x.id == victim.id), isFalse);
+  });
+
   test('probeUpcoming keeps slow-start files out of the schedule and remembers them', () async {
     final bytes = engine.channels.first;
     await engine.ensurePool(bytes);
