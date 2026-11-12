@@ -10,6 +10,7 @@ import 'models.dart';
 /// - `episode` regex: files it doesn't match are dropped; 2 groups = season, episode; 1 group =
 ///   episode with the item's position as season. Sorted by item, season, episode; duplicates dropped.
 /// - `order` list: exactly those files (by file name or `item/file` id), in that order, as S1E1...
+///   (or labelled by the `episode` regex when one is given too: for items whose numbers repeat).
 /// - neither: natural file-name order per item, numbered from 1, season = item position.
 List<Entry> resolveEpisodes(SerialShow show, List<ItemMeta?> metas) {
   final found = <({int item, int season, int episode, Entry entry})>[];
@@ -34,10 +35,12 @@ List<Entry> resolveEpisodes(SerialShow show, List<ItemMeta?> metas) {
   }
 
   if (show.order case final names?) {
-    final byName = {for (final f in found) f.entry.file: f.entry, for (final f in found) f.entry.id: f.entry};
+    final byName = {for (final f in found) f.entry.file: f, for (final f in found) f.entry.id: f};
     return [
       for (final (pos, n) in names.indexed)
-        if (byName[n] case final e?) e.copyWith(title: '${show.title} S1E${pos + 1}'),
+        if (byName[n] case final f?)
+          f.entry.copyWith(
+              title: show.episode == null ? '${show.title} S1E${pos + 1}' : '${show.title} S${f.season}E${f.episode}'),
     ];
   }
 

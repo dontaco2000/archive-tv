@@ -157,6 +157,21 @@ void main() {
       expect(eps.first.title, 'I, Claudius S1E1');
     });
 
+    test('Doctor Who: order list sets the sequence, episode regex the labels (S21E11 names two parts)', () {
+      final s = SerialShow(title: 'Doctor Who', identifiers: ['x'], episode: RegExp(r'^S(\d\d)E(\d\d) -'), order: [
+        'S21E11 - Resurrection, Part One.mp4',
+        'S21E11 - Resurrection, Part Two.mp4',
+        'S21E12 - Resurrection, Part Three.mp4',
+        'S21E12 - Resurrection, Part Four.mp4',
+      ]);
+      final eps = resolveEpisodes(s, [
+        _meta('x', ['S21E12 - Resurrection, Part Four.mp4', 'S21E12 - Resurrection, Part Three.mp4',
+            'S21E11 - Resurrection, Part Two.mp4', 'S21E11 - Resurrection, Part One.mp4']),
+      ]);
+      expect([for (final e in eps) e.file.split('Part ').last], ['One.mp4', 'Two.mp4', 'Three.mp4', 'Four.mp4']);
+      expect(_titles(eps), ['Doctor Who S21E11', 'Doctor Who S21E11', 'Doctor Who S21E12', 'Doctor Who S21E12']);
+    });
+
     test('several items: season from item position; missing items skipped', () {
       final s = SerialShow(title: 'Poldark', identifiers: ['p1', 'gone', 'p2'], episode: RegExp(r'E(\d+)'));
       final eps = resolveEpisodes(s, [

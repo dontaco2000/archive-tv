@@ -23,6 +23,83 @@
       "name": "Funnies",
       "logo": "Logos/4x3/funnies.png",
       "genre": "Kids & Animation",
+      "primeTime": {
+        "start": "18:00",
+        "slots": 6,
+        "slotMinutes": 60
+      },
+      "serials": [
+        {
+          "start": "18:00",
+          "epoch": "2026-11-12",
+          "perDay": 2,
+          "shows": [
+            {
+              "title": "X-Men",
+              "identifiers": [
+                "x-men_1992_720p_english"
+              ],
+              "episode": "^EP(\\d\\d) - "
+            }
+          ]
+        },
+        {
+          "start": "19:00",
+          "epoch": "2026-11-12",
+          "perDay": 2,
+          "shows": [
+            {
+              "title": "Spider-Man",
+              "identifiers": [
+                "spider-mantheanimatedseries"
+              ],
+              "episode": "^(\\d\\d)x(\\d\\d) "
+            }
+          ]
+        },
+        {
+          "start": "20:00",
+          "epoch": "2026-11-12",
+          "perDay": 2,
+          "shows": [
+            {
+              "title": "Gargoyles",
+              "identifiers": [
+                "gargoyles_202212"
+              ],
+              "episode": "^Gargoyles - (\\d)(\\d\\d) - "
+            }
+          ]
+        },
+        {
+          "start": "21:00",
+          "epoch": "2026-11-12",
+          "perDay": 2,
+          "shows": [
+            {
+              "title": "Exosquad",
+              "identifiers": [
+                "exosquad-s-02-e-06-mind-set"
+              ],
+              "episode": "^Exosquad - S(\\d\\d)E(\\d\\d) - "
+            }
+          ]
+        },
+        {
+          "start": "22:00",
+          "epoch": "2026-11-12",
+          "perDay": 2,
+          "shows": [
+            {
+              "title": "Beast Wars",
+              "identifiers": [
+                "beast-wars-transformers.-s-03-e-12"
+              ],
+              "episode": "Transformers\\.S(\\d\\d)E(\\d\\d)\\."
+            }
+          ]
+        }
+      ],
       "sources": [
         {
           "query": "(subject:(cartoon OR cartoons)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR spanish OR jpn OR japanese OR chi OR chinese OR zho OR pol OR polish OR fre OR french OR fra OR ger OR german OR deu OR ita OR italian OR por OR portuguese OR rus OR russian OR kor OR korean OR hin OR hindi OR ara OR arabic OR tur OR vie OR ind OR tha OR hmn) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -subject:(banned OR \"adult swim\" OR \"foamy the squirrel\" OR \"ill will press\" OR \"hypnotic eye\") AND -identifier:(\"ReadingRainbowTVSeries\" OR \"FWRRTVSeries\" OR \"xavierrenegadeangel\" OR \"demashita_powerpuff_girls_z_full_series_japanese_dub\" OR \"krishna-balram-in-kalvakra-2009\" OR \"5_More_Minutes\") AND -title:(\"drawn together\")"
@@ -34,6 +111,157 @@
       "name": "Sakura",
       "logo": "Logos/4x3/sakura.png",
       "genre": "Kids & Animation",
+      "primeTime": {
+        "start": "18:00",
+        "slots": 6,
+        "slotMinutes": 60
+      },
+      "serials": [
+        {
+          "start": "18:00",
+          "epoch": "2026-11-12",
+          "perDay": 2,
+          "shows": [
+            {
+              "title": "Digimon",
+              "identifiers": [
+                "digimon-digital-monsters-the-complete-collection-saban-entertainment-edited-version"
+              ],
+              "episode": " - (\\d)x(\\d\\d) - "
+            },
+            {
+              "title": "Digimon Tamers",
+              "identifiers": [
+                "digimon-tamers-the-complete-collection-saban-entertainment-edited-version"
+              ],
+              "exclude": "^22- A World Apart",
+              "episode": "^(\\d\\d) ?- "
+            },
+            {
+              "title": "Digimon Frontier",
+              "identifiers": [
+                "digimon-frontier-the-complete-collection-edited-version"
+              ],
+              "episode": "^(\\d\\d) - "
+            },
+            {
+              "title": "Digimon Data Squad",
+              "identifiers": [
+                "digimon-data-squad-the-complete-series"
+              ],
+              "episode": "/(\\d\\d) - "
+            },
+            {
+              "title": "Digimon Fusion",
+              "identifiers": [
+                "digimon-fusion-complete-english-series"
+              ],
+              "episode": "Ep\\. (\\d\\d) - "
+            }
+          ]
+        },
+        {
+          "start": "19:00",
+          "epoch": "2026-11-12",
+          "perDay": 2,
+          "shows": [
+            {
+              "title": "Dragon Ball Z",
+              "identifiers": [
+                "dbz-westwood-remaster"
+              ],
+              "exclude": "He's Always Late \\[Draganath\\]-13",
+              "episode": "Dragon Ball Z - (\\d+) ?\\("
+            }
+          ]
+        },
+        {
+          "start": "20:00",
+          "epoch": "2026-11-12",
+          "perDay": 2,
+          "shows": [
+            {
+              "title": "Naruto",
+              "identifiers": [
+                "naruto-complete-original-series-english-dub"
+              ],
+              "episode": "Naruto  (\\d{3}) ?- "
+            }
+          ]
+        },
+        {
+          "start": "21:00",
+          "epoch": "2026-11-12",
+          "perDay": 2,
+          "shows": [
+            {
+              "title": "Cowboy Bebop",
+              "identifiers": [
+                "db-bebop-of-the-cowboys-1080p"
+              ],
+              "episode": "Cowboy Bebop_-_(\\d\\d)_"
+            },
+            {
+              "title": "Gundam Wing",
+              "identifiers": [
+                "20240812_20240812_2223"
+              ],
+              "episode": "Gundam Wing/(\\d\\d)"
+            }
+          ]
+        },
+        {
+          "start": "22:00",
+          "epoch": "2026-11-12",
+          "perDay": 2,
+          "shows": [
+            {
+              "title": "Death Note",
+              "identifiers": [
+                "death-note-complete-2006-2007"
+              ],
+              "episode": "^E(\\d\\d) - "
+            },
+            {
+              "title": "Evangelion",
+              "identifiers": [
+                "evangelionadvdub"
+              ],
+              "episode": "^(\\d\\d)\\.mp4$"
+            },
+            {
+              "title": "Serial Experiments Lain",
+              "identifiers": [
+                "serial-experiments-lain-english"
+              ],
+              "include": "^MP4 \\(Lowest",
+              "episode": "Layer-(\\d\\d)-"
+            }
+          ]
+        },
+        {
+          "start": "23:00",
+          "epoch": "2026-11-12",
+          "perDay": 2,
+          "shows": [
+            {
+              "title": "Ultimate Muscle",
+              "identifiers": [
+                "ultimate-muscle-the-complete-series"
+              ],
+              "episode": " - (\\d\\d)X(\\d\\d) - "
+            },
+            {
+              "title": "Kinnikuman",
+              "identifiers": [
+                "kinnikuman-complete-series"
+              ],
+              "include": "/EP 001-137 Kinnikuman/",
+              "episode": "Kinnikuman (\\d{3})\\["
+            }
+          ]
+        }
+      ],
       "sources": [
         {
           "query": "(subject:anime AND (language:(eng OR english) OR title:(dub OR dubbed OR \"english sub\" OR \"hard-coded\" OR hardsub)) AND -language:(spa OR fre OR ger OR ita OR por OR rus) AND -title:(\"super robot monkey\" OR \"mega man\" OR \"invader zim\" OR zim OR urotsukidoji OR \"cream lemon\" OR hentai OR midori OR \"mad bull\" OR aika OR hentaihaven OR \"h-anime\" OR hanime OR xvideos OR vore OR lolita OR gonad OR rwby OR abridged)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -language:(ind OR indonesian OR fil) AND -title:(indonesian OR \"japanese dub\") AND -title:(\"plastic little\" OR \"mezzo forte\")"
@@ -114,6 +342,253 @@
       "name": "Warp",
       "logo": "Logos/4x3/warp.png",
       "genre": "Movies",
+      "primeTime": {
+        "start": "18:00",
+        "slots": 6,
+        "slotMinutes": 60
+      },
+      "serials": [
+        {
+          "start": "18:00",
+          "epoch": "2026-11-12",
+          "perDay": 2,
+          "shows": [
+            {
+              "title": "Doctor Who",
+              "identifiers": [
+                "doctor-who_202210"
+              ],
+              "include": "^S(0\\d|1\\d|20)E\\d\\d -|^S21E(0\\d|10) -",
+              "exclude": "The Five Doctors",
+              "episode": "^S(\\d\\d)E(\\d\\d) -"
+            },
+            {
+              "title": "Doctor Who",
+              "identifiers": [
+                "doctor-who_202210"
+              ],
+              "episode": "^S(\\d\\d)E(\\d\\d) -",
+              "order": [
+                "S21E11 - Resurrection of the Daleks, Part One.mp4",
+                "S21E11 - Resurrection of the Daleks, Part Two.mp4",
+                "S21E12 - Resurrection of the Daleks, Part Three.mp4",
+                "S21E12 - Resurrection of the Daleks, Part Four.mp4",
+                "S21E13 - Planet of Fire, Part One.mp4",
+                "S21E14 - Planet of Fire, Part Two.mp4",
+                "S21E15 - Planet of Fire, Part Three.mp4",
+                "S21E16 - Planet of Fire, Part Four.mp4",
+                "S21E17 - The Caves of Androzani, Part One.mp4",
+                "S21E18 - The Caves of Androzani, Part Two.mp4",
+                "S21E19 - The Caves of Androzani, Part Three.mp4",
+                "S21E20 - The Caves of Androzani, Part Four.mp4",
+                "S21E21 - The Twin Dilemma, Part One.mp4",
+                "S21E22 - The Twin Dilemma, Part Two.mp4",
+                "S21E23 - The Twin Dilemma, Part Three.mp4",
+                "S21E24 - The Twin Dilemma, Part Four.mp4"
+              ]
+            },
+            {
+              "title": "Doctor Who",
+              "identifiers": [
+                "doctor-who_202210"
+              ],
+              "include": "^S2[2-5]E\\d\\d -",
+              "exclude": "Terror of the Vervoids",
+              "episode": "^S(\\d\\d)E(\\d\\d) -"
+            }
+          ]
+        },
+        {
+          "start": "19:00",
+          "epoch": "2026-11-12",
+          "perDay": 1,
+          "shows": [
+            {
+              "title": "Space: 1999",
+              "identifiers": [
+                "Space1999.Series1",
+                "Space1999.Series1_201602"
+              ],
+              "episode": "Space 1999 S0(\\d)E(\\d\\d) "
+            }
+          ]
+        },
+        {
+          "start": "20:00",
+          "epoch": "2026-11-12",
+          "perDay": 1,
+          "shows": [
+            {
+              "title": "Blake's 7",
+              "identifiers": [
+                "blakes-7-complete"
+              ],
+              "episode": "/S0(\\d)E(\\d\\d) - "
+            }
+          ]
+        },
+        {
+          "start": "21:00",
+          "epoch": "2026-11-12",
+          "perDay": 1,
+          "shows": [
+            {
+              "title": "Babylon 5",
+              "identifiers": [
+                "babylon-5-season-1"
+              ],
+              "episode": "^\\d{3} - (\\d)x(\\d\\d)",
+              "order": [
+                "002 - 1x01 - Midnight on the Firing Line.mp4",
+                "003 - 1x02 - Soul Hunter.mp4",
+                "005 - 1x03 - Born to the Purple.mp4",
+                "004 - 1x04 - Infection.mp4",
+                "007 - 1x05 - The Parliament of Dreams.mp4",
+                "014 - 1x06 - Mind War.mp4",
+                "005 - 1x07 - The War Prayer.mp4",
+                "010 - 1x08 - And the Sky Full of Stars.mp4",
+                "009 - 1x09 - Deathwalker.mp4",
+                "011 - 1x10 - Believers.mp4",
+                "012 - 1x11 - Survivors.mp4",
+                "015 - 1x12 - By Any Means Necessary.mp4",
+                "021 - 1x13 - Signs and Portents.mp4",
+                "019 - 1x14 - TKO.mp4",
+                "008 - 1x15 - Grail.mp4",
+                "022 - 1x16 - Eyes.mp4",
+                "020 - 1x17 - Legacies.mp4",
+                "016 - 1x18 - A Voice in the Wilderness Pt I.mp4",
+                "017 - 1x19 - A Voice in the Wilderness Pt II.mp4",
+                "018 - 1x20 - Babylon Squared.mp4",
+                "013 - 1x21 - The Quality of Mercy.mp4",
+                "023 - 1x22 - Chrysalis.mp4",
+                "024 - 2x01 - Points of Departure.mp4",
+                "025 - 2x02 - Revelations.mp4",
+                "026 - 2x03 - The Geometry of Shadows.mp4",
+                "027 - 2x04 - A Distant Star.mp4",
+                "028 - 2x05 - The Long Dark.mp4",
+                "029 - 2x06 - A Spider in the Web.mp4",
+                "031 - 2x07 - Soul Mates.mp4",
+                "030 - 2x08 - A Race Through Dark Places.mp4",
+                "032 - 2x09 - The Coming of Shadows.mp4",
+                "033 - 2x10 - GROPOS.mp4",
+                "034 - 2x11 - All Alone in the Night.mp4",
+                "035 - 2x12 - Acts of Sacrifice.mp4",
+                "036 - 2x13 - Hunter, Prey.mp4",
+                "037 - 2x14 - There All the Honor Lies.mp4",
+                "038 - 2x15 - And Now For A Word.mp4",
+                "040 - 2x16 - In the Shadow of Z'ha'dum.mp4",
+                "036 - 2x16 - Knives.mp4",
+                "041 - 2x18 - Confessions and Lamentations.mp4",
+                "042 - 2x19 - Divided Loyalties.mp4",
+                "043 - 2x20 - The Long Twilight Struggle.mp4",
+                "044 - 2x21 - Comes the Inquisitor.mp4",
+                "045 - 2x22 - The Fall of Night.mp4",
+                "046 - 3x01 - Matters of Honor.mp4",
+                "047 - 3x02 - Convictions.mp4",
+                "048 - 3x03 - A Day in the Strife.mp4",
+                "049 - 3x04 - Passing Through Gethsemane.mp4",
+                "050 - 3x05 - Voices of Authority.mp4",
+                "051 - 3x06 - Dust to Dust.mp4",
+                "052 - 3x07 - Exogenesis.mp4",
+                "053 - 3x08 - Messages from Earth.mp4",
+                "054 - 3x09 - Point of No Return.mp4",
+                "055 - 3x10 - Severed Dreams.mp4",
+                "056 - 3x11 - Ceremonies of Light and Dark.mp4",
+                "058 - 3x12 - Sic Transit Vir.mp4",
+                "057 - 3x13 - A Late Delivery from Avalon.mp4",
+                "059 - 3x14 - Ship of Tears.mp4",
+                "060 - 3x15 - Interludes and Examinations.mp4",
+                "061 - 3x16 - War Without End Pt I.mp4",
+                "062 - 3x17 - War Without End Pt II.mp4",
+                "063 - 3x18 - Walkabout.mp4",
+                "064 - 3x19 - Grey 17 is Missing.mp4",
+                "065 - 3x20 - And the Rock Cried Out, No Hiding Place.mp4",
+                "066 - 3x21 - Shadow Dancing.mp4",
+                "067 - 3x22 - Z'ha'dum.mp4",
+                "068 - 4x01 - The Hour of the Wolf.mp4",
+                "069 - 4x02 - Whatever Happened to Mr Garibaldi.mp4",
+                "070 - 4x03 - The Summoning.mp4",
+                "071 - 4x04 - Falling Toward Apotheosis.mp4",
+                "072 - 4x05 - The Long Night.mp4",
+                "073 - 4x06 - Into the Fire.mp4",
+                "074 - 4x07 - Epiphanies.mp4",
+                "075 - 4x08 - The Illusion of Truth.mp4",
+                "077 - 4x09 - Atonement.mp4",
+                "078 - 4x10 - Racing Mars.mp4",
+                "079 - 4x11 - Lines of Communication.mp4",
+                "080 - 4x12 - Conflicts of Interest.mp4",
+                "081 - 4x13 - Rumors, Bargains, and Lies.mp4",
+                "082 - 4x14 - Moments of Transition.mp4",
+                "083 - 4x15 - No Surrender, No Retreat.mp4",
+                "084 - 4x16 - Exercise of Vital Powers.mp4",
+                "085 - 4x17 - The Face of the Enemy.mp4",
+                "086 - 4x18 - Intersections in Real Time.mp4",
+                "087 - 4x19 - Between the Darkness and the Light.mp4",
+                "088 - 4x20 - Endgame.mp4",
+                "089 - 4x21 - Rising Star.mp4",
+                "090 - 4x22 - The Deconstruction of Falling Stars.mp4",
+                "091 - 5x01 - No Compromises.mp4",
+                "092 - 5x02 - The Very Long Night of Londo Mollari.mp4",
+                "093 - 5x03 - The Paragon of Animals.mp4",
+                "094 - 5x04 - A View from the Gallery.mp4",
+                "095 - 5x05 - Learning Curve.mp4",
+                "096 - 5x06 - Strange Relations.mp4",
+                "097 - 5x07 Secrets of the Soul.mp4",
+                "102 - 5x08 - Day of the Dead.mp4",
+                "098 - 5x09 - In the Kingdom of the Blind.mp4",
+                "099 - 5x10 - A Tragedy of Telepaths.mp4",
+                "100 - 5x11 - Phoenix Rising.mp4",
+                "101 - 5x12 - The Ragged Edge.mp4",
+                "103 - 5x13 - The Corps is Mother, the Corps is Father.mp4",
+                "104 - 5x14 -Meditations on the Abyss.mp4",
+                "105 - 5x15 - Darkness Ascending.mp4",
+                "106 - 5x16 - And All My Dreams Torn Asunder.mp4",
+                "107 - 5x17 - Movements of Fire and Shadow.mp4",
+                "108 - 5x18 - The Fall of Centauri Prime.mp4",
+                "109 - 5x19 - The Wheel of Fire.mp4",
+                "110 - 5x20 - Objects in Motion.mp4",
+                "111 - 5x21 - Objects at Rest.mp4",
+                "130 - 5x22 - Sleeping in Light.mp4"
+              ]
+            }
+          ]
+        },
+        {
+          "start": "22:00",
+          "epoch": "2026-11-12",
+          "perDay": 1,
+          "shows": [
+            {
+              "title": "Survivors",
+              "identifiers": [
+                "survivors-1975"
+              ],
+              "episode": "^Survivors S0(\\d)E(\\d\\d) - "
+            }
+          ]
+        },
+        {
+          "start": "23:00",
+          "epoch": "2026-11-12",
+          "perDay": 1,
+          "shows": [
+            {
+              "title": "The Prisoner",
+              "identifiers": [
+                "the-prisoner-complete-series-1967"
+              ],
+              "include": "^The Prisoner S01E\\d\\d - "
+            },
+            {
+              "title": "UFO",
+              "identifiers": [
+                "UFO.complete"
+              ],
+              "episode": "^UFO\\.(\\d\\d)\\."
+            }
+          ]
+        }
+      ],
       "sources": [
         {
           "query": "(subject:(\"sci-fi\" OR \"science fiction\" OR fantasy) AND collection:(moviesandfilms OR vhsvault OR feature_films OR opensource_movies OR television) AND -collection:movie_trailers AND -subject:(anime OR ova)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR spanish OR jpn OR japanese OR chi OR chinese OR zho OR pol OR polish OR fre OR french OR fra OR ger OR german OR deu OR ita OR italian OR por OR portuguese OR rus OR russian OR kor OR korean OR hin OR hindi OR ara OR arabic OR tur OR vie OR ind OR tha OR hmn) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -subject:(sitcom OR sitcoms OR concert OR \"live music\") AND -identifier:(\"Holistic_Forge_Works_Animation\" OR \"PlanetEarthOurResponse\" OR \"erosfilmfactoryThePeepingTomChroniclesConfessionsofanInterne\" OR \"spider-babe.-2003_202509\" OR \"wiedzmin-witcher-polski-tv\" OR \"les-enfants-de-timpelbach-2008\") AND -title:(portuguese OR brazilian OR \"le secret\" OR \"never went to the moon\" OR \"scariest places\") AND -title:(stripperella OR \"jimmy neutron\")"
@@ -136,6 +611,27 @@
       "name": "Chuckles",
       "logo": "Logos/4x3/chuckles.png",
       "genre": "TV",
+      "primeTime": {
+        "start": "18:00",
+        "slots": 6,
+        "slotMinutes": 60
+      },
+      "serials": [
+        {
+          "start": "21:00",
+          "epoch": "2026-11-12",
+          "perDay": 2,
+          "shows": [
+            {
+              "title": "Soap",
+              "identifiers": [
+                "soap-1977-1981-s-01e-01"
+              ],
+              "episode": "Soap \\(1977-1981\\) s(\\d\\d)e(\\d\\d)\\."
+            }
+          ]
+        }
+      ],
       "sources": [
         {
           "query": "(subject:(sitcom OR sitcoms) OR title:(\"malcolm in the middle\" OR newsradio)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR spanish OR jpn OR japanese OR chi OR chinese OR zho OR pol OR polish OR fre OR french OR fra OR ger OR german OR deu OR ita OR italian OR por OR portuguese OR rus OR russian OR kor OR korean OR hin OR hindi OR ara OR arabic OR tur OR vie OR ind OR tha OR hmn) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -subject:(argentina OR \"en español\" OR latino) AND -title:(\"casados con hijos\" OR \"vhs tape\")"
@@ -225,6 +721,83 @@
       "name": "Porch",
       "logo": "Logos/4x3/porch.png",
       "genre": "TV",
+      "primeTime": {
+        "start": "18:00",
+        "slots": 6,
+        "slotMinutes": 60
+      },
+      "serials": [
+        {
+          "start": "20:00",
+          "epoch": "2026-11-12",
+          "perDay": 1,
+          "shows": [
+            {
+              "title": "The Waltons",
+              "identifiers": [
+                "the-waltons-s-00-e-00-the-homecoming-a-christmas-story-pilot-episode_202604"
+              ],
+              "include": "^The Waltons S0[0-7]E",
+              "episode": "^The Waltons S(\\d\\d)E(\\d\\d) "
+            },
+            {
+              "title": "The Waltons",
+              "identifiers": [
+                "the-waltons-s-00-e-00-the-homecoming-a-christmas-story-pilot-episode_202604"
+              ],
+              "episode": "^The Waltons S(\\d\\d)E(\\d\\d) ",
+              "order": [
+                "The Waltons S08E01 (The Home Front Pt1).mp4",
+                "The Waltons S08E01 (The Home Front Pt2).mp4",
+                "The Waltons S08E02 (The Kinfolk).mp4",
+                "The Waltons S08E03 (The Diploma).mp4",
+                "The Waltons S08E04 (The Innocents).mp4",
+                "The Waltons S08E05 (The Starlet).mp4",
+                "The Waltons S08E06 (The Journal).mp4",
+                "The Waltons S08E07 (The Lost Sheep).mp4",
+                "The Waltons S08E08 (The Violated).mp4",
+                "The Waltons S08E09 (The Waiting).mp4",
+                "The Waltons S08E10 (The Silver Wings).mp4",
+                "The Waltons S08E11 (The Wager).mp4",
+                "The Waltons S08E12 (The Spirit).mp4",
+                "The Waltons S08E13 (The Fastidious Wife).mp4",
+                "The Waltons S08E14 (The Unthinkable).mp4",
+                "The Waltons S08E15 (The Idol).mp4",
+                "The Waltons S08E16 (The Prodigals).mp4",
+                "The Waltons S08E17 (The Remembrance).mp4",
+                "The Waltons S08E18 (The Inspiration).mp4",
+                "The Waltons S08E19 (The Last Straw).mp4",
+                "The Waltons S08E20 (The Traveling Man).mp4",
+                "The Waltons S08E21 (The Furlough).mp4",
+                "The Waltons S08E22 (The Medal).mp4",
+                "The Waltons S08E23 (The Valediction).mp4",
+                "The Waltons S09E01 (The Outrage Pt1).mp4",
+                "The Waltons S09E01 (The Outrage Pt2).mp4",
+                "The Waltons S09E02 (The Pledge).mp4",
+                "The Waltons S09E03 (The Triumph).mp4",
+                "The Waltons S09E04 (The Premonition).mp4",
+                "The Waltons S09E05 (The Pursuit).mp4",
+                "The Waltons S09E06 (The Last Ten Days).mp4",
+                "The Waltons S09E07 (The Move).mp4",
+                "The Waltons S09E08 (The Whirlwind).mp4",
+                "The Waltons S09E09 (The Tempest).mp4",
+                "The Waltons S09E10 (The Carousel).mp4",
+                "The Waltons S09E11 (The Hot Rod).mp4",
+                "The Waltons S09E12 (The Gold Watch).mp4",
+                "The Waltons S09E13 (The Beginning).mp4",
+                "The Waltons S09E14 (The Pearls).mp4",
+                "The Waltons S09E15 (The Victims).mp4",
+                "The Waltons S09E16 (The Threshold).mp4",
+                "The Waltons S09E17 (The Indiscretion).mp4",
+                "The Waltons S09E18 (The Heartache).mp4",
+                "The Waltons S09E19 (The Lumberjack).mp4",
+                "The Waltons S09E20 (The Hostage).mp4",
+                "The Waltons S09E21 (The Revel).mp4"
+              ]
+            }
+          ]
+        }
+      ],
       "sources": [
         {
           "query": "(title:(\"dukes of hazzard\" OR \"hee haw\" OR \"andy griffith\" OR \"beverly hillbillies\" OR \"green acres\" OR \"petticoat junction\" OR \"smokey and the bandit\") AND -collection:tvnews) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR spanish OR jpn OR japanese OR chi OR chinese OR zho OR pol OR polish OR fre OR french OR fra OR ger OR german OR deu OR ita OR italian OR por OR portuguese OR rus OR russian OR kor OR korean OR hin OR hindi OR ara OR arabic OR tur OR vie OR ind OR tha OR hmn) AND -title:(\"girls and corpses\" OR \"graveyard rodeo\" OR \"cartoon network\" OR \"funniest home videos\" OR \"global fires\") AND -identifier:(\"ta-ra-rum-pum-2007-nascar-scene\" OR \"2026-09-01-20-36-56\" OR \"afv-on-cmt-2010\" OR \"SVS-2547\" OR \"youtube-0Q-pa1RqXMk\") AND -language:(rus OR russian OR hin OR hindi) AND -title:(psp OR \"desecrated youth\" OR \"vhs #\")"
@@ -293,6 +866,62 @@
       "name": "Lens",
       "logo": "Logos/4x3/lens.png",
       "genre": "News & Docs",
+      "primeTime": {
+        "start": "18:00",
+        "slots": 6,
+        "slotMinutes": 60
+      },
+      "serials": [
+        {
+          "start": "20:00",
+          "epoch": "2026-11-12",
+          "perDay": 1,
+          "shows": [
+            {
+              "title": "The World at War",
+              "identifiers": [
+                "the-world-at-war-1973-thames-television-world-war-two"
+              ],
+              "episode": "^(0[1-9]|1\\d|2[0-6]) "
+            }
+          ]
+        },
+        {
+          "start": "21:00",
+          "epoch": "2026-11-12",
+          "perDay": 1,
+          "shows": [
+            {
+              "title": "Civilisation",
+              "identifiers": [
+                "kccapv"
+              ],
+              "episode": "Civilisation Part (\\d\\d) - "
+            },
+            {
+              "title": "Cosmos",
+              "identifiers": [
+                "CosmosAPersonalVoyage"
+              ],
+              "episode": " - Ep (\\d\\d) "
+            }
+          ]
+        },
+        {
+          "start": "22:00",
+          "epoch": "2026-11-12",
+          "perDay": 1,
+          "shows": [
+            {
+              "title": "Connections",
+              "identifiers": [
+                "ConnectionsByJamesBurke"
+              ],
+              "episode": "Connections S(\\d\\d)E(\\d\\d) - "
+            }
+          ]
+        }
+      ],
       "sources": [
         {
           "query": "(subject:documentary AND -title:(\"real sex\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR spanish OR jpn OR japanese OR chi OR chinese OR zho OR pol OR polish OR fre OR french OR fra OR ger OR german OR deu OR ita OR italian OR por OR portuguese OR rus OR russian OR kor OR korean OR hin OR hindi OR ara OR arabic OR tur OR vie OR ind OR tha OR hmn) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -subject:(gore OR shockumentary OR mondo OR \"death footage\" OR infowars OR \"alex jones\" OR \"new world order\" OR stripper OR strippers OR \"strip club\" OR bdsm OR bondage) AND -title:(\"traces of death\" OR \"faces of death\" OR \"g-string\" OR lesborama OR bondage OR massage OR \"jane eyre\" OR \"philosophy of a knife\" OR \"kettle cadaver\" OR \"junk films\" OR \"cf tease\" OR zeitgeist OR \"freedom to fascism\") AND -identifier:(\"orozco-the-embalmer\" OR \"surfs-up_202309\" OR \"star-wars-deleted-magic\" OR \"return-of-the-ewok\" OR \"princess-trey-parker-matt-stone-4k-restoration\" OR \"alex-jones-documentaries\") AND -collection:movie_trailers AND -title:(\"death scenes\" OR pantera OR \"sex and violence\")"
@@ -506,6 +1135,42 @@
       "name": "Overseas",
       "logo": "Logos/4x3/overseas.png",
       "genre": "International",
+      "primeTime": {
+        "start": "18:00",
+        "slots": 6,
+        "slotMinutes": 60
+      },
+      "serials": [
+        {
+          "start": "21:00",
+          "epoch": "2026-11-12",
+          "perDay": 1,
+          "shows": [
+            {
+              "title": "Poldark",
+              "identifiers": [
+                "poldark-1975-season-1",
+                "poldark-1975-season-2"
+              ],
+              "episode": "Poldark 1975 S(\\d)E(\\d\\d)\\."
+            }
+          ]
+        },
+        {
+          "start": "22:00",
+          "epoch": "2026-11-12",
+          "perDay": 1,
+          "shows": [
+            {
+              "title": "I, Claudius",
+              "identifiers": [
+                "i-claudius-hail-who-ep-10"
+              ],
+              "episode": "Ep ?(\\d+)\\.mp4$"
+            }
+          ]
+        }
+      ],
       "sources": [
         {
           "query": "(subject:(bbc OR itv OR \"channel 4\" OR \"australian television\" OR \"british television\") AND -collection:tvnews AND -title:(pokemon OR \"world news\" OR \"tokyo bound\" OR everwood OR tweenies OR balamory OR \"peter rabbit\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR spanish OR jpn OR japanese OR chi OR chinese OR zho OR pol OR polish OR fre OR french OR fra OR ger OR german OR deu OR ita OR italian OR por OR portuguese OR rus OR russian OR kor OR korean OR hin OR hindi OR ara OR arabic OR tur OR vie OR ind OR tha OR hmn) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -title:(vf OR \"version française\" OR jazzwoche OR \"dancing outlaw\" OR \"alvin and the chipmunks\") AND -title:(commercial)"
@@ -517,6 +1182,61 @@
       "name": "Maple",
       "logo": "Logos/4x3/maple.png",
       "genre": "International",
+      "primeTime": {
+        "start": "18:00",
+        "slots": 6,
+        "slotMinutes": 60
+      },
+      "serials": [
+        {
+          "start": "19:00",
+          "epoch": "2026-11-12",
+          "perDay": 2,
+          "shows": [
+            {
+              "title": "ReBoot",
+              "identifiers": [
+                "reboot-complete-series"
+              ],
+              "include": "^Season ",
+              "episode": "/S(\\d) E(\\d+) - "
+            }
+          ]
+        },
+        {
+          "start": "20:00",
+          "epoch": "2026-11-12",
+          "perDay": 2,
+          "shows": [
+            {
+              "title": "Degrassi",
+              "identifiers": [
+                "degrassi-jr-high-season-01_202208",
+                "degrassi-jr-high-s-02",
+                "degrassi-junior-high-season-03",
+                "degrassi-high-s-04",
+                "degrassi-high-s-05"
+              ],
+              "episode": "S0(\\d)E(\\d\\d)(?: E\\d\\d)? - "
+            }
+          ]
+        },
+        {
+          "start": "21:00",
+          "epoch": "2026-11-12",
+          "perDay": 1,
+          "shows": [
+            {
+              "title": "Due South",
+              "identifiers": [
+                "due-south-1994-98"
+              ],
+              "exclude": "Pilot Part1|Season 03 episode 13 Part 1",
+              "episode": "Due South \\(1994\\) S0(\\d)E(\\d\\d)"
+            }
+          ]
+        }
+      ],
       "sources": [
         {
           "query": "(subject:(cbc OR ctv OR \"city tv\" OR ytv OR teletoon OR muchmusic OR cfl OR \"global television\") OR title:(\"red green\" OR \"corner gas\" OR \"kids in the hall\" OR sctv OR degrassi OR \"mr. meaty\" OR \"due south\" OR reboot) AND -collection:tvnews AND -title:(\"planet earth\" OR cybersix OR \"bob the builder\" OR romeo OR \"dragon ball\" OR hamtaro OR \"recorded vhs\" OR \"cbc morning\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR spanish OR jpn OR japanese OR chi OR chinese OR zho OR pol OR polish OR fre OR french OR fra OR ger OR german OR deu OR ita OR italian OR por OR portuguese OR rus OR russian OR kor OR korean OR hin OR hindi OR ara OR arabic OR tur OR vie OR ind OR tha OR hmn) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -title:(iklan OR atashin OR \"totally rad\" OR fanvid) AND -identifier:(\"degrassi-the-next-generation-serie-4-5-6\") AND -title:(\"freddys nightmares\" OR \"tales from the crypt\") AND -identifier:(\"wizbitboottest\")"

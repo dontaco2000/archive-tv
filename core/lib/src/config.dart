@@ -171,7 +171,6 @@ SerialShow _show(Object? raw, String slot) {
   if (order != null && order != 'natural' && order is! List) {
     throw ConfigException('$what: "order" must be "natural" or a list of file names');
   }
-  if (order is List && raw['episode'] != null) throw ConfigException('$what: give "episode" or an "order" list, not both');
   final episode = _regex(raw['episode'], '$what episode');
   final groups = episode == null ? 1 : RegExp('${episode.pattern}|').firstMatch('')!.groupCount; // '|' always matches
   if (groups < 1 || groups > 2) {
