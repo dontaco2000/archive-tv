@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 
 import 'parental.dart';
 import 'parental_flow.dart';
+import '../ui/touch.dart';
 
 const _font = 'Consolas';
 const _panel = Color(0xF0101A5C);
@@ -66,6 +67,12 @@ class PinPromptState extends State<PinPrompt> {
     super.dispose();
   }
 
+  /// A digit from the keyboard, the remote page or the touch pad: into the current box, then on to the next.
+  void _digit(int d) {
+    digits[cursor] = d;
+    _next();
+  }
+
   void _next() {
     digits[cursor] ??= 0;
     if (cursor == 3) {
@@ -81,8 +88,7 @@ class PinPromptState extends State<PinPrompt> {
     if (_passThrough.contains(k)) return KeyEventResult.ignored;
     final d = _digitOf(k);
     if (d != null) {
-      digits[cursor] = d;
-      _next();
+      _digit(d);
     } else if (k == LogicalKeyboardKey.arrowUp || k == LogicalKeyboardKey.arrowDown) {
       setState(() => digits[cursor] = ((digits[cursor] ?? 0) + (k == LogicalKeyboardKey.arrowUp ? 1 : -1)) % 10);
     } else if (e is KeyRepeatEvent) {
@@ -103,13 +109,14 @@ class PinPromptState extends State<PinPrompt> {
   @override
   Widget build(BuildContext context) {
     final r = widget.request;
+    final touch = TouchUi.of(context); // phone / tablet: a number pad instead of the Up/Down digit picker
     return Focus(
       focusNode: _focus,
       autofocus: true,
       onKeyEvent: _onKey,
       child: Center(
         child: FractionallySizedBox(
-          widthFactor: 0.7,
+          widthFactor: touch ? 0.95 : 0.7,
           child: FittedBox(
             fit: BoxFit.scaleDown,
             child: Container(
@@ -129,16 +136,26 @@ class PinPromptState extends State<PinPrompt> {
                       alignment: Alignment.center,
                       color: i == cursor ? _yellow : _cellBg,
                       child: Text(
-                        i == cursor ? '${digits[i] ?? 0}' : (digits[i] == null ? '_' : '*'),
+                        i == cursor && !touch ? '${digits[i] ?? 0}' : (digits[i] == null ? '_' : '*'),
                         style: _style(44, i == cursor ? Colors.black : Colors.white, bold: true),
                       ),
                     ),
                 ]),
                 const SizedBox(height: 16),
-                Text(
-                  Platform.isAndroid ? 'Up/Down: digit   Right/OK: next   Back: cancel' : 'Type 4 digits (or Up/Down, Enter)   Esc: cancel',
-                  style: _style(18, const Color(0xFF9EC8FF)),
-                ),
+                if (touch)
+                  PinPad(
+                    onDigit: (d) => setState(() => _digit(d)),
+                    onErase: () => setState(() {
+                      if (digits[cursor] == null && cursor > 0) cursor--;
+                      digits[cursor] = null;
+                    }),
+                    onCancel: widget.onCancel,
+                  )
+                else
+                  Text(
+                    Platform.isAndroid ? 'Up/Down: digit   Right/OK: next   Back: cancel' : 'Type 4 digits (or Up/Down, Enter)   Esc: cancel',
+                    style: _style(18, const Color(0xFF9EC8FF)),
+                  ),
               ]),
             ),
           ),
@@ -259,6 +276,16 @@ class _ParentalOverlayState extends State<ParentalOverlay> {
     return KeyEventResult.handled;
   }
 
+  double _dy = 0;
+
+  /// Touch drag over the rows: the selection (and so the list) moves a row per row height.
+  void _dragRows(double dy, double unit, int n) {
+    _dy += dy;
+    if (_dy.abs() < unit) return;
+    setState(() => _sel = (_sel + (_dy > 0 ? -1 : 1)).clamp(0, n - 1));
+    _dy = 0;
+  }
+
   @override
   Widget build(BuildContext context) {
     final rows = _rows;
@@ -266,14 +293,15 @@ class _ParentalOverlayState extends State<ParentalOverlay> {
     if (_sel < _scroll) _scroll = _sel;
     if (_sel >= _scroll + _visible) _scroll = _sel - _visible + 1;
     _scroll = _scroll.clamp(0, (rows.length - _visible).clamp(0, rows.length));
+    final touch = TouchUi.of(context); // phone / tablet: full screen, tap a row = Enter, drag = Up/Down
     return Focus(
       focusNode: _focus,
       onKeyEvent: _onKey,
       child: Align(
         alignment: Alignment.centerRight,
         child: FractionallySizedBox(
-          widthFactor: 0.6,
-          heightFactor: 0.9,
+          widthFactor: touch ? 1 : 0.6,
+          heightFactor: touch ? 1 : 0.9,
           child: Container(
             color: _panel,
             padding: const EdgeInsets.all(8),
@@ -293,7 +321,16 @@ class _ParentalOverlayState extends State<ParentalOverlay> {
                 line('Lock ON: locked channels need the PIN.', const Color(0xFF9EC8FF)),
                 line('The PIN turns it OFF until turned ON. Family lock only.', const Color(0xFF9EC8FF)),
                 for (final (i, r) in rows.indexed.skip(_scroll).take(_visible))
-                  Container(
+                  GestureDetector(
+                    onTap: touch
+                        ? () {
+                            setState(() => _sel = i);
+                            r.$2?.call();
+                            if (mounted) setState(() {});
+                          }
+                        : null,
+                    onVerticalDragUpdate: touch ? (d) => _dragRows(d.delta.dy, unit, rows.length) : null,
+                    child: Container(
                     key: i == _sel ? ParentalOverlay.selectedKey : null,
                     height: unit - 2,
                     margin: const EdgeInsets.all(1),
@@ -307,7 +344,7 @@ class _ParentalOverlayState extends State<ParentalOverlay> {
                       overflow: TextOverflow.clip,
                       style: _style(font, i == _sel ? Colors.black : Colors.white, bold: i == _sel),
                     ),
-                  ),
+                  )),
               ]);
             }),
           ),

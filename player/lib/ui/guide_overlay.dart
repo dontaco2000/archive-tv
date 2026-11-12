@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 
 import '../guide/guide_model.dart';
 import 'channel_logo.dart';
+import 'touch.dart';
 
 const _font = 'Consolas';
 const _panel = Color(0xE6101A5C); // dark translucent blue
@@ -75,6 +76,25 @@ class _GuideOverlayState extends State<GuideOverlay> {
     super.dispose();
   }
 
+  // Touch (ui/touch.dart): drag up/down scrolls channels a row per row height, left/right steps programmes.
+  double _unit = 40, _colW = 40, _dy = 0, _dx = 0;
+
+  void _drag(DragUpdateDetails d, {required bool vertical}) {
+    if (vertical) {
+      _dy += d.delta.dy;
+      while (_dy.abs() >= _unit) {
+        _row(_dy > 0 ? -1 : 1); // finger down: earlier channels come into view
+        _dy -= _unit * _dy.sign;
+      }
+    } else {
+      _dx += d.delta.dx;
+      while (_dx.abs() >= _colW * 2) {
+        setState(() => m.moveProgram(_dx > 0 ? -1 : 1)); // finger left: later programmes
+        _dx -= _colW * 2 * _dx.sign;
+      }
+    }
+  }
+
   void _row(int delta) {
     final before = m.selectedChannel;
     setState(() => m.moveRow(delta));
@@ -115,8 +135,8 @@ class _GuideOverlayState extends State<GuideOverlay> {
   @override
   Widget build(BuildContext context) {
     final slot = m.selectedSlot;
-    final rows = m.rowsInView(_rows);
     final selectedCh = m.selectedChannel;
+    final touch = TouchUi.of(context);
     return Focus(
       focusNode: _focus,
       autofocus: true,
@@ -124,19 +144,24 @@ class _GuideOverlayState extends State<GuideOverlay> {
       child: Align(
         alignment: Alignment.bottomCenter,
         child: FractionallySizedBox(
-          heightFactor: 2 / 3,
+          heightFactor: touch ? 1 : 2 / 3,
           widthFactor: 1,
           child: Container(
             color: _panel,
             padding: const EdgeInsets.all(8),
             child: LayoutBuilder(builder: (context, box) {
-              final unit = box.maxHeight / (_rows + 2); // header + time row + channel rows
+              // Touch: as many rows as fit at about 56 px each (TV: always five).
+              final count = touch ? (box.maxHeight / 56).floor().clamp(5, 16) - 2 : _rows;
+              final rows = m.rowsInView(count);
+              final unit = box.maxHeight / (count + 2); // header + time row + channel rows
               final font = (unit * 0.32).clamp(9.0, 28.0);
-              final nameW = box.maxWidth * 0.24;
+              final nameW = box.maxWidth * (touch && box.maxWidth < 600 ? 0.32 : 0.24); // narrow phone: room for the name
               // Twelve 15-minute columns: shrink the time labels until "12:45" fits a column.
               final colW = (box.maxWidth - nameW) / GuideModel.columnCount;
               final timeFont = math.min(font, colW / 3.3);
-              return Column(children: [
+              _unit = unit;
+              _colW = colW;
+              final grid = Column(children: [
                 SizedBox(
                   height: unit,
                   child: Row(children: [
@@ -165,8 +190,16 @@ class _GuideOverlayState extends State<GuideOverlay> {
                       ),
                   ]),
                 ),
-                for (final r in rows) SizedBox(height: unit, child: _guideRow(r, r.channel == selectedCh, nameW, font)),
+                for (final r in rows) SizedBox(height: unit, child: _guideRow(r, r.channel == selectedCh, nameW, font, touch)),
               ]);
+              if (!touch) return grid;
+              return GestureDetector(
+                onVerticalDragStart: (_) => _dy = 0,
+                onVerticalDragUpdate: (d) => _drag(d, vertical: true),
+                onHorizontalDragStart: (_) => _dx = 0,
+                onHorizontalDragUpdate: (d) => _drag(d, vertical: false),
+                child: grid,
+              );
             }),
           ),
         ),
@@ -174,11 +207,29 @@ class _GuideOverlayState extends State<GuideOverlay> {
     );
   }
 
-  Widget _guideRow(GuideRow r, bool selectedRow, double nameW, double font) {
+  Widget _guideRow(GuideRow r, bool selectedRow, double nameW, double font, bool touch) {
     final (bg, fg) = genreColors(r.channel.genre);
     final slot = m.selectedSlot;
+    // Touch: tapping the channel tunes it (live, like OK on the TV remote); tapping a programme selects it (the
+    // header shows its full title and time), tapping the selected one tunes.
+    Widget tap(Widget w, [GuideCell? c]) {
+      if (!touch) return w;
+      return GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: () {
+          if (c == null || (selectedRow && (c.slot == null || c.slot == slot))) return widget.onTune(r.channel);
+          final before = m.selectedChannel;
+          setState(() {
+            m.selectedRow = m.channels.indexOf(r.channel);
+            m.moveTime(c.slot == null ? Duration.zero : c.slot!.start.difference(m.selectedTime));
+          });
+          if (m.selectedChannel != before) widget.onHighlight(m.selectedChannel);
+        },
+        child: w,
+      );
+    }
     return Row(children: [
-      Container(
+      tap(Container(
         width: nameW,
         margin: const EdgeInsets.all(1),
         padding: const EdgeInsets.symmetric(horizontal: 4),
@@ -189,7 +240,7 @@ class _GuideOverlayState extends State<GuideOverlay> {
           _text('${m.lockedNumbers.contains(r.channel.number) ? '\u{1F512}' : ''}${r.channel.number} ', _style(font, fg, bold: true)),
           Expanded(child: _text(r.channel.name, _style(font, fg, bold: true))),
         ]),
-      ),
+      )),
       Expanded(
         child: LayoutBuilder(
           builder: (context, box) => Stack(children: [
@@ -202,7 +253,7 @@ class _GuideOverlayState extends State<GuideOverlay> {
                   width: w,
                   top: 0,
                   bottom: 0,
-                  child: Container(
+                  child: tap(Container(
                     key: sel ? GuideOverlay.selectedKey : null,
                     margin: const EdgeInsets.all(1),
                     padding: const EdgeInsets.symmetric(horizontal: 4),
@@ -210,7 +261,7 @@ class _GuideOverlayState extends State<GuideOverlay> {
                     color: sel ? _yellow : _cellBg,
                     // Under about four characters wide a title is just stray letters; leave the cell blank.
                     child: w < font * 2.5 ? null : _text(c.label, _style(font, sel ? Colors.black : Colors.white, bold: sel)),
-                  ),
+                  ), c),
                 );
               }(),
           ]),

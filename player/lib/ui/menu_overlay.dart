@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 
 import '../player/picture.dart';
 import '../settings/settings_store.dart';
+import 'touch.dart';
 
 const _font = 'Consolas';
 const _panel = Color(0xE6101A5C); // same dark translucent blue as the guide
@@ -332,8 +333,16 @@ class MenuOverlayState extends State<MenuOverlay> {
     };
   }
 
+  /// Touch: a tap selects the row and acts as Enter; on Volume and Caption size the left half steps down, the right half up.
+  void _tap(int i, double x, double width) {
+    setState(() => _sel = i);
+    final row = _rows[i];
+    _activate(row == _Item.volume || row == _Item.captionSize ? (x < width / 2 ? -1 : 1) : 0);
+  }
+
   @override
   Widget build(BuildContext context) {
+    final touch = TouchUi.of(context); // phone / tablet: the whole screen, rows tappable, the list scrolls by drag
     return Focus(
       focusNode: _focus,
       autofocus: true,
@@ -341,8 +350,8 @@ class MenuOverlayState extends State<MenuOverlay> {
       child: Align(
         alignment: Alignment.centerRight,
         child: FractionallySizedBox(
-          widthFactor: 0.55,
-          heightFactor: 0.9,
+          widthFactor: touch ? 1 : 0.55,
+          heightFactor: touch ? 1 : 0.9,
           child: Container(
             color: _panel,
             padding: const EdgeInsets.all(8),
@@ -374,7 +383,9 @@ class MenuOverlayState extends State<MenuOverlay> {
                     controller: _scroll,
                     child: Column(children: [
                       for (final (i, row) in rows.indexed)
-                        Container(
+                        GestureDetector(
+                          onTapUp: touch ? (d) => _tap(i, d.localPosition.dx, box.maxWidth) : null,
+                          child: Container(
                           key: i == _sel ? MenuOverlay.selectedKey : null,
                           height: unit - 2,
                           margin: const EdgeInsets.all(1),
@@ -392,7 +403,7 @@ class MenuOverlayState extends State<MenuOverlay> {
                               style: style(i == _sel ? Colors.black : Colors.white, bold: i == _sel),
                             ),
                           ),
-                        ),
+                        )),
                     ]),
                   ),
                 ),

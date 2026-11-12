@@ -2,7 +2,9 @@ import 'package:archive_tv_core/archive_tv_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../input/gamepad.dart' show keyEvent;
 import 'arcade_entry.dart';
+import 'touch.dart';
 
 const _font = 'Consolas';
 const _panel = Color(0xF0101A5C);
@@ -144,11 +146,20 @@ class _OnDemandOverlayState extends State<OnDemandOverlay> {
         color: _panel,
         padding: const EdgeInsets.all(12),
         child: LayoutBuilder(builder: (context, box) {
+          final touch = TouchUi.of(context);
+          // Touch: a tap selects the row and acts as Enter (open the shelf / play the title).
+          void tap(void Function() select) {
+            setState(select);
+            _onKey(_focus, keyEvent(LogicalKeyboardKey.enter, down: true));
+          }
+
           final unit = box.maxHeight / 13;
           final font = (unit * 0.45).clamp(9.0, 24.0);
           TextStyle style(Color c, {bool bold = false}) =>
               TextStyle(fontFamily: _font, fontSize: font, color: c, fontWeight: bold ? FontWeight.bold : null);
-          Widget row(String text, bool selected, {String? right}) => Container(
+          Widget row(String text, bool selected, {String? right, VoidCallback? onTap}) => GestureDetector(
+                onTap: touch ? onTap : null,
+                child: Container(
                 height: unit - 2,
                 margin: const EdgeInsets.all(1),
                 padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -159,7 +170,7 @@ class _OnDemandOverlayState extends State<OnDemandOverlay> {
                   ),
                   if (right != null) Text(right, style: style(selected ? Colors.black : const Color(0xFF9EC8FF))),
                 ]),
-              );
+              ));
 
           final searching = _view == _View.searchEntry || _view == _View.searchResults;
           final header = <Widget>[
@@ -188,7 +199,8 @@ class _OnDemandOverlayState extends State<OnDemandOverlay> {
             final start = (_shelf - visible + 1).clamp(0, labels.length);
             rows = [
               for (var i = start; i < labels.length && i < start + visible; i++)
-                row(labels[i], i == _shelf, right: i == 0 ? null : '${widget.poolOf(widget.channels[i - 1]).length} titles'),
+                row(labels[i], i == _shelf,
+                    right: i == 0 ? null : '${widget.poolOf(widget.channels[i - 1]).length} titles', onTap: () => tap(() => _shelf = i)),
             ];
           } else {
             if (_sel < _scroll) _scroll = _sel;
@@ -202,6 +214,7 @@ class _OnDemandOverlayState extends State<OnDemandOverlay> {
                   cleanTitle(_items[i].$2.title),
                   showSel && i == _sel,
                   right: searching ? '${_items[i].$1.name}  ${_len(_items[i].$2)}' : _len(_items[i].$2),
+                  onTap: _view == _View.searchEntry ? null : () => tap(() => _sel = i),
                 ),
             ];
           }

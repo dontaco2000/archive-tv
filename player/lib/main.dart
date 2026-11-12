@@ -20,6 +20,7 @@ import 'settings/rotating_log.dart';
 import 'settings/settings_file.dart';
 import 'settings/settings_store.dart';
 import 'settings/window_prefs.dart';
+import 'ui/touch.dart';
 import 'ui/tv_screen.dart';
 import 'ui/weather_web.dart';
 
@@ -55,10 +56,18 @@ Future<void> _main(List<String> args) async {
   MediaKit.ensureInitialized();
   // Android TV / Fire TV: always fullscreen landscape, no window to manage.
   final desktop = !Platform.isAndroid;
+  // Phones and tablets get the touch UI (ui/touch.dart); Fire TV / Android TV and Windows keep the TV UI.
+  final touch = !await isTvDevice();
   if (desktop) {
     await windowManager.ensureInitialized();
   } else {
     await SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+    // TV: landscape as before (the manifest no longer fixes it, so phones can turn). Touch: any way up, screen kept on.
+    if (touch) {
+      await keepScreenOn();
+    } else {
+      await SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight]);
+    }
   }
 
   // Test switches: --data-dir=<folder> (use a copy instead of the real data folder), --channel=<n> (start there).
@@ -76,6 +85,10 @@ Future<void> _main(List<String> args) async {
     }
   }
   final crash = _crash = CrashLog(dataDir, log)..start(logFile.file);
+  if (Platform.isAndroid) {
+    final v = PlatformDispatcher.instance.views.first;
+    log('device: ${deviceKind(tv: !touch, size: v.physicalSize / v.devicePixelRatio).name}');
+  }
   // Android has no window to close: a run that went to the background (or was left with Back) ended cleanly.
   if (Platform.isAndroid) {
     AppLifecycleListener(onStateChange: (s) => crash.running(s == AppLifecycleState.resumed || s == AppLifecycleState.inactive));
@@ -180,7 +193,7 @@ Future<void> _main(List<String> args) async {
   };
   runApp(MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: TvScreen(controller: tv, settings: settings, store: store, windowPrefs: windowPrefs, remote: remote, crash: crash)));
+      home: TvScreen(controller: tv, settings: settings, store: store, windowPrefs: windowPrefs, remote: remote, crash: crash, touch: touch)));
   installGamepad(log: log); // pads act as the keyboard: XInput on Windows, button keys on Android
   if (args.contains('--remote') && remote != null) {
     // After the TV window has its restored bounds / fullscreen, so the remote lands beside it.
