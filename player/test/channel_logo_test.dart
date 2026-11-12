@@ -11,7 +11,7 @@ Widget _wrap(String name) =>
 void main() {
   test('every channel in the bundled channels.json has a logo asset', () {
     final config = parseChannelConfig(File('assets/channels.json').readAsStringSync());
-    expect(config.channels, hasLength(40));
+    expect(config.channels, hasLength(42));
     for (final c in config.channels) {
       expect(File(logoAsset(c.name)).existsSync(), isTrue, reason: '${c.number} ${c.name}');
     }

@@ -111,7 +111,29 @@
     "monty-python-a-poet-in-every-home-dutch-subs-polly-parrot-720p-h-264-youtube-online-video-cutter.com",
     "monty-python-and-the-holy-grail-in-alphabetical-order-preview",
     "monty-python-on-global-news",
-    "pointless-celebrities-with-craig-charles-danny-john-jules-of-red-dwarf"
+    "pointless-celebrities-with-craig-charles-danny-john-jules-of-red-dwarf",
+    "medical-detectives",
+    "mashmulti",
+    "tokyo-bound-bondage-mistresses-of-japan-channel-4-30.12.00",
+    "Praha14",
+    "the-perverts-guide-to-cinema",
+    "BirthEightWomensStories",
+    "VoyageDesNouveauxGourous",
+    "con_animo_de_lucro_version_castellano_divx",
+    "9-11-documentary-by-naudet-brothers",
+    "brighton-rock-1948",
+    "the-last-days-of-planet-earth-1979",
+    "walking-with-dinosaurs-japan",
+    "zero-hour-season-1-episode-3-massacre-at-columbine-high",
+    "AV_179-THE_WAR_GAME-_THE_REALITY_OF_NUCLEAR_WAR",
+    "FrozenPlanetBD1Episodio3EstateItaEng1080pX264_20160305",
+    "Kroppen",
+    "Hjernevask_Brainwash_EngSub",
+    "Gamer_Br_EnglishVersion",
+    "PorQuuPeleamosWhyWeFight2005",
+    "surfs-up_202309",
+    "Venezuela_Bolivariana_VEN_2004",
+    "t-collection-of-visionary-director-david-lynchs-short-films-from-the-first-29-ye"
   ],
   "channels": [
     {
@@ -1274,8 +1296,39 @@
       ],
       "sources": [
         {
-          "query": "(subject:documentary AND -title:(\"real sex\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR spanish OR jpn OR japanese OR chi OR chinese OR zho OR pol OR polish OR fre OR french OR fra OR ger OR german OR deu OR ita OR italian OR por OR portuguese OR rus OR russian OR kor OR korean OR hin OR hindi OR ara OR arabic OR tur OR vie OR ind OR tha OR hmn) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -subject:(gore OR shockumentary OR mondo OR \"death footage\" OR infowars OR \"alex jones\" OR \"new world order\" OR stripper OR strippers OR \"strip club\" OR bdsm OR bondage) AND -title:(\"traces of death\" OR \"faces of death\" OR \"g-string\" OR lesborama OR bondage OR massage OR \"jane eyre\" OR \"philosophy of a knife\" OR \"kettle cadaver\" OR \"junk films\" OR \"cf tease\" OR zeitgeist OR \"freedom to fascism\") AND -identifier:(\"orozco-the-embalmer\" OR \"surfs-up_202309\" OR \"star-wars-deleted-magic\" OR \"return-of-the-ewok\" OR \"princess-trey-parker-matt-stone-4k-restoration\" OR \"alex-jones-documentaries\") AND -collection:movie_trailers AND -title:(\"death scenes\" OR pantera OR \"sex and violence\")",
-          "maxEntriesPerItem": 150
+          "query": "(title:(\"planet earth\" OR \"blue planet\" OR \"life on earth\" OR \"the living planet\" OR \"trials of life\" OR \"life of mammals\" OR \"life of birds\" OR \"private life of plants\" OR \"frozen planet\" OR \"life in the undergrowth\" OR \"life in cold blood\" OR attenborough OR \"wildlife on one\" OR \"wildlife specials\" OR \"life in the freezer\" OR \"natural world\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -title:(latino OR dublado OR legendado OR castellano OR \"pt-br\" OR hindi OR german OR deutsch OR italiano OR español OR espanol OR \"lektor pl\" OR Коломбо) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie OR game_replays OR us_congress) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR CLE-* OR NJY-* OR VHS-0* OR mubd1234ama-*) AND -title:(trailer OR promo OR promos OR teaser OR commercial OR commercials OR credits OR intro OR opening OR bumper OR parody OR spoof OR \"vhs tape\" OR \"vhs fb\" OR \"random tv\" OR \"taped over\" OR review OR reaction OR \"every movie ever\" OR longplay OR mashup) AND -title:(forensic OR murder OR killer OR crime OR conspiracy OR ufo OR bigfoot OR hitler) AND -title:(hope OR hackers OR \"our response\" OR \"micro mostri\" OR \"making of\" OR \"behind the scenes\" OR podcast OR interview OR ita)",
+          "ignoreYear": true,
+          "maxEntries": 70,
+          "maxEntriesPerItem": 6
+        },
+        {
+          "query": "(title:(\"walking with dinosaurs\" OR \"walking with beasts\" OR \"walking with monsters\" OR \"walking with cavemen\" OR \"sea monsters\" OR \"inside nature's giants\" OR \"crocodile hunter\" OR \"national geographic\" OR \"prehistoric park\" OR \"time life nature\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -title:(latino OR dublado OR legendado OR castellano OR \"pt-br\" OR hindi OR german OR deutsch OR italiano OR español OR espanol OR \"lektor pl\" OR Коломбо) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie OR game_replays OR us_congress) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR CLE-* OR NJY-* OR VHS-0* OR mubd1234ama-*) AND -title:(trailer OR promo OR promos OR teaser OR commercial OR commercials OR credits OR intro OR opening OR bumper OR parody OR spoof OR \"vhs tape\" OR \"vhs fb\" OR \"random tv\" OR \"taped over\" OR review OR reaction OR \"every movie ever\" OR longplay OR mashup) AND -title:(forensic OR murder OR killer OR crime OR conspiracy OR ufo OR bigfoot OR hitler) AND -title:(\"the movie\" OR \"inside the mega\" OR 360 OR \"360°\" OR \"concept art\" OR japanese OR \"making of\") AND -identifier:(ZippCast-* OR National.Geographic.Relentless*)",
+          "ignoreYear": true,
+          "maxEntries": 70,
+          "maxEntriesPerItem": 6
+        },
+        {
+          "query": "(title:(\"ken burns\" OR \"victory at sea\" OR \"the great war\" OR \"silk road\" OR \"people's century\" OR \"ascent of man\" OR \"day the universe changed\" OR \"crusade in europe\" OR timewatch OR \"in search of the trojan war\" OR \"michael wood\" OR \"the story of english\" OR \"the western tradition\" OR \"america: a personal history\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -title:(latino OR dublado OR legendado OR castellano OR \"pt-br\" OR hindi OR german OR deutsch OR italiano OR español OR espanol OR \"lektor pl\" OR Коломбо) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie OR game_replays OR us_congress) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR CLE-* OR NJY-* OR VHS-0* OR mubd1234ama-*) AND -title:(trailer OR promo OR promos OR teaser OR commercial OR commercials OR credits OR intro OR opening OR bumper OR parody OR spoof OR \"vhs tape\" OR \"vhs fb\" OR \"random tv\" OR \"taped over\" OR review OR reaction OR \"every movie ever\" OR longplay OR mashup) AND -title:(forensic OR murder OR killer OR crime OR conspiracy OR ufo OR bigfoot OR hitler) AND -title:(\"world at war\" OR civilisation OR \"cosmos: a personal\" OR \"cosmos a personal\" OR \"connections by james burke\") AND -title:(\"country music\" OR \"civil war on drugs\" OR overview OR dokumentarfilm OR \"silk road 2\" OR \"silk road market\" OR darknet OR \"ross ulbricht\" OR \"mini series\" OR \"complete series\" OR 1963 OR 1934 OR taylor) AND -identifier:(hsbtv*)",
+          "ignoreYear": true,
+          "maxEntries": 70,
+          "maxEntriesPerItem": 6
+        },
+        {
+          "query": "(title:(\"the planets\" OR mythbusters OR \"beyond 2000\" OR \"the elegant universe\" OR \"how the universe works\" OR \"space race\" OR \"alien planet\" OR \"the body in question\" OR \"the human body\" OR \"earth story\" OR \"the incredible human machine\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie OR game_replays OR us_congress) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR CLE-* OR NJY-* OR VHS-0* OR mubd1234ama-*) AND -title:(trailer OR promo OR promos OR teaser OR commercial OR commercials OR credits OR intro OR opening OR bumper OR parody OR spoof OR \"vhs tape\" OR \"vhs fb\" OR \"random tv\" OR \"taped over\" OR review OR reaction OR \"every movie ever\" OR longplay OR mashup) AND -title:(forensic OR murder OR killer OR crime OR conspiracy OR ufo OR bigfoot OR hitler) AND -title:(\"war of the planets\" OR \"battle of the planets\" OR gatchaman OR \"trip to the planets\" OR \"symphonies of\" OR brochu OR \"bill nye saves\" OR \"close-up on\" OR \"war between\" OR holst OR jupiter OR tomita OR \"op. 32\" OR laserdisc OR \"laser disc\" OR \"concept art\" OR alcohol OR tobacco OR circulation OR radiation OR \"1968\" OR raumrenn OR nickelodeon OR \"soviet union\" OR \"plate glass\") AND -identifier:(0993_* OR ATripToThePlanets* OR 19*_space_race OR 19*_Space_Race OR vimeo-* OR NPC-* OR xd-* OR 0016_* OR m6Kv*)",
+          "ignoreYear": true,
+          "maxEntries": 60,
+          "maxEntriesPerItem": 6
+        },
+        {
+          "identifiers": [
+            "The_Corporation_"
+          ],
+          "ignoreYear": true
+        },
+        {
+          "query": "(subject:(documentary OR documentaries) AND -subject:(music OR concert OR band)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie OR game_replays OR us_congress) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR CLE-* OR NJY-* OR VHS-0* OR mubd1234ama-*) AND -title:(trailer OR promo OR promos OR teaser OR commercial OR commercials OR credits OR intro OR opening OR bumper OR parody OR spoof OR \"vhs tape\" OR \"vhs fb\" OR \"random tv\" OR \"taped over\" OR review OR reaction OR \"every movie ever\" OR longplay OR mashup) AND -subject:(gore OR shockumentary OR mondo OR infowars OR \"alex jones\" OR conspiracy OR \"true crime\" OR crime OR murder OR \"serial killer\" OR forensic OR police OR propaganda OR nazi OR hitler OR christian OR religion OR bible OR ufo OR bigfoot OR paranormal OR strippers) AND -title:(forensic OR murder OR killer OR crime OR \"of death\" OR zeitgeist OR fascism OR hellstorm OR \"never told\" OR \"last battle\" OR hitler OR \"g-string\" OR lesborama OR massage OR \"jane eyre\" OR knife OR cadaver OR \"junk films\" OR \"killing of america\" OR \"frat house\" OR \"romanian revolution\" OR \"star wars\" OR ewok OR orozco OR \"trey parker\" OR \"cf tease\" OR \"how not to make\" OR jfk) AND -title:(\"world at war\" OR civilisation OR \"cosmos: a personal\" OR \"cosmos a personal\" OR \"connections by james burke\") AND -collection:(prelinger OR classic_tv)",
+          "maxEntries": 90,
+          "maxEntriesPerItem": 3
         }
       ]
     },
@@ -1340,6 +1393,50 @@
             "CopsVHSTapes"
           ],
           "maxEntriesPerItem": 100
+        }
+      ]
+    },
+    {
+      "number": 36,
+      "name": "Evidence",
+      "logo": "Logos/4x3/evidence.png",
+      "genre": "News & Docs",
+      "sources": [
+        {
+          "query": "(title:(\"unsolved mysteries\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -title:(latino OR dublado OR legendado OR castellano OR \"pt-br\" OR hindi OR german OR deutsch OR italiano OR español OR espanol OR \"lektor pl\" OR Коломбо) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie OR game_replays OR us_congress) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR CLE-* OR NJY-* OR VHS-0* OR mubd1234ama-*) AND -title:(trailer OR promo OR promos OR teaser OR commercial OR commercials OR credits OR intro OR opening OR bumper OR parody OR spoof OR \"vhs tape\" OR \"vhs fb\" OR \"random tv\" OR \"taped over\" OR review OR reaction OR \"every movie ever\" OR longplay OR mashup) AND -title:(predator OR \"faces of death\" OR \"traces of death\" OR gore OR autopsy OR \"death scenes\" OR \"crime scene photos\" OR execution OR snuff OR \"real murder\" OR \"caught on tape\" OR cops OR \"police chase\") AND -title:(mtv OR \"music videos\" OR columbo OR \"with dennis farina\" OR commentary OR \"top 10\" OR \"10 unsolved\" OR \"world war\" OR ufos OR ghosts OR paranormal OR spookiest OR mixtape OR klaus OR roushutsu OR baalbek OR chemtrail OR \"two friends\" OR y2k OR alaska OR hippocampal OR 2024 OR events OR rapist OR \"somebody feed\") AND -identifier:(vhs-28-* OR Redwood_* OR videoplayback_* OR vintage-commercials-* OR solomons-temple-*) AND -title:(ephesians)",
+          "ignoreYear": true,
+          "maxEntries": 70,
+          "maxEntriesPerItem": 3
+        },
+        {
+          "query": "(title:(\"america's most wanted\" OR \"americas most wanted\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -title:(latino OR dublado OR legendado OR castellano OR \"pt-br\" OR hindi OR german OR deutsch OR italiano OR español OR espanol OR \"lektor pl\" OR Коломбо) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie OR game_replays OR us_congress) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR CLE-* OR NJY-* OR VHS-0* OR mubd1234ama-*) AND -title:(trailer OR promo OR promos OR teaser OR commercial OR commercials OR credits OR intro OR opening OR bumper OR parody OR spoof OR \"vhs tape\" OR \"vhs fb\" OR \"random tv\" OR \"taped over\" OR review OR reaction OR \"every movie ever\" OR longplay OR mashup) AND -title:(predator OR \"faces of death\" OR \"traces of death\" OR gore OR autopsy OR \"death scenes\" OR \"crime scene photos\" OR execution OR snuff OR \"real murder\" OR \"caught on tape\" OR cops OR \"police chase\") AND -title:(maury OR stig OR \"koaa\" OR driver OR \"girl on the run\" OR \"born underground\")",
+          "ignoreYear": true,
+          "maxEntries": 40,
+          "maxEntriesPerItem": 2
+        },
+        {
+          "query": "(title:(\"forensic files\" OR \"medical detectives\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -title:(latino OR dublado OR legendado OR castellano OR \"pt-br\" OR hindi OR german OR deutsch OR italiano OR español OR espanol OR \"lektor pl\" OR Коломбо) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie OR game_replays OR us_congress) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR CLE-* OR NJY-* OR VHS-0* OR mubd1234ama-*) AND -title:(trailer OR promo OR promos OR teaser OR commercial OR commercials OR credits OR intro OR opening OR bumper OR parody OR spoof OR \"vhs tape\" OR \"vhs fb\" OR \"random tv\" OR \"taped over\" OR review OR reaction OR \"every movie ever\" OR longplay OR mashup) AND -title:(predator OR \"faces of death\" OR \"traces of death\" OR gore OR autopsy OR \"death scenes\" OR \"crime scene photos\" OR execution OR snuff OR \"real murder\" OR \"caught on tape\" OR cops OR \"police chase\") AND -title:(oscars OR rigged)",
+          "ignoreYear": true,
+          "maxEntries": 50,
+          "maxEntriesPerItem": 6
+        },
+        {
+          "query": "(title:(\"48 hours mystery\" OR \"american justice\" OR \"investigative reports\" OR \"crimewatch uk\" OR \"cold case files\" OR \"the fbi files\" OR \"the first 48\" OR \"american greed\" OR \"on the case with paula zahn\" OR \"the new detectives\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie OR game_replays OR us_congress) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR CLE-* OR NJY-* OR VHS-0* OR mubd1234ama-*) AND -title:(trailer OR promo OR promos OR teaser OR commercial OR commercials OR credits OR intro OR opening OR bumper OR parody OR spoof OR \"vhs tape\" OR \"vhs fb\" OR \"random tv\" OR \"taped over\" OR review OR reaction OR \"every movie ever\" OR longplay OR mashup) AND -title:(predator OR \"faces of death\" OR \"traces of death\" OR gore OR autopsy OR \"death scenes\" OR \"crime scene photos\" OR execution OR snuff OR \"real murder\" OR \"caught on tape\" OR cops OR \"police chase\") AND -title:(\"civil war journal\" OR biography OR \"same sex\" OR nasa OR \"danger on the rails\" OR \"game\" OR pinoy OR india OR \"dead girls\" OR radical OR \"is american justice\" OR \"black lawyer\" OR \"true crime files\" OR draper OR shots OR \"jam tv\" OR columbine OR waco OR juvenile) AND -identifier:(cobpca-* OR cobne-* OR covbva-* OR sflkva-* OR prkcitut-* OR openmind_* OR PA6* OR vintage-commercials-* OR stmacma-* OR man-murdered-in-clothing-* OR nsia-* OR Howard_County_* OR cunytv_* OR archiveteam_*)",
+          "ignoreYear": true,
+          "maxEntries": 60,
+          "maxEntriesPerItem": 6
+        },
+        {
+          "query": "((title:(\"sherlock holmes\") AND (title:(1954 OR granada OR \"case of\") OR collection:(classic_tv OR classic_tv_1950s OR television_inbox))) OR title:(poirot OR \"miss marple\" OR \"inspector morse\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -title:(latino OR dublado OR legendado OR castellano OR \"pt-br\" OR hindi OR german OR deutsch OR italiano OR español OR espanol OR \"lektor pl\" OR Коломбо) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie OR game_replays OR us_congress) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR CLE-* OR NJY-* OR VHS-0* OR mubd1234ama-*) AND -title:(trailer OR promo OR promos OR teaser OR commercial OR commercials OR credits OR intro OR opening OR bumper OR parody OR spoof OR \"vhs tape\" OR \"vhs fb\" OR \"random tv\" OR \"taped over\" OR review OR reaction OR \"every movie ever\" OR longplay OR mashup) AND -title:(\"death on the nile\" OR \"16 uhr\" OR \"making of\" OR magazine OR \"the woman in green\" OR \"secret weapon\" OR colorized OR 1939 OR 1942 OR 1943 OR 1944 OR 1945 OR 1946 OR rathbone) AND -identifier:(AgathaChristiePoirot*)",
+          "ignoreYear": true,
+          "maxEntries": 35,
+          "maxEntriesPerItem": 5
+        },
+        {
+          "query": "(title:(columbo OR \"mrs. columbo\" OR \"murder, she wrote\" OR \"murder she wrote\" OR \"perry mason\" OR dragnet OR \"peter gunn\" OR \"richard diamond\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -title:(latino OR dublado OR legendado OR castellano OR \"pt-br\" OR hindi OR german OR deutsch OR italiano OR español OR espanol OR \"lektor pl\" OR Коломбо) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie OR game_replays OR us_congress) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR CLE-* OR NJY-* OR VHS-0* OR mubd1234ama-*) AND -title:(trailer OR promo OR promos OR teaser OR commercial OR commercials OR credits OR intro OR opening OR bumper OR parody OR spoof OR \"vhs tape\" OR \"vhs fb\" OR \"random tv\" OR \"taped over\" OR review OR reaction OR \"every movie ever\" OR longplay OR mashup) AND -title:(crosby OR vallee OR \"fan edit\" OR \"complete broadcast\" OR \"art of noise\" OR \"old time tv\" OR 1987 OR radio OR \"sex and the married\" OR retrovision OR \"1989 tv movie\" OR \"highway dragnet\" OR \"dragnet patrol\") AND -identifier:(full-size-render_20210109 OR 1994-07-15-american-forces-network OR vts-*)",
+          "ignoreYear": true,
+          "maxEntries": 40,
+          "maxEntriesPerItem": 5
         }
       ]
     },
@@ -2015,6 +2112,110 @@
         {
           "query": "(title:(\"merv griffin\" OR \"mike douglas\" OR \"dinah!\" OR \"dick cavett\" OR \"virginia graham\" OR \"david frost show\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR jpn OR chi OR hin OR kor OR tur) AND -collection:(audio_sermons OR audio_religion) AND -subject:(sermon OR tbn OR worship OR \"praise the lord\") AND -collection:(tvnews OR tvarchive OR mirrortube OR social-media-video OR video_blender OR fringe OR deemphasize OR feature_films OR movie_trailers OR anime_miscellaneous OR gamevideos OR vlogs) AND -identifier:(youtube-*) AND -title:(\"vhs #\" OR \"vhs tape\" OR \"blank vhs\" OR \"tape #\" OR \"dvd+r\" OR \"dvd-\" OR \"market box\" OR \"retro tv\" OR promo OR commercials OR trailer OR bloopers OR intro OR credits OR clip OR clips OR teaser OR preview OR kelo OR kdlt OR ksfy OR \"nightly news\" OR dateline OR \"11pm news\" OR nypd) AND -title:(\"richard bey\" OR \"too hot\" OR uncensored OR strip OR stripper OR strippers OR boobs OR breasts OR braless OR naked OR nude OR sex OR sexy OR lesbo OR gangbang OR raped OR yoga OR troy OR willowbrook OR \"at large\" OR documentary OR \"chevy show\" OR \"screen song\" OR \"jack benny\" OR \"wine guide\" OR \"together again\" OR \"rock icons\" OR \"sesame street\" OR afterschool OR \"public access\" OR delvalle OR \"view from\" OR \"shock of the new\" OR bitbbh OR wrestling OR boxing OR pornography OR holocaust OR \"gas chamber\" OR feed) AND -identifier:(*stripper* OR 19??.??.??-*) AND -collection:community_media AND -title:(\"dinah shore show\" OR \"dinah shore chevy\" OR honeysuckle OR soundies OR \"jazz songs\" OR \"new years eve\" OR mwah OR \"freddy martin\" OR \"closing logo\" OR carnation OR noddy OR christie OR \"card sharks\" OR \"portal to hell\")",
           "ignoreYear": true
+        }
+      ]
+    },
+    {
+      "number": 64,
+      "name": "Pulse",
+      "logo": "Logos/4x3/pulse.png",
+      "genre": "TV",
+      "sources": [
+        {
+          "query": "(title:(\"empty nest\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -title:(latino OR dublado OR legendado OR castellano OR \"pt-br\" OR hindi OR german OR deutsch OR italiano OR español OR espanol OR \"lektor pl\" OR Коломбо) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie OR game_replays OR us_congress) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR CLE-* OR NJY-* OR VHS-0* OR mubd1234ama-*) AND -title:(trailer OR promo OR promos OR teaser OR commercial OR commercials OR credits OR intro OR opening OR bumper OR parody OR spoof OR \"vhs tape\" OR \"vhs fb\" OR \"random tv\" OR \"taped over\" OR review OR reaction OR \"every movie ever\" OR longplay OR mashup) AND -title:(\"in love\" OR \"lektor\" OR \"mi primer\" OR bloopers OR shorts OR \"#shorts\" OR \"split screen\" OR \"dvd extras\" OR \"bonus dvd\" OR quiz) AND -title:(\"golden girls\" OR logies OR knots OR syndrome OR \"tech news\") AND -identifier:(2021-1-27-*)",
+          "ignoreYear": true,
+          "maxEntries": 40,
+          "maxEntriesPerItem": 6
+        },
+        {
+          "identifiers": [
+            "doogie-howser-m.d.-season-1-of-4-xvid-avi",
+            "doogie-howser-m.d.-season-2-of-4-xvid-avi",
+            "doogie-howser-m.d.-season-3-of-4-xvid-avi",
+            "doogie-howser-m.d.-season-4-of-4-xvid-avi"
+          ],
+          "maxEntriesPerItem": 10,
+          "ignoreYear": true
+        },
+        {
+          "query": "(title:(\"st. elsewhere\" OR \"st elsewhere\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -title:(latino OR dublado OR legendado OR castellano OR \"pt-br\" OR hindi OR german OR deutsch OR italiano OR español OR espanol OR \"lektor pl\" OR Коломбо) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie OR game_replays OR us_congress) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR CLE-* OR NJY-* OR VHS-0* OR mubd1234ama-*) AND -title:(trailer OR promo OR promos OR teaser OR commercial OR commercials OR credits OR intro OR opening OR bumper OR parody OR spoof OR \"vhs tape\" OR \"vhs fb\" OR \"random tv\" OR \"taped over\" OR review OR reaction OR \"every movie ever\" OR longplay OR mashup) AND -title:(\"in love\" OR \"lektor\" OR \"mi primer\" OR bloopers OR shorts OR \"#shorts\" OR \"split screen\" OR \"dvd extras\" OR \"bonus dvd\" OR quiz) AND -title:(kron OR \"deluxe edition\" OR interviews OR \"dot moore\")",
+          "ignoreYear": true,
+          "maxEntries": 40,
+          "maxEntriesPerItem": 8
+        },
+        {
+          "identifiers": [
+            "mash-season-1",
+            "mash-season-2",
+            "mash-season-3",
+            "mash-season-4",
+            "mash-season-5",
+            "mash-season-6",
+            "mash-season-7",
+            "mash-season-8",
+            "mashgoodbye-farewell-amen-10-10-83"
+          ],
+          "maxEntriesPerItem": 5,
+          "ignoreYear": true
+        },
+        {
+          "query": "(title:(\"quincy, m. e.\" OR \"quincy m. e.\" OR \"quincy m.e.\" OR \"quincy me\" OR quincy-lando18) OR identifier:(Quincy-Lando18 OR quincy-s-*)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -title:(latino OR dublado OR legendado OR castellano OR \"pt-br\" OR hindi OR german OR deutsch OR italiano OR español OR espanol OR \"lektor pl\" OR Коломбо) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie OR game_replays OR us_congress) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR CLE-* OR NJY-* OR VHS-0* OR mubd1234ama-*) AND -title:(trailer OR promo OR promos OR teaser OR commercial OR commercials OR credits OR intro OR opening OR bumper OR parody OR spoof OR \"vhs tape\" OR \"vhs fb\" OR \"random tv\" OR \"taped over\" OR review OR reaction OR \"every movie ever\" OR longplay OR mashup) AND -title:(\"in love\" OR \"lektor\" OR \"mi primer\" OR bloopers OR shorts OR \"#shorts\" OR \"split screen\" OR \"dvd extras\" OR \"bonus dvd\" OR quiz) AND -title:(jones OR adams OR \"universal nightmare\" OR \"dondon\") AND -identifier:(quincy-last-rights-* OR dondons-*)",
+          "ignoreYear": true,
+          "maxEntries": 40,
+          "maxEntriesPerItem": 8
+        },
+        {
+          "query": "(title:(\"diagnosis murder\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -title:(latino OR dublado OR legendado OR castellano OR \"pt-br\" OR hindi OR german OR deutsch OR italiano OR español OR espanol OR \"lektor pl\" OR Коломбо) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie OR game_replays OR us_congress) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR CLE-* OR NJY-* OR VHS-0* OR mubd1234ama-*) AND -title:(trailer OR promo OR promos OR teaser OR commercial OR commercials OR credits OR intro OR opening OR bumper OR parody OR spoof OR \"vhs tape\" OR \"vhs fb\" OR \"random tv\" OR \"taped over\" OR review OR reaction OR \"every movie ever\" OR longplay OR mashup) AND -title:(\"in love\" OR \"lektor\" OR \"mi primer\" OR bloopers OR shorts OR \"#shorts\" OR \"split screen\" OR \"dvd extras\" OR \"bonus dvd\" OR quiz) AND -title:(1974 OR \"inspector rex\" OR \"market box\")",
+          "ignoreYear": true,
+          "maxEntries": 20,
+          "maxEntriesPerItem": 6
+        },
+        {
+          "query": "(identifier:(emergency-season_1 OR emergency-session-* OR emergency-Session*)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -title:(latino OR dublado OR legendado OR castellano OR \"pt-br\" OR hindi OR german OR deutsch OR italiano OR español OR espanol OR \"lektor pl\" OR Коломбо) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie OR game_replays OR us_congress) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR CLE-* OR NJY-* OR VHS-0* OR mubd1234ama-*) AND -title:(trailer OR promo OR promos OR teaser OR commercial OR commercials OR credits OR intro OR opening OR bumper OR parody OR spoof OR \"vhs tape\" OR \"vhs fb\" OR \"random tv\" OR \"taped over\" OR review OR reaction OR \"every movie ever\" OR longplay OR mashup)",
+          "ignoreYear": true,
+          "maxEntries": 40,
+          "maxEntriesPerItem": 6
+        },
+        {
+          "query": "(title:(\"marcus welby\" OR \"ben casey\" OR \"dr. kildare\" OR \"trapper john\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -title:(latino OR dublado OR legendado OR castellano OR \"pt-br\" OR hindi OR german OR deutsch OR italiano OR español OR espanol OR \"lektor pl\" OR Коломбо) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie OR game_replays OR us_congress) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR CLE-* OR NJY-* OR VHS-0* OR mubd1234ama-*) AND -title:(trailer OR promo OR promos OR teaser OR commercial OR commercials OR credits OR intro OR opening OR bumper OR parody OR spoof OR \"vhs tape\" OR \"vhs fb\" OR \"random tv\" OR \"taped over\" OR review OR reaction OR \"every movie ever\" OR longplay OR mashup) AND -title:(\"in love\" OR \"lektor\" OR \"mi primer\" OR bloopers OR shorts OR \"#shorts\" OR \"split screen\" OR \"dvd extras\" OR \"bonus dvd\" OR quiz) AND -title:(password OR 1938 OR 1939 OR 1940 OR 1941 OR 1942 OR \"temple houston\" OR \"outer limits\" OR ewok)",
+          "ignoreYear": true,
+          "maxEntries": 30,
+          "maxEntriesPerItem": 6
+        },
+        {
+          "query": "(title:(casualty)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -title:(latino OR dublado OR legendado OR castellano OR \"pt-br\" OR hindi OR german OR deutsch OR italiano OR español OR espanol OR \"lektor pl\" OR Коломбо) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie OR game_replays OR us_congress) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR CLE-* OR NJY-* OR VHS-0* OR mubd1234ama-*) AND -title:(trailer OR promo OR promos OR teaser OR commercial OR commercials OR credits OR intro OR opening OR bumper OR parody OR spoof OR \"vhs tape\" OR \"vhs fb\" OR \"random tv\" OR \"taped over\" OR review OR reaction OR \"every movie ever\" OR longplay OR mashup) AND -title:(\"in love\" OR \"lektor\" OR \"mi primer\" OR bloopers OR shorts OR \"#shorts\" OR \"split screen\" OR \"dvd extras\" OR \"bonus dvd\" OR quiz) AND -title:(hopalong OR hop-a-long OR \"first casualty\" OR unrwa OR war OR \"casualty of\" OR mhe OR casualties OR omnibus) AND -identifier:(casualtyASL) AND (title:(bbc OR series OR episode OR 1900s OR 1998) OR identifier:casualty*)",
+          "ignoreYear": true,
+          "maxEntries": 40,
+          "maxEntriesPerItem": 6
+        },
+        {
+          "query": "(title:(\"holby city\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -title:(latino OR dublado OR legendado OR castellano OR \"pt-br\" OR hindi OR german OR deutsch OR italiano OR español OR espanol OR \"lektor pl\" OR Коломбо) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie OR game_replays OR us_congress) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR CLE-* OR NJY-* OR VHS-0* OR mubd1234ama-*) AND -title:(trailer OR promo OR promos OR teaser OR commercial OR commercials OR credits OR intro OR opening OR bumper OR parody OR spoof OR \"vhs tape\" OR \"vhs fb\" OR \"random tv\" OR \"taped over\" OR review OR reaction OR \"every movie ever\" OR longplay OR mashup) AND -title:(\"in love\" OR \"lektor\" OR \"mi primer\" OR bloopers OR shorts OR \"#shorts\" OR \"split screen\" OR \"dvd extras\" OR \"bonus dvd\" OR quiz)",
+          "ignoreYear": true,
+          "maxEntries": 20,
+          "maxEntriesPerItem": 4
+        },
+        {
+          "query": "(title:(\"doc martin\" OR \"dr. quinn\" OR \"doctor in the house\" OR \"all creatures great and small\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -title:(latino OR dublado OR legendado OR castellano OR \"pt-br\" OR hindi OR german OR deutsch OR italiano OR español OR espanol OR \"lektor pl\" OR Коломбо) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie OR game_replays OR us_congress) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR CLE-* OR NJY-* OR VHS-0* OR mubd1234ama-*) AND -title:(trailer OR promo OR promos OR teaser OR commercial OR commercials OR credits OR intro OR opening OR bumper OR parody OR spoof OR \"vhs tape\" OR \"vhs fb\" OR \"random tv\" OR \"taped over\" OR review OR reaction OR \"every movie ever\" OR longplay OR mashup) AND -title:(\"in love\" OR \"lektor\" OR \"mi primer\" OR bloopers OR shorts OR \"#shorts\" OR \"split screen\" OR \"dvd extras\" OR \"bonus dvd\" OR quiz) AND -title:(\"baby good sports\" OR \"doctor who\" OR \"compilation tape\" OR masterpiece OR \"the heart within\" OR \"market box\" OR \"is there a\" OR workout OR seinfeld OR \"touring the dales\" OR tricki OR wrestling OR \"music videos\" OR easter OR surprise OR \"variety show\" OR chatting OR yappin OR typical) AND -identifier:(archiveteam_* OR twitch-* OR rpreplay-* OR sctvma-* OR ccpfmd-* OR pgcpsmd-* OR geekygirlsknit-* OR v-2016* OR 1997-10-13-*)",
+          "ignoreYear": true,
+          "maxEntries": 50,
+          "maxEntriesPerItem": 6
+        },
+        {
+          "identifiers": [
+            "chicago-hope",
+            "chicago-hope-full-episode-with-commercials",
+            "House_201401",
+            "poppin.pills",
+            "nlqzmt"
+          ],
+          "maxEntriesPerItem": 6,
+          "ignoreYear": true
+        },
+        {
+          "query": "(title:(\"rescue 911\" OR \"rescue 9-1-1\" OR \"paramedics emergency response\" OR \"paramedics: emergency response\" OR \"trauma: life in the er\" OR \"trauma life in the er\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -title:(latino OR dublado OR legendado OR castellano OR \"pt-br\" OR hindi OR german OR deutsch OR italiano OR español OR espanol OR \"lektor pl\" OR Коломбо) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie OR game_replays OR us_congress) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR CLE-* OR NJY-* OR VHS-0* OR mubd1234ama-*) AND -title:(trailer OR promo OR promos OR teaser OR commercial OR commercials OR credits OR intro OR opening OR bumper OR parody OR spoof OR \"vhs tape\" OR \"vhs fb\" OR \"random tv\" OR \"taped over\" OR review OR reaction OR \"every movie ever\" OR longplay OR mashup) AND -title:(\"in love\" OR \"lektor\" OR \"mi primer\" OR bloopers OR shorts OR \"#shorts\" OR \"split screen\" OR \"dvd extras\" OR \"bonus dvd\" OR quiz) AND -title:(norfolk OR \"st. johns\" OR \"call center\" OR \"footy show\" OR \"married with children\" OR \"domestic abuse\" OR mst OR animal OR syndicated)",
+          "ignoreYear": true,
+          "maxEntries": 30,
+          "maxEntriesPerItem": 6
         }
       ]
     }
