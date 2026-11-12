@@ -28,7 +28,7 @@
       "genre": "Kids & Animation",
       "sources": [
         {
-          "query": "subject:anime AND (language:(eng OR english) OR title:(dub OR dubbed OR \"english sub\" OR \"hard-coded\" OR hardsub)) AND -language:(spa OR fre OR ger OR ita OR por OR rus)"
+          "query": "subject:anime AND (language:(eng OR english) OR title:(dub OR dubbed OR \"english sub\" OR \"hard-coded\" OR hardsub)) AND -language:(spa OR fre OR ger OR ita OR por OR rus) AND -title:(\"super robot monkey\" OR \"mega man\" OR \"invader zim\" OR zim OR urotsukidoji OR \"cream lemon\" OR hentai OR midori OR \"mad bull\" OR aika OR hentaihaven OR \"h-anime\" OR hanime OR xvideos OR vore OR lolita OR gonad OR rwby OR abridged)"
         }
       ]
     },
