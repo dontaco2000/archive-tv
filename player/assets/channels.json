@@ -39,7 +39,79 @@
     "Beast_of_Yucca_Flats_movie",
     "DoomsdayMachine1972_201511",
     "BlackCobra_133",
-    "videoplayback_20180210_2014"
+    "videoplayback_20180210_2014",
+    "xvideos-velma-scooby-doo-sd",
+    "scooby-doo-and-guess-who-daphne-blake-magician-assistant-outfit-you-tube-360p",
+    "DylanHockQuindynnasScoobyDooIII_0",
+    "DylanHockQuindynnasScoobyDooII",
+    "videoplayback-2021-04-25-t-162214.556",
+    "st015funhouse-scooby-doo",
+    "Paul_s_Scooby-Doo_Ice_Cream_1981",
+    "ScoobyMC",
+    "hong-kong-phooey-test-footage",
+    "hong-kong-phooey-boomerang-and-cn-stuff-2009-2010",
+    "the-scooby-doo-show-sun-studio-sasong-2",
+    "the-new-scooby-doo-movies-sonny-and-cher-swedish",
+    "scooby-doo-haxans-spoke-svenskt-tal",
+    "scooby-doo-och-goulskolan-1988-Svenska",
+    "the.-banana.-splits.-movie.-2019.720p",
+    "516361490-mp-4-h-264-aac-fhd-5",
+    "fact8vt-Gory_Story_Time_-_The_Banana_Splits_Movie",
+    "VaultingEpisode74",
+    "ocwoc-033-toonami-full-block-sailor-moon-re-boot-dbz-jonny-quest-cn-1999",
+    "looney-tunes-espanol-latino",
+    "looney-tunes-in-french",
+    "Toonheads_218_The_Year_Elmer_Fudd_Got_Fat",
+    "tom-jerry-kids-droopy-scrap-heap-symphony",
+    "droopy-caca-raposa-barneyurso",
+    "nostalgitrippar-till-droopy",
+    "31-droopy-en-el-pantano",
+    "project-06-06-3-full-hd-1080p",
+    "japanese-1000044941",
+    "street-fighter-ii-the-animated-movie-uncensored-1994",
+    "Perfect_Blue_Movie",
+    "perfect-blue-1997-18-english-dub-vhs-tape",
+    "perfect-blue-uk-vhs",
+    "golgo-13-the-professional-1983",
+    "golgo-13-queen-bee-1998",
+    "ep.-1.v-1.1689522947.720p",
+    "akira-1988-DVDISO",
+    "alitabattleangel2019avaproperhdriphqlineaudios0",
+    "Akira2016WWW.DesiPirates.TKHindiDVDSCR",
+    "Anime_Abandon_Ghost_in_the_Shell-nx1EW7uolpU",
+    "Anime_Abandon_Perfect_Blue-4mNoD_aAIZQ",
+    "Anime_Abandon_Golgo_13-_FT_VV0gBo",
+    "akira-supplements",
+    "videocompressor20191223010332716",
+    "ken-the-great-bearfist-ken-rattvisans-kampe-1986",
+    "gitsld",
+    "KanedaPlusAkira",
+    "1-hora-con-droopy",
+    "scooby-doo-den-harresande-skyskrapan-festivalvard-eller-spoke-top-cat-1976",
+    "scooby-doo-var-ar-du-sasong-2-originaldubbning",
+    "warner-bros-1952x-30-bugs-sam-un-viaje-emocionante-hare-lift-cla-esp-eng-laser-d_202207",
+    "alita-eng",
+    "ghost-in-the-shell-1995-3-d-sbs-japanese-english",
+    "venus-wars",
+    "vampire-hunter-d-bloodlust-2000-vr-48-fps-1920x-1080-sbs",
+    "Akira_Production_Report_1989",
+    "title_t00_202007",
+    "armored-trooper-votoms-patlabor-the-mobile-police-battle-arena-toshinden-screener-anime-vhs",
+    "patlabor-complete-bdrip-sxales",
+    "street-fighter-ii-v-07-manga-adv-jpn-film-store-group_202107",
+    "project-a-ko-1986-sub",
+    "neo-tokyo-manie-manie-1987-sub",
+    "dominion-tank-police-act-3-1991-vhs",
+    "thesuperdimensionfortressmacrossdoyourememberloveperfecteditionenglishjapanesedub",
+    "02.05.1999-rtl-werbeblock-bei-black-adder",
+    "10-monty-python-moments-that-broke-the-entire-cast",
+    "a-ilustre-casa-de-blackadder-",
+    "channelten-only-fools-and-horses-ads-19950817",
+    "kbyu-pbs-promos-and-monty-python-flying-circus-incomplete-1998-06",
+    "monty-python-a-poet-in-every-home-dutch-subs-polly-parrot-720p-h-264-youtube-online-video-cutter.com",
+    "monty-python-and-the-holy-grail-in-alphabetical-order-preview",
+    "monty-python-on-global-news",
+    "pointless-celebrities-with-craig-charles-danny-john-jules-of-red-dwarf"
   ],
   "channels": [
     {
@@ -126,7 +198,50 @@
       ],
       "sources": [
         {
-          "query": "(subject:(cartoon OR cartoons)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR spanish OR jpn OR japanese OR chi OR chinese OR zho OR pol OR polish OR fre OR french OR fra OR ger OR german OR deu OR ita OR italian OR por OR portuguese OR rus OR russian OR kor OR korean OR hin OR hindi OR ara OR arabic OR tur OR vie OR ind OR tha OR hmn) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -subject:(banned OR \"adult swim\" OR \"foamy the squirrel\" OR \"ill will press\" OR \"hypnotic eye\") AND -identifier:(\"ReadingRainbowTVSeries\" OR \"FWRRTVSeries\" OR \"xavierrenegadeangel\" OR \"demashita_powerpuff_girls_z_full_series_japanese_dub\" OR \"krishna-balram-in-kalvakra-2009\" OR \"5_More_Minutes\") AND -title:(\"drawn together\")"
+          "query": "(title:(laff-a-lympics OR \"laff a lympics\" OR laffalympics)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR xvideos OR fanservice OR bikini OR swimsuit OR rule34) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut) AND -title:(latino OR dublado OR legendado OR castellano OR \"pt-br\" OR hindi OR svensk OR svenska OR tecknad OR indonesia OR español OR espanol) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie) AND -identifier:(youtube-* OR yt_* OR bliptv-* OR g4tv.com-* OR twitter-*) AND -title:(trailer OR promo OR teaser OR \"tv spot\" OR commercial OR commercials OR review OR reaction OR parody OR longplay OR gameplay OR lego OR amv OR interview OR documentary OR \"making of\" OR ost OR soundtrack OR intro OR opening OR bumpers) AND -title:(disney OR \"disney's\" OR \"missing episode\")",
+          "ignoreYear": true,
+          "maxEntries": 40,
+          "maxEntriesPerItem": 12,
+          "tag": "cartoons_overseas"
+        },
+        {
+          "query": "(title:(flintstones OR jetsons OR \"yogi bear\" OR \"huckleberry hound\" OR \"quick draw mcgraw\" OR \"top cat\" OR \"jonny quest\" OR \"space ghost\" OR \"wacky races\" OR \"magilla gorilla\" OR snagglepuss OR \"secret squirrel\" OR \"atom ant\" OR \"wally gator\" OR \"peter potamus\" OR herculoids OR \"banana splits\" OR \"penelope pitstop\" OR dastardly OR \"touche turtle\" OR \"lippy the lion\" OR \"pixie and dixie\" OR \"augie doggie\" OR \"loopy de loop\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR xvideos OR fanservice OR bikini OR swimsuit OR rule34) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut) AND -title:(latino OR dublado OR legendado OR castellano OR \"pt-br\" OR hindi OR svensk OR svenska OR tecknad OR indonesia OR español OR espanol) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie) AND -identifier:(youtube-* OR yt_* OR bliptv-* OR g4tv.com-* OR twitter-*) AND -title:(trailer OR promo OR teaser OR \"tv spot\" OR commercial OR commercials OR review OR reaction OR parody OR longplay OR gameplay OR lego OR amv OR interview OR documentary OR \"making of\" OR ost OR soundtrack OR intro OR opening OR bumpers) AND -title:(\"cartoon network\" OR metv OR boomerang OR vhs OR playlist OR \"full series\" OR 1994 OR 2013 OR 2014 OR 2017 OR 2020 OR 2021 OR woc OR filmstrip OR promos OR \"full block\" OR \"saturday morning\" OR credits OR closing OR theme OR toonami OR \"adult swim\") AND -title:(winston OR psa OR \"anti drug\" OR \"kings island\" OR \"coast to coast\" OR \"viva rock vegas\" OR \"real adventures\" OR \"harvey birdman\" OR frankenstone OR babbitt OR rare OR vitamins OR \"kellogg's\" OR \"movie trip\" OR begins)",
+          "ignoreYear": true,
+          "maxEntries": 120,
+          "maxEntriesPerItem": 12,
+          "tag": "cartoons_overseas"
+        },
+        {
+          "query": "(title:(scooby-doo OR \"scooby doo\" OR \"hong kong phooey\" OR jabberjaw OR \"captain caveman\" OR \"josie and the pussycats\" OR \"speed buggy\" OR dynomutt OR \"hair bear bunch\" OR \"funky phantom\" OR \"grape ape\" OR \"inch high\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR xvideos OR fanservice OR bikini OR swimsuit OR rule34) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut) AND -title:(latino OR dublado OR legendado OR castellano OR \"pt-br\" OR hindi OR svensk OR svenska OR tecknad OR indonesia OR español OR espanol) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie) AND -identifier:(youtube-* OR yt_* OR bliptv-* OR g4tv.com-* OR twitter-*) AND -title:(trailer OR promo OR teaser OR \"tv spot\" OR commercial OR commercials OR review OR reaction OR parody OR longplay OR gameplay OR lego OR amv OR interview OR documentary OR \"making of\" OR ost OR soundtrack OR intro OR opening OR bumpers) AND -title:(\"cartoon network\" OR metv OR boomerang OR vhs OR playlist OR \"full series\" OR 1994 OR 2013 OR 2014 OR 2017 OR 2020 OR 2021 OR woc OR filmstrip OR promos OR \"full block\" OR \"saturday morning\" OR credits OR closing OR theme OR toonami OR \"adult swim\") AND -title:(\"be cool\" OR \"what's new\" OR \"mystery incorporated\" OR \"camp scare\" OR \"witch's ghost\" OR wrestlemania OR wwe OR scoob OR \"live action\" OR 2002 OR \"zombie island\" OR \"alien invaders\" OR \"cyber chase\" OR \"boo brothers\" OR \"reluctant werewolf\" OR \"toon tour\" OR \"monsters unleashed\" OR \"get a clue\" OR aloha OR frankencreepy OR \"goblin king\" OR \"where are you now\" OR project OR \"straight outta\" OR 7z OR 2001 OR swedish)",
+          "ignoreYear": true,
+          "maxEntries": 100,
+          "maxEntriesPerItem": 12,
+          "tag": "cartoons_overseas"
+        },
+        {
+          "query": "(title:(\"looney tunes\" OR \"merrie melodies\" OR \"bugs bunny\" OR \"daffy duck\" OR \"porky pig\" OR \"elmer fudd\" OR tweety OR \"road runner\" OR \"wile e. coyote\" OR \"foghorn leghorn\" OR \"speedy gonzales\" OR \"yosemite sam\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR xvideos OR fanservice OR bikini OR swimsuit OR rule34) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut) AND -title:(latino OR dublado OR legendado OR castellano OR \"pt-br\" OR hindi OR svensk OR svenska OR tecknad OR indonesia OR español OR espanol) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie) AND -identifier:(youtube-* OR yt_* OR bliptv-* OR g4tv.com-* OR twitter-*) AND -title:(trailer OR promo OR teaser OR \"tv spot\" OR commercial OR commercials OR review OR reaction OR parody OR longplay OR gameplay OR lego OR amv OR interview OR documentary OR \"making of\" OR ost OR soundtrack OR intro OR opening OR bumpers) AND -title:(censored OR uncensored OR banned OR \"coal black\" OR \"jungle jitters\" OR \"pingo pongo\" OR \"rabbit stew\" OR \"hallelujah land\" OR \"clean pastures\" OR \"uncle tom\" OR \"heaven on a mule\" OR \"angel puss\" OR \"tin pan alley\" OR jivin OR meetin OR \"nips the nips\" OR \"tokio jokio\" OR \"any bonds\" OR snafu OR pygmy OR \"riding hood\" OR \"swing shift\") AND -title:(\"space jam\" OR \"looney tunes show\" OR \"baby looney\" OR \"new looney\" OR loonatics OR \"back in action\" OR wabbit OR \"cartoon network\" OR remake OR \"every bugs\" OR 2011 OR 2020 OR 2022 OR \"bugs bunny show\" OR vhs OR fanmade OR \"animated shorts\" OR \"big game\" OR \"under construction\" OR \"the art of\" OR french OR \"saturday morning\")",
+          "ignoreYear": true,
+          "maxEntries": 260,
+          "maxEntriesPerItem": 25,
+          "tag": "cartoons_overseas"
+        },
+        {
+          "query": "(title:(\"tex avery\" OR droopy OR \"screwy squirrel\" OR \"george and junior\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR xvideos OR fanservice OR bikini OR swimsuit OR rule34) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut) AND -title:(latino OR dublado OR legendado OR castellano OR \"pt-br\" OR hindi OR svensk OR svenska OR tecknad OR indonesia OR español OR espanol) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie) AND -identifier:(youtube-* OR yt_* OR bliptv-* OR g4tv.com-* OR twitter-*) AND -title:(trailer OR promo OR teaser OR \"tv spot\" OR commercial OR commercials OR review OR reaction OR parody OR longplay OR gameplay OR lego OR amv OR interview OR documentary OR \"making of\" OR ost OR soundtrack OR intro OR opening OR bumpers) AND -title:(censored OR uncensored OR banned OR \"coal black\" OR \"jungle jitters\" OR \"pingo pongo\" OR \"rabbit stew\" OR \"hallelujah land\" OR \"clean pastures\" OR \"uncle tom\" OR \"heaven on a mule\" OR \"angel puss\" OR \"tin pan alley\" OR jivin OR meetin OR \"nips the nips\" OR \"tokio jokio\" OR \"any bonds\" OR snafu OR pygmy OR \"riding hood\" OR \"swing shift\") AND -title:(\"droopy dog\" OR \"master detective\" OR \"tom and jerry kids\" OR \"white balances\" OR bio OR \"1-min\" OR clip OR clips OR excerpts OR \"cartoon network\" OR \"fox kids\" OR spawn OR safety OR spanking OR \"king of cartoons\" OR \"jerry kids\" OR metv)",
+          "ignoreYear": true,
+          "maxEntries": 100,
+          "maxEntriesPerItem": 25,
+          "tag": "cartoons_overseas"
+        },
+        {
+          "query": "(title:(\"george of the jungle\") AND title:(1967 OR episode OR episodes OR series OR season OR \"jay ward\" OR ep OR cartoons OR show)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR xvideos OR fanservice OR bikini OR swimsuit OR rule34) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut) AND -title:(latino OR dublado OR legendado OR castellano OR \"pt-br\" OR hindi OR svensk OR svenska OR tecknad OR indonesia OR español OR espanol) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie) AND -identifier:(youtube-* OR yt_* OR bliptv-* OR g4tv.com-* OR twitter-*) AND -title:(trailer OR promo OR teaser OR \"tv spot\" OR commercial OR commercials OR review OR reaction OR parody OR longplay OR gameplay OR lego OR amv OR interview OR documentary OR \"making of\" OR ost OR soundtrack OR intro OR opening OR bumpers) AND -title:(promos OR spots OR credits OR menu OR km OR abc OR theme OR vcd OR 97 OR 2002 OR 1997 OR 2003 OR 2007 OR disney OR workprint OR wii OR iso OR \"2-disc\")",
+          "ignoreYear": true,
+          "maxEntries": 40,
+          "maxEntriesPerItem": 20,
+          "tag": "cartoons_overseas"
+        },
+        {
+          "query": "(subject:(cartoon OR cartoons)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR spanish OR jpn OR japanese OR chi OR chinese OR zho OR pol OR polish OR fre OR french OR fra OR ger OR german OR deu OR ita OR italian OR por OR portuguese OR rus OR russian OR kor OR korean OR hin OR hindi OR ara OR arabic OR tur OR vie OR ind OR tha OR hmn) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -subject:(banned OR \"adult swim\" OR \"foamy the squirrel\" OR \"ill will press\" OR \"hypnotic eye\") AND -identifier:(\"ReadingRainbowTVSeries\" OR \"FWRRTVSeries\" OR \"xavierrenegadeangel\" OR \"demashita_powerpuff_girls_z_full_series_japanese_dub\" OR \"krishna-balram-in-kalvakra-2009\" OR \"5_More_Minutes\") AND -title:(\"drawn together\")",
+          "maxEntriesPerItem": 40
         }
       ]
     },
@@ -288,7 +403,22 @@
       ],
       "sources": [
         {
-          "query": "(subject:anime AND (language:(eng OR english) OR title:(dub OR dubbed OR \"english sub\" OR \"hard-coded\" OR hardsub)) AND -language:(spa OR fre OR ger OR ita OR por OR rus) AND -title:(\"super robot monkey\" OR \"mega man\" OR \"invader zim\" OR zim OR urotsukidoji OR \"cream lemon\" OR hentai OR midori OR \"mad bull\" OR aika OR hentaihaven OR \"h-anime\" OR hanime OR xvideos OR vore OR lolita OR gonad OR rwby OR abridged)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -language:(ind OR indonesian OR fil) AND -title:(indonesian OR \"japanese dub\") AND -title:(\"plastic little\" OR \"mezzo forte\")"
+          "query": "(title:(akira OR \"ninja scroll\" OR \"vampire hunter d\" OR \"ghost in the shell\" OR patlabor OR \"neo tokyo\" OR \"robot carnival\" OR \"roujin z\" OR \"wings of honneamise\" OR \"castle of cagliostro\" OR lensman OR \"venus wars\" OR \"dominion tank police\" OR \"project a-ko\" OR \"fist of the north star\" OR \"street fighter ii\" OR \"cowboy bebop the movie\" OR \"macross do you remember love\" OR \"armitage iii\" OR \"silent mobius\" OR appleseed OR \"record of lodoss war\" OR \"grave of the fireflies\" OR \"battle angel\" OR \"cyber city oedo\") AND (language:(eng OR english) OR title:(dub OR dubbed OR english OR \"eng sub\" OR subbed OR streamline OR \"manga entertainment\" OR pioneer OR adv))) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR xvideos OR fanservice OR bikini OR swimsuit OR rule34) AND -language:(spa OR por OR fre OR ger OR ita OR rus OR chi OR kor) AND -title:(latino OR dublado OR legendado OR castellano OR \"pt-br\" OR indonesia) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie) AND -identifier:(youtube-* OR yt_* OR bliptv-* OR g4tv.com-* OR twitter-*) AND -title:(trailer OR promo OR teaser OR \"tv spot\" OR commercial OR commercials OR review OR reaction OR parody OR longplay OR gameplay OR lego OR amv OR interview OR documentary OR \"making of\" OR ost OR soundtrack OR intro OR opening OR bumpers) AND -title:(\"akira kato\" OR \"akira katô\" OR daemon OR maria OR live OR \"live action\" OR \"wicked city\" OR \"violence jack\" OR midori OR iso OR \"dual audio\" OR \"multi-audio\" OR \"tri-audio\" OR uncensored OR episode OR \"anime abandon\" OR dvdiso OR 2016 OR 2019 OR godzilla OR \"ep.\" OR season OR vinyl OR \"stand alone complex\" OR sac)",
+          "ignoreYear": true,
+          "maxEntries": 60,
+          "maxEntriesPerItem": 4,
+          "tag": "cartoons_overseas"
+        },
+        {
+          "query": "(title:(\"bubblegum crisis\" OR \"bubblegum crash\" OR \"ad police\" OR \"a.d. police\") AND ((language:(eng OR english) OR title:(dub OR dubbed OR english OR \"eng sub\" OR subbed OR streamline OR \"manga entertainment\" OR pioneer OR adv)) OR title:(\"uk vhs\"))) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR xvideos OR fanservice OR bikini OR swimsuit OR rule34) AND -language:(spa OR por OR fre OR ger OR ita OR rus OR chi OR kor) AND -title:(latino OR dublado OR legendado OR castellano OR \"pt-br\" OR indonesia) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie) AND -identifier:(youtube-* OR yt_* OR bliptv-* OR g4tv.com-* OR twitter-*) AND -title:(trailer OR promo OR teaser OR \"tv spot\" OR commercial OR commercials OR review OR reaction OR parody OR longplay OR gameplay OR lego OR amv OR interview OR documentary OR \"making of\" OR ost OR soundtrack OR intro OR opening OR bumpers) AND -title:(dublado OR legendado OR \"pt-br\" OR \"dual audio\" OR \"dual áudio\" OR \"multi-audio\" OR \"tri-audio\" OR making OR \"funky doll\" OR iso OR \"previews\" OR \"shin seiki\")",
+          "ignoreYear": true,
+          "maxEntries": 60,
+          "maxEntriesPerItem": 13,
+          "tag": "cartoons_overseas"
+        },
+        {
+          "query": "(subject:anime AND (language:(eng OR english) OR title:(dub OR dubbed OR \"english sub\" OR \"hard-coded\" OR hardsub)) AND -language:(spa OR fre OR ger OR ita OR por OR rus) AND -title:(\"super robot monkey\" OR \"mega man\" OR \"invader zim\" OR zim OR urotsukidoji OR \"cream lemon\" OR hentai OR midori OR \"mad bull\" OR aika OR hentaihaven OR \"h-anime\" OR hanime OR xvideos OR vore OR lolita OR gonad OR rwby OR abridged)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -language:(ind OR indonesian OR fil) AND -title:(indonesian OR \"japanese dub\") AND -title:(\"plastic little\" OR \"mezzo forte\")",
+          "maxEntriesPerItem": 40
         },
         {
           "identifiers": [
@@ -299,7 +429,8 @@
             "kinnikuman-complete-series",
             "kinnikuman-1983-hn-g-muscle-subs"
           ],
-          "ignoreYear": true
+          "ignoreYear": true,
+          "maxEntriesPerItem": 40
         }
       ]
     },
@@ -1608,8 +1739,92 @@
       ],
       "sources": [
         {
+          "query": "(title:(\"doctor who\" OR \"dr. who\" OR \"dr who\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR xvideos OR fanservice OR bikini OR swimsuit OR rule34) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut) AND -title:(latino OR dublado OR legendado OR castellano OR \"pt-br\" OR hindi OR svensk OR svenska OR tecknad OR indonesia OR español OR espanol) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie) AND -identifier:(youtube-* OR yt_* OR bliptv-* OR g4tv.com-* OR twitter-*) AND -title:(trailer OR promo OR teaser OR \"tv spot\" OR commercial OR commercials OR review OR reaction OR parody OR longplay OR gameplay OR lego OR amv OR interview OR documentary OR \"making of\" OR ost OR soundtrack OR intro OR opening OR bumpers) AND -title:(iso OR \"audio\" OR rarities OR \"vhs set\" OR \"6 hour\" OR \"compilation tape\" OR sketch OR \"supplementary\" OR extras OR \"pal dvd\") AND -title:(reconstruction* OR \"loose cannon\" OR \"doctor who 3\" OR confidential OR \"big finish\" OR \"doctor who magazine\" OR menu OR \"dalek invasion earth 2150\" OR \"dr. who and the daleks\" OR fan OR animated OR minisodes OR blakes)",
+          "ignoreYear": true,
+          "maxEntries": 80,
+          "maxEntriesPerItem": 10,
+          "tag": "cartoons_overseas"
+        },
+        {
+          "query": "(title:(\"are you being served\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR xvideos OR fanservice OR bikini OR swimsuit OR rule34) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut) AND -title:(latino OR dublado OR legendado OR castellano OR \"pt-br\" OR hindi OR svensk OR svenska OR tecknad OR indonesia OR español OR espanol) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie) AND -identifier:(youtube-* OR yt_* OR bliptv-* OR g4tv.com-* OR twitter-*) AND -title:(trailer OR promo OR teaser OR \"tv spot\" OR commercial OR commercials OR review OR reaction OR parody OR longplay OR gameplay OR lego OR amv OR interview OR documentary OR \"making of\" OR ost OR soundtrack OR intro OR opening OR bumpers) AND -title:(iso OR \"audio\" OR rarities OR \"vhs set\" OR \"6 hour\" OR \"compilation tape\" OR sketch OR \"supplementary\" OR extras OR \"pal dvd\") AND -title:(\"grace and favour\" OR album OR beta OR pyramid OR \"ad breaks\" OR woof OR humphreys)",
+          "ignoreYear": true,
+          "maxEntries": 40,
+          "maxEntriesPerItem": 8,
+          "tag": "cartoons_overseas"
+        },
+        {
+          "query": "(title:(\"fawlty towers\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR xvideos OR fanservice OR bikini OR swimsuit OR rule34) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut) AND -title:(latino OR dublado OR legendado OR castellano OR \"pt-br\" OR hindi OR svensk OR svenska OR tecknad OR indonesia OR español OR espanol) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie) AND -identifier:(youtube-* OR yt_* OR bliptv-* OR g4tv.com-* OR twitter-*) AND -title:(trailer OR promo OR teaser OR \"tv spot\" OR commercial OR commercials OR review OR reaction OR parody OR longplay OR gameplay OR lego OR amv OR interview OR documentary OR \"making of\" OR ost OR soundtrack OR intro OR opening OR bumpers) AND -title:(iso OR \"audio\" OR rarities OR \"vhs set\" OR \"6 hour\" OR \"compilation tape\" OR sketch OR \"supplementary\" OR extras OR \"pal dvd\") AND -title:(play OR vinyl OR menu OR credits OR pooh OR surprise OR princess OR overleden OR \"calling the shots\")",
+          "ignoreYear": true,
+          "maxEntries": 12,
+          "maxEntriesPerItem": 6,
+          "tag": "cartoons_overseas"
+        },
+        {
+          "query": "(title:(\"monty python\" OR \"monty python's flying circus\" OR \"monty pythons flying circus\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR xvideos OR fanservice OR bikini OR swimsuit OR rule34) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut) AND -title:(latino OR dublado OR legendado OR castellano OR \"pt-br\" OR hindi OR svensk OR svenska OR tecknad OR indonesia OR español OR espanol) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie) AND -identifier:(youtube-* OR yt_* OR bliptv-* OR g4tv.com-* OR twitter-*) AND -title:(trailer OR promo OR teaser OR \"tv spot\" OR commercial OR commercials OR review OR reaction OR parody OR longplay OR gameplay OR lego OR amv OR interview OR documentary OR \"making of\" OR ost OR soundtrack OR intro OR opening OR bumpers) AND -title:(iso OR \"audio\" OR rarities OR \"vhs set\" OR \"6 hour\" OR \"compilation tape\" OR sketch OR \"supplementary\" OR extras OR \"pal dvd\") AND -title:(\"dark age of camelot\" OR quest OR spamalot OR \"documentary series\" OR \"almost the truth\" OR \"personal best\" OR \"mrs.\" OR \"man who speaks\" OR clip OR scene OR transgender OR parodies OR mst3k OR \"random tv\" OR nightmare OR episode OR definitely OR \"young america\" OR remake OR 9convert OR charades OR \"global news\" OR \"falling out\" OR \"fresh fruit\" OR \"night court\" OR biography OR collab OR hommage OR \"bonus feature\" OR \"british army\" OR glass OR philosophers OR \"keith david\" OR ursula OR \"network television\")",
+          "ignoreYear": true,
+          "maxEntries": 40,
+          "maxEntriesPerItem": 10,
+          "tag": "cartoons_overseas"
+        },
+        {
+          "query": "(title:(blackadder OR \"black adder\" OR black-adder)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR xvideos OR fanservice OR bikini OR swimsuit OR rule34) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut) AND -title:(latino OR dublado OR legendado OR castellano OR \"pt-br\" OR hindi OR svensk OR svenska OR tecknad OR indonesia OR español OR espanol) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie) AND -identifier:(youtube-* OR yt_* OR bliptv-* OR g4tv.com-* OR twitter-*) AND -title:(trailer OR promo OR teaser OR \"tv spot\" OR commercial OR commercials OR review OR reaction OR parody OR longplay OR gameplay OR lego OR amv OR interview OR documentary OR \"making of\" OR ost OR soundtrack OR intro OR opening OR bumpers) AND -title:(iso OR \"audio\" OR rarities OR \"vhs set\" OR \"6 hour\" OR \"compilation tape\" OR sketch OR \"supplementary\" OR extras OR \"pal dvd\") AND -title:(\"back & forth\" OR \"back and forth\" OR \"unaired pilot\")",
+          "ignoreYear": true,
+          "maxEntries": 30,
+          "maxEntriesPerItem": 6,
+          "tag": "cartoons_overseas"
+        },
+        {
+          "query": "(title:(\"red dwarf\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR xvideos OR fanservice OR bikini OR swimsuit OR rule34) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut) AND -title:(latino OR dublado OR legendado OR castellano OR \"pt-br\" OR hindi OR svensk OR svenska OR tecknad OR indonesia OR español OR espanol) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie) AND -identifier:(youtube-* OR yt_* OR bliptv-* OR g4tv.com-* OR twitter-*) AND -title:(trailer OR promo OR teaser OR \"tv spot\" OR commercial OR commercials OR review OR reaction OR parody OR longplay OR gameplay OR lego OR amv OR interview OR documentary OR \"making of\" OR ost OR soundtrack OR intro OR opening OR bumpers) AND -title:(iso OR \"audio\" OR rarities OR \"vhs set\" OR \"6 hour\" OR \"compilation tape\" OR sketch OR \"supplementary\" OR extras OR \"pal dvd\") AND -title:(bodysnatcher OR goal OR smeg OR threesixtyp OR continuity OR \"us pilot\" OR workprint OR awards OR amnesty OR smeghead OR night OR blakes)",
+          "ignoreYear": true,
+          "maxEntries": 50,
+          "maxEntriesPerItem": 8,
+          "tag": "cartoons_overseas"
+        },
+        {
+          "query": "(title:(\"dad's army\" OR \"dads army\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR xvideos OR fanservice OR bikini OR swimsuit OR rule34) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut) AND -title:(latino OR dublado OR legendado OR castellano OR \"pt-br\" OR hindi OR svensk OR svenska OR tecknad OR indonesia OR español OR espanol) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie) AND -identifier:(youtube-* OR yt_* OR bliptv-* OR g4tv.com-* OR twitter-*) AND -title:(trailer OR promo OR teaser OR \"tv spot\" OR commercial OR commercials OR review OR reaction OR parody OR longplay OR gameplay OR lego OR amv OR interview OR documentary OR \"making of\" OR ost OR soundtrack OR intro OR opening OR bumpers) AND -title:(iso OR \"audio\" OR rarities OR \"vhs set\" OR \"6 hour\" OR \"compilation tape\" OR sketch OR \"supplementary\" OR extras OR \"pal dvd\") AND -title:(\"royal variety\" OR \"pelican crossing\" OR \"we're doomed\")",
+          "ignoreYear": true,
+          "maxEntries": 50,
+          "maxEntriesPerItem": 8,
+          "tag": "cartoons_overseas"
+        },
+        {
+          "query": "(title:(\"yes minister\" OR \"yes, minister\" OR \"yes prime minister\" OR \"yes, prime minister\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR xvideos OR fanservice OR bikini OR swimsuit OR rule34) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut) AND -title:(latino OR dublado OR legendado OR castellano OR \"pt-br\" OR hindi OR svensk OR svenska OR tecknad OR indonesia OR español OR espanol) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie) AND -identifier:(youtube-* OR yt_* OR bliptv-* OR g4tv.com-* OR twitter-*) AND -title:(trailer OR promo OR teaser OR \"tv spot\" OR commercial OR commercials OR review OR reaction OR parody OR longplay OR gameplay OR lego OR amv OR interview OR documentary OR \"making of\" OR ost OR soundtrack OR intro OR opening OR bumpers) AND -title:(iso OR \"audio\" OR rarities OR \"vhs set\" OR \"6 hour\" OR \"compilation tape\" OR sketch OR \"supplementary\" OR extras OR \"pal dvd\") AND -title:(terminolgy OR terminology OR trident OR \"party games\" OR \"salami tactics\" OR skit OR \"told a lie\")",
+          "ignoreYear": true,
+          "maxEntries": 30,
+          "maxEntriesPerItem": 8,
+          "tag": "cartoons_overseas"
+        },
+        {
+          "query": "(title:(\"only fools and horses\" OR \"only fools & horses\" OR \"only fools\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR xvideos OR fanservice OR bikini OR swimsuit OR rule34) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut) AND -title:(latino OR dublado OR legendado OR castellano OR \"pt-br\" OR hindi OR svensk OR svenska OR tecknad OR indonesia OR español OR espanol) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie) AND -identifier:(youtube-* OR yt_* OR bliptv-* OR g4tv.com-* OR twitter-*) AND -title:(trailer OR promo OR teaser OR \"tv spot\" OR commercial OR commercials OR review OR reaction OR parody OR longplay OR gameplay OR lego OR amv OR interview OR documentary OR \"making of\" OR ost OR soundtrack OR intro OR opening OR bumpers) AND -title:(iso OR \"audio\" OR rarities OR \"vhs set\" OR \"6 hour\" OR \"compilation tape\" OR sketch OR \"supplementary\" OR extras OR \"pal dvd\") AND -title:(\"rock & chips\" OR \"rock and chips\" OR \"rare sketches\" OR \"start of\" OR \"around the world\")",
+          "ignoreYear": true,
+          "maxEntries": 50,
+          "maxEntriesPerItem": 8,
+          "tag": "cartoons_overseas"
+        },
+        {
+          "query": "(title:(\"keeping up appearances\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR xvideos OR fanservice OR bikini OR swimsuit OR rule34) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut) AND -title:(latino OR dublado OR legendado OR castellano OR \"pt-br\" OR hindi OR svensk OR svenska OR tecknad OR indonesia OR español OR espanol) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie) AND -identifier:(youtube-* OR yt_* OR bliptv-* OR g4tv.com-* OR twitter-*) AND -title:(trailer OR promo OR teaser OR \"tv spot\" OR commercial OR commercials OR review OR reaction OR parody OR longplay OR gameplay OR lego OR amv OR interview OR documentary OR \"making of\" OR ost OR soundtrack OR intro OR opening OR bumpers) AND -title:(iso OR \"audio\" OR rarities OR \"vhs set\" OR \"6 hour\" OR \"compilation tape\" OR sketch OR \"supplementary\" OR extras OR \"pal dvd\") AND -title:(\"dragon ball\" OR \"pbs kids\" OR ytv OR wliw21 OR full OR carson OR \"funny or die\" OR remembers OR \"start of\")",
+          "ignoreYear": true,
+          "maxEntries": 40,
+          "maxEntriesPerItem": 10,
+          "tag": "cartoons_overseas"
+        },
+        {
+          "query": "(title:(\"last of the summer wine\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR xvideos OR fanservice OR bikini OR swimsuit OR rule34) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut) AND -title:(latino OR dublado OR legendado OR castellano OR \"pt-br\" OR hindi OR svensk OR svenska OR tecknad OR indonesia OR español OR espanol) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie) AND -identifier:(youtube-* OR yt_* OR bliptv-* OR g4tv.com-* OR twitter-*) AND -title:(trailer OR promo OR teaser OR \"tv spot\" OR commercial OR commercials OR review OR reaction OR parody OR longplay OR gameplay OR lego OR amv OR interview OR documentary OR \"making of\" OR ost OR soundtrack OR intro OR opening OR bumpers) AND -title:(iso OR \"audio\" OR rarities OR \"vhs set\" OR \"6 hour\" OR \"compilation tape\" OR sketch OR \"supplementary\" OR extras OR \"pal dvd\")",
+          "ignoreYear": true,
+          "maxEntries": 40,
+          "maxEntriesPerItem": 6,
+          "tag": "cartoons_overseas"
+        },
+        {
+          "query": "(title:(\"'allo 'allo\" OR \"allo allo\" OR porridge OR \"the good life\" OR \"open all hours\" OR \"mr. bean\" OR \"mr bean\" OR \"two ronnies\" OR \"one foot in the grave\" OR \"the vicar of dibley\" OR hi-de-hi OR \"some mothers do\" OR \"the goodies\" OR \"steptoe and son\" OR \"hitchhiker's guide to the galaxy\" OR \"hitch hikers guide to the galaxy\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR xvideos OR fanservice OR bikini OR swimsuit OR rule34) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut) AND -title:(latino OR dublado OR legendado OR castellano OR \"pt-br\" OR hindi OR svensk OR svenska OR tecknad OR indonesia OR español OR espanol) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie) AND -identifier:(youtube-* OR yt_* OR bliptv-* OR g4tv.com-* OR twitter-*) AND -title:(trailer OR promo OR teaser OR \"tv spot\" OR commercial OR commercials OR review OR reaction OR parody OR longplay OR gameplay OR lego OR amv OR interview OR documentary OR \"making of\" OR ost OR soundtrack OR intro OR opening OR bumpers) AND -title:(iso OR \"audio\" OR rarities OR \"vhs set\" OR \"6 hour\" OR \"compilation tape\" OR sketch OR \"supplementary\" OR extras OR \"pal dvd\") AND -title:(\"animated series\" OR animated OR \"mr. bean's holiday\" OR \"mr bean's holiday\" OR 2005 OR 2016 OR \"bean: the\" OR \"the good life:\" OR oatmeal OR recipe OR mom OR ho OR limejuice OR \"summer wine\" OR youtube OR \"you tube\" OR exam OR waiting OR superman OR clips OR \"bean time\" OR \"super why\" OR \"best bits\")",
+          "ignoreYear": true,
+          "maxEntries": 80,
+          "maxEntriesPerItem": 6,
+          "tag": "cartoons_overseas"
+        },
+        {
           "query": "(subject:(bbc OR itv OR \"channel 4\" OR \"australian television\" OR \"british television\") AND -collection:tvnews AND -title:(pokemon OR \"world news\" OR \"tokyo bound\" OR everwood OR tweenies OR balamory OR \"peter rabbit\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR spanish OR jpn OR japanese OR chi OR chinese OR zho OR pol OR polish OR fre OR french OR fra OR ger OR german OR deu OR ita OR italian OR por OR portuguese OR rus OR russian OR kor OR korean OR hin OR hindi OR ara OR arabic OR tur OR vie OR ind OR tha OR hmn) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -title:(vf OR \"version française\" OR jazzwoche OR \"dancing outlaw\" OR \"alvin and the chipmunks\") AND -title:(commercial)",
-          "maxEntriesPerItem": 200
+          "maxEntriesPerItem": 25
         }
       ]
     },
