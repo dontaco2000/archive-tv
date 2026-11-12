@@ -124,6 +124,15 @@ void main() {
     expect((await buildPool(ids, config(minHours: 0), api)).length, 2);
   });
 
+  test('a source maxSeconds drops files longer than it; other sources keep the default', () async {
+    final api = FakeApi({'clip': (1990, 4), 'vhs-block': (1990, 180)});
+    const ch = Channel(number: 40, name: 'Jukebox', sources: [Source(query: 'x', maxSeconds: 600)]);
+    expect((await buildPool(ch, config(minHours: 0), api)).map((e) => e.itemId), ['clip']);
+    expect((await buildPool(channel, config(minHours: 0), api)).length, 2);
+    expect(parseChannelConfig('{"channels":[{"number":40,"name":"J","sources":[{"query":"x","maxSeconds":600}]}]}')
+        .channels.single.sources.single.maxSeconds, 600);
+  });
+
   test('weatherstar channels have no pool', () async {
     const wx = Channel(number: 1, name: 'Cumulus', type: 'weatherstar');
     expect(await buildPool(wx, config(), FakeApi({})), isEmpty);

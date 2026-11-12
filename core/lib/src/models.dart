@@ -34,6 +34,10 @@ class Source {
   /// before [maxEntries]. Null = no cap.
   final int? maxEntriesPerItem;
 
+  /// Files of this source longer than this many seconds are left out (e.g. 600 keeps a music-video channel to single
+  /// clips, not 3-hour VHS blocks). Null = the picker's default (6 h).
+  final int? maxSeconds;
+
   /// Rare long programming (e.g. full races): entries of this source per local weekday, Monday first (7 values).
   /// Its entries leave the daily shuffle and air only as that many a day, placed by the date (see `rareBlocks`).
   /// Null = a normal source.
@@ -60,6 +64,7 @@ class Source {
     this.ignoreYear = false,
     this.maxEntries,
     this.maxEntriesPerItem,
+    this.maxSeconds,
     this.mediatype = 'movies',
   });
 }

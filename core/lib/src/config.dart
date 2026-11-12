@@ -119,6 +119,7 @@ Source _source(Object? raw, int channel) {
     ignoreYear: (raw['ignoreYear'] as bool?) ?? false,
     maxEntries: _int(raw['maxEntries'], 'maxEntries'),
     maxEntriesPerItem: _int(raw['maxEntriesPerItem'], 'maxEntriesPerItem'),
+    maxSeconds: _int(raw['maxSeconds'], 'maxSeconds'),
     mediatype: (raw['mediatype'] as String?) ?? 'movies',
     perDay: _perDay(raw['perDay'], channel),
     perDayMinMinutes: _int(raw['perDayMinMinutes'], 'perDayMinMinutes') ?? 0,

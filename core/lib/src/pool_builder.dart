@@ -134,7 +134,10 @@ Future<List<Entry>> _collect(
     try {
       final meta = metas.containsKey(id) ? metas[id] : metas[id] = await api.metadata(id);
       if (meta != null) {
-        for (final e in pickEntries(meta, minSeconds: (channel.minSeconds ?? (channel.shortContent != null ? 60 : 120)).toDouble())) {
+        final maxS = sourceOf[id]?.maxSeconds;
+        for (final e in pickEntries(meta,
+            minSeconds: (channel.minSeconds ?? (channel.shortContent != null ? 60 : 120)).toDouble(),
+            maxSeconds: maxS == null ? 6 * 3600 : maxS.toDouble())) {
           byId.putIfAbsent(e.id, () => e);
         }
       }
