@@ -1,5 +1,11 @@
 import 'package:archive_tv_core/archive_tv_core.dart';
 
+/// Guide cell for a channel whose pool is still building.
+const buildingLabel = 'BUILDING...';
+
+/// The guide's detail line for a selected building channel.
+const buildingDetail = 'Building... please choose another channel for now';
+
 /// One block in a guide row. [slot] is null for the placeholder of a channel that is not tunable.
 /// Fractions are of the visible window, clipped to 0..1.
 class GuideCell {
@@ -31,6 +37,9 @@ class GuideModel {
   final DateTime now;
   final Set<int> tunableNumbers;
 
+  /// Non-tunable channels whose pool is still building (shown as [buildingLabel], not OFF AIR).
+  final Set<int> buildingNumbers;
+
   /// Nothing can be selected at or after this; [slotsFor] should not reach past it either.
   final DateTime horizon;
   final Duration visible = step * columnCount;
@@ -46,8 +55,10 @@ class GuideModel {
     required this.slotsFor,
     required this.now,
     required this.tunableNumbers,
+    Set<int>? buildingNumbers,
     DateTime? horizon,
-  }) : horizon = horizon ?? now.add(const Duration(hours: 12)) {
+  })  : buildingNumbers = buildingNumbers ?? {},
+        horizon = horizon ?? now.add(const Duration(hours: 12)) {
     windowStart = floor(now);
     selectedTime = now;
   }
@@ -111,7 +122,8 @@ class GuideModel {
   GuideRow _row(Channel c) {
     if (c.type == 'weatherstar') return GuideRow(c, true, [GuideCell(null, 'WeatherStar: Local Forecast', 0, 1)]);
     if (!_tunable(c)) {
-      return GuideRow(c, false, [GuideCell(null, c.type == 'archive' ? 'OFF AIR' : 'NOT AVAILABLE', 0, 1)]);
+      final label = buildingNumbers.contains(c.number) ? buildingLabel : (c.type == 'archive' ? 'OFF AIR' : 'NOT AVAILABLE');
+      return GuideRow(c, false, [GuideCell(null, label, 0, 1)]);
     }
     final end = windowStart.add(visible);
     final total = visible.inMilliseconds;

@@ -57,6 +57,28 @@ void main() {
     expect(thin.tunable.map((c) => c.name), ['Cumulus']);
   });
 
+  test('statusOf: building until the first load/build finishes, then ready or failed', () async {
+    final bytes = engine.channels[0], cumulus = engine.channels[2];
+    expect(engine.statusOf(cumulus), PoolStatus.ready); // weather is always on
+    expect(engine.statusOf(bytes), PoolStatus.building); // not tried yet (queued at startup)
+    var bumps = 0;
+    engine.poolsChanged.addListener(() => bumps++);
+    final f = engine.ensurePool(bytes);
+    expect(engine.statusOf(bytes), PoolStatus.building); // build running
+    await f;
+    expect(engine.statusOf(bytes), PoolStatus.ready);
+    expect(bumps, 1);
+
+    final thin = TvEngine.open(configText: configText, dataDir: Directory.systemTemp.createTempSync('thin'), api: FakeApi({'a': 30}));
+    await thin.ensurePool(thin.channels.first);
+    expect(thin.statusOf(thin.channels.first), PoolStatus.failed); // too little content
+
+    final broken = TvEngine.open(configText: configText, dataDir: Directory.systemTemp.createTempSync('broken'), api: FakeApi({}));
+    await broken.ensurePool(broken.channels.first);
+    expect(broken.statusOf(broken.channels.first), PoolStatus.failed); // build found nothing
+    expect(broken.statusOf(broken.channels[1]), PoolStatus.building); // still queued
+  });
+
   test('airing gives the slot, offset into it and the next slot', () async {
     final bytes = engine.channels.first;
     await engine.ensurePool(bytes);

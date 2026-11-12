@@ -82,6 +82,7 @@ class _TvScreenState extends State<TvScreen> {
     // (e.g. the music's first frame) looks like a channel change and drops the loaded WeatherStar page.
     _shown = tv.channel;
     tv.addListener(_changed);
+    tv.engine.poolsChanged.addListener(_poolsChanged);
     if (!settings.noticeAccepted) mode = TvMode.about; // one-time content notice
     widget.remote
       ?..state = _remoteState
@@ -109,6 +110,7 @@ class _TvScreenState extends State<TvScreen> {
       'onDemand': od != null,
       'standBy': tv.standBy,
       'message': tv.message,
+      'building': tv.message == buildingMessage,
       'volume': settings.volume.round(),
       'muted': settings.muted,
       'mode': mode.name.toLowerCase(),
@@ -436,6 +438,7 @@ class _TvScreenState extends State<TvScreen> {
       slotsFor: (c) => engine.guideFor(c, midnight, hours: 24 * 7),
       now: now,
       tunableNumbers: {for (final c in engine.tunable) c.number},
+      buildingNumbers: {for (final c in engine.channels) if (engine.statusOf(c) == PoolStatus.building) c.number},
       horizon: now.add(Duration(hours: hours)),
     );
     final i = engine.channels.indexWhere((c) => c.number == tv.channel?.number);
@@ -445,6 +448,20 @@ class _TvScreenState extends State<TvScreen> {
     setState(() {
       _guide = g;
       mode = TvMode.guide;
+    });
+  }
+
+  /// A pool finished loading/building: an open guide picks up channels that went on (or off) air.
+  void _poolsChanged() {
+    final g = _guide, engine = tv.engine;
+    if (g == null || !mounted) return;
+    setState(() {
+      g.tunableNumbers
+        ..clear()
+        ..addAll([for (final c in engine.tunable) c.number]);
+      g.buildingNumbers
+        ..clear()
+        ..addAll([for (final c in engine.channels) if (engine.statusOf(c) == PoolStatus.building) c.number]);
     });
   }
 
@@ -603,6 +620,7 @@ class _TvScreenState extends State<TvScreen> {
   @override
   void dispose() {
     tv.removeListener(_changed);
+    tv.engine.poolsChanged.removeListener(_poolsChanged);
     _entryTimer?.cancel();
     _bannerTimer?.cancel();
     _warmTimer?.cancel();
@@ -891,7 +909,8 @@ class ErrorScreen extends StatelessWidget {
   );
 }
 
-/// "STAND BY" with dots cycling . .. ... (padded, so the text never shifts); a [message] (NO SIGNAL, OFF AIR) shows as is.
+/// "STAND BY" with dots cycling . .. ... (padded, so the text never shifts); a [message] (NO SIGNAL, OFF AIR,
+/// the build-mode notice) shows as is.
 String standByText(String? message, int tick) => message ?? 'STAND BY${'.' * (tick % 3 + 1)}'.padRight(11);
 
 class StandByCard extends StatefulWidget {
@@ -940,6 +959,7 @@ class _StandByCardState extends State<StandByCard> {
           const SizedBox(height: 16),
           Text(
             standByText(widget.message, _tick),
+            textAlign: TextAlign.center,
             style: const TextStyle(color: Color(0xFF9EC8FF), fontSize: 28, fontFamily: 'Consolas'),
           ),
         ],

@@ -144,9 +144,16 @@ class PlayerController extends ChangeNotifier {
   }
 
   Future<void> _tune(Channel c, int gen, int attempt) async {
-    await engine.ensurePool(c);
-    final a = engine.airing(c, DateTime.now());
+    final pool = engine.ensurePool(c);
+    if (engine.statusOf(c) == PoolStatus.building) {
+      // Nothing to play yet: say so instead of STAND BY dots, and start by itself once the pool is in.
+      message = buildingMessage;
+      notifyListeners();
+    }
+    await pool;
     if (gen != _generation) return;
+    message = null;
+    final a = engine.airing(c, DateTime.now());
     if (a == null && c.type == 'weatherstar') {
       // Weather without music: nothing to play, the weather screens are the picture.
       airing = null;

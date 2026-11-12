@@ -144,7 +144,7 @@ class _GuideOverlayState extends State<GuideOverlay> {
                     Expanded(
                       child: _text(
                         slot == null
-                            ? '${selectedCh.name}  ${rows.firstWhere((r) => r.channel == selectedCh).cells.firstOrNull?.label ?? ''}'
+                            ? '${selectedCh.name}  ${m.buildingNumbers.contains(selectedCh.number) ? buildingDetail : rows.firstWhere((r) => r.channel == selectedCh).cells.firstOrNull?.label ?? ''}'
                             : '${cleanTitle(slot.entry.title)}  ${_day(slot.start, m.now)}${_clock(slot.start)}-${_clock(slot.end)}',
                         _style(font, Colors.white, bold: true),
                       ),

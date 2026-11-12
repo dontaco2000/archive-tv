@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:archive_tv_core/archive_tv_core.dart';
+import 'package:archive_tv_player/engine/tv_engine.dart';
 import 'package:archive_tv_player/input/actions.dart';
 import 'package:archive_tv_player/player/picture.dart';
 import 'package:archive_tv_player/remote/remote_page.dart';
@@ -38,6 +39,17 @@ void main() {
     await t.pump();
     expect(t.takeException(), isNull); // scaled down, no overflow
     await t.pumpWidget(const SizedBox()); // stops the timer
+  });
+
+  testWidgets('build-mode notice: two centred lines, logo keeps its size', (t) async {
+    t.view.physicalSize = const Size(1024, 768);
+    t.view.devicePixelRatio = 1;
+    addTearDown(t.view.reset);
+    await t.pumpWidget(MaterialApp(home: Scaffold(body: StandByCard(channel: Channel(number: 10, name: 'Teaser'), message: buildingMessage))));
+    expect(find.text(buildingMessage), findsOneWidget);
+    expect(t.getSize(find.byType(Image)).height, 280); // not scaled down at full size
+    expect(t.takeException(), isNull);
+    await t.pumpWidget(const SizedBox());
   });
 
   test('Picture decodes with copy-back only while detecting', () {

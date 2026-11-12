@@ -148,6 +148,14 @@ void main() {
     expect(m.selectedSlot, isNull);
   });
 
+  test('a building channel shows BUILDING..., not OFF AIR', () {
+    final m = GuideModel(channels: [a, b, c, w], now: now, tunableNumbers: {1}, buildingNumbers: {2}, slotsFor: (_) => []);
+    final rows = m.rowsInView(4);
+    expect(rows[1].tunable, isFalse);
+    expect(rows[1].cells.single.label, buildingLabel);
+    expect(rows[2].cells.single.label, 'OFF AIR'); // failed stays OFF AIR
+  });
+
   test('rowsInView keeps the selection visible', () {
     final m = model();
     expect(m.rowsInView(2).map((r) => r.channel), [a, b]);

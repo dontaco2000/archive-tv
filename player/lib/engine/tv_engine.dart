@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:archive_tv_core/archive_tv_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart' as p;
 
@@ -15,6 +16,12 @@ class Airing {
 
   Duration get remaining => slot.end.difference(slot.start) - Duration(milliseconds: (offsetSeconds * 1000).round());
 }
+
+/// Where a channel's pool stands (see [TvEngine.statusOf]).
+enum PoolStatus { building, ready, failed }
+
+/// Shown when a building channel is tuned (player) and in the guide's detail line.
+const buildingMessage = 'This channel is in its build mode,\nplease choose another channel for now.';
 
 /// Ties the core package together for the player: config, pools on disk,
 /// saved day schedules, blocklist. One instance per app run.
@@ -72,14 +79,24 @@ class TvEngine {
   /// Channels that can be tuned now: archive channels whose pool has enough content,
   /// plus weather channels (always on; their music is optional).
   /// Call [ensurePool] first for channels you want considered.
-  List<Channel> get tunable => [
-        for (final c in config.channels)
-          if (c.type == 'weatherstar' ||
-              (_pool.containsKey(c.number) && !isOffAir(poolOf(c), config.minContentSeconds)))
-            c,
-      ];
+  List<Channel> get tunable => [for (final c in config.channels) if (statusOf(c) == PoolStatus.ready) c];
+
+  /// [PoolStatus.ready]: weather, or a loaded pool with enough content (a rebuild may run behind it).
+  /// [PoolStatus.building]: no usable pool yet and a build is running or not tried yet this run.
+  /// [PoolStatus.failed]: tried and still nothing playable (build failed, too little content, no sources).
+  PoolStatus statusOf(Channel c) {
+    if (c.type == 'weatherstar' || (_pool.containsKey(c.number) && !isOffAir(poolOf(c), config.minContentSeconds))) {
+      return PoolStatus.ready;
+    }
+    if (c.sources.isNotEmpty && (_building.containsKey(c.number) || !_tried.contains(c.number))) return PoolStatus.building;
+    return PoolStatus.failed;
+  }
 
   final Map<int, Future<void>> _building = {};
+  final Set<int> _tried = {}; // channels whose pool load/build has finished at least once this run
+
+  /// Bumped each time a pool load/build finishes, so open screens (the guide) can refresh.
+  final ValueNotifier<int> poolsChanged = ValueNotifier(0);
 
   /// Loads the channel's pool from disk, or builds it from Archive when missing or older than a day.
   /// Concurrent callers for the same channel share one build.
@@ -88,6 +105,8 @@ class TvEngine {
     if (channel.sources.isEmpty || (maxAge > Duration.zero && _pool.containsKey(channel.number))) return Future.value();
     return _building[channel.number] ??= _ensurePool(channel, maxAge).whenComplete(() {
       _building.remove(channel.number);
+      _tried.add(channel.number);
+      poolsChanged.value++;
     });
   }
 
