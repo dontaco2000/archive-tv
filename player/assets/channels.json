@@ -3342,6 +3342,67 @@
           ],
           "ignoreYear": true,
           "maxEntriesPerItem": 30
+        },
+        {
+          "query": "(title:(\"nwa usa\" OR \"nwa 73\" OR \"nwa 74\" OR \"nwa 75\" OR \"nwa hard times\" OR \"mlw underground\") AND -title:(podcast OR interview OR preview OR trailer OR gameplay OR promo OR review OR reaction OR highlights OR countdown OR \"pre-show\" OR \"pre show\" OR \"free matches\" OR surge OR czw OR gcw OR deathmatch OR \"death match\" OR hardcore OR ultraviolence OR \"ultra violence\") AND -language:(spa OR fre OR ger OR por OR ita OR rus OR jpn)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -title:(photoshoot OR commericals OR commercials OR qvc) AND -title:(swimsuit OR \"pillow fight\" OR lingerie)",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 10
+        },
+        {
+          "query": "((identifier:evolve-0* OR title:(dgusa OR \"dragon gate usa\")) AND -title:(podcast OR interview OR preview OR trailer OR gameplay OR promo OR review OR reaction OR highlights OR countdown OR \"pre-show\" OR \"pre show\" OR \"free matches\" OR surge OR czw OR gcw OR deathmatch OR \"death match\" OR hardcore OR ultraviolence OR \"ultra violence\") AND -language:(spa OR fre OR ger OR por OR ita OR rus OR jpn)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -title:(photoshoot OR commericals OR commercials OR qvc) AND -title:(swimsuit OR \"pillow fight\" OR lingerie)",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 3
+        },
+        {
+          "query": "(identifier:rev-pro-* AND -title:(podcast OR interview OR preview OR trailer OR gameplay OR promo OR review OR reaction OR highlights OR countdown OR \"pre-show\" OR \"pre show\" OR \"free matches\" OR surge OR czw OR gcw OR deathmatch OR \"death match\" OR hardcore OR ultraviolence OR \"ultra violence\") AND -language:(spa OR fre OR ger OR por OR ita OR rus OR jpn)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -title:(photoshoot OR commericals OR commercials OR qvc) AND -title:(swimsuit OR \"pillow fight\" OR lingerie)",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 3
+        },
+        {
+          "query": "(identifier:(progress-chapter-* OR progress-wrestling-chapter-* OR aaw-*) AND -title:(podcast OR interview OR preview OR trailer OR gameplay OR promo OR review OR reaction OR highlights OR countdown OR \"pre-show\" OR \"pre show\" OR \"free matches\" OR surge OR czw OR gcw OR deathmatch OR \"death match\" OR hardcore OR ultraviolence OR \"ultra violence\") AND -language:(spa OR fre OR ger OR por OR ita OR rus OR jpn)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -title:(photoshoot OR commericals OR commercials OR qvc) AND -title:(swimsuit OR \"pillow fight\" OR lingerie)",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 3
+        },
+        {
+          "identifiers": [
+            "shimmer-volume-1",
+            "shimmer-volume-2",
+            "shimmer-volume-3",
+            "shimmer-volume-57",
+            "shimmer-volume-67",
+            "shimmer-at-the-collective-11-10-20",
+            "10-4-2019-chikara-king-of-trios-2019-tag-1",
+            "2002.05.25-chikara-the-renaissance-dawns",
+            "2002-05-22-gold-bond-mafia-vs.-black-t-shirt-squad-chikara-the-renaissance-dawns",
+            "2009-03-28-team-uppercut-vs.-masters-of-1-000-holds-king-of-trios-quarter-final-",
+            "smw070195",
+            "smw-tv-1992-06-20",
+            "smw-tv-1993-01-23",
+            "smw-tv-1994-03-05",
+            "smw-tv-1995-04-15",
+            "glow-1985-pilot",
+            "glow-s-01",
+            "glow-s-02",
+            "glow86-s-03",
+            "glow86-s4",
+            "LPWA-No-Holds-Barred",
+            "lpwa-out-of-control",
+            "lpwa-ppv-super-ladies-showdown-2-23-92-rochester-mn",
+            "3-22-2024-aiw-tougher-than-leather",
+            "7-13-2024-aiw-absolution-xvii",
+            "8-3-2019-aiw-absolution",
+            "8-25-2018-aiw-wrestle-rager-iii",
+            "11-25-2011-aiw-hell-on-earth-7",
+            "w-xw-world-tag-team-tournament-2015-night-1-02-10-2015",
+            "wxw-world-tag-team-tournament-2015-night-2-03-10-2015",
+            "wxw-world-tag-team-tournament-2015-night-3-04-10-2015",
+            "wxw-world-tag-team-league-2016-night-1-2016-30-09",
+            "w-xw-world-tag-team-league-2016-night-2-10.1.2016",
+            "w-xw-world-tag-team-league-2016-night-3-2016-02-10",
+            "w-xw-true-colors-2021-23-10-21"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 12
         }
       ],
       "timeBlocks": [
@@ -3371,7 +3432,12 @@
           "end": "24:00",
           "sources": [
             16,
-            17
+            17,
+            19,
+            20,
+            21,
+            22,
+            23
           ]
         }
       ]
