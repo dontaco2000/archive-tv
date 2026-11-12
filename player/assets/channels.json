@@ -4357,6 +4357,210 @@
         }
       ],
       "minSeconds": 60
+    },
+    {
+      "number": 67,
+      "name": "Nightcap",
+      "logo": "Logos/4x3/nightcap.png",
+      "genre": "TV",
+      "sources": [
+        {
+          "query": "(title:(\"johnny carson\" OR \"tonight show starring johnny\" OR \"tonight show with johnny\" OR \"carson show\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR tvarchive OR mirrortube OR bliptv OR fringe OR podcasts OR social-media-video OR deemphasize OR gorelicktv OR industry-archives OR movie_trailers_unsorted OR funnyordie) AND -identifier:(youtube-* OR BitChute-* OR tobacco_* OR OakleyTapes_* OR dvd-6* OR craig-ferguson-2005-2006-monologues-paranoidfellow-channel OR 20240915_20240915_0137 OR 01-jay-leno OR saturday.night.live.bilarabi*) AND -title:(\"vhs tape\" OR \"random tv\" OR uncensored OR strips OR playboy OR \"foxy boxing\" OR promo OR promos OR trailer OR commercial OR commercials OR logo OR mtv OR \"wack pack\" OR hefner OR whore OR pussy OR shitty OR \"traci lords\" OR german OR español OR \"sub español\" OR arabi OR bilarabi OR rogan OR sennett OR maverick) AND -title:(password OR \"do you trust\" OR \"jack benny\" OR jell-o OR \"american masters\" OR rosie OR inaugural OR kit OR ben OR \"his favorite moments\" OR capitulo OR \"el show\" OR racist OR shorts OR park OR secret OR tennis OR reagan OR roast OR \"keeping up\" OR miscellaneous OR \"ordering information\" OR wcia OR wics OR donahue)",
+          "ignoreYear": true,
+          "maxEntries": 110,
+          "maxEntriesPerItem": 8
+        },
+        {
+          "query": "(title:(\"johnny carson: his favorite moments\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR tvarchive OR mirrortube OR bliptv OR fringe OR podcasts OR social-media-video OR deemphasize OR gorelicktv OR industry-archives OR movie_trailers_unsorted OR funnyordie) AND -identifier:(youtube-* OR BitChute-* OR tobacco_* OR OakleyTapes_* OR dvd-6* OR craig-ferguson-2005-2006-monologues-paranoidfellow-channel OR 20240915_20240915_0137 OR 01-jay-leno OR saturday.night.live.bilarabi*) AND -title:(\"vhs tape\" OR \"random tv\" OR uncensored OR strips OR playboy OR \"foxy boxing\" OR promo OR promos OR trailer OR commercial OR commercials OR logo OR mtv OR \"wack pack\" OR hefner OR whore OR pussy OR shitty OR \"traci lords\" OR german OR español OR \"sub español\" OR arabi OR bilarabi OR rogan OR sennett OR maverick)",
+          "ignoreYear": true,
+          "maxEntries": 12,
+          "maxEntriesPerItem": 3
+        },
+        {
+          "query": "(title:(\"steve allen show\" OR \"steve allen plymouth\" OR \"steve allen westinghouse\" OR \"steve allen (\" OR \"jack paar show\" OR \"jack paar program\" OR \"tonight starring steve\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR tvarchive OR mirrortube OR bliptv OR fringe OR podcasts OR social-media-video OR deemphasize OR gorelicktv OR industry-archives OR movie_trailers_unsorted OR funnyordie) AND -identifier:(youtube-* OR BitChute-* OR tobacco_* OR OakleyTapes_* OR dvd-6* OR craig-ferguson-2005-2006-monologues-paranoidfellow-channel OR 20240915_20240915_0137 OR 01-jay-leno OR saturday.night.live.bilarabi*) AND -title:(\"vhs tape\" OR \"random tv\" OR uncensored OR strips OR playboy OR \"foxy boxing\" OR promo OR promos OR trailer OR commercial OR commercials OR logo OR mtv OR \"wack pack\" OR hefner OR whore OR pussy OR shitty OR \"traci lords\" OR german OR español OR \"sub español\" OR arabi OR bilarabi OR rogan OR sennett OR maverick) AND -title:(\"jack benny\" OR muppets OR singers)",
+          "ignoreYear": true,
+          "maxEntries": 40,
+          "maxEntriesPerItem": 4
+        },
+        {
+          "query": "(title:(\"late night with david letterman\" OR \"late show with david letterman\" OR \"late show with d letterman\" OR \"david letterman comp\" OR \"late show with david\" OR \"letterman (\" OR \"on letterman\" OR \"letterman show\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR tvarchive OR mirrortube OR bliptv OR fringe OR podcasts OR social-media-video OR deemphasize OR gorelicktv OR industry-archives OR movie_trailers_unsorted OR funnyordie) AND -identifier:(youtube-* OR BitChute-* OR tobacco_* OR OakleyTapes_* OR dvd-6* OR craig-ferguson-2005-2006-monologues-paranoidfellow-channel OR 20240915_20240915_0137 OR 01-jay-leno OR saturday.night.live.bilarabi*) AND -title:(\"vhs tape\" OR \"random tv\" OR uncensored OR strips OR playboy OR \"foxy boxing\" OR promo OR promos OR trailer OR commercial OR commercials OR logo OR mtv OR \"wack pack\" OR hefner OR whore OR pussy OR shitty OR \"traci lords\" OR german OR español OR \"sub español\" OR arabi OR bilarabi OR rogan OR sennett OR maverick) AND -title:(madonna OR maddonna OR demi OR \"my next guest\" OR \"life on television\" OR paperface OR galigula OR \"market box\" OR \"miami vice\" OR techtv OR \"tech tv\" OR random OR \"star wars\" OR bowie)",
+          "ignoreYear": true,
+          "maxEntries": 90,
+          "maxEntriesPerItem": 4
+        },
+        {
+          "query": "(title:(\"jay leno\" OR \"tonight show with jay\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR tvarchive OR mirrortube OR bliptv OR fringe OR podcasts OR social-media-video OR deemphasize OR gorelicktv OR industry-archives OR movie_trailers_unsorted OR funnyordie) AND -identifier:(youtube-* OR BitChute-* OR tobacco_* OR OakleyTapes_* OR dvd-6* OR craig-ferguson-2005-2006-monologues-paranoidfellow-channel OR 20240915_20240915_0137 OR 01-jay-leno OR saturday.night.live.bilarabi*) AND -title:(\"vhs tape\" OR \"random tv\" OR uncensored OR strips OR playboy OR \"foxy boxing\" OR promo OR promos OR trailer OR commercial OR commercials OR logo OR mtv OR \"wack pack\" OR hefner OR whore OR pussy OR shitty OR \"traci lords\" OR german OR español OR \"sub español\" OR arabi OR bilarabi OR rogan OR sennett OR maverick) AND -title:(ferrari OR fly OR windows OR garage OR friends OR fischer OR koaa OR \"quantum leap\" OR mopar OR tiktok OR improv OR madonna OR archive OR braun OR \"family comedy hour\")",
+          "ignoreYear": true,
+          "maxEntries": 80,
+          "maxEntriesPerItem": 4
+        },
+        {
+          "query": "(title:(\"late night with conan\" OR \"tonight show with conan\" OR \"conan tbs\" OR \"conan obrien complete\" OR \"late night with conan o\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR tvarchive OR mirrortube OR bliptv OR fringe OR podcasts OR social-media-video OR deemphasize OR gorelicktv OR industry-archives OR movie_trailers_unsorted OR funnyordie) AND -identifier:(youtube-* OR BitChute-* OR tobacco_* OR OakleyTapes_* OR dvd-6* OR craig-ferguson-2005-2006-monologues-paranoidfellow-channel OR 20240915_20240915_0137 OR 01-jay-leno OR saturday.night.live.bilarabi*) AND -title:(\"vhs tape\" OR \"random tv\" OR uncensored OR strips OR playboy OR \"foxy boxing\" OR promo OR promos OR trailer OR commercial OR commercials OR logo OR mtv OR \"wack pack\" OR hefner OR whore OR pussy OR shitty OR \"traci lords\" OR german OR español OR \"sub español\" OR arabi OR bilarabi OR rogan OR sennett OR maverick)",
+          "ignoreYear": true,
+          "maxEntries": 110,
+          "maxEntriesPerItem": 4
+        },
+        {
+          "query": "(title:(\"arsenio hall show\" OR \"arsenio hall (\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR tvarchive OR mirrortube OR bliptv OR fringe OR podcasts OR social-media-video OR deemphasize OR gorelicktv OR industry-archives OR movie_trailers_unsorted OR funnyordie) AND -identifier:(youtube-* OR BitChute-* OR tobacco_* OR OakleyTapes_* OR dvd-6* OR craig-ferguson-2005-2006-monologues-paranoidfellow-channel OR 20240915_20240915_0137 OR 01-jay-leno OR saturday.night.live.bilarabi*) AND -title:(\"vhs tape\" OR \"random tv\" OR uncensored OR strips OR playboy OR \"foxy boxing\" OR promo OR promos OR trailer OR commercial OR commercials OR logo OR mtv OR \"wack pack\" OR hefner OR whore OR pussy OR shitty OR \"traci lords\" OR german OR español OR \"sub español\" OR arabi OR bilarabi OR rogan OR sennett OR maverick) AND -title:(lupin OR \"soul train\" OR kiss OR rush)",
+          "ignoreYear": true,
+          "maxEntries": 40,
+          "maxEntriesPerItem": 4
+        },
+        {
+          "query": "(title:(\"late late show\" OR \"tom snyder\" OR \"tomorrow show\" OR \"tomorrow with tom\" OR kilborn OR \"craig ferguson\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR tvarchive OR mirrortube OR bliptv OR fringe OR podcasts OR social-media-video OR deemphasize OR gorelicktv OR industry-archives OR movie_trailers_unsorted OR funnyordie) AND -identifier:(youtube-* OR BitChute-* OR tobacco_* OR OakleyTapes_* OR dvd-6* OR craig-ferguson-2005-2006-monologues-paranoidfellow-channel OR 20240915_20240915_0137 OR 01-jay-leno OR saturday.night.live.bilarabi*) AND -title:(\"vhs tape\" OR \"random tv\" OR uncensored OR strips OR playboy OR \"foxy boxing\" OR promo OR promos OR trailer OR commercial OR commercials OR logo OR mtv OR \"wack pack\" OR hefner OR whore OR pussy OR shitty OR \"traci lords\" OR german OR español OR \"sub español\" OR arabi OR bilarabi OR rogan OR sennett OR maverick) AND -title:(corden OR lionel OR \"train layouts\" OR \"planet bluegrass\" OR survivor OR \"price is right\" OR \"maybe this time\" OR \"larry king\" OR weft OR alley OR tedx OR girl OR rté OR \"cliff richard\" OR locke OR vtv OR woio OR wcbs OR \"late late late\" OR dwi OR tvro OR \"prime time sunday\" OR \"tv guide awards\" OR \"peter fonda\")",
+          "ignoreYear": true,
+          "maxEntries": 80,
+          "maxEntriesPerItem": 5
+        },
+        {
+          "query": "(title:(\"dick cavett show\" OR \"cavett show\" OR \"merv griffin show\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR tvarchive OR mirrortube OR bliptv OR fringe OR podcasts OR social-media-video OR deemphasize OR gorelicktv OR industry-archives OR movie_trailers_unsorted OR funnyordie) AND -identifier:(youtube-* OR BitChute-* OR tobacco_* OR OakleyTapes_* OR dvd-6* OR craig-ferguson-2005-2006-monologues-paranoidfellow-channel OR 20240915_20240915_0137 OR 01-jay-leno OR saturday.night.live.bilarabi*) AND -title:(\"vhs tape\" OR \"random tv\" OR uncensored OR strips OR playboy OR \"foxy boxing\" OR promo OR promos OR trailer OR commercial OR commercials OR logo OR mtv OR \"wack pack\" OR hefner OR whore OR pussy OR shitty OR \"traci lords\" OR german OR español OR \"sub español\" OR arabi OR bilarabi OR rogan OR sennett OR maverick) AND -title:(wine OR enterprises OR \"rock icons preview\" OR enoch OR racist)",
+          "ignoreYear": true,
+          "maxEntries": 40,
+          "maxEntriesPerItem": 4
+        },
+        {
+          "query": "(title:(\"pat sajak show\" OR \"late show starring joan\" OR \"chevy chase show\" OR \"dennis miller live\" OR \"dennis miller show\" OR \"jon stewart show\" OR \"politically incorrect with bill maher\" OR \"politically incorrect - bill\" OR \"into the night starring rick dees\" OR \"thicke of the night\" OR \"later with bob costas\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR tvarchive OR mirrortube OR bliptv OR fringe OR podcasts OR social-media-video OR deemphasize OR gorelicktv OR industry-archives OR movie_trailers_unsorted OR funnyordie) AND -identifier:(youtube-* OR BitChute-* OR tobacco_* OR OakleyTapes_* OR dvd-6* OR craig-ferguson-2005-2006-monologues-paranoidfellow-channel OR 20240915_20240915_0137 OR 01-jay-leno OR saturday.night.live.bilarabi*) AND -title:(\"vhs tape\" OR \"random tv\" OR uncensored OR strips OR playboy OR \"foxy boxing\" OR promo OR promos OR trailer OR commercial OR commercials OR logo OR mtv OR \"wack pack\" OR hefner OR whore OR pussy OR shitty OR \"traci lords\" OR german OR español OR \"sub español\" OR arabi OR bilarabi OR rogan OR sennett OR maverick) AND -title:(howard OR \"disco duck\" OR manson OR \"short attention\" OR primetime OR \"kate bornstein\")",
+          "ignoreYear": true,
+          "maxEntries": 60,
+          "maxEntriesPerItem": 6
+        },
+        {
+          "query": "(identifier:(dvd-6*) AND title:(\"tonight show\" OR \"late show\" OR \"late late show\" OR \"late night with\" OR \"jimmy kimmel\") AND -title:(rosie OR tesh)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn)",
+          "ignoreYear": true,
+          "maxEntries": 12,
+          "maxEntriesPerItem": 1
+        },
+        {
+          "query": "(title:(\"jimmy kimmel live\" OR \"kimmel live\" OR \"tonight show starring jimmy fallon\" OR \"late night with jimmy fallon\" OR \"late night with seth meyers\" OR \"the daily show\" OR \"colbert report\" OR \"late show with stephen colbert\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR tvarchive OR mirrortube OR bliptv OR fringe OR podcasts OR social-media-video OR deemphasize OR gorelicktv OR industry-archives OR movie_trailers_unsorted OR funnyordie) AND -identifier:(youtube-* OR BitChute-* OR tobacco_* OR OakleyTapes_* OR dvd-6* OR craig-ferguson-2005-2006-monologues-paranoidfellow-channel OR 20240915_20240915_0137 OR 01-jay-leno OR saturday.night.live.bilarabi*) AND -title:(\"vhs tape\" OR \"random tv\" OR uncensored OR strips OR playboy OR \"foxy boxing\" OR promo OR promos OR trailer OR commercial OR commercials OR logo OR mtv OR \"wack pack\" OR hefner OR whore OR pussy OR shitty OR \"traci lords\" OR german OR español OR \"sub español\" OR arabi OR bilarabi OR rogan OR sennett OR maverick) AND -title:(paramore OR \"car seat\" OR \"smiling friends\" OR charli OR dicks OR vostfr OR primera OR iran OR \"super cut\" OR eminem)",
+          "ignoreYear": true,
+          "maxEntries": 50,
+          "maxEntriesPerItem": 5
+        }
+      ]
+    },
+    {
+      "number": 68,
+      "name": "Footlights",
+      "logo": "Logos/4x3/footlights.png",
+      "genre": "TV",
+      "sources": [
+        {
+          "query": "(title:(\"saturday night live\" OR snl)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR tvarchive OR mirrortube OR bliptv OR fringe OR podcasts OR social-media-video OR deemphasize OR gorelicktv OR industry-archives OR movie_trailers_unsorted OR funnyordie) AND -identifier:(youtube-* OR BitChute-* OR tobacco_* OR OakleyTapes_* OR dvd-6* OR craig-ferguson-2005-2006-monologues-paranoidfellow-channel OR 20240915_20240915_0137 OR 01-jay-leno OR saturday.night.live.bilarabi*) AND -title:(\"vhs tape\" OR \"random tv\" OR uncensored OR strips OR playboy OR \"foxy boxing\" OR promo OR promos OR trailer OR commercial OR commercials OR logo OR mtv OR \"wack pack\" OR hefner OR whore OR pussy OR shitty OR \"traci lords\" OR german OR español OR \"sub español\" OR arabi OR bilarabi OR rogan OR sennett OR maverick) AND -title:(spoof OR parody OR pulled OR \"15th anniversary\" OR \"go-go\" OR clapton OR \"carly simon\" OR \"simple minds\" OR \"wonderful tonight\" OR \"new show\" OR intros OR mega OR \"locker room\" OR commentary OR kare OR nirvana)",
+          "ignoreYear": true,
+          "maxEntries": 130,
+          "maxEntriesPerItem": 10
+        },
+        {
+          "identifiers": [
+            "07-dialing-for-dollars-007-season-1",
+            "sctv-season-2-syndicated-series",
+            "24-happy-hour-part-4-183-season-6",
+            "sctv-stuff",
+            "thebestofsctvvolume1",
+            "SCTV1",
+            "SCTV2",
+            "SCTV3",
+            "SCTV4",
+            "SCTV5"
+          ],
+          "maxEntriesPerItem": 9,
+          "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "in-living-color-s-01-e-12",
+            "in-living-color-season-one"
+          ],
+          "maxEntriesPerItem": 14,
+          "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "Best_of_Kids_in_the_Hall",
+            "Kids_In_The_Hall_2_Episodes_HBO_1991-05",
+            "Kids_in_the_Hall_1991",
+            "Kids_In_The_Hall_Comedy_Central_1993_Tape",
+            "kids-in-the-hall-woc"
+          ],
+          "maxEntriesPerItem": 4,
+          "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "madtv-complete-series",
+            "madtv-s-05",
+            "madtv-s-01-e-04"
+          ],
+          "maxEntriesPerItem": 9,
+          "ignoreYear": true
+        },
+        {
+          "query": "(title:(\"carol burnett show\" OR \"best of the carol burnett\" OR \"carol burnett - show stoppers\" OR \"carol & company\" OR \"carol burnett: the special\" OR \"tim conway comedy hour\" OR \"tim conway's funny america\" OR \"julie & carol\" OR \"carol carl whoopi\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR tvarchive OR mirrortube OR bliptv OR fringe OR podcasts OR social-media-video OR deemphasize OR gorelicktv OR industry-archives OR movie_trailers_unsorted OR funnyordie) AND -identifier:(youtube-* OR BitChute-* OR tobacco_* OR OakleyTapes_* OR dvd-6* OR craig-ferguson-2005-2006-monologues-paranoidfellow-channel OR 20240915_20240915_0137 OR 01-jay-leno OR saturday.night.live.bilarabi*) AND -title:(\"vhs tape\" OR \"random tv\" OR uncensored OR strips OR playboy OR \"foxy boxing\" OR promo OR promos OR trailer OR commercial OR commercials OR logo OR mtv OR \"wack pack\" OR hefner OR whore OR pussy OR shitty OR \"traci lords\" OR german OR español OR \"sub español\" OR arabi OR bilarabi OR rogan OR sennett OR maverick) AND -identifier:(CLE-*) AND -title:(\"split screen\" OR \"laurel mill\" OR \"salt lake\" OR \"station id\" OR \"cbs surprise\")",
+          "ignoreYear": true,
+          "maxEntries": 40,
+          "maxEntriesPerItem": 6
+        },
+        {
+          "query": "(title:(\"rowan & martin\" OR \"rowan and martin\" OR \"laugh-in\" OR \"laugh in '77\" OR \"laugh in 25th\" OR \"laugh in (\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR tvarchive OR mirrortube OR bliptv OR fringe OR podcasts OR social-media-video OR deemphasize OR gorelicktv OR industry-archives OR movie_trailers_unsorted OR funnyordie) AND -identifier:(youtube-* OR BitChute-* OR tobacco_* OR OakleyTapes_* OR dvd-6* OR craig-ferguson-2005-2006-monologues-paranoidfellow-channel OR 20240915_20240915_0137 OR 01-jay-leno OR saturday.night.live.bilarabi*) AND -title:(\"vhs tape\" OR \"random tv\" OR uncensored OR strips OR playboy OR \"foxy boxing\" OR promo OR promos OR trailer OR commercial OR commercials OR logo OR mtv OR \"wack pack\" OR hefner OR whore OR pussy OR shitty OR \"traci lords\" OR german OR español OR \"sub español\" OR arabi OR bilarabi OR rogan OR sennett OR maverick) AND -title:(narcissists OR wrct OR \"bob & tom\" OR fernwood OR \"code pink\" OR outtakes OR stockport OR \"your face\" OR worst OR library OR eyewitness OR gilda)",
+          "ignoreYear": true,
+          "maxEntries": 40,
+          "maxEntriesPerItem": 10
+        },
+        {
+          "query": "(title:(\"smothers brothers comedy hour\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR tvarchive OR mirrortube OR bliptv OR fringe OR podcasts OR social-media-video OR deemphasize OR gorelicktv OR industry-archives OR movie_trailers_unsorted OR funnyordie) AND -identifier:(youtube-* OR BitChute-* OR tobacco_* OR OakleyTapes_* OR dvd-6* OR craig-ferguson-2005-2006-monologues-paranoidfellow-channel OR 20240915_20240915_0137 OR 01-jay-leno OR saturday.night.live.bilarabi*) AND -title:(\"vhs tape\" OR \"random tv\" OR uncensored OR strips OR playboy OR \"foxy boxing\" OR promo OR promos OR trailer OR commercial OR commercials OR logo OR mtv OR \"wack pack\" OR hefner OR whore OR pussy OR shitty OR \"traci lords\" OR german OR español OR \"sub español\" OR arabi OR bilarabi OR rogan OR sennett OR maverick) AND -title:(smothered OR censorship)",
+          "ignoreYear": true,
+          "maxEntries": 40,
+          "maxEntriesPerItem": 5
+        },
+        {
+          "query": "(title:(\"sonny & cher comedy hour\" OR \"sonny and cher comedy hour\" OR \"sonny & cher show\" OR \"flip wilson show\" OR \"dean martin show\" OR \"dean martin variety\" OR \"dean martin celebrity roast\" OR \"dean martin roast\" OR \"judy garland show\" OR \"andy williams show\" OR \"perry como show\" OR \"jackie gleason show\" OR \"danny kaye show\" OR \"garry moore show\" OR \"jonathan winters show\" OR \"glen campbell goodtime\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR tvarchive OR mirrortube OR bliptv OR fringe OR podcasts OR social-media-video OR deemphasize OR gorelicktv OR industry-archives OR movie_trailers_unsorted OR funnyordie) AND -identifier:(youtube-* OR BitChute-* OR tobacco_* OR OakleyTapes_* OR dvd-6* OR craig-ferguson-2005-2006-monologues-paranoidfellow-channel OR 20240915_20240915_0137 OR 01-jay-leno OR saturday.night.live.bilarabi*) AND -title:(\"vhs tape\" OR \"random tv\" OR uncensored OR strips OR playboy OR \"foxy boxing\" OR promo OR promos OR trailer OR commercial OR commercials OR logo OR mtv OR \"wack pack\" OR hefner OR whore OR pussy OR shitty OR \"traci lords\" OR german OR español OR \"sub español\" OR arabi OR bilarabi OR rogan OR sennett OR maverick) AND -title:(reagan OR \"jack benny\")",
+          "ignoreYear": true,
+          "maxEntries": 90,
+          "maxEntriesPerItem": 6
+        },
+        {
+          "query": "(title:(\"ed sullivan show\" OR \"toast of the town\" OR \"ed sullivan guests\" OR \"on the ed sullivan\" OR \"4 ed sullivan shows\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR tvarchive OR mirrortube OR bliptv OR fringe OR podcasts OR social-media-video OR deemphasize OR gorelicktv OR industry-archives OR movie_trailers_unsorted OR funnyordie) AND -identifier:(youtube-* OR BitChute-* OR tobacco_* OR OakleyTapes_* OR dvd-6* OR craig-ferguson-2005-2006-monologues-paranoidfellow-channel OR 20240915_20240915_0137 OR 01-jay-leno OR saturday.night.live.bilarabi*) AND -title:(\"vhs tape\" OR \"random tv\" OR uncensored OR strips OR playboy OR \"foxy boxing\" OR promo OR promos OR trailer OR commercial OR commercials OR logo OR mtv OR \"wack pack\" OR hefner OR whore OR pussy OR shitty OR \"traci lords\" OR german OR español OR \"sub español\" OR arabi OR bilarabi OR rogan OR sennett OR maverick) AND -title:(\"philip morris\" OR \"virtual ed sullivan\" OR \"rock legends\" OR \"rock n roll forever\" OR award OR spock OR \"jack benny\" OR ytshorts)",
+          "ignoreYear": true,
+          "maxEntries": 30,
+          "maxEntriesPerItem": 4
+        },
+        {
+          "query": "(title:(\"red skelton\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR tvarchive OR mirrortube OR bliptv OR fringe OR podcasts OR social-media-video OR deemphasize OR gorelicktv OR industry-archives OR movie_trailers_unsorted OR funnyordie) AND -identifier:(youtube-* OR BitChute-* OR tobacco_* OR OakleyTapes_* OR dvd-6* OR craig-ferguson-2005-2006-monologues-paranoidfellow-channel OR 20240915_20240915_0137 OR 01-jay-leno OR saturday.night.live.bilarabi*) AND -title:(\"vhs tape\" OR \"random tv\" OR uncensored OR strips OR playboy OR \"foxy boxing\" OR promo OR promos OR trailer OR commercial OR commercials OR logo OR mtv OR \"wack pack\" OR hefner OR whore OR pussy OR shitty OR \"traci lords\" OR german OR español OR \"sub español\" OR arabi OR bilarabi OR rogan OR sennett OR maverick) AND -title:(\"funny faces\" OR \"country comedy\" OR opening OR pledge OR pigeon OR \"seeing red\" OR concert)",
+          "ignoreYear": true,
+          "maxEntries": 50,
+          "maxEntriesPerItem": 8
+        },
+        {
+          "query": "(title:(\"your show of shows\" OR \"caesar's hour\" OR \"sid caesar\" OR \"ernie kovacs\" OR \"kovacs on the corner\" OR \"colgate comedy hour\" OR \"texaco star theater\" OR \"milton berle show\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR tvarchive OR mirrortube OR bliptv OR fringe OR podcasts OR social-media-video OR deemphasize OR gorelicktv OR industry-archives OR movie_trailers_unsorted OR funnyordie) AND -identifier:(youtube-* OR BitChute-* OR tobacco_* OR OakleyTapes_* OR dvd-6* OR craig-ferguson-2005-2006-monologues-paranoidfellow-channel OR 20240915_20240915_0137 OR 01-jay-leno OR saturday.night.live.bilarabi*) AND -title:(\"vhs tape\" OR \"random tv\" OR uncensored OR strips OR playboy OR \"foxy boxing\" OR promo OR promos OR trailer OR commercial OR commercials OR logo OR mtv OR \"wack pack\" OR hefner OR whore OR pussy OR shitty OR \"traci lords\" OR german OR español OR \"sub español\" OR arabi OR bilarabi OR rogan OR sennett OR maverick) AND -title:(\"hail sid caesar\" OR \"jack benny\" OR smothers)",
+          "ignoreYear": true,
+          "maxEntries": 50,
+          "maxEntriesPerItem": 6
+        },
+        {
+          "query": "(title:(\"muppet show\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR tvarchive OR mirrortube OR bliptv OR fringe OR podcasts OR social-media-video OR deemphasize OR gorelicktv OR industry-archives OR movie_trailers_unsorted OR funnyordie) AND -identifier:(youtube-* OR BitChute-* OR tobacco_* OR OakleyTapes_* OR dvd-6* OR craig-ferguson-2005-2006-monologues-paranoidfellow-channel OR 20240915_20240915_0137 OR 01-jay-leno OR saturday.night.live.bilarabi*) AND -title:(\"vhs tape\" OR \"random tv\" OR uncensored OR strips OR playboy OR \"foxy boxing\" OR promo OR promos OR trailer OR commercial OR commercials OR logo OR mtv OR \"wack pack\" OR hefner OR whore OR pussy OR shitty OR \"traci lords\" OR german OR español OR \"sub español\" OR arabi OR bilarabi OR rogan OR sennett OR maverick) AND -title:(die OR zoot OR \"60 minutes\" OR \"dvd promo\" OR \"bonus features\" OR \"muppet show live\" OR special OR sabrina OR revival OR returning OR \"cd-rom\" OR \"family guy\" OR herry OR theme OR opening OR kaso OR \"on tour\" OR \"i love the\" OR interview OR \"easter beagle\")",
+          "ignoreYear": true,
+          "maxEntries": 40,
+          "maxEntriesPerItem": 6
+        },
+        {
+          "query": "(title:(\"mr. show\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR tvarchive OR mirrortube OR bliptv OR fringe OR podcasts OR social-media-video OR deemphasize OR gorelicktv OR industry-archives OR movie_trailers_unsorted OR funnyordie) AND -identifier:(youtube-* OR BitChute-* OR tobacco_* OR OakleyTapes_* OR dvd-6* OR craig-ferguson-2005-2006-monologues-paranoidfellow-channel OR 20240915_20240915_0137 OR 01-jay-leno OR saturday.night.live.bilarabi*) AND -title:(\"vhs tape\" OR \"random tv\" OR uncensored OR strips OR playboy OR \"foxy boxing\" OR promo OR promos OR trailer OR commercial OR commercials OR logo OR mtv OR \"wack pack\" OR hefner OR whore OR pussy OR shitty OR \"traci lords\" OR german OR español OR \"sub español\" OR arabi OR bilarabi OR rogan OR sennett OR maverick) AND -title:(extras OR weenis OR taint)",
+          "ignoreYear": true,
+          "maxEntries": 20,
+          "maxEntriesPerItem": 1
+        },
+        {
+          "query": "(title:(\"whose line is it anyway\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR tvarchive OR mirrortube OR bliptv OR fringe OR podcasts OR social-media-video OR deemphasize OR gorelicktv OR industry-archives OR movie_trailers_unsorted OR funnyordie) AND -identifier:(youtube-* OR BitChute-* OR tobacco_* OR OakleyTapes_* OR dvd-6* OR craig-ferguson-2005-2006-monologues-paranoidfellow-channel OR 20240915_20240915_0137 OR 01-jay-leno OR saturday.night.live.bilarabi*) AND -title:(\"vhs tape\" OR \"random tv\" OR uncensored OR strips OR playboy OR \"foxy boxing\" OR promo OR promos OR trailer OR commercial OR commercials OR logo OR mtv OR \"wack pack\" OR hefner OR whore OR pussy OR shitty OR \"traci lords\" OR german OR español OR \"sub español\" OR arabi OR bilarabi OR rogan OR sennett OR maverick) AND -title:(\"drew carey show\")",
+          "ignoreYear": true,
+          "maxEntries": 30,
+          "maxEntriesPerItem": 3
+        },
+        {
+          "query": "(title:(fridays) AND title:(kaufman)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR tvarchive OR mirrortube OR bliptv OR fringe OR podcasts OR social-media-video OR deemphasize OR gorelicktv OR industry-archives OR movie_trailers_unsorted OR funnyordie) AND -identifier:(youtube-* OR BitChute-* OR tobacco_* OR OakleyTapes_* OR dvd-6* OR craig-ferguson-2005-2006-monologues-paranoidfellow-channel OR 20240915_20240915_0137 OR 01-jay-leno OR saturday.night.live.bilarabi*) AND -title:(\"vhs tape\" OR \"random tv\" OR uncensored OR strips OR playboy OR \"foxy boxing\" OR promo OR promos OR trailer OR commercial OR commercials OR logo OR mtv OR \"wack pack\" OR hefner OR whore OR pussy OR shitty OR \"traci lords\" OR german OR español OR \"sub español\" OR arabi OR bilarabi OR rogan OR sennett OR maverick)",
+          "ignoreYear": true,
+          "maxEntries": 10,
+          "maxEntriesPerItem": 2
+        }
+      ]
     }
   ]
 }
