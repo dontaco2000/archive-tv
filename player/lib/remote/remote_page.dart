@@ -92,10 +92,18 @@ const remotePage = r'''<!DOCTYPE html>
     border-radius:3px; padding:1px 4px; align-self:center; white-space:nowrap; line-height:1.2; }
   #ccNote { color:#6fcf8f; min-height:12px; }
   .off { color:#ff7b6b; }
+  /* POWER: two taps within 3 s (the first arms it and shows TAP AGAIN), so a stray click can't quit the app. */
+  .top { display:flex; justify-content:flex-end; margin-bottom:-4px; }
+  #power { min-height:0; height:24px; min-width:34px; border-radius:12px; background:#b3261e; color:#fff; display:flex;
+    align-items:center; justify-content:center; gap:4px; font-size:10px; letter-spacing:1px; }
+  #power:hover { background:#d32f2f; }
+  #power.arm { background:#ff3b30; padding:0 10px; box-shadow:0 0 10px #ff3b30aa; }
+  #power svg { width:15px; height:15px; flex-shrink:0; }
 </style>
 </head>
 <body>
 <div class="remote" id="remote" title="Keys: arrows, Enter, Esc, 0-9, G guide, M menu, I info, F fav, O on demand, U/Space mute, +/- volume, PgUp/PgDn channel">
+  <div class="top"><button id="power" title="Power: turn Archive TV off (tap twice)" aria-label="Power off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 3v9"/><path d="M6.3 6.3a8 8 0 1 0 11.4 0"/></svg><span id="powerTxt"></span></button></div>
   <div class="lcd">
     <span class="brand">ARCHIVE TV</span>
     <img id="logo" alt="">
@@ -280,6 +288,18 @@ const remotePage = r'''<!DOCTYPE html>
     if (el) { el.classList.add('hit'); setTimeout(() => el.classList.remove('hit'), 120); }
     send('/api/key', { key: k });
   }
+  let armed = null;
+  $('power').onclick = () => {
+    if (!armed) {
+      $('power').classList.add('arm'); $('powerTxt').textContent = 'TAP AGAIN';
+      armed = setTimeout(() => { armed = null; $('power').classList.remove('arm'); $('powerTxt').textContent = ''; }, 3000);
+      return;
+    }
+    clearTimeout(armed);
+    $('powerTxt').textContent = 'OFF';
+    send('/api/power', {}); // the app closes this window as it exits
+  };
+
   document.querySelectorAll('[data-key]').forEach(b => b.addEventListener('click', () => press(b.dataset.key)));
 
   // Volume bar: click or drag to set the level.

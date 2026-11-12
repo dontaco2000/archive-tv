@@ -59,6 +59,9 @@ class RemoteServer {
   void Function(int level) volume = (_) {};
   void Function(int number) channel = (_) {};
 
+  /// POST /api/power: quit the whole app (main.dart: the same clean path as the window's close button).
+  void Function() power = () {};
+
   /// A checked POST /api/setting: captionsOn (bool), captionSize (int 1-7), leveling, weatherMode, picture.
   void Function(String name, Object value) setting = (_, _) {};
   Future<List<int>?> Function(int number) logo = (_) async => null;
@@ -244,6 +247,9 @@ class RemoteServer {
         final n = j['number'];
         if (n is! int) return _err(400, 'number');
         channel(n);
+      case '/api/power':
+        log('remote: power');
+        power();
       case '/api/setting':
         final v = settingValue(j['name'], j['value']);
         if (v == null) return _err(400, 'setting');

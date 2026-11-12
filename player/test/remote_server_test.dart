@@ -126,6 +126,27 @@ void main() {
     expect(page.indexOf('id="settings"'), lessThan(page.indexOf('class="grid g4 hide-set"')));
   });
 
+  test('POST /api/power calls power once per request, under the same checks as other POSTs', () async {
+    var powers = 0;
+    server.power = () => powers++;
+    expect((await call('GET', '/api/power', headers: local)).$1, 404);
+    expect((await call('POST', '/api/power', headers: local)).$1, 403); // no X-Remote
+    expect((await call('POST', '/api/power', headers: {...post, 'origin': 'http://evil.example'})).$1, 403);
+    expect(powers, 0);
+    expect((await call('POST', '/api/power', body: {})).$1, 200);
+    expect(powers, 1);
+  });
+
+  test('the page has a POWER button at the top that needs a second tap within 3 s', () async {
+    final page = (await call('GET', '/remote', headers: local)).$3 as String;
+    expect(page, contains('id="power"'));
+    expect(page.indexOf('id="power"'), lessThan(page.indexOf('<div class="lcd"'))); // above everything else
+    expect(page, contains("'/api/power'"));
+    expect(page, contains('TAP AGAIN'));
+    expect(page, contains('3000'));
+    expect(page, isNot(contains('data-key="power"'))); // not a key: no keyboard shortcut can quit
+  });
+
   test('POSTs need X-Remote; foreign Host or Origin is rejected', () async {
     expect((await call('POST', '/api/key', headers: local, body: {'key': 'ok'})).$1, 403);
     expect((await call('GET', '/api/state', headers: {'host': 'evil.example:8765'})).$1, 403);

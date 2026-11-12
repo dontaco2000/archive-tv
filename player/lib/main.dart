@@ -159,6 +159,8 @@ Future<void> _main(List<String> args) async {
     if (remote.ensurePin()) store.save(settings);
     await remote.start().catchError((Object e) => log('remote: start failed: $e'));
   }
+  // The remote's POWER button closes the TV window like its X: onClose below, then the app ends.
+  remote?.power = () => unawaited(windowManager.close());
   windowPrefs?.onClose = () {
     remote?.closeWindowOnExit();
     crash.running(false);
