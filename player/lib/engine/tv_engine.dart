@@ -95,11 +95,25 @@ class TvEngine {
   /// Whether an entry of [c] is known to be R-rated (rated.json, source flag, Archive rating); cached per channel.
   bool Function(Entry) ratedOf(Channel c) => _rated[c.number] ??= ratedTest(c, config);
 
+  /// Parental "Late night adult mode" (settings.json, default ON). OFF: R-rated entries never air (filtered out
+  /// at layout time, so today's remaining ones and every later day lose them) and On Demand hides them.
+  bool adultMode = true;
+
+  /// [e] is R-rated and may air (adult mode ON): the viewer-discretion warning, the R badge and guide marker.
+  bool showsRated(Channel c, Entry e) => adultMode && ratedOf(c)(e);
+
+  /// The stand-by card's "LATE NIGHT ADULT MODE" line: adult mode ON, [now] inside [c]'s rated window, and [c]
+  /// has R-rated entries.
+  bool lateNightOn(Channel c, DateTime now) {
+    final w = ratedWindowOf(c, config);
+    return adultMode && !w.unrestricted && w.contains(now) && poolOf(c).any(ratedOf(c));
+  }
+
   /// [poolOf] for On Demand: outside the channel's rated window (daytime) R-rated entries are hidden, as they
   /// are off the air then.
   List<Entry> onDemandPoolOf(Channel c, {DateTime? now}) {
     final pool = poolOf(c);
-    if (ratedWindowOf(c, config).contains(now ?? DateTime.now())) return pool;
+    if (adultMode && ratedWindowOf(c, config).contains(now ?? DateTime.now())) return pool;
     final r = ratedOf(c);
     return [for (final e in pool) if (!r(e)) e];
   }
@@ -281,11 +295,20 @@ class TvEngine {
     // by id from the current pool: a day saved from an older pool has entries without the source tag
     final rare = {for (final e in _pool[c.number] ?? const <Entry>[]) if (isRare(c, e)) e.id};
     final fits = poolFilter(c, config); // a day saved under an older config may hold now-excluded items
+    final r = ratedOf(c);
+    // Adult mode OFF: rated entries leave the shuffle, and block picks (serial episodes, rare/themed picks) by id.
+    final noRated = Blocklist.session();
+    if (!adultMode) {
+      noRated.ids.addAll([
+        for (final e in _pool[c.number] ?? const <Entry>[]) if (r(e)) e.id,
+        for (final slot in _serials[c.number] ?? const <List<List<Entry>>>[]) for (final show in slot) for (final e in show) if (r(e)) e.id,
+      ]);
+    }
     return snapshots.day(c.number, day, _shufflePool(c),
-        blocklist: _blocked(c).union(_skipped).union(slow).union(noSubs),
+        blocklist: _blocked(c).union(_skipped).union(slow).union(noSubs).union(noRated),
         serials: _blocksFor(c),
-        inShuffle: (e) => fits(e) && !rare.contains(e.id),
-        rated: ratedOf(c),
+        inShuffle: (e) => fits(e) && !rare.contains(e.id) && (adultMode || !r(e)),
+        rated: r,
         window: ratedWindowOf(c, config));
   }
 

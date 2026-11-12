@@ -6,6 +6,9 @@ const buildingLabel = 'BUILDING...';
 /// Guide cell for a parental-locked channel.
 const lockedLabel = 'LOCKED';
 
+/// Before the title of an R-rated programme's guide cell.
+const ratedMarker = '[R] ';
+
 /// The guide's detail line for a selected building channel.
 const buildingDetail = 'Building... please choose another channel for now';
 
@@ -46,6 +49,9 @@ class GuideModel {
   /// Parental-locked channels: one "LOCKED" cell, programme titles hidden.
   final Set<int> lockedNumbers;
 
+  /// R-rated programmes (TvEngine.showsRated): their cells start with [ratedMarker].
+  final bool Function(Channel, Entry)? isRated;
+
   /// Nothing can be selected at or after this; [slotsFor] should not reach past it either.
   final DateTime horizon;
   final Duration visible = step * columnCount;
@@ -63,6 +69,7 @@ class GuideModel {
     required this.tunableNumbers,
     Set<int>? buildingNumbers,
     Set<int>? lockedNumbers,
+    this.isRated,
     DateTime? horizon,
   })  : buildingNumbers = buildingNumbers ?? {},
         lockedNumbers = lockedNumbers ?? {},
@@ -140,7 +147,7 @@ class GuideModel {
     return GuideRow(c, true, [
       for (final s in _slotsOf(c))
         if (s.end.isAfter(windowStart) && s.start.isBefore(end))
-          GuideCell(s, cleanTitle(s.entry.title), frac(s.start).clamp(0.0, 1.0), frac(s.end).clamp(0.0, 1.0)),
+          GuideCell(s, '${isRated?.call(c, s.entry) ?? false ? ratedMarker : ''}${cleanTitle(s.entry.title)}', frac(s.start).clamp(0.0, 1.0), frac(s.end).clamp(0.0, 1.0)),
     ]);
   }
 }

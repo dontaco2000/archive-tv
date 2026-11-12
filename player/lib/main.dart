@@ -158,6 +158,7 @@ Future<void> _main(List<String> args) async {
         home: ErrorScreen(message: 'Cannot read channels.json\n\n${e is ConfigException ? e.message : e}\n\n${configFile.path}')));
     return;
   }
+  engine.adultMode = settings.parental.adultMode; // parental "Late night adult mode"
   final tv = PlayerController(engine, log: log)..isLocked = ((c) => settings.parental.isLocked(c.number));
   tv.setVolume(settings.muted ? 0 : settings.volume);
   unawaited(tv.setLeveling(settings.volumeLeveling));

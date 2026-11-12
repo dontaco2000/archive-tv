@@ -180,9 +180,11 @@ typedef _Row = (String label, void Function()? action);
 
 /// The rows of the parental screen (label, Enter action; null = information only). Public for tests.
 List<(String, void Function()?)> parentalRows(Parental p, List<Channel> channels, ParentalFlow flow, VoidCallback changed, VoidCallback close) {
-  if (!p.hasPin) return [('Set PIN', flow.setPin), ('Close', close)];
+  final adult = ('Late night adult mode: ${p.adultMode ? 'ON' : 'OFF'}', flow.toggleAdultMode);
+  if (!p.hasPin) return [('Set PIN', flow.setPin), adult, ('Close', close)];
   return [
     p.lockOn ? ('Parental lock: ON (Enter + PIN: turn OFF)', flow.deactivate) : ('Parental lock: OFF (Enter: turn ON)', flow.activate),
+    adult,
     if (!p.lockOn)
       ('Lock mature channels', () {
         final n = p.lockMature(channels);
