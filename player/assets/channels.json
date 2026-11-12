@@ -412,7 +412,7 @@
         },
         {
           "query": "title:(iwa) AND title:(wrestling OR \"mid-south\" OR \"east coast\" OR \"puerto rico\" OR \"deep south\" OR hardcore OR \"carnage\") AND -title:(divas OR bikini OR interview OR rai OR cyberring OR powerdisk OR \"video game\" OR playstation OR xbox OR nintendo) AND -collection:(tvnews OR videogameprev OR gamevideos) AND -language:(spa OR fre OR ger OR por OR ita OR rus OR jpn)",
-          "minDownloads": 10
+          "minDownloads": 300
         },
         {
           "query": "title:(awa) AND title:(wrestling OR wretling OR verne OR bockwinkel OR gagne OR hogan OR vhs OR champions OR championship OR classic OR superclash OR highlights OR matches OR road OR sherri OR wendi OR larry OR ventura) AND -title:(divas OR bikini OR interview OR rai OR cyberring OR powerdisk OR \"video game\" OR playstation OR xbox OR nintendo) AND -collection:(tvnews OR videogameprev OR gamevideos) AND -language:(spa OR fre OR ger OR por OR ita OR rus OR jpn)",
@@ -430,9 +430,17 @@
           "ignoreYear": true
         },
         {
-          "query": "title:(uswa OR \"memphis wrestling\" OR \"cwa memphis\" OR \"jerry lawler\" OR \"stampede wrestling\" OR \"championship wrestling from florida\" OR \"georgia championship wrestling\" OR \"gulf coast wrestling\") AND -title:(divas OR bikini OR interview OR rai OR cyberring OR powerdisk OR \"video game\" OR playstation OR xbox OR nintendo) AND -collection:(tvnews OR videogameprev OR gamevideos) AND -language:(spa OR fre OR ger OR por OR ita OR rus OR jpn)",
-          "minDownloads": 5,
+          "identifiers": [
+            "cwa79128",
+            "cwa800823to801220nashvillepartialshows",
+            "cwa820828to820925partialshows"
+          ],
           "ignoreYear": true
+        },
+        {
+          "query": "title:(\"championship wrestling from florida\" OR \"georgia championship wrestling\" OR \"stampede wrestling\" OR \"gulf coast wrestling\") AND -title:(divas OR bikini OR interview OR rai OR cyberring OR powerdisk OR \"video game\" OR playstation OR xbox OR nintendo) AND -collection:(tvnews OR videogameprev OR gamevideos) AND -language:(spa OR fre OR ger OR por OR ita OR rus OR jpn)",
+          "ignoreYear": true,
+          "minDownloads": 20
         },
         {
           "query": "title:(\"ring of honor\" OR \"roh wrestling\" OR \"roh on\") AND -title:(divas OR bikini OR interview OR rai OR cyberring OR powerdisk OR \"video game\" OR playstation OR xbox OR nintendo) AND -collection:(tvnews OR videogameprev OR gamevideos) AND -language:(spa OR fre OR ger OR por OR ita OR rus OR jpn)",
@@ -440,12 +448,14 @@
           "ignoreYear": true
         },
         {
-          "query": "title:(\"tna impact\" OR \"tna wrestling\" OR \"impact wrestling\" OR \"tna xplosion\" OR \"tna\" AND wrestling) AND -title:(divas OR bikini OR interview OR rai OR cyberring OR powerdisk OR \"video game\" OR playstation OR xbox OR nintendo) AND -collection:(tvnews OR videogameprev OR gamevideos) AND -language:(spa OR fre OR ger OR por OR ita OR rus OR jpn)",
-          "minDownloads": 5,
+          "identifiers": [
+            "tna-i-mpact-2008.03.27",
+            "TNAWrestlingVideos"
+          ],
           "ignoreYear": true
         },
         {
-          "query": "title:(pwg OR \"pro wrestling guerrilla\" OR czw OR \"combat zone wrestling\" OR chikara OR \"lucha underground\" OR fmw OR \"frontier martial\" OR glow OR \"gorgeous ladies of wrestling\" OR \"dragon gate\") AND title:(wrestling OR lucha OR chikara OR pwg OR czw OR fmw OR \"gorgeous ladies\" OR \"dragon gate\") AND -title:(divas OR bikini OR interview OR rai OR cyberring OR powerdisk OR \"video game\" OR playstation OR xbox OR nintendo) AND -collection:(tvnews OR videogameprev OR gamevideos) AND -language:(spa OR fre OR ger OR por OR ita OR rus OR jpn)",
+          "query": "title:(pwg OR \"pro wrestling guerrilla\" OR czw OR \"combat zone wrestling\" OR chikara OR \"lucha underground\" OR fmw OR \"frontier martial\" OR glow OR \"gorgeous ladies of wrestling\") AND title:(wrestling OR lucha OR chikara OR pwg OR czw OR fmw OR \"gorgeous ladies\") AND -title:(divas OR bikini OR interview OR rai OR cyberring OR powerdisk OR \"video game\" OR playstation OR xbox OR nintendo) AND -collection:(tvnews OR videogameprev OR gamevideos) AND -language:(spa OR fre OR ger OR por OR ita OR rus OR jpn)",
           "minDownloads": 15
         },
         {
