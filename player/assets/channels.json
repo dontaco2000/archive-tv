@@ -483,6 +483,24 @@
           "query": "(subject:(cartoon OR cartoons)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR spanish OR jpn OR japanese OR chi OR chinese OR zho OR pol OR polish OR fre OR french OR fra OR ger OR german OR deu OR ita OR italian OR por OR portuguese OR rus OR russian OR kor OR korean OR hin OR hindi OR ara OR arabic OR tur OR vie OR ind OR tha OR hmn) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -subject:(banned OR \"adult swim\" OR \"foamy the squirrel\" OR \"ill will press\" OR \"hypnotic eye\") AND -identifier:(\"ReadingRainbowTVSeries\" OR \"FWRRTVSeries\" OR \"xavierrenegadeangel\" OR \"demashita_powerpuff_girls_z_full_series_japanese_dub\" OR \"krishna-balram-in-kalvakra-2009\" OR \"5_More_Minutes\") AND -title:(\"drawn together\") AND -title:(superman OR batman OR \"super friends\" OR superfriends OR \"justice league\" OR \"mighty mouse\" OR underdog OR hulk OR \"fantastic four\" OR \"marvel super heroes\" OR \"teen titans\" OR \"the tick\" OR freakazoid OR \"captain planet\" OR \"iron man\" OR \"silver surfer\")",
           "maxEntriesPerItem": 40
         }
+      ],
+      "timeBlocks": [
+        {
+          "label": "Saturday Morning Cartoons",
+          "days": [
+            "sat"
+          ],
+          "start": "07:00",
+          "end": "12:00",
+          "sources": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        }
       ]
     },
     {
@@ -1108,6 +1126,30 @@
           "maxEntriesPerItem": 18,
           "ignoreYear": true
         }
+      ],
+      "timeBlocks": [
+        {
+          "label": "Saturday Morning Superheroes",
+          "days": [
+            "sat"
+          ],
+          "start": "07:00",
+          "end": "11:00",
+          "sources": [
+            0,
+            1,
+            4,
+            7,
+            9,
+            10,
+            11,
+            15,
+            16,
+            17,
+            18,
+            19
+          ]
+        }
       ]
     },
     {
@@ -1191,6 +1233,20 @@
         },
         {
           "query": "(subject:horror AND collection:(moviesandfilms OR vhsvault OR feature_films OR opensource_movies OR television) AND -collection:movie_trailers AND -subject:(anime OR ova)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR spanish OR jpn OR japanese OR chi OR chinese OR zho OR pol OR polish OR fre OR french OR fra OR ger OR german OR deu OR ita OR italian OR por OR portuguese OR rus OR russian OR kor OR korean OR hin OR hindi OR ara OR arabic OR tur OR vie OR ind OR tha OR hmn) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -title:(nekromantik OR \"guinea pig\" OR \"sadi-scream\" OR \"flowers of flesh\" OR \"hot love\" OR \"jane eyre\" OR subtitulada) AND -identifier:(\"japanese-horrors-my-all-time-favorites\" OR \"20240304_20240304_0522\" OR \"melancholie_der_engel\") AND -subject:(concert OR \"live music\") AND -title:(snuff OR \"behind the sun\" OR \"winnie the pooh\")"
+        }
+      ],
+      "timeBlocks": [
+        {
+          "label": "Friday Night Creature Feature",
+          "days": [
+            "fri"
+          ],
+          "start": "20:00",
+          "end": "24:00",
+          "sources": [
+            5
+          ],
+          "minMinutes": 60
         }
       ]
     },
@@ -1929,6 +1985,25 @@
         },
         {
           "query": "(subject:(sitcom OR sitcoms) OR title:(\"malcolm in the middle\" OR newsradio)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR spanish OR jpn OR japanese OR chi OR chinese OR zho OR pol OR polish OR fre OR french OR fra OR ger OR german OR deu OR ita OR italian OR por OR portuguese OR rus OR russian OR kor OR korean OR hin OR hindi OR ara OR arabic OR tur OR vie OR ind OR tha OR hmn) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -subject:(argentina OR \"en español\" OR latino) AND -title:(\"casados con hijos\" OR \"vhs tape\")"
+        }
+      ],
+      "timeBlocks": [
+        {
+          "label": "Weeknight Sitcom Block",
+          "days": [
+            "mon",
+            "tue",
+            "wed",
+            "thu",
+            "fri"
+          ],
+          "start": "19:00",
+          "end": "21:00",
+          "sources": [
+            0,
+            2,
+            3
+          ]
         }
       ]
     },
@@ -3178,6 +3253,25 @@
         },
         {
           "query": "(title:(njpw OR \"new japan\" OR \"pro wrestling\" OR \"all japan\") AND -title:(divas OR bikini OR interview OR rai OR cyberring OR powerdisk) AND -collection:(tvnews OR videogameprev OR gamevideos)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -title:(photoshoot OR commericals OR commercials OR qvc) AND -title:(swimsuit OR \"pillow fight\" OR lingerie)"
+        }
+      ],
+      "timeBlocks": [
+        {
+          "label": "Saturday Night Wrestling",
+          "days": [
+            "sat"
+          ],
+          "start": "19:00",
+          "end": "24:00",
+          "sources": [
+            1,
+            4,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
         }
       ]
     },
