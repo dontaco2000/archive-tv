@@ -8,7 +8,9 @@
   "blockCollections": [
     "adultvhs",
     "vj_loops",
-    "frank-moore-archives"
+    "frank-moore-archives",
+    "sept_11_tv_archive",
+    "fox5news911"
   ],
   "excludeIdentifiers": [
     "dancingbaby_cdrom",
@@ -267,7 +269,14 @@
           "query": "(subject:anime AND (language:(eng OR english) OR title:(dub OR dubbed OR \"english sub\" OR \"hard-coded\" OR hardsub)) AND -language:(spa OR fre OR ger OR ita OR por OR rus) AND -title:(\"super robot monkey\" OR \"mega man\" OR \"invader zim\" OR zim OR urotsukidoji OR \"cream lemon\" OR hentai OR midori OR \"mad bull\" OR aika OR hentaihaven OR \"h-anime\" OR hanime OR xvideos OR vore OR lolita OR gonad OR rwby OR abridged)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -language:(ind OR indonesian OR fil) AND -title:(indonesian OR \"japanese dub\") AND -title:(\"plastic little\" OR \"mezzo forte\")"
         },
         {
-          "identifiers": ["ep.-3.480p", "ultimate-muscle-the-complete-series", "UltimateMuscle2002", "kinnikuman-nisei", "kinnikuman-complete-series", "kinnikuman-1983-hn-g-muscle-subs"],
+          "identifiers": [
+            "ep.-3.480p",
+            "ultimate-muscle-the-complete-series",
+            "UltimateMuscle2002",
+            "kinnikuman-nisei",
+            "kinnikuman-complete-series",
+            "kinnikuman-1983-hn-g-muscle-subs"
+          ],
           "ignoreYear": true
         }
       ]
@@ -858,6 +867,21 @@
         },
         {
           "query": "(title:(newscast OR \"evening news\" OR \"nightly news\" OR \"eyewitness news\" OR \"world news tonight\" OR \"action news\") AND -collection:(tvnews OR tvarchive)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR spanish OR jpn OR japanese OR chi OR chinese OR zho OR pol OR polish OR fre OR french OR fra OR ger OR german OR deu OR ita OR italian OR por OR portuguese OR rus OR russian OR kor OR korean OR hin OR hindi OR ara OR arabic OR tur OR vie OR ind OR tha OR hmn) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -title:(\"star trek\" OR \"discovery channel\" OR \"channel surfing\" OR \"tv commercials\" OR negativland OR \"charlie chan\" OR \"life of grime\") AND -title:(\"vhs #\" OR carebears OR \"care bears\" OR miniseries)"
+        },
+        {
+          "query": "(subject:(newsreel OR newsreels OR \"news reel\") AND mediatype:movies) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR spanish OR jpn OR japanese OR chi OR chinese OR zho OR pol OR polish OR fre OR french OR fra OR ger OR german OR deu OR ita OR italian OR por OR portuguese OR rus OR russian OR kor OR korean OR hin OR hindi OR ara OR arabic OR tur OR vie OR ind OR tha OR hmn) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -title:(\"star trek\" OR \"discovery channel\" OR \"channel surfing\" OR \"tv commercials\" OR negativland OR \"charlie chan\" OR \"life of grime\") AND -title:(\"vhs #\" OR carebears OR \"care bears\" OR miniseries)",
+          "ignoreYear": true
+        },
+        {
+          "query": "(collection:classic_tv AND subject:(documentary OR \"news magazine\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR spanish OR jpn OR japanese OR chi OR chinese OR zho OR pol OR polish OR fre OR french OR fra OR ger OR german OR deu OR ita OR italian OR por OR portuguese OR rus OR russian OR kor OR korean OR hin OR hindi OR ara OR arabic OR tur OR vie OR ind OR tha OR hmn) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -title:(\"star trek\" OR \"discovery channel\" OR \"channel surfing\" OR \"tv commercials\" OR negativland OR \"charlie chan\" OR \"life of grime\") AND -title:(\"vhs #\" OR carebears OR \"care bears\" OR miniseries)",
+          "ignoreYear": true
+        },
+        {
+          "query": "(subject:(\"60 minutes\" OR \"20/20\" OR dateline OR \"news magazine\" OR \"public affairs\") AND mediatype:movies) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR spanish OR jpn OR japanese OR chi OR chinese OR zho OR pol OR polish OR fre OR french OR fra OR ger OR german OR deu OR ita OR italian OR por OR portuguese OR rus OR russian OR kor OR korean OR hin OR hindi OR ara OR arabic OR tur OR vie OR ind OR tha OR hmn) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -title:(\"star trek\" OR \"discovery channel\" OR \"channel surfing\" OR \"tv commercials\" OR negativland OR \"charlie chan\" OR \"life of grime\") AND -title:(\"vhs #\" OR carebears OR \"care bears\" OR miniseries)"
+        },
+        {
+          "query": "(collection:(nasa) AND subject:(documentary OR mission OR apollo OR shuttle) AND mediatype:movies) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR spanish OR jpn OR japanese OR chi OR chinese OR zho OR pol OR polish OR fre OR french OR fra OR ger OR german OR deu OR ita OR italian OR por OR portuguese OR rus OR russian OR kor OR korean OR hin OR hindi OR ara OR arabic OR tur OR vie OR ind OR tha OR hmn) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -title:(\"star trek\" OR \"discovery channel\" OR \"channel surfing\" OR \"tv commercials\" OR negativland OR \"charlie chan\" OR \"life of grime\") AND -title:(\"vhs #\" OR carebears OR \"care bears\" OR miniseries)",
+          "ignoreYear": true
         }
       ]
     },
