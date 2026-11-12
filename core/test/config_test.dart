@@ -56,6 +56,8 @@ void main() {
   test('a source may cap its entries with maxEntries', () {
     final c = parseChannelConfig('{"channels":[{"number":2,"name":"A","sources":[{"query":"x","maxEntries":250},{"query":"y"}]}]}');
     expect(c.channel(2)!.sources.map((s) => s.maxEntries), [250, null]);
+    final p = parseChannelConfig('{"channels":[{"number":2,"name":"A","sources":[{"query":"x","maxEntriesPerItem":8},{"query":"y"}]}]}');
+    expect(p.channel(2)!.sources.map((s) => s.maxEntriesPerItem), [8, null]);
   });
 
   test('applies defaults when optional settings are missing', () {

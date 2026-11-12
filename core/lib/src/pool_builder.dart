@@ -147,22 +147,28 @@ Future<List<Entry>> _collect(
   return capPerSource(all, (e) => sourceOf[e.itemId]);
 }
 
-/// Applies each source's [Source.maxEntries]: takes its entries round-robin over its items (one per item per
-/// round, in id order) until the cap, so a source's small items all stay and a huge pack only fills the rest.
-/// Order of [pool] is kept.
+/// Applies each source's caps. [Source.maxEntriesPerItem] first thins every item of the source to at most that many
+/// entries, evenly spaced over the item's files (so a 1,000-episode pack keeps all its seasons). Then
+/// [Source.maxEntries] takes the source's entries round-robin over its items (one per item per round, in id order)
+/// until the cap, so a source's small items all stay and a huge pack only fills the rest. Order of [pool] is kept.
 List<Entry> capPerSource(List<Entry> pool, Source? Function(Entry) sourceOf) {
   final bySource = <Source, Map<String, List<Entry>>>{};
   for (final e in pool) {
     final s = sourceOf(e);
-    if (s?.maxEntries != null) ((bySource[s!] ??= {})[e.itemId] ??= []).add(e);
+    if (s != null && (s.maxEntries != null || s.maxEntriesPerItem != null)) ((bySource[s] ??= {})[e.itemId] ??= []).add(e);
   }
   final drop = <Entry>{};
   bySource.forEach((s, byItem) {
-    final queues = [for (final l in byItem.values) l.iterator];
+    final per = s.maxEntriesPerItem;
+    final lists = [
+      for (final l in byItem.values) per == null || l.length <= per ? l : [for (var i = 0; i < per; i++) l[i * l.length ~/ per]],
+    ];
     final keep = <Entry>{};
-    while (keep.length < s.maxEntries! && queues.isNotEmpty) {
+    final max = s.maxEntries ?? pool.length;
+    final queues = [for (final l in lists) l.iterator];
+    while (keep.length < max && queues.isNotEmpty) {
       queues.removeWhere((q) {
-        if (keep.length >= s.maxEntries! || !q.moveNext()) return true;
+        if (keep.length >= max || !q.moveNext()) return true;
         keep.add(q.current);
         return false;
       });

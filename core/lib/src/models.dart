@@ -29,6 +29,11 @@ class Source {
   /// season pack or race archive can't swamp the channel. Null = no cap.
   final int? maxEntries;
 
+  /// At most this many entries from any ONE item of this source (spread evenly over the item's files), so a single
+  /// 100+ file concert or series pack can't dominate a source even when the source has few other items. Applied
+  /// before [maxEntries]. Null = no cap.
+  final int? maxEntriesPerItem;
+
   /// Archive mediatype: `movies` (video) or `audio`.
   final String mediatype;
 
@@ -39,6 +44,7 @@ class Source {
     this.minDownloads,
     this.ignoreYear = false,
     this.maxEntries,
+    this.maxEntriesPerItem,
     this.mediatype = 'movies',
   });
 }

@@ -232,4 +232,17 @@ void main() {
     final ch = Channel(number: 9, name: 'Cap', sources: const [Source(query: 'q', maxEntries: 1)]);
     expect(await buildPool(ch, config(), api), hasLength(1));
   });
+
+  test('maxEntriesPerItem thins one huge item evenly, before maxEntries; small items untouched', () {
+    Entry e(String item, int i) =>
+        Entry(id: '$item/${i.toString().padLeft(3, '0')}', itemId: item, file: '$i', title: '$i', durationSeconds: 60, url: 'u');
+    const perItem = Source(query: 'a', maxEntriesPerItem: 4);
+    final pool = [for (var i = 0; i < 135; i++) e('jazz', i), e('rock', 0), e('rock', 1)];
+    final out = capPerSource(pool, (_) => perItem);
+    expect(out.where((x) => x.itemId == 'jazz').map((x) => x.id), ['jazz/000', 'jazz/033', 'jazz/067', 'jazz/101']);
+    expect(out.where((x) => x.itemId == 'rock'), hasLength(2));
+
+    const both = Source(query: 'a', maxEntriesPerItem: 4, maxEntries: 5);
+    expect(capPerSource(pool, (_) => both).map((x) => x.id), ['jazz/000', 'jazz/033', 'jazz/067', 'rock/000', 'rock/001']);
+  });
 }

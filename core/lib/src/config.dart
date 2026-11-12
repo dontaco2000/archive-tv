@@ -117,6 +117,7 @@ Source _source(Object? raw, int channel) {
     minDownloads: _int(raw['minDownloads'], 'minDownloads'),
     ignoreYear: (raw['ignoreYear'] as bool?) ?? false,
     maxEntries: _int(raw['maxEntries'], 'maxEntries'),
+    maxEntriesPerItem: _int(raw['maxEntriesPerItem'], 'maxEntriesPerItem'),
     mediatype: (raw['mediatype'] as String?) ?? 'movies',
   );
 }
