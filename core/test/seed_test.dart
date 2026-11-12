@@ -60,4 +60,19 @@ void main() {
     expect(store.load(2)!.single.itemId, 'mine');
     expect(await installSeed(Stream.value(seed()), dir), 0); // stamp: already installed
   });
+
+  test('the shipped seed installs and only has channels from the bundled config', () async {
+    final config = parseChannelConfig(File('../player/assets/channels.json').readAsStringSync());
+    final dir = Directory.systemTemp.createTempSync('seed');
+    addTearDown(() => dir.deleteSync(recursive: true));
+    final n = await installSeed(File('../player/assets/seed_pools.jsonl.gz').openRead(), dir);
+    final seeded = {
+      for (final f in dir.listSync().whereType<File>())
+        if (RegExp(r'pool-(\d+)\.json$').firstMatch(f.path) case final m?) int.parse(m[1]!),
+    };
+    expect(seeded.length, n);
+    expect(n, greaterThan(40));
+    expect(seeded.difference({for (final c in config.channels) c.number}), isEmpty);
+    expect(seeded.intersection({22, 23}), isEmpty); // Jingle and Hotline were removed
+  });
 }

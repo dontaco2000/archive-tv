@@ -11,10 +11,14 @@ Widget _wrap(String name) =>
 void main() {
   test('every channel in the bundled channels.json has a logo asset', () {
     final config = parseChannelConfig(File('assets/channels.json').readAsStringSync());
-    expect(config.channels, hasLength(49));
+    expect(config.channels, hasLength(47));
     for (final c in config.channels) {
       expect(File(logoAsset(c.name)).existsSync(), isTrue, reason: '${c.number} ${c.name}');
     }
+    // and no logo ships for a channel that is gone (e.g. Jingle, Hotline)
+    final used = {for (final c in config.channels) logoAsset(c.name)};
+    final shipped = [for (final f in Directory('assets/logos').listSync()) 'assets/logos/${f.uri.pathSegments.last}'];
+    expect(shipped.where((f) => !used.contains(f)), isEmpty);
   });
 
   testWidgets('known logo builds an Image', (t) async {
