@@ -930,6 +930,7 @@ class _TvScreenState extends State<TvScreen> {
                                 onAbout: () => _openOverlay(TvMode.about),
                                 onCredits: () => _openOverlay(TvMode.credits),
                                 lastError: widget.crash?.lastError,
+                                deadLinks: tv.engine.deadLinks,
                                 onCopyLastError: _copyLastError,
                                 onOpenLogFolder: widget.crash == null || !Platform.isWindows
                                     ? null

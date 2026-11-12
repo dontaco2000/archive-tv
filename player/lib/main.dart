@@ -223,6 +223,7 @@ Future<void> _main(List<String> args) async {
   // Checked once a minute (not one long timer) so sleep/hibernate and DST can't make it miss.
   var today = dayKey(DateTime.now());
   var refreshing = false;
+  var linksDue = true; // a full dead-link pass after each daily refresh (pools may be new)
   // Stale pools were loaded as they are; this rebuilds them in the background (Android: waits while a video starts).
   bool busy() => tv.standBy && tv.message == null;
   Future<void> refresh(DateTime now) async {
@@ -231,6 +232,7 @@ Future<void> _main(List<String> args) async {
       await engine.dailyRefresh(now, busy: Platform.isAndroid ? busy : null);
     } finally {
       refreshing = false;
+      linksDue = true;
     }
   }
 
@@ -243,6 +245,50 @@ Future<void> _main(List<String> args) async {
     await refresh(now);
   });
   unawaited(refresh(DateTime.now()));
+
+  // Dead-link checker: HEADs the files due to air next (Windows 12 h ahead, 2 at a time; Android 3 h, 1 at a time,
+  // only in the foreground) so files gone from Archive leave the schedule before they air. A full pass after each
+  // daily refresh and every 12 h (Android 3 h); files with one miss get their second check an hour later.
+  if (!args.contains('--latency-test')) {
+    final android = Platform.isAndroid;
+    var foreground = true;
+    if (android) AppLifecycleListener(onStateChange: (s) => foreground = s == AppLifecycleState.resumed);
+    DateTime? busySince; // a tune starting holds checks back, up to 20 s (weather without music stays "busy")
+    bool linkPaused() {
+      if (!foreground) return true;
+      if (!busy()) {
+        busySince = null;
+        return false;
+      }
+      busySince ??= DateTime.now();
+      return DateTime.now().difference(busySince!) < const Duration(seconds: 20);
+    }
+
+    final linkClient = http.Client();
+    unawaited(() async {
+      await Future<void>.delayed(const Duration(minutes: 2)); // after the first frame and the first pool loads
+      var lastFull = DateTime(0);
+      while (true) {
+        final now = DateTime.now();
+        final full = linksDue || now.difference(lastFull) >= Duration(hours: android ? 3 : 12);
+        if (!refreshing && (full || engine.health.hasDue(now))) {
+          if (full) (linksDue, lastFull) = (false, now);
+          try {
+            final checker = DeadLinkChecker(linkClient, engine.health,
+                concurrency: android ? 1 : 2,
+                delay: Duration(milliseconds: android ? 1000 : 500),
+                paused: linkPaused,
+                log: log);
+            final n = await engine.checkLinks(now, checker, hours: android ? 3 : 12, onlyStruck: !full);
+            log('link check ${full ? 'pass' : 'recheck'} done: $n new dead, ${engine.deadLinks} in all');
+          } on Object catch (e) {
+            log('link check failed: $e');
+          }
+        }
+        await Future<void>.delayed(const Duration(minutes: 10));
+      }
+    }());
+  }
 
   // `--latency-test`: flip through the channels a few times, log first-frame times, then quit.
   if (args.contains('--latency-test')) {
