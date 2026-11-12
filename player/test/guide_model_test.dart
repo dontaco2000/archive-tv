@@ -200,4 +200,26 @@ void main() {
     m.moveProgram(1); // last block: stays
     expect(m.selectedSlot!.start, at(12));
   });
+
+  test('themed time block: its slots are one cell titled with the block label', () {
+    Slot tagged(String t, DateTime s, int min) {
+      final x = slot(t, s, min);
+      return Slot(x.entry.copyWith(source: 0), x.start, x.end);
+    }
+
+    final ch = Channel(number: 2, name: 'Funnies', sources: const [Source(query: 'q')], timeBlocks: const [
+      TimeBlock(label: 'Wednesday Toons', days: [false, false, true, false, false, false, false], startMinute: 630, endMinute: 840, sources: [0]),
+    ]);
+    final m = GuideModel(channels: [ch], now: now, tunableNumbers: {2}, slotsFor: (_) => [
+          slot('Before', at(9, 30), 60),
+          tagged('Toon1', at(10, 30), 90),
+          tagged('Toon2', at(12), 120),
+          slot('After', at(14), 600),
+        ]);
+    m.moveProgram(1);
+    expect(m.selectedSlot!.entry.title, 'Wednesday Toons');
+    expect((m.selectedSlot!.start, m.selectedSlot!.end), (at(10, 30), at(14)));
+    m.moveProgram(1);
+    expect(m.selectedSlot!.entry.title, 'After');
+  });
 }

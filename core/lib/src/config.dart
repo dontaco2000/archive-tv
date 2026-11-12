@@ -70,6 +70,7 @@ ChannelConfig _parse(String jsonText) {
     final sources = [for (final s in (rawSources as List? ?? const [])) _source(s, number)];
     final primeTime = _primeTime(raw['primeTime'], number);
     channels.add(Channel(
+      timeBlocks: _timeBlocks(raw['timeBlocks'], sources.length, number),
       primeTime: primeTime,
       serials: _serials(raw['serials'], primeTime, number),
       number: number,
@@ -145,6 +146,44 @@ List<int>? _perDay(Object? raw, int channel) {
   }
   final d = raw['default'] == null ? 0 : count(raw['default']);
   return [for (final k in _weekdays) raw[k] == null ? d : count(raw[k])];
+}
+
+/// `timeBlocks`: `[{"label": "...", "days": ["sat"], "start": "07:00", "end": "12:00", "sources": [2, 5]}]`.
+/// "end" may be "24:00" (midnight). Blocks of one channel must not overlap on a shared day.
+List<TimeBlock> _timeBlocks(Object? raw, int sourceCount, int channel) {
+  if (raw == null) return const [];
+  if (raw is! List) throw ConfigException('channel $channel: "timeBlocks" must be a list');
+  final out = <TimeBlock>[];
+  for (final (i, b) in raw.indexed) {
+    final what = 'channel $channel time block ${i + 1}';
+    if (b is! Map<String, dynamic>) throw ConfigException('$what must be a JSON object');
+    final label = b['label'];
+    if (label is! String || label.trim().isEmpty) throw ConfigException('$what needs a "label"');
+    final days = b['days'];
+    if (days is! List || days.isEmpty || days.any((d) => !_weekdays.contains(d))) {
+      throw ConfigException('$what needs "days" like ["sat"] (mon..sun)');
+    }
+    final start = _clock(b['start'], '$what start');
+    final end = b['end'] == '24:00' ? 24 * 60 : _clock(b['end'], '$what end');
+    if (end <= start) throw ConfigException('$what must end after it starts (same day)');
+    final src = b['sources'];
+    if (src is! List || src.isEmpty || src.any((s) => s is! int || s < 0 || s >= sourceCount)) {
+      throw ConfigException('$what needs "sources": indexes into the channel\'s sources (0..${sourceCount - 1})');
+    }
+    final block = TimeBlock(
+      label: label.trim(),
+      days: [for (final d in _weekdays) days.contains(d)],
+      startMinute: start,
+      endMinute: end,
+      sources: [for (final s in src) s as int],
+    );
+    for (final o in out) {
+      final shareDay = [for (var d = 0; d < 7; d++) o.days[d] && block.days[d]].contains(true);
+      if (shareDay && start < o.endMinute && o.startMinute < end) throw ConfigException('$what overlaps "${o.label}"');
+    }
+    out.add(block);
+  }
+  return out;
 }
 
 PrimeTime _primeTime(Object? raw, int channel) {

@@ -1122,7 +1122,10 @@ class InfoBanner extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    '${ch.number}  ${ch.name.toUpperCase()}',
+                    '${ch.number}  ${ch.name.toUpperCase()}${switch (a == null || od != null ? null : themeLabelOf(ch, a.slot)) {
+                      final t? => '  ·  $t',
+                      _ => '',
+                    }}',
                     style: const TextStyle(color: Colors.white, fontSize: 26, fontFamily: 'Consolas', fontWeight: FontWeight.bold),
                   ),
                   Text(

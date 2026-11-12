@@ -42,7 +42,7 @@ Future<void> main(List<String> args) async {
 
   final now = DateTime.now();
   final shuffle = [for (final e in pool) if (!isRare(channel, e)) e];
-  List<Slot> dayFor(DateTime d) => layoutSerialDay(dayOrder(shuffle, 'ch${channel.number}', d), d, rareBlocks(channel, pool, d));
+  List<Slot> dayFor(DateTime d) => layoutSerialDay(dayOrder(shuffle, 'ch${channel.number}', d), d, dayBlocks(channel, const [], pool, d));
   for (final s in guide(now, dayFor, hours: 12).take(6)) {
     final t = '${s.start.hour.toString().padLeft(2, '0')}:${s.start.minute.toString().padLeft(2, '0')}';
     print('  $t  ${s.entry.title}');

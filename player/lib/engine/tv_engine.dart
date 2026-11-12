@@ -191,13 +191,11 @@ class TvEngine {
     return [for (final e in pool) if (!ids.contains(e.id) && !isRare(c, e)) e];
   }
 
-  /// Serial blocks plus rare-source blocks (sources with `perDay`) for a day; null when the channel has neither.
-  List<SerialBlock> Function(DateTime)? _blocksFor(Channel c) => c.serials.isEmpty && !c.sources.any((s) => s.perDay != null)
-      ? null
-      : (d) => [
-            ...serialBlocks(c, _serials[c.number] ?? const [], d),
-            ...rareBlocks(c, _pool[c.number] ?? const [], d),
-          ];
+  /// Serial, rare-source (`perDay`) and themed time blocks for a day; null when the channel has none.
+  List<SerialBlock> Function(DateTime)? _blocksFor(Channel c) =>
+      c.serials.isEmpty && c.timeBlocks.isEmpty && !c.sources.any((s) => s.perDay != null)
+          ? null
+          : (d) => dayBlocks(c, _serials[c.number] ?? const [], _pool[c.number] ?? const [], d);
 
   /// The viewer's blocks plus the channel's wrong-channel items.
   Blocklist _blocked(Channel c) => blocklist.union(wrong.forChannel(c.number));

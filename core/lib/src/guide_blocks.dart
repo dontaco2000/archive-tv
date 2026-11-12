@@ -51,8 +51,15 @@ String showKey(Entry e) =>
 /// - everything else stays one cell per item.
 /// [labelOf] (a source's `blockLabel`) overrides the show: 2+ consecutive items with the same label
 /// become one "`<label>`" / "`<label>` Marathon" block whatever their titles.
-List<Slot> guideBlocks(List<Slot> slots, {String? shortContent, String? Function(Entry)? labelOf}) {
-  String key(Entry e) => switch (labelOf?.call(e)) { final l? => 'label:$l', _ => showKey(e) };
+/// [themeOf] (a themed time block, see `themeLabelOf`) beats both: consecutive slots with the same
+/// theme, even a single one, become one cell titled just the theme ("Saturday Morning Cartoons").
+List<Slot> guideBlocks(List<Slot> slots,
+    {String? shortContent, String? Function(Entry)? labelOf, String? Function(Slot)? themeOf}) {
+  String key(Slot s) => switch ((themeOf?.call(s), labelOf?.call(s.entry))) {
+        (final t?, _) => 'theme:$t',
+        (_, final l?) => 'label:$l',
+        _ => showKey(s.entry),
+      };
   final out = <Slot>[];
   final shorts = <Slot>[];
   void flush() {
@@ -70,17 +77,18 @@ List<Slot> guideBlocks(List<Slot> slots, {String? shortContent, String? Function
   var i = 0;
   while (i < slots.length) {
     if (shortContent == null) {
-      final k = key(slots[i].entry);
+      final k = key(slots[i]);
       var j = i + 1;
-      while (j < slots.length && k.isNotEmpty && key(slots[j].entry) == k) {
+      while (j < slots.length && k.isNotEmpty && key(slots[j]) == k) {
         j++;
       }
-      if (j - i >= 2) {
+      final theme = themeOf?.call(slots[i]);
+      if (j - i >= 2 || theme != null) {
         flush();
         final first = slots[i], last = slots[j - 1];
         final show = labelOf?.call(first.entry) ?? showTitle(first.entry);
         final long = last.end.difference(first.start) >= marathonMin;
-        out.add(Slot(first.entry.copyWith(title: long ? '$show Marathon' : show), first.start, last.end));
+        out.add(Slot(first.entry.copyWith(title: theme ?? (long ? '$show Marathon' : show)), first.start, last.end));
         i = j;
         continue;
       }

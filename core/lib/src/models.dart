@@ -95,7 +95,11 @@ class Channel {
   /// openings, DVD menus and promos are left out of normal channels).
   final int? minSeconds;
 
+  /// Themed weekday/time-of-day blocks ("Saturday Morning Cartoons"), filled from chosen sources.
+  final List<TimeBlock> timeBlocks;
+
   const Channel({
+    this.timeBlocks = const [],
     required this.number,
     required this.name,
     this.genre = '',
@@ -118,6 +122,18 @@ class PrimeTime {
   final int slotMinutes;
 
   const PrimeTime({this.startMinute = 18 * 60, this.slots = 6, this.slotMinutes = 60});
+}
+
+/// A themed block: on [days] (Monday first, 7 flags, local date) the window [startMinute, endMinute)
+/// (minutes after local midnight, end up to 1440) is filled from the channel sources at [sources].
+class TimeBlock {
+  final String label;
+  final List<bool> days;
+  final int startMinute;
+  final int endMinute;
+  final List<int> sources;
+
+  const TimeBlock({required this.label, required this.days, required this.startMinute, required this.endMinute, required this.sources});
 }
 
 /// One prime-time block: a queue of [shows] played in episode order, back to back, looping.
