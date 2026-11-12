@@ -49,7 +49,10 @@ String showKey(Entry e) =>
 ///   short content ("More Shorts" / "Shorts").
 /// - short items lasting under 5 minutes in total join the block before them.
 /// - everything else stays one cell per item.
-List<Slot> guideBlocks(List<Slot> slots, {String? shortContent}) {
+/// [labelOf] (a source's `blockLabel`) overrides the show: 2+ consecutive items with the same label
+/// become one "`<label>`" / "`<label>` Marathon" block whatever their titles.
+List<Slot> guideBlocks(List<Slot> slots, {String? shortContent, String? Function(Entry)? labelOf}) {
+  String key(Entry e) => switch (labelOf?.call(e)) { final l? => 'label:$l', _ => showKey(e) };
   final out = <Slot>[];
   final shorts = <Slot>[];
   void flush() {
@@ -67,15 +70,15 @@ List<Slot> guideBlocks(List<Slot> slots, {String? shortContent}) {
   var i = 0;
   while (i < slots.length) {
     if (shortContent == null) {
-      final k = showKey(slots[i].entry);
+      final k = key(slots[i].entry);
       var j = i + 1;
-      while (j < slots.length && k.isNotEmpty && showKey(slots[j].entry) == k) {
+      while (j < slots.length && k.isNotEmpty && key(slots[j].entry) == k) {
         j++;
       }
       if (j - i >= 2) {
         flush();
         final first = slots[i], last = slots[j - 1];
-        final show = showTitle(first.entry);
+        final show = labelOf?.call(first.entry) ?? showTitle(first.entry);
         final long = last.end.difference(first.start) >= marathonMin;
         out.add(Slot(first.entry.copyWith(title: long ? '$show Marathon' : show), first.start, last.end));
         i = j;

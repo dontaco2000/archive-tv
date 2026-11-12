@@ -119,7 +119,30 @@ Source _source(Object? raw, int channel) {
     maxEntries: _int(raw['maxEntries'], 'maxEntries'),
     maxEntriesPerItem: _int(raw['maxEntriesPerItem'], 'maxEntriesPerItem'),
     mediatype: (raw['mediatype'] as String?) ?? 'movies',
+    perDay: _perDay(raw['perDay'], channel),
+    perDayMinMinutes: _int(raw['perDayMinMinutes'], 'perDayMinMinutes') ?? 0,
+    blockLabel: raw['blockLabel'] as String?,
   );
+}
+
+const _weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+/// `perDay`: a count for every day, or `{"default": 1, "sun": 3}` (unlisted days: default, else 0).
+List<int>? _perDay(Object? raw, int channel) {
+  if (raw == null) return null;
+  final what = 'channel $channel source perDay';
+  int count(Object? v) {
+    if (v is! int || v < 0) throw ConfigException('$what values must be whole numbers of 0 or more');
+    return v;
+  }
+
+  if (raw is int) return List.filled(7, count(raw));
+  if (raw is! Map<String, dynamic>) throw ConfigException('$what must be a number or an object like {"default": 1, "sun": 3}');
+  for (final k in raw.keys) {
+    if (k != 'default' && !_weekdays.contains(k)) throw ConfigException('$what has unknown day "$k" (use default, mon..sun)');
+  }
+  final d = raw['default'] == null ? 0 : count(raw['default']);
+  return [for (final k in _weekdays) raw[k] == null ? d : count(raw[k])];
 }
 
 PrimeTime _primeTime(Object? raw, int channel) {

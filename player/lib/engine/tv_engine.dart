@@ -144,17 +144,21 @@ class TvEngine {
     if (saved != null) _serials[c.number] = saved;
   }
 
-  /// The pool the day's shuffle is made from: serial episodes never air in it.
+  /// The pool the day's shuffle is made from: serial episodes and rare-source entries never air in it.
   List<Entry> _shufflePool(Channel c) {
     final pool = _pool[c.number] ?? const <Entry>[];
     final eps = _serials[c.number];
-    if (eps == null) return pool;
-    final ids = {for (final slot in eps) for (final show in slot) for (final e in show) e.id};
-    return [for (final e in pool) if (!ids.contains(e.id)) e];
+    final ids = {if (eps != null) for (final slot in eps) for (final show in slot) for (final e in show) e.id};
+    return [for (final e in pool) if (!ids.contains(e.id) && !isRare(c, e)) e];
   }
 
-  List<SerialBlock> Function(DateTime)? _blocksFor(Channel c) =>
-      c.serials.isEmpty ? null : (d) => serialBlocks(c, _serials[c.number] ?? const [], d);
+  /// Serial blocks plus rare-source blocks (sources with `perDay`) for a day; null when the channel has neither.
+  List<SerialBlock> Function(DateTime)? _blocksFor(Channel c) => c.serials.isEmpty && !c.sources.any((s) => s.perDay != null)
+      ? null
+      : (d) => [
+            ...serialBlocks(c, _serials[c.number] ?? const [], d),
+            ...rareBlocks(c, _pool[c.number] ?? const [], d),
+          ];
 
   final Blocklist _skipped = Blocklist.session(); // items that failed to play this run
 
@@ -172,8 +176,14 @@ class TvEngine {
     noSubs.add(entryId);
   }
 
-  List<Slot> _day(Channel c, DateTime day) => snapshots.day(c.number, day, _shufflePool(c),
-      blocklist: blocklist.union(_skipped).union(slow).union(noSubs), serials: _blocksFor(c));
+  List<Slot> _day(Channel c, DateTime day) {
+    // by id from the current pool: a day saved from an older pool has entries without the source tag
+    final rare = {for (final e in _pool[c.number] ?? const <Entry>[]) if (isRare(c, e)) e.id};
+    return snapshots.day(c.number, day, _shufflePool(c),
+        blocklist: blocklist.union(_skipped).union(slow).union(noSubs),
+        serials: _blocksFor(c),
+        inShuffle: rare.isEmpty ? null : (e) => !rare.contains(e.id));
+  }
 
   Future<void> _probing = Future.value();
 

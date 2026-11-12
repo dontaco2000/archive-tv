@@ -144,7 +144,14 @@ Future<List<Entry>> _collect(
     onProgress?.call(++done, hitsToFetch.length);
   });
   final all = byId.values.toList()..sort((a, b) => a.id.compareTo(b.id));
-  return capPerSource(all, (e) => sourceOf[e.itemId]);
+  // Tag entries of sources the scheduler/guide treat specially (perDay, blockLabel) with their source index.
+  return [
+    for (final e in capPerSource(all, (e) => sourceOf[e.itemId]))
+      if (sourceOf[e.itemId] case final s? when s.perDay != null || s.blockLabel != null)
+        e.copyWith(source: channel.sources.indexOf(s))
+      else
+        e,
+  ];
 }
 
 /// Applies each source's caps. [Source.maxEntriesPerItem] first thins every item of the source to at most that many

@@ -63,7 +63,7 @@ class GuideModel {
 
   /// The row's guide blocks (see `guideBlocks`): short items, same-show runs and short-content
   /// channels are grouped for display; tuning still plays the real schedule.
-  List<Slot> _slotsOf(Channel c) => _slots[c.number] ??= guideBlocks(slotsFor(c), shortContent: c.shortContent);
+  List<Slot> _slotsOf(Channel c) => _slots[c.number] ??= guideBlocks(slotsFor(c), shortContent: c.shortContent, labelOf: (e) => blockLabelOf(c, e));
 
   Slot? get selectedSlot => _tunable(selectedChannel) ? slotAt(_slotsOf(selectedChannel), selectedTime) : null;
 

@@ -34,10 +34,25 @@ class Source {
   /// before [maxEntries]. Null = no cap.
   final int? maxEntriesPerItem;
 
+  /// Rare long programming (e.g. full races): entries of this source per local weekday, Monday first (7 values).
+  /// Its entries leave the daily shuffle and air only as that many a day, placed by the date (see `rareBlocks`).
+  /// Null = a normal source.
+  final List<int>? perDay;
+
+  /// With [perDay]: only entries at least this many minutes long are rare; shorter ones (clips, films) stay in
+  /// the normal shuffle. Default 0 (all of the source's entries).
+  final int perDayMinMinutes;
+
+  /// Guide name for a run of 2+ consecutive entries of this source ("NASCAR" -> "NASCAR Marathon" at 2 h+).
+  final String? blockLabel;
+
   /// Archive mediatype: `movies` (video) or `audio`.
   final String mediatype;
 
   const Source({
+    this.perDay,
+    this.perDayMinMinutes = 0,
+    this.blockLabel,
     this.query,
     this.collection,
     this.identifiers = const [],
@@ -184,6 +199,9 @@ class Entry {
   /// The item is tagged as a silent film (`sound: silent`).
   final bool silent;
 
+  /// Index of the channel source the item came from; only set for sources with `perDay` or `blockLabel`.
+  final int? source;
+
   const Entry({
     required this.id,
     required this.itemId,
@@ -196,12 +214,13 @@ class Entry {
     this.language,
     this.subUrl,
     this.silent = false,
+    this.source,
   });
 
   /// Tagged with a language and none of its languages is English: needs English subtitles.
   bool get foreign => isForeignLanguage(language);
 
-  Entry copyWith({bool? faststart, String? title}) => Entry(
+  Entry copyWith({bool? faststart, String? title, int? source}) => Entry(
         id: id,
         itemId: itemId,
         file: file,
@@ -213,6 +232,7 @@ class Entry {
         language: language,
         subUrl: subUrl,
         silent: silent,
+        source: source ?? this.source,
       );
 
   Map<String, dynamic> toJson() => {
@@ -227,6 +247,7 @@ class Entry {
         if (language != null) 'language': language,
         if (subUrl != null) 'subUrl': subUrl,
         if (silent) 'silent': true,
+        if (source != null) 'source': source,
       };
 
   factory Entry.fromJson(Map<String, dynamic> j) => Entry(
@@ -241,6 +262,7 @@ class Entry {
         language: j['language'] as String?,
         subUrl: j['subUrl'] as String?,
         silent: j['silent'] == true,
+        source: j['source'] as int?,
       );
 }
 

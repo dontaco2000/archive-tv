@@ -103,8 +103,10 @@ class SnapshotStore {
   /// and saving it from [pool] if absent; [blocklist] entries are removed.
   /// [serials] gives the day's serial blocks; they are saved with the day the first time
   /// they are non-empty (also for a day saved before the channel had serials).
+  /// [inShuffle] filters the saved order (e.g. drops rare-source entries from a day saved before
+  /// the source got `perDay`); block episodes are not filtered by it.
   List<Slot> day(int channel, DateTime day, List<Entry> pool,
-      {Blocklist? blocklist, List<SerialBlock> Function(DateTime day)? serials}) {
+      {Blocklist? blocklist, List<SerialBlock> Function(DateTime day)? serials, bool Function(Entry)? inShuffle}) {
     final key = '$channel-${dayKey(day)}';
     final f = _f(channel, day);
     var snap = _days[key] ?? _read(f);
@@ -120,16 +122,17 @@ class SnapshotStore {
         dirty = true;
       }
     }
-    final (order, blocks) = snap;
+    final (saved, blocks) = snap;
+    final order = inShuffle == null ? saved : saved.where(inShuffle).toList();
     if (order.isNotEmpty || blocks.isNotEmpty) {
       _days[key] = snap; // empty days are not cached: the pool may fill later
       if (dirty) {
         _writeJson(
             f,
             blocks.isEmpty
-                ? [for (final e in order) e.toJson()]
+                ? [for (final e in saved) e.toJson()]
                 : {
-                    'order': [for (final e in order) e.toJson()],
+                    'order': [for (final e in saved) e.toJson()],
                     'serials': [for (final b in blocks) b.toJson()],
                   });
       }

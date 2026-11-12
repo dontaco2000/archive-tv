@@ -1,3 +1,5 @@
+import 'dart:math' show min;
+
 import 'models.dart';
 import 'seeded_random.dart';
 
@@ -114,6 +116,62 @@ int _perDay(List<Entry> eps, int minutes) {
   return n < 1 ? 1 : n;
 }
 
+Source? _sourceOf(Channel c, Entry e) {
+  final i = e.source;
+  return i != null && i >= 0 && i < c.sources.length ? c.sources[i] : null;
+}
+
+/// Entry comes from a "rare" source (one with `perDay`) and is at least its `perDayMinMinutes` long:
+/// it airs only in [rareBlocks], never in the shuffle.
+bool isRare(Channel c, Entry e) => switch (_sourceOf(c, e)) {
+      final s? => s.perDay != null && e.durationSeconds >= s.perDayMinMinutes * 60,
+      _ => false,
+    };
+
+/// The guide label for [e]'s source (`blockLabel`), or null. For a `perDay` source only its rare
+/// entries get it, so a short clip from the shuffle next to the day's race doesn't make a "Marathon".
+String? blockLabelOf(Channel c, Entry e) => switch (_sourceOf(c, e)) {
+      final s? when s.perDay == null || isRare(c, e) => s.blockLabel,
+      _ => null,
+    };
+
+/// How many entries source [s] airs on local [day] (0 for a normal source).
+int perDayOn(Source s, DateTime day) => s.perDay?[day.weekday - 1] ?? 0;
+
+final _rareEpoch = DateTime.utc(2000, 1, 3); // a Monday
+
+/// [channel]'s rare-source blocks for local [day], from [pool] (entries tagged with their source).
+/// No stored state: each rare source's entries are shuffled once (seed channel|source) and the day
+/// takes the next `perDay` of that loop, counted from a fixed epoch, so nothing repeats until the
+/// whole source has aired (while the pool stays the same). Start time, seeded by channel|source|date,
+/// on the half hour: one entry 09:00-22:00, 2+ entries (a marathon) 11:00-13:00, always moved
+/// earlier so the block ends by midnight. [spares] extra picks stand in for blocked ones.
+List<SerialBlock> rareBlocks(Channel channel, List<Entry> pool, DateTime day, {int spares = 3}) {
+  final out = <SerialBlock>[];
+  for (final (k, s) in channel.sources.indexed) {
+    final n = perDayOn(s, day);
+    final eps = [for (final e in pool) if (e.source == k && isRare(channel, e)) e]..sort((a, b) => a.id.compareTo(b.id));
+    if (n == 0 || eps.isEmpty) continue;
+    final days = DateTime.utc(day.year, day.month, day.day).difference(_rareEpoch).inDays;
+    var first = days ~/ 7 * s.perDay!.fold<int>(0, (a, b) => a + b);
+    for (var i = 0; i < days % 7; i++) {
+      first += s.perDay![i];
+    }
+    final perm = seededShuffle(eps, stableHash('ch${channel.number}|rare$k'));
+    final picks = [for (var i = 0; i < n + spares && i < eps.length; i++) perm[(first + i) % eps.length]];
+    final count = n < picks.length ? n : picks.length;
+    final minutes = (picks.take(count).fold(0.0, (a, e) => a + e.durationSeconds) / 60).ceil();
+    final hi = min((count > 1 ? 13 : 22) * 60, 24 * 60 - minutes);
+    final lo = min((count > 1 ? 11 : 9) * 60, hi);
+    final rng = SeededRandom(stableHash('ch${channel.number}|rare$k|${dayKey(day)}'));
+    final start = lo + rng.nextInt((hi - lo) ~/ 30 + 1) * 30;
+    // ponytail: blocks of several rare sources (or a rare block and prime-time serials) may overlap;
+    // layoutSerialDay pushes the later one back and drops what would pass midnight.
+    out.add(SerialBlock(start < 0 ? 0 : start, minutes, count, picks));
+  }
+  return out;
+}
+
 Duration _len(Entry e) => Duration(milliseconds: (e.durationSeconds * 1000).round().clamp(1000, 1 << 40));
 
 /// Like [layoutDay] with serial [blocks] placed in the evening. Each block starts at its slot time
@@ -124,7 +182,7 @@ Duration _len(Entry e) => Duration(milliseconds: (e.durationSeconds * 1000).roun
 List<Slot> layoutSerialDay(List<Entry> order, DateTime day, List<SerialBlock> blocks) {
   if (blocks.isEmpty) return layoutDay(order, day);
   final end = DateTime(day.year, day.month, day.day + 1);
-  final serialIds = {for (final b in blocks) for (final e in b.episodes) e.id};
+  final serialIds = {for (final b in blocks) for (final e in b.episodes) e.id}; // also rare-block picks
   final pool = [for (final e in order) if (!serialIds.contains(e.id)) e];
   final queue = <Entry>[];
   final slots = <Slot>[];
