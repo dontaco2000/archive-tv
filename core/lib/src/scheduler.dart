@@ -205,6 +205,9 @@ List<SerialBlock> themedBlocks(Channel channel, List<Entry> pool, DateTime day,
     for (final b in others) {
       if (b.startMinute >= end && b.startMinute < limit) limit = b.startMinute;
     }
+    for (final t in channel.timeBlocks) { // nor into a later themed block of the same day
+      if (t.days[day.weekday - 1] && t.startMinute >= end && t.startMinute < limit) limit = t.startMinute;
+    }
     final picks = <Entry>[];
     var count = 0, total = 0.0;
     for (final e in seededShuffle(eps, stableHash('ch${channel.number}|block$k|${dayKey(day)}'))) {

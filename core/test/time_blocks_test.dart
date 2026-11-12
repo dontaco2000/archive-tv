@@ -111,6 +111,30 @@ void main() {
     expect(slots[at + 1].entry.id, startsWith('edgy')); // shuffle continues after the short block
   });
 
+  test('back-to-back blocks: the first never runs into the second, which starts on time', () {
+    final ring = Channel(number: 43, name: 'Ringside', sources: [const Source(query: 'a'), const Source(query: 'b'), const Source(query: 'c')], timeBlocks: [
+      TimeBlock(label: 'Classic', days: sat, startMinute: 19 * 60, endMinute: 21 * 60 + 30, sources: [1]),
+      TimeBlock(label: 'Indie', days: sat, startMinute: 21 * 60 + 30, endMinute: 24 * 60, sources: [2]),
+    ]);
+    final p = [
+      ...edgy,
+      for (var i = 0; i < 20; i++) entry('tv$i', 40 + i % 4 * 10, source: 1),
+      for (var i = 0; i < 3; i++) entry('ppv$i', 200, source: 1), // never fits 2.5 h
+      for (var i = 0; i < 20; i++) entry('indie$i', 45 + i % 3 * 15, source: 2),
+    ];
+    for (var w = 0; w < 6; w++) {
+      final day = DateTime(2026, 11, 14 + 7 * w);
+      final bs = themedBlocks(ring, p, day);
+      expect(bs.map((b) => b.startMinute), [19 * 60, 21 * 60 + 30]);
+      final used = bs[0].episodes.take(bs[0].count);
+      expect(19 * 60 * 60 + used.fold(0.0, (s, e) => s + e.durationSeconds), lessThanOrEqualTo((21 * 60 + 30) * 60));
+      expect(used.any((e) => e.id.startsWith('ppv')), isFalse);
+      final slots = dayOf(ring, p, day);
+      final indie = slots.firstWhere((s) => themeLabelOf(ring, s) == 'Indie');
+      expect(indie.start, DateTime(day.year, day.month, day.day, 21, 30));
+    }
+  });
+
   test('serial/rare blocks win: themed window is trimmed, and their entries are never picked', () {
     final serial = SerialBlock(9 * 60, 60, 1, [entry('ep1', 50)]);
     final blocks = themedBlocks(funnies, pool, saturday, taken: [serial]);

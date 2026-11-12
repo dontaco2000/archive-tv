@@ -1234,6 +1234,59 @@
           "claim": true
         },
         {
+          "identifiers": [
+            "Nosferatu_most_complete_version_93_mins.",
+            "NightOfTheLivingDead-MPEG",
+            "CarnivalofSouls",
+            "the_brain_that_wouldnt_die_201712",
+            "plan-9-from-outer-space",
+            "AttackOfTheGiantLeeches",
+            "The_Little_Shop_of_Horrors.mpeg",
+            "TheLastManOnEarth_72",
+            "House_On_Haunted_Hill.avi",
+            "TheTerror",
+            "dementia-13-1963_202312",
+            "BeastOfYuccaFlats",
+            "TeenagersFromOuterSpace",
+            "CatWomenOfTheMoon",
+            "robot-monster-1953",
+            "Killers_from_space",
+            "The_Amazing_Transparent_Man",
+            "bride-of-the-monster-1955",
+            "giant_gila_monster",
+            "reptilicus_aip",
+            "gorgo-1961_202504",
+            "The_Killer_Shrews_1959",
+            "TheScreamingSkull",
+            "TheVampireBat",
+            "WhiteZombie",
+            "TheApeMan",
+            "TheCorpseVanishes",
+            "ABucketofBlood",
+            "The_Wasp_Women",
+            "TheDayOfTheTriffids",
+            "the.-hideous.-sun.-demon.-1958",
+            "indestructible_man",
+            "DeadMenWalk",
+            "The.Mad.Monster",
+            "TheSnowCreature",
+            "TheDevilBat720p1940",
+            "BeastFromHauntedCave",
+            "CreatureFromTheHauntedSea",
+            "TheBrainFromPlanetArous",
+            "Teenage_Zombies",
+            "NightOfTheBloodBeast",
+            "PhantomOfTheOpera1925HD",
+            "the-bat-1959",
+            "Horror_Express",
+            "the-giant-claw-1957",
+            "AttackOfTheCrabMonsters1957",
+            "HowItConqueredTheWorld"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1
+        },
+        {
           "query": "(subject:horror AND collection:(moviesandfilms OR vhsvault OR feature_films OR opensource_movies OR television) AND -collection:movie_trailers AND -subject:(anime OR ova)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR spanish OR jpn OR japanese OR chi OR chinese OR zho OR pol OR polish OR fre OR french OR fra OR ger OR german OR deu OR ita OR italian OR por OR portuguese OR rus OR russian OR kor OR korean OR hin OR hindi OR ara OR arabic OR tur OR vie OR ind OR tha OR hmn) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -title:(nekromantik OR \"guinea pig\" OR \"sadi-scream\" OR \"flowers of flesh\" OR \"hot love\" OR \"jane eyre\" OR subtitulada) AND -identifier:(\"japanese-horrors-my-all-time-favorites\" OR \"20240304_20240304_0522\" OR \"melancholie_der_engel\") AND -subject:(concert OR \"live music\") AND -title:(snuff OR \"behind the sun\" OR \"winnie the pooh\")"
         }
       ],
@@ -1248,7 +1301,7 @@
           "sources": [
             5
           ],
-          "minMinutes": 60
+          "minMinutes": 50
         }
       ]
     },
@@ -3224,7 +3277,7 @@
           "ignoreYear": true
         },
         {
-          "query": "(title:(\"mid-south wrestling\" OR \"mid south wrestling\" OR \"mid-south wrestlefest\" OR \"mid south/uwf\" OR \"tales from the territories\" OR \"universal wrestling federation\") AND -title:(divas OR bikini OR interview OR rai OR cyberring OR powerdisk OR \"video game\" OR playstation OR xbox OR nintendo) AND -collection:(tvnews OR videogameprev OR gamevideos) AND -language:(spa OR fre OR ger OR por OR ita OR rus OR jpn)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -title:(photoshoot OR commericals OR commercials OR qvc) AND -title:(swimsuit OR \"pillow fight\" OR lingerie)",
+          "query": "(title:(\"mid-south wrestling\" OR \"mid south wrestling\" OR \"mid-south wrestlefest\" OR \"mid south/uwf\" OR \"tales from the territories\" OR \"universal wrestling federation\") AND -title:(divas OR bikini OR interview OR rai OR cyberring OR powerdisk OR \"video game\" OR playstation OR xbox OR nintendo) AND -collection:(tvnews OR videogameprev OR gamevideos) AND -language:(spa OR fre OR ger OR por OR ita OR rus OR jpn)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -title:(photoshoot OR commericals OR commercials OR qvc) AND -title:(swimsuit OR \"pillow fight\" OR lingerie) AND -title:(iwa OR deathmatch OR deathmatches OR \"death match\" OR \"death matches\")",
           "minDownloads": 5,
           "ignoreYear": true
         },
@@ -3244,7 +3297,8 @@
         {
           "query": "(title:(\"ring of honor\" OR \"roh wrestling\" OR \"roh on\") AND -title:(divas OR bikini OR interview OR rai OR cyberring OR powerdisk OR \"video game\" OR playstation OR xbox OR nintendo) AND -collection:(tvnews OR videogameprev OR gamevideos) AND -language:(spa OR fre OR ger OR por OR ita OR rus OR jpn)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -title:(photoshoot OR commericals OR commercials OR qvc) AND -title:(swimsuit OR \"pillow fight\" OR lingerie)",
           "minDownloads": 5,
-          "ignoreYear": true
+          "ignoreYear": true,
+          "maxEntriesPerItem": 12
         },
         {
           "identifiers": [
@@ -3259,6 +3313,29 @@
         },
         {
           "query": "(title:(njpw OR \"new japan\" OR \"pro wrestling\" OR \"all japan\") AND -title:(divas OR bikini OR interview OR rai OR cyberring OR powerdisk) AND -collection:(tvnews OR videogameprev OR gamevideos)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -title:(photoshoot OR commericals OR commercials OR qvc) AND -title:(swimsuit OR \"pillow fight\" OR lingerie)"
+        },
+        {
+          "query": "(title:(\"nwa powerrr\" OR \"mlw fusion\") AND -title:(podcast OR interview OR preview OR trailer OR gameplay OR precure OR kibou OR kikoe OR \"shadow of chikara\" OR czw OR spot OR \"going off air\" OR mayhem OR surge OR divas OR bikini)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -title:(photoshoot OR commericals OR commercials OR qvc) AND -title:(swimsuit OR \"pillow fight\" OR lingerie)",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 3
+        },
+        {
+          "identifiers": [
+            "season1-lucha-underground",
+            "season2-lucha-underground",
+            "lucha-underground-season-3-again",
+            "season4-lucha-underground",
+            "2016-01-02-pwg-lemmy",
+            "briscoe-brothers-in-pwg-highspots-tv",
+            "pwg-threemendous-vi-26-09-21",
+            "pwg.-nineteen.-7.3.2022-720p",
+            "pwg-aswe-13-night-2-walter-vs-jonah-rock-vs-keith-lee",
+            "pwg-the-young-bucks-five-stars-part-1",
+            "eleven_202603",
+            "ovwtelevisionepisode1058"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 12
         }
       ],
       "timeBlocks": [
@@ -3268,7 +3345,7 @@
             "sat"
           ],
           "start": "19:00",
-          "end": "24:00",
+          "end": "21:30",
           "sources": [
             1,
             4,
@@ -3277,6 +3354,19 @@
             9,
             10,
             11
+          ]
+        },
+        {
+          "label": "Indie Showcase",
+          "days": [
+            "sat"
+          ],
+          "start": "21:30",
+          "end": "24:00",
+          "sources": [
+            12,
+            16,
+            17
           ]
         }
       ]
