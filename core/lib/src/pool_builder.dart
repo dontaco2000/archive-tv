@@ -108,7 +108,7 @@ Future<List<Entry>> _collect(
   void Function(int, int)? onProgress,
   Map<String, ItemMeta?> metas,
 ) async {
-  final seenItems = <String>{};
+  final sourceOf = <String, Source>{}; // item -> the first source that found it
   final hitsToFetch = <String>[];
 
   for (final source in channel.sources) {
@@ -122,7 +122,9 @@ Future<List<Entry>> _collect(
     }
     for (final hit in hits) {
       if (config.excludeIdentifiers.contains(hit.identifier)) continue;
-      if (seenItems.add(hit.identifier)) hitsToFetch.add(hit.identifier);
+      if (sourceOf.containsKey(hit.identifier)) continue;
+      sourceOf[hit.identifier] = source;
+      hitsToFetch.add(hit.identifier);
     }
   }
 
@@ -141,5 +143,33 @@ Future<List<Entry>> _collect(
     }
     onProgress?.call(++done, hitsToFetch.length);
   });
-  return byId.values.toList()..sort((a, b) => a.id.compareTo(b.id));
+  final all = byId.values.toList()..sort((a, b) => a.id.compareTo(b.id));
+  return capPerSource(all, (e) => sourceOf[e.itemId]);
+}
+
+/// Applies each source's [Source.maxEntries]: takes its entries round-robin over its items (one per item per
+/// round, in id order) until the cap, so a source's small items all stay and a huge pack only fills the rest.
+/// Order of [pool] is kept.
+List<Entry> capPerSource(List<Entry> pool, Source? Function(Entry) sourceOf) {
+  final bySource = <Source, Map<String, List<Entry>>>{};
+  for (final e in pool) {
+    final s = sourceOf(e);
+    if (s?.maxEntries != null) ((bySource[s!] ??= {})[e.itemId] ??= []).add(e);
+  }
+  final drop = <Entry>{};
+  bySource.forEach((s, byItem) {
+    final queues = [for (final l in byItem.values) l.iterator];
+    final keep = <Entry>{};
+    while (keep.length < s.maxEntries! && queues.isNotEmpty) {
+      queues.removeWhere((q) {
+        if (keep.length >= s.maxEntries! || !q.moveNext()) return true;
+        keep.add(q.current);
+        return false;
+      });
+    }
+    for (final l in byItem.values) {
+      drop.addAll(l.where((e) => !keep.contains(e)));
+    }
+  });
+  return drop.isEmpty ? pool : [for (final e in pool) if (!drop.contains(e)) e];
 }

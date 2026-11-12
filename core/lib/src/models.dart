@@ -25,6 +25,10 @@ class Source {
   final int? minDownloads;
   final bool ignoreYear;
 
+  /// At most this many entries (episodes/files) from this source, spread evenly over its items, so one huge
+  /// season pack or race archive can't swamp the channel. Null = no cap.
+  final int? maxEntries;
+
   /// Archive mediatype: `movies` (video) or `audio`.
   final String mediatype;
 
@@ -34,6 +38,7 @@ class Source {
     this.identifiers = const [],
     this.minDownloads,
     this.ignoreYear = false,
+    this.maxEntries,
     this.mediatype = 'movies',
   });
 }

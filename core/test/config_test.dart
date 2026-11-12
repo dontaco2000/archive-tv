@@ -53,6 +53,11 @@ void main() {
     expect([s.identifiers, s.mediatype, s.ignoreYear], [['jazz'], 'audio', true]);
   });
 
+  test('a source may cap its entries with maxEntries', () {
+    final c = parseChannelConfig('{"channels":[{"number":2,"name":"A","sources":[{"query":"x","maxEntries":250},{"query":"y"}]}]}');
+    expect(c.channel(2)!.sources.map((s) => s.maxEntries), [250, null]);
+  });
+
   test('applies defaults when optional settings are missing', () {
     final c = parseChannelConfig(
         '{"channels":[{"number":1,"name":"A","sources":[{"collection":"x"}]}]}');

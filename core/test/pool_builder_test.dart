@@ -218,4 +218,18 @@ void main() {
       expect((await buildPool(channel, config(), short)).map((e) => e.itemId), unorderedEquals(['new', 'silent']));
     });
   });
+
+  test('maxEntries caps a source round-robin over its items; other sources untouched', () async {
+    Entry e(String item, int i) => Entry(id: '$item/$i', itemId: item, file: '$i', title: '$i', durationSeconds: 60, url: 'u');
+    const capped = Source(query: 'a', maxEntries: 4);
+    const free = Source(query: 'b');
+    final pool = [for (var i = 0; i < 6; i++) e('big', i), e('small', 0), e('small', 1), for (var i = 0; i < 3; i++) e('other', i)];
+    final out = capPerSource(pool, (x) => x.itemId == 'other' ? free : capped);
+    expect(out.where((x) => x.itemId != 'other').map((x) => x.id), ['big/0', 'big/1', 'small/0', 'small/1']);
+    expect(out.where((x) => x.itemId == 'other'), hasLength(3));
+
+    final api = FakeApi({'x': (1990, 30), 'y': (1990, 30)});
+    final ch = Channel(number: 9, name: 'Cap', sources: const [Source(query: 'q', maxEntries: 1)]);
+    expect(await buildPool(ch, config(), api), hasLength(1));
+  });
 }
