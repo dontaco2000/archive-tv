@@ -17,6 +17,7 @@ import 'player/player_controller.dart';
 import 'remote/remote_server.dart';
 import 'settings/crash_log.dart';
 import 'settings/rotating_log.dart';
+import 'settings/settings_file.dart';
 import 'settings/settings_store.dart';
 import 'settings/window_prefs.dart';
 import 'ui/tv_screen.dart';
@@ -84,6 +85,16 @@ Future<void> _main(List<String> args) async {
 
   final store = SettingsStore(File(p.join(dataDir.path, 'settings.json')));
   final settings = store.load();
+  // archive_tv_settings.txt: easy settings + the one-shot parental reset; the save writes it back (reset=false, defaults on first run).
+  store
+    ..textFile = await settingsFileFor(dataDir, external: Platform.isAndroid && arg('data-dir') == null)
+    ..log = log;
+  applySettingsFile(store.textFile!, settings, log);
+  try {
+    store.save(settings);
+  } on Object catch (e) {
+    log('settings save failed: $e');
+  }
   WindowPrefs? windowPrefs;
   if (desktop) {
     await windowManager.waitUntilReadyToShow(
@@ -146,7 +157,7 @@ Future<void> _main(List<String> args) async {
         home: ErrorScreen(message: 'Cannot read channels.json\n\n${e is ConfigException ? e.message : e}\n\n${configFile.path}')));
     return;
   }
-  final tv = PlayerController(engine, log: log);
+  final tv = PlayerController(engine, log: log)..isLocked = ((c) => settings.parental.isLocked(c.number));
   tv.setVolume(settings.muted ? 0 : settings.volume);
   unawaited(tv.setLeveling(settings.volumeLeveling));
   tv.captionsOn = settings.captionsOn;
@@ -189,7 +200,7 @@ Future<void> _main(List<String> args) async {
   final startAt = int.tryParse(arg('channel') ?? '') ?? settings.lastChannel;
   final last = startAt == null ? null : engine.config.channel(startAt);
   // A 1 GB Android TV stick can't start on the weather page while pools build: start on the first channel instead.
-  if (last != null && !(Platform.isAndroid && last.type == 'weatherstar' && arg('channel') == null)) {
+  if (last != null && !tv.isLocked(last) && !(Platform.isAndroid && last.type == 'weatherstar' && arg('channel') == null)) {
     await engine.ensurePool(last);
     if (isTunable(last)) unawaited(tv.tune(last));
   }
@@ -201,7 +212,8 @@ Future<void> _main(List<String> args) async {
   for (final c in [...saved, ...engine.channels.where((c) => !saved.contains(c))]) {
     await engine.ensurePool(c);
     engine.planWeek(c, DateTime.now());
-    if (tv.channel == null && engine.tunable.isNotEmpty) unawaited(tv.tune(engine.tunable.first));
+    final open = engine.tunable.where((c) => !tv.isLocked(c)).firstOrNull; // never start on a locked channel
+    if (tv.channel == null && open != null) unawaited(tv.tune(open));
   }
   final first = engine.tunable;
 

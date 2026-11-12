@@ -66,6 +66,8 @@ class RemoteServer {
 
   /// A checked POST /api/setting: captionsOn (bool), captionSize (int 1-7), leveling, weatherMode, picture.
   void Function(String name, Object value) setting = (_, _) {};
+  /// POST /api/parental {pin}: answers the TV's parental PIN prompt (state "pinPrompt").
+  void Function(String pin) parentalPin = (_) {};
   Future<List<int>?> Function(int number) logo = (_) async => null;
 
   RemoteServer(this.settings, {void Function(String)? log}) : log = log ?? ((_) {}) {
@@ -249,6 +251,10 @@ class RemoteServer {
         final n = j['number'];
         if (n is! int) return _err(400, 'number');
         channel(n);
+      case '/api/parental':
+        final pin = j['pin'];
+        if (pin is! String || !RegExp(r'^\d{4}$').hasMatch(pin)) return _err(400, 'pin');
+        parentalPin(pin); // never logged
       case '/api/power':
         log('remote: power');
         power();

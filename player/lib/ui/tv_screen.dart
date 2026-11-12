@@ -13,11 +13,14 @@ import '../engine/tv_engine.dart';
 import '../guide/guide_model.dart';
 import '../input/actions.dart';
 import '../input/gamepad.dart';
+import '../parental/parental_flow.dart';
+import '../parental/parental_ui.dart';
 import '../player/captions.dart';
 import '../player/picture.dart';
 import '../player/player_controller.dart';
 import '../remote/remote_server.dart';
 import '../settings/crash_log.dart';
+import '../settings/settings_file.dart';
 import '../settings/settings_store.dart';
 import '../settings/window_prefs.dart';
 import '../weather/weather.dart';
@@ -30,7 +33,7 @@ import 'arcade_entry.dart';
 import 'on_demand_overlay.dart';
 import 'weather_web.dart';
 
-enum TvMode { watch, guide, menu, onDemand, location, about, credits }
+enum TvMode { watch, guide, menu, onDemand, location, about, credits, parental }
 
 /// The whole TV: a 4:3 frame holding the video, STAND BY card, info banner and number entry.
 class TvScreen extends StatefulWidget {
@@ -82,6 +85,7 @@ class _TvScreenState extends State<TvScreen> {
     // (e.g. the music's first frame) looks like a channel change and drops the loaded WeatherStar page.
     _shown = tv.channel;
     tv.addListener(_changed);
+    tv.onLocked = _askUnlock;
     tv.engine.poolsChanged.addListener(_poolsChanged);
     if (!settings.noticeAccepted) mode = TvMode.about; // one-time content notice
     widget.remote
@@ -89,6 +93,7 @@ class _TvScreenState extends State<TvScreen> {
       ..volume = _setVolume
       ..channel = _remoteTune
       ..setting = _remoteSetting
+      ..parentalPin = ((pin) => _pin?.onPin(pin))
       ..logo = _logoBytes;
     final r = widget.remote;
     if (r != null) {
@@ -126,7 +131,28 @@ class _TvScreenState extends State<TvScreen> {
       'audioDelay': tv.itemId == null ? 0 : settings.audioDelays[tv.itemId] ?? 0,
       'remoteLan': settings.remoteLan,
       'sleep': sleepMinutesLeft(_sleepAt, DateTime.now()),
+      'pinPrompt': _pin == null ? null : {'id': _pin!.id, 'title': _pin!.title, 'hint': _pin!.hint},
     };
+  }
+
+  // ---- Parental controls (parental/): the PIN prompt goes over everything; the remote page answers it too.
+  PinRequest? _pin;
+  late final ParentalFlow _parental = ParentalFlow(settings.parental, save: _settingsChanged, flash: _flash, ask: _ask, log: tv.log)
+    ..afterLockOn = _leaveLocked;
+
+  void _ask(PinRequest? r) {
+    if (!mounted) return;
+    setState(() => _pin = r);
+    if (r == null && mode == TvMode.watch) _focus.requestFocus();
+  }
+
+  /// Tuning a locked channel (PlayerController.onLocked): the PIN turns the lock OFF, then it tunes.
+  void _askUnlock(Channel c) => _parental.unlockFor('${c.number} ${c.name.toUpperCase()}', () => unawaited(tv.tune(c)));
+
+  /// The lock just went ON: leave the channel on screen if it is a locked one.
+  void _leaveLocked() {
+    final c = tv.channel;
+    if (c != null && tv.isLocked(c)) _flip(1);
   }
 
   void _setVolume(int level) {
@@ -385,7 +411,7 @@ class _TvScreenState extends State<TvScreen> {
   /// Flips to the next/previous tunable channel (wrapping), favorites only when that is on.
   void _flip(int step) {
     final next = flipTarget(
-      tv.engine.tunable,
+      settings.parental.openChannels(tv.engine.tunable), // locked channels are skipped
       tv.channel?.number,
       step,
       favorites: settings.favorites,
@@ -527,6 +553,7 @@ class _TvScreenState extends State<TvScreen> {
       now: now,
       tunableNumbers: {for (final c in engine.tunable) c.number},
       buildingNumbers: {for (final c in engine.channels) if (engine.statusOf(c) == PoolStatus.building) c.number},
+      lockedNumbers: {for (final c in engine.channels) if (tv.isLocked(c)) c.number},
       horizon: now.add(Duration(hours: hours)),
     );
     final i = engine.channels.indexWhere((c) => c.number == tv.channel?.number);
@@ -690,7 +717,9 @@ class _TvScreenState extends State<TvScreen> {
   /// The Android remote's Back key (a route pop, never a key event): closes the guide or menu,
   /// otherwise leaves the app.
   void _systemBack() {
-    if (_sleepCard != null) {
+    if (_pin != null) {
+      _ask(null);
+    } else if (_sleepCard != null) {
       _stayAwake();
     } else if (mode == TvMode.guide) {
       _closeGuide();
@@ -852,6 +881,13 @@ class _TvScreenState extends State<TvScreen> {
                                 onSleep: _cycleSleep,
                                 sleepStep: _sleepStep,
                                 sleepLeft: sleepMinutesLeft(_sleepAt, DateTime.now()),
+                                onParental: () => _openOverlay(TvMode.parental),
+                                onOpenSettingsFile: !Platform.isWindows || widget.store.textFile == null
+                                    ? null
+                                    : () {
+                                        _closeMenu();
+                                        unawaited(openSettingsFile(widget.store.textFile!, settings, tv.log));
+                                      },
                                 remoteLanInfo: widget.remote == null || !settings.remoteLan
                                     ? null
                                     : 'Phone: ${widget.remote!.lanUrl ?? 'finding address...'}  PIN ${settings.remotePin ?? '-'}',
@@ -859,7 +895,7 @@ class _TvScreenState extends State<TvScreen> {
                             if (mode == TvMode.onDemand)
                               OnDemandOverlay(
                                 channels: [
-                                  for (final c in tv.engine.tunable)
+                                  for (final c in settings.parental.openChannels(tv.engine.tunable)) // locked channels' items hidden
                                     if (c.type == 'archive') c,
                                 ],
                                 poolOf: tv.engine.poolOf,
@@ -883,6 +919,15 @@ class _TvScreenState extends State<TvScreen> {
                                 onCredits: () => _openOverlay(TvMode.credits),
                               ),
                             if (mode == TvMode.credits) CreditsOverlay(onClose: _closeMenu, log: tv.log),
+                            if (mode == TvMode.parental)
+                              ParentalOverlay(
+                                parental: settings.parental,
+                                channels: tv.engine.channels,
+                                flow: _parental,
+                                active: _pin == null,
+                                onChanged: _settingsChanged,
+                                onClose: _closeMenu,
+                              ),
                             if (tv.onDemand != null && !tv.standBy && _next == null)
                               Positioned(
                                 top: 16,
@@ -903,6 +948,7 @@ class _TvScreenState extends State<TvScreen> {
                               ),
                             if (_next != null) NextCard(entry: _next!, secondsLeft: _nextLeft),
                             if (_sleepCard != null) SleepCard(secondsLeft: _sleepCard!),
+                            if (_pin != null) PinPrompt(key: ValueKey(_pin!.id), request: _pin!, onCancel: () => _ask(null)),
                             if (_flashText != null)
                               Positioned(
                                 top: 24,

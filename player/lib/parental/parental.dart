@@ -32,6 +32,9 @@ class Parental {
   /// Channel [number] needs the PIN right now.
   bool isLocked(int number) => hasPin && lockOn && locked.contains(number);
 
+  /// [channels] without the locked ones: Channel Up/Down and On Demand only see these.
+  List<Channel> openChannels(Iterable<Channel> channels) => [for (final c in channels) if (!isLocked(c.number)) c];
+
   static bool validPin(String pin) => RegExp(r'^\d{4}$').hasMatch(pin);
 
   static String hashPin(String pin, String salt) {

@@ -177,10 +177,11 @@ const remotePage = r'''<!DOCTYPE html>
 </div>
 
 <div id="pin"><div>
-  <div style="font-weight:700;letter-spacing:2px">ENTER PIN</div>
-  <div class="hint">Shown in Archive TV: Menu &gt; Remote on Wi-Fi</div>
-  <input id="pinIn" inputmode="numeric" maxlength="4" autocomplete="off">
+  <div id="pinTitle" style="font-weight:700;letter-spacing:2px">ENTER PIN</div>
+  <div class="hint" id="pinHint">Shown in Archive TV: Menu &gt; Remote on Wi-Fi</div>
+  <input id="pinIn" type="password" inputmode="numeric" maxlength="4" autocomplete="off">
   <button id="pinGo" style="width:100%">CONNECT</button>
+  <button id="pinNo" style="width:100%;margin-top:5px;display:none">CANCEL</button>
 </div></div>
 
 <script>
@@ -198,9 +199,26 @@ const remotePage = r'''<!DOCTYPE html>
     return r.json();
   }
 
-  function showPin() { $('pin').style.display = 'flex'; $('pinIn').focus(); }
-  $('pinGo').onclick = () => { pin = $('pinIn').value.trim(); localStorage.setItem('atvPin', pin); $('pin').style.display = 'none'; poll(); };
-  $('pinIn').onkeydown = e => { if (e.key === 'Enter') $('pinGo').click(); e.stopPropagation(); };
+  // The same dialog asks for the remote's Wi-Fi PIN ('remote') or answers the TV's parental PIN prompt ('tv').
+  let pinMode = 'remote', tvPromptId = null;
+  function showPin(mode, p) {
+    pinMode = mode || 'remote';
+    const tv = pinMode === 'tv';
+    $('pinTitle').textContent = tv ? p.title.toUpperCase() : 'ENTER PIN';
+    $('pinHint').textContent = tv ? (p.hint || 'Parental controls PIN') : 'Shown in Archive TV: Menu > Remote on Wi-Fi';
+    $('pinGo').textContent = tv ? 'OK' : 'CONNECT';
+    $('pinNo').style.display = tv ? 'block' : 'none';
+    $('pinIn').value = '';
+    $('pin').style.display = 'flex'; $('pinIn').focus();
+  }
+  const hidePin = () => $('pin').style.display = 'none';
+  $('pinGo').onclick = () => {
+    const v = $('pinIn').value.trim(); hidePin();
+    if (pinMode === 'tv') { send('/api/parental', { pin: v }); return; }
+    pin = v; localStorage.setItem('atvPin', pin); poll();
+  };
+  $('pinNo').onclick = () => { hidePin(); press('back'); };
+  $('pinIn').onkeydown = e => { if (e.key === 'Enter') $('pinGo').click(); if (e.key === 'Escape' && pinMode === 'tv') $('pinNo').click(); e.stopPropagation(); };
 
   // The number pad opens over the remote; it builds the number here and tunes it on GO.
   const closeAll = () => document.querySelectorAll('.panel.open').forEach(p => p.classList.remove('open'));
@@ -255,6 +273,11 @@ const remotePage = r'''<!DOCTYPE html>
 
   function render(s) {
     st = s;
+    // Parental PIN prompt on the TV (a locked channel, or a lock setting): ask here too.
+    const pp = s.pinPrompt;
+    if (pp && pp.id !== tvPromptId) { tvPromptId = pp.id; showPin('tv', pp); }
+    if (!pp && pinMode === 'tv' && $('pin').style.display === 'flex') hidePin();
+    if (!pp) tvPromptId = null;
     renderSettings(s);
     const c = s.channel;
     $('ch').textContent = c ? (c.number + ' ' + c.name.toUpperCase()) : 'NO CHANNEL';

@@ -131,3 +131,13 @@ void writeSettingsFile(File f, Settings s, void Function(String) log) {
     log('$settingsFileName could not be written: $e');
   }
 }
+
+/// Menu "Open settings file" (Windows): the file in Notepad, created first if missing.
+Future<void> openSettingsFile(File f, Settings s, void Function(String) log) async {
+  if (!f.existsSync()) writeSettingsFile(f, s, log);
+  try {
+    await Process.start('notepad.exe', [f.path]);
+  } on Object catch (e) {
+    log('open ${f.path} failed: $e');
+  }
+}

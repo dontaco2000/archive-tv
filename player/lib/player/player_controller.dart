@@ -33,6 +33,10 @@ class PlayerController extends ChangeNotifier {
   Entry? _captioned; // the file [captionState] belongs to
   bool _forceForeign = false;
 
+  /// Parental controls (parental/parental.dart): [tune] calls [onLocked] (the PIN prompt) instead of tuning a locked channel.
+  bool Function(Channel) isLocked = (_) => false;
+  void Function(Channel) onLocked = (_) {};
+
   Channel? channel;
   Airing? airing;
   bool standBy = true;
@@ -125,6 +129,8 @@ class PlayerController extends ChangeNotifier {
 
   /// Joins [c] as it airs now. If the file can't be opened, moves on to the next slot.
   Future<void> tune(Channel c, {int attempt = 0}) async {
+    // Parental controls: a locked channel asks for the PIN instead (re-tunes of the channel on screen pass).
+    if (c.number != channel?.number && isLocked(c)) return onLocked(c);
     final gen = ++_generation;
     _slotTimer?.cancel();
     _retryTimer?.cancel();

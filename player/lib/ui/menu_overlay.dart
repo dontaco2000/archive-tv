@@ -12,7 +12,7 @@ const _panel = Color(0xE6101A5C); // same dark translucent blue as the guide
 const _yellow = Color(0xFFFFEB3B);
 const _cellBg = Color(0xFF1E2C8A);
 
-enum _Item { onDemand, favorite, favoritesOnly, volume, mute, leveling, captions, captionSize, picture, startFullscreen, cornerBug, block, wrongChannel, sleep, refresh, weatherMode, weatherLocation, openRemote, remoteLan, remoteInfo, lastError, openLog, credits, about, close }
+enum _Item { onDemand, favorite, favoritesOnly, volume, mute, leveling, captions, captionSize, picture, startFullscreen, cornerBug, block, wrongChannel, sleep, refresh, weatherMode, weatherLocation, openRemote, remoteLan, remoteInfo, parental, lastError, openLog, openSettings, credits, about, close }
 
 /// "Last error: none", or its first line (the menu clips it); Enter copies the whole text.
 String lastErrorLabel(String? e) {
@@ -64,7 +64,15 @@ class MenuOverlay extends StatefulWidget {
   final int sleepStep;
   final int? sleepLeft;
 
+  /// Opens Parental controls (null hides the item).
+  final VoidCallback? onParental;
+
+  /// Windows only: opens archive_tv_settings.txt in Notepad (null hides the item).
+  final VoidCallback? onOpenSettingsFile;
+
   const MenuOverlay({
+    this.onParental,
+    this.onOpenSettingsFile,
     super.key,
     required this.settings,
     required this.current,
@@ -104,7 +112,9 @@ class _MenuOverlayState extends State<MenuOverlay> {
               !(widget.remoteLanInfo == null && i == _Item.remoteInfo) &&
               !(widget.onOpenLogFolder == null && i == _Item.openLog) &&
               !(widget.onWrongChannel == null && i == _Item.wrongChannel) &&
-              !(widget.onSleep == null && i == _Item.sleep))
+              !(widget.onSleep == null && i == _Item.sleep) &&
+              !(widget.onParental == null && i == _Item.parental) &&
+              !(widget.onOpenSettingsFile == null && i == _Item.openSettings))
             i,
       ];
   Settings get s => widget.settings;
@@ -176,6 +186,10 @@ class _MenuOverlayState extends State<MenuOverlay> {
         if (dir == 0) widget.onCredits?.call();
       case _Item.openLog:
         if (dir == 0) widget.onOpenLogFolder?.call();
+      case _Item.parental:
+        if (dir == 0) widget.onParental?.call();
+      case _Item.openSettings:
+        if (dir == 0) widget.onOpenSettingsFile?.call();
       case _Item.lastError:
         if (dir == 0) widget.onCopyLastError?.call();
       case _Item.captions:
@@ -225,6 +239,8 @@ class _MenuOverlayState extends State<MenuOverlay> {
       _Item.about => 'About',
       _Item.credits => 'Credits',
       _Item.openLog => 'Open log folder',
+      _Item.parental => 'Parental controls: ${!s.parental.hasPin ? 'OFF' : s.parental.lockOn ? 'LOCK ON' : 'LOCK OFF'}',
+      _Item.openSettings => 'Open settings file',
       _Item.lastError => lastErrorLabel(widget.lastError),
       _Item.captions => 'Captions: ${_onOff(s.captionsOn)}',
       _Item.captionSize => 'Caption size ${'#' * s.captionSize}${'.' * (7 - s.captionSize)} ${s.captionSize}',

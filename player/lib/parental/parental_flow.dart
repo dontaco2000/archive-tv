@@ -20,6 +20,9 @@ class ParentalFlow {
   final void Function(String) log;
   final DateTime Function() now;
 
+  /// Runs after the lock is turned ON (the TV leaves a channel that just became locked).
+  void Function() afterLockOn = () {};
+
   ParentalFlow(this.p, {required this.save, required this.flash, required this.ask, void Function(String)? log, DateTime Function()? now})
       : log = log ?? ((_) {}),
         now = now ?? DateTime.now;
@@ -70,6 +73,7 @@ class ParentalFlow {
     save();
     log('parental: lock ${on ? 'ON' : 'OFF'}');
     flash(on ? 'Parental lock ON' : 'Parental lock OFF');
+    if (on) afterLockOn();
   }
 
   /// New PIN twice. [title] says why (set or change).

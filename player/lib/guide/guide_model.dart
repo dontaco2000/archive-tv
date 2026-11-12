@@ -3,6 +3,9 @@ import 'package:archive_tv_core/archive_tv_core.dart';
 /// Guide cell for a channel whose pool is still building.
 const buildingLabel = 'BUILDING...';
 
+/// Guide cell for a parental-locked channel.
+const lockedLabel = 'LOCKED';
+
 /// The guide's detail line for a selected building channel.
 const buildingDetail = 'Building... please choose another channel for now';
 
@@ -40,6 +43,9 @@ class GuideModel {
   /// Non-tunable channels whose pool is still building (shown as [buildingLabel], not OFF AIR).
   final Set<int> buildingNumbers;
 
+  /// Parental-locked channels: one "LOCKED" cell, programme titles hidden.
+  final Set<int> lockedNumbers;
+
   /// Nothing can be selected at or after this; [slotsFor] should not reach past it either.
   final DateTime horizon;
   final Duration visible = step * columnCount;
@@ -56,8 +62,10 @@ class GuideModel {
     required this.now,
     required this.tunableNumbers,
     Set<int>? buildingNumbers,
+    Set<int>? lockedNumbers,
     DateTime? horizon,
   })  : buildingNumbers = buildingNumbers ?? {},
+        lockedNumbers = lockedNumbers ?? {},
         horizon = horizon ?? now.add(const Duration(hours: 12)) {
     windowStart = floor(now);
     selectedTime = now;
@@ -74,7 +82,7 @@ class GuideModel {
 
   /// The row's guide blocks (see `guideBlocks`): short items, same-show runs and short-content
   /// channels are grouped for display; tuning still plays the real schedule.
-  List<Slot> _slotsOf(Channel c) => _slots[c.number] ??= guideBlocks(slotsFor(c), shortContent: c.shortContent, labelOf: (e) => blockLabelOf(c, e), themeOf: (s) => themeLabelOf(c, s));
+  List<Slot> _slotsOf(Channel c) => lockedNumbers.contains(c.number) ? const [] : _slots[c.number] ??= guideBlocks(slotsFor(c), shortContent: c.shortContent, labelOf: (e) => blockLabelOf(c, e), themeOf: (s) => themeLabelOf(c, s));
 
   Slot? get selectedSlot => _tunable(selectedChannel) ? slotAt(_slotsOf(selectedChannel), selectedTime) : null;
 
@@ -120,6 +128,7 @@ class GuideModel {
   }
 
   GuideRow _row(Channel c) {
+    if (lockedNumbers.contains(c.number)) return GuideRow(c, true, [GuideCell(null, lockedLabel, 0, 1)]);
     if (c.type == 'weatherstar') return GuideRow(c, true, [GuideCell(null, 'WeatherStar: Local Forecast', 0, 1)]);
     if (!_tunable(c)) {
       final label = buildingNumbers.contains(c.number) ? buildingLabel : (c.type == 'archive' ? 'OFF AIR' : 'NOT AVAILABLE');
