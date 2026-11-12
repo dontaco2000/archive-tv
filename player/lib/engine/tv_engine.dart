@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:archive_tv_core/archive_tv_core.dart';
@@ -39,6 +40,12 @@ class TvEngine {
   /// and On Demand for good; saved as nosubs.json.
   final Blocklist noSubs;
 
+  /// Items the viewer marked "wrong channel" (key X / menu), kept off that channel only; wrong_items.json.
+  final ChannelBlocklist wrong;
+
+  /// Audit trail of "wrong channel" presses, one JSON object per line (wrong_channel.jsonl).
+  final File wrongLog;
+
   /// Probes upcoming files after each fresh pool build; null turns probing off (tests).
   final http.Client? probeClient;
   final void Function(String) log;
@@ -48,8 +55,8 @@ class TvEngine {
 
   final Map<int, List<Entry>> _pool = {};
 
-  TvEngine._(this.config, this.api, this.pools, this.snapshots, this.blocklist, this.slow, this.noSubs, this.probeClient,
-      this.log, this.buildConcurrency);
+  TvEngine._(this.config, this.api, this.pools, this.snapshots, this.blocklist, this.slow, this.noSubs, this.wrong, this.wrongLog,
+      this.probeClient, this.log, this.buildConcurrency);
 
   /// [configText] is the contents of channels.json; [dataDir] holds pools, snapshots, blocklist.
   factory TvEngine.open({
@@ -68,6 +75,8 @@ class TvEngine {
       Blocklist.load(dataDir),
       Blocklist.load(dataDir, name: 'slow.json'),
       Blocklist.load(dataDir, name: 'nosubs.json'),
+      ChannelBlocklist.load(dataDir),
+      File(p.join(dataDir.path, 'wrong_channel.jsonl')),
       probeClient,
       log ?? (_) {},
       buildConcurrency,
@@ -126,7 +135,7 @@ class TvEngine {
     final load = usable && maxAge > Duration.zero; // zero = forced rebuild (daily refresh of a stale pool, Refresh)
     await _ensureSerials(channel, rebuild: !load);
     if (load) {
-      _pool[channel.number] = blocklist.apply(saved);
+      _pool[channel.number] = _blocked(channel).apply(saved);
       return;
     }
     try {
@@ -135,16 +144,16 @@ class TvEngine {
         // buildPool logs failed searches and returns what it has; an empty result means
         // the refresh failed. Never save it; keep the pool we already had, if any.
         log('${channel.name}: build found nothing${saved != null ? ', keeping the saved pool' : ''}');
-        if (saved != null) _pool[channel.number] = blocklist.apply(saved);
+        if (saved != null) _pool[channel.number] = _blocked(channel).apply(saved);
         return;
       }
       pools.save(channel.number, built);
-      _pool[channel.number] = blocklist.apply(built); // the old pool served until this line
+      _pool[channel.number] = _blocked(channel).apply(built); // the old pool served until this line
       if (raw != null) snapshots.dropAfter(channel.number, DateTime.now()); // later days from the new pool
       _queueProbe(channel);
     } on Object catch (e) {
       log('pool build failed for ${channel.name}: $e'); // fall back to a stale pool if there is one
-      if (saved != null) _pool[channel.number] = blocklist.apply(saved);
+      if (saved != null) _pool[channel.number] = _blocked(channel).apply(saved);
     }
   }
 
@@ -190,6 +199,35 @@ class TvEngine {
             ...rareBlocks(c, _pool[c.number] ?? const [], d),
           ];
 
+  /// The viewer's blocks plus the channel's wrong-channel items.
+  Blocklist _blocked(Channel c) => blocklist.union(wrong.forChannel(c.number));
+
+  /// "Wrong channel for this program": logs [e] to [wrongLog] and keeps its item off [c] for good
+  /// (other channels still air it). The next [airing]/[guideFor] re-lays the day without it.
+  void markWrongChannel(Channel c, Entry e, {DateTime? now}) {
+    final record = {
+      'time': (now ?? DateTime.now()).toIso8601String(),
+      'channel': c.number,
+      'channelName': c.name,
+      'itemId': e.itemId,
+      'entryId': e.id,
+      'title': e.title,
+    };
+    for (final save in [
+      () => wrongLog.writeAsStringSync('${jsonEncode(record)}\n', mode: FileMode.append, flush: true),
+      () => wrong.add(c.number, e.itemId), // blocked in memory even if the save fails
+    ]) {
+      try {
+        save();
+      } on Object catch (x) {
+        log('wrong-channel save failed: $x');
+      }
+    }
+    final pool = _pool[c.number];
+    if (pool != null) _pool[c.number] = wrong.forChannel(c.number).apply(pool);
+    log('${c.name}: ${e.itemId} marked wrong channel');
+  }
+
   final Blocklist _skipped = Blocklist.session(); // items that failed to play this run
 
   /// Drops [entryId] from [channel]'s schedule for this session (nothing saved);
@@ -211,7 +249,7 @@ class TvEngine {
     final rare = {for (final e in _pool[c.number] ?? const <Entry>[]) if (isRare(c, e)) e.id};
     final fits = poolFilter(c, config); // a day saved under an older config may hold now-excluded items
     return snapshots.day(c.number, day, _shufflePool(c),
-        blocklist: blocklist.union(_skipped).union(slow).union(noSubs),
+        blocklist: _blocked(c).union(_skipped).union(slow).union(noSubs),
         serials: _blocksFor(c),
         inShuffle: (e) => fits(e) && !rare.contains(e.id));
   }

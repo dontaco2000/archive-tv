@@ -194,6 +194,29 @@ void main() {
     expect(TvEngine.open(configText: configText, dataDir: dir, api: api).blocklist.ids, isEmpty);
   });
 
+  test('markWrongChannel: logged, gone from that channel now and after a restart, other channels keep it', () async {
+    final four = FakeApi({'a': 60, 'b': 45, 'c': 90, 'd': 60});
+    final e = TvEngine.open(configText: configText, dataDir: dir, api: four);
+    final bytes = e.channels[0], thin = e.channels[1];
+    await e.ensurePool(bytes);
+    await e.ensurePool(thin);
+    final now = DateTime(2026, 11, 11, 15, 20, 5);
+    final victim = e.airing(bytes, now)!.slot.entry;
+    e.markWrongChannel(bytes, victim, now: now);
+    expect(e.airing(bytes, now)!.slot.entry.itemId, isNot(victim.itemId));
+    expect(e.guideFor(bytes, now, hours: 24).any((s) => s.entry.itemId == victim.itemId), isFalse);
+    expect(e.poolOf(bytes).any((x) => x.itemId == victim.itemId), isFalse);
+    expect(e.poolOf(thin).any((x) => x.itemId == victim.itemId), isTrue); // only that channel
+    final line = File('${dir.path}/wrong_channel.jsonl').readAsLinesSync().single;
+    expect(line, contains('"channel":2'));
+    expect(line, contains('"itemId":"${victim.itemId}"'));
+
+    final again = TvEngine.open(configText: configText, dataDir: dir, api: four); // restart: saved pool + saved list
+    await again.ensurePool(bytes);
+    expect(again.poolOf(bytes).any((x) => x.itemId == victim.itemId), isFalse);
+    expect(again.statusOf(bytes), PoolStatus.ready);
+  });
+
   test('probeUpcoming keeps slow-start files out of the schedule and remembers them', () async {
     final bytes = engine.channels.first;
     await engine.ensurePool(bytes);

@@ -92,6 +92,24 @@ void main() {
     expect(dir.listSync(), hasLength(1)); // only blocked.json
   });
 
+  test('wrong-channel list blocks per channel, persists, and a bad file reads as empty', () {
+    final dir = Directory.systemTemp.createTempSync('wrong');
+    addTearDown(() => dir.deleteSync(recursive: true));
+    final wrong = ChannelBlocklist.load(dir)..add(5, 'c')..add(5, 'a')..add(7, 'b');
+    expect(wrong.forChannel(5).apply(pool).map((e) => e.itemId), ['b', 'd']);
+    expect(wrong.forChannel(7).apply(pool).map((e) => e.itemId), ['a', 'c', 'd']);
+    expect(wrong.forChannel(9).apply(pool), hasLength(4)); // other channels untouched
+    expect(ChannelBlocklist.load(dir).ids, {5: {'a', 'c'}, 7: {'b'}}); // persisted
+    expect(jsonDecode(File('${dir.path}/wrong_items.json').readAsStringSync()), {'5': ['a', 'c'], '7': ['b']});
+
+    for (final bad in ['not json', '["a"]', '{"x": ["a"], "5": "a", "6": [1, "b"]}']) {
+      File('${dir.path}/wrong_items.json').writeAsStringSync(bad);
+      final w = ChannelBlocklist.load(dir);
+      expect(w.forChannel(5).apply(pool), hasLength(4), reason: bad);
+      expect(w.ids.keys, bad.startsWith('{') ? [6] : isEmpty, reason: bad); // only well-formed rows survive
+    }
+  });
+
   test('blocking an item removes it from a saved day and later slots still tile', () {
     final dir = Directory.systemTemp.createTempSync('snapblock');
     addTearDown(() => dir.deleteSync(recursive: true));

@@ -233,3 +233,32 @@ class Blocklist {
   List<Entry> apply(List<Entry> pool) =>
       [for (final e in pool) if (!ids.contains(e.id) && !ids.contains(e.itemId)) e];
 }
+
+/// Ids the viewer marked "wrong channel": kept off that one channel only. Saved as
+/// `{"<channel>": ["<item id>", ...]}`; a missing or malformed file reads as empty.
+class ChannelBlocklist {
+  final File _f;
+  final Map<int, Set<String>> ids;
+
+  ChannelBlocklist._(this._f, this.ids);
+
+  factory ChannelBlocklist.load(Directory dir, {String name = 'wrong_items.json'}) {
+    final f = _file(dir, name);
+    final ids = <int, Set<String>>{};
+    if (_readJson(f) case final Map m) {
+      for (final MapEntry(:key, :value) in m.entries) {
+        final n = int.tryParse('$key');
+        if (n != null && value is List) ids[n] = {...value.whereType<String>()};
+      }
+    }
+    return ChannelBlocklist._(f, ids);
+  }
+
+  void add(int channel, String id) {
+    (ids[channel] ??= {}).add(id);
+    _writeJson(_f, {for (final MapEntry(:key, :value) in ids.entries) '$key': value.toList()..sort()});
+  }
+
+  /// The ids blocked on [channel], as a read-only-by-convention [Blocklist] (never add to it).
+  Blocklist forChannel(int channel) => Blocklist._(null, ids[channel] ?? const {});
+}
