@@ -90,7 +90,10 @@ class ArchiveClient implements ArchiveApi {
       'output': 'json',
     });
     final body = await _get(uri);
-    final docs = ((jsonDecode(body) as Map)['response'] as Map)['docs'] as List;
+    // Archive sometimes answers 200 with an error body and no `response` (seen 2026-11-12): fail this source, not the pool.
+    final response = (jsonDecode(body) as Map)['response'];
+    if (response is! Map) throw ArchiveException('search returned no response: ${body.length > 200 ? body.substring(0, 200) : body}');
+    final docs = response['docs'] as List;
     return [
       for (final d in docs.cast<Map<String, dynamic>>())
         ItemSummary(

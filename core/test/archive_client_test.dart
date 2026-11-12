@@ -42,6 +42,11 @@ void main() {
     expect(items.first.downloads, 200366);
   });
 
+  test('search error body (200 without response, e.g. a malformed query) is an ArchiveException', () async {
+    final client = clientFor((req) async => http.Response('{"error":"a group is malformed"}', 200));
+    await expectLater(client.search('(x'), throwsA(isA<ArchiveException>()));
+  });
+
   test('metadata parses files with sizes and lengths', () async {
     final client = clientFor((req) async {
       expect(req.url.path, '/metadata/comdex_2');
