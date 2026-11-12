@@ -21,9 +21,11 @@ void main() {
         channels: const [a, b, c],
         now: now,
         tunableNumbers: {1, 2, 3},
+        horizon: now.add(const Duration(days: 2)),
         slotsFor: (ch) => [
           slot('${ch.name} Early', DateTime(2026, 11, 11, 10), 30),
           slot('${ch.name} Late', DateTime(2026, 11, 11, 10, 30), 600),
+          slot('Death Note S1E5', DateTime(2026, 11, 12, 9), 30),
         ],
       );
 
@@ -55,6 +57,11 @@ void main() {
       expect(find.text(n), findsWidgets);
     }
     expect(selectedTitle(t), 'Alpha Early');
+    // first page: three hours in 15-minute columns, 10:15 .. 1:00
+    for (final col in ['10:30', '11:45', '1:00']) {
+      expect(find.text(col), findsOneWidget);
+    }
+    expect(find.text('1:15'), findsNothing);
   });
 
   testWidgets('Down and Right move the highlight', (t) async {
@@ -66,6 +73,24 @@ void main() {
     await t.sendKeyEvent(LogicalKeyboardKey.arrowRight);
     await t.pump();
     expect(selectedTitle(t), 'Bravo Late');
+  });
+
+  testWidgets('Right walks to later programs (next day too), Left comes back', (t) async {
+    final r = await pump(t);
+    for (var i = 0; i < 3; i++) {
+      await t.sendKeyEvent(LogicalKeyboardKey.arrowRight);
+    }
+    await t.pump();
+    expect(selectedTitle(t), 'Death Note S1E5');
+    expect(find.text('Death Note S1E5  THU 9:00-9:30'), findsOneWidget); // header
+    expect(find.text(' CH THU '), findsOneWidget);
+    expect(find.text('9:15'), findsOneWidget); // 15-minute columns
+    await t.sendKeyEvent(LogicalKeyboardKey.arrowRight); // last program: stays
+    await t.sendKeyEvent(LogicalKeyboardKey.arrowLeft);
+    await t.pump();
+    expect(selectedTitle(t), 'Alpha Late');
+    await t.sendKeyEvent(LogicalKeyboardKey.enter);
+    expect(r.tuned, [a]); // OK still tunes the channel live
   });
 
   testWidgets('Enter tunes the selected channel, Esc closes', (t) async {

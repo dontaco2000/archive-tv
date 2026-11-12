@@ -20,15 +20,19 @@ class GuideRow {
 }
 
 /// Selection, window and rows of the TV guide. Pure logic, no widgets.
+/// The time grid is in 15-minute steps; Left/Right walk the selected row's programs.
 class GuideModel {
-  static const _half = Duration(minutes: 30);
-  static const _span = Duration(hours: 12);
+  static const step = Duration(minutes: 15);
+  static const columnCount = 12; // three hours on screen
 
   final List<Channel> channels;
   final List<Slot> Function(Channel) slotsFor;
   final DateTime now;
   final Set<int> tunableNumbers;
-  final Duration visible = const Duration(hours: 3);
+
+  /// Nothing can be selected at or after this; [slotsFor] should not reach past it either.
+  final DateTime horizon;
+  final Duration visible = step * columnCount;
 
   late DateTime windowStart;
   int selectedRow = 0;
@@ -41,14 +45,16 @@ class GuideModel {
     required this.slotsFor,
     required this.now,
     required this.tunableNumbers,
-  }) {
-    windowStart = _floor(now);
+    DateTime? horizon,
+  }) : horizon = horizon ?? now.add(const Duration(hours: 12)) {
+    windowStart = floor(now);
     selectedTime = now;
   }
 
-  static DateTime _floor(DateTime t) => DateTime(t.year, t.month, t.day, t.hour, t.minute < 30 ? 0 : 30);
+  /// [t] rounded down to the quarter hour.
+  static DateTime floor(DateTime t) => DateTime(t.year, t.month, t.day, t.hour, t.minute - t.minute % 15);
 
-  List<DateTime> get columns => [for (var i = 0; i < 6; i++) windowStart.add(_half * i)];
+  List<DateTime> get columns => [for (var i = 0; i < columnCount; i++) windowStart.add(step * i)];
 
   Channel get selectedChannel => channels[selectedRow];
 
@@ -58,21 +64,36 @@ class GuideModel {
 
   Slot? get selectedSlot => _tunable(selectedChannel) ? slotAt(_slotsOf(selectedChannel), selectedTime) : null;
 
+  /// Up/Down: the time cursor stays put, so the new row selects whatever airs then.
   void moveRow(int delta) => selectedRow = (selectedRow + delta).clamp(0, channels.length - 1);
 
+  /// Moves the time cursor by [delta] (clamped to now; ignored at the horizon).
   void moveTime(Duration delta) {
     final t = selectedTime.add(delta);
-    if (t.isBefore(now)) {
-      selectedTime = now;
-    } else if (t.isBefore(now.add(_span))) {
-      selectedTime = t;
-    } else {
+    if (!t.isBefore(horizon)) return;
+    _select(t);
+  }
+
+  /// Right (+1) selects the next program in the row, Left (-1) the previous one, never before
+  /// the one airing now. Rows without programs step 15 minutes instead. Stops at the horizon.
+  void moveProgram(int dir) {
+    final slots = _tunable(selectedChannel) ? _slotsOf(selectedChannel) : const <Slot>[];
+    if (slots.isEmpty) return moveTime(step * dir);
+    final from = selectedSlot?.start ?? selectedTime;
+    final Slot? target = dir > 0
+        ? slots.where((s) => s.start.isAfter(from) && s.start.isBefore(horizon)).firstOrNull
+        : slots.where((s) => s.start.isBefore(from)).lastOrNull;
+    if (target == null) {
+      if (dir < 0) _select(now);
       return;
     }
-    if (selectedTime.isBefore(windowStart)) {
-      windowStart = _floor(selectedTime);
-    } else if (!selectedTime.isBefore(windowStart.add(visible))) {
-      windowStart = _floor(selectedTime).subtract(visible - _half);
+    _select(target.start);
+  }
+
+  void _select(DateTime t) {
+    selectedTime = t.isBefore(now) ? now : t;
+    if (selectedTime.isBefore(windowStart) || !selectedTime.isBefore(windowStart.add(visible))) {
+      windowStart = floor(selectedTime); // the selected program starts in the first column
     }
   }
 

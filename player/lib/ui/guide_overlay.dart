@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:archive_tv_core/archive_tv_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -26,6 +28,12 @@ String _clock(DateTime t) {
   final h = t.hour % 12 == 0 ? 12 : t.hour % 12;
   return '$h:${t.minute.toString().padLeft(2, '0')}';
 }
+
+const _days = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
+
+/// 'THU ' when [t] is on a later day than [today], else ''.
+String _day(DateTime t, DateTime today) =>
+    t.year == today.year && t.month == today.month && t.day == today.day ? '' : '${_days[t.weekday - 1]} ';
 
 /// Retro cable guide drawn over the lower two thirds of the frame; keys move the selection.
 class GuideOverlay extends StatefulWidget {
@@ -86,9 +94,9 @@ class _GuideOverlayState extends State<GuideOverlay> {
     } else if (k == LogicalKeyboardKey.pageDown) {
       _row(_rows);
     } else if (k == LogicalKeyboardKey.arrowLeft) {
-      setState(() => m.moveTime(const Duration(minutes: -30)));
+      setState(() => m.moveProgram(-1));
     } else if (k == LogicalKeyboardKey.arrowRight) {
-      setState(() => m.moveTime(const Duration(minutes: 30)));
+      setState(() => m.moveProgram(1));
     } else if (k == LogicalKeyboardKey.enter || k == LogicalKeyboardKey.select) {
       if (!repeat) widget.onTune(m.selectedChannel);
     } else if (k == LogicalKeyboardKey.escape || k == LogicalKeyboardKey.keyG) {
@@ -124,7 +132,10 @@ class _GuideOverlayState extends State<GuideOverlay> {
             child: LayoutBuilder(builder: (context, box) {
               final unit = box.maxHeight / (_rows + 2); // header + time row + channel rows
               final font = (unit * 0.32).clamp(9.0, 28.0);
-              final nameW = box.maxWidth * 0.28;
+              final nameW = box.maxWidth * 0.24;
+              // Twelve 15-minute columns: shrink the time labels until "12:45" fits a column.
+              final colW = (box.maxWidth - nameW) / GuideModel.columnCount;
+              final timeFont = math.min(font, colW / 3.3);
               return Column(children: [
                 SizedBox(
                   height: unit,
@@ -134,7 +145,7 @@ class _GuideOverlayState extends State<GuideOverlay> {
                       child: _text(
                         slot == null
                             ? '${selectedCh.name}  ${rows.firstWhere((r) => r.channel == selectedCh).cells.firstOrNull?.label ?? ''}'
-                            : '${cleanTitle(slot.entry.title)}  ${_clock(slot.start)}-${_clock(slot.end)}',
+                            : '${cleanTitle(slot.entry.title)}  ${_day(slot.start, m.now)}${_clock(slot.start)}-${_clock(slot.end)}',
                         _style(font, Colors.white, bold: true),
                       ),
                     ),
@@ -143,9 +154,15 @@ class _GuideOverlayState extends State<GuideOverlay> {
                 SizedBox(
                   height: unit,
                   child: Row(children: [
-                    SizedBox(width: nameW, child: _text(' CH', _style(font, _yellow))),
+                    SizedBox(width: nameW, child: _text(' CH ${_day(m.windowStart, m.now)}', _style(font, _yellow))),
                     for (final col in m.columns)
-                      Expanded(child: _text(_clock(col), _style(font, _yellow, bold: true))),
+                      Expanded(
+                        child: Container(
+                          padding: const EdgeInsets.only(left: 2),
+                          decoration: const BoxDecoration(border: Border(left: BorderSide(color: _yellow))), // tick
+                          child: _text(_clock(col), _style(timeFont, _yellow, bold: true)),
+                        ),
+                      ),
                   ]),
                 ),
                 for (final r in rows) SizedBox(height: unit, child: _guideRow(r, r.channel == selectedCh, nameW, font)),
