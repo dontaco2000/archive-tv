@@ -83,6 +83,7 @@ ChannelConfig _parse(String jsonText) {
       location: raw['location'] as String?,
       shortContent: raw['shortContent'] as String?,
       minSeconds: _int(raw['minSeconds'], 'channel $number minSeconds'),
+      mature: raw['mature'] == true,
     ));
   }
 

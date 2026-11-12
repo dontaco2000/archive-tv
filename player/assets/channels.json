@@ -1155,6 +1155,7 @@
     {
       "number": 10,
       "name": "Teaser",
+      "mature": true,
       "shortContent": "Trailers",
       "logo": "Logos/4x3/teaser.png",
       "genre": "Movies",
@@ -1188,6 +1189,7 @@
     {
       "number": 11,
       "name": "Haunt",
+      "mature": true,
       "logo": "Logos/4x3/haunt.png",
       "genre": "Movies",
       "sources": [
@@ -1713,6 +1715,7 @@
     {
       "number": 13,
       "name": "Drive-In",
+      "mature": true,
       "logo": "Logos/4x3/drive-in.png",
       "genre": "Movies",
       "sources": [
@@ -1787,6 +1790,7 @@
     {
       "number": 14,
       "name": "Deathgrip",
+      "mature": true,
       "logo": "Logos/4x3/deathgrip.png",
       "genre": "Movies",
       "sources": [
@@ -2120,6 +2124,7 @@
     {
       "number": 25,
       "name": "Headliner",
+      "mature": true,
       "logo": "Logos/4x3/headliner.png",
       "genre": "TV",
       "sources": [
@@ -2683,6 +2688,7 @@
     {
       "number": 36,
       "name": "Evidence",
+      "mature": true,
       "logo": "Logos/4x3/evidence.png",
       "genre": "News & Docs",
       "sources": [

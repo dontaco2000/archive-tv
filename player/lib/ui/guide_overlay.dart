@@ -186,7 +186,7 @@ class _GuideOverlayState extends State<GuideOverlay> {
         child: Row(children: [
           SizedBox(width: nameW * 0.3, child: ChannelLogo(channel: r.channel, height: font * 1.8)),
           const SizedBox(width: 4),
-          _text('${r.channel.number} ', _style(font, fg, bold: true)),
+          _text('${m.lockedNumbers.contains(r.channel.number) ? '\u{1F512}' : ''}${r.channel.number} ', _style(font, fg, bold: true)),
           Expanded(child: _text(r.channel.name, _style(font, fg, bold: true))),
         ]),
       ),

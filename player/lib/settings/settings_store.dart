@@ -1,7 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
 
+import '../parental/parental.dart';
 import '../player/picture.dart';
+import 'settings_file.dart';
 
 class Settings {
   Set<int> favorites = {};
@@ -47,6 +49,9 @@ class Settings {
   /// A/V sync nudges: Archive item id -> audio delay in ms (+ = audio later). Only non-zero ones are kept.
   Map<String, int> audioDelays = {};
 
+  /// Parental controls (PIN hash, lock list, master lock): see parental/parental.dart.
+  Parental parental = Parental();
+
   Settings();
 
   Map<String, dynamic> toJson() => {
@@ -73,6 +78,7 @@ class Settings {
         'captionSize': captionSize,
         'picture': picture,
         'audioDelays': audioDelays,
+        'parental': parental.toJson(),
       };
 
   factory Settings.fromJson(Map<String, dynamic> j) {
@@ -112,6 +118,7 @@ class Settings {
         if (key is String && value is int && value != 0) s.audioDelays[key] = value.clamp(-maxAudioDelayMs, maxAudioDelayMs);
       }
     }
+    if (j['parental'] is Map<String, dynamic>) s.parental = Parental.fromJson(j['parental'] as Map<String, dynamic>);
     if (j['captionSize'] is int) s.captionSize = (j['captionSize'] as int).clamp(1, 7);
     return s;
   }
@@ -123,6 +130,10 @@ final _weatherKey = Platform.isAndroid ? 'weatherModeTv' : 'weatherMode';
 class SettingsStore {
   final File file;
   SettingsStore(this.file);
+
+  /// archive_tv_settings.txt, kept in step with every save (null: none, e.g. in tests).
+  File? textFile;
+  void Function(String) log = (_) {};
 
   Settings load() {
     try {
@@ -137,6 +148,8 @@ class SettingsStore {
     final tmp = File('${file.path}.tmp');
     tmp.writeAsStringSync(jsonEncode(s.toJson()), flush: true);
     tmp.renameSync(file.path);
+    final t = textFile;
+    if (t != null) writeSettingsFile(t, s, log);
   }
 }
 
