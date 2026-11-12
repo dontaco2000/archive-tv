@@ -148,7 +148,7 @@ List<int>? _perDay(Object? raw, int channel) {
   return [for (final k in _weekdays) raw[k] == null ? d : count(raw[k])];
 }
 
-/// `timeBlocks`: `[{"label": "...", "days": ["sat"], "start": "07:00", "end": "12:00", "sources": [2, 5]}]`.
+/// `timeBlocks`: `[{"label": "...", "days": ["sat"], "start": "07:00", "end": "12:00", "sources": [2, 5], "minMinutes": 60}]`.
 /// "end" may be "24:00" (midnight). Blocks of one channel must not overlap on a shared day.
 List<TimeBlock> _timeBlocks(Object? raw, int sourceCount, int channel) {
   if (raw == null) return const [];
@@ -176,6 +176,7 @@ List<TimeBlock> _timeBlocks(Object? raw, int sourceCount, int channel) {
       startMinute: start,
       endMinute: end,
       sources: [for (final s in src) s as int],
+      minMinutes: _int(b['minMinutes'], '$what minMinutes') ?? 0,
     );
     for (final o in out) {
       final shareDay = [for (var d = 0; d < 7; d++) o.days[d] && block.days[d]].contains(true);

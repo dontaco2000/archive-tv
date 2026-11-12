@@ -96,6 +96,13 @@ void main() {
       expect(b.length, 2, reason: 'a third 100-min movie from 23:20 would pass midnight');
       expect(b.last.end.isAfter(DateTime(day.year, day.month, day.day + 1)), isFalse);
     }
+    final films = Channel(number: 3, name: 'H', sources: late.sources, timeBlocks: [
+      TimeBlock(label: 'F', days: List.filled(7, true), startMinute: 20 * 60, endMinute: 24 * 60, sources: [1], minMinutes: 60),
+    ]);
+    final clip = entry('clip', 10, source: 1);
+    expect(themedBlocks(films, [...p, clip], saturday).single.episodes.contains(clip), isFalse);
+    expect(parseChannelConfig('{"channels":[{"number":1,"name":"H","sources":[{"query":"q"}],"timeBlocks":[{"label":"F","days":["fri"],"start":"20:00","end":"24:00","sources":[0],"minMinutes":60}]}]}')
+        .channels.single.timeBlocks.single.minMinutes, 60);
     final small = Channel(number: 3, name: 'H', sources: late.sources, timeBlocks: late.timeBlocks);
     final one = [...edgy, entry('only', 90, source: 1)];
     final slots = dayOf(small, one, saturday);
@@ -118,6 +125,11 @@ void main() {
     expect(toons.contains(slots.firstWhere((s) => s.start == DateTime(2026, 11, 14, 7)).entry), isTrue);
     expect(slots.where((s) => toons.contains(s.entry) && s.start.hour < 9).every((s) => !s.end.isAfter(ep.start)), isTrue);
     expect(themedBlocks(funnies, pool, saturday, taken: [SerialBlock(6 * 60, 7 * 60, 1, [entry('x', 400)])]), isEmpty);
+    // a block right after the window (Chuckles: sitcoms 19-21, Soap serial at 21): the last pick must not run into it
+    final soap = SerialBlock(12 * 60, 60, 1, [entry('soap1', 25)]);
+    final s3 = dayOf(funnies, pool, saturday, fixed: [soap]);
+    expect(s3.firstWhere((s) => s.entry.id == 'soap1/f.mp4').start, DateTime(2026, 11, 14, 12));
+    expect(s3.where((s) => themeLabelOf(funnies, s) != null).last.end.isAfter(DateTime(2026, 11, 14, 12)), isFalse);
   });
 
   test('missing tags (pool built before timeBlocks): no block, no crash, plain day', () {

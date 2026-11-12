@@ -175,11 +175,10 @@ List<SerialBlock> rareBlocks(Channel channel, List<Entry> pool, DateTime day, {i
 /// [channel]'s themed time blocks for local [day] (see [TimeBlock]). No stored state: the referenced
 /// sources' entries in [pool] (tagged with their source; untagged pools from before give nothing) are
 /// shuffled by channel|block|date and whole entries are taken until the window is full; the last may
-/// run past the window's end, never past midnight. A source too small just fills what it can and the
-/// shuffle does the rest. [taken] (the day's serial and rare blocks) win: the window is trimmed around
-/// them (one inside the window cuts the window's tail, and then nothing runs into it) and their
-/// entries are not picked. [spares]
-/// extra picks stand in for blocked ones. The picks leave the day's shuffle (see [layoutSerialDay]).
+/// run past the window's end, never past midnight or into a later block. A source too small just fills
+/// what it can and the shuffle does the rest. [taken] (the day's serial and rare blocks) win: the window
+/// is trimmed around them (one inside the window cuts the window's tail) and their entries are not
+/// picked. [spares] extra picks stand in for blocked ones. The picks leave the day's shuffle (see [layoutSerialDay]).
 List<SerialBlock> themedBlocks(Channel channel, List<Entry> pool, DateTime day,
     {List<SerialBlock> taken = const [], int spares = 3}) {
   final out = <SerialBlock>[];
@@ -200,9 +199,12 @@ List<SerialBlock> themedBlocks(Channel channel, List<Entry> pool, DateTime day,
     if (start >= end) continue;
     final eps = [
       for (final e in pool)
-        if (tb.sources.contains(e.source) && !isRare(channel, e) && !used.contains(e.id)) e
+        if (tb.sources.contains(e.source) && e.durationSeconds >= tb.minMinutes * 60 && !isRare(channel, e) && !used.contains(e.id)) e
     ]..sort((a, b) => a.id.compareTo(b.id));
-    final limit = end < tb.endMinute ? end : 24 * 60; // cut short by a block: must not run into it
+    var limit = 24 * 60; // the last pick may run past [end], but not into the next block
+    for (final b in others) {
+      if (b.startMinute >= end && b.startMinute < limit) limit = b.startMinute;
+    }
     final picks = <Entry>[];
     var count = 0, total = 0.0;
     for (final e in seededShuffle(eps, stableHash('ch${channel.number}|block$k|${dayKey(day)}'))) {
@@ -230,13 +232,22 @@ List<SerialBlock> dayBlocks(Channel channel, List<List<List<Entry>>> episodes, L
 }
 
 /// The themed block label for slot [s] of [c] ("Saturday Morning Cartoons"): its entry is from a
-/// block's source and it starts inside that block's window on that weekday. Null otherwise.
+/// block's source, at least its `minMinutes` long, airs whole (picks are never cut; shuffle filler cut
+/// at midnight or at a block can be) and starts inside that block's window on that weekday. Null
+/// otherwise. A whole-fitting source entry in the window is a pick: the pick loop takes every one that fits.
 String? themeLabelOf(Channel c, Slot s) {
   final src = s.entry.source;
   if (src == null) return null;
   final m = s.start.hour * 60 + s.start.minute;
   for (final b in c.timeBlocks) {
-    if (b.days[s.start.weekday - 1] && b.sources.contains(src) && m >= b.startMinute && m < b.endMinute) return b.label;
+    if (b.days[s.start.weekday - 1] &&
+        b.sources.contains(src) &&
+        s.entry.durationSeconds >= b.minMinutes * 60 &&
+        s.end.difference(s.start) >= _len(s.entry) &&
+        m >= b.startMinute &&
+        m < b.endMinute) {
+      return b.label;
+    }
   }
   return null;
 }

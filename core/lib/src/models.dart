@@ -133,7 +133,11 @@ class TimeBlock {
   final int endMinute;
   final List<int> sources;
 
-  const TimeBlock({required this.label, required this.days, required this.startMinute, required this.endMinute, required this.sources});
+  /// Only entries at least this long go into the block (e.g. 60: films, not clips); 0 = all.
+  final int minMinutes;
+
+  const TimeBlock(
+      {required this.label, required this.days, required this.startMinute, required this.endMinute, required this.sources, this.minMinutes = 0});
 }
 
 /// One prime-time block: a queue of [shows] played in episode order, back to back, looping.
