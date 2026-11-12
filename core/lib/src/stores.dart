@@ -179,6 +179,18 @@ class SnapshotStore {
     }
   }
 
+  /// Forgets [channel]'s saved days after [today] (a new pool came in): they are made again from the new
+  /// pool when next asked for. Today's day stays, so what is airing now doesn't jump.
+  void dropAfter(int channel, DateTime today) {
+    final cutoff = dayKey(today);
+    _days.removeWhere((k, _) => k.startsWith('$channel-') && k.substring(k.indexOf('-') + 1).compareTo(cutoff) > 0);
+    if (!dir.existsSync()) return;
+    for (final f in dir.listSync().whereType<File>()) {
+      final m = RegExp(r'day-(\d+)-(\d{4}-\d{2}-\d{2})\.json$').firstMatch(f.path);
+      if (m != null && m.group(1) == '$channel' && m.group(2)!.compareTo(cutoff) > 0) f.deleteSync();
+    }
+  }
+
   /// Deletes snapshot files for days before [today].
   void prune(DateTime today) {
     if (!dir.existsSync()) return;

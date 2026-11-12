@@ -34,6 +34,18 @@ void main() {
     expect(dir.listSync().where((f) => f.path.contains('day-5-')), hasLength(5));
   });
 
+  test('dropAfter forgets the channel\'s later days only (today and other channels stay)', () {
+    final dir = Directory.systemTemp.createTempSync('snap');
+    addTearDown(() => dir.deleteSync(recursive: true));
+    final store = SnapshotStore(dir)
+      ..ensureWeek(5, day, pool, days: 3)
+      ..ensureWeek(6, day, pool, days: 3);
+    store.dropAfter(5, day);
+    final names = {for (final f in dir.listSync()) f.uri.pathSegments.last};
+    expect(names, {'day-5-2026-11-11.json', 'day-6-2026-11-11.json', 'day-6-2026-11-12.json', 'day-6-2026-11-13.json'});
+    expect(store.day(5, day.add(const Duration(days: 1)), [entry('new', 60)]).every((s) => s.entry.itemId == 'new'), isTrue);
+  });
+
   test('a day is read from disk once, then served from memory', () {
     final dir = Directory.systemTemp.createTempSync('snapmem');
     addTearDown(() => dir.deleteSync(recursive: true));

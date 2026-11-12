@@ -73,6 +73,18 @@ ChannelConfig config({int minHours = 2, Set<String> exclude = const {}}) => Chan
 const channel = Channel(number: 5, name: 'Funnies', sources: [Source(query: 'subject:cartoon')]);
 
 void main() {
+  test('refilterPool cuts a saved pool to the current excludes and length limits, no copy when all fit', () {
+    Entry e(String id, double s) => Entry(id: '$id/f.mp4', itemId: id, file: 'f.mp4', title: id, durationSeconds: s, url: 'u');
+    final config = parseChannelConfig('{"excludeIdentifiers": ["x"], "channels": ['
+        '{"number": 1, "name": "A", "sources": [{"query": "q", "maxSeconds": 600}, {"query": "r", "maxSeconds": 300}]},'
+        '{"number": 2, "name": "B", "sources": [{"query": "q", "maxSeconds": 600}, {"query": "r"}]}]}');
+    final pool = [e('x', 200), e('ok', 200), e('long', 700), e('short', 90), e('huge', 30000)];
+    expect(refilterPool(config.channels[0], config, pool).map((e) => e.itemId), ['ok']); // max cap 600, min 120
+    expect(refilterPool(config.channels[1], config, pool).map((e) => e.itemId), ['ok', 'long']); // one uncapped source: 6 h
+    final clean = [e('ok', 200)];
+    expect(identical(refilterPool(config.channels[0], config, clean), clean), isTrue);
+  });
+
   test('builds a pool from search + metadata and skips excluded ids', () async {
     final api = FakeApi({'a': (1990, 30), 'b': (1995, 30), 'c': (2001, 60)});
     final pool = await buildPool(channel, config(minHours: 1, exclude: {'b'}), api);

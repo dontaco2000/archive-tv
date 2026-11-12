@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:archive_tv_core/archive_tv_core.dart';
@@ -22,6 +23,19 @@ class FakeApi implements ArchiveApi {
   Future<ItemMeta?> metadata(String identifier) async => ItemMeta(identifier, title: identifier, files: [
         ArchiveFile('$identifier.mp4', format: 'h.264', length: minutes[identifier]! * 60.0),
       ]);
+}
+
+/// [FakeApi] whose searches wait for [open].
+class GatedApi extends FakeApi {
+  final open = Completer<void>();
+  GatedApi(super.minutes);
+
+  @override
+  Future<List<ItemSummary>> search(String query, {int rows = 100, int page = 1}) async {
+    searches++;
+    await open.future;
+    return [for (final id in minutes.keys) ItemSummary(id)];
+  }
 }
 
 const configText = '''
@@ -79,19 +93,77 @@ void main() {
     expect(broken.statusOf(broken.channels[1]), PoolStatus.building); // still queued
   });
 
-  test('keepStalePools (Android): a stale saved pool is ready at once; dailyRefresh rebuilds it', () async {
+  Entry old(String id, {double seconds = 3600}) =>
+      Entry(id: '$id/f.mp4', itemId: id, file: 'f.mp4', title: id, durationSeconds: seconds, url: 'u');
+
+  test('a stale saved pool (sources since changed) is ready at once, stays on air while dailyRefresh rebuilds it, then swaps', () async {
     final bytes = engine.channels.first;
-    engine.pools.save(bytes.number, [
-      for (final id in ['old1', 'old2', 'old3'])
-        Entry(id: '$id/f.mp4', itemId: id, file: 'f.mp4', title: id, durationSeconds: 3600, url: 'u'),
-    ], builtAt: DateTime(2026, 1, 1));
-    final android = TvEngine.open(configText: configText, dataDir: dir, api: api, keepStalePools: true);
-    await android.ensurePool(bytes);
+    engine.pools.save(bytes.number, [old('old1'), old('old2'), old('old3')], builtAt: DateTime(2026, 1, 1));
+    final gate = GatedApi({'a': 60, 'b': 45, 'c': 90});
+    final e = TvEngine.open(configText: configText, dataDir: dir, api: gate);
+    await e.ensurePool(bytes);
+    expect(gate.searches, 0);
+    expect(e.statusOf(bytes), PoolStatus.ready);
+    expect(e.tunable.map((c) => c.number), contains(bytes.number));
+    final now = DateTime.now();
+    e.planWeek(bytes, now); // today + 6 days saved from the old pool
+    final todayOld = e.guideFor(bytes, DateTime(now.year, now.month, now.day), hours: 24).first.entry.id;
+
+    final refresh = e.dailyRefresh(now);
+    await pumpEventQueue();
+    expect(gate.searches, greaterThan(0)); // rebuild running...
+    expect(e.statusOf(bytes), PoolStatus.ready); // ...behind the old pool
+    expect(e.poolOf(bytes).map((x) => x.itemId), ['old1', 'old2', 'old3']);
+    gate.open.complete();
+    await refresh;
+    expect(e.poolOf(bytes).map((x) => x.itemId), ['a', 'b', 'c']); // swapped
+    expect(e.guideFor(bytes, DateTime(now.year, now.month, now.day), hours: 24).first.entry.id, todayOld); // today kept
+    final tomorrow = e.guideFor(bytes, DateTime(now.year, now.month, now.day + 1), hours: 24);
+    expect(tomorrow.every((s) => ['a', 'b', 'c'].contains(s.entry.itemId)), isTrue); // later days from the new pool
+  });
+
+  test('no saved pool: building until built', () async {
+    final bytes = engine.channels.first;
+    final gate = GatedApi({'a': 60, 'b': 45, 'c': 90});
+    final e = TvEngine.open(configText: configText, dataDir: dir, api: gate);
+    final f = e.ensurePool(bytes);
+    await pumpEventQueue();
+    expect(e.statusOf(bytes), PoolStatus.building);
+    expect(e.tunable.map((c) => c.number), isNot(contains(bytes.number)));
+    gate.open.complete();
+    await f;
+    expect(e.statusOf(bytes), PoolStatus.ready);
+  });
+
+  test('an old pool is cut to the current excludes/length limits; too little left = building', () async {
+    const excl = '{"excludeIdentifiers": ["bad1", "bad2"], '
+        '"channels": [{"number": 2, "name": "Bytes", "sources": [{"query": "x", "maxSeconds": 6000}]}]}';
+    final bytes = TvEngine.open(configText: excl, dataDir: dir, api: api).channels.first;
+    // 3 h left after the cut: served at once without the excluded / too long / too short items, no network.
+    PoolStore(Directory('${dir.path}/pools')).save(bytes.number,
+        [old('bad1'), old('ok1'), old('ok2'), old('ok3'), old('long', seconds: 7200), old('short', seconds: 30)],
+        builtAt: DateTime(2026, 1, 1));
+    final e = TvEngine.open(configText: excl, dataDir: dir, api: api);
+    await e.ensurePool(bytes);
     expect(api.searches, 0);
-    expect(android.statusOf(bytes), PoolStatus.ready);
-    await android.dailyRefresh(DateTime.now(), busy: () => false);
-    expect(api.searches, greaterThan(0));
-    expect(android.poolOf(bytes).map((e) => e.itemId), containsAll(['a', 'b', 'c']));
+    expect(e.statusOf(bytes), PoolStatus.ready);
+    expect(e.poolOf(bytes).map((x) => x.itemId), ['ok1', 'ok2', 'ok3']);
+    final now = DateTime(2026, 11, 11, 12);
+    expect(e.guideFor(bytes, now, hours: 24).every((s) => s.entry.itemId.startsWith('ok')), isTrue);
+
+    // Only 1 h left after the cut: not served, the channel builds.
+    final dir2 = Directory.systemTemp.createTempSync('engine2');
+    PoolStore(Directory('${dir2.path}/pools'))
+        .save(bytes.number, [old('bad1'), old('bad2'), old('ok1')], builtAt: DateTime(2026, 1, 1));
+    final gate = GatedApi({'a': 60, 'b': 45, 'c': 90});
+    final e2 = TvEngine.open(configText: excl, dataDir: dir2, api: gate);
+    final f = e2.ensurePool(bytes);
+    await pumpEventQueue();
+    expect(e2.statusOf(bytes), PoolStatus.building);
+    gate.open.complete();
+    await f;
+    expect(e2.statusOf(bytes), PoolStatus.ready);
+    dir2.deleteSync(recursive: true);
   });
 
   test('airing gives the slot, offset into it and the next slot', () async {

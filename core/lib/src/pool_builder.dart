@@ -71,6 +71,26 @@ Future<List<Entry>> buildPool(
   return pool;
 }
 
+double _minSeconds(Channel c) => (c.minSeconds ?? (c.shortContent != null ? 60 : 120)).toDouble();
+
+/// Whether [e] passes the CURRENT config's cheap (no network) filters for [c]: its item is not in
+/// [ChannelConfig.excludeIdentifiers] and its length is within the channel's minimum and what its sources allow
+/// (the largest source `maxSeconds` when every source sets one, else 6 h). Used on pools and days saved by an
+/// older config (app update). [ChannelConfig.blockCollections] can't be checked here (entries don't carry
+/// collections); the next rebuild drops those.
+bool Function(Entry) poolFilter(Channel c, ChannelConfig config) {
+  final minS = _minSeconds(c);
+  final caps = [for (final s in c.sources) s.maxSeconds];
+  final maxS = caps.isEmpty || caps.contains(null) ? 6 * 3600 : caps.cast<int>().reduce((a, b) => a > b ? a : b);
+  return (e) => !config.excludeIdentifiers.contains(e.itemId) && e.durationSeconds >= minS && e.durationSeconds <= maxS;
+}
+
+/// [pool] cut by [poolFilter]; [pool] itself when nothing is dropped.
+List<Entry> refilterPool(Channel c, ChannelConfig config, List<Entry> pool) {
+  final ok = poolFilter(c, config);
+  return pool.every(ok) ? pool : pool.where(ok).toList();
+}
+
 /// Start years a thin channel widens back to, newest first: [fallbackStart] (1960), 1940, 1920, then
 /// no lower limit (1800, before any film), each only if earlier than [start].
 List<int> wideningStarts(int start, int fallbackStart) {
@@ -142,7 +162,7 @@ Future<List<Entry>> _collect(
         picks = metas[key] = meta == null
             ? const []
             : pickEntries(meta,
-                minSeconds: (channel.minSeconds ?? (channel.shortContent != null ? 60 : 120)).toDouble(),
+                minSeconds: _minSeconds(channel),
                 maxSeconds: maxS == null ? 6 * 3600 : maxS.toDouble());
       }
       for (final e in picks) {

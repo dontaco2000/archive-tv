@@ -138,8 +138,7 @@ Future<void> _main(List<String> args) async {
         dataDir: dataDir,
         probeClient: http.Client(),
         log: log,
-        buildConcurrency: Platform.isAndroid ? 2 : 4,
-        keepStalePools: Platform.isAndroid);
+        buildConcurrency: Platform.isAndroid ? 2 : 4);
   } on Object catch (e) {
     log('channels.json error: $e');
     runApp(MaterialApp(
@@ -193,9 +192,11 @@ Future<void> _main(List<String> args) async {
     if (isTunable(last)) unawaited(tv.tune(last));
   }
 
-  // Build pools one channel at a time; start on the first channel that has content,
+  // Load saved pools first (seconds, however old: stale ones are rebuilt behind them by the refresh below),
+  // then build the channels that have none, one at a time; start on the first channel that has content,
   // but never override a channel the viewer already picked.
-  for (final c in engine.channels) {
+  final saved = [for (final c in engine.channels) if (engine.pools.age(c.number) != null) c];
+  for (final c in [...saved, ...engine.channels.where((c) => !saved.contains(c))]) {
     await engine.ensurePool(c);
     engine.planWeek(c, DateTime.now());
     if (tv.channel == null && engine.tunable.isNotEmpty) unawaited(tv.tune(engine.tunable.first));
@@ -206,7 +207,7 @@ Future<void> _main(List<String> args) async {
   // Checked once a minute (not one long timer) so sleep/hibernate and DST can't make it miss.
   var today = dayKey(DateTime.now());
   var refreshing = false;
-  // Android loads stale (seeded) pools as they are; rebuilding waits while a video starts.
+  // Stale pools were loaded as they are; this rebuilds them in the background (Android: waits while a video starts).
   bool busy() => tv.standBy && tv.message == null;
   Future<void> refresh(DateTime now) async {
     refreshing = true;
@@ -225,7 +226,7 @@ Future<void> _main(List<String> args) async {
     tv.retuneIfStale();
     await refresh(now);
   });
-  if (Platform.isAndroid) unawaited(refresh(DateTime.now()));
+  unawaited(refresh(DateTime.now()));
 
   // `--latency-test`: flip through the channels a few times, log first-frame times, then quit.
   if (args.contains('--latency-test')) {

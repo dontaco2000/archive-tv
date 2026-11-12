@@ -46,12 +46,10 @@ class TvEngine {
   /// Archive metadata fetches in flight during a pool build (lower on 1 GB Android TV sticks).
   final int buildConcurrency;
 
-  /// Load saved pools however old instead of rebuilding first (Android; see [refreshStale]).
-  final bool keepStalePools;
   final Map<int, List<Entry>> _pool = {};
 
   TvEngine._(this.config, this.api, this.pools, this.snapshots, this.blocklist, this.slow, this.noSubs, this.probeClient,
-      this.log, this.buildConcurrency, this.keepStalePools);
+      this.log, this.buildConcurrency);
 
   /// [configText] is the contents of channels.json; [dataDir] holds pools, snapshots, blocklist.
   factory TvEngine.open({
@@ -61,7 +59,6 @@ class TvEngine {
     http.Client? probeClient,
     void Function(String)? log,
     int buildConcurrency = 4,
-    bool keepStalePools = false,
   }) {
     return TvEngine._(
       parseChannelConfig(configText),
@@ -74,7 +71,6 @@ class TvEngine {
       probeClient,
       log ?? (_) {},
       buildConcurrency,
-      keepStalePools,
     );
   }
 
@@ -108,7 +104,9 @@ class TvEngine {
   /// Bumped each time a pool load/build finishes, so open screens (the guide) can refresh.
   final ValueNotifier<int> poolsChanged = ValueNotifier(0);
 
-  /// Loads the channel's pool from disk, or builds it from Archive when missing or older than a day.
+  /// Loads the channel's saved pool (cut to the current config, see `refilterPool`), however old or whatever
+  /// config made it, and builds it from Archive only when there is none or too little of it is left.
+  /// A stale saved pool stays on air while [dailyRefresh] rebuilds it, then the new one swaps in.
   /// Concurrent callers for the same channel share one build.
   /// [maxAge] zero forces a rebuild even when the pool is already loaded (menu "Refresh channels").
   Future<void> ensurePool(Channel channel, {Duration maxAge = const Duration(days: 1)}) {
@@ -121,12 +119,13 @@ class TvEngine {
   }
 
   Future<void> _ensurePool(Channel channel, Duration maxAge) async {
-    final saved = pools.load(channel.number);
-    final age = pools.age(channel.number);
-    // Android: a stale saved pool (e.g. seeded) is used as is; [refreshStale] rebuilds it in the background.
-    final fresh = saved != null && ((age != null && age < maxAge) || (keepStalePools && maxAge > Duration.zero));
-    await _ensureSerials(channel, rebuild: !fresh);
-    if (fresh) {
+    final raw = pools.load(channel.number);
+    // An app update may have changed the channel's sources or the global excludes: serve what still fits.
+    final saved = raw == null ? null : refilterPool(channel, config, raw);
+    final usable = saved != null && !isOffAir(saved, config.minContentSeconds);
+    final load = usable && maxAge > Duration.zero; // zero = forced rebuild (daily refresh of a stale pool, Refresh)
+    await _ensureSerials(channel, rebuild: !load);
+    if (load) {
       _pool[channel.number] = blocklist.apply(saved);
       return;
     }
@@ -140,7 +139,8 @@ class TvEngine {
         return;
       }
       pools.save(channel.number, built);
-      _pool[channel.number] = blocklist.apply(built);
+      _pool[channel.number] = blocklist.apply(built); // the old pool served until this line
+      if (raw != null) snapshots.dropAfter(channel.number, DateTime.now()); // later days from the new pool
       _queueProbe(channel);
     } on Object catch (e) {
       log('pool build failed for ${channel.name}: $e'); // fall back to a stale pool if there is one
@@ -209,10 +209,11 @@ class TvEngine {
   List<Slot> _day(Channel c, DateTime day) {
     // by id from the current pool: a day saved from an older pool has entries without the source tag
     final rare = {for (final e in _pool[c.number] ?? const <Entry>[]) if (isRare(c, e)) e.id};
+    final fits = poolFilter(c, config); // a day saved under an older config may hold now-excluded items
     return snapshots.day(c.number, day, _shufflePool(c),
         blocklist: blocklist.union(_skipped).union(slow).union(noSubs),
         serials: _blocksFor(c),
-        inShuffle: rare.isEmpty ? null : (e) => !rare.contains(e.id));
+        inShuffle: (e) => fits(e) && !rare.contains(e.id));
   }
 
   Future<void> _probing = Future.value();
@@ -277,7 +278,7 @@ class TvEngine {
 
   /// The once-a-day job (launch and each local midnight): rebuilds pools older than [maxAge],
   /// saves the new week's days, deletes past ones and probes the next 12 hours of every channel.
-  /// [busy] (Android: a video is starting) holds each rebuild back up to 20 s.
+  /// Stale pools stay on air during their rebuild. [busy] (Android: a video is starting) holds each rebuild back up to 20 s.
   Future<void> dailyRefresh(DateTime now, {Duration maxAge = const Duration(days: 1), bool Function()? busy}) async {
     for (final c in channels) {
       if (c.sources.isEmpty) continue;
