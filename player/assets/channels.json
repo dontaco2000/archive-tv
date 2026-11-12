@@ -2637,6 +2637,86 @@
       ]
     },
     {
+      "number": 48,
+      "name": "Arcade",
+      "logo": "Logos/4x3/arcade.png",
+      "genre": "Music & Sports",
+      "sources": [
+        {
+          "query": "(collection:video_power OR (title:\"nick arcade\" AND collection:gameshows_miscellaneous) OR identifier:(video-power-syndication-1990 OR screen-recording-2022-03-19-at-2.24.01-pm OR 20250402_20250402_0215)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -identifier:(youtube-* OR twitter-* OR facebook-* OR TikTok-* OR bliptv-* OR g4tv.com-*) AND -collection:(mirrortube OR bliptv OR podcasts OR twitchstreams) AND -identifier:(Video.Power.Episode.21*)",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1
+        },
+        {
+          "identifiers": [
+            "nick-arcade-all"
+          ],
+          "maxEntriesPerItem": 9,
+          "ignoreYear": true
+        },
+        {
+          "query": "(collection:(gamesmaster OR bad-influence)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -identifier:(gamesmaster_gore_special* OR GamesmasterS4E18* OR gamesmaster_s07e01 OR gamesmaster_promos) AND -title:(gore OR promos)",
+          "ignoreYear": true,
+          "maxEntries": 70,
+          "maxEntriesPerItem": 1
+        },
+        {
+          "identifiers": [
+            "captain-n-the-game-master-season-1-restored",
+            "captain-n-the-game-master-season-2-mkv",
+            "captain-n-the-game-master-season-3-mkv",
+            "thesupermariobrossupershow",
+            "super-mario-world-the-complete-tv-series-collection",
+            "legend-of-zelda-1989-complete-series",
+            "adventures-of-sonic-the-hedgehog-the-complete-collection",
+            "Sonic-the-Hedgehog-SatAM-The-Complete-Series-Restored",
+            "pac-man-complete-series-1982",
+            "pole-position-complete-series-1984",
+            "donkey-kong-country-legend-of-the-crystal-coconut-vhs-rip-of-the-full-movie-fsrcnn-x-4"
+          ],
+          "maxEntriesPerItem": 9,
+          "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "TheAdventuresofSMB3Animation_complete"
+          ],
+          "maxEntriesPerItem": 16,
+          "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "640x240_videogame_commercials",
+            "NESCommercials",
+            "youtube-mLnR-eX3XhY",
+            "ZippCast-8c49858bca45ab17dd0",
+            "nintendo-entertainment-system_202508",
+            "nintendo-advert-archive"
+          ],
+          "maxEntriesPerItem": 40,
+          "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "nintendo-power-previews-7",
+            "DonkeyKongCountryExposedPromotionalVideo1994",
+            "ChasingGhostsBeyondArcade",
+            "the-wizard-1989-full-movie"
+          ],
+          "maxEntriesPerItem": 7,
+          "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "11191999classicgameroomepisode3soulcaliburforsegadreamcast",
+            "classic-game-room-season-2-2008"
+          ],
+          "maxEntriesPerItem": 25,
+          "ignoreYear": true
+        }
+      ]
+    },
+    {
       "number": 50,
       "name": "Overseas",
       "logo": "Logos/4x3/overseas.png",
@@ -3276,6 +3356,119 @@
             "ID3245CC"
           ],
           "maxEntriesPerItem": 3,
+          "ignoreYear": true
+        }
+      ]
+    },
+    {
+      "number": 66,
+      "name": "Nightlight",
+      "logo": "Logos/4x3/nightlight.png",
+      "genre": "TV",
+      "sources": [
+        {
+          "query": "(title:(\"sign off\" OR \"sign-off\" OR signoff OR \"sign on\" OR \"sign-on\" OR closedown OR \"close down\") AND collection:(flemishdog OR vhsnews_1980s OR vhsnews_1990s OR vhscommercials OR classic_tv_commercials OR television_inbox OR airchecks-misc OR vhstvshows OR opensource_movies)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -identifier:(youtube-* OR twitter-* OR facebook-* OR TikTok-* OR bliptv-* OR g4tv.com-*) AND -collection:(mirrortube OR bliptv OR podcasts OR twitchstreams) AND -identifier:(JO* OR jo* OR mtv-japan* OR MTVJapan* OR cbc-19925 OR jtv-* OR GMA* OR gma-* OR net-25-* OR 8-tv-* OR ussr-* OR ripco* OR final-closedown* OR BBCClosedown* OR 2024-09-28-17-29-02 OR Obama_* OR ten-eyewitness-news-* OR infomercials-nbc-today-* OR entertainment-this-week-* OR nbc-today-partial-*) AND -title:(nhk OR fuji OR asahi OR tbs OR japan OR japanese OR nippon OR \"nick jr\" OR noggin OR cbeebies OR playhouse OR disney OR treehouse OR sprout OR \"pbs kids\" OR nick OR \"kids wb\" OR politics OR boomerang OR \"cartoon network\" OR nickelodeon OR milkshake OR citv OR qubo OR \"adult swim\" OR sex OR exxxtasy OR subliminal OR authoritarian OR \"attack on america\" OR radio OR radyo OR philippine OR malaysia OR gma OR \"abs-cbn\" OR \"studio 23\" OR \"net 25\" OR ussr OR aol OR \"sign language\" OR youtube OR twitch OR minecraft OR roblox OR podcast OR wrestling OR 2019 OR 2020 OR 2021 OR 2022 OR 2023 OR 2024 OR 2025)",
+          "ignoreYear": true,
+          "maxEntries": 120,
+          "maxEntriesPerItem": 1
+        },
+        {
+          "identifiers": [
+            "ABC_TV_Test_Pattern_ABQ-2_1983",
+            "ABCtest81",
+            "ABC_TV_-_Test_Pattern_Slide_Clock_ABN-2_26_02_79",
+            "ABC_TV_Test_Pattern_ABQ-2_1979",
+            "1979_02_26_ABN-2_Test_Card_Slide_Clock_Flip_Slide_Turn",
+            "abt-2-26-11-84",
+            "SBSbreaktestpattern90",
+            "TvTestCard",
+            "vhsvault_Pages_from_Ceefax",
+            "videoplayback_20181018",
+            "bbc-two-nightscreen-and-learning-zone-1",
+            "capture-a-3957"
+          ],
+          "maxEntriesPerItem": 8,
+          "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "bbconeballoonidents1997completelaunchset",
+            "yorkshire-television-idents"
+          ],
+          "maxEntriesPerItem": 15,
+          "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "TheBestFireplaceVideo3HoursHD",
+            "FireplaceForChristmas1HourAmbientalFireplaceFULLHD",
+            "FireplaceVideo",
+            "the-ultimate-fireplace-video-1995-vhs",
+            "TheVistaGroup-FantasticInstantFireplace",
+            "betv-16515bcm-fireplace-plain",
+            "OPBYuleLog2002",
+            "fireplacehd",
+            "ChristmasTreeAndFireplace",
+            "Holliday_Fireplace",
+            "fluxusfireplace",
+            "zealeyfireplace"
+          ],
+          "maxEntriesPerItem": 1,
+          "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "stunning-aquarium-the-best-relax-music-sleep-relax-music-screensaver-hd-1080-p",
+            "3-hours-of-relaxing-aquarium-fish-coral-reef-fish-tank-relax-music-1080p-hd",
+            "vintage-vhs-6-hours-deluxe-ultimate-aquarium-video",
+            "unbelievable-resolution-aquarium-video-with-dory-and-nemo",
+            "aquarium-stock-video"
+          ],
+          "maxEntriesPerItem": 2,
+          "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "heavy-thunderstorm-sounds-relaxing-rain-thunder-lightning-ambience-for-sleep-hd-nature-video",
+            "4-k-tropical-rain-relaxing-nature-sounds-ultra-hd-nature-video-sleep-relax-study-meditate",
+            "RainSounds_93",
+            "WaterfallSounds",
+            "relaxing-sound-of-rain-and-wind-in-forest-1-hour-rain-drops-falling-from-trees-with-wind",
+            "4KGoldenSunriseNatureRelaxationVideoRelaxingSeaOceanWavesSounds03",
+            "ThunderingRainstormNaturesRelaxingSounds1991",
+            "nomadicamb",
+            "walking-in-heavy-thunderstorm-at-night-in-nyc-umbrella-binaural-3d-rain-sounds",
+            "the-best-relaxing-garden-in-4-k-butterflies-birds-and-flowers-2-hours-4-k-uhd-screensaver",
+            "4-k-nature-relaxation-journey-3-wonders-of-the-world-2017-w-healing-ambient-music",
+            "NatureSoundsOfNature-OutbackAustralia"
+          ],
+          "maxEntriesPerItem": 2,
+          "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "3-hrs-stunning-underwater-footage-relaxing-music-french-polynesia-indonesia-4-k-_202307"
+          ],
+          "maxEntriesPerItem": 8,
+          "ignoreYear": true
+        },
+        {
+          "query": "(collection:bedfordma AND title:\"nature sounds\") AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn)",
+          "ignoreYear": true,
+          "maxEntries": 40,
+          "maxEntriesPerItem": 1
+        },
+        {
+          "identifiers": [
+            "New_Zealand_Christchurch-Greymouth_-_Cab_Ride_2012",
+            "Glasgow_-_Fort_William_-_Mallaig_-_Cab_Ride_2012",
+            "cab-ride-along-the-santa-fe-trail-part-1",
+            "cab-ride-along-the-santa-fe-trail-part-2",
+            "test2_202112",
+            "TheVistaGroup-HawaiiTrainRide",
+            "the-great-canadian-train-ride-vhs"
+          ],
+          "maxEntriesPerItem": 1,
           "ignoreYear": true
         }
       ]
