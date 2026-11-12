@@ -10,6 +10,7 @@ export 'src/pool_builder.dart';
 export 'src/probe.dart';
 export 'src/query_builder.dart';
 export 'src/scheduler.dart';
+export 'src/seed.dart';
 export 'src/seeded_random.dart';
 export 'src/serials.dart';
 export 'src/stores.dart';

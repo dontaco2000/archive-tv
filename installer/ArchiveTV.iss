@@ -2,7 +2,7 @@
 ; ISCC ArchiveTV.iss [/DReleaseDir=...] [/DCrtDir=...]
 
 #define AppName "Archive TV"
-#define AppVersion "0.9.1"
+#define AppVersion "0.9.2"
 #define AppExe "archive_tv_player.exe"
 #ifndef ReleaseDir
   #define ReleaseDir "C:\src\at_rel\player\build\windows\x64\runner\Release"

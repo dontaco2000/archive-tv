@@ -79,6 +79,21 @@ void main() {
     expect(broken.statusOf(broken.channels[1]), PoolStatus.building); // still queued
   });
 
+  test('keepStalePools (Android): a stale saved pool is ready at once; dailyRefresh rebuilds it', () async {
+    final bytes = engine.channels.first;
+    engine.pools.save(bytes.number, [
+      for (final id in ['old1', 'old2', 'old3'])
+        Entry(id: '$id/f.mp4', itemId: id, file: 'f.mp4', title: id, durationSeconds: 3600, url: 'u'),
+    ], builtAt: DateTime(2026, 1, 1));
+    final android = TvEngine.open(configText: configText, dataDir: dir, api: api, keepStalePools: true);
+    await android.ensurePool(bytes);
+    expect(api.searches, 0);
+    expect(android.statusOf(bytes), PoolStatus.ready);
+    await android.dailyRefresh(DateTime.now(), busy: () => false);
+    expect(api.searches, greaterThan(0));
+    expect(android.poolOf(bytes).map((e) => e.itemId), containsAll(['a', 'b', 'c']));
+  });
+
   test('airing gives the slot, offset into it and the next slot', () async {
     final bytes = engine.channels.first;
     await engine.ensurePool(bytes);

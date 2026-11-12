@@ -45,10 +45,13 @@ class TvEngine {
 
   /// Archive metadata fetches in flight during a pool build (lower on 1 GB Android TV sticks).
   final int buildConcurrency;
+
+  /// Load saved pools however old instead of rebuilding first (Android; see [refreshStale]).
+  final bool keepStalePools;
   final Map<int, List<Entry>> _pool = {};
 
   TvEngine._(this.config, this.api, this.pools, this.snapshots, this.blocklist, this.slow, this.noSubs, this.probeClient,
-      this.log, this.buildConcurrency);
+      this.log, this.buildConcurrency, this.keepStalePools);
 
   /// [configText] is the contents of channels.json; [dataDir] holds pools, snapshots, blocklist.
   factory TvEngine.open({
@@ -58,6 +61,7 @@ class TvEngine {
     http.Client? probeClient,
     void Function(String)? log,
     int buildConcurrency = 4,
+    bool keepStalePools = false,
   }) {
     return TvEngine._(
       parseChannelConfig(configText),
@@ -70,6 +74,7 @@ class TvEngine {
       probeClient,
       log ?? (_) {},
       buildConcurrency,
+      keepStalePools,
     );
   }
 
@@ -118,7 +123,8 @@ class TvEngine {
   Future<void> _ensurePool(Channel channel, Duration maxAge) async {
     final saved = pools.load(channel.number);
     final age = pools.age(channel.number);
-    final fresh = saved != null && age != null && age < maxAge;
+    // Android: a stale saved pool (e.g. seeded) is used as is; [refreshStale] rebuilds it in the background.
+    final fresh = saved != null && ((age != null && age < maxAge) || (keepStalePools && maxAge > Duration.zero));
     await _ensureSerials(channel, rebuild: !fresh);
     if (fresh) {
       _pool[channel.number] = blocklist.apply(saved);
@@ -271,11 +277,15 @@ class TvEngine {
 
   /// The once-a-day job (launch and each local midnight): rebuilds pools older than [maxAge],
   /// saves the new week's days, deletes past ones and probes the next 12 hours of every channel.
-  Future<void> dailyRefresh(DateTime now, {Duration maxAge = const Duration(days: 1)}) async {
+  /// [busy] (Android: a video is starting) holds each rebuild back up to 20 s.
+  Future<void> dailyRefresh(DateTime now, {Duration maxAge = const Duration(days: 1), bool Function()? busy}) async {
     for (final c in channels) {
       if (c.sources.isEmpty) continue;
       final age = pools.age(c.number);
       final stale = age == null || age >= maxAge;
+      for (var i = 0; stale && busy != null && i < 40 && busy(); i++) {
+        await Future<void>.delayed(const Duration(milliseconds: 500));
+      }
       try {
         await ensurePool(c, maxAge: stale ? Duration.zero : maxAge);
       } on Object catch (e) {

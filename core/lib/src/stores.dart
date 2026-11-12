@@ -31,8 +31,9 @@ class PoolStore {
 
   File _f(int channel) => _file(dir, 'pool-$channel.json');
 
-  void save(int channel, List<Entry> pool) => _writeJson(_f(channel), {
-        'builtAt': DateTime.now().toIso8601String(),
+  /// [builtAt] (default now) is when the pool was built, e.g. for a seeded pool.
+  void save(int channel, List<Entry> pool, {DateTime? builtAt}) => _writeJson(_f(channel), {
+        'builtAt': (builtAt ?? DateTime.now()).toIso8601String(),
         'entries': [for (final e in pool) e.toJson()],
       });
 

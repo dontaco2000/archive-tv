@@ -119,6 +119,18 @@ Future<void> _main(List<String> args) async {
   }
   seededFile.writeAsStringSync(bundled);
 
+  // Android: pools built on the PC ship in the APK, so a first launch has a full guide without building.
+  if (Platform.isAndroid) {
+    try {
+      final sw = Stopwatch()..start();
+      final gz = (await rootBundle.load('assets/seed_pools.jsonl.gz')).buffer.asUint8List();
+      final n = await installSeed(Stream.value(gz), Directory(p.join(dataDir.path, 'pools')));
+      if (n > 0) log('seeded $n channel pools in ${sw.elapsedMilliseconds} ms');
+    } on Object catch (e) {
+      log('seed pools: $e');
+    }
+  }
+
   final TvEngine engine;
   try {
     engine = TvEngine.open(
@@ -126,7 +138,8 @@ Future<void> _main(List<String> args) async {
         dataDir: dataDir,
         probeClient: http.Client(),
         log: log,
-        buildConcurrency: Platform.isAndroid ? 2 : 4);
+        buildConcurrency: Platform.isAndroid ? 2 : 4,
+        keepStalePools: Platform.isAndroid);
   } on Object catch (e) {
     log('channels.json error: $e');
     runApp(MaterialApp(
@@ -193,19 +206,26 @@ Future<void> _main(List<String> args) async {
   // Checked once a minute (not one long timer) so sleep/hibernate and DST can't make it miss.
   var today = dayKey(DateTime.now());
   var refreshing = false;
+  // Android loads stale (seeded) pools as they are; rebuilding waits while a video starts.
+  bool busy() => tv.standBy && tv.message == null;
+  Future<void> refresh(DateTime now) async {
+    refreshing = true;
+    try {
+      await engine.dailyRefresh(now, busy: Platform.isAndroid ? busy : null);
+    } finally {
+      refreshing = false;
+    }
+  }
+
   Timer.periodic(const Duration(minutes: 1), (_) async {
     final now = DateTime.now();
     if (dayKey(now) == today || refreshing) return;
     today = dayKey(now);
-    refreshing = true;
     log('new day $today: daily refresh');
     tv.retuneIfStale();
-    try {
-      await engine.dailyRefresh(now);
-    } finally {
-      refreshing = false;
-    }
+    await refresh(now);
   });
+  if (Platform.isAndroid) unawaited(refresh(DateTime.now()));
 
   // `--latency-test`: flip through the channels a few times, log first-frame times, then quit.
   if (args.contains('--latency-test')) {
