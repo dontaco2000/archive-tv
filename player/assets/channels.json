@@ -1490,6 +1490,84 @@
       ]
     },
     {
+      "number": 15,
+      "name": "Saddle",
+      "logo": "Logos/4x3/saddle.png",
+      "genre": "Movies",
+      "sources": [
+        {
+          "query": "(title:bonanza AND identifier:(Bonanza* OR bonanza*) AND collection:(classic_tv OR classic_tv_1950s OR classic_tv_1960s OR television OR television_inbox OR opensource_movies OR vhstvshows)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie OR game_replays OR us_congress) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR CLE-* OR NJY-* OR VHS-0* OR mubd1234ama-*) AND -title:(trailer OR promo OR promos OR teaser OR commercial OR commercials OR credits OR intro OR opening OR bumper OR parody OR spoof OR \"vhs tape\" OR \"vhs fb\" OR \"random tv\" OR \"taped over\" OR review OR reaction OR \"every movie ever\" OR longplay OR mashup) AND -title:(radio OR otr OR \"old time radio\" OR audiobook OR comic OR toy OR hat OR \"theme ride\" OR \"board of supervisors\" OR rally OR remix OR \"bon jovi\" OR \"top gun\" OR \"mega man\" OR psp OR 2013 OR \"fan film\" OR lecture OR cspan OR vinyl OR \"lp\" OR documentary OR \"legends & lies\" OR dublado OR latino OR \"deputy dawg\" OR \"vhs fb\") AND -identifier:(MistressDidi* OR cspan* OR CSPAN* OR scatvca-* OR ltv8ca-* OR bliptv-* OR Lbines-*) AND -title:(bunny OR stooges OR bowling OR musical OR brothers OR nickelodeon OR barney OR toonstar OR \"#\") AND -identifier:(BONANZA OR bonanza-tp-* OR bonanza-?x-*)",
+          "ignoreYear": true,
+          "maxEntries": 45,
+          "maxEntriesPerItem": 3
+        },
+        {
+          "query": "(title:(gunsmoke OR \"have gun will travel\" OR rawhide OR \"wagon train\" OR \"the rifleman\" OR \"wanted: dead or alive\" OR \"the virginian\" OR \"the big valley\") AND collection:(classic_tv OR classic_tv_1950s OR classic_tv_1960s OR television OR television_inbox OR opensource_movies OR vhstvshows)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie OR game_replays OR us_congress) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR CLE-* OR NJY-* OR VHS-0* OR mubd1234ama-*) AND -title:(trailer OR promo OR promos OR teaser OR commercial OR commercials OR credits OR intro OR opening OR bumper OR parody OR spoof OR \"vhs tape\" OR \"vhs fb\" OR \"random tv\" OR \"taped over\" OR review OR reaction OR \"every movie ever\" OR longplay OR mashup) AND -title:(radio OR otr OR \"old time radio\" OR audiobook OR comic OR toy OR hat OR \"theme ride\" OR \"board of supervisors\" OR rally OR remix OR \"bon jovi\" OR \"top gun\" OR \"mega man\" OR psp OR 2013 OR \"fan film\" OR lecture OR cspan OR vinyl OR \"lp\" OR documentary OR \"legends & lies\" OR dublado OR latino OR \"deputy dawg\" OR \"vhs fb\") AND -identifier:(MistressDidi* OR cspan* OR CSPAN* OR scatvca-* OR ltv8ca-* OR bliptv-* OR Lbines-*) AND -title:(josey OR \"crimson bat\" OR news OR \"camp meeting\" OR theme OR score OR \"maxwell house\" OR logo OR \"no name\" OR reunion) AND -identifier:(vts-* OR 5??-* OR dmbb* OR wanted-dead-or-alive-1080p* OR rawhide-blood*)",
+          "ignoreYear": true,
+          "maxEntries": 60,
+          "maxEntriesPerItem": 4
+        },
+        {
+          "query": "(title:(\"lone ranger\") AND collection:(classic_tv OR classic_tv_1950s OR classic_tv_1960s OR television OR television_inbox OR opensource_movies OR vhstvshows)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie OR game_replays OR us_congress) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR CLE-* OR NJY-* OR VHS-0* OR mubd1234ama-*) AND -title:(trailer OR promo OR promos OR teaser OR commercial OR commercials OR credits OR intro OR opening OR bumper OR parody OR spoof OR \"vhs tape\" OR \"vhs fb\" OR \"random tv\" OR \"taped over\" OR review OR reaction OR \"every movie ever\" OR longplay OR mashup) AND -title:(radio OR otr OR \"old time radio\" OR audiobook OR comic OR toy OR hat OR \"theme ride\" OR \"board of supervisors\" OR rally OR remix OR \"bon jovi\" OR \"top gun\" OR \"mega man\" OR psp OR 2013 OR \"fan film\" OR lecture OR cspan OR vinyl OR \"lp\" OR documentary OR \"legends & lies\" OR dublado OR latino OR \"deputy dawg\" OR \"vhs fb\") AND -identifier:(MistressDidi* OR cspan* OR CSPAN* OR scatvca-* OR ltv8ca-* OR bliptv-* OR Lbines-*) AND -title:(2013 OR depp OR \"lone ranger rides\" OR \"legend of the lone\" OR pizza OR soundtrack OR script OR decca OR stereo OR yesteryear OR \"my three sons\") AND -identifier:(bandicam-* OR classic-banjo*)",
+          "ignoreYear": true,
+          "maxEntries": 35,
+          "maxEntriesPerItem": 5
+        },
+        {
+          "query": "(title:(\"roy rogers\" OR \"gene autry\" OR \"hopalong cassidy\" OR \"tex ritter\" OR \"william boyd\" OR \"dale evans\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie OR game_replays OR us_congress) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR CLE-* OR NJY-* OR VHS-0* OR mubd1234ama-*) AND -title:(trailer OR promo OR promos OR teaser OR commercial OR commercials OR credits OR intro OR opening OR bumper OR parody OR spoof OR \"vhs tape\" OR \"vhs fb\" OR \"random tv\" OR \"taped over\" OR review OR reaction OR \"every movie ever\" OR longplay OR mashup) AND -title:(radio OR otr OR \"old time radio\" OR audiobook OR comic OR toy OR hat OR \"theme ride\" OR \"board of supervisors\" OR rally OR remix OR \"bon jovi\" OR \"top gun\" OR \"mega man\" OR psp OR 2013 OR \"fan film\" OR lecture OR cspan OR vinyl OR \"lp\" OR documentary OR \"legends & lies\" OR dublado OR latino OR \"deputy dawg\" OR \"vhs fb\") AND -identifier:(MistressDidi* OR cspan* OR CSPAN* OR scatvca-* OR ltv8ca-* OR bliptv-* OR Lbines-*) AND -title:(tribute OR \"christmas album\" OR \"smokey bear\" OR \"frankie marvin\" OR \"singing cowboy\" OR \"shoots the bad guy\" OR mandrell OR \"hee haw\" OR \"clint black\" OR \"uncle sam\" OR memories OR \"shot in the dark\" OR \"officer o\" OR \"#\") AND -identifier:(WRC-STOCK-* OR 64614* OR 59?-* OR scm-* OR 16-in-old-amarillo)",
+          "ignoreYear": true,
+          "maxEntries": 60,
+          "maxEntriesPerItem": 5
+        },
+        {
+          "query": "(title:(\"cisco kid\" OR \"range rider\" OR \"kit carson\" OR \"annie oakley\" OR \"buffalo bill jr\" OR \"26 men\" OR \"wild bill hickok\" OR \"sergeant preston\" OR \"stories of the century\" OR \"death valley days\" OR \"tales of wells fargo\" OR trackdown OR \"bat masterson\" OR \"wyatt earp\" OR \"the restless gun\" OR \"tombstone territory\" OR \"judge roy bean\" OR \"sky king\" OR \"frontier doctor\") AND collection:(classic_tv OR classic_tv_1950s OR classic_tv_1960s OR television OR television_inbox OR opensource_movies OR vhstvshows)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie OR game_replays OR us_congress) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR CLE-* OR NJY-* OR VHS-0* OR mubd1234ama-*) AND -title:(trailer OR promo OR promos OR teaser OR commercial OR commercials OR credits OR intro OR opening OR bumper OR parody OR spoof OR \"vhs tape\" OR \"vhs fb\" OR \"random tv\" OR \"taped over\" OR review OR reaction OR \"every movie ever\" OR longplay OR mashup) AND -title:(radio OR otr OR comic OR toy OR \"i killed\" OR coca-cola OR \"pee dee\" OR sctv OR blaze OR trump OR \"fighting with kit carson\" OR \"legends & lies\" OR dublado) AND -identifier:(cspan* OR CSPAN* OR scatvca-* OR bliptv-* OR Lbines-*)",
+          "ignoreYear": true,
+          "maxEntries": 70,
+          "maxEntriesPerItem": 4
+        },
+        {
+          "query": "(title:(\"zorro rides again\" OR \"zorro's fighting legion\" OR \"fighting with kit carson\" OR \"battling with buffalo bill\" OR \"great adventures of wild bill hickok\" OR \"the painted stallion\" OR \"the vigilantes are coming\" OR \"custer's last stand\" OR \"the miracle rider\" OR \"overland mail\" OR \"the lone ranger rides again\" OR \"the phantom empire\" OR \"the oregon trail\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie OR game_replays OR us_congress) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR CLE-* OR NJY-* OR VHS-0* OR mubd1234ama-*) AND -title:(trailer OR promo OR promos OR teaser OR commercial OR commercials OR credits OR intro OR opening OR bumper OR parody OR spoof OR \"vhs tape\" OR \"vhs fb\" OR \"random tv\" OR \"taped over\" OR review OR reaction OR \"every movie ever\" OR longplay OR mashup) AND -title:(radio OR otr OR \"old time radio\" OR audiobook OR comic OR toy OR hat OR \"theme ride\" OR \"board of supervisors\" OR rally OR remix OR \"bon jovi\" OR \"top gun\" OR \"mega man\" OR psp OR 2013 OR \"fan film\" OR lecture OR cspan OR vinyl OR \"lp\" OR documentary OR \"legends & lies\" OR dublado OR latino OR \"deputy dawg\" OR \"vhs fb\") AND -identifier:(MistressDidi* OR cspan* OR CSPAN* OR scatvca-* OR ltv8ca-* OR bliptv-* OR Lbines-*) AND -title:(2015 OR 2016 OR 2017 OR 2018 OR 2019 OR 2020 OR 2021 OR 2022 OR 2023 OR 2024 OR 2025)",
+          "ignoreYear": true,
+          "maxEntries": 45,
+          "maxEntriesPerItem": 6
+        },
+        {
+          "identifiers": [
+            "mclintok_widescreen",
+            "angel_and_the_badman",
+            "texas_terror_1935",
+            "SagebrushTrail",
+            "TheLuckyTexan",
+            "west_of_the_divide",
+            "Winds_of_the_Wasteland",
+            "RidersofDestiny_",
+            "ParadiseCanyon",
+            "Hell_Town",
+            "TheManFromUtah",
+            "The_Star_Packer",
+            "TheLawlessFrontier1934",
+            "RainbowValley",
+            "RandyRidesAlone",
+            "BlueSteel",
+            "TheTrailBeyond1934",
+            "TheDawnRider",
+            "NeaththeArizonaSkys",
+            "TheDesertTrail",
+            "KingOfThePecos",
+            "LawlessRange"
+          ],
+          "maxEntriesPerItem": 1,
+          "ignoreYear": true
+        },
+        {
+          "query": "(subject:(western OR westerns OR cowboy OR cowboys) AND collection:(feature_films OR feature_films_unsorted OR Comedy_Films OR colorized-movies OR TheVideoCellarCollection OR feature_films_picfixer OR opensource_movies OR moviesandfilms)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie OR game_replays OR us_congress) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR CLE-* OR NJY-* OR VHS-0* OR mubd1234ama-*) AND -title:(trailer OR promo OR promos OR teaser OR commercial OR commercials OR credits OR intro OR opening OR bumper OR parody OR spoof OR \"vhs tape\" OR \"vhs fb\" OR \"random tv\" OR \"taped over\" OR review OR reaction OR \"every movie ever\" OR longplay OR mashup) AND -title:(radio OR otr OR \"old time radio\" OR audiobook OR comic OR toy OR hat OR \"theme ride\" OR \"board of supervisors\" OR rally OR remix OR \"bon jovi\" OR \"top gun\" OR \"mega man\" OR psp OR 2013 OR \"fan film\" OR lecture OR cspan OR vinyl OR \"lp\" OR documentary OR \"legends & lies\" OR dublado OR latino OR \"deputy dawg\" OR \"vhs fb\") AND -identifier:(MistressDidi* OR cspan* OR CSPAN* OR scatvca-* OR ltv8ca-* OR bliptv-* OR Lbines-*) AND -subject:(documentary OR \"silent film\") AND -title:(trailer OR \"double feature\" OR rifftrax OR mst3k OR collection OR italiano OR spaghetti OR django OR \"for a few dollars\" OR \"fistful\" OR sartana OR trinity OR virgins OR nudie)",
+          "ignoreYear": true,
+          "maxEntries": 70,
+          "maxEntriesPerItem": 2
+        }
+      ]
+    },
+    {
       "number": 20,
       "name": "Chuckles",
       "logo": "Logos/4x3/chuckles.png",
@@ -2085,6 +2163,123 @@
           "ignoreYear": true,
           "maxEntries": 40,
           "maxEntriesPerItem": 5
+        }
+      ]
+    },
+    {
+      "number": 37,
+      "name": "Uncanny",
+      "logo": "Logos/4x3/uncanny.png",
+      "genre": "News & Docs",
+      "sources": [
+        {
+          "identifiers": [
+            "In-Search-Of-complete-series",
+            "insearchofancientastronautsreel1",
+            "insearchofancientastronautsreel2",
+            "InSearchOf...TheCastleOfSecretselCastilloDeCoral"
+          ],
+          "maxEntriesPerItem": 10,
+          "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "InSearchOf16mm"
+          ],
+          "maxEntriesPerItem": 6,
+          "ignoreYear": true
+        },
+        {
+          "query": "(identifier:(Sightings_* OR sightings-* OR Encounters_FOX_* OR encounters-0* OR Alien_Autopsy_Fact_or_Fiction_FOX_WOC_1995 OR 1998.04.17-kttv-beyond-belief-fact-or-fict OR 1992-beyond-belief-explorations-in-the-par OR encounters-with-the-unexplained-2001)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie OR game_replays OR us_congress) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR CLE-* OR NJY-* OR VHS-0* OR mubd1234ama-*) AND -title:(trailer OR promo OR promos OR teaser OR commercial OR commercials OR credits OR intro OR opening OR bumper OR parody OR spoof OR \"vhs tape\" OR \"vhs fb\" OR \"random tv\" OR \"taped over\" OR review OR reaction OR \"every movie ever\" OR longplay OR mashup) AND -title:(elephants OR cake OR \"bird sightings\" OR wildlife)",
+          "ignoreYear": true,
+          "maxEntries": 60,
+          "maxEntriesPerItem": 4
+        },
+        {
+          "identifiers": [
+            "arthur.-c.-clarke.-mysterious.-world",
+            "arthur-c-clarkes-mysterious-universe-complete-series-1994",
+            "Arthur_C_Clarke_World_Of_Strange_Powers_Discovery_WOC_1994-11",
+            "Arthur_C_Clarke_Mysterious_Universe_Secrets_Of_The_Pyramids_Discovery_Channel_WO",
+            "Arthur_C_Clarke_Mysterious_Universe_Are_Aliens_Contacting_Us_Discovery_Channel_W",
+            "Arthur_C_Clarke_Mysterious_Universe_Curses_And_Omens_Discoverly_Channel_1994",
+            "Mysterious_Universe_Aliens_Discovery_Channel_WOC_1995-03-18",
+            "Arthur_Clarke_Mysterious_Universe_Mysteries_Of_The_Sea_Discovery_Channel_WOC_199",
+            "Arthur_Clarke_Mysterious_Universe_Into_Thin_Air_Discovery_Channel_WOC_Incomplete"
+          ],
+          "maxEntriesPerItem": 6,
+          "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "ufo-files-hr-1",
+            "ufo-files-hr-2",
+            "history-channel-ufo-files-hangar-18-the-ufo-warehouse",
+            "ufo-files-alien-encounters_202312",
+            "ufo-files-coverup-1996",
+            "UFOUntoldStoriesContinue",
+            "2023-01-17-22-17-10",
+            "UfoTheNicapStory",
+            "hudson-valley-ufos",
+            "ufo-cover-up-live-1988",
+            "waltdisneyufodocumentaryalienencountersfromthenewtomorrowland1995",
+            "ChariotsOfTheGods_201808",
+            "chariots-of-the-gods-qtq-9-18-11-96",
+            "TheRoswellUFOCrashBBCDocumentaryProof",
+            "roswell-and-the-alien-autopsy-story",
+            "ufo-diaries-first-encounters",
+            "unsolved-mysteries-ufos",
+            "sightings-the-ufo-report"
+          ],
+          "maxEntriesPerItem": 3,
+          "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "TheLegendOfBigfoot",
+            "the-mysterious-monsters",
+            "MysteriousMonstersBigfoot",
+            "CompletePatterson-gimlinBigfootFilm",
+            "s-1-04-destination-truth-bigfoot-and-nahuelito",
+            "caseofthebermudatrianglereel1",
+            "the-legend-of-the-bermuda-triangle",
+            "themysteryofstonehenge",
+            "EasterIslandMysteriesOfALostWorldCompleteSeries",
+            "The_Unexplained_Mystery_Of_The_Crystal_Skulls_AE_WOC_1998-05",
+            "the-mothman-encounters-1966-1967"
+          ],
+          "maxEntriesPerItem": 3,
+          "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "meet-the-ghost-hunters-1975",
+            "ghost-hunters-1996",
+            "haunted-history_history_channel",
+            "sightings-ghosts",
+            "unsolved-mysteries-ghosts",
+            "mysteries-of-the-unexplained-strange-beings-ufos",
+            "mysteries-of-the-unexplained-powers-of-the-paranormal",
+            "mysteries-of-the-unexplained-sacred-places-mystic-spirits",
+            "mysteries-of-the-unknown-psychic-powers-1988",
+            "GhostAdventuresSeason17Episode1TravelChannelFullEpisodes",
+            "s-01-e-03-unsolved-mysteries-halloween"
+          ],
+          "maxEntriesPerItem": 2,
+          "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "ancientalienscollection"
+          ],
+          "maxEntriesPerItem": 4,
+          "ignoreYear": true
+        },
+        {
+          "query": "((title:(\"you asked for it\") AND collection:(classic_tv OR classic_tv_1950s OR television OR television_inbox OR opensource_movies)) OR identifier:(Ripleys_Believe_it_or_Not_Odditorium_1988)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie OR game_replays OR us_congress) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR CLE-* OR NJY-* OR VHS-0* OR mubd1234ama-*) AND -title:(trailer OR promo OR promos OR teaser OR commercial OR commercials OR credits OR intro OR opening OR bumper OR parody OR spoof OR \"vhs tape\" OR \"vhs fb\" OR \"random tv\" OR \"taped over\" OR review OR reaction OR \"every movie ever\" OR longplay OR mashup) AND -title:(christmas OR molasses OR sermon OR connolly OR again OR \"the naz\" OR gamer OR muni) AND -identifier:(wolcott* OR PA6* OR billy-connolly* OR gamer-* OR screen-recording-*)",
+          "ignoreYear": true,
+          "maxEntries": 25,
+          "maxEntriesPerItem": 2
         }
       ]
     },
@@ -2864,6 +3059,224 @@
           "ignoreYear": true,
           "maxEntries": 30,
           "maxEntriesPerItem": 6
+        }
+      ]
+    },
+    {
+      "number": 65,
+      "name": "Tinsel",
+      "logo": "Logos/4x3/tinsel.png",
+      "genre": "TV",
+      "sources": [
+        {
+          "identifiers": [
+            "HowTheGrinchStoleChristmas_201812",
+            "RudolphTheRedNosedReindeer1964_201812",
+            "RudolphTheRed-nosedReindeer1948",
+            "JackFrost_",
+            "the-year-without-a-santa-claus-1974_202203",
+            "you-cut-20231030-080602598",
+            "twas-the-night-before-christmas-1974-full-movie-freedownloadvideo.net",
+            "MickeysChristmasCarol1983_201511",
+            "1969-frosty-the-snowman-christmas-movies-for-kids-animated-cartoons-for-children",
+            "frosty-returns",
+            "RudolphAndFrostysChristmasInJuly1979",
+            "mister-magoos-christmas-carol-1962",
+            "JackFrost1979",
+            "the-little-drummer-boy-1993-vhs",
+            "the-little-drummer-boy-book-ii-1976-1080p-hd",
+            "the-stingiest-man-in-town-1978-rankinbass",
+            "santa-claus-is-comin-to-town-1970-2023-restoration",
+            "1977-nestor-the-long-eared-christmas-donkey",
+            "the-life-and-adventures-of-santa-claus",
+            "thefirstchristmas",
+            "a-garfield-christmas-1987",
+            "TheSmurfsChristmasSpecialTisTheSeasonToBeSmurfy1982",
+            "alvin-and-the-chipmunks-christmas-special",
+            "pee-wees-playhouse-christmas-special",
+            "mr.-willowbys-christmas-tree-muppets-special",
+            "TheLittleRascalsChristmasSpecial1979",
+            "1979.11.27-merrie-melodies-bugs-bunnys-christmas-carol",
+            "tom-and-jerry-s-1940e-03-night-before-christmas_202203",
+            "HeManAndSheRaChristmasSpecial1985",
+            "AChristmasCarol1969AnimatedHQCompleteMovieYouTube",
+            "dmotionTheBerenstainBearsChristmasTree1979X2brj2h",
+            "moleandthechristmastree",
+            "claymationchristmas480p",
+            "the_snow_queen_1959_animation",
+            "a_christmas_tree_1959_russian_animation",
+            "santa_claus_punch_and_judy",
+            "20211206_20211206_0249",
+            "adisneychristmasgift1982vhsripfsengquincymkt",
+            "santa-and-the-three-bears-1970-christmas-cartoon",
+            "TheChristmasCarolastoldbyVincentPrice",
+            "StudioOne-TheNativity",
+            "AmahlNightVisitors12241951",
+            "the-waltons-christmas-movie-the-homecoming-ty-for-sharing-morris-pattison-this-is-a-classic"
+          ],
+          "maxEntriesPerItem": 1,
+          "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "Scrooge_1935",
+            "AChristmasCarolScrooge1951_201602",
+            "AChristmasCarol1910",
+            "ScroogeOrMarleysGhost1901",
+            "TheNightBeforeChristmas_235",
+            "The_Christmas_Angel",
+            "silent-santa-claus",
+            "MiracleOn34thStreet1947_201611",
+            "TheMiracleOn34thStreet",
+            "its-a-wonderful-life-1946_202108",
+            "ChristmasInConnecticut1945_201811",
+            "holiday_inn",
+            "BabesInToylandBW",
+            "bishops-wife-1947",
+            "Www.VDBEYONDTOMORROW1940",
+            "TheHollyAndTheIvy1952",
+            "the-shop-around-the-corner-1940-ernst-lubitsch",
+            "remember-the-night-1940",
+            "chtr87744",
+            "TheManWhoCameToDinner.1942.BetteDavisX264",
+            "SantaClausversusTheDevil",
+            "y-2-mate.is-santa-claus-conquers-the-martians-1964-adventure-comedy-sci-fi-chris",
+            "MagicChristmasTree1964",
+            "a-christmas-carol-84",
+            "AChristmasWithoutSnow",
+            "an-american-christmas-carol-1979",
+            "JoeSantaClaus",
+            "lassie-a-christmas-story-1959-film-noir-christmas-special",
+            "carol-for-another-christmas-1964",
+            "the-man-in-the-santa-claus-suit-1979-christmas-fred-astaire",
+            "the-night-they-saved-christmas",
+            "5552442"
+          ],
+          "maxEntriesPerItem": 1,
+          "ignoreYear": true
+        },
+        {
+          "query": "(title:(christmas OR xmas OR \"santa claus\") AND collection:(classic_tv OR classic_tv_1950s OR classic_tv_1960s OR classic_tv_1970s OR classic_tv_1980s OR vhstvshows OR televisionmovies OR television_inbox)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie OR game_replays OR us_congress) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR CLE-* OR NJY-* OR VHS-0* OR mubd1234ama-*) AND -title:(trailer OR promo OR promos OR teaser OR commercial OR commercials OR credits OR intro OR opening OR bumper OR parody OR spoof OR \"vhs tape\" OR \"vhs fb\" OR \"random tv\" OR \"taped over\" OR review OR reaction OR \"every movie ever\" OR longplay OR mashup) AND -collection:classic_tv_commercials AND -title:(uncut OR series OR season OR \"dvd transfer\" OR \"vhs tape\" OR \"blank vhs\" OR beta OR \"adult swim\" OR \"[as]\" OR \"spirit of christmas\" OR \"south park\" OR simpsons OR \"ion\" OR \"tv movie\" OR 2005 OR 2009 OR 2011 OR 2019 OR \"jeff dunham\" OR \"beauty & the beast\") AND -identifier:(adult-swim* OR the-spirit-of-christmas* OR dvd-transfer* OR vhs-tape-* OR RIXmas* OR christmas.-carol.-2022* OR jeff-dunhams-* OR The_Office_Christmas* OR do-us-part-* OR BBCChristmasVT*)",
+          "ignoreYear": true,
+          "maxEntries": 60,
+          "maxEntriesPerItem": 1
+        },
+        {
+          "identifiers": [
+            "80s-christmas-specials-with-commercials",
+            "80s-christmas-specials-with-commercials-2",
+            "80s-christmas-specials-with-commercials-3",
+            "a-nostalgic-christmas-commercials-special",
+            "yt-PL059E38785A0BB5F6",
+            "RetroChristmasToyCommercials",
+            "christmas-collection-made-with-clipchamp",
+            "1987Commercials2",
+            "Commercials36",
+            "TheVistaGroup-Mid90sDisneyChannelChristmasSeasonCommercials",
+            "AtariCommercials1983WPIX",
+            "capture-a-4592",
+            "toys-r-us-time-of-year-1976-christmas-commercial",
+            "JohnWayne-Vintage50sXmasSealsCommercial1955",
+            "LuckyStrike2DorothyCollins",
+            "holly-jolly-2000s-christmas-commercials-nostalgia-1080p-60"
+          ],
+          "maxEntriesPerItem": 3,
+          "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "ChristmasYuleLog",
+            "Metro_Cable_Yule_Log_2017",
+            "mrtvvt-Vermont_Yule_Log_With_Christmas_Music_-_Mad_River_Valley_TV",
+            "Disneys_Sing-Along-Songs_Very_Merry_Christmas_Songs_1994_VHSRip",
+            "disneys-sing-along-songs-the-twelve-days-of-christmas-1993",
+            "Christmas_Music_Videos",
+            "rarechristmasmusicvids",
+            "christmas-classics-sing-along",
+            "christmas-classics-a-family-sing-a-long-1991-vhs",
+            "YourHitParade-ChristmasEveShow1955",
+            "thePerryComoShow-24december1952",
+            "TheLiberaceShow-1954ChristmasEpisode",
+            "john-denvers-the-christmas-gift-1986-christmas-family-country-life",
+            "KennyAndDollyAChristmasToRemember1998FoxFamilyBroadcast"
+          ],
+          "maxEntriesPerItem": 2,
+          "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "its-the-great-pumpkin-charlie-brown_202310",
+            "Mad.Monster.Party.1969",
+            "garfieldshalloweenadventure_201911",
+            "1978-witchs-night-out-a-halloween-cartoon-movie",
+            "the-halloween-tree_202210",
+            "the-legend-of-sleepy-hollow-1949",
+            "the-legend-of-sleepy-hollow-1979",
+            "vts-01-1_20210925",
+            "Beverly_Hillbillies_Ep06_Trick_Or_Treat",
+            "OZZIE_AND_HARRIET_ep_Halloween_Party",
+            "BettyBoopHalloweenParty1933",
+            "tom-and-jerry-halloween-special",
+            "witcheroo-vhs",
+            "boo-busters-vhs",
+            "trick-or-treat-1952-restored",
+            "halloween-cartoons-1985",
+            "HeadlessHorseman",
+            "halloween-90s-sitcom-block",
+            "videoplayback2_20191129",
+            "halloween-1995-toys-r-us-commercial",
+            "the-magic-school-bus-halloween-VHS"
+          ],
+          "maxEntriesPerItem": 2,
+          "ignoreYear": true
+        },
+        {
+          "query": "(title:(halloween OR thanksgiving OR \"new year's\" OR \"new years\" OR \"4th of july\" OR \"fourth of july\" OR easter OR \"valentine's\" OR \"valentines day\" OR \"trick or treat\" OR \"turkey day\") AND collection:(classic_tv OR classic_tv_1950s OR classic_tv_1960s OR classic_tv_1970s OR classic_tv_1980s OR vhstvshows OR televisionmovies OR television_inbox)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie OR game_replays OR us_congress) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR CLE-* OR NJY-* OR VHS-0* OR mubd1234ama-*) AND -title:(trailer OR promo OR promos OR teaser OR commercial OR commercials OR credits OR intro OR opening OR bumper OR parody OR spoof OR \"vhs tape\" OR \"vhs fb\" OR \"random tv\" OR \"taped over\" OR review OR reaction OR \"every movie ever\" OR longplay OR mashup) AND -collection:classic_tv_commercials AND -title:(uncut OR series OR season OR \"dvd transfer\" OR \"vhs tape\" OR \"blank vhs\" OR beta OR michael OR myers OR \"rob zombie\" OR elvira OR howard OR \"love finds\" OR greek OR svenskt OR nhk OR knockouts OR garbagepail OR \"high school\" OR rosie OR \"halloween of horror\" OR \"tales from the darkside\" OR mixtape OR mixx OR 2009 OR 2011 OR 2012 OR 2013 OR 2014 OR 2016) AND -identifier:(valentine-2008-09 OR nhk* OR ko-gail* OR howard-tvod* OR talez-* OR do-us-part-* OR kcal-* OR 1983-12-31-new-years-evil* OR miley-* OR tv1-* OR ta-3-* OR my-movie-* OR Ancient_Mysteries_*)",
+          "ignoreYear": true,
+          "maxEntries": 45,
+          "maxEntriesPerItem": 1
+        },
+        {
+          "identifiers": [
+            "charlie-brown-thanksgiving_202111",
+            "the-mayflower-voyagers-1988-1080p-blu-ray-x-265-10bit-tigole",
+            "Beverly_Hillbillies_Ep46_Turkey_Day",
+            "B.C._The_First_Thanksgiving_1973",
+            "a-winnie-the-pooh-thanksgiving-special",
+            "macysthanksgivingdayparade1988withcommercialsvhs_201912",
+            "macysthanksgivingdayparade1989full",
+            "macysthanksgivingdayparade1997full",
+            "macysthanksgivingdayparade1981reuploadwithcommericals",
+            "videoplayback7_20191226",
+            "macysthanksgivingdayparade2000",
+            "0852_Pilgrims_The",
+            "dancin-on-air-thanksgiving-special-full-episode-from-11-25-1982"
+          ],
+          "maxEntriesPerItem": 2,
+          "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "GuyLombardo1957-1958TV",
+            "DinahShoreNewYearsEve1961",
+            "YourHitParade1955NewYearsEveEpisodeclassicTvPopMusic",
+            "Jack_Benny_New_Years_Eve",
+            "1982.12.31_MTV_New_Years_Eve_Rock_n_Roll_Ball_December_31st_1982-1983",
+            "yankeedoodlecricket",
+            "YankeeDoodleDaffy1943",
+            "Walt_Disney_World_4th_of_July_1990_1991",
+            "libertys-kids-est-1776-full-animated-series",
+            "1776_20170302",
+            "walt-disneys-johnny-tremain-1997-vhs",
+            "1776OrTheHessianRenegades",
+            "here_comes_peter_cottontail_1971",
+            "the-easter-bunny-is-comin-to-town-1977",
+            "easter-parade-1948",
+            "mickeys-happy-valentine-special-1989",
+            "ID3245CC"
+          ],
+          "maxEntriesPerItem": 3,
+          "ignoreYear": true
         }
       ]
     }
