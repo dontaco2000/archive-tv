@@ -82,8 +82,12 @@ bool Function(Entry) poolFilter(Channel c, ChannelConfig config) {
   final minS = _minSeconds(c);
   final caps = [for (final s in c.sources) s.maxSeconds];
   final maxS = caps.isEmpty || caps.contains(null) ? 6 * 3600 : caps.cast<int>().reduce((a, b) => a > b ? a : b);
-  return (e) => !config.excludeIdentifiers.contains(e.itemId) && e.durationSeconds >= minS && e.durationSeconds <= maxS;
+  return (e) => !_excluded(config, e) && e.durationSeconds >= minS && e.durationSeconds <= maxS;
 }
+
+/// An excludeIdentifiers entry is an item id, or an entry id (`item/file`) to drop one file of a good item.
+bool _excluded(ChannelConfig config, Entry e) =>
+    config.excludeIdentifiers.contains(e.itemId) || config.excludeIdentifiers.contains(e.id);
 
 /// [pool] cut by [poolFilter]; [pool] itself when nothing is dropped.
 List<Entry> refilterPool(Channel c, ChannelConfig config, List<Entry> pool) {
@@ -166,7 +170,7 @@ Future<List<Entry>> _collect(
                 maxSeconds: maxS == null ? 6 * 3600 : maxS.toDouble());
       }
       for (final e in picks) {
-        byId.putIfAbsent(e.id, () => e);
+        if (!_excluded(config, e)) byId.putIfAbsent(e.id, () => e);
       }
     } on ArchiveException catch (e) {
       log?.call('skip $id: $e'); // one bad item must not sink the channel

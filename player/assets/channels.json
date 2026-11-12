@@ -325,7 +325,33 @@
     "soul-train-season-9-episode-24-captain-and-tennille-the-ritchie-family",
     "videosoulfeb92",
     "videosoulnov1990",
-    "videosoulsept1992"
+    "videosoulsept1992",
+    "mawaali-1983-hindi.-ntsc.-dv-drip.-480p.-x-264.-aac.-5.1.-esubs.-chapters.-by.juleyano",
+    "gonin-1995-720p-no-eng-sub",
+    "burst-city-no-eng-sub",
+    "martyrs-english-dubbed",
+    "brutal-storm-vahset-kasirgasi-1985",
+    "dont-stop-my-crazy-love-for-you-1993",
+    "men-behind-the-sun-1988-hd-english-dubbed",
+    "dr-lamb",
+    "female-executioner-lex-ecutrice-1986",
+    "marquis-1989-english-subtitles",
+    "samaria_202103",
+    "fudoh-the-new-generation",
+    "dead-or-alive-1999",
+    "964-pinocchio-full-english-subtitles",
+    "aufonddesbois",
+    "beyblademetalfusionepisode49fiercebattlelionvsdragonenglishdubbedhqfull_201912",
+    "golgo13_2008",
+    "superwhy-s1-cantonese",
+    "pwms-en",
+    "mamas-family-Lando18/Mama's Family - S03E15 (Porn Aain).mp4",
+    "CabelasGettingStartedFlyFishing2DVDs/UNTITLED.mp4",
+    "CabelasGettingStartedFlyFishing2DVDs/UNTITLED1.mp4",
+    "CabelasGettingStartedFlyFishing2DVDs/UNTITLED3.mp4",
+    "the-jerry-springer-show-various-episodes/Season 07/The Jerry Springer Show S07E56 - Stripper.Wars.WEBRip.Nosey.AAC2.0.H.264-TrumpSux.mp4",
+    "the-jerry-springer-show-various-episodes/Season 23/The Jerry Springer Show - S23E96 - Stripper All-Stars.mp4",
+    "the-jerry-springer-show-various-episodes-pt-2/I'm Hiding A Sexy Secret.mp4"
   ],
   "channels": [
     {
@@ -654,6 +680,94 @@
       "logo": "Logos/4x3/playroom.png",
       "genre": "Kids & Animation",
       "sources": [
+        {
+          "identifiers": [
+            "24-s-1-lost-thing"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 22,
+          "claim": true
+        },
+        {
+          "identifiers": [
+            "Little_Bear"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 22,
+          "claim": true
+        },
+        {
+          "identifiers": [
+            "blues-clues-s-03-e-59-blues-big-musical-movie"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 20,
+          "claim": true
+        },
+        {
+          "identifiers": [
+            "blues-clues-vhs-collection"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 8,
+          "claim": true
+        },
+        {
+          "identifiers": [
+            "little-bear-4x-11-the-little-bear-movie"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 20,
+          "claim": true
+        },
+        {
+          "identifiers": [
+            "maurice-sendaks-little-bear"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 22,
+          "claim": true
+        },
+        {
+          "identifiers": [
+            "pingu-uk-vhs-and-dvd-collection"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 48,
+          "claim": true
+        },
+        {
+          "identifiers": [
+            "the-little-bear-movie-2001"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 22,
+          "claim": true
+        },
+        {
+          "identifiers": [
+            "01b.-elmos-world-2000-sesame-workshop-print"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 10,
+          "claim": true
+        },
+        {
+          "identifiers": [
+            "Pingu_Season_1to6"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 99,
+          "claim": true
+        },
+        {
+          "identifiers": [
+            "pingu-the-complete-original-series-1990-2000"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 91,
+          "claim": true
+        },
         {
           "query": "(subject:(\"children's television\" OR \"kids tv\" OR preschool) OR title:(pingu OR \"little bear\" OR \"blue's clues\" OR \"bear in the big blue house\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR spanish OR jpn OR japanese OR chi OR chinese OR zho OR pol OR polish OR fre OR french OR fra OR ger OR german OR deu OR ita OR italian OR por OR portuguese OR rus OR russian OR kor OR korean OR hin OR hindi OR ara OR arabic OR tur OR vie OR ind OR tha OR hmn) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -title:(cantonese OR mandarin)"
         }
@@ -1035,6 +1149,46 @@
       "logo": "Logos/4x3/haunt.png",
       "genre": "Movies",
       "sources": [
+        {
+          "identifiers": [
+            "freddys-nightmares-complete-tv-series"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 11,
+          "claim": true
+        },
+        {
+          "identifiers": [
+            "s-01-e-01-1.-incident-on-and-off-a-mountain-road"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 9,
+          "claim": true
+        },
+        {
+          "identifiers": [
+            "the-new-alfred-hitchcock-presents-complete"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 20,
+          "claim": true
+        },
+        {
+          "identifiers": [
+            "the-scariest-places-on-earth-collection"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 12,
+          "claim": true
+        },
+        {
+          "identifiers": [
+            "hammer-house-of-horror-the-complete-series-1980"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 10,
+          "claim": true
+        },
         {
           "query": "(subject:horror AND collection:(moviesandfilms OR vhsvault OR feature_films OR opensource_movies OR television) AND -collection:movie_trailers AND -subject:(anime OR ova)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR spanish OR jpn OR japanese OR chi OR chinese OR zho OR pol OR polish OR fre OR french OR fra OR ger OR german OR deu OR ita OR italian OR por OR portuguese OR rus OR russian OR kor OR korean OR hin OR hindi OR ara OR arabic OR tur OR vie OR ind OR tha OR hmn) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -title:(nekromantik OR \"guinea pig\" OR \"sadi-scream\" OR \"flowers of flesh\" OR \"hot love\" OR \"jane eyre\" OR subtitulada) AND -identifier:(\"japanese-horrors-my-all-time-favorites\" OR \"20240304_20240304_0522\" OR \"melancholie_der_engel\") AND -subject:(concert OR \"live music\") AND -title:(snuff OR \"behind the sun\" OR \"winnie the pooh\")"
         }
@@ -1742,6 +1896,38 @@
       ],
       "sources": [
         {
+          "identifiers": [
+            "20230323_20230323_1949"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 174,
+          "claim": true
+        },
+        {
+          "identifiers": [
+            "pilot-eps-from-youtuber-the-viewing-room"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 131,
+          "claim": true
+        },
+        {
+          "identifiers": [
+            "familymatters_202507"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 176,
+          "claim": true
+        },
+        {
+          "identifiers": [
+            "the-golden-girls-complete-480p-x264"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 153,
+          "claim": true
+        },
+        {
           "query": "(subject:(sitcom OR sitcoms) OR title:(\"malcolm in the middle\" OR newsradio)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR spanish OR jpn OR japanese OR chi OR chinese OR zho OR pol OR polish OR fre OR french OR fra OR ger OR german OR deu OR ita OR italian OR por OR portuguese OR rus OR russian OR kor OR korean OR hin OR hindi OR ara OR arabic OR tur OR vie OR ind OR tha OR hmn) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -subject:(argentina OR \"en español\" OR latino) AND -title:(\"casados con hijos\" OR \"vhs tape\")"
         }
       ]
@@ -1752,6 +1938,86 @@
       "logo": "Logos/4x3/winners.png",
       "genre": "TV",
       "sources": [
+        {
+          "identifiers": [
+            "003-1986-05-16"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 15,
+          "claim": true
+        },
+        {
+          "identifiers": [
+            "cardsharks1986-bmp"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 34,
+          "claim": true
+        },
+        {
+          "identifiers": [
+            "family-game-night-restoration"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 16,
+          "claim": true
+        },
+        {
+          "identifiers": [
+            "figure-it-out-complete-series-proper"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 31,
+          "claim": true
+        },
+        {
+          "identifiers": [
+            "match-game-1990-abc-revival"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 33,
+          "claim": true
+        },
+        {
+          "identifiers": [
+            "pressyourluck-bmp"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 34,
+          "claim": true
+        },
+        {
+          "identifiers": [
+            "HollyWood-Squares-Tom-Bergeron-Woopi-Goldburg-Gilbert-Gottfried"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 40,
+          "claim": true
+        },
+        {
+          "identifiers": [
+            "httpsarchive.orgdetailshole_in_the_wall_u.s._202511"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 34,
+          "claim": true
+        },
+        {
+          "identifiers": [
+            "1vs-100-e-2"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 35,
+          "claim": true
+        },
+        {
+          "identifiers": [
+            "season-14-1996-1997"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 30,
+          "claim": true
+        },
         {
           "query": "(subject:(\"game show\" OR \"game shows\") AND -title:(\"this or that\") AND -identifier:(TT* OR T-T*)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -collection:(link-tv-archive OR dvdtray OR vhstvshows) AND -title:(\"dvd transfer\" OR \"commercial collection\" OR \"juego interactivo\") AND -language:(spa OR spanish OR pol OR fre OR ger OR ita OR por OR rus) AND -title:(\"dvd game\" OR \"interactive dvd\" OR \"vhs #\") AND -identifier:(\"017395\" OR \"012145\") AND -collection:(videogameprev OR gamevideos)",
           "maxEntriesPerItem": 150
@@ -1782,6 +2048,14 @@
       "logo": "Logos/4x3/headliner.png",
       "genre": "TV",
       "sources": [
+        {
+          "identifiers": [
+            "robin-williams-stand-up-comedy-special-full-show-robin-williams-comedian-ever-hd-1080p"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 11,
+          "claim": true
+        },
         {
           "query": "(subject:(\"stand-up comedy\" OR \"stand up comedy\" OR \"standup comedy\" OR \"stand-up comedian\" OR \"stand up comedian\") AND -collection:tvnews AND -title:(newscast OR \"jeff foxworthy show\" OR quran OR \"dr. sex\" OR workaholics OR \"stewart lee\" OR \"whose line\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR spanish OR jpn OR japanese OR chi OR chinese OR zho OR pol OR polish OR fre OR french OR fra OR ger OR german OR deu OR ita OR italian OR por OR portuguese OR rus OR russian OR kor OR korean OR hin OR hindi OR ara OR arabic OR tur OR vie OR ind OR tha OR hmn) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -title:(thomas OR \"music video\" OR whatzupwitu OR \"livin la vida\" OR bratz OR \"exposed to porn\" OR \"full film\" OR \"speaking french\" OR \"spring break\" OR promo OR \"jamel comedy\") AND -identifier:(\"esd-explained-demonstrated-history-of-the-pink-polyethylene-\" OR \"the-distinguished-gentleman-full-film-eddie-murphy-1992\" OR \"harbin-hot-springs-reading-071603\" OR \"avseq-10_202111\") AND -title:(trailer OR commercials OR \"theme song\" OR flipnote OR rapido) AND -identifier:(\"some-prefer-cake\")"
         },
@@ -1916,6 +2190,14 @@
       ],
       "sources": [
         {
+          "identifiers": [
+            "in-the-heat-of-the-night-1988-1985-complete-series"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 84,
+          "claim": true
+        },
+        {
           "query": "(title:(\"dukes of hazzard\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR jpn OR chi OR hin OR kor OR tur) AND -collection:(audio_sermons OR audio_religion OR sermonindex) AND -subject:(sermon OR tbn OR worship OR \"praise the lord\") AND -collection:(tvnews OR tvarchive OR mirrortube OR social-media-video OR fringe OR deemphasize OR community_media OR movie_trailers OR funnyordie OR roosterteetharchive OR podcasts OR bliptv OR vlogs OR gamevideos OR videogameprev) AND -identifier:(youtube-* OR yt_* OR g4tv.com-* OR acidplanet-* OR soundcloud-* OR nratv_*) AND -title:(promo OR trailer OR bloopers OR intro OR credits OR logos OR teaser OR preview OR parody OR spoof OR \"funny or die\" OR \"vhs #\" OR \"tape #\" OR \"dvd+r\" OR \"market box\" OR commercial OR commercials OR psp OR playstation OR xbox OR nintendo OR wii OR \"video game\" OR gameplay OR longplay OR \"let's play\" OR walkthrough OR playthrough OR apk OR gta OR unboxing OR review OR reacts OR podcast OR nightmare OR hindi OR \"dual audio\") AND -title:(clip OR clips OR continuity OR \"final 7 minutes\" OR kelo OR kdlt OR ksfy OR \"cartoon network\" OR \"funniest home videos\" OR reunion OR anniversary OR \"fight scene\" OR avengers OR \"how to train\" OR \"cmt recording\" OR karaoke OR multishow) AND -title:(complete OR seasons OR \"season 1-7\" OR woc OR xmas OR \"hd-dvd\" OR \"two-movie\" OR \"2005 vhs\" OR \"full show\" OR stunt) AND -collection:dvdtray",
           "ignoreYear": true
         },
@@ -1975,6 +2257,22 @@
       "genre": "TV",
       "sources": [
         {
+          "identifiers": [
+            "atk-season-eight-dvd"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 60,
+          "claim": true
+        },
+        {
+          "identifiers": [
+            "minced-pork-yan-can-cook-kqed-480p-30fps-h-264-128kbit-aac"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 39,
+          "claim": true
+        },
+        {
           "query": "(subject:cooking AND -title:(tampopo OR \"pie in the sky\" OR cbeebies OR promos OR trailer)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -subject:(sitcom OR cbeebies OR popeye) AND -title:(vostfr OR cbeebies OR \"big cook\" OR roseanne OR popeye OR \"pure pwnage\" OR \"love comes in spurts\" OR \"english marriage\") AND -identifier:(\"whites-tv-series-2010\" OR \"igm70\" OR \"iron-chef-s01-vostfr-1080p-hdlight-x265_\") AND -title:(\"mickey mouse\" OR alcf OR \"home movies\")"
         },
         {
@@ -2000,6 +2298,22 @@
       "logo": "Logos/4x3/lighthouse.png",
       "genre": "TV",
       "sources": [
+        {
+          "identifiers": [
+            "ETERNALSECURITY1WHEREITALLBEGINS_201905"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 4,
+          "claim": true
+        },
+        {
+          "identifiers": [
+            "praisethelordfebruary31993"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1,
+          "claim": true
+        },
         {
           "query": "(title:(\"tbn praise the lord\" OR \"praise the lord archive\" OR \"charles stanley\" OR \"billy graham\" OR \"adventures in odyssey\" OR veggietales OR \"precious memories\" OR \"strolling down memory lane\" OR gaither OR \"jimmy swaggart\" OR \"robert schuller\" OR \"hour of power\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -identifier:(\"all-veggie-tales-credits-1993-2015\") AND -title:(\"rerun show\")",
           "maxEntriesPerItem": 6
@@ -2230,6 +2544,14 @@
       "genre": "News & Docs",
       "sources": [
         {
+          "identifiers": [
+            "the-joy-painting-almost-hd"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 89,
+          "claim": true
+        },
+        {
           "query": "(title:(\"cosmos a personal voyage\" OR \"cosmos: a personal voyage\" OR \"bridging world history\" OR annenberg OR \"joy of painting\" OR \"bob ross\" OR frontline OR nova OR \"american experience\" OR masterpiece) AND -title:(\"a nova onda\" OR \"uma viagem\" OR \"camping cosmos\" OR \"medal of honor\" OR \"nova scotia\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR \"strip show\") AND -collection:(audio_sermons OR audio_religion OR tvnews OR tvarchive) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR tbn OR worship OR bible OR biblical OR ministry OR religious) AND -subject:(anime OR disney OR \"walt disney\") AND -title:(disney OR \"making of a masterpiece\" OR \"masterpiece collection\" OR \"candy candy\" OR \"water margin\" OR osbournes OR \"full vhs tape\" OR nhk OR filetofsoul) AND -identifier:(4964CS OR 239CS OR poohmasterpiece OR g4techtvtape2004) AND -subject:(children OR \"children's television\" OR \"children's programming\" OR kids OR preschool OR \"pbs kids\" OR puppets) AND -title:(barney OR \"pbs kids\" OR \"sesame street\" OR teletubbies OR arthur OR clifford OR \"mister rogers\" OR \"mr rogers\" OR \"mr. rogers\" OR cyberchase OR \"between the lions\" OR \"super why\" OR \"martha speaks\" OR \"sid the science\" OR \"curious george\" OR \"reading rainbow\" OR \"magic school bus\" OR \"comfy couch\" OR \"dragon tales\" OR zoom OR wishbone OR \"ptv park\" OR kids OR \"lamb chop\" OR thomas OR \"dinosaur train\" OR kratts OR zoboomafoo OR \"electric company\" OR \"3-2-1\" OR ghostwriter OR \"bill nye\" OR \"real wheels\" OR \"yule log\" OR elmo OR muppet) AND -title:(commercial OR commercials OR promo OR promos OR bumper OR interstitial OR \"funding credits\" OR \"pledge break\" OR ids OR \"program break\" OR \"this is pbs\")"
         },
         {
@@ -2243,6 +2565,30 @@
       "logo": "Logos/4x3/patrol.png",
       "genre": "News & Docs",
       "sources": [
+        {
+          "identifiers": [
+            "CopsVHSTapes"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 3,
+          "claim": true
+        },
+        {
+          "identifiers": [
+            "cops-s-28-e-22-1080p-amazon-web-dl-dd-2.0-x-264-troll-hd"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 7,
+          "claim": true
+        },
+        {
+          "identifiers": [
+            "cops-too-hot-for-tv-2-s-vhs-transfer"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1,
+          "claim": true
+        },
         {
           "query": "(title:(cops OR \"real stories of the highway patrol\" OR \"police women\" OR \"scariest police chases\" OR \"police chases\" OR \"police pursuits\") AND -collection:tvnews AND -language:(fre OR French OR chi OR jpn OR ger OR spa OR rus OR ita OR por OR ara) AND -title:(\"music moments\" OR \"rock and roll\" OR \"girl 27\" OR \"daniel called\" OR fucked OR \"when cops go bad\" OR brutality OR \"sam hyde\" OR \"timmy throws\" OR contra OR committee OR battlefield OR cartoon OR katt OR sayanim OR kappy OR \"mega drive\" OR \"married with children\" OR \"combat cops\" OR \"officer vi\" OR \"fight scene\" OR \"caught in the middle\" OR \"williamstown\" OR \"fox cops\" OR \"durham cops\" OR \"parker stands\" OR \"stray dog\" OR \"future cops\" OR \"star cops\" OR \"beast cops\" OR \"animal cops\" OR \"a.c.a.b\" OR acab OR keystone OR keaton OR \"karma police\" OR atari OR \"i love cops\" OR \"alexis\" OR \"all cops are\" OR \"kerberos\" OR \"life on mars\" OR \"angel cop\" OR \"tokyo private\" OR \"let's be cops\" OR \"funky cops\" OR \"paris cops\" OR \"no good cops\" OR \"who cops out\" OR \"highway patrol s\" OR \"adam 12\" OR \"the bill\")) AND -title:(\"dvd+r\" OR mtv OR oprah OR \"hard copy\" OR \"entertainment tonight\" OR \"justice probe\" OR \"cops & kids\" OR \"cops and kids\" OR \"cop beat\" OR copbeat OR \"crime tv\" OR trailer OR promo OR commercial OR commercials OR sheehan OR \"funny or die\" OR \"quick look\" OR \"x-play\" OR gameplay OR prototype OR gta OR ps1 OR \"cnn money\" OR \"short film\") AND -collection:(movie_trailers OR loyolamarymountuniversity OR californiarevealed) AND -identifier:(youtube-* OR g4tv.com-* OR gb-2300-*) AND -title:(\"saturday morning\" OR \"cops n boxes\" OR \"walk with cops\" OR \"talking to the cops\" OR \"k 9 cops\" OR \"blind cops\" OR \"class cops\" OR \"gen x\" OR \"ask a favor\" OR \"cops and culture\" OR \"count the cops\" OR \"santa cops\" OR epidurals OR \"funk cops\")",
           "maxEntriesPerItem": 100
@@ -2727,6 +3073,14 @@
       ],
       "sources": [
         {
+          "identifiers": [
+            "topofthepops"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 7,
+          "claim": true
+        },
+        {
           "query": "(title:(\"soul train\" OR \"solid gold\" OR \"dance party usa\" OR \"american bandstand\" OR \"club mtv\" OR \"the grind\" OR \"dance fever\" OR \"top of the pops\" OR \"video soul\" OR \"night tracks\" OR \"friday night videos\" OR shindig OR \"hullabaloo\" OR \"disco\" OR \"dance competition\") AND -collection:tvnews AND -title:(wiggles OR \"home movies\" OR nude OR fucking OR porno OR sensual OR \"bear in the big\" OR cbeebies OR \"bob esponja\" OR \"disco polo\" OR \"roller boogie\" OR skatetown OR \"disco biscuits\" OR \"hypnotic eye\" OR \"disco dancer\" OR zingzillas OR balamory OR \"italo disco\" OR remix OR \"dj panduro\" OR \"dance plus\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR spanish OR jpn OR japanese OR chi OR chinese OR zho OR pol OR polish OR fre OR french OR fra OR ger OR german OR deu OR ita OR italian OR por OR portuguese OR rus OR russian OR kor OR korean OR hin OR hindi OR ara OR arabic OR tur OR vie OR ind OR tha OR hmn) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -collection:dvdkids AND -subject:(\"performance art\" OR \"sesame street\" OR \"elmo's world\" OR meme OR documentary OR kids) AND -title:(elmo OR baby OR shrek OR bloopers OR animalympics OR doki OR israelis OR \"dancing boys\" OR \"dancing outlaw\" OR \"dancing skin\" OR \"dancing bodies\" OR \"dominant damsels\" OR fractasia OR technobase OR hxc OR \"chair dancing\" OR \"dancing to architecture\" OR wrestlemania OR \"tap-dancing\") AND -title:(\"vhs #\" OR hockey OR commercial)",
           "maxEntriesPerItem": 30
         },
@@ -2742,6 +3096,22 @@
       "logo": "Logos/4x3/ringside.png",
       "genre": "Music & Sports",
       "sources": [
+        {
+          "identifiers": [
+            "tna-i-mpact-2008.03.27"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 45,
+          "claim": true
+        },
+        {
+          "identifiers": [
+            "uwf.-1986.06.21-power-pro-wrestling-restored-k-81.x-265"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 88,
+          "claim": true
+        },
         {
           "query": "(title:(wwf OR wwe OR \"world wrestling\" OR wrestlemania OR summerslam OR \"royal rumble\" OR \"survivor series\") AND -title:(divas OR bikini OR interview OR rai OR cyberring OR powerdisk) AND -collection:(tvnews OR videogameprev OR gamevideos)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -title:(photoshoot OR commericals OR commercials OR qvc) AND -title:(swimsuit OR \"pillow fight\" OR lingerie)"
         },
@@ -2929,6 +3299,38 @@
       "logo": "Logos/4x3/holler.png",
       "genre": "Music & Sports",
       "sources": [
+        {
+          "identifiers": [
+            "Mutual.of.Omahas.Wild.Kingdom"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 26,
+          "claim": true
+        },
+        {
+          "identifiers": [
+            "vts-01-1_20231104"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 44,
+          "claim": true
+        },
+        {
+          "identifiers": [
+            "wild-america-stouffer"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 21,
+          "claim": true
+        },
+        {
+          "identifiers": [
+            "ray-mears-collection_202610"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 13,
+          "claim": true
+        },
         {
           "query": "(title:(\"bill dance\" OR \"bass fishing\" OR \"bassmasters\" OR \"jimmy houston\" OR \"hank parker\" OR \"in-fisherman\" OR \"in fisherman\" OR \"babe winkelman\" OR \"fly fishing\" OR \"trout fishing\" OR \"catfishing\" OR \"ice fishing\" OR \"fishing show\" OR \"fishing tips\" OR \"crappie fishing\" OR \"today's sportsman\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR jpn OR chi OR hin OR kor OR tur) AND -collection:(tvnews OR tvarchive OR mirrortube OR social-media-video OR fringe OR deemphasize OR community_media OR movie_trailers OR funnyordie OR podcasts OR bliptv OR vlogs OR gamevideos OR videogameprev) AND -identifier:(youtube-* OR yt_* OR g4tv.com-* OR acidplanet-* OR soundcloud-* OR nratv_*) AND -title:(promo OR trailer OR intro OR teaser OR preview OR parody OR spoof OR \"vhs #\" OR commercial OR commercials OR playstation OR xbox OR gameplay OR walkthrough OR playthrough OR unboxing OR review OR podcast OR nightmare OR hindi) AND -title:(anime OR zombie OR horror OR ghost OR ghosts OR paranormal OR treasure OR witch OR vampire OR \"deer hunter\" OR cabela OR \"rodeo drive\" OR game OR games OR sega OR \"music video\" OR nickelodeon OR \"for kids\" OR \"hard hat harry\" OR cartoon OR disney OR sex OR lemonparty OR ghetto) AND -title:(\"frozen elsa\" OR drupal OR \"industry on parade\" OR \"children in school\" OR \"gib and bip\" OR raleigh OR dandy OR carborundum)",
           "ignoreYear": true,
@@ -3229,6 +3631,54 @@
       ],
       "sources": [
         {
+          "identifiers": [
+            "corner-gas-complete_202507"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 55,
+          "claim": true
+        },
+        {
+          "identifiers": [
+            "due-south-1994-98"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 26,
+          "claim": true
+        },
+        {
+          "identifiers": [
+            "due-south-1994-99"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 27,
+          "claim": true
+        },
+        {
+          "identifiers": [
+            "due-south-s1"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 27,
+          "claim": true
+        },
+        {
+          "identifiers": [
+            "due-south-s2"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 14,
+          "claim": true
+        },
+        {
+          "identifiers": [
+            "reboot-complete-series"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 51,
+          "claim": true
+        },
+        {
           "query": "(subject:(cbc OR ctv OR \"city tv\" OR ytv OR teletoon OR muchmusic OR cfl OR \"global television\") OR title:(\"red green\" OR \"corner gas\" OR \"kids in the hall\" OR sctv OR degrassi OR \"mr. meaty\" OR \"due south\" OR reboot) AND -collection:tvnews AND -title:(\"planet earth\" OR cybersix OR \"bob the builder\" OR romeo OR \"dragon ball\" OR hamtaro OR \"recorded vhs\" OR \"cbc morning\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR spanish OR jpn OR japanese OR chi OR chinese OR zho OR pol OR polish OR fre OR french OR fra OR ger OR german OR deu OR ita OR italian OR por OR portuguese OR rus OR russian OR kor OR korean OR hin OR hindi OR ara OR arabic OR tur OR vie OR ind OR tha OR hmn) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -title:(iklan OR atashin OR \"totally rad\" OR fanvid) AND -identifier:(\"degrassi-the-next-generation-serie-4-5-6\") AND -title:(\"freddys nightmares\" OR \"tales from the crypt\") AND -identifier:(\"wizbitboottest\")"
         }
       ]
@@ -3240,8 +3690,51 @@
       "genre": "International",
       "sources": [
         {
-          "query": "((title:(\"english dub\" OR \"english dubbed\" OR \"eng sub\" OR \"english subtitles\" OR \"hard-coded\" OR hardsub) OR description:(\"english dub\" OR \"english subtitles\")) AND -subject:(anime OR cartoon OR cartoons) AND -title:(gundam OR anpanman OR zorori OR \"sonic x\" OR \"ultimate muscle\" OR lain OR godzilla OR \"maison ikkoku\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -subject:(animated OR \"animated series\" OR kids OR children OR 4kids OR nickelodeon OR \"cartoon network\" OR ova) AND -title:(zim OR \"sgt. frog\" OR \"sgt frog\" OR \"sailor moon\" OR gogoriki OR \"pink panther\" OR fraggle OR golgo OR hellsing OR \"love complex\" OR evangelion OR sonic OR lum OR \"mondes engloutis\" OR \"maitres du temps\" OR mononoke OR nekromantik OR \"visitor q\" OR emanuelle OR \"erotic ghost\" OR horny OR \"foxy lady\" OR colegialas OR \"spaghetti a mezzanotte\" OR \"hungry 4 u\" OR \"the bedroom\" OR \"man behind the sun\") AND -identifier:(\"wiedzmin-witcher-polski-tv\" OR \"Hjernevask_Brainwash_EngSub\") AND -title:(khattab OR \"dragon ball\" OR transformers OR ultraseven OR \"ultra-7\" OR hamtaro OR pingu OR \"el chavo\" OR \"wild texas wind\" OR \"night of the living dead\" OR \"vr.5\" OR \"luna de miel\" OR moglie) AND -identifier:(\"test_20240923_202409\") AND -title:(\"wet and riding\" OR \"mystic knights\" OR \"dragon warrior\")",
+          "identifiers": [
+            "1998-journey.to.the.west-s2"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 12,
+          "claim": true
+        },
+        {
+          "identifiers": [
+            "mahabharat-1988-tv-series"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 13,
+          "claim": true
+        },
+        {
+          "identifiers": [
+            "water_margin_1998_english-subs-jem"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 12,
+          "claim": true
+        },
+        {
+          "identifiers": [
+            "The-Witcher-2002-1080p-Remaster-English"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 11,
+          "claim": true
+        },
+        {
+          "query": "((title:(\"english dub\" OR \"english dubbed\" OR \"eng sub\" OR \"english subtitles\" OR \"hard-coded\" OR hardsub) OR description:(\"english dub\" OR \"english subtitles\")) AND -subject:(anime OR cartoon OR cartoons) AND -title:(gundam OR anpanman OR zorori OR \"sonic x\" OR \"ultimate muscle\" OR lain OR godzilla OR \"maison ikkoku\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -subject:(animated OR \"animated series\" OR kids OR children OR 4kids OR nickelodeon OR \"cartoon network\" OR ova) AND -title:(zim OR \"sgt. frog\" OR \"sgt frog\" OR \"sailor moon\" OR gogoriki OR \"pink panther\" OR fraggle OR golgo OR hellsing OR \"love complex\" OR evangelion OR sonic OR lum OR \"mondes engloutis\" OR \"maitres du temps\" OR mononoke OR nekromantik OR \"visitor q\" OR emanuelle OR \"erotic ghost\" OR horny OR \"foxy lady\" OR colegialas OR \"spaghetti a mezzanotte\" OR \"hungry 4 u\" OR \"the bedroom\" OR \"man behind the sun\") AND -identifier:(\"wiedzmin-witcher-polski-tv\" OR \"Hjernevask_Brainwash_EngSub\") AND -title:(khattab OR \"dragon ball\" OR transformers OR ultraseven OR \"ultra-7\" OR hamtaro OR pingu OR \"el chavo\" OR \"wild texas wind\" OR \"night of the living dead\" OR \"vr.5\" OR \"luna de miel\" OR moglie) AND -identifier:(\"test_20240923_202409\") AND -title:(\"wet and riding\" OR \"mystic knights\" OR \"dragon warrior\") AND -subject:(\"category iii\" OR \"female nudity\" OR nudity OR \"pink film\" OR exploitation OR sexploitation OR erotic OR gore OR \"extreme cinema\") AND -title:(\"no eng sub\" OR \"no english\")",
           "minDownloads": 2000
+        },
+        {
+          "identifiers": [
+            "watermargin",
+            "water_margin_1998_english-subs-jem",
+            "monkey-the-lost-dub-part-1",
+            "monkey-the-lost-dub-part-2",
+            "on-e-s-01-e-1",
+            "the-singing-ringing-tree"
+          ],
+          "ignoreYear": true
         }
       ]
     },
@@ -3251,6 +3744,38 @@
       "logo": "Logos/4x3/gavel.png",
       "genre": "TV",
       "sources": [
+        {
+          "identifiers": [
+            "judge-judy-25th-anniversary"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 41,
+          "claim": true
+        },
+        {
+          "identifiers": [
+            "judge-judy-s-15"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 42,
+          "claim": true
+        },
+        {
+          "identifiers": [
+            "judge-judy-s-8"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 42,
+          "claim": true
+        },
+        {
+          "identifiers": [
+            "judge-judy-14th-season"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 41,
+          "claim": true
+        },
         {
           "query": "(title:(\"judge judy\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR jpn OR chi OR hin OR kor OR tur) AND -collection:(audio_sermons OR audio_religion OR sermonindex) AND -subject:(sermon OR tbn OR worship OR \"praise the lord\") AND -collection:(tvnews OR tvarchive OR mirrortube OR social-media-video OR fringe OR deemphasize OR community_media OR movie_trailers OR funnyordie OR roosterteetharchive OR podcasts OR bliptv OR vlogs OR gamevideos) AND -identifier:(youtube-* OR yt_*) AND -title:(promo OR trailer OR bloopers OR intro OR credits OR logos OR teaser OR preview OR parody OR spoof OR \"funny or die\" OR \"vhs #\" OR \"tape #\" OR \"dvd+r\" OR \"market box\") AND -title:(clip OR clips OR opening OR commercials OR \"closing\" OR snl OR \"warner bros\" OR trump OR obama OR biden OR bernie OR impeachment OR mindblowing OR couric OR roseanne OR \"snark week\" OR \"monkey knife\" OR \"in mars\" OR \"drunk girl\" OR baby OR snow OR larson OR \"cade newton\" OR \"file #\" OR pokemon OR wendy OR \"days of our lives\" OR \"one life\" OR soccer OR gala OR \"5 pm news\" OR \"ten news\" OR neighbours OR tmz OR \"media funhouse\" OR \"it takes two\" OR \"real life\" OR \"throws shade\" OR \"vows to stop\" OR raped OR rape OR murder OR \"jayi\" OR \"beauty queens\" OR \"drug test\" OR promotion OR commercial OR \"al-angry\" OR firebat OR pops) AND -identifier:(00047349-*)",
           "ignoreYear": true
@@ -3308,6 +3833,30 @@
       "genre": "TV",
       "sources": [
         {
+          "identifiers": [
+            "falcon-crest-1981-1990-complete-series"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 195,
+          "claim": true
+        },
+        {
+          "identifiers": [
+            "knots-landing-1979-1993"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 191,
+          "claim": true
+        },
+        {
+          "identifiers": [
+            "peyton-place_202308"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 365,
+          "claim": true
+        },
+        {
           "query": "(title:(\"dark shadows\" OR \"ryan's hope\" OR \"search for tomorrow\" OR \"as the world turns\" OR \"guiding light\" OR \"edge of night\" OR \"secret storm\" OR \"love of life\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR jpn OR chi OR hin OR kor OR tur) AND -collection:(audio_sermons OR audio_religion) AND -subject:(sermon OR tbn OR worship OR \"praise the lord\") AND -collection:(tvnews OR tvarchive OR mirrortube OR social-media-video OR video_blender OR fringe OR deemphasize OR feature_films OR movie_trailers OR anime_miscellaneous OR gamevideos OR vlogs) AND -identifier:(youtube-*) AND -title:(\"vhs #\" OR \"vhs tape\" OR \"blank vhs\" OR \"tape #\" OR \"dvd+r\" OR \"dvd-\" OR \"market box\" OR \"retro tv\" OR promo OR commercials OR trailer OR bloopers OR intro OR credits OR clip OR clips OR teaser OR preview OR kelo OR kdlt OR ksfy OR \"nightly news\" OR dateline OR \"11pm news\" OR nypd) AND -title:(scenes OR sponsor OR sponsorship OR \"ad breaks\" OR \"vintage tv\" OR \"various tv\" OR \"television parts\" OR kron OR nightmare OR lorimar OR \"beta #\" OR legendas OR \"archive - #\" OR \"weakest link\" OR \"price is right\" OR \"dvd game\" OR \"eyewitness news\" OR \"sunday today\" OR \"afl today\" OR wrestling OR boxing) AND -collection:community_media AND -title:(\"house of dark shadows\" OR \"night of dark shadows\" OR \"2004 pilot\" OR \"soap opera digest\" OR tennille OR \"christmas 1998\")",
           "ignoreYear": true
         },
@@ -3339,6 +3888,22 @@
       "logo": "Logos/4x3/chatter.png",
       "genre": "TV",
       "sources": [
+        {
+          "identifiers": [
+            "20240730_20240730_0650"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 64,
+          "claim": true
+        },
+        {
+          "identifiers": [
+            "the-jerry-springer-show-various-episodes"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 37,
+          "claim": true
+        },
         {
           "query": "(title:(\"donahue\" OR \"phil donahue\" OR \"oprah winfrey show\" OR \"the oprah\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR jpn OR chi OR hin OR kor OR tur) AND -collection:(audio_sermons OR audio_religion) AND -subject:(sermon OR tbn OR worship OR \"praise the lord\") AND -collection:(tvnews OR tvarchive OR mirrortube OR social-media-video OR video_blender OR fringe OR deemphasize OR feature_films OR movie_trailers OR anime_miscellaneous OR gamevideos OR vlogs) AND -identifier:(youtube-*) AND -title:(\"vhs #\" OR \"vhs tape\" OR \"blank vhs\" OR \"tape #\" OR \"dvd+r\" OR \"dvd-\" OR \"market box\" OR \"retro tv\" OR promo OR commercials OR trailer OR bloopers OR intro OR credits OR clip OR clips OR teaser OR preview OR kelo OR kdlt OR ksfy OR \"nightly news\" OR dateline OR \"11pm news\" OR nypd) AND -title:(\"richard bey\" OR \"too hot\" OR uncensored OR strip OR stripper OR strippers OR boobs OR breasts OR braless OR naked OR nude OR sex OR sexy OR lesbo OR gangbang OR raped OR yoga OR troy OR willowbrook OR \"at large\" OR documentary OR \"chevy show\" OR \"screen song\" OR \"jack benny\" OR \"wine guide\" OR \"together again\" OR \"rock icons\" OR \"sesame street\" OR afterschool OR \"public access\" OR delvalle OR \"view from\" OR \"shock of the new\" OR bitbbh OR wrestling OR boxing OR pornography OR holocaust OR \"gas chamber\" OR feed) AND -identifier:(*stripper* OR 19??.??.??-*) AND -collection:community_media AND -title:(wics OR \"soul train\")",
           "ignoreYear": true

@@ -92,6 +92,15 @@ void main() {
     expect(api.queries.single, contains('-collection:(adultvhs)'));
   });
 
+  test('an item/file exclude drops just that file, on build and on saved pools', () async {
+    final api = FakeApi({'a': (1990, 30), 'c': (2001, 90)});
+    final cfg = config(minHours: 1, exclude: {'c/c.mp4'});
+    final pool = await buildPool(channel, cfg, api);
+    expect(pool.map((e) => e.itemId), ['a']);
+    final old = [...pool, Entry(id: 'c/c.mp4', itemId: 'c', file: 'c.mp4', title: 'c', durationSeconds: 300, url: 'u')];
+    expect(refilterPool(channel, cfg, old).map((e) => e.id), ['a/a.mp4']);
+  });
+
   test('thin channel widens to the fallback year and rebuilds', () async {
     final api = FakeApi({'new': (1990, 30), 'old': (1970, 120)});
     final pool = await buildPool(channel, config(), api);

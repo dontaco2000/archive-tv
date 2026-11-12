@@ -103,12 +103,14 @@ Future<void> main(List<String> args) async {
       fails.add('${c.number} ${c.name}: seed pool ${(total / 3600).toStringAsFixed(1)} h after filters (< ${config.minContentSeconds ~/ 3600} h)');
     }
     final byItem = <String, double>{};
-    for (final e in served) {
+    final shuffled = served.where((e) => !isRare(c, e)); // perDay entries air N a day, not by pool share
+    final shuffledTotal = shuffled.fold(0.0, (s, e) => s + e.durationSeconds);
+    for (final e in shuffled) {
       byItem[e.itemId] = (byItem[e.itemId] ?? 0) + e.durationSeconds;
     }
     for (final MapEntry(:key, :value) in byItem.entries) {
-      if (c.type == 'archive' && total > 0 && value / total > 0.08) { // weather music is one item by design
-        warns.add('${c.number} ${c.name}: item $key is ${(100 * value / total).toStringAsFixed(1)}% of the pool');
+      if (c.type == 'archive' && shuffledTotal > 0 && value / shuffledTotal > 0.08) { // weather music is one item by design
+        warns.add('${c.number} ${c.name}: item $key is ${(100 * value / shuffledTotal).toStringAsFixed(1)}% of the pool');
       }
     }
     for (final e in served) {
