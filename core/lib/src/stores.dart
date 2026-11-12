@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'models.dart';
+import 'rated.dart';
 import 'scheduler.dart';
 import 'serials.dart';
 
@@ -117,9 +118,14 @@ class SnapshotStore {
   /// [serials] gives the day's serial blocks; they are saved with the day the first time
   /// they are non-empty (also for a day saved before the channel had serials).
   /// [inShuffle] filters the saved order (e.g. drops rare-source entries from a day saved before
-  /// the source got `perDay`); block episodes are not filtered by it.
+  /// the source got `perDay`); block episodes are not filtered by it. [rated] and [window]: R-rated
+  /// dayparting at layout time (see [layoutSerialDay]), so saved days follow the current rated list.
   List<Slot> day(int channel, DateTime day, List<Entry> pool,
-      {Blocklist? blocklist, List<SerialBlock> Function(DateTime day)? serials, bool Function(Entry)? inShuffle}) {
+      {Blocklist? blocklist,
+      List<SerialBlock> Function(DateTime day)? serials,
+      bool Function(Entry)? inShuffle,
+      bool Function(Entry)? rated,
+      RatedWindow? window}) {
     final key = '$channel-${dayKey(day)}';
     final f = _f(channel, day);
     var snap = _days[key];
@@ -163,9 +169,10 @@ class SnapshotStore {
                   });
       }
     }
-    if (blocklist == null) return layoutSerialDay(order, day, blocks);
+    if (blocklist == null) return layoutSerialDay(order, day, blocks, rated: rated, window: window);
     return layoutSerialDay(
-        blocklist.apply(order), day, [for (final b in blocks) b.withEpisodes(blocklist.apply(b.episodes))]);
+        blocklist.apply(order), day, [for (final b in blocks) b.withEpisodes(blocklist.apply(b.episodes))],
+        rated: rated, window: window);
   }
 
   /// Makes sure today and the next [days] - 1 days are saved.

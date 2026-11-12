@@ -40,8 +40,11 @@ class ItemMeta {
   /// `sound` metadata says silent.
   final bool silent;
 
+  /// The `rating` metadata as given ("R", "TV-G", "R;L", sometimes a score), null if none.
+  final String? rating;
+
   const ItemMeta(this.identifier,
-      {this.title, this.mediatype = 'movies', this.files = const [], this.language, this.silent = false});
+      {this.title, this.mediatype = 'movies', this.files = const [], this.language, this.silent = false, this.rating});
 }
 
 /// What the pool builder needs from Archive. Tests use a fake.
@@ -121,6 +124,7 @@ class ArchiveClient implements ArchiveApi {
         _ => null,
       },
       silent: '${meta['sound']}'.toLowerCase().contains('silent'),
+      rating: _firstString(meta['rating']),
       files: [
         for (final f in (json['files'] as List? ?? const []).cast<Map<String, dynamic>>())
           ArchiveFile(

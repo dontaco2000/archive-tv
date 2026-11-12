@@ -1,5 +1,6 @@
 import 'archive_client.dart';
 import 'models.dart';
+import 'rated.dart';
 
 /// Turns an item's file list into playable [Entry]s: one per episode/track,
 /// choosing the small, fast-to-start file for each.
@@ -65,6 +66,7 @@ List<Entry> pickEntries(
           null => null,
         },
         silent: meta.silent,
+        rated: isAdultRating(meta.rating) ? 'R' : null,
       ),
   ];
 }

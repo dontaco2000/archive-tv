@@ -1287,6 +1287,7 @@
           "maxEntriesPerItem": 1
         },
         {
+          "rated": "R",
           "query": "(subject:horror AND collection:(moviesandfilms OR vhsvault OR feature_films OR opensource_movies OR television) AND -collection:movie_trailers AND -subject:(anime OR ova)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR spanish OR jpn OR japanese OR chi OR chinese OR zho OR pol OR polish OR fre OR french OR fra OR ger OR german OR deu OR ita OR italian OR por OR portuguese OR rus OR russian OR kor OR korean OR hin OR hindi OR ara OR arabic OR tur OR vie OR ind OR tha OR hmn) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -title:(nekromantik OR \"guinea pig\" OR \"sadi-scream\" OR \"flowers of flesh\" OR \"hot love\" OR \"jane eyre\" OR subtitulada) AND -identifier:(\"japanese-horrors-my-all-time-favorites\" OR \"20240304_20240304_0522\" OR \"melancholie_der_engel\") AND -subject:(concert OR \"live music\") AND -title:(snuff OR \"behind the sun\" OR \"winnie the pooh\")"
         }
       ],

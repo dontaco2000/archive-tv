@@ -178,13 +178,13 @@ Future<List<Entry>> _collect(
     onProgress?.call(++done, hitsToFetch.length);
   });
   final all = byId.values.toList()..sort((a, b) => a.id.compareTo(b.id));
-  // Tag entries of sources the scheduler/guide treat specially (perDay, blockLabel, used by a time block)
-  // with their source index.
+  // Tag entries of sources the scheduler/guide treat specially (perDay, blockLabel, rated, used by a time
+  // block) with their source index.
   final themed = {for (final b in channel.timeBlocks) ...b.sources};
   return [
     for (final e in capPerSource(all, (e) => sourceOf[e.itemId]))
       if (sourceOf[e.itemId] case final s?
-          when s.perDay != null || s.blockLabel != null || themed.contains(channel.sources.indexOf(s)))
+          when s.perDay != null || s.blockLabel != null || s.rated != null || themed.contains(channel.sources.indexOf(s)))
         e.copyWith(source: channel.sources.indexOf(s))
       else
         e,

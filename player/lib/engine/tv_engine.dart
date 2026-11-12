@@ -58,9 +58,11 @@ class TvEngine {
   TvEngine._(this.config, this.api, this.pools, this.snapshots, this.blocklist, this.slow, this.noSubs, this.wrong, this.wrongLog,
       this.probeClient, this.log, this.buildConcurrency);
 
-  /// [configText] is the contents of channels.json; [dataDir] holds pools, snapshots, blocklist.
+  /// [configText] is the contents of channels.json, [ratedText] of rated.json (null: no R list, default
+  /// window); [dataDir] holds pools, snapshots, blocklist.
   factory TvEngine.open({
     required String configText,
+    String? ratedText,
     required Directory dataDir,
     ArchiveApi? api,
     http.Client? probeClient,
@@ -68,7 +70,7 @@ class TvEngine {
     int buildConcurrency = 4,
   }) {
     return TvEngine._(
-      parseChannelConfig(configText),
+      parseChannelConfig(configText, ratedText: ratedText),
       api ?? ArchiveClient(),
       PoolStore(Directory(p.join(dataDir.path, 'pools'))),
       SnapshotStore(Directory(p.join(dataDir.path, 'days'))),
@@ -87,6 +89,38 @@ class TvEngine {
 
   /// The channel's loaded pool (blocked and no-subtitle items removed); empty if not loaded.
   List<Entry> poolOf(Channel c) => noSubs.apply(_pool[c.number] ?? const []);
+
+  final Map<int, bool Function(Entry)> _rated = {};
+
+  /// Whether an entry of [c] is known to be R-rated (rated.json, source flag, Archive rating); cached per channel.
+  bool Function(Entry) ratedOf(Channel c) => _rated[c.number] ??= ratedTest(c, config);
+
+  /// [poolOf] for On Demand: outside the channel's rated window (daytime) R-rated entries are hidden, as they
+  /// are off the air then.
+  List<Entry> onDemandPoolOf(Channel c, {DateTime? now}) {
+    final pool = poolOf(c);
+    if (ratedWindowOf(c, config).contains(now ?? DateTime.now())) return pool;
+    final r = ratedOf(c);
+    return [for (final e in pool) if (!r(e)) e];
+  }
+
+  /// Logs how much of [c]'s pool is R-rated, and when its unrated part is under the minimum (the daytime then
+  /// repeats it; with nothing unrated at all, rated entries air in the daytime rather than dead air).
+  void _logRated(Channel c) {
+    final pool = _pool[c.number];
+    final w = ratedWindowOf(c, config);
+    if (pool == null || w.unrestricted) return;
+    final r = ratedOf(c);
+    final rated = pool.where(r).toList();
+    if (rated.isEmpty) return;
+    double hours(Iterable<Entry> l) => l.fold(0.0, (s, e) => s + e.durationSeconds) / 3600;
+    final rest = pool.where((e) => !r(e)).toList();
+    log('${c.name}: ${rated.length} R-rated entries (${hours(rated).toStringAsFixed(1)} h) air only in the rated window');
+    if (isOffAir(rest, config.minContentSeconds)) {
+      log('${c.name}: only ${hours(rest).toStringAsFixed(1)} h not rated: the daytime repeats it'
+          '${rest.isEmpty ? ' (none at all: rated entries air in the daytime too)' : ''}');
+    }
+  }
 
   /// [e] as the current pool has it: a day saved from an older pool lacks newer fields (language, subtitles).
   Entry fresh(Channel c, Entry e) => _pool[c.number]?.where((p) => p.id == e.id).firstOrNull ?? e;
@@ -122,6 +156,7 @@ class TvEngine {
     if (channel.sources.isEmpty || (maxAge > Duration.zero && _pool.containsKey(channel.number))) return Future.value();
     return _building[channel.number] ??= _ensurePool(channel, maxAge).whenComplete(() {
       _building.remove(channel.number);
+      _logRated(channel);
       _tried.add(channel.number);
       poolsChanged.value++;
     });
@@ -249,7 +284,9 @@ class TvEngine {
     return snapshots.day(c.number, day, _shufflePool(c),
         blocklist: _blocked(c).union(_skipped).union(slow).union(noSubs),
         serials: _blocksFor(c),
-        inShuffle: (e) => fits(e) && !rare.contains(e.id));
+        inShuffle: (e) => fits(e) && !rare.contains(e.id),
+        rated: ratedOf(c),
+        window: ratedWindowOf(c, config));
   }
 
   Future<void> _probing = Future.value();

@@ -1,6 +1,7 @@
 import 'dart:math' show min;
 
 import 'models.dart';
+import 'rated.dart';
 import 'seeded_random.dart';
 
 /// One program in a channel's day: [entry] plays from [start] to [end].
@@ -262,20 +263,44 @@ Duration _len(Entry e) => Duration(milliseconds: (e.durationSeconds * 1000).roun
 /// episodes, and the rest of its nominal slot gets items from [order] that fit. An episode that would
 /// not end by midnight is dropped (the night stops at midnight). All other time is [order] (without
 /// the blocks' episodes), an item that doesn't fit before a block giving way to one that does.
-List<Slot> layoutSerialDay(List<Entry> order, DateTime day, List<SerialBlock> blocks) {
-  if (blocks.isEmpty) return layoutDay(order, day);
+///
+/// R-rated dayparting: entries [rated] says yes to may only start (and must end) inside [window]. Outside it
+/// they are skipped (left in the queue for the night); block episodes too, a block's spares standing in. When
+/// nothing else can air (a channel of only rated entries) they air anyway: never dead air. With no rated
+/// entry in the day (or no [rated]/[window]) the layout is exactly what it was without them.
+List<Slot> layoutSerialDay(List<Entry> order, DateTime day, List<SerialBlock> blocks,
+    {bool Function(Entry)? rated, RatedWindow? window}) {
+  final restrict = rated != null &&
+      window != null &&
+      !window.unrestricted &&
+      (order.any(rated) || blocks.any((b) => b.episodes.any(rated)));
+  if (blocks.isEmpty && !restrict) return layoutDay(order, day);
   final end = DateTime(day.year, day.month, day.day + 1);
   final serialIds = {for (final b in blocks) for (final e in b.episodes) e.id}; // also rare-block picks
   final pool = [for (final e in order) if (!serialIds.contains(e.id)) e];
   final queue = <Entry>[];
   final slots = <Slot>[];
   var t = DateTime(day.year, day.month, day.day);
+  bool ok(Entry e) => !restrict || !rated(e) || window.allows(t, _len(e));
 
   void fill(DateTime until) {
     while (t.isBefore(until) && pool.isNotEmpty) {
       if (queue.isEmpty) queue.addAll(pool);
       final left = until.difference(t);
-      final i = queue.indexWhere((e) => _len(e) <= left);
+      int pick() {
+        final i = queue.indexWhere((e) => _len(e) <= left && ok(e));
+        return i >= 0 ? i : queue.indexWhere(ok);
+      }
+
+      var i = pick();
+      if (i < 0) {
+        // Only rated entries left in the queue, out of their window: bring the airable ones back round.
+        // ponytail: the minimum-content rule counts the whole pool; a channel whose unrated part is thin
+        // repeats it through the day (TvEngine logs that) and airs rated entries only when nothing else exists.
+        queue.addAll(pool.where((e) => !rated!(e)));
+        i = pick();
+        if (i < 0) i = queue.indexWhere((e) => _len(e) <= left); // nothing unrated at all: no dead air
+      }
       final e = queue.removeAt(i < 0 ? 0 : i); // nothing fits: cut the next one at [until]
       var next = t.add(_len(e));
       if (next.isAfter(until)) next = until;
@@ -289,11 +314,15 @@ List<Slot> layoutSerialDay(List<Entry> order, DateTime day, List<SerialBlock> bl
     final nominal = DateTime(day.year, day.month, day.day, 0, b.startMinute);
     if (!t.isBefore(end)) break;
     fill(nominal);
-    for (final e in b.episodes.take(b.count)) {
+    var aired = 0;
+    for (final e in b.episodes) {
+      if (aired >= b.count) break;
+      if (!ok(e)) continue; // rated, out of its window: a spare stands in
       final next = t.add(_len(e));
       if (next.isAfter(end)) break; // would run past midnight
       slots.add(Slot(e, t, next));
       t = next;
+      aired++;
     }
     fill(nominal.add(Duration(minutes: b.minutes)));
   }

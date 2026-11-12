@@ -1,3 +1,5 @@
+import 'rated.dart';
+
 /// Inclusive range of years used to filter Archive items by their `date`.
 class YearRange {
   final int start;
@@ -53,7 +55,11 @@ class Source {
   /// Archive mediatype: `movies` (video) or `audio`.
   final String mediatype;
 
+  /// `"R"`: the whole source is R-rated; its entries air only in the channel's rated window.
+  final String? rated;
+
   const Source({
+    this.rated,
     this.perDay,
     this.perDayMinMinutes = 0,
     this.blockLabel,
@@ -101,7 +107,12 @@ class Channel {
   /// Can include mature content (`"mature": true`): the parental "Lock mature channels" preset locks it.
   final bool mature;
 
+  /// When R-rated entries may air; null = the global window (rated.json). `"ratedWindow": null` in
+  /// channels.json gives [RatedWindow.always] (no restriction).
+  final RatedWindow? ratedWindow;
+
   const Channel({
+    this.ratedWindow,
     this.mature = false,
     this.timeBlocks = const [],
     required this.number,
@@ -191,7 +202,11 @@ class ChannelConfig {
   final Set<String> excludeIdentifiers;
   final List<String> blockCollections;
 
+  /// rated.json (R-rated ids, title patterns, the global window).
+  final RatedRules rated;
+
   const ChannelConfig({
+    this.rated = const RatedRules(),
     required this.yearRange,
     required this.fallbackStart,
     required this.minContentSeconds,
@@ -233,8 +248,12 @@ class Entry {
   /// The item is tagged as a silent film (`sound: silent`).
   final bool silent;
 
-  /// Index of the channel source the item came from; only set for sources with `perDay` or `blockLabel`.
+  /// Index of the channel source the item came from; only set for sources with `perDay`, `blockLabel`,
+  /// `rated` or used by a time block.
   final int? source;
+
+  /// "R" when Archive's `rating` metadata says R or harsher (see `isAdultRating`); null = not known.
+  final String? rated;
 
   const Entry({
     required this.id,
@@ -249,6 +268,7 @@ class Entry {
     this.subUrl,
     this.silent = false,
     this.source,
+    this.rated,
   });
 
   /// Tagged with a language and none of its languages is English: needs English subtitles.
@@ -267,6 +287,7 @@ class Entry {
         subUrl: subUrl,
         silent: silent,
         source: source ?? this.source,
+        rated: rated,
       );
 
   Map<String, dynamic> toJson() => {
@@ -282,6 +303,7 @@ class Entry {
         if (subUrl != null) 'subUrl': subUrl,
         if (silent) 'silent': true,
         if (source != null) 'source': source,
+        if (rated != null) 'rated': rated,
       };
 
   factory Entry.fromJson(Map<String, dynamic> j) => Entry(
@@ -297,6 +319,7 @@ class Entry {
         subUrl: j['subUrl'] as String?,
         silent: j['silent'] == true,
         source: j['source'] as int?,
+        rated: j['rated'] as String?,
       );
 }
 

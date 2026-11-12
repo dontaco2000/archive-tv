@@ -74,6 +74,8 @@ flutter:
   assets:
     - assets/logos/
     - assets/channels.json
+    # R-rated list and the night window they air in (core rated.dart)
+    - assets/rated.json
     # Android seed pools, made by app\core\tool\make_seed_pools.dart (unused on Windows)
     - assets/seed_pools.jsonl.gz
     - assets/branding/logo.png
