@@ -176,7 +176,9 @@
     "schoolhouse_rock-all_episodes",
     "adding-mega-bezel-to-mame-libretro-in-retroarch-from-launchbox_202311",
     "videoshop-2026-02-05-13-17-00-076",
-    "img-1510_202603"
+    "img-1510_202603",
+    "cafe-flesh101",
+    "SpicyCity"
   ],
   "channels": [
     {
@@ -305,7 +307,7 @@
           "tag": "cartoons_overseas"
         },
         {
-          "query": "(subject:(cartoon OR cartoons)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR spanish OR jpn OR japanese OR chi OR chinese OR zho OR pol OR polish OR fre OR french OR fra OR ger OR german OR deu OR ita OR italian OR por OR portuguese OR rus OR russian OR kor OR korean OR hin OR hindi OR ara OR arabic OR tur OR vie OR ind OR tha OR hmn) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -subject:(banned OR \"adult swim\" OR \"foamy the squirrel\" OR \"ill will press\" OR \"hypnotic eye\") AND -identifier:(\"ReadingRainbowTVSeries\" OR \"FWRRTVSeries\" OR \"xavierrenegadeangel\" OR \"demashita_powerpuff_girls_z_full_series_japanese_dub\" OR \"krishna-balram-in-kalvakra-2009\" OR \"5_More_Minutes\") AND -title:(\"drawn together\")",
+          "query": "(subject:(cartoon OR cartoons)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR spanish OR jpn OR japanese OR chi OR chinese OR zho OR pol OR polish OR fre OR french OR fra OR ger OR german OR deu OR ita OR italian OR por OR portuguese OR rus OR russian OR kor OR korean OR hin OR hindi OR ara OR arabic OR tur OR vie OR ind OR tha OR hmn) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -subject:(banned OR \"adult swim\" OR \"foamy the squirrel\" OR \"ill will press\" OR \"hypnotic eye\") AND -identifier:(\"ReadingRainbowTVSeries\" OR \"FWRRTVSeries\" OR \"xavierrenegadeangel\" OR \"demashita_powerpuff_girls_z_full_series_japanese_dub\" OR \"krishna-balram-in-kalvakra-2009\" OR \"5_More_Minutes\") AND -title:(\"drawn together\") AND -title:(superman OR batman OR \"super friends\" OR superfriends OR \"justice league\" OR \"mighty mouse\" OR underdog OR hulk OR \"fantastic four\" OR \"marvel super heroes\" OR \"teen titans\" OR \"the tick\" OR freakazoid OR \"captain planet\" OR \"iron man\" OR \"silver surfer\")",
           "maxEntriesPerItem": 40
         }
       ]
@@ -674,6 +676,180 @@
       ]
     },
     {
+      "number": 7,
+      "name": "Capes",
+      "logo": "Logos/4x3/capes.png",
+      "genre": "Kids & Animation",
+      "sources": [
+        {
+          "identifiers": [
+            "Batman_The_Animated_Series_1992-1995"
+          ],
+          "maxEntriesPerItem": 20,
+          "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "dc-batman-beyond-1999-season-one_202309",
+            "the-batman-03x-01"
+          ],
+          "maxEntriesPerItem": 20,
+          "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "Batman1943Chapter01TheElectricalBrain",
+            "batman-and-robin-movie-serial-1949_202205",
+            "batman.-the.-movie.-1966.i",
+            "episode-1_202302"
+          ],
+          "maxEntriesPerItem": 15,
+          "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "MaxFleischerSuperman",
+            "TheAdventuresOfSuperman",
+            "superman-1948_202205",
+            "atom-man-vs-superman-serial",
+            "superman-the-animated-series-season-1"
+          ],
+          "maxEntriesPerItem": 17,
+          "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "super-friends-1973-season-1",
+            "all-new-superfriends-s-1-v-2-d-1",
+            "attack-of-the-legion-of-doom",
+            "x44az75",
+            "x44d3la",
+            "x4455yl",
+            "x44mmfr",
+            "justice-league-complete-season",
+            "dom-9937-1-justice"
+          ],
+          "maxEntriesPerItem": 10,
+          "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "WonderWoman1967ScreenTestTVPilot",
+            "wonder-woman-1974_202210",
+            "WonderWomanTVPilotReupload"
+          ],
+          "maxEntriesPerItem": 2,
+          "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "incredible-hulk-1994-complete-series",
+            "the-incredible-hulk-1982",
+            "the-incredible-hulk-vhs_volumes"
+          ],
+          "maxEntriesPerItem": 14,
+          "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "the-marvel-super-heroes-1966",
+            "Spider-Man-67-Collection"
+          ],
+          "maxEntriesPerItem": 24,
+          "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "theamazingspider-man1977"
+          ],
+          "maxEntriesPerItem": 7,
+          "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "spider-man-and-his-amazing-friends_202403",
+            "spider-woman-1979-cartoon-series"
+          ],
+          "maxEntriesPerItem": 16,
+          "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "x-men-evolution-1080p-ai-upscale",
+            "wolverine-and-the-x-men-2009-tv-series"
+          ],
+          "maxEntriesPerItem": 18,
+          "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "fantastic-four-1994_202412",
+            "iron-man-1994-complete-series",
+            "silver-surfer-1998-complete-series"
+          ],
+          "maxEntriesPerItem": 12,
+          "ignoreYear": true
+        },
+        {
+          "query": "(identifier:(captain_america_ep* OR green_hornet_ep* OR AdventuresOfCaptainMarvelChapters112 OR ThePhantom1943Serial-15Chapters)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie OR game_replays OR us_congress) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR CLE-* OR NJY-* OR VHS-0* OR mubd1234ama-*) AND -title:(trailer OR promo OR promos OR teaser OR commercial OR commercials OR credits OR intro OR opening OR bumper OR parody OR spoof OR \"vhs tape\" OR \"vhs fb\" OR \"random tv\" OR \"taped over\" OR review OR reaction OR \"every movie ever\" OR longplay OR mashup)",
+          "ignoreYear": true,
+          "maxEntries": 45,
+          "maxEntriesPerItem": 15
+        },
+        {
+          "identifiers": [
+            "GreenHornetTV"
+          ],
+          "maxEntriesPerItem": 14,
+          "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "the-flash-1990"
+          ],
+          "maxEntriesPerItem": 8,
+          "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "the-tick-1994-animated-complete"
+          ],
+          "maxEntriesPerItem": 18,
+          "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "MightyMouseCollection",
+            "the-new-adventures-of-mighty-mouse"
+          ],
+          "maxEntriesPerItem": 30,
+          "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "theres-no-need-to-fear-underdog-is-here"
+          ],
+          "maxEntriesPerItem": 24,
+          "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "teen-titans-complete-series_202607_202607"
+          ],
+          "maxEntriesPerItem": 18,
+          "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "freakazoid_202210",
+            "captain-planet-and-the-planeteers-1990"
+          ],
+          "maxEntriesPerItem": 18,
+          "ignoreYear": true
+        }
+      ]
+    },
+    {
       "number": 10,
       "name": "Teaser",
       "shortContent": "Trailers",
@@ -971,8 +1147,209 @@
       ],
       "sources": [
         {
-          "query": "(subject:(\"sci-fi\" OR \"science fiction\" OR fantasy) AND collection:(moviesandfilms OR vhsvault OR feature_films OR opensource_movies OR television) AND -collection:movie_trailers AND -subject:(anime OR ova)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR spanish OR jpn OR japanese OR chi OR chinese OR zho OR pol OR polish OR fre OR french OR fra OR ger OR german OR deu OR ita OR italian OR por OR portuguese OR rus OR russian OR kor OR korean OR hin OR hindi OR ara OR arabic OR tur OR vie OR ind OR tha OR hmn) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -subject:(sitcom OR sitcoms OR concert OR \"live music\") AND -identifier:(\"Holistic_Forge_Works_Animation\" OR \"PlanetEarthOurResponse\" OR \"erosfilmfactoryThePeepingTomChroniclesConfessionsofanInterne\" OR \"spider-babe.-2003_202509\" OR \"wiedzmin-witcher-polski-tv\" OR \"les-enfants-de-timpelbach-2008\") AND -title:(portuguese OR brazilian OR \"le secret\" OR \"never went to the moon\" OR \"scariest places\") AND -title:(stripperella OR \"jimmy neutron\")",
-          "maxEntriesPerItem": 40
+          "identifiers": [
+            "star-trek-1x-01-the-cage_20231231",
+            "star-trek-tas-s-01-e-05"
+          ],
+          "maxEntriesPerItem": 20,
+          "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "ST9_mp4"
+          ],
+          "maxEntriesPerItem": 26,
+          "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "star-trek-voyager-s-1-e-1-caretaker",
+            "star-trek-enterprise-complete"
+          ],
+          "maxEntriesPerItem": 14,
+          "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "startrekcontinues_202006",
+            "star-trek-new-voyages-phase-ii-2004"
+          ],
+          "maxEntriesPerItem": 6,
+          "ignoreYear": true
+        },
+        {
+          "query": "(identifier:(v-the-final-battle-part-1 OR v-the-series-1984-85-*)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie OR game_replays OR us_congress) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR CLE-* OR NJY-* OR VHS-0* OR mubd1234ama-*) AND -title:(trailer OR promo OR promos OR teaser OR commercial OR commercials OR credits OR intro OR opening OR bumper OR parody OR spoof OR \"vhs tape\" OR \"vhs fb\" OR \"random tv\" OR \"taped over\" OR review OR reaction OR \"every movie ever\" OR longplay OR mashup)",
+          "ignoreYear": true,
+          "maxEntries": 30,
+          "maxEntriesPerItem": 24
+        },
+        {
+          "query": "(identifier:(seaquest-dsv OR seaquest9)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie OR game_replays OR us_congress) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR CLE-* OR NJY-* OR VHS-0* OR mubd1234ama-*) AND -title:(trailer OR promo OR promos OR teaser OR commercial OR commercials OR credits OR intro OR opening OR bumper OR parody OR spoof OR \"vhs tape\" OR \"vhs fb\" OR \"random tv\" OR \"taped over\" OR review OR reaction OR \"every movie ever\" OR longplay OR mashup)",
+          "ignoreYear": true,
+          "maxEntries": 12,
+          "maxEntriesPerItem": 8
+        },
+        {
+          "identifiers": [
+            "QLSeason1",
+            "QLSeason2",
+            "qlseason-3",
+            "QLSeason4",
+            "QLSeason5",
+            "series-1-1-2-quantum-leap-genesis",
+            "series-1-3-quantum-leap-star-crossed",
+            "series-1-4-quantum-leap-the-right-hand-of-",
+            "quantum-leap-counterstrike"
+          ],
+          "maxEntriesPerItem": 6,
+          "ignoreYear": true,
+          "maxEntries": 30
+        },
+        {
+          "query": "(title:(sliders) AND identifier:(sliders*)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie OR game_replays OR us_congress) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR CLE-* OR NJY-* OR VHS-0* OR mubd1234ama-*) AND -title:(trailer OR promo OR promos OR teaser OR commercial OR commercials OR credits OR intro OR opening OR bumper OR parody OR spoof OR \"vhs tape\" OR \"vhs fb\" OR \"random tv\" OR \"taped over\" OR review OR reaction OR \"every movie ever\" OR longplay OR mashup) AND -identifier:(slidersseasone4episode13 OR sliders_201406 OR sliders_201507)",
+          "ignoreYear": true,
+          "maxEntries": 24,
+          "maxEntriesPerItem": 8
+        },
+        {
+          "identifiers": [
+            "mrite-mas-01-e-18-wm-i",
+            "my-fovorite-martian-2",
+            "MyFavoriteMartianMr.Kek"
+          ],
+          "maxEntriesPerItem": 20,
+          "ignoreYear": true
+        },
+        {
+          "query": "(title:(\"lost in space\") AND identifier:(lost-in-space* OR lostinspace* OR LostInSpace*)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie OR game_replays OR us_congress) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR CLE-* OR NJY-* OR VHS-0* OR mubd1234ama-*) AND -title:(trailer OR promo OR promos OR teaser OR commercial OR commercials OR credits OR intro OR opening OR bumper OR parody OR spoof OR \"vhs tape\" OR \"vhs fb\" OR \"random tv\" OR \"taped over\" OR review OR reaction OR \"every movie ever\" OR longplay OR mashup) AND -title:(longplay OR speedrun OR gameplay OR walkthrough OR c64 OR a2600 OR nes OR activision OR toy OR toys OR fan OR \"fan film\" OR reaction OR \"screen recording\") AND -title:(forever OR epilogue OR pitchfilm OR jupiter OR robot OR bijou OR marathon OR \"screen test\" OR screentest OR outro OR 1998 OR 2018 OR vostfr) AND -identifier:(*-vf-vo)",
+          "ignoreYear": true,
+          "maxEntries": 30,
+          "maxEntriesPerItem": 8
+        },
+        {
+          "identifiers": [
+            "twilight-zone-season-one-DVD",
+            "the-twilight-zone-season-2_202411",
+            "the-twilight-zone-s-3e-1-colorized-720p-hd",
+            "the-twilight-zone-s-4e-3-colorized-720p-hd",
+            "twilight-zone-1985-1x-01-shatterday"
+          ],
+          "maxEntriesPerItem": 12,
+          "ignoreYear": true,
+          "maxEntries": 50
+        },
+        {
+          "identifiers": [
+            "the-outer-limits-1963-season-1",
+            "OuterLimitsPilot"
+          ],
+          "maxEntriesPerItem": 16,
+          "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "buck-rogers-01-the-awakening",
+            "buck-rogers-1939-serial-colorized"
+          ],
+          "maxEntriesPerItem": 14,
+          "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "battlestar-galactica-complete-series-1978",
+            "galactica-1980-complete-series-1980"
+          ],
+          "maxEntriesPerItem": 14,
+          "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "07thereflexgunpart1_202004",
+            "18dessloksescape",
+            "21losthope",
+            "battleoftheplanets"
+          ],
+          "maxEntriesPerItem": 12,
+          "ignoreYear": true,
+          "maxEntries": 48
+        },
+        {
+          "identifiers": [
+            "LotLFullSeries",
+            "land-of-the-lost-1991-s-01-e-01-tasha"
+          ],
+          "maxEntriesPerItem": 20,
+          "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "the-time-tunnel-complete-series-1966"
+          ],
+          "maxEntriesPerItem": 14,
+          "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "voyage-to-the-bottom-of-the-sea_202506",
+            "voyagetothebottomofthesea"
+          ],
+          "maxEntriesPerItem": 16,
+          "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "thund3rbirds-1965",
+            "CaptainScarlet",
+            "FireballXL5.complete",
+            "Stingray.Complete",
+            "Supercar.Series1",
+            "Joe90Complete",
+            "thunderbirds-are-go_202312"
+          ],
+          "maxEntriesPerItem": 12,
+          "ignoreYear": true
+        },
+        {
+          "query": "(title:(\"flash gordon\" OR \"rocky jones\" OR \"captain video\" OR \"space patrol\" OR \"tom corbett\" OR \"commando cody\" OR \"radar men from the moon\" OR \"zombies of the stratosphere\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie OR game_replays OR us_congress) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR CLE-* OR NJY-* OR VHS-0* OR mubd1234ama-*) AND -title:(trailer OR promo OR promos OR teaser OR commercial OR commercials OR credits OR intro OR opening OR bumper OR parody OR spoof OR \"vhs tape\" OR \"vhs fb\" OR \"random tv\" OR \"taped over\" OR review OR reaction OR \"every movie ever\" OR longplay OR mashup) AND -title:(longplay OR speedrun OR gameplay OR walkthrough OR c64 OR a2600 OR nes OR activision OR toy OR toys OR fan OR \"fan film\" OR reaction OR \"screen recording\") AND -title:(1980 OR \"blu ray\" OR fzmovies OR vcd OR 2007 OR \"the movie\" OR comic OR audiobook OR radio OR \"otr\" OR mst3k OR \"mystery science\" OR rocketmen OR \"burns and allen\") AND -identifier:(GracieAllenSpaceGirls)",
+          "ignoreYear": true,
+          "maxEntries": 50,
+          "maxEntriesPerItem": 6
+        },
+        {
+          "identifiers": [
+            "tales-of-tomorrow-1951-53",
+            "science-fiction-theatre-season-1",
+            "science-fiction-theatre-season-2",
+            "one-step-beyond",
+            "AmazingStories"
+          ],
+          "maxEntriesPerItem": 12,
+          "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "planet-of-the-apes-complete-series-1974",
+            "Httpsen.m.wikipedia.orgwikiThe_Starlost",
+            "the_invaders_1912",
+            "LogansRunOldSciFi",
+            "returnofthesixmilliondollarman"
+          ],
+          "maxEntriesPerItem": 8,
+          "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "max-headroom-complete",
+            "farscape-s-01",
+            "stargate-sg-1-season-1"
+          ],
+          "maxEntriesPerItem": 12,
+          "ignoreYear": true
+        },
+        {
+          "query": "(subject:(\"sci-fi\" OR \"science fiction\" OR fantasy) AND collection:(moviesandfilms OR vhsvault OR feature_films OR opensource_movies OR television) AND -collection:movie_trailers AND -subject:(anime OR ova)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR spanish OR jpn OR japanese OR chi OR chinese OR zho OR pol OR polish OR fre OR french OR fra OR ger OR german OR deu OR ita OR italian OR por OR portuguese OR rus OR russian OR kor OR korean OR hin OR hindi OR ara OR arabic OR tur OR vie OR ind OR tha OR hmn) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -subject:(sitcom OR sitcoms OR concert OR \"live music\") AND -identifier:(\"Holistic_Forge_Works_Animation\" OR \"PlanetEarthOurResponse\" OR \"erosfilmfactoryThePeepingTomChroniclesConfessionsofanInterne\" OR \"spider-babe.-2003_202509\" OR \"wiedzmin-witcher-polski-tv\" OR \"les-enfants-de-timpelbach-2008\") AND -title:(portuguese OR brazilian OR \"le secret\" OR \"never went to the moon\" OR \"scariest places\") AND -title:(stripperella OR \"jimmy neutron\") AND -identifier:(doctor-who_202210 OR Space1999.Series1 OR Space1999.Series1_201602 OR blakes-7-complete OR babylon-5-season-1 OR survivors-1975 OR the-prisoner-complete-series-1967 OR UFO.complete) AND -identifier:(erosfilmfactory* OR SpicyCity OR scare-tactics* OR the-ultimate-mst3k OR lexx* OR bad-taste* OR scanners* OR TSF_live* OR SmokesVHSTape* OR win-2022* OR hammer-house-of-horror* OR cafe-flesh* OR IlTronoDiFuoco) AND -title:(\"spicy city\" OR lexx OR voyeur OR \"bad taste\" OR \"cafe flesh\")",
+          "maxEntriesPerItem": 3,
+          "maxEntries": 60
         }
       ]
     },
