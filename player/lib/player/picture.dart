@@ -12,6 +12,10 @@ String cyclePicture(String current, int dir) {
 /// started, so it only ever grows (a dark scene can't shrink it). limit 24 of 255 = near pure black.
 const cropdetectFilter = '@atv_cd:cropdetect=limit=24:round=2:reset=0';
 
+/// mpv hwdec for the Picture setting: software filters can't read GPU frames, so while cropdetect runs the
+/// decoder copies frames back to memory. (Android never detects, see PlayerController.pictureAvailable.)
+String pictureHwdec({required bool detecting}) => detecting ? 'auto-copy' : 'auto';
+
 class CropRect {
   final int x, y, w, h;
   const CropRect(this.x, this.y, this.w, this.h);

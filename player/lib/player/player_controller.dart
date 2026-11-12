@@ -170,7 +170,7 @@ class PlayerController extends ChangeNotifier {
 
     final sw = Stopwatch()..start();
     try {
-      await _openAt(url, Duration(milliseconds: (a.offsetSeconds * 1000).round()));
+      await _openAt(url, Duration(milliseconds: (a.offsetSeconds * 1000).round()), itemId: a.slot.entry.itemId);
       if (gen != _generation) return;
       if (await _captionsFor(engine.fresh(c, a.slot.entry), archive: c.type == 'archive') == 'missing') {
         // Foreign with no English subtitles: never again (saved), and on to whatever airs instead.
@@ -214,7 +214,7 @@ class PlayerController extends ChangeNotifier {
 
   /// Opens [url] at [start] and returns on the first frame; throws if the server refuses
   /// the file or nothing plays within 15 s.
-  Future<void> _openAt(String url, Duration start) async {
+  Future<void> _openAt(String url, Duration start, {required String itemId}) async {
     final firstFrame = Completer<void>();
     // Position events left over from the previous file must not count as the first frame:
     // only a position in [start, start + 5 s], seen after open() returned, does.
@@ -235,6 +235,7 @@ class PlayerController extends ChangeNotifier {
       _captioned = null;
       await resetCaptions(mpv).catchError((Object e) => log('captions reset failed: $e'));
       _resetCrop(); // every file is measured afresh
+      await setAudioDelay(audioDelayFor(itemId)); // mpv keeps audio-delay across files: set it for each one
       await player.open(Media(url, start: start), play: true);
       armed = true;
       await firstFrame.future.timeout(const Duration(seconds: 15));
@@ -267,7 +268,7 @@ class PlayerController extends ChangeNotifier {
     message = null;
     notifyListeners();
     try {
-      await _openAt(await resolveUrl(e.url), from);
+      await _openAt(await resolveUrl(e.url), from, itemId: e.itemId);
       if (gen != _generation) return;
       if (await _captionsFor(e, archive: c.type == 'archive') == 'missing') {
         engine.markNoSubs(c, e.id);
@@ -377,6 +378,19 @@ class PlayerController extends ChangeNotifier {
     }
   }
 
+  /// The saved A/V sync nudge (ms) for an Archive item; main() reads it from the settings.
+  int Function(String itemId) audioDelayFor = (_) => 0;
+
+  /// The Archive item on screen (live or On Demand), for the A/V sync nudge.
+  String? get itemId => onDemand?.itemId ?? airing?.slot.entry.itemId;
+
+  /// mpv `audio-delay`: + plays the sound later, - earlier. Never throws.
+  Future<void> setAudioDelay(int ms) async {
+    final native = player.platform;
+    if (native is! NativePlayer) return;
+    await native.setProperty('audio-delay', (ms / 1000).toString()).catchError((Object e) => log('audio-delay failed: $e'));
+  }
+
   void setVolume(double v) => player.setVolume(v.clamp(0, 100));
 
   /// Picture setting ('auto', 'fill', 'off', see picture.dart). Auto and fill both measure the borders here;
@@ -385,7 +399,9 @@ class PlayerController extends ChangeNotifier {
 
   /// False once this libmpv has refused the cropdetect filter (e.g. Android's direct MediaCodec frames):
   /// the picture then plays uncropped.
-  bool pictureAvailable = true;
+  /// Android keeps direct MediaCodec frames (copy-back is too heavy for a Fire Stick), which cropdetect can't
+  /// read, so it never tries: no failing filter, no fatal lines in the log.
+  bool pictureAvailable = !Platform.isAndroid;
 
   /// The baked-in borders to cut from the file on screen, as fractions of the frame (left, top, width,
   /// height); null = none (or still measuring).
@@ -425,10 +441,12 @@ class PlayerController extends ChangeNotifier {
     final native = player.platform;
     if (native is! NativePlayer) return;
     final vf = _detecting ? cropdetectFilter : '';
-    // Software filters can't read GPU frames: on Windows decode with copy-back while detecting. Android keeps
-    // direct MediaCodec (copy-back is too heavy for a Fire Stick), so its filter fails and it stays uncropped.
-    final hw = vf.isNotEmpty && !Platform.isAndroid ? 'auto-copy' : 'auto';
+    final hw = pictureHwdec(detecting: vf.isNotEmpty);
     try {
+      // media_kit's VideoController sets hwdec=auto once when it is created (first build of the screen,
+      // after main() applied the Picture setting): wait for that, or it silently undoes auto-copy and the
+      // first file's cropdetect gets GPU frames ("failed to configure the filter graph").
+      await video.platform.future;
       if (hw != _hwdec) await native.setProperty('hwdec', _hwdec = hw);
       await native.setProperty('vf', vf);
       if (vf.isNotEmpty && !(await native.getProperty('vf')).contains('cropdetect')) throw StateError('vf not taken');

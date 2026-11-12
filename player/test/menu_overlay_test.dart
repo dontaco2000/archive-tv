@@ -50,6 +50,10 @@ void main() {
     await key(t, LogicalKeyboardKey.arrowUp);
     expect(selected(t), 'About');
     await key(t, LogicalKeyboardKey.arrowUp);
+    expect(selected(t), 'Credits');
+    await key(t, LogicalKeyboardKey.arrowUp);
+    expect(selected(t), 'Last error: none'); // Open log folder is hidden without a log folder callback
+    await key(t, LogicalKeyboardKey.arrowUp);
     expect(selected(t), 'Weather: Hattiesburg, Mississippi');
   });
 
@@ -90,7 +94,7 @@ void main() {
     await pump(t);
     expect(find.textContaining('Remote window'), findsNothing);
     final r = await pump(t, remote: true, lanInfo: 'Phone: http://192.168.1.5:8765/remote  PIN 1234');
-    await key(t, LogicalKeyboardKey.arrowUp, 5); // Close, About, LAN info, Wi-Fi, Open remote
+    await key(t, LogicalKeyboardKey.arrowUp, 7); // Close, About, Credits, Last error, LAN info, Wi-Fi, Open remote
     expect(selected(t), 'Remote window: OFF');
     await key(t, LogicalKeyboardKey.enter);
     expect(r.calls, ['remote']);

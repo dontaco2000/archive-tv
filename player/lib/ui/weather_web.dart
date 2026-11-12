@@ -102,6 +102,17 @@ class WeatherLayers extends StatelessWidget {
     return Stack(fit: StackFit.expand, children: [
       if (web) webViewForTest?.call(webKey) ?? WeatherWebView(key: webKey, url: url, onLoaded: onLoaded, onFailed: onFailed),
       if (!web || !webLoaded) WeatherStarScreen(key: nativeKey, load: load),
+      if (web && webLoaded)
+        const Positioned(
+          right: 8,
+          top: 4,
+          child: IgnorePointer(
+            child: Text(
+              'WeatherStar 4000+ by Matt Walsh',
+              style: TextStyle(color: Color(0x99FFFFFF), fontSize: 11, fontFamily: 'Consolas'),
+            ),
+          ),
+        ),
     ]);
   }
 }

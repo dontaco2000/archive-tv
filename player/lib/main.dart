@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:ui' show PlatformDispatcher;
 
 import 'package:archive_tv_core/archive_tv_core.dart';
 import 'package:flutter/material.dart';
@@ -14,14 +15,40 @@ import 'engine/tv_engine.dart';
 import 'input/gamepad.dart';
 import 'player/player_controller.dart';
 import 'remote/remote_server.dart';
+import 'settings/crash_log.dart';
 import 'settings/rotating_log.dart';
 import 'settings/settings_store.dart';
 import 'settings/window_prefs.dart';
 import 'ui/tv_screen.dart';
 import 'ui/weather_web.dart';
 
-Future<void> main(List<String> args) async {
+CrashLog? _crash;
+
+/// Any uncaught Dart error: into archive_tv.log with its stack (and kept as the menu's last error).
+void _uncaught(String where, Object e, StackTrace? st) {
+  final c = _crash;
+  if (c != null) {
+    c.error(where, e, st);
+  } else {
+    debugPrint('uncaught ($where): $e\n$st');
+  }
+}
+
+void main(List<String> args) {
+  // The whole app runs in this zone, so async errors nobody awaited land in the log too.
+  runZonedGuarded(() => _main(args), (e, st) => _uncaught('zone', e, st));
+}
+
+Future<void> _main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
+  FlutterError.onError = (d) {
+    FlutterError.presentError(d);
+    _uncaught('flutter', d.exception, d.stack);
+  };
+  PlatformDispatcher.instance.onError = (e, st) {
+    _uncaught('platform', e, st);
+    return true;
+  };
   MediaKit.ensureInitialized();
   // Android TV / Fire TV: always fullscreen landscape, no window to manage.
   final desktop = !Platform.isAndroid;
@@ -45,6 +72,11 @@ Future<void> main(List<String> args) async {
       // logging must never take the app down
     }
   }
+  final crash = _crash = CrashLog(dataDir, log)..start(logFile.file);
+  // Android has no window to close: a run that went to the background (or was left with Back) ended cleanly.
+  if (Platform.isAndroid) {
+    AppLifecycleListener(onStateChange: (s) => crash.running(s == AppLifecycleState.resumed || s == AppLifecycleState.inactive));
+  }
 
   await initWebView(windows: Platform.isWindows, dataDir: p.join(dataDir.path, 'webview2'), log: log);
 
@@ -60,7 +92,9 @@ Future<void> main(List<String> args) async {
         if (settings.startFullscreen || settings.fullscreen) await windowManager.setFullScreen(true);
       },
     );
-    windowPrefs = WindowPrefs(settings, store, log)..attach();
+    windowPrefs = WindowPrefs(settings, store, log)
+      ..onClose = (() => crash.running(false))
+      ..attach();
     // Windowed mode keeps a 4:3 client area (the title bar is not part of the picture).
     unawaited(Future<void>.delayed(const Duration(milliseconds: 300), windowPrefs.snapToFourThree));
   }
@@ -97,6 +131,7 @@ Future<void> main(List<String> args) async {
   tv.setVolume(settings.muted ? 0 : settings.volume);
   unawaited(tv.setLeveling(settings.volumeLeveling));
   tv.captionsOn = settings.captionsOn;
+  tv.audioDelayFor = (id) => settings.audioDelays[id] ?? 0;
   unawaited(tv.setPicture(settings.picture));
   // Remote control window (Windows only): a local web page that presses the same keys as the keyboard.
   RemoteServer? remote;
@@ -105,10 +140,13 @@ Future<void> main(List<String> args) async {
     if (remote.ensurePin()) store.save(settings);
     await remote.start().catchError((Object e) => log('remote: start failed: $e'));
   }
-  windowPrefs?.onClose = remote?.closeWindowOnExit;
+  windowPrefs?.onClose = () {
+    remote?.closeWindowOnExit();
+    crash.running(false);
+  };
   runApp(MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: TvScreen(controller: tv, settings: settings, store: store, windowPrefs: windowPrefs, remote: remote)));
+      home: TvScreen(controller: tv, settings: settings, store: store, windowPrefs: windowPrefs, remote: remote, crash: crash)));
   installGamepad(log: log); // pads act as the keyboard: XInput on Windows, button keys on Android
   if (args.contains('--remote') && remote != null) {
     // After the TV window has its restored bounds / fullscreen, so the remote lands beside it.
@@ -176,6 +214,7 @@ Future<void> main(List<String> args) async {
       }
     }
     log('latency test done: ${tv.tuneTimes.reversed.toList()} ms');
+    crash.running(false);
     exit(0);
   }
 }

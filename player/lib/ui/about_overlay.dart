@@ -18,7 +18,10 @@ const aboutLines = [
 class AboutOverlay extends StatefulWidget {
   final bool firstRun;
   final VoidCallback onClose;
-  const AboutOverlay({super.key, this.firstRun = false, required this.onClose});
+
+  /// C opens the credits (not on the first-run notice, where any key closes).
+  final VoidCallback? onCredits;
+  const AboutOverlay({super.key, this.firstRun = false, required this.onClose, this.onCredits});
 
   @override
   State<AboutOverlay> createState() => _AboutOverlayState();
@@ -44,6 +47,10 @@ class _AboutOverlayState extends State<AboutOverlay> {
   KeyEventResult _onKey(FocusNode node, KeyEvent e) {
     if (e is! KeyDownEvent) return widget.firstRun ? KeyEventResult.handled : KeyEventResult.ignored;
     final k = e.logicalKey;
+    if (!widget.firstRun && k == LogicalKeyboardKey.keyC && widget.onCredits != null) {
+      widget.onCredits!();
+      return KeyEventResult.handled;
+    }
     if (widget.firstRun ||
         const [
           LogicalKeyboardKey.escape,
@@ -78,7 +85,7 @@ class _AboutOverlayState extends State<AboutOverlay> {
               padding: const EdgeInsets.all(24),
               child: LayoutBuilder(
                 builder: (context, box) {
-                  final font = (box.maxHeight / 32 < box.maxWidth / 40 ? box.maxHeight / 32 : box.maxWidth / 40).clamp(9.0, 24.0);
+                  final font = (box.maxHeight / 36 < box.maxWidth / 44 ? box.maxHeight / 36 : box.maxWidth / 44).clamp(9.0, 24.0);
                   TextStyle style(Color c, {double scale = 1, bool bold = false}) =>
                       TextStyle(fontFamily: 'Consolas', fontSize: font * scale, color: c, fontWeight: bold ? FontWeight.bold : null);
                   return Column(
@@ -99,7 +106,9 @@ class _AboutOverlayState extends State<AboutOverlay> {
                         ),
                       const Spacer(),
                       Text(
-                        widget.firstRun ? 'Click or press any key to continue' : 'Click or press Esc to close',
+                        widget.firstRun
+                            ? 'Click or press any key to continue'
+                            : 'Click or press Esc to close${widget.onCredits == null ? '' : ', C for credits'}',
                         style: style(const Color(0xFFFFEB3B)),
                       ),
                     ],

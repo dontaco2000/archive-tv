@@ -32,6 +32,9 @@ final Map<String, LogicalKeyboardKey> remoteKeys = {
   'channelUp': LogicalKeyboardKey.pageUp,
   'channelDown': LogicalKeyboardKey.pageDown,
   'fullscreen': LogicalKeyboardKey.f11,
+  'audioEarlier': LogicalKeyboardKey.bracketLeft,
+  'audioLater': LogicalKeyboardKey.bracketRight,
+  'audioReset': LogicalKeyboardKey.backslash,
   for (var d = 0; d <= 9; d++) '$d': LogicalKeyboardKey(LogicalKeyboardKey.digit0.keyId + d),
 };
 

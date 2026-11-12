@@ -43,6 +43,9 @@ class Settings {
   /// Picture: 'auto' (crop baked-in black borders), 'fill' (also cover the frame) or 'off' (see picture.dart).
   String picture = 'auto';
 
+  /// A/V sync nudges: Archive item id -> audio delay in ms (+ = audio later). Only non-zero ones are kept.
+  Map<String, int> audioDelays = {};
+
   Settings();
 
   Map<String, dynamic> toJson() => {
@@ -68,6 +71,7 @@ class Settings {
         'captionsOn': captionsOn,
         'captionSize': captionSize,
         'picture': picture,
+        'audioDelays': audioDelays,
       };
 
   factory Settings.fromJson(Map<String, dynamic> j) {
@@ -102,6 +106,11 @@ class Settings {
     s.noticeAccepted = bool_('noticeAccepted', s.noticeAccepted);
     s.captionsOn = bool_('captionsOn', s.captionsOn);
     if (pictureModes.contains(j['picture'])) s.picture = j['picture'] as String;
+    if (j['audioDelays'] is Map) {
+      for (final MapEntry(:key, :value) in (j['audioDelays'] as Map).entries) {
+        if (key is String && value is int && value != 0) s.audioDelays[key] = value.clamp(-maxAudioDelayMs, maxAudioDelayMs);
+      }
+    }
     if (j['captionSize'] is int) s.captionSize = (j['captionSize'] as int).clamp(1, 7);
     return s;
   }
@@ -132,6 +141,20 @@ bool toggleFavorite(Settings s, int channelNumber) {
   if (s.favorites.remove(channelNumber)) return false;
   s.favorites.add(channelNumber);
   return true;
+}
+
+/// A/V sync nudge step and limit (ms).
+const audioDelayStepMs = 50, maxAudioDelayMs = 3000;
+
+/// Shifts the saved audio delay of [itemId] by [stepMs] (0 = reset to none); returns the new delay in ms.
+int nudgeAudioDelay(Settings s, String itemId, int stepMs) {
+  final ms = stepMs == 0 ? 0 : ((s.audioDelays[itemId] ?? 0) + stepMs).clamp(-maxAudioDelayMs, maxAudioDelayMs);
+  if (ms == 0) {
+    s.audioDelays.remove(itemId);
+  } else {
+    s.audioDelays[itemId] = ms;
+  }
+  return ms;
 }
 
 const levelingModes = ['off', 'normal', 'strong'];

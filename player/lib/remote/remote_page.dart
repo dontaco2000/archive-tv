@@ -87,7 +87,7 @@ const remotePage = r'''<!DOCTYPE html>
     background:#14301f; border:1px solid #2a5a3a; border-radius:4px; box-shadow:none; flex:1; }
   #settings button.sel { background:var(--lcd-txt); color:#062010; }
   #settings .sz { flex:0 0 22px; font-size:12px; }
-  #sizeLevel { flex:1; text-align:center; letter-spacing:1px; }
+  #sizeLevel, #avDelay { flex:1; text-align:center; letter-spacing:1px; }
   #sample { text-align:center; color:#fff; background:#000a; font-family:"Segoe UI",sans-serif; font-weight:600; text-shadow:0 0 2px #000, 0 0 2px #000;
     border-radius:3px; padding:1px 4px; align-self:center; white-space:nowrap; line-height:1.2; }
   #ccNote { color:#6fcf8f; min-height:12px; }
@@ -114,6 +114,7 @@ const remotePage = r'''<!DOCTYPE html>
       <div class="row" id="setLeveling"><span>LEVELING</span><button data-v="off">OFF</button><button data-v="normal">NORM</button><button data-v="strong">STRONG</button></div>
       <div class="row" id="setWeather"><span>WEATHER</span><button data-v="web">WXSTAR</button><button data-v="native">CLASSIC</button></div>
       <div class="row" id="setPicture"><span>PICTURE</span><button data-v="auto">AUTO</button><button data-v="fill">FILL</button><button data-v="off">OFF</button></div>
+      <div class="row"><span>A/V SYNC</span><button class="sz" data-key="audioEarlier" title="Audio earlier 50 ms">&minus;</button><b id="avDelay">0 ms</b><button class="sz" data-key="audioLater" title="Audio later 50 ms">+</button><button class="sz" data-key="audioReset" title="Reset">0</button></div>
       <div class="row"><span>WI-FI</span><b id="wifi">--</b></div>
     </div>
   </div>
@@ -238,6 +239,7 @@ const remotePage = r'''<!DOCTYPE html>
     document.querySelectorAll('#setLeveling button').forEach(b => b.classList.toggle('sel', b.dataset.v === s.leveling));
     document.querySelectorAll('#setWeather button').forEach(b => b.classList.toggle('sel', b.dataset.v === s.weatherMode));
     document.querySelectorAll('#setPicture button').forEach(b => b.classList.toggle('sel', b.dataset.v === s.picture));
+    $('avDelay').textContent = (s.audioDelay > 0 ? '+' : '') + (s.audioDelay || 0) + ' ms';
     $('wifi').textContent = s.remoteLan ? 'ON (phones can connect)' : 'OFF (this PC only)';
   }
 
@@ -294,7 +296,7 @@ const remotePage = r'''<!DOCTYPE html>
 
   const keymap = { ArrowUp:'up', ArrowDown:'down', ArrowLeft:'left', ArrowRight:'right', Enter:'ok', Escape:'back', Backspace:'back',
     g:'guide', m:'menu', i:'info', f:'favorite', o:'ondemand', u:'mute', ' ':'mute', '+':'volUp', '=':'volUp', '-':'volDown',
-    PageUp:'channelUp', PageDown:'channelDown', F11:'fullscreen' };
+    PageUp:'channelUp', PageDown:'channelDown', F11:'fullscreen', '[':'audioEarlier', ']':'audioLater', '\\':'audioReset' };
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && document.querySelector('.panel.open')) { closeAll(); e.preventDefault(); return; }
     if ((e.key === 'Escape' || e.key === 'Backspace') && lcd.classList.contains('set')) { toggleSettings(false); e.preventDefault(); return; }

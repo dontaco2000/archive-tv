@@ -12,7 +12,14 @@ const _panel = Color(0xE6101A5C); // same dark translucent blue as the guide
 const _yellow = Color(0xFFFFEB3B);
 const _cellBg = Color(0xFF1E2C8A);
 
-enum _Item { onDemand, favorite, favoritesOnly, volume, mute, leveling, captions, captionSize, picture, startFullscreen, cornerBug, block, refresh, weatherMode, weatherLocation, openRemote, remoteLan, remoteInfo, about, close }
+enum _Item { onDemand, favorite, favoritesOnly, volume, mute, leveling, captions, captionSize, picture, startFullscreen, cornerBug, block, refresh, weatherMode, weatherLocation, openRemote, remoteLan, remoteInfo, lastError, openLog, credits, about, close }
+
+/// "Last error: none", or its first line (the menu clips it); Enter copies the whole text.
+String lastErrorLabel(String? e) {
+  if (e == null || e.trim().isEmpty) return 'Last error: none';
+  final first = e.trim().split('\n').first.replaceFirst(RegExp(r'^\S+ '), ''); // drop the timestamp
+  return 'Last error (Enter: copy): $first';
+}
 
 /// Settings menu over the right half of the frame. Changes are made on [settings] in place
 /// and reported through [onChanged]; the screen saves and applies them.
@@ -28,6 +35,14 @@ class MenuOverlay extends StatefulWidget {
   final VoidCallback? onOnDemand;
   final VoidCallback? onWeatherLocation;
   final VoidCallback? onAbout;
+  final VoidCallback? onCredits;
+
+  /// The last uncaught error (null: none); Enter copies it ([onCopyLastError]).
+  final String? lastError;
+  final VoidCallback? onCopyLastError;
+
+  /// Windows only: opens the folder with archive_tv.log (null hides the item).
+  final VoidCallback? onOpenLogFolder;
 
   /// False when the player's libmpv can't build the leveling filters.
   final bool levelingAvailable;
@@ -52,6 +67,10 @@ class MenuOverlay extends StatefulWidget {
     this.onOnDemand,
     this.onWeatherLocation,
     this.onAbout,
+    this.onCredits,
+    this.lastError,
+    this.onCopyLastError,
+    this.onOpenLogFolder,
     this.levelingAvailable = true,
     this.onOpenRemote,
     this.remoteLanInfo,
@@ -70,7 +89,8 @@ class _MenuOverlayState extends State<MenuOverlay> {
         for (final i in _Item.values)
           if (!(Platform.isAndroid && i == _Item.startFullscreen) &&
               !(widget.onOpenRemote == null && (i == _Item.openRemote || i == _Item.remoteLan)) &&
-              !(widget.remoteLanInfo == null && i == _Item.remoteInfo))
+              !(widget.remoteLanInfo == null && i == _Item.remoteInfo) &&
+              !(widget.onOpenLogFolder == null && i == _Item.openLog))
             i,
       ];
   Settings get s => widget.settings;
@@ -134,6 +154,12 @@ class _MenuOverlayState extends State<MenuOverlay> {
         _change(() => s.volumeLeveling = cycleLeveling(s.volumeLeveling, dir == 0 ? 1 : dir));
       case _Item.about:
         if (dir == 0) widget.onAbout?.call();
+      case _Item.credits:
+        if (dir == 0) widget.onCredits?.call();
+      case _Item.openLog:
+        if (dir == 0) widget.onOpenLogFolder?.call();
+      case _Item.lastError:
+        if (dir == 0) widget.onCopyLastError?.call();
       case _Item.captions:
         _change(() => s.captionsOn = !s.captionsOn);
       case _Item.picture:
@@ -179,6 +205,9 @@ class _MenuOverlayState extends State<MenuOverlay> {
       _Item.mute => 'Mute: ${_onOff(s.muted)}',
       _Item.leveling => 'Volume leveling: ${s.volumeLeveling.toUpperCase()}${widget.levelingAvailable ? '' : ' (not available)'}',
       _Item.about => 'About',
+      _Item.credits => 'Credits',
+      _Item.openLog => 'Open log folder',
+      _Item.lastError => lastErrorLabel(widget.lastError),
       _Item.captions => 'Captions: ${_onOff(s.captionsOn)}',
       _Item.captionSize => 'Caption size ${'#' * s.captionSize}${'.' * (7 - s.captionSize)} ${s.captionSize}',
       _Item.picture => 'Picture: ${s.picture.toUpperCase()}',

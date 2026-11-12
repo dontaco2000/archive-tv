@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 import 'dart:math';
 
 import 'package:archive_tv_core/archive_tv_core.dart';
@@ -16,18 +17,20 @@ import '../player/captions.dart';
 import '../player/picture.dart';
 import '../player/player_controller.dart';
 import '../remote/remote_server.dart';
+import '../settings/crash_log.dart';
 import '../settings/settings_store.dart';
 import '../settings/window_prefs.dart';
 import '../weather/weather.dart';
 import 'about_overlay.dart';
 import 'channel_logo.dart';
+import 'credits_overlay.dart';
 import 'guide_overlay.dart';
 import 'menu_overlay.dart';
 import 'arcade_entry.dart';
 import 'on_demand_overlay.dart';
 import 'weather_web.dart';
 
-enum TvMode { watch, guide, menu, onDemand, location, about }
+enum TvMode { watch, guide, menu, onDemand, location, about, credits }
 
 /// The whole TV: a 4:3 frame holding the video, STAND BY card, info banner and number entry.
 class TvScreen extends StatefulWidget {
@@ -40,7 +43,10 @@ class TvScreen extends StatefulWidget {
 
   /// The remote-control server (Windows only); null hides the remote menu items and R key.
   final RemoteServer? remote;
-  const TvScreen({super.key, required this.controller, required this.settings, required this.store, this.windowPrefs, this.remote});
+
+  /// The crash log (last error, log folder); null in tests.
+  final CrashLog? crash;
+  const TvScreen({super.key, required this.controller, required this.settings, required this.store, this.windowPrefs, this.remote, this.crash});
 
   @override
   State<TvScreen> createState() => _TvScreenState();
@@ -115,6 +121,7 @@ class _TvScreenState extends State<TvScreen> {
       'levelingAvailable': tv.levelingAvailable,
       'weatherMode': settings.weatherMode,
       'picture': settings.picture,
+      'audioDelay': tv.itemId == null ? 0 : settings.audioDelays[tv.itemId] ?? 0,
       'remoteLan': settings.remoteLan,
     };
   }
@@ -329,6 +336,23 @@ class _TvScreenState extends State<TvScreen> {
     if (mounted) setState(() {});
   }
 
+  /// [ / ] / \ keys: shift (or reset, [step] 0) the audio of the item on screen; saved for that item.
+  void _nudgeAudio(int step) {
+    final id = tv.itemId;
+    if (id == null || tv.standBy) return _flash('A/V sync: nothing playing');
+    final ms = nudgeAudioDelay(settings, id, step);
+    unawaited(tv.setAudioDelay(ms));
+    _settingsChanged();
+    _flash(ms == 0 ? 'A/V sync: reset' : 'A/V sync: audio ${ms > 0 ? '+' : ''}$ms ms');
+  }
+
+  void _copyLastError() {
+    final e = widget.crash?.lastError;
+    if (e == null) return _flash('No errors recorded');
+    unawaited(Clipboard.setData(ClipboardData(text: e)));
+    _flash('Last error copied');
+  }
+
   void _toggleFavorite() {
     final c = tv.channel;
     if (c == null) return;
@@ -538,6 +562,12 @@ class _TvScreenState extends State<TvScreen> {
       case TvAction.remote:
         if (widget.remote == null) return KeyEventResult.ignored;
         unawaited(_toggleRemote());
+      case TvAction.audioEarlier:
+        _nudgeAudio(-audioDelayStepMs);
+      case TvAction.audioLater:
+        _nudgeAudio(audioDelayStepMs);
+      case TvAction.audioReset:
+        _nudgeAudio(0);
     }
     return KeyEventResult.handled;
   }
@@ -549,6 +579,8 @@ class _TvScreenState extends State<TvScreen> {
       _closeGuide();
     } else if (mode == TvMode.about) {
       _closeAbout();
+    } else if (mode == TvMode.credits) {
+      _closeMenu();
     } else if (mode != TvMode.watch) {
       _closeMenu();
     } else if (_next != null) {
@@ -675,6 +707,15 @@ class _TvScreenState extends State<TvScreen> {
                                 onOnDemand: () => _openOverlay(TvMode.onDemand),
                                 onWeatherLocation: () => _openOverlay(TvMode.location),
                                 onAbout: () => _openOverlay(TvMode.about),
+                                onCredits: () => _openOverlay(TvMode.credits),
+                                lastError: widget.crash?.lastError,
+                                onCopyLastError: _copyLastError,
+                                onOpenLogFolder: widget.crash == null || !Platform.isWindows
+                                    ? null
+                                    : () {
+                                        _closeMenu();
+                                        unawaited(openExternal(widget.crash!.dir.path, tv.log));
+                                      },
                                 levelingAvailable: tv.levelingAvailable,
                                 onOpenRemote: widget.remote == null
                                     ? null
@@ -707,7 +748,13 @@ class _TvScreenState extends State<TvScreen> {
                                 onDone: _setLocation,
                                 onCancel: _closeMenu,
                               ),
-                            if (mode == TvMode.about) AboutOverlay(firstRun: !settings.noticeAccepted, onClose: _closeAbout),
+                            if (mode == TvMode.about)
+                              AboutOverlay(
+                                firstRun: !settings.noticeAccepted,
+                                onClose: _closeAbout,
+                                onCredits: () => _openOverlay(TvMode.credits),
+                              ),
+                            if (mode == TvMode.credits) CreditsOverlay(onClose: _closeMenu, log: tv.log),
                             if (tv.onDemand != null && !tv.standBy && _next == null)
                               Positioned(
                                 top: 16,
@@ -844,32 +891,62 @@ class ErrorScreen extends StatelessWidget {
   );
 }
 
-class StandByCard extends StatelessWidget {
+/// "STAND BY" with dots cycling . .. ... (padded, so the text never shifts); a [message] (NO SIGNAL, OFF AIR) shows as is.
+String standByText(String? message, int tick) => message ?? 'STAND BY${'.' * (tick % 3 + 1)}'.padRight(11);
+
+class StandByCard extends StatefulWidget {
   final Channel? channel;
   final String? message;
   const StandByCard({super.key, this.channel, this.message});
 
   @override
-  Widget build(BuildContext context) => Container(
-    color: const Color(0xFF0A0A3A),
-    alignment: Alignment.center,
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        if (channel != null) ChannelLogo(channel: channel!, height: 140),
-        if (channel != null)
+  State<StandByCard> createState() => _StandByCardState();
+}
+
+class _StandByCardState extends State<StandByCard> {
+  int _tick = 0;
+  late final Timer _dots;
+
+  @override
+  void initState() {
+    super.initState();
+    _dots = Timer.periodic(const Duration(milliseconds: 450), (_) => setState(() => _tick++));
+  }
+
+  @override
+  void dispose() {
+    _dots.cancel();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final channel = widget.channel;
+    return Container(
+      color: const Color(0xFF0A0A3A),
+      alignment: Alignment.center,
+      // scaleDown: a small window shrinks the card instead of overflowing it.
+      child: FittedBox(
+        fit: BoxFit.scaleDown,
+        child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (channel != null) ChannelLogo(channel: channel, height: 280),
+          if (channel != null)
+            Text(
+              '${channel.number}  ${channel.name.toUpperCase()}',
+              style: const TextStyle(color: Colors.white, fontSize: 40, fontFamily: 'Consolas', fontWeight: FontWeight.bold),
+            ),
+          const SizedBox(height: 16),
           Text(
-            '${channel!.number}  ${channel!.name.toUpperCase()}',
-            style: const TextStyle(color: Colors.white, fontSize: 40, fontFamily: 'Consolas', fontWeight: FontWeight.bold),
+            standByText(widget.message, _tick),
+            style: const TextStyle(color: Color(0xFF9EC8FF), fontSize: 28, fontFamily: 'Consolas'),
           ),
-        const SizedBox(height: 16),
-        Text(
-          message ?? 'STAND BY...',
-          style: const TextStyle(color: Color(0xFF9EC8FF), fontSize: 28, fontFamily: 'Consolas'),
-        ),
-      ],
-    ),
-  );
+        ],
+      ),
+      ),
+    );
+  }
 }
 
 class InfoBanner extends StatelessWidget {
