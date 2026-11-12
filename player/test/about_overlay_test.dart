@@ -38,6 +38,22 @@ void main() {
     expect(t.takeException(), isNull); // no overflow
   });
 
+  testWidgets('logo sits above the title and fits small 4:3 windows', (t) async {
+    for (final size in const [Size(1024, 768), Size(640, 480)]) {
+      t.view.physicalSize = size;
+      t.view.devicePixelRatio = 1;
+      addTearDown(t.view.reset);
+      await t.pumpWidget(MaterialApp(home: Scaffold(body: AboutOverlay(onClose: () {}))));
+      await t.pump();
+      final logo = find.image(const AssetImage('assets/branding/logo.png'));
+      expect(logo, findsOneWidget);
+      final h = t.getSize(logo).height;
+      expect(h, inInclusiveRange(48, 128));
+      expect(t.getRect(logo).bottom, lessThanOrEqualTo(t.getRect(find.text('ABOUT ARCHIVE TV')).top));
+      expect(t.takeException(), isNull); // no overflow
+    }
+  });
+
   testWidgets('first-run notice: any key dismisses', (t) async {
     final closed = await pump(t, firstRun: true);
     expect(find.text('Click or press any key to continue'), findsOneWidget);

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 /// Kept equal to pubspec.yaml's version by test/about_overlay_test.dart.
-const appVersion = '0.6.0';
+const appVersion = '0.6.1';
 
 const aboutLines = [
   'All video and audio comes from the Internet Archive (archive.org) and its uploaders. '
@@ -78,12 +78,14 @@ class _AboutOverlayState extends State<AboutOverlay> {
               padding: const EdgeInsets.all(24),
               child: LayoutBuilder(
                 builder: (context, box) {
-                  final font = (box.maxHeight / 26 < box.maxWidth / 40 ? box.maxHeight / 26 : box.maxWidth / 40).clamp(9.0, 24.0);
+                  final font = (box.maxHeight / 32 < box.maxWidth / 40 ? box.maxHeight / 32 : box.maxWidth / 40).clamp(9.0, 24.0);
                   TextStyle style(Color c, {double scale = 1, bool bold = false}) =>
                       TextStyle(fontFamily: 'Consolas', fontSize: font * scale, color: c, fontWeight: bold ? FontWeight.bold : null);
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      Image.asset('assets/branding/logo.png', height: font * 5.5, filterQuality: FilterQuality.medium),
+                      SizedBox(height: font * 0.4),
                       Text(
                         widget.firstRun ? 'ARCHIVE TV - PLEASE NOTE' : 'ABOUT ARCHIVE TV',
                         style: style(const Color(0xFFFFEB3B), scale: 1.3, bold: true),
