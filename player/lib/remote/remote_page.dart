@@ -93,7 +93,8 @@ const remotePage = r'''<!DOCTYPE html>
   #ccNote { color:#6fcf8f; min-height:12px; }
   .off { color:#ff7b6b; }
   /* POWER: two taps within 3 s (the first arms it and shows TAP AGAIN), so a stray click can't quit the app. */
-  .top { display:flex; justify-content:flex-end; margin-bottom:-4px; }
+  .top { display:flex; justify-content:space-between; align-items:center; margin-bottom:-4px; }
+  .top .mute { min-height:0; height:24px; width:auto; padding:0 10px; border-radius:12px; font-size:10px; letter-spacing:1px; }
   #power { min-height:0; height:24px; min-width:34px; border-radius:12px; background:#b3261e; color:#fff; display:flex;
     align-items:center; justify-content:center; gap:4px; font-size:10px; letter-spacing:1px; }
   #power:hover { background:#d32f2f; }
@@ -103,7 +104,7 @@ const remotePage = r'''<!DOCTYPE html>
 </head>
 <body>
 <div class="remote" id="remote" title="Keys: arrows, Enter, Esc, 0-9, G guide, M menu, I info, F fav, O on demand, U/Space mute, +/- volume, PgUp/PgDn channel">
-  <div class="top"><button id="power" title="Power: turn Archive TV off (tap twice)" aria-label="Power off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 3v9"/><path d="M6.3 6.3a8 8 0 1 0 11.4 0"/></svg><span id="powerTxt"></span></button></div>
+  <div class="top"><button id="power" title="Power: turn Archive TV off (tap twice)" aria-label="Power off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 3v9"/><path d="M6.3 6.3a8 8 0 1 0 11.4 0"/></svg><span id="powerTxt"></span></button><button class="mute" data-key="mute" id="mute">MUTE</button></div>
   <div class="lcd">
     <span class="brand">ARCHIVE TV</span>
     <img id="logo" alt="">
@@ -154,7 +155,6 @@ const remotePage = r'''<!DOCTYPE html>
     <button data-key="volDown" title="Volume down">&minus;</button>
     <div class="bar" id="bar" title="Volume: click or drag"><i id="fill"></i><b id="lvl">--</b></div>
     <button data-key="volUp" title="Volume up">+</button>
-    <button class="mute" data-key="mute" id="mute">MUTE</button>
   </div>
 
   <div class="grid g2">
