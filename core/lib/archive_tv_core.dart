@@ -9,6 +9,7 @@ export 'src/on_demand.dart';
 export 'src/pool_builder.dart';
 export 'src/probe.dart';
 export 'src/query_builder.dart';
+export 'src/rated.dart';
 export 'src/scheduler.dart';
 export 'src/seed.dart';
 export 'src/seeded_random.dart';

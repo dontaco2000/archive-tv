@@ -349,7 +349,7 @@ class _TvScreenState extends State<TvScreen> {
   void _offerNext() {
     final c = tv.channel, e = tv.onDemand;
     if (c == null || e == null) return;
-    final n = nextEpisode(tv.engine.poolOf(c), e);
+    final n = nextEpisode(tv.engine.onDemandPoolOf(c), e);
     if (n == null) {
       _flash('End of series: back to live');
       tv.returnToLive();
@@ -905,7 +905,7 @@ class _TvScreenState extends State<TvScreen> {
                                   for (final c in settings.parental.openChannels(tv.engine.tunable)) // locked channels' items hidden
                                     if (c.type == 'archive') c,
                                 ],
-                                poolOf: tv.engine.poolOf,
+                                poolOf: tv.engine.onDemandPoolOf,
                                 onPlay: (c, e) {
                                   _closeMenu();
                                   unawaited(tv.playOnDemand(c, e));

@@ -146,6 +146,7 @@ Future<void> _main(List<String> args) async {
   try {
     engine = TvEngine.open(
         configText: configFile.readAsStringSync(),
+        ratedText: await rootBundle.loadString('assets/rated.json'),
         dataDir: dataDir,
         probeClient: http.Client(),
         log: log,

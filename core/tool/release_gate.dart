@@ -27,7 +27,16 @@ Future<void> main(List<String> args) async {
   // ---- channels.json
   final text = File('$_assets/channels.json').readAsStringSync();
   final raw = jsonDecode(text) as Map<String, dynamic>;
-  final config = parseChannelConfig(text);
+  // ---- rated.json: parses, ids look like Archive identifiers (optionally item/file)
+  final ratedText = File('$_assets/rated.json').readAsStringSync();
+  final config = parseChannelConfig(text, ratedText: ratedText);
+  final idShape = RegExp(r'^[A-Za-z0-9][A-Za-z0-9._-]*(/.+)?$');
+  for (final id in config.rated.identifiers) {
+    if (!idShape.hasMatch(id)) fails.add('rated.json: "$id" is not a plausible Archive identifier');
+  }
+  notes.add('rated.json: ${config.rated.identifiers.length} ids, ${config.rated.titlePatterns.length} title patterns, '
+      'window ${config.rated.window.startMinute ~/ 60}:00-${config.rated.window.endMinute ~/ 60}:00; '
+      'rated sources: ${[for (final c in config.channels) for (final (i, s) in c.sources.indexed) if (s.rated != null) '${c.name} $i'].join(', ')}');
   final chans = config.channels;
   if (chans.length != expected) fails.add('channels.json has ${chans.length} channels, expected $expected');
   final numbers = <int>{}, names = <String>{};
@@ -101,6 +110,14 @@ Future<void> main(List<String> args) async {
     final total = served.fold(0.0, (s, e) => s + e.durationSeconds);
     if (total < config.minContentSeconds) {
       fails.add('${c.number} ${c.name}: seed pool ${(total / 3600).toStringAsFixed(1)} h after filters (< ${config.minContentSeconds ~/ 3600} h)');
+    }
+    final isRated = ratedTest(c, config);
+    final rated = served.where(isRated).fold(0.0, (s, e) => s + e.durationSeconds);
+    if (rated > 0) {
+      notes.add('${c.number} ${c.name}: ${(rated / 3600).toStringAsFixed(1)} h R-rated in the seed pool (night only)');
+      if (total - rated < config.minContentSeconds) {
+        warns.add('${c.number} ${c.name}: only ${((total - rated) / 3600).toStringAsFixed(1)} h not rated: the daytime repeats it');
+      }
     }
     final byItem = <String, double>{};
     final shuffled = served.where((e) => !isRare(c, e)); // perDay entries air N a day, not by pool share

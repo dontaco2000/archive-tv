@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'models.dart';
+import 'rated.dart';
 
 /// Thrown for a bad `channels.json`; [message] is shown on screen.
 class ConfigException implements Exception {
@@ -11,16 +12,17 @@ class ConfigException implements Exception {
   String toString() => 'ConfigException: $message';
 }
 
-/// Parses and validates the text of `channels.json`.
-ChannelConfig parseChannelConfig(String jsonText) {
+/// Parses and validates the text of `channels.json`, with [ratedText] (the text of `rated.json`; null = no
+/// rated list, default window 22:00-05:00).
+ChannelConfig parseChannelConfig(String jsonText, {String? ratedText}) {
   try {
-    return _parse(jsonText);
+    return _parse(jsonText, ratedText == null ? const RatedRules() : parseRatedRules(ratedText));
   } on TypeError catch (e) {
-    throw ConfigException('channels.json has a value of the wrong type: $e');
+    throw ConfigException('channels.json or rated.json has a value of the wrong type: $e');
   }
 }
 
-ChannelConfig _parse(String jsonText) {
+ChannelConfig _parse(String jsonText, RatedRules rated) {
   final Object? decoded;
   try {
     decoded = jsonDecode(jsonText);
@@ -84,10 +86,12 @@ ChannelConfig _parse(String jsonText) {
       shortContent: raw['shortContent'] as String?,
       minSeconds: _int(raw['minSeconds'], 'channel $number minSeconds'),
       mature: raw['mature'] == true,
+      ratedWindow: raw.containsKey('ratedWindow') ? parseRatedWindow(raw['ratedWindow'], 'channel $number ratedWindow') : null,
     ));
   }
 
   return ChannelConfig(
+    rated: rated,
     yearRange: globalRange,
     fallbackStart: fallbackStart,
     minContentSeconds: minContentSeconds,
@@ -126,6 +130,7 @@ Source _source(Object? raw, int channel) {
     perDay: _perDay(raw['perDay'], channel),
     perDayMinMinutes: _int(raw['perDayMinMinutes'], 'perDayMinMinutes') ?? 0,
     blockLabel: raw['blockLabel'] as String?,
+    rated: raw['rated'] as String?,
   );
 }
 
