@@ -81,6 +81,7 @@ ChannelConfig _parse(String jsonText) {
       logo: raw['logo'] as String?,
       location: raw['location'] as String?,
       shortContent: raw['shortContent'] as String?,
+      minSeconds: _int(raw['minSeconds'], 'channel $number minSeconds'),
     ));
   }
 

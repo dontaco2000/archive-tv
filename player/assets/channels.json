@@ -178,7 +178,58 @@
     "videoshop-2026-02-05-13-17-00-076",
     "img-1510_202603",
     "cafe-flesh101",
-    "SpicyCity"
+    "SpicyCity",
+    "trailer-town",
+    "trailertown2003",
+    "trailertown",
+    "trailertown2003dvdripx264bafrenc",
+    "june-26-1999-tiffy-and-george-marshall",
+    "adventures-of-electra-elf",
+    "BridgingHmongAmerican",
+    "scatv-114_AdultHalloweenLoop_1994",
+    "boob-tube-sex-tv-and-ugly-george-480p",
+    "AV_126_127-BOYS_FOR_SALE",
+    "thegreatsatanatlarge",
+    "GreatSatanAtLargeDVD",
+    "GreatSatan-666Israel",
+    "jim-spagg-cable-access-episode",
+    "vile-video",
+    "youtube-YwFyg9pBSpk",
+    "turner_video_380153",
+    "turner_video_16399",
+    "turner_video_3205",
+    "turner_video_2282",
+    "turner_video_2720",
+    "turner_video_3104",
+    "turner_video_48395",
+    "turner_video_12897",
+    "turner_video_12898",
+    "turner_video_1845",
+    "blonde-heaven-95-screener-promo",
+    "HorrorExpresswithSpanishSubtitles",
+    "coupling-2000-04",
+    "suddenly-susan-1996-2000",
+    "1944-11-xx-Panorama-Monatsschau",
+    "theascentofman7themajesticclockwork",
+    "destinos_pbs",
+    "jailbait-mtv-2000",
+    "ike-tina-turner-live-at-playboy-after-dark-1969",
+    "CaeserPinkOrgyUnplugged-Flow_RaoTone_MayaDance",
+    "PlayboyRollerDiscoAndPyjamaPartyWXYZ1979",
+    "coffee-reggae-stone-cahaya-live-radioroadshow-2012",
+    "wwe-royal-rumble-2007-castellano-pressing-catch",
+    "sic-radical-wwe-2005",
+    "pressing-catch-wrestlemania-vi-1-parte-24-12-1990",
+    "fmw-12.05.2000-e3losangeles",
+    "njpw-the-great-muta-special-edition",
+    "sws-wwf-wrestlefest-in-tokyo-dome",
+    "tweakers000192",
+    "mwcc22swevitasemi",
+    "4KGoldenSunriseNatureRelaxationVideoRelaxingSeaOceanWavesSounds03",
+    "borat_g4",
+    "Movies_That_Time_Forgot_-_Public_Domain_Classics_--_COMING_SOON",
+    "nudist-documentary-coming-up-naked",
+    "makaton-nursery-rhymes-presented-by-dave-benson-phillips-1991-vision-video-ltd.-vhsrip"
   ],
   "channels": [
     {
@@ -1623,10 +1674,10 @@
       "genre": "TV",
       "sources": [
         {
-          "query": "(collection:(classic_tv_commercials OR classic_tv_commercials_emperor OR vhscommercials OR tv_ads) AND title:(commercial OR commercials OR ads OR promos OR \"tv spots\" OR cm)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR spanish OR jpn OR japanese OR chi OR chinese OR zho OR pol OR polish OR fre OR french OR fra OR ger OR german OR deu OR ita OR italian OR por OR portuguese OR rus OR russian OR kor OR korean OR hin OR hindi OR ara OR arabic OR tur OR vie OR ind OR tha OR hmn) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -title:(\"full programming\" OR \"programming (with commercials)\" OR \"original airing\" OR \"full broadcast\" OR \"full tape\" OR miniseries OR \"sunday night movie\") AND -identifier:(\"stephen-kings-it-miniseries\" OR \"simpsons-drexells-class-beverly-hills-90210-w-commercials\" OR \"1985abcsuperman2full\" OR \"nick-jr-2008-full-tape\" OR \"spongebob-house-party\" OR \"nick-jr-05-16-2008-pt-1\" OR \"nick-jr-05-16-2008-pt-2\" OR \"she-wolf-of-london-sci-fi-channel-1990\") AND -title:(marathon OR \"the movie\" OR \"lemon party\" OR \"funny or die\")"
+          "query": "(collection:(classic_tv_commercials OR classic_tv_commercials_emperor OR vhscommercials OR tv_ads) AND title:(commercial OR commercials OR ads OR promos OR \"tv spots\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR porn OR softcore) AND -title:(nsfw OR xxx OR porn OR erotic OR sexy OR lingerie) AND -language:(spa OR jpn OR chi OR zho OR pol OR fre OR ger OR ita OR por OR rus OR kor OR hin OR ara OR tur OR vie OR tha OR dut OR nld OR swe OR fin) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR gospel OR church OR sermon OR bible OR ministry OR religious) AND -identifier:(\"stephen-kings-it-miniseries\" OR \"simpsons-drexells-class-beverly-hills-90210-w-commercials\" OR \"1985abcsuperman2full\" OR \"nick-jr-2008-full-tape\" OR \"spongebob-house-party\" OR \"nick-jr-05-16-2008-pt-1\" OR \"nick-jr-05-16-2008-pt-2\" OR \"she-wolf-of-london-sci-fi-channel-1990\") AND -title:(japanese OR japan OR jorx OR jocx OR \"cm集\" OR korean OR chinese OR \"hong kong\" OR tvb OR werbung OR werbeblock OR pubblicita OR \"pubblicità\" OR publicidad OR comerciales OR anuncios OR propagandas OR propaganda OR reclame OR reclames OR \"publicité\" OR publicites OR reklama OR reklam OR reklamy OR mainos OR mainoksia OR \"spot tv\" OR pubs OR russian OR german OR french OR spanish OR italian OR mexican OR brazilian OR dutch OR polish OR turkish OR thai OR indian OR hindi OR arabic) AND -identifier:(*_CM_* OR *CM_* OR *cm-shu* OR *werbung*) AND -title:(\"with commercials\" OR \"w/ commercials\" OR \"w commercials\" OR \"commercials intact\" OR block OR \"full episode\" OR episode OR premiere OR \"full movie\" OR \"the movie\" OR marathon OR miniseries OR \"full programming\" OR \"full broadcast\" OR \"full tape\" OR \"original airing\" OR \"sunday night movie\" OR \"victoria's secret\" OR \"victorias secret\" OR \"lemon party\" OR \"funny or die\")"
         },
         {
-          "query": "(subject:(commercial OR commercials) AND title:(commercial OR commercials)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR spanish OR jpn OR japanese OR chi OR chinese OR zho OR pol OR polish OR fre OR french OR fra OR ger OR german OR deu OR ita OR italian OR por OR portuguese OR rus OR russian OR kor OR korean OR hin OR hindi OR ara OR arabic OR tur OR vie OR ind OR tha OR hmn) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -title:(\"full programming\" OR \"programming (with commercials)\" OR \"original airing\" OR \"full broadcast\" OR \"full tape\" OR miniseries OR \"sunday night movie\") AND -identifier:(\"stephen-kings-it-miniseries\" OR \"simpsons-drexells-class-beverly-hills-90210-w-commercials\" OR \"1985abcsuperman2full\" OR \"nick-jr-2008-full-tape\" OR \"spongebob-house-party\" OR \"nick-jr-05-16-2008-pt-1\" OR \"nick-jr-05-16-2008-pt-2\" OR \"she-wolf-of-london-sci-fi-channel-1990\") AND -title:(marathon OR \"the movie\" OR \"lemon party\" OR \"funny or die\")"
+          "query": "(subject:(commercial OR commercials) AND title:(commercial OR commercials)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR porn OR softcore) AND -title:(nsfw OR xxx OR porn OR erotic OR sexy OR lingerie) AND -language:(spa OR jpn OR chi OR zho OR pol OR fre OR ger OR ita OR por OR rus OR kor OR hin OR ara OR tur OR vie OR tha OR dut OR nld OR swe OR fin) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR gospel OR church OR sermon OR bible OR ministry OR religious) AND -identifier:(\"stephen-kings-it-miniseries\" OR \"simpsons-drexells-class-beverly-hills-90210-w-commercials\" OR \"1985abcsuperman2full\" OR \"nick-jr-2008-full-tape\" OR \"spongebob-house-party\" OR \"nick-jr-05-16-2008-pt-1\" OR \"nick-jr-05-16-2008-pt-2\" OR \"she-wolf-of-london-sci-fi-channel-1990\") AND -title:(japanese OR japan OR jorx OR jocx OR \"cm集\" OR korean OR chinese OR \"hong kong\" OR tvb OR werbung OR werbeblock OR pubblicita OR \"pubblicità\" OR publicidad OR comerciales OR anuncios OR propagandas OR propaganda OR reclame OR reclames OR \"publicité\" OR publicites OR reklama OR reklam OR reklamy OR mainos OR mainoksia OR \"spot tv\" OR pubs OR russian OR german OR french OR spanish OR italian OR mexican OR brazilian OR dutch OR polish OR turkish OR thai OR indian OR hindi OR arabic) AND -identifier:(*_CM_* OR *CM_* OR *cm-shu* OR *werbung*) AND -title:(\"with commercials\" OR \"w/ commercials\" OR \"w commercials\" OR \"commercials intact\" OR block OR \"full episode\" OR episode OR premiere OR \"full movie\" OR \"the movie\" OR marathon OR miniseries OR \"full programming\" OR \"full broadcast\" OR \"full tape\" OR \"original airing\" OR \"sunday night movie\" OR \"victoria's secret\" OR \"victorias secret\" OR \"lemon party\" OR \"funny or die\")"
         }
       ]
     },
@@ -1691,7 +1742,38 @@
       "genre": "TV",
       "sources": [
         {
-          "query": "(subject:(\"public access\" OR \"cable access\" OR \"community access\" OR \"public-access\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR spanish OR jpn OR japanese OR chi OR chinese OR zho OR pol OR polish OR fre OR french OR fra OR ger OR german OR deu OR ita OR italian OR por OR portuguese OR rus OR russian OR kor OR korean OR hin OR hindi OR ara OR arabic OR tur OR vie OR ind OR tha OR hmn) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -title:(sex OR borat OR \"belly dancer\") AND -identifier:(\"boob-tube-sex-tv-and-ugly-george-480p\" OR \"rptv1on-Teen_Sex_Educational\")"
+          "query": "(collection:stairwaytostardom AND title:(\"full show\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR porn OR pornography OR softcore OR nudity OR nude OR sexploitation) AND -title:(xxx OR nsfw OR porn OR erotic OR nude OR naked OR nudity OR topless OR sexy OR sex OR stripper OR striptease OR underwear OR lingerie OR fetish OR bikini OR \"belly dancer\" OR \"ugly george\" OR \"boys for sale\" OR burlesque OR playboy) AND -language:(spa OR jpn OR chi OR zho OR pol OR fre OR ger OR ita OR por OR rus OR kor OR hin OR ara OR tur OR vie OR hmn) AND -title:(hmong OR espanol) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR gospel OR church OR sermon OR bible OR ministry OR religious) AND -title:(church OR sermon OR ministry OR bible OR gospel OR preacher) AND -title:(loop OR loops OR raw OR \"raw footage\" OR \"raw tape\" OR bonus OR unedited OR \"test roll\" OR \"camera roll\" OR \"b-roll\" OR broll OR \"call break\" OR callbreak OR callbreaks OR outtake OR outtakes OR audition OR auditions OR \"dead air\" OR \"test pattern\" OR \"color bars\" OR footage OR preview OR previews OR promo OR psa OR \"station id\" OR intro OR sampler OR \"annual meeting\" OR \"board meeting\" OR \"city council\" OR \"school committee\" OR hearing OR \"town meeting\" OR \"market box\" OR \"blank vhs\" OR \"golden girls\" OR vaccines OR \"coming soon\" OR borat OR montage) AND -identifier:(*Raw* OR *raw* OR *Loop* OR *loop*) AND -title:(sesame OR barney OR teletubbies OR \"kids talent\" OR cartoon OR cartoons OR elmo OR muppet OR puppet)",
+          "ignoreYear": true,
+          "maxEntries": 40,
+          "maxEntriesPerItem": 1
+        },
+        {
+          "query": "(identifier:AV_* AND title:(\"alternative views\" OR AV)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR porn OR pornography OR softcore OR nudity OR nude OR sexploitation) AND -title:(xxx OR nsfw OR porn OR erotic OR nude OR naked OR nudity OR topless OR sexy OR sex OR stripper OR striptease OR underwear OR lingerie OR fetish OR bikini OR \"belly dancer\" OR \"ugly george\" OR \"boys for sale\" OR burlesque OR playboy) AND -language:(spa OR jpn OR chi OR zho OR pol OR fre OR ger OR ita OR por OR rus OR kor OR hin OR ara OR tur OR vie OR hmn) AND -title:(hmong OR espanol) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR gospel OR church OR sermon OR bible OR ministry OR religious) AND -title:(church OR sermon OR ministry OR bible OR gospel OR preacher) AND -title:(loop OR loops OR raw OR \"raw footage\" OR \"raw tape\" OR bonus OR unedited OR \"test roll\" OR \"camera roll\" OR \"b-roll\" OR broll OR \"call break\" OR callbreak OR callbreaks OR outtake OR outtakes OR audition OR auditions OR \"dead air\" OR \"test pattern\" OR \"color bars\" OR footage OR preview OR previews OR promo OR psa OR \"station id\" OR intro OR sampler OR \"annual meeting\" OR \"board meeting\" OR \"city council\" OR \"school committee\" OR hearing OR \"town meeting\" OR \"market box\" OR \"blank vhs\" OR \"golden girls\" OR vaccines OR \"coming soon\" OR borat OR montage) AND -identifier:(*Raw* OR *raw* OR *Loop* OR *loop*) AND -title:(sesame OR barney OR teletubbies OR \"kids talent\" OR cartoon OR cartoons OR elmo OR muppet OR puppet) AND -collection:(tvnews OR tvarchive OR movie_trailers OR mirrortube OR twitchstreams OR podcasts OR fringe OR deemphasize OR funnyordie) AND -identifier:(twitter-* OR TikTok-* OR BridgingHmongAmerican OR jim-spagg*)",
+          "ignoreYear": true,
+          "maxEntries": 30,
+          "maxEntriesPerItem": 1
+        },
+        {
+          "query": "(collection:somervillecommunityaccesstelevision AND identifier:scatv-*) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR porn OR pornography OR softcore OR nudity OR nude OR sexploitation) AND -title:(xxx OR nsfw OR porn OR erotic OR nude OR naked OR nudity OR topless OR sexy OR sex OR stripper OR striptease OR underwear OR lingerie OR fetish OR bikini OR \"belly dancer\" OR \"ugly george\" OR \"boys for sale\" OR burlesque OR playboy) AND -language:(spa OR jpn OR chi OR zho OR pol OR fre OR ger OR ita OR por OR rus OR kor OR hin OR ara OR tur OR vie OR hmn) AND -title:(hmong OR espanol) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR gospel OR church OR sermon OR bible OR ministry OR religious) AND -title:(church OR sermon OR ministry OR bible OR gospel OR preacher) AND -title:(loop OR loops OR raw OR \"raw footage\" OR \"raw tape\" OR bonus OR unedited OR \"test roll\" OR \"camera roll\" OR \"b-roll\" OR broll OR \"call break\" OR callbreak OR callbreaks OR outtake OR outtakes OR audition OR auditions OR \"dead air\" OR \"test pattern\" OR \"color bars\" OR footage OR preview OR previews OR promo OR psa OR \"station id\" OR intro OR sampler OR \"annual meeting\" OR \"board meeting\" OR \"city council\" OR \"school committee\" OR hearing OR \"town meeting\" OR \"market box\" OR \"blank vhs\" OR \"golden girls\" OR vaccines OR \"coming soon\" OR borat OR montage) AND -identifier:(*Raw* OR *raw* OR *Loop* OR *loop*) AND -title:(sesame OR barney OR teletubbies OR \"kids talent\" OR cartoon OR cartoons OR elmo OR muppet OR puppet) AND -collection:(tvnews OR tvarchive OR movie_trailers OR mirrortube OR twitchstreams OR podcasts OR fringe OR deemphasize OR funnyordie) AND -identifier:(twitter-* OR TikTok-* OR BridgingHmongAmerican OR jim-spagg*)",
+          "maxEntries": 40,
+          "maxEntriesPerItem": 2
+        },
+        {
+          "query": "(collection:(vhstvshows OR vhsvault OR classic_tv OR classic_tv_1980s OR classic_tv_1990s) AND title:(\"public access\" OR \"cable access\" OR \"community access\" OR \"local access\" OR \"access tv\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR porn OR pornography OR softcore OR nudity OR nude OR sexploitation) AND -title:(xxx OR nsfw OR porn OR erotic OR nude OR naked OR nudity OR topless OR sexy OR sex OR stripper OR striptease OR underwear OR lingerie OR fetish OR bikini OR \"belly dancer\" OR \"ugly george\" OR \"boys for sale\" OR burlesque OR playboy) AND -language:(spa OR jpn OR chi OR zho OR pol OR fre OR ger OR ita OR por OR rus OR kor OR hin OR ara OR tur OR vie OR hmn) AND -title:(hmong OR espanol) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR gospel OR church OR sermon OR bible OR ministry OR religious) AND -title:(church OR sermon OR ministry OR bible OR gospel OR preacher) AND -title:(loop OR loops OR raw OR \"raw footage\" OR \"raw tape\" OR bonus OR unedited OR \"test roll\" OR \"camera roll\" OR \"b-roll\" OR broll OR \"call break\" OR callbreak OR callbreaks OR outtake OR outtakes OR audition OR auditions OR \"dead air\" OR \"test pattern\" OR \"color bars\" OR footage OR preview OR previews OR promo OR psa OR \"station id\" OR intro OR sampler OR \"annual meeting\" OR \"board meeting\" OR \"city council\" OR \"school committee\" OR hearing OR \"town meeting\" OR \"market box\" OR \"blank vhs\" OR \"golden girls\" OR vaccines OR \"coming soon\" OR borat OR montage) AND -identifier:(*Raw* OR *raw* OR *Loop* OR *loop*) AND -title:(sesame OR barney OR teletubbies OR \"kids talent\" OR cartoon OR cartoons OR elmo OR muppet OR puppet) AND -collection:(tvnews OR tvarchive OR movie_trailers OR mirrortube OR twitchstreams OR podcasts OR fringe OR deemphasize OR funnyordie) AND -identifier:(twitter-* OR TikTok-* OR BridgingHmongAmerican OR jim-spagg*)",
+          "ignoreYear": true,
+          "maxEntries": 40,
+          "maxEntriesPerItem": 2
+        },
+        {
+          "query": "((title:\"paper tiger\" AND title:(reads OR television OR tv OR screening) AND -title:(coffee OR lunchbox OR kamala OR jade OR \"closing logos\" OR cam OR protest)) OR (collection:deepdishtv AND -title:(shocking))) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR porn OR pornography OR softcore OR nudity OR nude OR sexploitation) AND -title:(xxx OR nsfw OR porn OR erotic OR nude OR naked OR nudity OR topless OR sexy OR sex OR stripper OR striptease OR underwear OR lingerie OR fetish OR bikini OR \"belly dancer\" OR \"ugly george\" OR \"boys for sale\" OR burlesque OR playboy) AND -language:(spa OR jpn OR chi OR zho OR pol OR fre OR ger OR ita OR por OR rus OR kor OR hin OR ara OR tur OR vie OR hmn) AND -title:(hmong OR espanol) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR gospel OR church OR sermon OR bible OR ministry OR religious) AND -title:(church OR sermon OR ministry OR bible OR gospel OR preacher) AND -title:(loop OR loops OR raw OR \"raw footage\" OR \"raw tape\" OR bonus OR unedited OR \"test roll\" OR \"camera roll\" OR \"b-roll\" OR broll OR \"call break\" OR callbreak OR callbreaks OR outtake OR outtakes OR audition OR auditions OR \"dead air\" OR \"test pattern\" OR \"color bars\" OR footage OR preview OR previews OR promo OR psa OR \"station id\" OR intro OR sampler OR \"annual meeting\" OR \"board meeting\" OR \"city council\" OR \"school committee\" OR hearing OR \"town meeting\" OR \"market box\" OR \"blank vhs\" OR \"golden girls\" OR vaccines OR \"coming soon\" OR borat OR montage) AND -identifier:(*Raw* OR *raw* OR *Loop* OR *loop*) AND -title:(sesame OR barney OR teletubbies OR \"kids talent\" OR cartoon OR cartoons OR elmo OR muppet OR puppet) AND -collection:(tvnews OR tvarchive OR movie_trailers OR mirrortube OR twitchstreams OR podcasts OR fringe OR deemphasize OR funnyordie) AND -identifier:(twitter-* OR TikTok-* OR BridgingHmongAmerican OR jim-spagg*)",
+          "ignoreYear": true,
+          "maxEntries": 25,
+          "maxEntriesPerItem": 1
+        },
+        {
+          "query": "(subject:(\"public access\" OR \"cable access\" OR \"community access\" OR \"public-access\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR porn OR pornography OR softcore OR nudity OR nude OR sexploitation) AND -title:(xxx OR nsfw OR porn OR erotic OR nude OR naked OR nudity OR topless OR sexy OR sex OR stripper OR striptease OR underwear OR lingerie OR fetish OR bikini OR \"belly dancer\" OR \"ugly george\" OR \"boys for sale\" OR burlesque OR playboy) AND -language:(spa OR jpn OR chi OR zho OR pol OR fre OR ger OR ita OR por OR rus OR kor OR hin OR ara OR tur OR vie OR hmn) AND -title:(hmong OR espanol) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR gospel OR church OR sermon OR bible OR ministry OR religious) AND -title:(church OR sermon OR ministry OR bible OR gospel OR preacher) AND -title:(loop OR loops OR raw OR \"raw footage\" OR \"raw tape\" OR bonus OR unedited OR \"test roll\" OR \"camera roll\" OR \"b-roll\" OR broll OR \"call break\" OR callbreak OR callbreaks OR outtake OR outtakes OR audition OR auditions OR \"dead air\" OR \"test pattern\" OR \"color bars\" OR footage OR preview OR previews OR promo OR psa OR \"station id\" OR intro OR sampler OR \"annual meeting\" OR \"board meeting\" OR \"city council\" OR \"school committee\" OR hearing OR \"town meeting\" OR \"market box\" OR \"blank vhs\" OR \"golden girls\" OR vaccines OR \"coming soon\" OR borat OR montage) AND -identifier:(*Raw* OR *raw* OR *Loop* OR *loop*) AND -title:(sesame OR barney OR teletubbies OR \"kids talent\" OR cartoon OR cartoons OR elmo OR muppet OR puppet) AND -collection:(tvnews OR tvarchive OR movie_trailers OR mirrortube OR twitchstreams OR podcasts OR fringe OR deemphasize OR funnyordie) AND -identifier:(twitter-* OR TikTok-* OR BridgingHmongAmerican OR jim-spagg*)",
+          "maxEntries": 50,
+          "maxEntriesPerItem": 2
         }
       ]
     },
@@ -2714,7 +2796,8 @@
           "maxEntriesPerItem": 25,
           "ignoreYear": true
         }
-      ]
+      ],
+      "minSeconds": 60
     },
     {
       "number": 50,
@@ -2843,7 +2926,7 @@
           "tag": "cartoons_overseas"
         },
         {
-          "query": "(subject:(bbc OR itv OR \"channel 4\" OR \"australian television\" OR \"british television\") AND -collection:tvnews AND -title:(pokemon OR \"world news\" OR \"tokyo bound\" OR everwood OR tweenies OR balamory OR \"peter rabbit\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR spanish OR jpn OR japanese OR chi OR chinese OR zho OR pol OR polish OR fre OR french OR fra OR ger OR german OR deu OR ita OR italian OR por OR portuguese OR rus OR russian OR kor OR korean OR hin OR hindi OR ara OR arabic OR tur OR vie OR ind OR tha OR hmn) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -title:(vf OR \"version française\" OR jazzwoche OR \"dancing outlaw\" OR \"alvin and the chipmunks\") AND -title:(commercial)",
+          "query": "(subject:(bbc OR itv OR \"channel 4\" OR \"australian television\" OR \"british television\") AND -collection:tvnews AND -title:(pokemon OR \"world news\" OR \"tokyo bound\" OR everwood OR tweenies OR balamory OR \"peter rabbit\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR spanish OR jpn OR japanese OR chi OR chinese OR zho OR pol OR polish OR fre OR french OR fra OR ger OR german OR deu OR ita OR italian OR por OR portuguese OR rus OR russian OR kor OR korean OR hin OR hindi OR ara OR arabic OR tur OR vie OR ind OR tha OR hmn) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -title:(vf OR \"version française\" OR jazzwoche OR \"dancing outlaw\" OR \"alvin and the chipmunks\") AND -title:(commercial) AND -title:(thomas OR pingu OR \"postman pat\" OR \"bob the builder\" OR \"zoo lane\" OR pocoyo OR \"yo gabba\" OR \"fourways farm\" OR \"wish wellingtons\" OR teletubbies OR tweenies OR noddy OR \"fireman sam\" OR \"in the night garden\" OR cbeebies OR cbbc) AND -subject:(children OR kids OR cbeebies OR preschool OR \"children's television\")",
           "maxEntriesPerItem": 25
         }
       ]
@@ -3471,7 +3554,8 @@
           "maxEntriesPerItem": 1,
           "ignoreYear": true
         }
-      ]
+      ],
+      "minSeconds": 60
     }
   ]
 }

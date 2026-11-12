@@ -114,6 +114,16 @@ void main() {
     expect(logs.any((l) => l.contains('skip source')), isTrue);
   });
 
+  test('files under 2 min stay out of normal channels; short-content and minSeconds channels keep them', () async {
+    final api = FakeApi({'show': (1990, 30), 'opening': (1990, 1)});
+    final normal = await buildPool(channel, config(minHours: 0), api);
+    expect(normal.map((e) => e.itemId), ['show']);
+    const ads = Channel(number: 22, name: 'Jingle', shortContent: 'Commercials', sources: [Source(query: 'x')]);
+    expect((await buildPool(ads, config(minHours: 0), api)).map((e) => e.itemId), ['opening', 'show']);
+    const ids = Channel(number: 66, name: 'Nightlight', minSeconds: 60, sources: [Source(query: 'x')]);
+    expect((await buildPool(ids, config(minHours: 0), api)).length, 2);
+  });
+
   test('weatherstar channels have no pool', () async {
     const wx = Channel(number: 1, name: 'Cumulus', type: 'weatherstar');
     expect(await buildPool(wx, config(), FakeApi({})), isEmpty);

@@ -86,6 +86,10 @@ class Channel {
   /// schedule as 2-hour "More <label>" blocks instead of single items. Null = normal grouping.
   final String? shortContent;
 
+  /// Shortest file the pool takes, in seconds. Null: 60 on [shortContent] channels, else 120 (in-pack
+  /// openings, DVD menus and promos are left out of normal channels).
+  final int? minSeconds;
+
   const Channel({
     required this.number,
     required this.name,
@@ -98,6 +102,7 @@ class Channel {
     this.primeTime = const PrimeTime(),
     this.serials = const [],
     this.shortContent,
+    this.minSeconds,
   });
 }
 
