@@ -50,6 +50,12 @@ class Channel {
   final String? logo;
   final String? location;
 
+  /// The evening window the [serials] sit in.
+  final PrimeTime primeTime;
+
+  /// Serial blocks, in time order (empty: the whole day is the normal shuffle).
+  final List<SerialSlot> serials;
+
   const Channel({
     required this.number,
     required this.name,
@@ -59,6 +65,51 @@ class Channel {
     this.yearRange,
     this.logo,
     this.location,
+    this.primeTime = const PrimeTime(),
+    this.serials = const [],
+  });
+}
+
+/// The prime-time window: [slots] blocks of [slotMinutes] from [startMinute] (minutes after local midnight).
+class PrimeTime {
+  final int startMinute;
+  final int slots;
+  final int slotMinutes;
+
+  const PrimeTime({this.startMinute = 18 * 60, this.slots = 6, this.slotMinutes = 60});
+}
+
+/// One prime-time block: a queue of [shows] played in episode order, back to back, looping.
+/// The episode index on a day is `((day - epoch) * perDay) mod (episodes in the whole queue)`.
+class SerialSlot {
+  final int startMinute;
+  final DateTime epoch;
+
+  /// Episodes per day; null = as many as fit the slot by median episode length (at least 1).
+  final int? perDay;
+  final List<SerialShow> shows;
+
+  const SerialSlot({required this.startMinute, required this.epoch, this.perDay, required this.shows});
+}
+
+/// One show in a [SerialSlot] queue and how to find its episodes in its Archive items.
+/// Order: [episode] regex (1 group = episode, 2 = season and episode), else the explicit
+/// file-name [order], else natural file-name order. [include]/[exclude] filter file names.
+class SerialShow {
+  final String title;
+  final List<String> identifiers;
+  final RegExp? include;
+  final RegExp? exclude;
+  final RegExp? episode;
+  final List<String>? order;
+
+  const SerialShow({
+    required this.title,
+    required this.identifiers,
+    this.include,
+    this.exclude,
+    this.episode,
+    this.order,
   });
 }
 
@@ -134,11 +185,11 @@ class Entry {
   /// Tagged with a language and none of its languages is English: needs English subtitles.
   bool get foreign => isForeignLanguage(language);
 
-  Entry copyWith({bool? faststart}) => Entry(
+  Entry copyWith({bool? faststart, String? title}) => Entry(
         id: id,
         itemId: itemId,
         file: file,
-        title: title,
+        title: title ?? this.title,
         durationSeconds: durationSeconds,
         url: url,
         size: size,

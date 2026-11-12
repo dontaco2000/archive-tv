@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'models.dart';
 import 'scheduler.dart';
+import 'serials.dart';
 
 File _file(Directory dir, String name) => File('${dir.path}${Platform.pathSeparator}$name');
 
@@ -42,6 +43,28 @@ class PoolStore {
     return [for (final e in (j['entries'] as List).cast<Map<String, dynamic>>()) Entry.fromJson(e)];
   }
 
+  File _s(int channel) => _file(dir, 'serials-$channel.json');
+
+  /// Saves [c]'s serial episode lists (`[slot][show]`), tagged with its [serialsSignature].
+  void saveSerials(Channel c, List<List<List<Entry>>> episodes) => _writeJson(_s(c.number), {
+        'signature': serialsSignature(c),
+        'slots': [
+          for (final slot in episodes) [for (final show in slot) [for (final e in show) e.toJson()]],
+        ],
+      });
+
+  /// The saved serial episode lists, or null if none or saved for a different serial config.
+  List<List<List<Entry>>>? loadSerials(Channel c) {
+    final j = _readJson(_s(c.number)) as Map<String, dynamic>?;
+    if (j == null || j['signature'] != serialsSignature(c)) return null;
+    return [
+      for (final slot in (j['slots'] as List).cast<List>())
+        [
+          for (final show in slot.cast<List>()) [for (final e in show.cast<Map<String, dynamic>>()) Entry.fromJson(e)],
+        ],
+    ];
+  }
+
   /// How old the saved pool is, or null if none.
   Duration? age(int channel) {
     final j = _readJson(_f(channel)) as Map<String, dynamic>?;
@@ -53,37 +76,74 @@ class PoolStore {
 /// Each day's shuffled entry order, saved once made, so a pool refresh never
 /// reshuffles the week the guide already shows. Saving the order (not finished
 /// slots) keeps days editable: a blocked item drops out and later times shift.
-/// Past days are deleted.
+/// Past days are deleted. A day with serial blocks also saves the blocks' episode picks
+/// (`{"order": [...], "serials": [...]}`; a day without is the plain order list).
 class SnapshotStore {
   final Directory dir;
   SnapshotStore(this.dir);
 
-  final Map<String, List<Entry>> _orders = {}; // '<channel>-<dayKey>' -> unfiltered day order
+  // '<channel>-<dayKey>' -> unfiltered day order and serial blocks
+  final Map<String, (List<Entry>, List<SerialBlock>)> _days = {};
 
   File _f(int channel, DateTime day) => _file(dir, 'day-$channel-${dayKey(day)}.json');
 
+  static (List<Entry>, List<SerialBlock>)? _read(File f) {
+    List<Entry> entries(Object? l) => [for (final e in (l as List).cast<Map<String, dynamic>>()) Entry.fromJson(e)];
+    return switch (_readJson(f)) {
+      final List l => (entries(l), const []),
+      final Map m => (
+          entries(m['order']),
+          [for (final b in (m['serials'] as List? ?? const []).cast<Map<String, dynamic>>()) SerialBlock.fromJson(b)]
+        ),
+      _ => null,
+    };
+  }
+
   /// The schedule for [day] (a local DateTime), from the saved order, making
   /// and saving it from [pool] if absent; [blocklist] entries are removed.
-  List<Slot> day(int channel, DateTime day, List<Entry> pool, {Blocklist? blocklist}) {
+  /// [serials] gives the day's serial blocks; they are saved with the day the first time
+  /// they are non-empty (also for a day saved before the channel had serials).
+  List<Slot> day(int channel, DateTime day, List<Entry> pool,
+      {Blocklist? blocklist, List<SerialBlock> Function(DateTime day)? serials}) {
     final key = '$channel-${dayKey(day)}';
-    var order = _orders[key];
-    if (order == null) {
-      final f = _f(channel, day);
-      final saved = _readJson(f) as List?;
-      order = saved != null
-          ? [for (final e in saved.cast<Map<String, dynamic>>()) Entry.fromJson(e)]
-          : dayOrder(pool, 'ch$channel', day);
-      if (saved == null && order.isNotEmpty) _writeJson(f, [for (final e in order) e.toJson()]);
-      if (order.isNotEmpty) _orders[key] = order; // empty days are not cached: the pool may fill later
+    final f = _f(channel, day);
+    var snap = _days[key] ?? _read(f);
+    var dirty = false;
+    if (snap == null) {
+      snap = (dayOrder(pool, 'ch$channel', day), const <SerialBlock>[]);
+      dirty = true;
     }
-    if (blocklist != null) order = blocklist.apply(order);
-    return layoutDay(order, day);
+    if (snap.$2.isEmpty && serials != null) {
+      final blocks = serials(day);
+      if (blocks.isNotEmpty) {
+        snap = (snap.$1, blocks);
+        dirty = true;
+      }
+    }
+    final (order, blocks) = snap;
+    if (order.isNotEmpty || blocks.isNotEmpty) {
+      _days[key] = snap; // empty days are not cached: the pool may fill later
+      if (dirty) {
+        _writeJson(
+            f,
+            blocks.isEmpty
+                ? [for (final e in order) e.toJson()]
+                : {
+                    'order': [for (final e in order) e.toJson()],
+                    'serials': [for (final b in blocks) b.toJson()],
+                  });
+      }
+    }
+    if (blocklist == null) return layoutSerialDay(order, day, blocks);
+    return layoutSerialDay(
+        blocklist.apply(order), day, [for (final b in blocks) b.withEpisodes(blocklist.apply(b.episodes))]);
   }
 
   /// Makes sure today and the next [days] - 1 days are saved.
-  void ensureWeek(int channel, DateTime today, List<Entry> pool, {int days = 7}) {
+  void ensureWeek(int channel, DateTime today, List<Entry> pool,
+      {int days = 7, List<SerialBlock> Function(DateTime day)? serials}) {
     for (var i = 0; i < days; i++) {
-      day(channel, DateTime(today.year, today.month, today.day + i), pool);
+      day(channel, DateTime(today.year, today.month, today.day + i), pool, serials: serials);
     }
   }
 
@@ -91,7 +151,7 @@ class SnapshotStore {
   void prune(DateTime today) {
     if (!dir.existsSync()) return;
     final cutoff = dayKey(today);
-    _orders.removeWhere((k, _) => k.substring(k.indexOf('-') + 1).compareTo(cutoff) < 0);
+    _days.removeWhere((k, _) => k.substring(k.indexOf('-') + 1).compareTo(cutoff) < 0);
     for (final f in dir.listSync().whereType<File>()) {
       final m = RegExp(r'day-\d+-(\d{4}-\d{2}-\d{2})\.json$').firstMatch(f.path);
       if (m != null && m.group(1)!.compareTo(cutoff) < 0) f.deleteSync();
