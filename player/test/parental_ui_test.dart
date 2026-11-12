@@ -123,7 +123,7 @@ void main() {
     final flashes = <String>[];
     final flow = ParentalFlow(p, save: () {}, flash: flashes.add, ask: (_) {});
     List<String> labels() => [for (final r in parentalRows(p, const [a, b, c], flow, () {}, () {})) r.$1];
-    expect(labels(), ['Set PIN', 'Close']);
+    expect(labels(), ['Set PIN', 'Late night adult mode: ON', 'Close']);
     p
       ..setPin('1234')
       ..lockOn = true;

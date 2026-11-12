@@ -38,7 +38,8 @@ String settingsFileText(Settings s) => '''
 # Close Archive TV first; changes are read at the next start. One key=value per line, # starts a comment.
 # Invalid values are ignored (and noted in archive_tv.log). The app rewrites this file when settings change.
 
-# true = at the next start, wipe ALL parental controls (PIN, locked channels, lock on/off, wrong-PIN count).
+# true = at the next start, wipe ALL parental controls (PIN, locked channels, lock on/off, wrong-PIN count;
+# late night adult mode goes back to ON).
 # It is the only way to reset a forgotten PIN. The app sets it back to false after the reset.
 reset_parental_controls=false
 

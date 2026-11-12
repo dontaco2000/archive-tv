@@ -21,6 +21,10 @@ class Parental {
   bool lockOn = false;
   Set<int> locked = {};
 
+  /// "Late night adult mode" (default ON): R-rated programmes air in the late-night window. OFF (PIN to change):
+  /// they never air. Reset (file or Remove PIN) sets it back ON.
+  bool adultMode = true;
+
   /// Wrong PINs in a row, and the end of the 30 s lockout after [maxTries] of them (saved, so a restart can't skip it).
   int wrongTries = 0;
   DateTime? lockoutUntil;
@@ -92,6 +96,7 @@ class Parental {
   void clear() {
     pinHash = pinSalt = lockoutUntil = null;
     lockOn = false;
+    adultMode = true;
     locked = {};
     wrongTries = 0;
   }
@@ -101,6 +106,7 @@ class Parental {
         'pinSalt': pinSalt,
         'lockOn': lockOn,
         'locked': locked.toList()..sort(),
+        'adultMode': adultMode,
         'wrongTries': wrongTries,
         'lockoutUntil': lockoutUntil?.toIso8601String(),
       };
@@ -112,6 +118,7 @@ class Parental {
       p.pinSalt = j['pinSalt'] as String;
     }
     p.lockOn = j['lockOn'] == true;
+    p.adultMode = j['adultMode'] != false;
     if (j['locked'] is List) p.locked = (j['locked'] as List).whereType<int>().toSet();
     if (j['wrongTries'] is int) p.wrongTries = (j['wrongTries'] as int).clamp(0, maxTries - 1);
     if (j['lockoutUntil'] is String) p.lockoutUntil = DateTime.tryParse(j['lockoutUntil'] as String);

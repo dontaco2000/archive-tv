@@ -114,6 +114,7 @@ class _TvScreenState extends State<TvScreen> {
       'title': od != null ? cleanTitle(od.title) : (a == null ? null : cleanTitle(a.slot.entry.title)),
       'minutesLeft': od == null && a != null ? a.remaining.inMinutes : null,
       'onDemand': od != null,
+      'rated': _ratedOnScreen,
       'standBy': tv.standBy,
       'message': tv.message,
       'building': tv.message == buildingMessage,
@@ -139,7 +140,44 @@ class _TvScreenState extends State<TvScreen> {
   // ---- Parental controls (parental/): the PIN prompt goes over everything; the remote page answers it too.
   PinRequest? _pin;
   late final ParentalFlow _parental = ParentalFlow(settings.parental, save: _settingsChanged, flash: _flash, ask: _ask, log: tv.log)
-    ..afterLockOn = _leaveLocked;
+    ..afterLockOn = _leaveLocked
+    ..afterAdultMode = _adultModeChanged;
+
+  /// Late night adult mode changed (or the PIN was removed: back to ON). Turned OFF while an R programme
+  /// is on screen: re-tune, which lands on what airs instead.
+  void _adultModeChanged() {
+    tv.engine.adultMode = settings.parental.adultMode;
+    final c = tv.channel, a = tv.airing;
+    if (!tv.engine.adultMode && c != null && a != null && tv.onDemand == null && tv.engine.ratedOf(c)(a.slot.entry)) {
+      unawaited(tv.tune(c));
+    }
+    if (mounted) setState(() {});
+  }
+
+  /// The programme on screen (live or On Demand) is R-rated and adult mode is ON: the info banner's R badge.
+  bool get _ratedOnScreen {
+    final c = tv.channel, e = tv.onDemand ?? tv.airing?.slot.entry;
+    return c != null && e != null && tv.engine.showsRated(c, e);
+  }
+
+  // ---- Viewer-discretion warning: ~6 s when an R programme starts (full card) or is joined mid-way (banner).
+  RatedNotice? _notice;
+  Timer? _noticeTimer;
+  String? _noticed; // the airing last warned about: a stall retry or re-tune of it doesn't warn again
+
+  void _warnRated() {
+    final a = tv.airing;
+    if (a == null || tv.onDemand != null || _weather) return;
+    final key = '${a.channel.number} ${a.slot.start} ${a.slot.entry.id}';
+    final n = ratedNotice(tv.engine, a);
+    if (n == null || key == _noticed) return;
+    _noticed = key;
+    _notice = n;
+    _noticeTimer?.cancel();
+    _noticeTimer = Timer(ratedNoticeTime, () {
+      if (mounted) setState(() => _notice = null);
+    });
+  }
 
   void _ask(PinRequest? r) {
     if (!mounted) return;
@@ -323,7 +361,14 @@ class _TvScreenState extends State<TvScreen> {
   }
 
   void _changed() {
-    if (_wasStandBy && !tv.standBy) _showBanner();
+    if (tv.channel != _shown) {
+      _noticed = _notice = null; // tuning back to an R programme warns again
+      _noticeTimer?.cancel();
+    }
+    if (_wasStandBy && !tv.standBy) {
+      _showBanner();
+      _warnRated();
+    }
     if (tv.channel != _shown) {
       if (_shown != null && tv.channel != null) _previous = _shown; // L / LAST flips back to it
       if (_weather) _showBanner(); // the weather picture is up at once, music or not
@@ -558,6 +603,7 @@ class _TvScreenState extends State<TvScreen> {
       tunableNumbers: {for (final c in engine.tunable) c.number},
       buildingNumbers: {for (final c in engine.channels) if (engine.statusOf(c) == PoolStatus.building) c.number},
       lockedNumbers: {for (final c in engine.channels) if (tv.isLocked(c)) c.number},
+      isRated: engine.showsRated,
       horizon: now.add(Duration(hours: hours)),
     );
     final i = engine.channels.indexWhere((c) => c.number == tv.channel?.number);
@@ -758,6 +804,7 @@ class _TvScreenState extends State<TvScreen> {
     tv.engine.poolsChanged.removeListener(_poolsChanged);
     _entryTimer?.cancel();
     _bannerTimer?.cancel();
+    _noticeTimer?.cancel();
     _warmTimer?.cancel();
     _flashTimer?.cancel();
     _nextTimer?.cancel();
@@ -834,7 +881,12 @@ class _TvScreenState extends State<TvScreen> {
                                 right: 16,
                                 child: Opacity(opacity: 0.5, child: ChannelLogo(channel: tv.channel!, height: 48)),
                               ),
-                            if (tv.standBy && !_weather) StandByCard(channel: tv.channel, message: tv.message),
+                            if (tv.standBy && !_weather)
+                              StandByCard(
+                                channel: tv.channel,
+                                message: tv.message,
+                                lateNight: tv.channel != null && tv.engine.lateNightOn(tv.channel!, DateTime.now()),
+                              ),
                             if (_banner && _weather)
                               InfoBanner(channel: tv.channel, airing: tv.airing, weatherPlace: settings.weatherPlace),
                             if (_banner && !tv.standBy && !_weather)
@@ -843,6 +895,15 @@ class _TvScreenState extends State<TvScreen> {
                                 airing: tv.airing,
                                 onDemand: tv.onDemand,
                                 sleepMinutes: sleepMinutesLeft(_sleepAt, DateTime.now()),
+                                rated: _ratedOnScreen,
+                              ),
+                            // After the info banner: the full card covers it; the mid-way banner sits at the top.
+                            if (!tv.standBy && !_weather)
+                              AnimatedSwitcher(
+                                duration: const Duration(milliseconds: 700),
+                                child: _notice == null
+                                    ? const SizedBox.shrink()
+                                    : RatedWarning(key: ValueKey(_notice), banner: _notice == RatedNotice.banner),
                               ),
                             if (entry.text.isNotEmpty) Positioned(top: 24, right: 32, child: _digits(entry.text)),
                             if (_guide != null)
@@ -1080,7 +1141,10 @@ String standByText(String? message, int tick) => message ?? 'STAND BY${'.' * (ti
 class StandByCard extends StatefulWidget {
   final Channel? channel;
   final String? message;
-  const StandByCard({super.key, this.channel, this.message});
+
+  /// "LATE NIGHT ADULT MODE" between the channel name and STAND BY (TvEngine.lateNightOn).
+  final bool lateNight;
+  const StandByCard({super.key, this.channel, this.message, this.lateNight = false});
 
   @override
   State<StandByCard> createState() => _StandByCardState();
@@ -1120,6 +1184,11 @@ class _StandByCardState extends State<StandByCard> {
               '${channel.number}  ${channel.name.toUpperCase()}',
               style: const TextStyle(color: Colors.white, fontSize: 40, fontFamily: 'Consolas', fontWeight: FontWeight.bold),
             ),
+          if (widget.lateNight) ...[
+            const SizedBox(height: 12),
+            const Text(lateNightLine,
+                style: TextStyle(color: amber, fontSize: 20, fontFamily: 'Consolas', fontWeight: FontWeight.bold, letterSpacing: 6)),
+          ],
           const SizedBox(height: 16),
           Text(
             standByText(widget.message, _tick),
@@ -1145,7 +1214,10 @@ class InfoBanner extends StatelessWidget {
 
   /// Minutes left on the sleep timer (null: off): a SLEEP marker at the right.
   final int? sleepMinutes;
-  const InfoBanner({super.key, this.channel, this.airing, this.weatherPlace, this.onDemand, this.sleepMinutes});
+
+  /// The programme is R-rated (adult mode ON): an R badge at the right.
+  final bool rated;
+  const InfoBanner({super.key, this.channel, this.airing, this.weatherPlace, this.onDemand, this.sleepMinutes, this.rated = false});
 
   String _left(Duration d) => '${d.inMinutes} min left';
 
@@ -1193,12 +1265,76 @@ class InfoBanner extends StatelessWidget {
                 ],
               ),
             ),
+            if (rated)
+              Container(
+                key: const ValueKey('rated-badge'),
+                margin: const EdgeInsets.symmetric(horizontal: 12),
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+                decoration: BoxDecoration(border: Border.all(color: amber, width: 2)),
+                child: const Text('R', style: TextStyle(color: amber, fontSize: 24, fontFamily: 'Consolas', fontWeight: FontWeight.bold)),
+              ),
             if (sleepMinutes != null)
               Text(
                 'SLEEP $sleepMinutes',
                 style: const TextStyle(color: Color(0xFFFFEB3B), fontSize: 20, fontFamily: 'Consolas', fontWeight: FontWeight.bold),
               ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+const amber = Color(0xFFFFB300);
+const lateNightLine = 'LATE NIGHT ADULT MODE';
+const ratedNoticeTime = Duration(seconds: 6);
+
+enum RatedNotice { card, banner }
+
+/// The viewer-discretion warning for [a] at its first frame: null (not R-rated, or adult mode OFF), the full
+/// card (the programme is just starting) or the banner (joined mid-way, playback not blocked).
+RatedNotice? ratedNotice(TvEngine engine, Airing a) {
+  if (!engine.showsRated(a.channel, a.slot.entry)) return null;
+  return a.offsetSeconds < 15 ? RatedNotice.card : RatedNotice.banner;
+}
+
+/// 'VIEWER DISCRETION ADVISED / MATURE CONTENT (R)': a black full-frame card, or a strip at the top.
+class RatedWarning extends StatelessWidget {
+  final bool banner;
+  const RatedWarning({super.key, this.banner = false});
+
+  @override
+  Widget build(BuildContext context) {
+    const font = TextStyle(fontFamily: 'Consolas', fontWeight: FontWeight.bold, letterSpacing: 4);
+    if (banner) {
+      return Align(
+        alignment: Alignment.topCenter,
+        child: Container(
+          width: double.infinity,
+          color: const Color(0xDD000000),
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
+          child: FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Text.rich(TextSpan(style: font.copyWith(fontSize: 24, letterSpacing: 2), children: const [
+              TextSpan(text: 'VIEWER DISCRETION ADVISED   ', style: TextStyle(color: Colors.white)),
+              TextSpan(text: 'MATURE CONTENT (R)', style: TextStyle(color: amber)),
+            ])),
+          ),
+        ),
+      );
+    }
+    return Container(
+      color: Colors.black,
+      alignment: Alignment.center,
+      child: FittedBox(
+        fit: BoxFit.scaleDown,
+        child: Padding(
+          padding: const EdgeInsets.all(32),
+          child: Column(mainAxisSize: MainAxisSize.min, children: [
+            Text('VIEWER DISCRETION ADVISED', style: font.copyWith(color: Colors.white, fontSize: 40)),
+            const SizedBox(height: 24),
+            Text('MATURE CONTENT (R)', style: font.copyWith(color: amber, fontSize: 28)),
+          ]),
         ),
       ),
     );

@@ -281,7 +281,7 @@ const remotePage = r'''<!DOCTYPE html>
     renderSettings(s);
     const c = s.channel;
     $('ch').textContent = c ? (c.number + ' ' + c.name.toUpperCase()) : 'NO CHANNEL';
-    $('title').textContent = (s.building ? 'BUILDING... choose another channel' : s.message) || s.title || (s.standBy ? 'STAND BY...' : '');
+    $('title').textContent = (s.building ? 'BUILDING... choose another channel' : s.message) || (s.title && s.rated ? '[R] ' + s.title : s.title) || (s.standBy ? 'STAND BY...' : '');
     $('left').textContent = s.entry ? ('CH ' + s.entry + '_') : (s.onDemand ? 'ON DEMAND' : (s.minutesLeft != null ? s.minutesLeft + ' min left' : ''));
     $('mode').textContent = s.mode === 'watch' ? '' : s.mode.toUpperCase();
     if (!dragging) setVol(s.volume, s.muted);

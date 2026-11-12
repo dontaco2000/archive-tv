@@ -23,6 +23,9 @@ class ParentalFlow {
   /// Runs after the lock is turned ON (the TV leaves a channel that just became locked).
   void Function() afterLockOn = () {};
 
+  /// Runs after "Late night adult mode" changed (the engine follows it).
+  void Function() afterAdultMode = () {};
+
   ParentalFlow(this.p, {required this.save, required this.flash, required this.ask, void Function(String)? log, DateTime Function()? now})
       : log = log ?? ((_) {}),
         now = now ?? DateTime.now;
@@ -76,6 +79,19 @@ class ParentalFlow {
     if (on) afterLockOn();
   }
 
+  /// "Late night adult mode" ON/OFF: always needs the PIN (also with the lock OFF).
+  void toggleAdultMode() {
+    if (!p.hasPin) return flash('Set a PIN first');
+    final on = !p.adultMode;
+    verify('PIN: late night adult mode ${on ? 'ON' : 'OFF'}', () {
+      p.adultMode = on;
+      save();
+      log('parental: late night adult mode ${on ? 'ON' : 'OFF'}');
+      flash('Late night adult mode ${on ? 'ON' : 'OFF'}');
+      afterAdultMode();
+    });
+  }
+
   /// New PIN twice. [title] says why (set or change).
   void _newPin(String title) => ask(PinRequest(title, (first) {
         ask(PinRequest('Enter the new PIN again', (second) {
@@ -96,6 +112,7 @@ class ParentalFlow {
   void removePin() => verify('PIN to remove parental controls', () {
         p.clear();
         save();
+        afterAdultMode(); // back to ON
         log('parental: PIN removed, parental controls off');
         flash('Parental controls removed');
       });
