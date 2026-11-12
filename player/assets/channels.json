@@ -3321,10 +3321,6 @@
         },
         {
           "identifiers": [
-            "season1-lucha-underground",
-            "season2-lucha-underground",
-            "lucha-underground-season-3-again",
-            "season4-lucha-underground",
             "2016-01-02-pwg-lemmy",
             "briscoe-brothers-in-pwg-highspots-tv",
             "pwg-threemendous-vi-26-09-21",
@@ -3336,6 +3332,16 @@
           ],
           "ignoreYear": true,
           "maxEntriesPerItem": 12
+        },
+        {
+          "identifiers": [
+            "season1-lucha-underground",
+            "season2-lucha-underground",
+            "lucha-underground-season-3-again",
+            "season4-lucha-underground"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 30
         }
       ],
       "timeBlocks": [
