@@ -217,6 +217,23 @@ void main() {
     expect(days.any((p) => p.contains('2026-11-10')), isFalse);
     expect(days.any((p) => p.contains('2026-11-17')), isTrue);
   });
+
+  test('serial blocks air in prime time as "Show S1E3", in order, and never in the shuffle', () async {
+    final eps = [for (var i = 1; i <= 8; i++) 'e$i'];
+    final serialApi = FakeApi({'a': 60, 'b': 45, 'c': 90, for (final e in eps) e: 23});
+    final cfg = '{"channels": [{"number": 2, "name": "Bytes", "sources": [{"query": "x"}], "serials": ['
+        '{"start": "20:00", "epoch": "2026-11-11", "shows": [{"title": "Death Note", '
+        '"identifiers": ["${eps.join('","')}"], "order": ["${eps.map((e) => '$e.mp4').join('","')}"]}]}]}]}';
+    final e = TvEngine.open(configText: cfg, dataDir: dir, api: serialApi);
+    final c = e.channels.single;
+    await e.ensurePool(c);
+    final a = e.airing(c, DateTime(2026, 11, 12, 20, 10))!;
+    expect(a.slot.entry.title, 'Death Note S1E3'); // second day, two 23-min episodes a night
+    expect(a.slot.start, DateTime(2026, 11, 12, 20));
+    final day = e.guideFor(c, DateTime(2026, 11, 12, 0, 0, 1), hours: 24);
+    expect(day.where((s) => s.entry.itemId.startsWith('e')).map((s) => s.entry.title), ['Death Note S1E3', 'Death Note S1E4']);
+    expect(File('${dir.path}/pools/serials-2.json').existsSync(), isTrue);
+  });
 }
 
 class _Failing implements ArchiveApi {

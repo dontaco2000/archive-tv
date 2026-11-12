@@ -94,7 +94,9 @@ class TvEngine {
   Future<void> _ensurePool(Channel channel, Duration maxAge) async {
     final saved = pools.load(channel.number);
     final age = pools.age(channel.number);
-    if (saved != null && age != null && age < maxAge) {
+    final fresh = saved != null && age != null && age < maxAge;
+    await _ensureSerials(channel, rebuild: !fresh);
+    if (fresh) {
       _pool[channel.number] = blocklist.apply(saved);
       return;
     }
@@ -116,6 +118,44 @@ class TvEngine {
     }
   }
 
+  /// Serial episode lists per channel, `[slot][show]` (see `buildSerialEpisodes`).
+  final Map<int, List<List<List<Entry>>>> _serials = {};
+
+  /// Loads the channel's saved serial episode lists, building them when [rebuild], missing or made
+  /// for an older serial config. A failed build keeps the saved lists.
+  Future<void> _ensureSerials(Channel c, {required bool rebuild}) async {
+    if (c.serials.isEmpty) return;
+    final saved = pools.loadSerials(c);
+    if (saved != null && !rebuild) {
+      _serials[c.number] = saved;
+      return;
+    }
+    try {
+      final built = await buildSerialEpisodes(c, api, log: log);
+      if (built.any((slot) => slot.any((show) => show.isNotEmpty))) {
+        pools.saveSerials(c, built);
+        _serials[c.number] = built;
+        return;
+      }
+      log('${c.name}: no serial episodes found${saved != null ? ', keeping the saved ones' : ''}');
+    } on Object catch (e) {
+      log('serial build failed for ${c.name}: $e');
+    }
+    if (saved != null) _serials[c.number] = saved;
+  }
+
+  /// The pool the day's shuffle is made from: serial episodes never air in it.
+  List<Entry> _shufflePool(Channel c) {
+    final pool = _pool[c.number] ?? const <Entry>[];
+    final eps = _serials[c.number];
+    if (eps == null) return pool;
+    final ids = {for (final slot in eps) for (final show in slot) for (final e in show) e.id};
+    return [for (final e in pool) if (!ids.contains(e.id)) e];
+  }
+
+  List<SerialBlock> Function(DateTime)? _blocksFor(Channel c) =>
+      c.serials.isEmpty ? null : (d) => serialBlocks(c, _serials[c.number] ?? const [], d);
+
   final Blocklist _skipped = Blocklist.session(); // items that failed to play this run
 
   /// Drops [entryId] from [channel]'s schedule for this session (nothing saved);
@@ -132,8 +172,8 @@ class TvEngine {
     noSubs.add(entryId);
   }
 
-  List<Slot> _day(Channel c, DateTime day) => snapshots.day(c.number, day, _pool[c.number] ?? const [],
-      blocklist: blocklist.union(_skipped).union(slow).union(noSubs));
+  List<Slot> _day(Channel c, DateTime day) => snapshots.day(c.number, day, _shufflePool(c),
+      blocklist: blocklist.union(_skipped).union(slow).union(noSubs), serials: _blocksFor(c));
 
   Future<void> _probing = Future.value();
 
@@ -191,7 +231,7 @@ class TvEngine {
 
   /// Keeps saved days current: today plus six more, then deletes past days.
   void planWeek(Channel channel, DateTime now) {
-    snapshots.ensureWeek(channel.number, now, _pool[channel.number] ?? const []);
+    snapshots.ensureWeek(channel.number, now, _shufflePool(channel), serials: _blocksFor(channel));
     snapshots.prune(now);
   }
 
