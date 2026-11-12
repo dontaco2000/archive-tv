@@ -34,7 +34,14 @@ class ItemMeta {
   final String mediatype;
   final List<ArchiveFile> files;
 
-  const ItemMeta(this.identifier, {this.title, this.mediatype = 'movies', this.files = const []});
+  /// The `language` metadata (several values joined with "; "), null if untagged.
+  final String? language;
+
+  /// `sound` metadata says silent.
+  final bool silent;
+
+  const ItemMeta(this.identifier,
+      {this.title, this.mediatype = 'movies', this.files = const [], this.language, this.silent = false});
 }
 
 /// What the pool builder needs from Archive. Tests use a fake.
@@ -105,6 +112,12 @@ class ArchiveClient implements ArchiveApi {
       identifier,
       title: _firstString(meta['title']),
       mediatype: (meta['mediatype'] as String?) ?? 'movies',
+      language: switch (meta['language']) {
+        final String l => l,
+        final List l when l.isNotEmpty => l.join('; '),
+        _ => null,
+      },
+      silent: '${meta['sound']}'.toLowerCase().contains('silent'),
       files: [
         for (final f in (json['files'] as List? ?? const []).cast<Map<String, dynamic>>())
           ArchiveFile(

@@ -28,6 +28,14 @@ Future<void> main(List<String> args) async {
       '${isOffAir(pool, config.minContentSeconds) ? '  (OFF AIR)' : ''}');
   print('  faststart yes/no/unknown: ${pool.where((e) => e.faststart == true).length}/'
       '${pool.where((e) => e.faststart == false).length}/${pool.where((e) => e.faststart == null).length}');
+  final foreign = pool.where((e) => e.foreign).toList();
+  final itemCount = {for (final e in pool) e.itemId}.length;
+  final foreignItems = {for (final e in foreign) e.itemId}.length;
+  final noSide = {for (final e in foreign) if (e.subUrl == null) e.itemId}.length;
+  print('  items $itemCount, foreign items $foreignItems (entries ${foreign.length}), foreign items without an English sidecar $noSide, '
+      'entries with any English sidecar ${pool.where((e) => e.subUrl != null).length}, silent ${pool.where((e) => e.silent).length}');
+  print('  comprehensible ${(pool.where(comprehensible).fold(0.0, (s, e) => s + e.durationSeconds) / 3600).toStringAsFixed(1)} h; '
+      'languages: ${{for (final e in foreign) e.language}.join(' | ')}');
   for (final e in pool.take(8)) {
     print('  ${(e.durationSeconds / 60).round().toString().padLeft(4)} min  ${e.title}  ${e.url}');
   }

@@ -16,7 +16,12 @@ class FakeApi implements ArchiveApi {
   int inFlight = 0;
   int maxInFlight = 0;
 
-  FakeApi(this.items, {this.failing = const {}, this.failQuery, this.slow = false});
+  /// identifier -> language / silent / English sidecar file name.
+  final Map<String, ({String? lang, bool silent, bool sub})> tags;
+
+  FakeApi(this.items, {this.failing = const {}, this.failQuery, this.slow = false, this.tags = const {}});
+
+  int metadataCalls = 0;
 
   @override
   Future<List<ItemSummary>> search(String query, {int rows = 100, int page = 1}) async {
@@ -34,6 +39,7 @@ class FakeApi implements ArchiveApi {
   @override
   Future<ItemMeta?> metadata(String identifier) async {
     inFlight++;
+    metadataCalls++;
     maxInFlight = max(maxInFlight, inFlight);
     try {
       if (slow) await Future.delayed(Duration(milliseconds: 5 + identifier.length * 3));
@@ -47,8 +53,10 @@ class FakeApi implements ArchiveApi {
     if (failing.contains(identifier)) throw ArchiveException('boom');
     final item = items[identifier];
     if (item == null) return null;
-    return ItemMeta(identifier, title: identifier, files: [
+    final t = tags[identifier];
+    return ItemMeta(identifier, title: identifier, language: t?.lang, silent: t?.silent ?? false, files: [
       ArchiveFile('$identifier.mp4', format: 'h.264', length: item.$2 * 60.0),
+      if (t?.sub ?? false) ArchiveFile('$identifier.en.srt', format: 'SubRip'),
     ]);
   }
 }
@@ -154,6 +162,60 @@ void main() {
       final pool = await buildPool(channel, config(minHours: 4), FakeApi(ten), probeClient: probe());
       expect(pool, hasLength(10));
       expect(pool.where((e) => e.faststart == false), hasLength(5));
+    });
+  });
+
+  group('captions and widening', () {
+    test('wideningStarts: 1960, 1940, 1920, no limit; only years before the start', () {
+      expect(wideningStarts(1980, 1960), [1960, 1940, 1920, 1800]);
+      expect(wideningStarts(1960, 1960), [1940, 1920, 1800]);
+      expect(wideningStarts(1930, 1960), [1920, 1800]);
+    });
+
+    test('widens step by step, newest first, and stops once the minimum is met', () async {
+      final api = FakeApi({'new': (1990, 30), 'mid': (1950, 30), 'old': (1945, 120), 'ancient': (1910, 120)});
+      final pool = await buildPool(channel, config(), api);
+      expect(pool.map((e) => e.itemId), unorderedEquals(['new', 'mid', 'old']));
+      expect(api.queries, hasLength(3));
+      expect(api.queries[1], contains('1960-01-01 TO 2010-12-31'));
+      expect(api.queries[2], contains('1940-01-01 TO 2010-12-31'));
+      expect(api.metadataCalls, 3, reason: 'items are fetched once across widening steps');
+    });
+
+    test('a channel whose sources all ignore the year does not widen', () async {
+      const fixed = Channel(number: 5, name: 'Fixed', sources: [Source(identifiers: ['new'], ignoreYear: true)]);
+      final api = FakeApi({'new': (1990, 30)});
+      await buildPool(fixed, config(), api);
+      expect(api.queries, hasLength(1));
+    });
+
+    test('goes to no lower limit when still thin', () async {
+      final api = FakeApi({'new': (1990, 30), 'ancient': (1905, 120)});
+      final pool = await buildPool(channel, config(), api);
+      expect(pool.map((e) => e.itemId), unorderedEquals(['new', 'ancient']));
+      expect(api.queries.last, contains('1800-01-01 TO 2010-12-31'));
+    });
+
+    test('foreign items without a sidecar stay in the pool but do not count; with one they do', () async {
+      final api = FakeApi({'fr': (1990, 180), 'old': (1950, 30)}, tags: {'fr': (lang: 'fre', silent: false, sub: false)});
+      final pool = await buildPool(channel, config(), api);
+      expect(pool.map((e) => e.itemId), unorderedEquals(['fr', 'old']));
+      expect(api.queries, hasLength(5), reason: 'widened all the way: nothing comprehensible was enough');
+
+      final subbed = FakeApi({'fr': (1990, 180)}, tags: {'fr': (lang: 'French', silent: false, sub: true)});
+      final p2 = await buildPool(channel, config(), subbed);
+      expect(subbed.queries, hasLength(1));
+      expect(p2.single.foreign, isTrue);
+      expect(p2.single.subUrl, 'https://archive.org/download/fr/fr.en.srt');
+    });
+
+    test('silent films brought in by widening are only kept when needed', () async {
+      final tags = {'silent': (lang: null, silent: true, sub: false)};
+      final enough = FakeApi({'new': (1990, 60), 'silent': (1925, 120), 'talkie': (1935, 90)}, tags: tags);
+      expect((await buildPool(channel, config(), enough)).map((e) => e.itemId), unorderedEquals(['new', 'talkie']));
+
+      final short = FakeApi({'new': (1990, 60), 'silent': (1925, 120)}, tags: tags);
+      expect((await buildPool(channel, config(), short)).map((e) => e.itemId), unorderedEquals(['new', 'silent']));
     });
   });
 }

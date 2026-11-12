@@ -96,6 +96,7 @@ Future<void> main(List<String> args) async {
   final tv = PlayerController(engine, log: log);
   tv.setVolume(settings.muted ? 0 : settings.volume);
   unawaited(tv.setLeveling(settings.volumeLeveling));
+  tv.captionsOn = settings.captionsOn;
   // Remote control window (Windows only): a local web page that presses the same keys as the keyboard.
   RemoteServer? remote;
   if (Platform.isWindows) {

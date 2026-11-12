@@ -118,4 +118,19 @@ void main() {
     expect(jsonDecode(file.readAsStringSync()), isNot(contains('muted')));
     expect(Settings.fromJson({'volume': 0}).volume, 0); // volume 0 stays 0
   });
+
+  test('captions: off and size 4 by default (also for old files), round-trip, size clamped, bad types ignored', () {
+    expect((Settings().captionsOn, Settings().captionSize), (false, 4));
+    file.writeAsStringSync(jsonEncode({'volume': 50}));
+    final old = SettingsStore(file).load();
+    expect((old.captionsOn, old.captionSize), (false, 4));
+    SettingsStore(file).save(Settings()
+      ..captionsOn = true
+      ..captionSize = 6);
+    final back = SettingsStore(file).load();
+    expect((back.captionsOn, back.captionSize), (true, 6));
+    expect(Settings.fromJson({'captionSize': 12}).captionSize, 7);
+    expect(Settings.fromJson({'captionSize': '5'}).captionSize, 4);
+    expect(Settings.fromJson({'captionsOn': 'yes'}).captionsOn, isFalse);
+  });
 }

@@ -8,6 +8,7 @@ import 'package:media_kit_video/media_kit_video.dart';
 
 import '../engine/tv_engine.dart';
 import '../settings/settings_store.dart';
+import 'captions.dart';
 import 'stall_watch.dart';
 
 /// Owns the single libmpv player. `tune` shows STAND BY, opens the airing file
@@ -17,6 +18,17 @@ class PlayerController extends ChangeNotifier {
   final Player player = Player(configuration: const PlayerConfiguration(bufferSize: 16 * 1024 * 1024));
   late final VideoController video = VideoController(player);
   final void Function(String) log;
+
+  /// mpv commands for captions; replaceable in tests (no libmpv there).
+  MpvCommand mpv = (_) async {};
+
+  /// The viewer's CC switch (English programmes); foreign ones always get English subtitles.
+  bool captionsOn = false;
+
+  /// Captions for the file on screen (see [CaptionState]).
+  CaptionState captionState = 'off';
+  Entry? _captioned; // the file [captionState] belongs to
+  bool _forceForeign = false;
 
   Channel? channel;
   Airing? airing;
@@ -36,6 +48,7 @@ class PlayerController extends ChangeNotifier {
   PlayerController(this.engine, {void Function(String)? log}) : log = log ?? ((_) {}) {
     final native = player.platform;
     if (native is NativePlayer) {
+      mpv = (args) => native.command(args);
       // Fast start: small probe, hardware decoding, modest read-ahead.
       native.setProperty('hwdec', 'auto');
       native.setProperty('demuxer-readahead-secs', '6');
@@ -147,6 +160,14 @@ class PlayerController extends ChangeNotifier {
     try {
       await _openAt(url, Duration(milliseconds: (a.offsetSeconds * 1000).round()));
       if (gen != _generation) return;
+      if (await _captionsFor(engine.fresh(c, a.slot.entry), archive: c.type == 'archive') == 'missing') {
+        // Foreign with no English subtitles: never again (saved), and on to whatever airs instead.
+        engine.markNoSubs(c, a.slot.entry.id);
+        await player.stop(); // nothing must keep playing behind STAND BY / OFF AIR
+        if (gen == _generation) await tune(c, attempt: attempt);
+        return;
+      }
+      if (gen != _generation) return;
       tuneTimes.insert(0, sw.elapsedMilliseconds);
       if (tuneTimes.length > 50) tuneTimes.removeLast();
       log('tune ${c.number} ${c.name}: first frame in ${sw.elapsedMilliseconds} ms after open (resolve $resolveMs ms) (${a.slot.entry.title} @ ${a.offsetSeconds.round()}s)');
@@ -198,6 +219,9 @@ class PlayerController extends ChangeNotifier {
       }
     });
     try {
+      captionState = 'off';
+      _captioned = null;
+      await resetCaptions(mpv).catchError((Object e) => log('captions reset failed: $e'));
       await player.open(Media(url, start: start), play: true);
       armed = true;
       await firstFrame.future.timeout(const Duration(seconds: 15));
@@ -230,6 +254,14 @@ class PlayerController extends ChangeNotifier {
     notifyListeners();
     try {
       await _openAt(await resolveUrl(e.url), from);
+      if (gen != _generation) return;
+      if (await _captionsFor(e, archive: c.type == 'archive') == 'missing') {
+        engine.markNoSubs(c, e.id);
+        await player.stop();
+        message = 'NO ENGLISH SUBTITLES';
+        notifyListeners();
+        return;
+      }
       if (gen != _generation) return;
       log('on demand ${c.name}: ${e.id} from ${from.inSeconds}s');
       standBy = false;
@@ -299,6 +331,36 @@ class PlayerController extends ChangeNotifier {
   void retuneIfStale() {
     final c = channel, a = airing;
     if (c != null && a != null && !DateTime.now().isBefore(a.slot.end)) _safeTune(c);
+  }
+
+  /// Turns on the captions [e] should have (see [applyCaptions]) once it is open; logs the choice.
+  Future<CaptionState> _captionsFor(Entry e, {required bool archive}) async {
+    _captioned = e;
+    _forceForeign = archive;
+    try {
+      final native = player.platform;
+      final tracks = native is NativePlayer ? parseSubTracks(await native.getProperty('track-list')) : const <SubTrack>[];
+      captionState = await applyCaptions(mpv, e, tracks, captionsOn: captionsOn, forceForeign: archive);
+      if (e.foreign || captionState != 'off') {
+        log('captions $captionState for ${e.id} (language ${e.language ?? '-'}, sidecar ${e.subUrl != null}, '
+            '${tracks.length} sub tracks)');
+      }
+    } on Object catch (err) {
+      log('captions for ${e.id} failed: $err');
+      captionState = 'off';
+    }
+    return captionState;
+  }
+
+  /// The CC switch: applies at once to the file on screen.
+  Future<void> setCaptions(bool on) async {
+    if (on == captionsOn) return;
+    captionsOn = on;
+    final e = _captioned;
+    if (e != null && !standBy) {
+      await _captionsFor(e, archive: _forceForeign);
+      notifyListeners();
+    }
   }
 
   void setVolume(double v) => player.setVolume(v.clamp(0, 100));

@@ -11,7 +11,7 @@ const _panel = Color(0xE6101A5C); // same dark translucent blue as the guide
 const _yellow = Color(0xFFFFEB3B);
 const _cellBg = Color(0xFF1E2C8A);
 
-enum _Item { onDemand, favorite, favoritesOnly, volume, mute, leveling, startFullscreen, cornerBug, block, refresh, weatherMode, weatherLocation, openRemote, remoteLan, remoteInfo, about, close }
+enum _Item { onDemand, favorite, favoritesOnly, volume, mute, leveling, captions, captionSize, startFullscreen, cornerBug, block, refresh, weatherMode, weatherLocation, openRemote, remoteLan, remoteInfo, about, close }
 
 /// Settings menu over the right half of the frame. Changes are made on [settings] in place
 /// and reported through [onChanged]; the screen saves and applies them.
@@ -133,6 +133,11 @@ class _MenuOverlayState extends State<MenuOverlay> {
         _change(() => s.volumeLeveling = cycleLeveling(s.volumeLeveling, dir == 0 ? 1 : dir));
       case _Item.about:
         if (dir == 0) widget.onAbout?.call();
+      case _Item.captions:
+        _change(() => s.captionsOn = !s.captionsOn);
+      case _Item.captionSize:
+        // Left/Right step and stop at the ends; Enter steps up and wraps.
+        _change(() => s.captionSize = dir == 0 ? s.captionSize % 7 + 1 : (s.captionSize + dir).clamp(1, 7));
     }
   }
 
@@ -147,7 +152,7 @@ class _MenuOverlayState extends State<MenuOverlay> {
       setState(() => _sel = (_sel + 1) % n);
     } else if (k == LogicalKeyboardKey.arrowLeft || k == LogicalKeyboardKey.arrowRight) {
       // Only the volume repeats while held; toggles flip once per press.
-      if (!repeat || _items[_sel] == _Item.volume) _activate(k == LogicalKeyboardKey.arrowLeft ? -1 : 1);
+      if (!repeat || _items[_sel] == _Item.volume || _items[_sel] == _Item.captionSize) _activate(k == LogicalKeyboardKey.arrowLeft ? -1 : 1);
     } else if (k == LogicalKeyboardKey.enter || k == LogicalKeyboardKey.select) {
       if (!repeat) _activate(0);
     } else if (k == LogicalKeyboardKey.escape ||
@@ -171,6 +176,8 @@ class _MenuOverlayState extends State<MenuOverlay> {
       _Item.mute => 'Mute: ${_onOff(s.muted)}',
       _Item.leveling => 'Volume leveling: ${s.volumeLeveling.toUpperCase()}${widget.levelingAvailable ? '' : ' (not available)'}',
       _Item.about => 'About',
+      _Item.captions => 'Captions: ${_onOff(s.captionsOn)}',
+      _Item.captionSize => 'Caption size ${'#' * s.captionSize}${'.' * (7 - s.captionSize)} ${s.captionSize}',
       _Item.startFullscreen => 'Start fullscreen: ${_onOff(s.startFullscreen)}',
       _Item.cornerBug => 'Corner bug: ${_onOff(s.cornerBug)}',
       _Item.block => 'Block this item',

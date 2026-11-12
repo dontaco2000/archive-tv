@@ -54,6 +54,9 @@ class RemoteServer {
   void Function(String key) key = (k) => pressKey(remoteKeys[k]!);
   void Function(int level) volume = (_) {};
   void Function(int number) channel = (_) {};
+
+  /// A checked POST /api/setting: captionsOn (bool), captionSize (int 1-7), leveling, weatherMode.
+  void Function(String name, Object value) setting = (_, _) {};
   Future<List<int>?> Function(int number) logo = (_) async => null;
 
   RemoteServer(this.settings, {void Function(String)? log}) : log = log ?? ((_) {}) {
@@ -237,11 +240,25 @@ class RemoteServer {
         final n = j['number'];
         if (n is! int) return _err(400, 'number');
         channel(n);
+      case '/api/setting':
+        final v = settingValue(j['name'], j['value']);
+        if (v == null) return _err(400, 'setting');
+        setting(j['name'] as String, v);
       default:
         return _err(404, 'not found');
     }
     return _json({'ok': true});
   }
+
+  /// The value to apply for a remote settings-panel change, or null if [name]/[value] isn't allowed.
+  /// Remote on Wi-Fi is deliberately not settable from the remote (it only shows its status).
+  static Object? settingValue(Object? name, Object? value) => switch (name) {
+        'captionsOn' when value is bool => value,
+        'captionSize' when value is int => value.clamp(1, 7),
+        'leveling' when levelingModes.contains(value) => value,
+        'weatherMode' when value == 'web' || value == 'native' => value,
+        _ => null,
+      };
 
   /// First private IPv4 address of this PC (192.168/10/172.16-31), else any non-loopback one.
   static Future<String?> findLanIp() async {

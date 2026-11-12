@@ -22,7 +22,7 @@ const remotePage = r'''<!DOCTYPE html>
     box-shadow:inset 0 2px 6px #000c; font-family:Consolas,"Courier New",monospace; color:var(--lcd-txt);
     text-shadow:0 0 6px #4dff8a55; display:flex; align-items:center; gap:6px; }
   .lcd img { width:32px; height:24px; object-fit:contain; background:#ffffff10; border-radius:4px; flex-shrink:0; }
-  .lcd .txt { min-width:0; flex:1; }
+  .lcd .txt { min-width:0; flex:1; padding-right:22px; } /* room for the CC button */
   .lcd .ch { font-size:13px; font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .lcd .title { font-size:11px; color:#d9ffe4; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .lcd .sub { font-size:10px; color:#6fcf8f; display:flex; justify-content:space-between; gap:6px; }
@@ -70,11 +70,32 @@ const remotePage = r'''<!DOCTYPE html>
   #pin input { width:100%; font:700 24px Consolas,monospace; text-align:center; letter-spacing:8px; margin:10px 0;
     background:var(--lcd); color:var(--lcd-txt); border:1px solid #2a5a3a; border-radius:10px; padding:6px; }
   .hint { font-size:10px; color:var(--dim); }
+  /* CC: the now-playing window turns into the settings view; the D-pad rows hide meanwhile, so the remote keeps its size. */
+  #ccBtn { position:absolute; right:5px; bottom:4px; min-height:0; height:17px; padding:0 5px; font:700 9px/17px Consolas,monospace;
+    background:#14301f; color:var(--lcd-txt); border:1px solid #2a5a3a; border-radius:4px; box-shadow:none; }
+  #ccBtn.on { background:var(--lcd-txt); color:#062010; }
+  .lcd.set { flex:1; flex-direction:column; align-items:stretch; padding:6px 7px; }
+  .lcd.set > img, .lcd.set > .txt, .lcd.set > .brand { display:none; }
+  .lcd.set #ccBtn { top:4px; bottom:auto; }
+  body.set .hide-set { display:none; }
+  #settings { display:none; flex-direction:column; gap:5px; font-size:10px; }
+  .lcd.set #settings { display:flex; }
+  #settings .hd { font-weight:700; letter-spacing:2px; color:var(--amber); }
+  #settings .row { display:flex; align-items:center; gap:4px; }
+  #settings .row > span:first-child { width:58px; flex-shrink:0; }
+  #settings button { min-height:0; height:20px; padding:0 4px; font:700 9px Consolas,monospace; color:var(--lcd-txt);
+    background:#14301f; border:1px solid #2a5a3a; border-radius:4px; box-shadow:none; flex:1; }
+  #settings button.sel { background:var(--lcd-txt); color:#062010; }
+  #settings .sz { flex:0 0 22px; font-size:12px; }
+  #sizeLevel { flex:1; text-align:center; letter-spacing:1px; }
+  #sample { text-align:center; color:#fff; background:#000a; font-family:"Segoe UI",sans-serif; font-weight:600; text-shadow:0 0 2px #000, 0 0 2px #000;
+    border-radius:3px; padding:1px 4px; align-self:center; white-space:nowrap; line-height:1.2; }
+  #ccNote { color:#6fcf8f; min-height:12px; }
   .off { color:#ff7b6b; }
 </style>
 </head>
 <body>
-<div class="remote" id="remote" title="Keys: arrows, Enter, Esc, 0-9, G guide, M menu, I info, F fav, O on demand, U/Space mute, R remote on/off, +/- volume, PgUp/PgDn channel">
+<div class="remote" id="remote" title="Keys: arrows, Enter, Esc, 0-9, G guide, M menu, I info, F fav, O on demand, U/Space mute, +/- volume, PgUp/PgDn channel">
   <div class="lcd">
     <span class="brand">ARCHIVE TV</span>
     <img id="logo" alt="">
@@ -83,16 +104,27 @@ const remotePage = r'''<!DOCTYPE html>
       <div class="title" id="title">Connecting...</div>
       <div class="sub"><span id="left"></span><span class="mode" id="mode"></span></div>
     </div>
+    <button id="ccBtn" title="Captions and settings">CC</button>
+    <div id="settings">
+      <div class="hd">SETTINGS</div>
+      <div class="row"><span>CAPTIONS</span><button id="setCaptions">OFF</button></div>
+      <div id="ccNote"></div>
+      <div class="row"><span>CC SIZE</span><button class="sz" id="sizeDown" title="Smaller">&minus;</button><b id="sizeLevel">----</b><button class="sz" id="sizeUp" title="Bigger">+</button></div>
+      <div id="sample">Sample caption</div>
+      <div class="row" id="setLeveling"><span>LEVELING</span><button data-v="off">OFF</button><button data-v="normal">NORM</button><button data-v="strong">STRONG</button></div>
+      <div class="row" id="setWeather"><span>WEATHER</span><button data-v="web">WXSTAR</button><button data-v="native">CLASSIC</button></div>
+      <div class="row"><span>WI-FI</span><b id="wifi">--</b></div>
+    </div>
   </div>
 
-  <div class="grid g4">
+  <div class="grid g4 hide-set">
     <button class="pill c-red" data-key="guide">GUIDE</button>
     <button class="pill c-green" data-key="menu">MENU</button>
     <button class="pill c-blue" data-key="info">INFO</button>
     <button class="pill c-yellow" data-key="ondemand" title="On Demand">ON DEM</button>
   </div>
 
-  <div class="mid">
+  <div class="mid hide-set">
     <div class="side">
       <button data-key="back">BACK</button><button data-key="favorite" id="fav">&#9733; FAV</button>
     </div>
@@ -176,7 +208,39 @@ const remotePage = r'''<!DOCTYPE html>
     $('mute').textContent = muted ? 'MUTED' : 'MUTE';
   }
 
+  // CC: settings view in the now-playing window. Changes go through POST /api/setting; the poll shows the result.
+  let st = null;
+  const lcd = document.querySelector('.lcd');
+  function toggleSettings(open) {
+    open = open === undefined ? !lcd.classList.contains('set') : open;
+    lcd.classList.toggle('set', open);
+    document.body.classList.toggle('set', open);
+    if (st) renderSettings(st);
+  }
+  $('ccBtn').onclick = () => toggleSettings();
+  const setting = (name, value) => send('/api/setting', { name, value });
+  $('setCaptions').onclick = () => st && setting('captionsOn', !st.captionsOn);
+  $('sizeDown').onclick = () => st && setting('captionSize', Math.max(1, st.captionSize - 1));
+  $('sizeUp').onclick = () => st && setting('captionSize', Math.min(7, st.captionSize + 1));
+  document.querySelectorAll('#setLeveling button').forEach(b => b.onclick = () => setting('leveling', b.dataset.v));
+  document.querySelectorAll('#setWeather button').forEach(b => b.onclick = () => setting('weatherMode', b.dataset.v));
+  const notes = { forced: 'Foreign: English subs forced', none: 'No captions on this show', on: 'Showing captions', off: '' };
+  function renderSettings(s) {
+    $('ccBtn').classList.toggle('on', !!s.captionsOn || s.captions === 'forced');
+    if (!lcd.classList.contains('set')) return;
+    $('setCaptions').textContent = s.captionsOn ? 'ON' : 'OFF';
+    $('setCaptions').classList.toggle('sel', !!s.captionsOn);
+    $('ccNote').textContent = notes[s.captions] || '';
+    $('sizeLevel').textContent = '▮'.repeat(s.captionSize) + '▯'.repeat(7 - s.captionSize) + ' ' + s.captionSize;
+    $('sample').style.fontSize = (8 + s.captionSize * 1.5) + 'px';
+    document.querySelectorAll('#setLeveling button').forEach(b => b.classList.toggle('sel', b.dataset.v === s.leveling));
+    document.querySelectorAll('#setWeather button').forEach(b => b.classList.toggle('sel', b.dataset.v === s.weatherMode));
+    $('wifi').textContent = s.remoteLan ? 'ON (phones can connect)' : 'OFF (this PC only)';
+  }
+
   function render(s) {
+    st = s;
+    renderSettings(s);
     const c = s.channel;
     $('ch').textContent = c ? (c.number + ' ' + c.name.toUpperCase()) : 'NO CHANNEL';
     $('title').textContent = s.message || s.title || (s.standBy ? 'STAND BY...' : '');
@@ -230,6 +294,7 @@ const remotePage = r'''<!DOCTYPE html>
     PageUp:'channelUp', PageDown:'channelDown', F11:'fullscreen' };
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && document.querySelector('.panel.open')) { closeAll(); e.preventDefault(); return; }
+    if ((e.key === 'Escape' || e.key === 'Backspace') && lcd.classList.contains('set')) { toggleSettings(false); e.preventDefault(); return; }
     const k = /^[0-9]$/.test(e.key) ? e.key : keymap[e.key.length === 1 ? e.key.toLowerCase() : e.key];
     if (!k) return;
     e.preventDefault();

@@ -34,6 +34,10 @@ class Settings {
   /// The one-time content notice was shown and dismissed.
   bool noticeAccepted = false;
 
+  /// Captions on English programmes (foreign ones always get English subtitles), and the caption size step 1-7.
+  bool captionsOn = false;
+  int captionSize = 4;
+
   Settings();
 
   Map<String, dynamic> toJson() => {
@@ -56,6 +60,8 @@ class Settings {
         'remotePin': remotePin,
         'volumeLeveling': volumeLeveling,
         'noticeAccepted': noticeAccepted,
+        'captionsOn': captionsOn,
+        'captionSize': captionSize,
       };
 
   factory Settings.fromJson(Map<String, dynamic> j) {
@@ -88,6 +94,8 @@ class Settings {
     if (pin is String && RegExp(r'^\d{4}$').hasMatch(pin)) s.remotePin = pin;
     if (levelingModes.contains(j['volumeLeveling'])) s.volumeLeveling = j['volumeLeveling'] as String;
     s.noticeAccepted = bool_('noticeAccepted', s.noticeAccepted);
+    s.captionsOn = bool_('captionsOn', s.captionsOn);
+    if (j['captionSize'] is int) s.captionSize = (j['captionSize'] as int).clamp(1, 7);
     return s;
   }
 }

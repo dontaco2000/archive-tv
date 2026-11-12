@@ -72,7 +72,7 @@ void main() {
     await key(t, LogicalKeyboardKey.arrowDown);
     await key(t, LogicalKeyboardKey.enter);
     expect(r.settings.favorites, {4});
-    await key(t, LogicalKeyboardKey.arrowDown, 7);
+    await key(t, LogicalKeyboardKey.arrowDown, 9);
     expect(selected(t), 'Block this item');
     await key(t, LogicalKeyboardKey.enter);
     expect(r.calls, ['block']);
@@ -124,5 +124,23 @@ void main() {
     expect(selected(t), 'About');
     await key(t, LogicalKeyboardKey.enter);
     expect(calls, ['about']);
+  });
+
+  testWidgets('Captions toggles; Caption size steps 1-7 (Left/Right clamp, Enter wraps)', (t) async {
+    final r = await pump(t);
+    await key(t, LogicalKeyboardKey.arrowDown, 6);
+    expect(selected(t), 'Captions: OFF');
+    await key(t, LogicalKeyboardKey.enter);
+    expect(r.settings.captionsOn, isTrue);
+    expect(selected(t), 'Captions: ON');
+    await key(t, LogicalKeyboardKey.arrowDown);
+    expect(selected(t), 'Caption size ####... 4');
+    await key(t, LogicalKeyboardKey.arrowRight, 5);
+    expect(r.settings.captionSize, 7);
+    await key(t, LogicalKeyboardKey.enter);
+    expect(r.settings.captionSize, 1);
+    await key(t, LogicalKeyboardKey.arrowLeft);
+    expect(r.settings.captionSize, 1);
+    expect(r.changed, isNotEmpty);
   });
 }

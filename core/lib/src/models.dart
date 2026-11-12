@@ -108,6 +108,15 @@ class Entry {
   /// Whether the mp4 index is at the front (see `probeFaststart`); null = not probed.
   final bool? faststart;
 
+  /// The Archive item's `language` metadata as given (null = not tagged). See [foreign].
+  final String? language;
+
+  /// Download URL of an English sidecar subtitle file (.srt/.vtt/...) for this file, if the item has one.
+  final String? subUrl;
+
+  /// The item is tagged as a silent film (`sound: silent`).
+  final bool silent;
+
   const Entry({
     required this.id,
     required this.itemId,
@@ -117,7 +126,13 @@ class Entry {
     required this.url,
     this.size,
     this.faststart,
+    this.language,
+    this.subUrl,
+    this.silent = false,
   });
+
+  /// Tagged with a language and none of its languages is English: needs English subtitles.
+  bool get foreign => isForeignLanguage(language);
 
   Entry copyWith({bool? faststart}) => Entry(
         id: id,
@@ -128,6 +143,9 @@ class Entry {
         url: url,
         size: size,
         faststart: faststart ?? this.faststart,
+        language: language,
+        subUrl: subUrl,
+        silent: silent,
       );
 
   Map<String, dynamic> toJson() => {
@@ -139,6 +157,9 @@ class Entry {
         'url': url,
         if (size != null) 'size': size,
         if (faststart != null) 'faststart': faststart,
+        if (language != null) 'language': language,
+        if (subUrl != null) 'subUrl': subUrl,
+        if (silent) 'silent': true,
       };
 
   factory Entry.fromJson(Map<String, dynamic> j) => Entry(
@@ -150,5 +171,24 @@ class Entry {
         url: j['url'] as String,
         size: j['size'] as int?,
         faststart: j['faststart'] as bool?,
+        language: j['language'] as String?,
+        subUrl: j['subUrl'] as String?,
+        silent: j['silent'] == true,
       );
+}
+
+/// Language values that say nothing about spoken language (no dialogue, unknown, several).
+const _neutralLanguages = {'zxx', 'und', 'mul', 'mis', 'none', 'n/a', 'no linguistic content', 'silent', 'no dialogue', 'music', 'international', 'multiple', 'multi'};
+
+/// True when Archive's `language` value names a language and none of the named ones is English
+/// ("fre", "Japanese", "spa; fre"). Untagged, English ("eng", "en-US", "English, French") and
+/// neutral values ("zxx", "und") are not foreign.
+bool isForeignLanguage(String? language) {
+  if (language == null) return false;
+  final parts = [
+    for (final p in language.toLowerCase().split(RegExp(r'[,;/|]|\band\b')))
+      if (p.trim().isNotEmpty) p.trim(),
+  ];
+  if (parts.isEmpty || parts.every(_neutralLanguages.contains)) return false;
+  return !parts.any((p) => p == 'en' || p == 'eng' || p.startsWith('en-') || p.startsWith('en_') || p.contains('english'));
 }

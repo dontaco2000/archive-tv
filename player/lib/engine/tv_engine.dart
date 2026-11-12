@@ -28,12 +28,17 @@ class TvEngine {
   /// Files found slow to start (mp4 index at the end), kept out of schedules; saved as slow.json.
   final Blocklist slow;
 
+  /// Foreign-language files found at play time to have no English subtitles; kept out of schedules
+  /// and On Demand for good; saved as nosubs.json.
+  final Blocklist noSubs;
+
   /// Probes upcoming files after each fresh pool build; null turns probing off (tests).
   final http.Client? probeClient;
   final void Function(String) log;
   final Map<int, List<Entry>> _pool = {};
 
-  TvEngine._(this.config, this.api, this.pools, this.snapshots, this.blocklist, this.slow, this.probeClient, this.log);
+  TvEngine._(this.config, this.api, this.pools, this.snapshots, this.blocklist, this.slow, this.noSubs, this.probeClient,
+      this.log);
 
   /// [configText] is the contents of channels.json; [dataDir] holds pools, snapshots, blocklist.
   factory TvEngine.open({
@@ -50,6 +55,7 @@ class TvEngine {
       SnapshotStore(Directory(p.join(dataDir.path, 'days'))),
       Blocklist.load(dataDir),
       Blocklist.load(dataDir, name: 'slow.json'),
+      Blocklist.load(dataDir, name: 'nosubs.json'),
       probeClient,
       log ?? (_) {},
     );
@@ -57,8 +63,11 @@ class TvEngine {
 
   List<Channel> get channels => config.channels;
 
-  /// The channel's loaded pool (blocked items already removed); empty if not loaded.
-  List<Entry> poolOf(Channel c) => _pool[c.number] ?? const [];
+  /// The channel's loaded pool (blocked and no-subtitle items removed); empty if not loaded.
+  List<Entry> poolOf(Channel c) => noSubs.apply(_pool[c.number] ?? const []);
+
+  /// [e] as the current pool has it: a day saved from an older pool lacks newer fields (language, subtitles).
+  Entry fresh(Channel c, Entry e) => _pool[c.number]?.where((p) => p.id == e.id).firstOrNull ?? e;
 
   /// Channels that can be tuned now: archive channels whose pool has enough content,
   /// plus weather channels (always on; their music is optional).
@@ -66,7 +75,7 @@ class TvEngine {
   List<Channel> get tunable => [
         for (final c in config.channels)
           if (c.type == 'weatherstar' ||
-              (_pool.containsKey(c.number) && !isOffAir(_pool[c.number]!, config.minContentSeconds)))
+              (_pool.containsKey(c.number) && !isOffAir(poolOf(c), config.minContentSeconds)))
             c,
       ];
 
@@ -116,8 +125,15 @@ class TvEngine {
     _skipped.add(entryId);
   }
 
+  /// Remembers for good that foreign-language [entryId] has no English subtitles: it leaves today's
+  /// schedule now and every later day and pool.
+  void markNoSubs(Channel channel, String entryId) {
+    log('${channel.name}: $entryId has no English subtitles, dropped for good');
+    noSubs.add(entryId);
+  }
+
   List<Slot> _day(Channel c, DateTime day) => snapshots.day(c.number, day, _pool[c.number] ?? const [],
-      blocklist: blocklist.union(_skipped).union(slow));
+      blocklist: blocklist.union(_skipped).union(slow).union(noSubs));
 
   Future<void> _probing = Future.value();
 

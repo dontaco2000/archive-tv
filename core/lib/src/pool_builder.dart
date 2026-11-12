@@ -11,9 +11,11 @@ import 'query_builder.dart';
 /// Builds a channel's content pool from Archive: search each source, read each
 /// item's files, pick one small file per episode/track.
 ///
-/// If the pool holds less than [ChannelConfig.minContentSeconds], the year range
-/// widens back to [ChannelConfig.fallbackStart] and the pool is rebuilt.
-/// Sources with `ignoreYear` are unaffected by widening.
+/// If the pool's [comprehensible] sound content is less than [ChannelConfig.minContentSeconds],
+/// the year range widens back step by step (see [wideningStarts]), stopping as soon as the minimum is
+/// met. Items the widening brought in that are silent films are dropped again when the rest suffice.
+/// Foreign items without a sidecar are kept (an embedded English track may turn up at play time) but
+/// don't count toward the minimum. Sources with `ignoreYear` are unaffected by widening.
 ///
 /// Metadata fetches and faststart probes run at most [concurrency] at a time.
 /// With a [probeClient], entries whose mp4 index is not up front are dropped
@@ -32,11 +34,27 @@ Future<List<Entry>> buildPool(
   if (channel.sources.isEmpty) return []; // e.g. a weatherstar channel without music
   final base = channel.yearRange ?? config.yearRange;
 
-  var pool = await _collect(channel, config, api, base, itemsPerSource, concurrency, log, onProgress);
-  if (_total(pool) < config.minContentSeconds && base.start > config.fallbackStart) {
-    final wide = YearRange(config.fallbackStart, base.end);
-    log?.call('${channel.name}: thin (${_total(pool) ~/ 60} min), widening to $wide');
-    pool = await _collect(channel, config, api, wide, itemsPerSource, concurrency, log, onProgress);
+  final metas = <String, ItemMeta?>{}; // each item is fetched once, however often the range widens
+  var pool = await _collect(channel, config, api, base, itemsPerSource, concurrency, log, onProgress, metas);
+  final baseIds = {for (final e in pool) e.id};
+  // Counts toward the minimum: comprehensible, and not a silent film the widening brought in.
+  double counted(List<Entry> p) => _total([
+        for (final e in p)
+          if (comprehensible(e) && (!e.silent || baseIds.contains(e.id))) e,
+      ]);
+  final widenable = channel.sources.any((s) => !s.ignoreYear); // year-free sources gain nothing from widening
+  for (final start in widenable ? wideningStarts(base.start, config.fallbackStart) : const <int>[]) {
+    if (counted(pool) >= config.minContentSeconds) break;
+    final wide = YearRange(start, base.end);
+    log?.call('${channel.name}: thin (${counted(pool) ~/ 60} min), widening to $wide');
+    pool = await _collect(channel, config, api, wide, itemsPerSource, concurrency, log, onProgress, metas);
+  }
+  final noAddedSilent = [
+    for (final e in pool)
+      if (!e.silent || baseIds.contains(e.id)) e,
+  ];
+  if (noAddedSilent.length < pool.length && _total(noAddedSilent.where(comprehensible).toList()) >= config.minContentSeconds) {
+    pool = noAddedSilent;
   }
   if (probeClient != null) {
     final tagged = List<Entry?>.filled(pool.length, null);
@@ -50,6 +68,20 @@ Future<List<Entry>> buildPool(
   }
   return pool;
 }
+
+/// Start years a thin channel widens back to, newest first: [fallbackStart] (1960), 1940, 1920, then
+/// no lower limit (1800, before any film), each only if earlier than [start].
+List<int> wideningStarts(int start, int fallbackStart) {
+  final out = <int>[];
+  for (final y in [fallbackStart, 1940, 1920, 1800]) {
+    if (y < start && (out.isEmpty || y < out.last)) out.add(y);
+  }
+  return out;
+}
+
+/// An entry a viewer can follow: English or untagged, or foreign with an English sidecar subtitle.
+/// (Foreign items with only embedded subtitles are checked when they play.)
+bool comprehensible(Entry e) => !e.foreign || e.subUrl != null;
 
 /// Runs [fn] over [items] with at most [limit] in flight (simple worker pool).
 Future<void> forEachLimited<T>(Iterable<T> items, int limit, Future<void> Function(T) fn) async {
@@ -74,6 +106,7 @@ Future<List<Entry>> _collect(
   int concurrency,
   void Function(String)? log,
   void Function(int, int)? onProgress,
+  Map<String, ItemMeta?> metas,
 ) async {
   final seenItems = <String>{};
   final hitsToFetch = <String>[];
@@ -97,7 +130,7 @@ Future<List<Entry>> _collect(
   var done = 0;
   await forEachLimited(hitsToFetch, concurrency, (id) async {
     try {
-      final meta = await api.metadata(id);
+      final meta = metas.containsKey(id) ? metas[id] : metas[id] = await api.metadata(id);
       if (meta != null) {
         for (final e in pickEntries(meta)) {
           byId.putIfAbsent(e.id, () => e);

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:archive_tv_core/archive_tv_core.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,7 @@ import '../engine/tv_engine.dart';
 import '../guide/guide_model.dart';
 import '../input/actions.dart';
 import '../input/gamepad.dart';
+import '../player/captions.dart';
 import '../player/player_controller.dart';
 import '../remote/remote_server.dart';
 import '../settings/settings_store.dart';
@@ -78,6 +80,7 @@ class _TvScreenState extends State<TvScreen> {
       ?..state = _remoteState
       ..volume = _setVolume
       ..channel = _remoteTune
+      ..setting = _remoteSetting
       ..logo = _logoBytes;
     final r = widget.remote;
     if (r != null) {
@@ -104,6 +107,13 @@ class _TvScreenState extends State<TvScreen> {
       'mode': mode.name.toLowerCase(),
       'favorite': c != null && settings.favorites.contains(c.number),
       'entry': entry.text,
+      'captionsOn': settings.captionsOn,
+      'captionSize': settings.captionSize,
+      'captions': tv.captionState,
+      'leveling': settings.volumeLeveling,
+      'levelingAvailable': tv.levelingAvailable,
+      'weatherMode': settings.weatherMode,
+      'remoteLan': settings.remoteLan,
     };
   }
 
@@ -113,6 +123,23 @@ class _TvScreenState extends State<TvScreen> {
       ..muted = false;
     _settingsChanged();
     _flash('Volume $level');
+  }
+
+  /// POST /api/setting from the remote's settings panel (values already checked by the server).
+  void _remoteSetting(String name, Object value) {
+    switch (name) {
+      case 'captionsOn':
+        settings.captionsOn = value as bool;
+        _flash('Captions: ${settings.captionsOn ? 'ON' : 'OFF'}');
+      case 'captionSize':
+        settings.captionSize = value as int;
+        _flash('Caption size ${settings.captionSize}');
+      case 'leveling':
+        settings.volumeLeveling = value as String;
+      case 'weatherMode':
+        settings.weatherMode = value as String;
+    }
+    _settingsChanged();
   }
 
   void _remoteTune(int n) {
@@ -277,6 +304,7 @@ class _TvScreenState extends State<TvScreen> {
   void _settingsChanged([Settings? _]) {
     tv.setVolume(settings.muted ? 0 : settings.volume);
     unawaited(tv.setLeveling(settings.volumeLeveling));
+    unawaited(tv.setCaptions(settings.captionsOn));
     final r = widget.remote;
     if (r != null) {
       r.ensurePin(); // first LAN enable makes the PIN; saved below
@@ -568,7 +596,17 @@ class _TvScreenState extends State<TvScreen> {
                           fit: StackFit.expand,
                           children: [
                             // Widescreen video is letterboxed inside the 4:3 frame, never stretched or cropped.
-                            Video(controller: tv.video, fit: BoxFit.contain, controls: NoVideoControls),
+                            // Captions sit at the bottom of the 4:3 frame, sized from its height (captions.dart).
+                            Video(
+                              controller: tv.video,
+                              fit: BoxFit.contain,
+                              controls: NoVideoControls,
+                              subtitleViewConfiguration: captionStyle(
+                                min(box.maxHeight, box.maxWidth / frameAspect(box.maxWidth, box.maxHeight)),
+                                settings.captionSize,
+                                visible: tv.captionState == 'on' || tv.captionState == 'forced',
+                              ),
+                            ),
                             // The weather channel shows the WeatherStar 4000+ page (spec 5.8); the player only carries its music.
                             if (_weather)
                               WeatherLayers(

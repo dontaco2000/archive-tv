@@ -11,13 +11,16 @@ void main() {
   late RemoteServer server;
   late List<String> keys;
   late List<int> volumes, channels;
+  late List<(String, Object)> sets;
 
   setUp(() {
     settings = Settings();
     keys = [];
     volumes = [];
     channels = [];
+    sets = [];
     server = RemoteServer(settings)
+      ..setting = ((n, v) => sets.add((n, v)))
       ..state = (() => {'channel': {'number': 4, 'name': 'Funnies'}, 'volume': 80, 'muted': false, 'mode': 'watch'})
       ..key = keys.add
       ..volume = volumes.add
@@ -73,6 +76,51 @@ void main() {
     expect((await call('POST', '/api/channel', body: {'number': 12})).$1, 200);
     expect((await call('POST', '/api/channel', body: {'number': '12'})).$1, 400);
     expect(channels, [12]);
+  });
+
+  test('POST /api/setting: checked names and values only; Wi-Fi is not settable from the remote', () async {
+    expect((await call('POST', '/api/setting', body: {'name': 'captionsOn', 'value': true})).$1, 200);
+    expect((await call('POST', '/api/setting', body: {'name': 'captionSize', 'value': 9})).$1, 200);
+    expect((await call('POST', '/api/setting', body: {'name': 'leveling', 'value': 'strong'})).$1, 200);
+    expect((await call('POST', '/api/setting', body: {'name': 'weatherMode', 'value': 'native'})).$1, 200);
+    for (final bad in [
+      {'name': 'captionsOn', 'value': 'yes'},
+      {'name': 'captionSize', 'value': 2.5},
+      {'name': 'leveling', 'value': 'max'},
+      {'name': 'weatherMode', 'value': 'radar'},
+      {'name': 'remoteLan', 'value': true},
+      {'name': 'volume', 'value': 10},
+      {'value': true},
+    ]) {
+      expect((await call('POST', '/api/setting', body: bad)).$1, 400, reason: '$bad');
+    }
+    expect(sets, [('captionsOn', true), ('captionSize', 7), ('leveling', 'strong'), ('weatherMode', 'native')]);
+    // Same rules as the other POSTs.
+    const on = {'name': 'captionsOn', 'value': true};
+    expect((await call('POST', '/api/setting', headers: local, body: on)).$1, 403);
+    expect((await call('POST', '/api/setting', headers: {...post, 'origin': 'http://evil.example'}, body: on)).$1, 403);
+    settings.remoteLan = true;
+    server.ensurePin();
+    server.lanIp = '192.168.1.50';
+    const lan = {'host': '192.168.1.50:8765', 'x-remote': '1'};
+    const off = {'name': 'captionsOn', 'value': false};
+    expect((await call('POST', '/api/setting', headers: lan, body: off, loopback: false)).$1, 401);
+    expect((await call('POST', '/api/setting', headers: {...lan, 'x-pin': settings.remotePin!}, body: off, loopback: false)).$1, 200);
+    expect(sets.last, ('captionsOn', false));
+  });
+
+  test('the page has the CC button and a settings view with every control, and no REMOTE toggle', () async {
+    final page = (await call('GET', '/remote', headers: local)).$3 as String;
+    for (final id in ['ccBtn', 'settings', 'setCaptions', 'sizeDown', 'sizeUp', 'sizeLevel', 'sample', 'setLeveling', 'setWeather', 'wifi']) {
+      expect(page, contains('id="$id"'), reason: id);
+    }
+    expect(page, contains("'/api/setting'"));
+    expect(page, isNot(contains('data-key="remote"')));
+    // The settings view lives inside the now-playing window (no new rows, so the remote keeps its size).
+    final lcd = page.indexOf('<div class="lcd"');
+    expect(lcd, greaterThan(0));
+    expect(page.indexOf('id="settings"'), greaterThan(lcd));
+    expect(page.indexOf('id="settings"'), lessThan(page.indexOf('class="grid g4 hide-set"')));
   });
 
   test('POSTs need X-Remote; foreign Host or Origin is rejected', () async {

@@ -112,6 +112,31 @@ void main() {
     expect(thin.slow.ids, isEmpty);
   });
 
+  test('markNoSubs: gone from airing, guide and On Demand, and stays gone after a restart', () async {
+    final bytes = engine.channels.first;
+    await engine.ensurePool(bytes);
+    final now = DateTime(2026, 11, 11, 15, 20, 5);
+    final id = engine.airing(bytes, now)!.slot.entry.id;
+    engine.markNoSubs(bytes, id);
+    expect(engine.airing(bytes, now)!.slot.entry.id, isNot(id));
+    expect(engine.poolOf(bytes).any((e) => e.id == id), isFalse);
+    final again = TvEngine.open(configText: configText, dataDir: dir, api: api);
+    expect(again.noSubs.ids, {id});
+    await again.ensurePool(bytes);
+    expect(again.guideFor(bytes, DateTime(2026, 11, 12, 0, 0, 1), hours: 24).any((s) => s.entry.id == id), isFalse);
+    expect(again.poolOf(bytes).any((e) => e.id == id), isFalse);
+  });
+
+  test('fresh: an entry from an older saved day is replaced by the pool copy (with language/subtitles)', () async {
+    final bytes = engine.channels.first;
+    await engine.ensurePool(bytes);
+    final p = engine.poolOf(bytes).first;
+    final stale = Entry(id: p.id, itemId: p.itemId, file: p.file, title: 'old', durationSeconds: 1, url: 'x');
+    expect(engine.fresh(bytes, stale), same(p));
+    const unknown = Entry(id: 'zz/z.mp4', itemId: 'zz', file: 'z.mp4', title: 'z', durationSeconds: 1, url: 'x');
+    expect(engine.fresh(bytes, unknown), same(unknown));
+  });
+
   test('airing at the last slot of the day looks ahead to the first slot of tomorrow', () async {
     final bytes = engine.channels.first;
     await engine.ensurePool(bytes);
