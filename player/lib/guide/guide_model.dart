@@ -20,7 +20,8 @@ class GuideRow {
 }
 
 /// Selection, window and rows of the TV guide. Pure logic, no widgets.
-/// The time grid is in 15-minute steps; Left/Right walk the selected row's programs.
+/// The time grid is in 15-minute steps; rows hold guide blocks (see `guideBlocks`) and
+/// Left/Right walk the selected row block by block.
 class GuideModel {
   static const step = Duration(minutes: 15);
   static const columnCount = 12; // three hours on screen
@@ -60,7 +61,9 @@ class GuideModel {
 
   bool _tunable(Channel c) => tunableNumbers.contains(c.number);
 
-  List<Slot> _slotsOf(Channel c) => _slots[c.number] ??= slotsFor(c);
+  /// The row's guide blocks (see `guideBlocks`): short items, same-show runs and short-content
+  /// channels are grouped for display; tuning still plays the real schedule.
+  List<Slot> _slotsOf(Channel c) => _slots[c.number] ??= guideBlocks(slotsFor(c), shortContent: c.shortContent);
 
   Slot? get selectedSlot => _tunable(selectedChannel) ? slotAt(_slotsOf(selectedChannel), selectedTime) : null;
 

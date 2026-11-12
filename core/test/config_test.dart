@@ -8,7 +8,7 @@ const _good = '''
   "channels": [
     {"number": 2, "name": "Funnies", "genre": "Kids & Animation", "logo": "Logos/square/funnies.png",
      "sources": [{"query": "subject:(cartoon OR cartoons)"}]},
-    {"number": 28, "name": "Simmer", "yearRange": [1960, 2010],
+    {"number": 28, "name": "Simmer", "shortContent": "Recipes", "yearRange": [1960, 2010],
      "sources": [{"query": "subject:cooking"},
                  {"identifiers": ["yan-can-cook-kqed"], "ignoreYear": true}]},
     {"number": 33, "name": "Cumulus", "type": "weatherstar", "location": "auto"}
@@ -35,6 +35,8 @@ void main() {
     expect(c.channel(2)!.name, 'Funnies');
     expect(c.channel(2)!.logo, 'Logos/square/funnies.png');
     expect(c.channel(28)!.yearRange, const YearRange(1960, 2010));
+    expect(c.channel(28)!.shortContent, 'Recipes');
+    expect(c.channel(2)!.shortContent, isNull);
     expect(c.channel(28)!.sources[1].ignoreYear, isTrue);
     expect(c.channel(28)!.sources[1].identifiers, ['yan-can-cook-kqed']);
     expect(c.channel(33)!.type, 'weatherstar');

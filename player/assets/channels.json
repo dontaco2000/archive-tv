@@ -306,6 +306,7 @@
     {
       "number": 10,
       "name": "Teaser",
+      "shortContent": "Trailers",
       "logo": "Logos/4x3/teaser.png",
       "genre": "Movies",
       "sources": [
@@ -664,6 +665,7 @@
     {
       "number": 22,
       "name": "Jingle",
+      "shortContent": "Commercials",
       "logo": "Logos/4x3/jingle.png",
       "genre": "TV",
       "sources": [
@@ -1302,6 +1304,7 @@
     {
       "number": 63,
       "name": "Notice",
+      "shortContent": "PSAs",
       "logo": "Logos/4x3/notice.png",
       "genre": "TV",
       "sources": [

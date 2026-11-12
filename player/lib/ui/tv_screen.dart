@@ -403,11 +403,13 @@ class _TvScreenState extends State<TvScreen> {
   void _openGuide() {
     final now = DateTime.now();
     final engine = tv.engine;
-    // The guide reaches to the end of the last saved day snapshot (today plus six more).
+    // The guide reaches to the end of the last saved day snapshot (today plus six more). Rows start
+    // at midnight so blocks that began earlier (marathons, 2-hour blocks) keep their real length.
     final hours = DateTime(now.year, now.month, now.day + 7).difference(now).inHours;
+    final midnight = DateTime(now.year, now.month, now.day);
     final g = GuideModel(
       channels: engine.channels,
-      slotsFor: (c) => engine.guideFor(c, now, hours: hours),
+      slotsFor: (c) => engine.guideFor(c, midnight, hours: 24 * 7),
       now: now,
       tunableNumbers: {for (final c in engine.tunable) c.number},
       horizon: now.add(Duration(hours: hours)),

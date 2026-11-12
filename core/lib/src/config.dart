@@ -80,6 +80,7 @@ ChannelConfig _parse(String jsonText) {
       yearRange: _range(raw['yearRange'], 'channel $number yearRange'),
       logo: raw['logo'] as String?,
       location: raw['location'] as String?,
+      shortContent: raw['shortContent'] as String?,
     ));
   }
 

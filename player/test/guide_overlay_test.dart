@@ -101,4 +101,27 @@ void main() {
     await t.sendKeyEvent(LogicalKeyboardKey.escape);
     expect(r.closed, [1]);
   });
+
+  testWidgets('short-content and marathon blocks: header shows the block label and its time range', (t) async {
+    const ads = Channel(number: 22, name: 'Jingle', genre: 'TV', shortContent: 'Commercials');
+    final m = GuideModel(
+      channels: const [ads, a],
+      now: now,
+      tunableNumbers: {22, 1},
+      horizon: now.add(const Duration(hours: 12)),
+      slotsFor: (ch) => ch == ads
+          ? [for (var i = 0; i < 80; i++) slot('Spot $i', DateTime(2026, 11, 11, 10).add(Duration(minutes: 3 * i)), 3)]
+          : [for (var i = 0; i < 4; i++) slot('Death Note S1E${i + 1}', DateTime(2026, 11, 11, 10).add(Duration(minutes: 30 * i)), 30)],
+    );
+    await t.pumpWidget(MaterialApp(
+      home: Scaffold(body: GuideOverlay(model: m, onTune: (_) {}, onHighlight: (_) {}, onClose: () {})),
+    ));
+    await t.pump();
+    expect(selectedTitle(t), 'More Commercials');
+    expect(find.text('More Commercials  10:00-12:00'), findsOneWidget);
+    await t.sendKeyEvent(LogicalKeyboardKey.arrowDown);
+    await t.pump();
+    expect(selectedTitle(t), 'Death Note Marathon');
+    expect(find.text('Death Note Marathon  10:00-12:00'), findsOneWidget);
+  });
 }

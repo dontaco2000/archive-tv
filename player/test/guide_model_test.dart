@@ -156,4 +156,40 @@ void main() {
     m.moveRow(-2);
     expect(m.rowsInView(2).map((r) => r.channel), [b, c]);
   });
+
+  test('rows show guide blocks: Marathon and More Commercials; Right/Left step block to block', () {
+    const toons = Channel(number: 5, name: 'Toons');
+    const ads = Channel(number: 6, name: 'Ads', shortContent: 'Commercials');
+    final m = GuideModel(
+      channels: [toons, ads],
+      now: now,
+      tunableNumbers: {5, 6},
+      horizon: at(23),
+      slotsFor: (ch) => ch == ads
+          ? [for (var i = 0; i < 80; i++) slot('Spot $i', at(10).add(Duration(minutes: 3 * i)), 3)] // 10:00-14:00
+          : [
+              for (var i = 0; i < 5; i++) slot('Thomas S01E0${i + 1}', at(10).add(Duration(minutes: 25 * i)), 25),
+              slot('Movie', at(12, 5), 90),
+              slot('Clip A', at(13, 35), 10),
+              slot('Clip B', at(13, 45), 10),
+            ],
+    );
+    expect(m.selectedSlot!.entry.title, 'Thomas Marathon'); // 10:00-12:05, airing now
+    expect(m.rowsInView(2).first.cells.map((c) => c.label), ['Thomas Marathon', 'Movie']); // Shorts at 13:35 is past the 10:15-13:15 window
+    m.moveProgram(1);
+    expect(m.selectedSlot!.entry.title, 'Movie');
+    m.moveProgram(1);
+    expect([m.selectedSlot!.entry.title, m.selectedSlot!.start, m.selectedSlot!.end], ['Shorts', at(13, 35), at(13, 55)]);
+    m.moveProgram(-1);
+    m.moveProgram(-1);
+    expect(m.selectedSlot!.entry.title, 'Thomas Marathon');
+    expect(m.selectedTime, now);
+    m.moveRow(1);
+    expect([m.selectedSlot!.entry.title, m.selectedSlot!.start, m.selectedSlot!.end], ['More Commercials', at(10), at(12)]);
+    m.moveProgram(1);
+    expect(m.selectedSlot!.entry.title, 'More Commercials'); // 12:00-14:00
+    expect(m.selectedSlot!.start, at(12));
+    m.moveProgram(1); // last block: stays
+    expect(m.selectedSlot!.start, at(12));
+  });
 }

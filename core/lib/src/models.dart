@@ -56,6 +56,10 @@ class Channel {
   /// Serial blocks, in time order (empty: the whole day is the normal shuffle).
   final List<SerialSlot> serials;
 
+  /// Guide label for a channel made of short spots (e.g. "Commercials"): the guide shows its
+  /// schedule as 2-hour "More <label>" blocks instead of single items. Null = normal grouping.
+  final String? shortContent;
+
   const Channel({
     required this.number,
     required this.name,
@@ -67,6 +71,7 @@ class Channel {
     this.location,
     this.primeTime = const PrimeTime(),
     this.serials = const [],
+    this.shortContent,
   });
 }
 
