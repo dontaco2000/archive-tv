@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:archive_tv_core/archive_tv_core.dart';
@@ -12,7 +13,25 @@ const _panel = Color(0xE6101A5C); // same dark translucent blue as the guide
 const _yellow = Color(0xFFFFEB3B);
 const _cellBg = Color(0xFF1E2C8A);
 
-enum _Item { onDemand, favorite, favoritesOnly, volume, mute, leveling, captions, captionSize, picture, startFullscreen, cornerBug, block, wrongChannel, sleep, refresh, weatherMode, weatherLocation, openRemote, remoteLan, remoteInfo, parental, lastError, openLog, openSettings, credits, about, close }
+enum _Item { back, onDemand, favorite, favoritesOnly, volume, mute, leveling, captions, captionSize, picture, startFullscreen, cornerBug, block, wrongChannel, sleep, refresh, weatherMode, weatherLocation, openRemote, remoteLan, remoteInfo, parental, lastError, openLog, openSettings, credits, about, close }
+
+/// Top-level categories, in menu order, and the items each one opens.
+enum _Cat {
+  channels('Channels & Guide', [_Item.onDemand, _Item.favorite, _Item.favoritesOnly, _Item.refresh]),
+  pictureSound('Picture & Sound', [_Item.volume, _Item.mute, _Item.leveling, _Item.picture, _Item.captions, _Item.captionSize, _Item.startFullscreen, _Item.cornerBug]),
+  weather('Weather', [_Item.weatherMode, _Item.weatherLocation]),
+  remote('Remote', [_Item.openRemote, _Item.remoteLan, _Item.remoteInfo]),
+  tools('Sleep & Tools', [_Item.sleep, _Item.wrongChannel, _Item.block, _Item.lastError, _Item.openLog, _Item.openSettings]),
+  about('About & Credits', [_Item.about, _Item.credits]);
+
+  final String title;
+  final List<_Item> items;
+  const _Cat(this.title, this.items);
+}
+
+/// '3:42 PM'.
+String menuClock(DateTime t) =>
+    '${t.hour % 12 == 0 ? 12 : t.hour % 12}:${t.minute.toString().padLeft(2, '0')} ${t.hour < 12 ? 'AM' : 'PM'}';
 
 /// "Last error: none", or its first line (the menu clips it); Enter copies the whole text.
 String lastErrorLabel(String? e) {
@@ -25,6 +44,8 @@ String lastErrorLabel(String? e) {
 /// and reported through [onChanged]; the screen saves and applies them.
 class MenuOverlay extends StatefulWidget {
   static const selectedKey = ValueKey('menu-selected');
+  static const clockKey = ValueKey('menu-clock');
+  static const banner = 'assets/branding/banner.png';
 
   final Settings settings;
   final Channel? current;
@@ -98,26 +119,62 @@ class MenuOverlay extends StatefulWidget {
   });
 
   @override
-  State<MenuOverlay> createState() => _MenuOverlayState();
+  State<MenuOverlay> createState() => MenuOverlayState();
 }
 
-class _MenuOverlayState extends State<MenuOverlay> {
+class MenuOverlayState extends State<MenuOverlay> {
   final _focus = FocusNode();
+  final _scroll = ScrollController();
   int _sel = 0;
+  _Cat? _cat; // null: the top level
+
   // Android TV is always fullscreen, so its menu has no window-mode item; the remote is Windows only.
-  List<_Item> get _items => [
-        for (final i in _Item.values)
-          if (!(Platform.isAndroid && i == _Item.startFullscreen) &&
-              !(widget.onOpenRemote == null && (i == _Item.openRemote || i == _Item.remoteLan)) &&
-              !(widget.remoteLanInfo == null && i == _Item.remoteInfo) &&
-              !(widget.onOpenLogFolder == null && i == _Item.openLog) &&
-              !(widget.onWrongChannel == null && i == _Item.wrongChannel) &&
-              !(widget.onSleep == null && i == _Item.sleep) &&
-              !(widget.onParental == null && i == _Item.parental) &&
-              !(widget.onOpenSettingsFile == null && i == _Item.openSettings))
-            i,
-      ];
+  bool _shown(_Item i) =>
+      !(Platform.isAndroid && i == _Item.startFullscreen) &&
+      !(widget.onOpenRemote == null && (i == _Item.openRemote || i == _Item.remoteLan)) &&
+      !(widget.remoteLanInfo == null && i == _Item.remoteInfo) &&
+      !(widget.onOpenLogFolder == null && i == _Item.openLog) &&
+      !(widget.onWrongChannel == null && i == _Item.wrongChannel) &&
+      !(widget.onSleep == null && i == _Item.sleep) &&
+      !(widget.onParental == null && i == _Item.parental) &&
+      !(widget.onOpenSettingsFile == null && i == _Item.openSettings);
+
+  /// Rows of the current level: a [_Cat] opens it, an [_Item] acts. Parental controls sits
+  /// on the top level itself (its own screen is the sub-menu).
+  List<Object> get _rows {
+    final c = _cat;
+    if (c != null) return [_Item.back, ...c.items.where(_shown)];
+    return [
+      for (final cat in _Cat.values)
+        if (cat.items.any(_shown)) cat,
+      if (_shown(_Item.parental)) _Item.parental,
+      _Item.close,
+    ];
+  }
+
   Settings get s => widget.settings;
+
+  /// Back / Esc: up one level. False at the top level (the caller closes the menu).
+  bool back() {
+    final c = _cat;
+    if (c == null) return false;
+    setState(() {
+      _cat = null;
+      _sel = _rows.indexOf(c); // back on the category's own row
+    });
+    return true;
+  }
+
+  /// Scrolls just enough to keep row [_sel] (height [rowH]) in view.
+  void _keepVisible(double rowH) {
+    if (!_scroll.hasClients) return;
+    final p = _scroll.position, top = _sel * rowH;
+    if (top < p.pixels) {
+      _scroll.jumpTo(top);
+    } else if (top + rowH > p.pixels + p.viewportDimension) {
+      _scroll.jumpTo((top + rowH - p.viewportDimension).clamp(0.0, p.maxScrollExtent));
+    }
+  }
 
   @override
   void initState() {
@@ -131,6 +188,7 @@ class _MenuOverlayState extends State<MenuOverlay> {
   @override
   void dispose() {
     _focus.dispose();
+    _scroll.dispose();
     super.dispose();
   }
 
@@ -141,8 +199,19 @@ class _MenuOverlayState extends State<MenuOverlay> {
 
   /// Left/Right (dir -1/+1) or Enter (dir 0) on the selected item.
   void _activate(int dir) {
-    final item = _items[_sel];
-    switch (item) {
+    final row = _rows[_sel];
+    if (row is _Cat) {
+      if (dir >= 0) {
+        setState(() {
+          _cat = row;
+          _sel = 1; // first item, under Back
+        });
+      }
+      return;
+    }
+    switch (row as _Item) {
+      case _Item.back:
+        if (dir == 0) back();
       case _Item.volume:
         if (dir != 0) _change(() => s.volume = (s.volume + 5 * dir).clamp(0, 100).toDouble());
       case _Item.favorite:
@@ -206,19 +275,19 @@ class _MenuOverlayState extends State<MenuOverlay> {
     if (e is KeyUpEvent) return KeyEventResult.ignored;
     final k = e.logicalKey;
     final repeat = e is KeyRepeatEvent;
-    final n = _items.length;
+    final rows = _rows, n = rows.length;
     if (k == LogicalKeyboardKey.arrowUp) {
       setState(() => _sel = (_sel - 1) % n);
     } else if (k == LogicalKeyboardKey.arrowDown) {
       setState(() => _sel = (_sel + 1) % n);
     } else if (k == LogicalKeyboardKey.arrowLeft || k == LogicalKeyboardKey.arrowRight) {
       // Only the volume repeats while held; toggles flip once per press.
-      if (!repeat || _items[_sel] == _Item.volume || _items[_sel] == _Item.captionSize) _activate(k == LogicalKeyboardKey.arrowLeft ? -1 : 1);
+      if (!repeat || rows[_sel] == _Item.volume || rows[_sel] == _Item.captionSize) _activate(k == LogicalKeyboardKey.arrowLeft ? -1 : 1);
     } else if (k == LogicalKeyboardKey.enter || k == LogicalKeyboardKey.select) {
       if (!repeat) _activate(0);
-    } else if (k == LogicalKeyboardKey.escape ||
-        k == LogicalKeyboardKey.keyM ||
-        k == LogicalKeyboardKey.contextMenu) {
+    } else if (k == LogicalKeyboardKey.escape || k == LogicalKeyboardKey.goBack || k == LogicalKeyboardKey.backspace) {
+      if (!repeat && !back()) widget.onClose();
+    } else if (k == LogicalKeyboardKey.keyM || k == LogicalKeyboardKey.contextMenu) {
       if (!repeat) widget.onClose();
     } else {
       return KeyEventResult.ignored; // F, volume, mute, fullscreen fall through to the TV screen
@@ -228,9 +297,11 @@ class _MenuOverlayState extends State<MenuOverlay> {
 
   String _onOff(bool b) => b ? 'ON' : 'OFF';
 
-  String _label(_Item item) {
+  String _label(Object row) {
+    if (row is _Cat) return '${row.title}  >';
     final c = widget.current;
-    return switch (item) {
+    return switch (row as _Item) {
+      _Item.back => '<  Back',
       _Item.favorite => c == null ? 'Favorite: -' : 'Favorite ${c.number} ${c.name}: ${s.favorites.contains(c.number) ? 'YES' : 'NO'}',
       _Item.favoritesOnly => 'Flip favorites only: ${_onOff(s.favoritesOnly)}',
       _Item.volume => 'Volume ${'#' * (s.volume ~/ 5)}${'.' * (20 - s.volume ~/ 5)} ${s.volume.round()}',
@@ -271,36 +342,60 @@ class _MenuOverlayState extends State<MenuOverlay> {
         alignment: Alignment.centerRight,
         child: FractionallySizedBox(
           widthFactor: 0.55,
-          heightFactor: 0.8,
+          heightFactor: 0.9,
           child: Container(
             color: _panel,
             padding: const EdgeInsets.all(8),
             child: LayoutBuilder(builder: (context, box) {
-              final unit = box.maxHeight / (_items.length + 1); // title + items
-              final font = (unit * 0.4).clamp(9.0, 26.0);
+              // Row size follows the panel, not the item count: about 12 rows tall, never tiny;
+              // a level that doesn't fit scrolls (the selected row is kept in view).
+              final unit = (box.maxHeight / 12).clamp(26.0, 64.0);
+              final font = (unit * 0.5).clamp(13.0, 30.0);
+              final rows = _rows;
+              _sel = _sel.clamp(0, rows.length - 1); // items can hide while open (remote info)
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                if (mounted) _keepVisible(unit);
+              });
               TextStyle style(Color color, {bool bold = false}) =>
                   TextStyle(fontFamily: _font, fontSize: font, color: color, fontWeight: bold ? FontWeight.bold : null);
               return Column(children: [
+                Image.asset(MenuOverlay.banner, height: unit * 1.5, filterQuality: FilterQuality.medium),
                 SizedBox(
-                  height: unit,
-                  child: Align(alignment: Alignment.centerLeft, child: Text('MENU', style: style(_yellow, bold: true))),
+                  height: unit * 0.9,
+                  child: Center(child: _Clock(style: style(_yellow, bold: true))),
                 ),
-                for (final (i, item) in _items.indexed)
-                  Container(
-                    key: i == _sel ? MenuOverlay.selectedKey : null,
-                    height: unit - 2,
-                    margin: const EdgeInsets.all(1),
-                    padding: const EdgeInsets.symmetric(horizontal: 6),
-                    alignment: Alignment.centerLeft,
-                    color: i == _sel ? _yellow : _cellBg,
-                    child: Text(
-                      _label(item),
-                      maxLines: 1,
-                      softWrap: false,
-                      overflow: TextOverflow.clip,
-                      style: style(i == _sel ? Colors.black : Colors.white, bold: i == _sel),
-                    ),
+                if (_cat case final c?)
+                  SizedBox(
+                    height: unit,
+                    child: Align(alignment: Alignment.centerLeft, child: Text(c.title.toUpperCase(), style: style(_yellow, bold: true))),
                   ),
+                Expanded(
+                  child: SingleChildScrollView(
+                    controller: _scroll,
+                    child: Column(children: [
+                      for (final (i, row) in rows.indexed)
+                        Container(
+                          key: i == _sel ? MenuOverlay.selectedKey : null,
+                          height: unit - 2,
+                          margin: const EdgeInsets.all(1),
+                          padding: const EdgeInsets.symmetric(horizontal: 6),
+                          alignment: Alignment.centerLeft,
+                          color: i == _sel ? _yellow : _cellBg,
+                          // A label too wide for a small window shrinks a little rather than being cut.
+                          child: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              _label(row),
+                              maxLines: 1,
+                              softWrap: false,
+                              style: style(i == _sel ? Colors.black : Colors.white, bold: i == _sel),
+                            ),
+                          ),
+                        ),
+                    ]),
+                  ),
+                ),
               ]);
             }),
           ),
@@ -308,4 +403,32 @@ class _MenuOverlayState extends State<MenuOverlay> {
       ),
     );
   }
+}
+
+/// The current time ('3:42 PM'), re-read every second so the minute flips on time.
+class _Clock extends StatefulWidget {
+  final TextStyle style;
+  const _Clock({required this.style});
+
+  @override
+  State<_Clock> createState() => _ClockState();
+}
+
+class _ClockState extends State<_Clock> {
+  late final Timer _tick;
+
+  @override
+  void initState() {
+    super.initState();
+    _tick = Timer.periodic(const Duration(seconds: 1), (_) => setState(() {}));
+  }
+
+  @override
+  void dispose() {
+    _tick.cancel();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) => Text(menuClock(DateTime.now()), key: MenuOverlay.clockKey, style: widget.style);
 }

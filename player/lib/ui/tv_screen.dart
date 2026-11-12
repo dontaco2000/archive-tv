@@ -68,6 +68,7 @@ class _TvScreenState extends State<TvScreen> {
   GuideModel? _guide;
   Timer? _warmTimer;
   final _focus = FocusNode();
+  final _menu = GlobalKey<MenuOverlayState>(); // Android Back steps out of a menu category first
   final _http = http.Client(); // weather data
 
   bool get _weather => tv.channel?.type == 'weatherstar';
@@ -730,6 +731,8 @@ class _TvScreenState extends State<TvScreen> {
       _closeAbout();
     } else if (mode == TvMode.credits) {
       _closeMenu();
+    } else if (mode == TvMode.menu && (_menu.currentState?.back() ?? false)) {
+      // up one level
     } else if (mode != TvMode.watch) {
       _closeMenu();
     } else if (_next != null) {
@@ -854,6 +857,7 @@ class _TvScreenState extends State<TvScreen> {
                               ),
                             if (mode == TvMode.menu)
                               MenuOverlay(
+                                key: _menu,
                                 settings: settings,
                                 current: tv.channel,
                                 onChanged: _settingsChanged,

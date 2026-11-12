@@ -162,7 +162,12 @@ void main() {
       ),
     ));
     await t.pump();
-    expect(find.text('Parental controls: LOCK ON'), findsOneWidget);
+    expect(find.text('Parental controls: LOCK ON'), findsOneWidget); // on the top level
+    for (var i = 0; i < 3; i++) {
+      await t.sendKeyEvent(LogicalKeyboardKey.arrowDown); // to Sleep & Tools (no remote here)
+    }
+    await t.sendKeyEvent(LogicalKeyboardKey.enter);
+    await t.pump();
     expect(find.text('Open settings file'), findsOneWidget);
   });
 
