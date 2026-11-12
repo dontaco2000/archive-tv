@@ -2402,8 +2402,8 @@
     },
     {
       "number": 30,
-      "name": "Dispatch",
-      "logo": "Logos/4x3/dispatch.png",
+      "name": "Newsdesk",
+      "logo": "Logos/4x3/newsdesk.png",
       "genre": "News & Docs",
       "sources": [
         {
@@ -2619,8 +2619,8 @@
     },
     {
       "number": 34,
-      "name": "Commons",
-      "logo": "Logos/4x3/commons.png",
+      "name": "Curious",
+      "logo": "Logos/4x3/curious.png",
       "genre": "News & Docs",
       "sources": [
         {
@@ -4346,8 +4346,8 @@
     },
     {
       "number": 66,
-      "name": "Nightlight",
-      "logo": "Logos/4x3/nightlight.png",
+      "name": "Dreamtime",
+      "logo": "Logos/4x3/dreamtime.png",
       "genre": "TV",
       "sources": [
         {
@@ -4540,8 +4540,8 @@
     },
     {
       "number": 68,
-      "name": "Footlights",
-      "logo": "Logos/4x3/footlights.png",
+      "name": "Hijinks",
+      "logo": "Logos/4x3/hijinks.png",
       "genre": "TV",
       "sources": [
         {

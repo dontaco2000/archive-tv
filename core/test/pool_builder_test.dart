@@ -141,7 +141,7 @@ void main() {
     expect(normal.map((e) => e.itemId), ['show']);
     const ads = Channel(number: 22, name: 'Jingle', shortContent: 'Commercials', sources: [Source(query: 'x')]);
     expect((await buildPool(ads, config(minHours: 0), api)).map((e) => e.itemId), ['opening', 'show']);
-    const ids = Channel(number: 66, name: 'Nightlight', minSeconds: 60, sources: [Source(query: 'x')]);
+    const ids = Channel(number: 66, name: 'Dreamtime', minSeconds: 60, sources: [Source(query: 'x')]);
     expect((await buildPool(ids, config(minHours: 0), api)).length, 2);
   });
 
