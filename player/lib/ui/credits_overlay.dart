@@ -20,7 +20,7 @@ const credits = <Credit>[
 ];
 
 const creditsDisclaimer = 'We are not responsible for the content: Archive TV only finds and plays what the Internet Archive '
-    'hosts. Some channels (such as Headliner, Teaser and Haunt) can include mature content.';
+    'hosts. Some channels (such as Headliner and Haunt) can include mature content.';
 
 /// Opens [target] (a web address or a folder) with Windows' default handler. Other platforms: nothing.
 Future<void> openExternal(String target, void Function(String) log) async {
