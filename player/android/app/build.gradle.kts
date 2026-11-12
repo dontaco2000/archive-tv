@@ -27,6 +27,15 @@ android {
         // flag during build.
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+        // Plugins (media_kit's libmpv) ship every ABI, but `--target-platform` only limits Flutter's own libs.
+        // An APK with an arm64 folder but no arm64 libflutter.so crashes on 64-bit phones, so keep only the
+        // ABIs being built: android-arm = ArchiveTV-32bit.apk, android-arm64 = ArchiveTV-64bit.apk.
+    }
+
+    (project.findProperty("target-platform") as String?)?.let { tp ->
+        val all = mapOf("android-arm" to "armeabi-v7a", "android-arm64" to "arm64-v8a", "android-x64" to "x86_64")
+        val keep = tp.split(",").mapNotNull { all[it] }
+        if (keep.isNotEmpty()) packaging { jniLibs { excludes += (all.values - keep.toSet()).map { "lib/$it/**" } } }
     }
 
     buildTypes {
