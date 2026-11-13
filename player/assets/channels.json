@@ -7880,7 +7880,7 @@
           "claim": true
         },
         {
-          "query": "(subject:sports AND title:(game OR championship OR \"super bowl\" OR nfl OR nba OR mlb OR \"world series\" OR nhl OR ncaa OR olympics OR highlights OR football OR baseball OR basketball OR hockey OR golf OR tennis OR ufc OR boxing OR soccer OR \"champions league\" OR \"world cup\") AND -title:(galactik OR software OR \"sporty baby\" OR swimsuit OR trailer OR commercials OR news OR wwe OR wwf) AND -collection:(tvnews OR videogameprev OR gamevideos)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR spanish OR jpn OR japanese OR chi OR chinese OR zho OR pol OR polish OR fre OR french OR fra OR ger OR german OR deu OR ita OR italian OR por OR portuguese OR rus OR russian OR kor OR korean OR hin OR hindi OR ara OR arabic OR tur OR vie OR ind OR tha OR hmn) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -collection:(computerchronicles OR scarecrowvideo) AND -subject:(film OR \"feature film\" OR \"independent films\") AND -title:(\"mr. baseball\" OR \"computers and the olympics\") AND -title:(mario OR \"funny or die\")"
+          "query": "(subject:sports AND title:(game OR championship OR \"super bowl\" OR nfl OR nba OR mlb OR \"world series\" OR nhl OR ncaa OR olympics OR highlights OR football OR baseball OR basketball OR hockey OR golf OR tennis OR boxing OR soccer OR \"champions league\" OR \"world cup\") AND -title:(galactik OR software OR \"sporty baby\" OR swimsuit OR trailer OR commercials OR news OR wwe OR wwf) AND -collection:(tvnews OR videogameprev OR gamevideos)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR spanish OR jpn OR japanese OR chi OR chinese OR zho OR pol OR polish OR fre OR french OR fra OR ger OR german OR deu OR ita OR italian OR por OR portuguese OR rus OR russian OR kor OR korean OR hin OR hindi OR ara OR arabic OR tur OR vie OR ind OR tha OR hmn) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -collection:(computerchronicles OR scarecrowvideo) AND -subject:(film OR \"feature film\" OR \"independent films\") AND -title:(\"mr. baseball\" OR \"computers and the olympics\") AND -title:(mario OR \"funny or die\") AND -title:(ufc OR \"ultimate fighting\" OR mma OR \"mixed martial\" OR \"vale tudo\" OR pride OR rodeo OR \"bull riding\" OR \"roller derby\" OR curling OR sumo OR dodgeball OR robot OR robots OR strongman OR lumberjack OR timbersports OR skateboard OR skateboarding OR surfing OR bmx OR \"x games\" OR gladiators OR darts OR poker OR chess OR \"eating contest\" OR \"aussie rules\" OR afl OR vfl)"
         },
         {
           "identifiers": [
@@ -7896,6 +7896,68 @@
           "ignoreYear": true,
           "maxEntriesPerItem": 1,
           "tag": "diversity"
+        },
+        {
+          "identifiers": [
+            "ufc.1-10.-webrip.-h-264-wiz",
+            "the-ultimate-fighting-championship-revenge-of-the-warriors-1995",
+            "ufcppv_202508",
+            "UFCFightNightMMASelect2023",
+            "best-of-ufc",
+            "ufc.-324.-hdtv.-h-264-rbb",
+            "ufc.323.dvalishvili.vs.yan.2.ppv.WEB.H264-RBB",
+            "UFC.Fight.Night.Teixeira.vs.Bader.DSR.XviDXWT",
+            "UFC229",
+            "the-history-of-mixed-martial-arts",
+            "1997-10-11-pride-1",
+            "1998-03-15-pride-2",
+            "1998-06-24-pride-3",
+            "1998-10-11-pride-4",
+            "1999-04-29-pride-5",
+            "1999-07-04-pride-6",
+            "1999-11-21-pride-8",
+            "2000-06-04-pride-9-new-blood",
+            "2000-12-23-pride-12-cold-fury",
+            "2001-03-25-pride-13-collision-course",
+            "BigFight_DREAM-MMA-7-3.8.09",
+            "BigFight_DREAM-MMA-8-4.5.09",
+            "BigFight_DREAM-MMA-15-LHWGP-Opening-Round-7.10.10",
+            "BigFight_DREAM-MMA-16-9.25.10",
+            "BigFight_DREAM-18-x-GLORY_4_TOKYO_12.31.12",
+            "BigFight_Bellator-237-plus-BONUS-FIGHTS-12.28.19",
+            "BigFight_BELLATOR-142-x-GLORY-23.5-DYNAMITE-9.19.15",
+            "BigFight_PRO-ELITE-MMA-3-GROVE-x-MINOWAMAN-1.21.12",
+            "BigFight_Legacy-FC-7-7.22.11",
+            "BigFight_M-1-Global-FEDOR-x-MONSON-11.20.11",
+            "BigFight_RIZIN-47-6.9.24",
+            "BigFight_SUPER-RIZIN-3-7.28.24",
+            "vale-tudo-japan-open-94-7-29-94-60fps"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 3,
+          "tag": "b12",
+          "maxEntries": 40,
+          "rated": "R"
+        }
+      ],
+      "timeBlocks": [
+        {
+          "label": "Late Night MMA",
+          "days": [
+            "mon",
+            "tue",
+            "wed",
+            "thu",
+            "fri",
+            "sat",
+            "sun"
+          ],
+          "start": "22:00",
+          "end": "24:00",
+          "sources": [
+            3
+          ],
+          "minMinutes": 20
         }
       ]
     },
@@ -7986,14 +8048,110 @@
         {
           "query": "(title:(\"robot wars\" OR battlebots OR \"battle bots\" OR robotica OR robogames OR \"robot combat\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR lingerie OR bikini OR \"hot girl\" OR playboy OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR jpn OR chi OR hin OR kor OR tur OR vie OR ind) AND -collection:(tvnews OR tvarchive OR mirrortube OR social-media-video OR fringe OR deemphasize OR movie_trailers OR funnyordie OR podcasts OR podcasts-video OR bliptv OR vlogs OR gamevideos OR videogameprev OR twitchstreams OR youtubegraveyard OR audio_religion) AND -identifier:(youtube-* OR yt_* OR g4tv.com-* OR acidplanet-* OR roosterteeth* OR nratv_* OR Barr_Bros*) AND -title:(promo OR trailer OR teaser OR parody OR spoof OR commercial OR commercials OR gameplay OR unboxing OR review OR reaction OR podcast OR shorts) AND -collection:(community_media OR ourmedia) AND -title:(\"super robot\" OR alpha OR mechwarrior OR mecha OR \"battle of the bands\" OR \"nhs\" OR \"news bites\" OR comic OR game OR games OR \"vhs tape\") AND -collection:(vhsnews_1990s) AND -identifier:(robot-wars-1998-2018)",
           "ignoreYear": true,
-          "maxEntries": 80,
-          "maxEntriesPerItem": 12
+          "maxEntries": 16,
+          "maxEntriesPerItem": 2
         },
         {
           "query": "(title:(\"american gladiators\" OR \"gladiators 2000\" OR \"international gladiators\" OR \"australian gladiators\" OR \"most extreme elimination\" OR \"wipeout us\" OR \"american ninja warrior\" OR \"battle of the network stars\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR lingerie OR bikini OR \"hot girl\" OR playboy OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR jpn OR chi OR hin OR kor OR tur OR vie OR ind) AND -collection:(tvnews OR tvarchive OR mirrortube OR social-media-video OR fringe OR deemphasize OR movie_trailers OR funnyordie OR podcasts OR podcasts-video OR bliptv OR vlogs OR gamevideos OR videogameprev OR twitchstreams OR youtubegraveyard OR audio_religion) AND -identifier:(youtube-* OR yt_* OR g4tv.com-* OR acidplanet-* OR roosterteeth* OR nratv_* OR Barr_Bros*) AND -title:(promo OR trailer OR teaser OR parody OR spoof OR commercial OR commercials OR gameplay OR unboxing OR review OR reaction OR podcast OR shorts) AND -collection:(community_media OR ourmedia) AND -title:(\"18th century\" OR \"hulk\" OR \"cross-company\" OR \"cross company\" OR \"mgm nightmare\" OR \"tv spot\" OR \"flor-jon\" OR \"video game\" OR plays OR \"denver bronco\" OR \"william moseley\" OR lng OR uwe OR \"fight on\" OR beta OR andyland OR \"not my show\" OR \"i created\" OR amoco) AND -identifier:(most-extreme-elimination-challenge*)",
           "ignoreYear": true,
           "maxEntries": 70,
           "maxEntriesPerItem": 6
+        },
+        {
+          "identifiers": [
+            "world-chess-festival-the-blitz-1988",
+            "TheChipvstheChessMaster",
+            "garry-kasparov-teaches-chess-masterclass-course",
+            "bobby-fischer-against-the-world-full-movie-true-hd",
+            "FamousChessGameKasparovVsTopalov1999KasparovsImmortal",
+            "GameOfTheCenturyBobbyFischerVsDonaldByrne",
+            "ding-vs-gukesh-game-14-fide-world-chess-championship-match-2024",
+            "Chess_Tournament_The_Octopus_v_The_Allies_September_26_2007",
+            "CommentaryChessOlympiad2010Day1",
+            "KramnikVNakamuraCorus2010",
+            "ChessBlitzGame1",
+            "chess.com-lessons"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 10,
+          "tag": "b12"
+        },
+        {
+          "identifiers": [
+            "pro-tour-chicago-1999-final-brian-davis-vs-bob-maher",
+            "The_Totally_Rad_Show_438",
+            "youtube-w_ggwLouHtw",
+            "youtube-S9gHK8R53kM",
+            "youtube-GlJlq88GptU"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 8,
+          "tag": "b12"
+        },
+        {
+          "identifiers": [
+            "WSOP_2004",
+            "world-poker-tour-6_6001",
+            "360_20220807",
+            "6913822",
+            "poker-after-dark",
+            "late-night-poker-november-2000",
+            "celebrity-poker-showdown-west-wing-2003",
+            "youtube-7m8WonP6lb8",
+            "youtube--FFFv9rAqw0"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 8,
+          "tag": "b12"
+        },
+        {
+          "identifiers": [
+            "pdc_2020_World_Championship",
+            "pdc_2019-01-01_WC",
+            "pdc_2019_Premier_League",
+            "pdc_2020-10-15_Premier_League",
+            "pdc_2019-11-17_Grand_Slam_of_Darts",
+            "pdc_2019-07-28_World_Matchplay",
+            "pdc_2019-10-12_World_Grand_Prix",
+            "pdc_2020-02-02_Masters",
+            "pdc_2018-07-29_WM"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 3,
+          "tag": "b12",
+          "maxEntries": 24,
+          "maxSeconds": 10800
+        },
+        {
+          "identifiers": [
+            "the-sports-88-world-pro-9-ball-tournament-and-world-dart-grand-prix-jotx-tv",
+            "6th-annual-molson-cup-9-ball-tournament-le-skratch-in-montreal-quebec-2004.04.26",
+            "AH-show_offs_strickland_v_reyes_8_ball",
+            "MinnesotaFatsNoCinema",
+            "gods.of.-snooker",
+            "Senior_Billiards_Tournament",
+            "2012_London_Olympics_Table_Tennis"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 4,
+          "tag": "b12",
+          "maxSeconds": 10800
+        },
+        {
+          "identifiers": [
+            "word-wars-2004",
+            "AdultSpellingBee2015"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 2,
+          "tag": "b12"
+        },
+        {
+          "query": "(title:(\"duplicate bridge\" OR backgammon) AND collection:community_media) AND -title:(school OR students OR kids OR youth)",
+          "ignoreYear": true,
+          "maxEntries": 12,
+          "maxEntriesPerItem": 1,
+          "tag": "b12"
         }
       ]
     },
@@ -9032,6 +9190,87 @@
           ],
           "maxEntriesPerItem": 25,
           "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "AwesomeGamesDoneQuick",
+            "AwesomeGamesDoneQuick2012",
+            "AwesomeGamesDoneQuick2013",
+            "AwesomeGamesDoneQuick2014",
+            "AwesomeGamesDoneQuick2015",
+            "AwesomeGamesDoneQuick2016",
+            "SummerGamesDoneQuick",
+            "SummerGamesDoneQuick2012",
+            "SummerGamesDoneQuick2013",
+            "SummerGamesDoneQuick2014",
+            "SummerGamesDoneQuick2015",
+            "SummerGamesDoneQuick2016",
+            "ClassicGamesDoneQuick"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 4,
+          "tag": "b12",
+          "maxEntries": 40,
+          "maxSeconds": 10800
+        },
+        {
+          "identifiers": [
+            "KSL-S3",
+            "KSL-S4",
+            "ongamenet-starleague-season-1",
+            "ASL-S1",
+            "ASL-S2",
+            "ASL-S3",
+            "afreecatv-starleagueasl-s9-eng",
+            "Starcraft-WCG-2005-documentary"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 2,
+          "tag": "b12",
+          "maxEntries": 12,
+          "maxSeconds": 9000
+        },
+        {
+          "identifiers": [
+            "1994-official-capcom-super-street-fighter-2-tournament",
+            "daigo_fullparry_evo_moment_37",
+            "igotnext-shortcut",
+            "the-smash-brothers-documentary",
+            "010306_Madison_SC3Tournament",
+            "122705_Madison_SC3Tournament",
+            "1675392440542-6093",
+            "nintendo-world-championships-1990",
+            "1990-nintendo-world-championships-12-17-boston-final-4-22-1990-full-video",
+            "NWC2015DisneyXD",
+            "youtube-9penfXgG96g",
+            "king-of-kong-dvd",
+            "MLGHalo1VoDRecordings",
+            "Halo-PC-CAL-Season-1-Finals-Xeno-vs-GP",
+            "RichardHeywoodandKeithGoodhart_2"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 6,
+          "tag": "b12",
+          "maxSeconds": 10800
+        },
+        {
+          "query": "identifier:(marshtvmav-MCTV_Smash_Bros_Tournament* OR marshtvmav-Super_Smash_League*)",
+          "ignoreYear": true,
+          "maxEntries": 12,
+          "maxEntriesPerItem": 1,
+          "tag": "b12"
+        },
+        {
+          "identifiers": [
+            "a0ce6b61cbe08224b16da348928d6b19",
+            "ce20733240058014132a6bff5c964a6f",
+            "1e56000ddeee1b9ab2a7c2cc45073b5b",
+            "CPL_EA99"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 2,
+          "tag": "b12",
+          "rated": "R"
         }
       ],
       "minSeconds": 60
