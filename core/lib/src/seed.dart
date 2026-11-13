@@ -12,17 +12,18 @@ import 'stores.dart';
 /// File format (gzip, one JSON object per line): a header `{"seed":1,"builtAt":...}`, then one line per
 /// channel `{"n":<channel>,"builtAt":...,"entries":[<compact entry>...],"serials":<serials file or null>}`.
 
-/// [pool] cut to at most [maxSeconds]: rare (`perDay`) entries all stay; the rest is thinned evenly over
+/// [pool] cut to at most [maxSeconds]: rare (`perDay`) and `blockOnly` entries all stay; the rest is thinned evenly over
 /// the id-sorted pool, so every source and item keeps its share. Pools under the limit are returned as is.
 List<Entry> trimPool(Channel c, List<Entry> pool, double maxSeconds) {
   double total(Iterable<Entry> l) => l.fold(0.0, (s, e) => s + e.durationSeconds);
-  final rest = [for (final e in pool) if (!isRare(c, e)) e]..sort((a, b) => a.id.compareTo(b.id));
-  final budget = maxSeconds - total(pool.where((e) => isRare(c, e)));
+  bool always(Entry e) => isRare(c, e) || isBlockOnly(c, e); // their blocks need them all
+  final rest = [for (final e in pool) if (!always(e)) e]..sort((a, b) => a.id.compareTo(b.id));
+  final budget = maxSeconds - total(pool.where(always));
   final restTotal = total(rest);
   if (restTotal <= budget) return pool;
   final n = budget <= 0 ? 0 : (rest.length * budget / restTotal).floor();
   final keep = {for (var i = 0; i < n; i++) rest[i * rest.length ~/ n]};
-  return [for (final e in pool) if (isRare(c, e) || keep.contains(e)) e];
+  return [for (final e in pool) if (always(e) || keep.contains(e)) e];
 }
 
 /// [e]'s JSON without what can be rebuilt: `id` and `url` when they follow the usual pattern.

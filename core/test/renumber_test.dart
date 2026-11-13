@@ -133,20 +133,26 @@ void main() {
       'World & Lifestyle': 6,
     };
 
+    // Music & Sports (50-59) is full: Champs 48 and Bowl 49 (added 2026-11-13) sit right below it.
+    const overflow = {48: 'Music & Sports', 49: 'Music & Sports'};
+
     test('numbers are unique, in order, and each channel sits in its genre\'s block (2-9, 10-19, ... 60-69)', () {
       final numbers = [for (final c in config.channels) c.number];
       expect(numbers.toSet(), hasLength(numbers.length));
       expect(numbers, [...numbers]..sort());
       for (final c in config.channels) {
-        expect(blocks[c.genre], c.number ~/ 10, reason: '${c.number} ${c.name} (${c.genre})');
+        expect(overflow[c.number] == c.genre || blocks[c.genre] == c.number ~/ 10, isTrue,
+            reason: '${c.number} ${c.name} (${c.genre})');
         expect(c.number, greaterThanOrEqualTo(2));
       }
     });
 
-    test('renumber_map.json is one-to-one and lands on exactly the channel numbers', () {
+    test('renumber_map.json is one-to-one and lands on the channel numbers (channels added since: none to move)', () {
       final values = (bundled['oldToNew'] as Map).values.cast<int>().toList();
       expect(values.toSet(), hasLength(values.length));
-      expect(values.toSet(), {for (final c in config.channels) c.number});
+      final numbers = {for (final c in config.channels) c.number};
+      expect(numbers.containsAll(values), isTrue);
+      expect(numbers.difference(values.toSet()), {48, 49}); // Champs, Bowl: new after layout 2, no old data
       expect(bundled['layout'], greaterThanOrEqualTo(2));
     });
 

@@ -198,4 +198,21 @@ void main() {
     }
     expect((stableHash(b.toString()), b.length), (3610888192, 48567)); // computed before time blocks existed
   });
+
+  test('blockOnly: parsed, must be used by a block; its entries are flagged and all survive the seed trim', () {
+    String cfg(String tb) => '{"channels":[{"number":2,"name":"F","sources":[{"query":"a"},{"query":"b","blockOnly":true}],"timeBlocks":[$tb]}]}';
+    final c = parseChannelConfig(cfg('{"label":"Hockey","days":["mon"],"start":"15:00","end":"17:30","sources":[1]}')).channels.single;
+    expect([for (final s in c.sources) s.blockOnly], [false, true]);
+    expect(() => parseChannelConfig(cfg('{"label":"Other","days":["mon"],"start":"15:00","end":"17:30","sources":[0]}')),
+        throwsA(isA<ConfigException>()));
+    final games = [for (var i = 0; i < 5; i++) entry('game$i', 150, source: 1)];
+    final rest = [for (var i = 0; i < 100; i++) entry('show$i', 30)];
+    expect([for (final e in [...games, ...rest.take(1)]) isBlockOnly(c, e)], [true, true, true, true, true, false]);
+    final trimmed = trimPool(c, [...rest, ...games], 20 * 3600);
+    expect(trimmed.where((e) => isBlockOnly(c, e)), hasLength(5));
+    expect(trimmed.length, lessThan(105));
+    // a block still picks them (they are not rare)
+    final b = themedBlocks(c, [...rest, ...games], DateTime(2026, 11, 16)).single;
+    expect(b.episodes.first.id, startsWith('game'));
+  });
 }

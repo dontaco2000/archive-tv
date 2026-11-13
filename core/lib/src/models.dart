@@ -58,8 +58,13 @@ class Source {
   /// `"R"`: the whole source is R-rated; its entries air only in the channel's rated window.
   final String? rated;
 
+  /// Entries of this source air only inside the channel's themed time blocks (`timeBlocks`), never in the
+  /// daily shuffle (e.g. Maple's weekday hockey games). The source must be used by a time block.
+  final bool blockOnly;
+
   const Source({
     this.rated,
+    this.blockOnly = false,
     this.perDay,
     this.perDayMinMinutes = 0,
     this.blockLabel,

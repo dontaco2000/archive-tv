@@ -71,8 +71,14 @@ ChannelConfig _parse(String jsonText, RatedRules rated) {
     }
     final sources = [for (final s in (rawSources as List? ?? const [])) _source(s, number)];
     final primeTime = _primeTime(raw['primeTime'], number);
+    final timeBlocks = _timeBlocks(raw['timeBlocks'], sources.length, number);
+    for (final (i, s) in sources.indexed) {
+      if (s.blockOnly && !timeBlocks.any((b) => b.sources.contains(i))) {
+        throw ConfigException('channel $number source ${i + 1} is "blockOnly" but no time block uses it');
+      }
+    }
     channels.add(Channel(
-      timeBlocks: _timeBlocks(raw['timeBlocks'], sources.length, number),
+      timeBlocks: timeBlocks,
       primeTime: primeTime,
       serials: _serials(raw['serials'], primeTime, number),
       number: number,
@@ -131,6 +137,7 @@ Source _source(Object? raw, int channel) {
     perDayMinMinutes: _int(raw['perDayMinMinutes'], 'perDayMinMinutes') ?? 0,
     blockLabel: raw['blockLabel'] as String?,
     rated: raw['rated'] as String?,
+    blockOnly: raw['blockOnly'] == true,
   );
 }
 
