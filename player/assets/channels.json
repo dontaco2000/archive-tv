@@ -2524,103 +2524,210 @@
       "genre": "Movies",
       "sources": [
         {
+          "identifiers": [
+            "scanners-1981-1080p",
+            "mad.-max.-1979.1080p.-blu-ray.x-265-rarbg",
+            "dawn-of-the-dead-1978_202512",
+            "SilentNightBloodyNight1972",
+            "MessiahofEvil_avi",
+            "DeepRed1975",
+            "ChildrenShouldntPlayWithDeadThings_201501",
+            "2000-maniacs-1964",
+            "black-christmas-1974_202405",
+            "my.-bloody.-valentine.-1981.-dc.-remastered.-1080p.-blu-ray.x-265-rarbg",
+            "blood-and-black-lace-1964_202407",
+            "the-black-godfather-1974_202505",
+            "BlackFist",
+            "ScreamBloodyMurder",
+            "bad-taste-1987-full-movie",
+            "assault-on-precinct-13-1976-a-film-by-john-carpenter-1080p",
+            "enter.-the.-ninja.-1981.1080p.-blu-ray.-h-264.-aac-rarbg",
+            "revenge.of.the.-ninja.-1983.1080p.-blu-ray.-h-264.-aac-rarbg",
+            "emperor.-of.-the.-north.-1973.720p.",
+            "darkman-trilogy-1990",
+            "DeathRage",
+            "BlackCobra",
+            "hands-of-steel"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1,
+          "rated": "R",
+          "claim": true,
+          "tag": "b12_rated"
+        },
+        {
+          "identifiers": [
+            "NothingSacred",
+            "cco_jackandthebeanstalk",
+            "TheOvertheHillGang",
+            "loveatfirstbite1979",
+            "the-abominable-dr.-phibes",
+            "hello-down-there",
+            "WakeMeUpWhentheWarisOverKenBarryJimBackus1969goofyrip",
+            "FatherCameToo1964",
+            "TheNastyRabbit1964.mp4",
+            "carry-on-cleo",
+            "carry-on-cowboy",
+            "carry-on-camping",
+            "carry-on-cruising",
+            "SmashingTime6754",
+            "gas-or-.-it.-became.-necessary.to.-destroy.the.-world.in.-order.to.-save.-it.-19",
+            "AteneaFilmsPublicDomainTheInvincibleGladiator",
+            "FamilyEnforcer",
+            "GetChristieLove",
+            "HighRisk",
+            "KarateKidsUSA",
+            "Kilimanjaro",
+            "Mastertouch",
+            "TheTreasureOfJamaicaReef",
+            "The_Bold_Caballero",
+            "Yellowneck1955cosmo",
+            "TheBigTrees720p1952",
+            "jason-and-the-argonauts-1963",
+            "captain-kronos-vampire-hunter",
+            "final-justice-1984-getonlinevideos",
+            "mako.the.-jaws.of.-death.-1976.1080p.-blu-ray.-h-264.-aac-rarbg",
+            "blind.-rage.-1976.1080p.-blu-ray.x-264.-aac-yts.-mx",
+            "CodeNameZebra",
+            "ProjectKill",
+            "StarOdysseyitalianStarWars1979",
+            "Assignment_Outer_Space",
+            "Attack_of_the_Monsters",
+            "BattleOfTheWorldsWidesceen",
+            "Cosmos_War_of_the_Planets",
+            "Destroy_All_Planets",
+            "EndoftheWorld"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1,
+          "claim": true,
+          "tag": "b12_color"
+        },
+        {
+          "identifiers": [
+            "FirstSpaceshipOnVenusMPEG",
+            "HorrorsOfTheRedPlanet",
+            "In_The_Year_2889",
+            "Monstroid",
+            "SwordAndTheDragon",
+            "TheMagicSword",
+            "Hg-wells-the-shape-of-things-to-come-1979",
+            "slipstream-1989",
+            "wizard-of-speed-and-time-bearded-swordsman-ver-1",
+            "ConcreteCowboys",
+            "HowAwfulAboutAllan",
+            "FuneralforanAssassin",
+            "MurderOnFlight502",
+            "AlltheKindStrangers",
+            "astralfactorrr",
+            "Dominique_638",
+            "TheLazarusSyndrome",
+            "TheTerror",
+            "Horror_Express",
+            "MoonoftheWolf_",
+            "SistersofDeath",
+            "SantaandtheThreeBears",
+            "AChristmasWithoutSnow",
+            "AStarIsBorn",
+            "5552442",
+            "TheGreatBrain",
+            "the-secret-of-nimh-1982_202511",
+            "the-worst-witch-1986_202304",
+            "DivorceHis-DivorceHers"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1,
+          "claim": true,
+          "tag": "b12_color"
+        },
+        {
           "query": "(collection:Comedy_Films OR (collection:(feature_films OR Comedy_Films OR Film_Noir OR SciFi_Horror OR film_scifi OR colorized-movies OR TheVideoCellarCollection OR feature_films_picfixer OR cliffhangers) AND subject:(comedy OR screwball OR slapstick OR comedies))) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR nudie OR sex) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR nudist OR naked OR topless OR sex OR sexy OR emmanuelle OR caligula OR flesh OR bares OR virgins OR roughie) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR jpn OR chi OR hin OR kor OR tur OR swe OR dut OR fin) AND -subject:(documentary OR documentaries OR nonfiction OR \"non-fiction\" OR lecture OR lectures OR politics OR political OR news OR newsreel OR propaganda OR educational OR interview OR biography) AND -title:(documentary OR lecture OR \"making of\") AND -collection:(movie_trailers OR silent_films OR silenthalloffame OR german_cinema OR mid-century-german-film OR KINOfilm OR collectie_filmcollectief) AND -identifier:(youtube-* OR yt_* OR *_ipod OR The_Corporation_) AND -title:(trailer OR trailers OR promo OR \"vhs #\" OR \"dvd+r\" OR commercial OR review OR rifftrax OR mst3k OR \"double feature\" OR \"shocker internet\" OR collection OR castellano OR subtitulada OR legendado OR dublado OR turkish OR bootlegger* OR \"video nasty\" OR \"concentration camps\" OR kilink OR \"spider island\" OR \"chinese room\" OR \"weird-o-rama\" OR \"star wreck\" OR hellhole OR \"valley of the dolls\" OR cheerleaders OR nekromantik OR \"video ferox\" OR scenes) AND -subject:(\"silent film\" OR silent) AND -title:(teaserama OR \"cheerleaders\" OR \"valley of the dolls\" OR \"star wreck\" OR \"bare mountain\") AND -identifier:(Mclintock.avi OR HisGirlFriday-1940)",
           "ignoreYear": true,
-          "maxEntries": 50,
+          "maxEntries": 4,
           "maxEntriesPerItem": 3
         },
         {
           "query": "(collection:(feature_films OR Comedy_Films OR Film_Noir OR SciFi_Horror OR film_scifi OR colorized-movies OR TheVideoCellarCollection OR feature_films_picfixer OR cliffhangers) AND subject:(action OR adventure OR swashbuckler OR \"martial arts\" OR serial OR jungle)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR nudie OR sex) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR nudist OR naked OR topless OR sex OR sexy OR emmanuelle OR caligula OR flesh OR bares OR virgins OR roughie) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR jpn OR chi OR hin OR kor OR tur OR swe OR dut OR fin) AND -subject:(documentary OR documentaries OR nonfiction OR \"non-fiction\" OR lecture OR lectures OR politics OR political OR news OR newsreel OR propaganda OR educational OR interview OR biography) AND -title:(documentary OR lecture OR \"making of\") AND -collection:(movie_trailers OR silent_films OR silenthalloffame OR german_cinema OR mid-century-german-film OR KINOfilm OR collectie_filmcollectief) AND -identifier:(youtube-* OR yt_* OR *_ipod OR The_Corporation_) AND -title:(trailer OR trailers OR promo OR \"vhs #\" OR \"dvd+r\" OR commercial OR review OR rifftrax OR mst3k OR \"double feature\" OR \"shocker internet\" OR collection OR castellano OR subtitulada OR legendado OR dublado OR turkish OR bootlegger* OR \"video nasty\" OR \"concentration camps\" OR kilink OR \"spider island\" OR \"chinese room\" OR \"weird-o-rama\" OR \"star wreck\" OR hellhole OR \"valley of the dolls\" OR cheerleaders OR nekromantik OR \"video ferox\" OR scenes) AND -subject:(\"silent film\" OR silent) AND -title:(hellhole OR \"saved the world\")",
           "ignoreYear": true,
-          "maxEntries": 40,
+          "maxEntries": 4,
           "maxEntriesPerItem": 3
         },
         {
           "query": "(collection:(feature_films OR Comedy_Films OR Film_Noir OR SciFi_Horror OR film_scifi OR colorized-movies OR TheVideoCellarCollection OR feature_films_picfixer OR cliffhangers) AND subject:(sci-fi OR \"science fiction\" OR scifi OR fantasy OR space OR monster)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR nudie OR sex) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR nudist OR naked OR topless OR sex OR sexy OR emmanuelle OR caligula OR flesh OR bares OR virgins OR roughie) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR jpn OR chi OR hin OR kor OR tur OR swe OR dut OR fin) AND -subject:(documentary OR documentaries OR nonfiction OR \"non-fiction\" OR lecture OR lectures OR politics OR political OR news OR newsreel OR propaganda OR educational OR interview OR biography) AND -title:(documentary OR lecture OR \"making of\") AND -collection:(movie_trailers OR silent_films OR silenthalloffame OR german_cinema OR mid-century-german-film OR KINOfilm OR collectie_filmcollectief) AND -identifier:(youtube-* OR yt_* OR *_ipod OR The_Corporation_) AND -title:(trailer OR trailers OR promo OR \"vhs #\" OR \"dvd+r\" OR commercial OR review OR rifftrax OR mst3k OR \"double feature\" OR \"shocker internet\" OR collection OR castellano OR subtitulada OR legendado OR dublado OR turkish OR bootlegger* OR \"video nasty\" OR \"concentration camps\" OR kilink OR \"spider island\" OR \"chinese room\" OR \"weird-o-rama\" OR \"star wreck\" OR hellhole OR \"valley of the dolls\" OR cheerleaders OR nekromantik OR \"video ferox\" OR scenes) AND -subject:(\"silent film\" OR silent) AND -subject:horror AND -title:(otroki OR moskva OR \"know a jedi\" OR schweigende OR upgrade) AND -identifier:(PhantomPlanet)",
           "ignoreYear": true,
-          "maxEntries": 30,
+          "maxEntries": 3,
           "maxEntriesPerItem": 3
         },
         {
           "query": "(collection:Film_Noir OR (collection:(feature_films OR Comedy_Films OR Film_Noir OR SciFi_Horror OR film_scifi OR colorized-movies OR TheVideoCellarCollection OR feature_films_picfixer OR cliffhangers) AND subject:(crime OR thriller OR mystery OR \"film noir\" OR noir OR heist OR gangster OR detective))) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR nudie OR sex) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR nudist OR naked OR topless OR sex OR sexy OR emmanuelle OR caligula OR flesh OR bares OR virgins OR roughie) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR jpn OR chi OR hin OR kor OR tur OR swe OR dut OR fin) AND -subject:(documentary OR documentaries OR nonfiction OR \"non-fiction\" OR lecture OR lectures OR politics OR political OR news OR newsreel OR propaganda OR educational OR interview OR biography) AND -title:(documentary OR lecture OR \"making of\") AND -collection:(movie_trailers OR silent_films OR silenthalloffame OR german_cinema OR mid-century-german-film OR KINOfilm OR collectie_filmcollectief) AND -identifier:(youtube-* OR yt_* OR *_ipod OR The_Corporation_) AND -title:(trailer OR trailers OR promo OR \"vhs #\" OR \"dvd+r\" OR commercial OR review OR rifftrax OR mst3k OR \"double feature\" OR \"shocker internet\" OR collection OR castellano OR subtitulada OR legendado OR dublado OR turkish OR bootlegger* OR \"video nasty\" OR \"concentration camps\" OR kilink OR \"spider island\" OR \"chinese room\" OR \"weird-o-rama\" OR \"star wreck\" OR hellhole OR \"valley of the dolls\" OR cheerleaders OR nekromantik OR \"video ferox\" OR scenes) AND -subject:(\"silent film\" OR silent) AND -title:(zouzou OR \"zou zou\" OR \"kill.or.cure\")",
           "ignoreYear": true,
-          "maxEntries": 30,
+          "maxEntries": 2,
           "maxEntriesPerItem": 3
         },
         {
           "query": "(collection:(feature_films OR Comedy_Films OR Film_Noir OR SciFi_Horror OR film_scifi OR colorized-movies OR TheVideoCellarCollection OR feature_films_picfixer OR cliffhangers) AND subject:(horror)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR nudie OR sex) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR nudist OR naked OR topless OR sex OR sexy OR emmanuelle OR caligula OR flesh OR bares OR virgins OR roughie) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR jpn OR chi OR hin OR kor OR tur OR swe OR dut OR fin) AND -subject:(documentary OR documentaries OR nonfiction OR \"non-fiction\" OR lecture OR lectures OR politics OR political OR news OR newsreel OR propaganda OR educational OR interview OR biography) AND -title:(documentary OR lecture OR \"making of\") AND -collection:(movie_trailers OR silent_films OR silenthalloffame OR german_cinema OR mid-century-german-film OR KINOfilm OR collectie_filmcollectief) AND -identifier:(youtube-* OR yt_* OR *_ipod OR The_Corporation_) AND -title:(trailer OR trailers OR promo OR \"vhs #\" OR \"dvd+r\" OR commercial OR review OR rifftrax OR mst3k OR \"double feature\" OR \"shocker internet\" OR collection OR castellano OR subtitulada OR legendado OR dublado OR turkish OR bootlegger* OR \"video nasty\" OR \"concentration camps\" OR kilink OR \"spider island\" OR \"chinese room\" OR \"weird-o-rama\" OR \"star wreck\" OR hellhole OR \"valley of the dolls\" OR cheerleaders OR nekromantik OR \"video ferox\" OR scenes) AND -subject:(\"silent film\" OR silent) AND -title:(nekromantik OR \"driller killer\" OR \"bee girls\" OR pulse OR \"deep red\" OR \"my bloody valentine\" OR \"bloody pit\" OR sadist OR \"grave of the vampire\" OR vampyr OR upgrade) AND -identifier:(CarnivalOfSouls1962)",
           "ignoreYear": true,
-          "maxEntries": 10,
+          "maxEntries": 4,
           "maxEntriesPerItem": 3
         },
         {
           "query": "(collection:(feature_films OR Comedy_Films OR Film_Noir OR SciFi_Horror OR film_scifi OR colorized-movies OR TheVideoCellarCollection OR feature_films_picfixer OR cliffhangers) AND subject:(family OR children OR kids OR animation OR animated)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR nudie OR sex) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR nudist OR naked OR topless OR sex OR sexy OR emmanuelle OR caligula OR flesh OR bares OR virgins OR roughie) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR jpn OR chi OR hin OR kor OR tur OR swe OR dut OR fin) AND -subject:(documentary OR documentaries OR nonfiction OR \"non-fiction\" OR lecture OR lectures OR politics OR political OR news OR newsreel OR propaganda OR educational OR interview OR biography) AND -title:(documentary OR lecture OR \"making of\") AND -collection:(movie_trailers OR silent_films OR silenthalloffame OR german_cinema OR mid-century-german-film OR KINOfilm OR collectie_filmcollectief) AND -identifier:(youtube-* OR yt_* OR *_ipod OR The_Corporation_) AND -title:(trailer OR trailers OR promo OR \"vhs #\" OR \"dvd+r\" OR commercial OR review OR rifftrax OR mst3k OR \"double feature\" OR \"shocker internet\" OR collection OR castellano OR subtitulada OR legendado OR dublado OR turkish OR bootlegger* OR \"video nasty\" OR \"concentration camps\" OR kilink OR \"spider island\" OR \"chinese room\" OR \"weird-o-rama\" OR \"star wreck\" OR hellhole OR \"valley of the dolls\" OR cheerleaders OR nekromantik OR \"video ferox\" OR scenes) AND -subject:(\"silent film\" OR silent) AND -title:(\"born innocent\" OR \"genesis children\" OR tarzoon OR \"tomorrow's children\" OR \"iron fan\" OR \"flawed family\" OR otroki OR moskva OR various OR folks OR \"kid stakes\" OR koko)",
           "ignoreYear": true,
-          "maxEntries": 10,
+          "maxEntries": 1,
           "maxEntriesPerItem": 3
         },
         {
           "query": "(collection:(feature_films OR Comedy_Films OR Film_Noir OR SciFi_Horror OR film_scifi OR colorized-movies OR TheVideoCellarCollection OR feature_films_picfixer OR cliffhangers) AND subject:(western OR westerns OR cowboy)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR nudie OR sex) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR nudist OR naked OR topless OR sex OR sexy OR emmanuelle OR caligula OR flesh OR bares OR virgins OR roughie) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR jpn OR chi OR hin OR kor OR tur OR swe OR dut OR fin) AND -subject:(documentary OR documentaries OR nonfiction OR \"non-fiction\" OR lecture OR lectures OR politics OR political OR news OR newsreel OR propaganda OR educational OR interview OR biography) AND -title:(documentary OR lecture OR \"making of\") AND -collection:(movie_trailers OR silent_films OR silenthalloffame OR german_cinema OR mid-century-german-film OR KINOfilm OR collectie_filmcollectief) AND -identifier:(youtube-* OR yt_* OR *_ipod OR The_Corporation_) AND -title:(trailer OR trailers OR promo OR \"vhs #\" OR \"dvd+r\" OR commercial OR review OR rifftrax OR mst3k OR \"double feature\" OR \"shocker internet\" OR collection OR castellano OR subtitulada OR legendado OR dublado OR turkish OR bootlegger* OR \"video nasty\" OR \"concentration camps\" OR kilink OR \"spider island\" OR \"chinese room\" OR \"weird-o-rama\" OR \"star wreck\" OR hellhole OR \"valley of the dolls\" OR cheerleaders OR nekromantik OR \"video ferox\" OR scenes) AND -subject:(\"silent film\" OR silent)",
           "ignoreYear": true,
-          "maxEntries": 12,
+          "maxEntries": 2,
           "maxEntriesPerItem": 3
         },
         {
           "query": "(collection:(feature_films OR Comedy_Films OR Film_Noir OR SciFi_Horror OR film_scifi OR colorized-movies OR TheVideoCellarCollection OR feature_films_picfixer OR cliffhangers) AND subject:(musical OR musicals OR romance)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR nudie OR sex) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR nudist OR naked OR topless OR sex OR sexy OR emmanuelle OR caligula OR flesh OR bares OR virgins OR roughie) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR jpn OR chi OR hin OR kor OR tur OR swe OR dut OR fin) AND -subject:(documentary OR documentaries OR nonfiction OR \"non-fiction\" OR lecture OR lectures OR politics OR political OR news OR newsreel OR propaganda OR educational OR interview OR biography) AND -title:(documentary OR lecture OR \"making of\") AND -collection:(movie_trailers OR silent_films OR silenthalloffame OR german_cinema OR mid-century-german-film OR KINOfilm OR collectie_filmcollectief) AND -identifier:(youtube-* OR yt_* OR *_ipod OR The_Corporation_) AND -title:(trailer OR trailers OR promo OR \"vhs #\" OR \"dvd+r\" OR commercial OR review OR rifftrax OR mst3k OR \"double feature\" OR \"shocker internet\" OR collection OR castellano OR subtitulada OR legendado OR dublado OR turkish OR bootlegger* OR \"video nasty\" OR \"concentration camps\" OR kilink OR \"spider island\" OR \"chinese room\" OR \"weird-o-rama\" OR \"star wreck\" OR hellhole OR \"valley of the dolls\" OR cheerleaders OR nekromantik OR \"video ferox\" OR scenes) AND -subject:(\"silent film\" OR silent) AND -title:(\"valley of the dolls\" OR goldilocks OR zouzou OR \"zou zou\")",
           "ignoreYear": true,
-          "maxEntries": 10,
+          "maxEntries": 1,
           "maxEntriesPerItem": 3
         },
         {
           "query": "(collection:(feature_films OR Comedy_Films OR Film_Noir OR SciFi_Horror OR film_scifi OR colorized-movies OR TheVideoCellarCollection OR feature_films_picfixer OR cliffhangers) AND subject:(drama)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR nudie OR sex) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR nudist OR naked OR topless OR sex OR sexy OR emmanuelle OR caligula OR flesh OR bares OR virgins OR roughie) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR jpn OR chi OR hin OR kor OR tur OR swe OR dut OR fin) AND -subject:(documentary OR documentaries OR nonfiction OR \"non-fiction\" OR lecture OR lectures OR politics OR political OR news OR newsreel OR propaganda OR educational OR interview OR biography) AND -title:(documentary OR lecture OR \"making of\") AND -collection:(movie_trailers OR silent_films OR silenthalloffame OR german_cinema OR mid-century-german-film OR KINOfilm OR collectie_filmcollectief) AND -identifier:(youtube-* OR yt_* OR *_ipod OR The_Corporation_) AND -title:(trailer OR trailers OR promo OR \"vhs #\" OR \"dvd+r\" OR commercial OR review OR rifftrax OR mst3k OR \"double feature\" OR \"shocker internet\" OR collection OR castellano OR subtitulada OR legendado OR dublado OR turkish OR bootlegger* OR \"video nasty\" OR \"concentration camps\" OR kilink OR \"spider island\" OR \"chinese room\" OR \"weird-o-rama\" OR \"star wreck\" OR hellhole OR \"valley of the dolls\" OR cheerleaders OR nekromantik OR \"video ferox\" OR scenes) AND -subject:(\"silent film\" OR silent) AND -title:(\"child bride\" OR \"slaves in bondage\" OR shame OR marihuana)",
           "ignoreYear": true,
-          "maxEntries": 10,
-          "maxEntriesPerItem": 3
-        },
-        {
-          "query": "(collection:(vhsvault OR moviesandfilms OR feature_films) AND title:(\"plan 9 from outer space\" OR \"robot monster\" OR \"beast of yucca flats\" OR \"hands of fate\" OR \"killer shrews\" OR \"giant gila monster\" OR \"bride of the monster\" OR \"terror of tiny town\" OR \"santa claus conquers\" OR \"wild world of batwoman\" OR \"incredibly strange creatures\" OR eegah OR \"creeping terror\" OR astro-zombies OR \"cat-women of the moon\" OR \"cat women of the moon\" OR \"missile to the moon\" OR \"mars needs women\" OR \"horror of party beach\" OR \"teenage zombies\" OR galaxina OR \"invasion of the star creatures\" OR \"amazing transparent man\" OR \"brain from planet arous\" OR \"doomsday machine\" OR \"giant claw\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR nudie OR sex) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR nudist OR naked OR topless OR sex OR sexy OR emmanuelle OR caligula OR flesh OR bares OR virgins OR roughie) AND -collection:(movie_trailers OR silent_films OR silenthalloffame OR german_cinema OR mid-century-german-film OR KINOfilm OR collectie_filmcollectief) AND -identifier:(youtube-* OR yt_* OR *_ipod OR The_Corporation_) AND -title:(trailer OR trailers OR promo OR \"vhs #\" OR \"dvd+r\" OR commercial OR review OR rifftrax OR mst3k OR \"double feature\" OR \"shocker internet\" OR collection OR castellano OR subtitulada OR legendado OR dublado OR turkish OR bootlegger* OR \"video nasty\" OR \"concentration camps\" OR kilink OR \"spider island\" OR \"chinese room\" OR \"weird-o-rama\" OR \"star wreck\" OR hellhole OR \"valley of the dolls\" OR cheerleaders OR nekromantik OR \"video ferox\" OR scenes) AND -subject:(\"silent film\" OR silent) AND -title:(chapter OR elvira OR upgrade OR colorized OR 4k OR re-edit OR 3d) AND -identifier:(Eegah.1962 OR Eegah_201510 OR Beast_of_Yucca_Flats_movie OR DoomsdayMachine1972_201511)",
-          "ignoreYear": true,
-          "maxEntries": 12,
-          "maxEntriesPerItem": 3
-        },
-        {
-          "query": "(collection:(vhsvault OR moviesandfilms OR feature_films) AND title:(\"miami connection\" OR \"deadly prey\" OR \"r.o.t.o.r\" OR \"robot holocaust\" OR laserblast OR \"wizard of speed and time\" OR \"hardware wars\" OR \"space mutiny\" OR starcrash OR \"hercules in new york\" OR \"black cobra\" OR \"bronx warriors\" OR \"new barbarians\" OR \"warriors of the wasteland\" OR \"exterminators of the year 3000\" OR \"after the fall of new york\" OR \"hands of steel\" OR \"raw force\" OR slipstream OR \"beast of the yellow night\" OR \"three the hard way\" OR \"cleopatra jones\" OR stryker OR megaforce OR \"the dungeonmaster\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR nudie OR sex) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR nudist OR naked OR topless OR sex OR sexy OR emmanuelle OR caligula OR flesh OR bares OR virgins OR roughie) AND -collection:(movie_trailers OR silent_films OR silenthalloffame OR german_cinema OR mid-century-german-film OR KINOfilm OR collectie_filmcollectief) AND -identifier:(youtube-* OR yt_* OR *_ipod OR The_Corporation_) AND -title:(trailer OR trailers OR promo OR \"vhs #\" OR \"dvd+r\" OR commercial OR review OR rifftrax OR mst3k OR \"double feature\" OR \"shocker internet\" OR collection OR castellano OR subtitulada OR legendado OR dublado OR turkish OR bootlegger* OR \"video nasty\" OR \"concentration camps\" OR kilink OR \"spider island\" OR \"chinese room\" OR \"weird-o-rama\" OR \"star wreck\" OR hellhole OR \"valley of the dolls\" OR cheerleaders OR nekromantik OR \"video ferox\" OR scenes) AND -subject:(\"silent film\" OR silent) AND -title:(chapter OR \"monster vision\" OR \"up all night\") AND -identifier:(BlackCobra_133 OR videoplayback_20180210_2014)",
-          "ignoreYear": true,
-          "maxEntries": 8,
+          "maxEntries": 2,
           "maxEntriesPerItem": 3
         },
         {
           "identifiers": [
-            "WithinOurGates",
-            "Murder_in_Harlem",
-            "lying_lips_ipod",
-            "TenMinutestoLive",
-            "swing-1938",
+            "SantaClausConquerstheMartians1964",
+            "Eegah",
+            "ManosTheHandsofFate",
+            "DoomsdayMachine1972",
+            "CurseOfBigfoot",
+            "KingdomOfSpiders",
+            "Snowbeast_436",
+            "TrackoftheMoonBeast",
+            "WerewolfOfWashington"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1,
+          "tag": "b12_color"
+        },
+        {
+          "query": "(collection:(vhsvault OR moviesandfilms OR feature_films) AND title:(\"miami connection\" OR \"deadly prey\" OR \"r.o.t.o.r\" OR \"robot holocaust\" OR laserblast OR \"wizard of speed and time\" OR \"hardware wars\" OR \"space mutiny\" OR starcrash OR \"hercules in new york\" OR \"black cobra\" OR \"bronx warriors\" OR \"new barbarians\" OR \"warriors of the wasteland\" OR \"exterminators of the year 3000\" OR \"after the fall of new york\" OR \"hands of steel\" OR \"raw force\" OR slipstream OR \"beast of the yellow night\" OR \"three the hard way\" OR \"cleopatra jones\" OR stryker OR megaforce OR \"the dungeonmaster\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR nudie OR sex) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR nudist OR naked OR topless OR sex OR sexy OR emmanuelle OR caligula OR flesh OR bares OR virgins OR roughie) AND -collection:(movie_trailers OR silent_films OR silenthalloffame OR german_cinema OR mid-century-german-film OR KINOfilm OR collectie_filmcollectief) AND -identifier:(youtube-* OR yt_* OR *_ipod OR The_Corporation_) AND -title:(trailer OR trailers OR promo OR \"vhs #\" OR \"dvd+r\" OR commercial OR review OR rifftrax OR mst3k OR \"double feature\" OR \"shocker internet\" OR collection OR castellano OR subtitulada OR legendado OR dublado OR turkish OR bootlegger* OR \"video nasty\" OR \"concentration camps\" OR kilink OR \"spider island\" OR \"chinese room\" OR \"weird-o-rama\" OR \"star wreck\" OR hellhole OR \"valley of the dolls\" OR cheerleaders OR nekromantik OR \"video ferox\" OR scenes) AND -subject:(\"silent film\" OR silent) AND -title:(chapter OR \"monster vision\" OR \"up all night\") AND -identifier:(BlackCobra_133 OR videoplayback_20180210_2014) AND -title:(\"warriors of the wasteland\" OR \"new barbarians\")",
+          "ignoreYear": true,
+          "maxEntries": 10,
+          "maxEntriesPerItem": 3
+        },
+        {
+          "identifiers": [
             "blood_of_jesus",
-            "go_down_death",
-            "JukeJoint",
-            "boy_what_a_girl",
-            "Reet_Petite_and_Gone",
-            "ParadiseInHarlem",
-            "Beware_",
-            "SepiaCinderella",
-            "killer_diller",
-            "hi_de_ho",
-            "MoonoverHarlem",
-            "TheDukeisTops",
-            "SpiritofYouth",
-            "Look-outSister",
-            "TheEmpererJones",
-            "SongofFreedom",
-            "BigFella",
             "StormyWeatherUK",
-            "hallelujah1929originaltheatricalprintrecreation",
             "Jackie_Robinson_Story_The",
-            "TheJoeLouisStory",
-            "NativeSon-1986TVMovieWithVictorLove",
             "SaltOfTheEarth_735",
             "la-bamba_202210",
-            "LuckyGhost",
+            "NativeSon-1986TVMovieWithVictorLove",
+            "cleopatra-jones-1973-vhs-transfer",
+            "cleopatra-jones-and-the-casino-of-gold-1975",
+            "sugar.-hill.-1974.1080p.-blu-ray.-h-264.-aac-rarbg",
+            "TheGuyFromHarlem",
             "the-silent-enemy-1930-1992"
           ],
           "ignoreYear": true,
@@ -2636,80 +2743,148 @@
       "genre": "Movies",
       "sources": [
         {
+          "identifiers": [
+            "a-fistful-of-dollars-1964_202210",
+            "for-a-few-dollars-more-1965_202205",
+            "ABulletForTheGeneral",
+            "the.-mercenary.-1968",
+            "face.-to.-face.-1967",
+            "the-big-gundown-1966_202511",
+            "day-of-anger-1967-fll",
+            "beyond.-the.-law.-1968",
+            "god-forgives-i-dont-1967",
+            "the.-price.of.-power.-1969",
+            "kill-them-all-and-come-back-alone",
+            "bloodmoney_201912",
+            "a-pistol-for-ringo",
+            "navajojoe",
+            "open-range-2003-western-kevin-costner"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1,
+          "rated": "R",
+          "claim": true,
+          "tag": "b12_rated"
+        },
+        {
+          "identifiers": [
+            "the-big-valley-season-1-episode-24-hazard",
+            "the-big-valley-season-2-episode-8-the-velvet-trap",
+            "the-big-valley-season-1-episode-24-hazard_202610",
+            "the-big-valley-season-4-episode-19-the-royal-road",
+            "the-young-riders",
+            "Alias-Smith-And-Jones-1973",
+            "adventures-of-brisco-county-jr-s-01-e-01-pilot.-720p.x-265",
+            "zorro-1990-s-1-e-3",
+            "TheCiscoKidpublicdomain",
+            "hec-ramsey-s-02-e-01",
+            "louis-lamour-movies-collections",
+            "lonesome-dove_202512",
+            "TheReturnOfDesperado1988Pt.1",
+            "DanielBoone4x03TheRenegade",
+            "s-1.-e-4-best-man-for-the-job",
+            "hondo-s-01-e-01-hondo-and-the-eagle-claw",
+            "barbary-coast-complete-series-1975",
+            "legend-complete-series-1995"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 14,
+          "claim": true,
+          "tag": "b12_color"
+        },
+        {
           "query": "(title:bonanza AND identifier:(Bonanza* OR bonanza*) AND collection:(classic_tv OR classic_tv_1950s OR classic_tv_1960s OR television OR television_inbox OR opensource_movies OR vhstvshows)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie OR game_replays OR us_congress) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR CLE-* OR NJY-* OR VHS-0* OR mubd1234ama-*) AND -title:(trailer OR promo OR promos OR teaser OR commercial OR commercials OR credits OR intro OR opening OR bumper OR parody OR spoof OR \"vhs tape\" OR \"vhs fb\" OR \"random tv\" OR \"taped over\" OR review OR reaction OR \"every movie ever\" OR longplay OR mashup) AND -title:(radio OR otr OR \"old time radio\" OR audiobook OR comic OR toy OR hat OR \"theme ride\" OR \"board of supervisors\" OR rally OR remix OR \"bon jovi\" OR \"top gun\" OR \"mega man\" OR psp OR 2013 OR \"fan film\" OR lecture OR cspan OR vinyl OR \"lp\" OR documentary OR \"legends & lies\" OR dublado OR latino OR \"deputy dawg\" OR \"vhs fb\") AND -identifier:(MistressDidi* OR cspan* OR CSPAN* OR scatvca-* OR ltv8ca-* OR bliptv-* OR Lbines-*) AND -title:(bunny OR stooges OR bowling OR musical OR brothers OR nickelodeon OR barney OR toonstar OR \"#\") AND -identifier:(BONANZA OR bonanza-tp-* OR bonanza-?x-*)",
           "ignoreYear": true,
-          "maxEntries": 45,
+          "maxEntries": 70,
           "maxEntriesPerItem": 3
         },
         {
           "query": "(title:(gunsmoke OR \"have gun will travel\" OR rawhide OR \"wagon train\" OR \"the rifleman\" OR \"wanted: dead or alive\" OR \"the virginian\" OR \"the big valley\") AND collection:(classic_tv OR classic_tv_1950s OR classic_tv_1960s OR television OR television_inbox OR opensource_movies OR vhstvshows)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie OR game_replays OR us_congress) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR CLE-* OR NJY-* OR VHS-0* OR mubd1234ama-*) AND -title:(trailer OR promo OR promos OR teaser OR commercial OR commercials OR credits OR intro OR opening OR bumper OR parody OR spoof OR \"vhs tape\" OR \"vhs fb\" OR \"random tv\" OR \"taped over\" OR review OR reaction OR \"every movie ever\" OR longplay OR mashup) AND -title:(radio OR otr OR \"old time radio\" OR audiobook OR comic OR toy OR hat OR \"theme ride\" OR \"board of supervisors\" OR rally OR remix OR \"bon jovi\" OR \"top gun\" OR \"mega man\" OR psp OR 2013 OR \"fan film\" OR lecture OR cspan OR vinyl OR \"lp\" OR documentary OR \"legends & lies\" OR dublado OR latino OR \"deputy dawg\" OR \"vhs fb\") AND -identifier:(MistressDidi* OR cspan* OR CSPAN* OR scatvca-* OR ltv8ca-* OR bliptv-* OR Lbines-*) AND -title:(josey OR \"crimson bat\" OR news OR \"camp meeting\" OR theme OR score OR \"maxwell house\" OR logo OR \"no name\" OR reunion) AND -identifier:(vts-* OR 5??-* OR dmbb* OR wanted-dead-or-alive-1080p* OR rawhide-blood*)",
           "ignoreYear": true,
-          "maxEntries": 60,
+          "maxEntries": 14,
           "maxEntriesPerItem": 4
         },
         {
           "query": "(title:(\"lone ranger\") AND collection:(classic_tv OR classic_tv_1950s OR classic_tv_1960s OR television OR television_inbox OR opensource_movies OR vhstvshows)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie OR game_replays OR us_congress) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR CLE-* OR NJY-* OR VHS-0* OR mubd1234ama-*) AND -title:(trailer OR promo OR promos OR teaser OR commercial OR commercials OR credits OR intro OR opening OR bumper OR parody OR spoof OR \"vhs tape\" OR \"vhs fb\" OR \"random tv\" OR \"taped over\" OR review OR reaction OR \"every movie ever\" OR longplay OR mashup) AND -title:(radio OR otr OR \"old time radio\" OR audiobook OR comic OR toy OR hat OR \"theme ride\" OR \"board of supervisors\" OR rally OR remix OR \"bon jovi\" OR \"top gun\" OR \"mega man\" OR psp OR 2013 OR \"fan film\" OR lecture OR cspan OR vinyl OR \"lp\" OR documentary OR \"legends & lies\" OR dublado OR latino OR \"deputy dawg\" OR \"vhs fb\") AND -identifier:(MistressDidi* OR cspan* OR CSPAN* OR scatvca-* OR ltv8ca-* OR bliptv-* OR Lbines-*) AND -title:(2013 OR depp OR \"lone ranger rides\" OR \"legend of the lone\" OR pizza OR soundtrack OR script OR decca OR stereo OR yesteryear OR \"my three sons\") AND -identifier:(bandicam-* OR classic-banjo*)",
           "ignoreYear": true,
-          "maxEntries": 35,
+          "maxEntries": 6,
           "maxEntriesPerItem": 5
         },
         {
           "query": "(title:(\"roy rogers\" OR \"gene autry\" OR \"hopalong cassidy\" OR \"tex ritter\" OR \"william boyd\" OR \"dale evans\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie OR game_replays OR us_congress) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR CLE-* OR NJY-* OR VHS-0* OR mubd1234ama-*) AND -title:(trailer OR promo OR promos OR teaser OR commercial OR commercials OR credits OR intro OR opening OR bumper OR parody OR spoof OR \"vhs tape\" OR \"vhs fb\" OR \"random tv\" OR \"taped over\" OR review OR reaction OR \"every movie ever\" OR longplay OR mashup) AND -title:(radio OR otr OR \"old time radio\" OR audiobook OR comic OR toy OR hat OR \"theme ride\" OR \"board of supervisors\" OR rally OR remix OR \"bon jovi\" OR \"top gun\" OR \"mega man\" OR psp OR 2013 OR \"fan film\" OR lecture OR cspan OR vinyl OR \"lp\" OR documentary OR \"legends & lies\" OR dublado OR latino OR \"deputy dawg\" OR \"vhs fb\") AND -identifier:(MistressDidi* OR cspan* OR CSPAN* OR scatvca-* OR ltv8ca-* OR bliptv-* OR Lbines-*) AND -title:(tribute OR \"christmas album\" OR \"smokey bear\" OR \"frankie marvin\" OR \"singing cowboy\" OR \"shoots the bad guy\" OR mandrell OR \"hee haw\" OR \"clint black\" OR \"uncle sam\" OR memories OR \"shot in the dark\" OR \"officer o\" OR \"#\") AND -identifier:(WRC-STOCK-* OR 64614* OR 59?-* OR scm-* OR 16-in-old-amarillo)",
           "ignoreYear": true,
-          "maxEntries": 60,
+          "maxEntries": 8,
           "maxEntriesPerItem": 5
         },
         {
           "query": "(title:(\"cisco kid\" OR \"range rider\" OR \"kit carson\" OR \"annie oakley\" OR \"buffalo bill jr\" OR \"26 men\" OR \"wild bill hickok\" OR \"sergeant preston\" OR \"stories of the century\" OR \"death valley days\" OR \"tales of wells fargo\" OR trackdown OR \"bat masterson\" OR \"wyatt earp\" OR \"the restless gun\" OR \"tombstone territory\" OR \"judge roy bean\" OR \"sky king\" OR \"frontier doctor\") AND collection:(classic_tv OR classic_tv_1950s OR classic_tv_1960s OR television OR television_inbox OR opensource_movies OR vhstvshows)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie OR game_replays OR us_congress) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR CLE-* OR NJY-* OR VHS-0* OR mubd1234ama-*) AND -title:(trailer OR promo OR promos OR teaser OR commercial OR commercials OR credits OR intro OR opening OR bumper OR parody OR spoof OR \"vhs tape\" OR \"vhs fb\" OR \"random tv\" OR \"taped over\" OR review OR reaction OR \"every movie ever\" OR longplay OR mashup) AND -title:(radio OR otr OR comic OR toy OR \"i killed\" OR coca-cola OR \"pee dee\" OR sctv OR blaze OR trump OR \"fighting with kit carson\" OR \"legends & lies\" OR dublado) AND -identifier:(cspan* OR CSPAN* OR scatvca-* OR bliptv-* OR Lbines-*)",
           "ignoreYear": true,
-          "maxEntries": 70,
+          "maxEntries": 14,
           "maxEntriesPerItem": 4
         },
         {
           "query": "(title:(\"zorro rides again\" OR \"zorro's fighting legion\" OR \"fighting with kit carson\" OR \"battling with buffalo bill\" OR \"great adventures of wild bill hickok\" OR \"the painted stallion\" OR \"the vigilantes are coming\" OR \"custer's last stand\" OR \"the miracle rider\" OR \"overland mail\" OR \"the lone ranger rides again\" OR \"the phantom empire\" OR \"the oregon trail\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie OR game_replays OR us_congress) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR CLE-* OR NJY-* OR VHS-0* OR mubd1234ama-*) AND -title:(trailer OR promo OR promos OR teaser OR commercial OR commercials OR credits OR intro OR opening OR bumper OR parody OR spoof OR \"vhs tape\" OR \"vhs fb\" OR \"random tv\" OR \"taped over\" OR review OR reaction OR \"every movie ever\" OR longplay OR mashup) AND -title:(radio OR otr OR \"old time radio\" OR audiobook OR comic OR toy OR hat OR \"theme ride\" OR \"board of supervisors\" OR rally OR remix OR \"bon jovi\" OR \"top gun\" OR \"mega man\" OR psp OR 2013 OR \"fan film\" OR lecture OR cspan OR vinyl OR \"lp\" OR documentary OR \"legends & lies\" OR dublado OR latino OR \"deputy dawg\" OR \"vhs fb\") AND -identifier:(MistressDidi* OR cspan* OR CSPAN* OR scatvca-* OR ltv8ca-* OR bliptv-* OR Lbines-*) AND -title:(2015 OR 2016 OR 2017 OR 2018 OR 2019 OR 2020 OR 2021 OR 2022 OR 2023 OR 2024 OR 2025)",
           "ignoreYear": true,
-          "maxEntries": 45,
+          "maxEntries": 4,
           "maxEntriesPerItem": 6
         },
         {
           "identifiers": [
             "mclintok_widescreen",
             "angel_and_the_badman",
-            "texas_terror_1935",
-            "SagebrushTrail",
-            "TheLuckyTexan",
-            "west_of_the_divide",
-            "Winds_of_the_Wasteland",
             "RidersofDestiny_",
-            "ParadiseCanyon",
-            "Hell_Town",
-            "TheManFromUtah",
-            "The_Star_Packer",
-            "TheLawlessFrontier1934",
-            "RainbowValley",
-            "RandyRidesAlone",
             "BlueSteel",
-            "TheTrailBeyond1934",
-            "TheDawnRider",
-            "NeaththeArizonaSkys",
-            "TheDesertTrail",
-            "KingOfThePecos",
-            "LawlessRange"
+            "TheDawnRider"
           ],
           "maxEntriesPerItem": 1,
           "ignoreYear": true
         },
         {
-          "query": "(subject:(western OR westerns OR cowboy OR cowboys) AND collection:(feature_films OR feature_films_unsorted OR Comedy_Films OR colorized-movies OR TheVideoCellarCollection OR feature_films_picfixer OR opensource_movies OR moviesandfilms)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie OR game_replays OR us_congress) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR CLE-* OR NJY-* OR VHS-0* OR mubd1234ama-*) AND -title:(trailer OR promo OR promos OR teaser OR commercial OR commercials OR credits OR intro OR opening OR bumper OR parody OR spoof OR \"vhs tape\" OR \"vhs fb\" OR \"random tv\" OR \"taped over\" OR review OR reaction OR \"every movie ever\" OR longplay OR mashup) AND -title:(radio OR otr OR \"old time radio\" OR audiobook OR comic OR toy OR hat OR \"theme ride\" OR \"board of supervisors\" OR rally OR remix OR \"bon jovi\" OR \"top gun\" OR \"mega man\" OR psp OR 2013 OR \"fan film\" OR lecture OR cspan OR vinyl OR \"lp\" OR documentary OR \"legends & lies\" OR dublado OR latino OR \"deputy dawg\" OR \"vhs fb\") AND -identifier:(MistressDidi* OR cspan* OR CSPAN* OR scatvca-* OR ltv8ca-* OR bliptv-* OR Lbines-*) AND -subject:(documentary OR \"silent film\") AND -title:(trailer OR \"double feature\" OR rifftrax OR mst3k OR collection OR italiano OR spaghetti OR django OR \"for a few dollars\" OR \"fistful\" OR sartana OR trinity OR virgins OR nudie)",
+          "identifiers": [
+            "cco_thegunandthepulpit",
+            "TheOvertheHillGang",
+            "TheOver-the-HillGangRidesAgain",
+            "GonewiththeWest",
+            "Apache_Blood",
+            "ItCanBeDoneAmigo",
+            "TheProudAndTheDamned-1972",
+            "TheHangedMan",
+            "tdc1104552",
+            "the-professionals-1966",
+            "junior-bonner",
+            "BellStarrStory",
+            "the-substitute-wife-1994-western-drama-romance",
+            "one-eyed.-jacks.-1961.-remastered.-1080p.-blu-ray.x-264-depth",
+            "the-tracker-1971-western",
+            "lightning-jack-1994-paul-hogan-wstrn-com",
+            "devil-and-miss-sarah-1975-gene-barry",
+            "against-a-crooked-sky-1975-western-encourage-tv",
+            "the-magnificent-seven-1960_202301",
+            "grizzlyadamsmovie",
+            "ride-in-the-whirlwind-1966",
+            "hombre-1967_202511",
+            "wandanevada",
+            "the-life-and-times-of-judge-roy-bean-1972",
+            "the-shooting-1966",
+            "the-legend-of-the-lone-ranger-1981_202511",
+            "rio-lobo-1970-john-wayne-western-civil-war",
+            "buffalo-girls-pt-1-and-2-1995-04-30-calamity-jane-western-mini-series",
+            "my-names-is-nobody-1973",
+            "ace-high-t-00",
+            "run.man.run.1968",
+            "sonny-and-jed",
+            "chasethosedirtydogs1973"
+          ],
           "ignoreYear": true,
-          "maxEntries": 70,
-          "maxEntriesPerItem": 2
+          "maxEntriesPerItem": 1,
+          "tag": "b12_color"
         },
         {
           "identifiers": [
             "bronze_buckaroo",
             "harlem_rides_the_range",
-            "Two-gunManFromHarlem"
+            "Two-gunManFromHarlem",
+            "thomasine-and-bushrod-1974"
           ],
           "ignoreYear": true,
           "maxEntriesPerItem": 1,
@@ -5252,7 +5427,8 @@
             "miami-vice-1984-1990-complete-series"
           ],
           "ignoreYear": true,
-          "maxEntriesPerItem": 30
+          "maxEntriesPerItem": 30,
+          "rated": "R"
         },
         {
           "identifiers": [
@@ -5287,7 +5463,8 @@
             "hunter-tv-series-1984-1991-complete-uncut"
           ],
           "ignoreYear": true,
-          "maxEntriesPerItem": 30
+          "maxEntriesPerItem": 30,
+          "rated": "R"
         },
         {
           "query": "(identifier:(chips-1x-*) AND -identifier:(*_202108)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR mirrortube OR movie_trailers OR podcasts-video) AND -title:(trailer OR promo OR intro OR commercials)",
@@ -5347,7 +5524,8 @@
             "ot_20251116"
           ],
           "ignoreYear": true,
-          "maxEntriesPerItem": 20
+          "maxEntriesPerItem": 20,
+          "rated": "R"
         },
         {
           "identifiers": [
@@ -5383,7 +5561,8 @@
             "highlander-the-series-detelecined"
           ],
           "ignoreYear": true,
-          "maxEntriesPerItem": 25
+          "maxEntriesPerItem": 25,
+          "rated": "R"
         },
         {
           "identifiers": [
@@ -5543,6 +5722,17 @@
           "ignoreYear": true,
           "maxEntriesPerItem": 12,
           "tag": "rerun2"
+        },
+        {
+          "identifiers": [
+            "millennium-s-1-1996-soapdi.sh",
+            "la-femme-nikita-1997-complete-series",
+            "dark-justice-1991-1993-PARTIAL"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 20,
+          "rated": "R",
+          "tag": "b12_rated"
         }
       ]
     },
@@ -8908,8 +9098,67 @@
           "claim": true
         },
         {
-          "query": "(title:(\"tbn praise the lord\" OR \"praise the lord archive\" OR \"charles stanley\" OR \"billy graham\" OR \"adventures in odyssey\" OR veggietales OR \"precious memories\" OR \"strolling down memory lane\" OR gaither OR \"jimmy swaggart\" OR \"robert schuller\" OR \"hour of power\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -identifier:(\"all-veggie-tales-credits-1993-2015\") AND -title:(\"rerun show\")",
+          "query": "(title:(\"tbn praise the lord\" OR \"praise the lord archive\" OR \"charles stanley\" OR \"billy graham\" OR \"adventures in odyssey\" OR veggietales OR \"precious memories\" OR \"strolling down memory lane\" OR gaither OR \"jimmy swaggart\" OR \"robert schuller\" OR \"hour of power\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -identifier:(\"all-veggie-tales-credits-1993-2015\") AND -title:(\"rerun show\") AND -title:(fanmade OR fanmde OR \"fan made\" OR \"in-store\" OR loop OR \"character gang\" OR \"alien mystery\") AND -identifier:(turner_video_* OR 2025-07-10-00-06-45 OR 01-opening_* OR veggie-tales-classics-larry-boy-and-the-fib-from-outer-space-vhs OR veggie-tales-larry-boy-and-the-fib-from-outer-space-1999-lyrick-studios-vhs-dvd-quality OR thiswassohardtofind2004vhs OR veggie-tales-larry-boy-and-the-rumor-weed-2000-lyrick-studios-vhs-dvd-quality OR veggie-tales-larry-boy-and-the-rumor-weed-2004-version OR larry-boy-and-the-bad-apple_202408)",
           "maxEntriesPerItem": 6
+        },
+        {
+          "identifiers": [
+            "davey-and-goliath-s-01-e-01-lost-in-a-cave"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 45,
+          "tag": "b12_kids"
+        },
+        {
+          "identifiers": [
+            "superbook-1982_202412",
+            "the-story-keepers-all-episodes"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 13,
+          "tag": "b12_kids"
+        },
+        {
+          "query": "((title:(superbook OR \"greatest adventure\" OR \"beginners bible\" OR \"beginner's bible\" OR \"animated stories from the bible\" OR \"animated old testament\" OR \"story keepers\" OR storykeepers OR owlegories OR torchlighters OR \"god rocks\" OR hermie OR \"charlie church mouse\" OR \"kingdom adventure\") OR identifier:(jot-cartoon-religion)) AND -title:(\"flash gordon\" OR winsor OR \"ultimate cut\") AND -identifier:(vts-01-1_20220719 OR cmodeal_gmail_Ncc_201406 OR amycarmichal OR youtube-f6YhSjRiVio OR the-story-keepers-all-episodes OR superbook-1982_202412 OR superbookjonahthebigfish OR Superbook_Video_Bible_Jonah_And_The_Big_Fish_Tyndale_Family_Video_1982_Tape OR Superbook_Video_Bible_Daniel_And_The_Lions_Tyndale_Family_Video_1982_Tape)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR jpn OR kor OR hin OR tur OR ara OR dut OR tgl OR fil OR yue) AND -collection:(movie_trailers OR movie_trailers_unsorted OR vhsopenings OR vhstrailers OR mirrortube OR vhscommercials) AND -title:(poop OR ytp OR parody OR offensive OR dub OR dubbed OR redub OR \"fan made\" OR fanmade OR fake OR prototype OR opening OR openings OR closing OR credits OR intro OR trailer OR preview OR previews OR promo OR sampler OR commercial OR commercials OR interview OR review OR reaction OR instrumental OR karaoke OR \"in-store\" OR loop OR logo OR logos OR iso OR espanol OR spanish OR arabic OR islamic OR cantonese OR tagalog OR portuguese OR \"y sus amigos\" OR \"e amigos\" OR \"bandits\" OR \"block\" OR compilation OR \"#shorts\")",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 6,
+          "tag": "b12_kids"
+        },
+        {
+          "identifiers": [
+            "321PenguinsComplete",
+            "3-2-1-penguins-moon-menace-on-planet-tell-a-lie-full-original-episode",
+            "3-2-1-penguins-runnaway-pride-at-lightstation-kilowatt-full-original-episode",
+            "3-2-1-penguins-the-doom-funnel-rescue-full-original-episode",
+            "larryboy-the-cartoon-adventures_031602",
+            "larryboy-leggo-my-ego-2002-warner-bros-vhs",
+            "larryboy-the-yodelnapper-2002-warner-bros-vhs"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 6,
+          "tag": "b12_kids"
+        },
+        {
+          "query": "(title:(\"mcgee and me\" OR bibleman OR \"bible man\" OR \"donut man\" OR \"joy junction\" OR gerbert OR \"quigley's village\" OR \"quigleys village\" OR \"gospel bill\" OR \"moody science adventures\") AND -identifier:(joyjunctionronandmarty OR bibleman_rage_vhs_rf)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR jpn OR kor OR hin OR tur OR ara OR dut OR tgl OR fil OR yue) AND -collection:(movie_trailers OR movie_trailers_unsorted OR vhsopenings OR vhstrailers OR mirrortube OR vhscommercials) AND -title:(poop OR ytp OR parody OR offensive OR dub OR dubbed OR redub OR \"fan made\" OR fanmade OR fake OR prototype OR opening OR openings OR closing OR credits OR intro OR trailer OR preview OR previews OR promo OR sampler OR commercial OR commercials OR interview OR review OR reaction OR instrumental OR karaoke OR \"in-store\" OR loop OR logo OR logos OR iso OR espanol OR spanish OR arabic OR islamic OR cantonese OR tagalog OR portuguese OR \"y sus amigos\" OR \"e amigos\" OR \"bandits\" OR \"block\" OR compilation OR \"#shorts\")",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 6,
+          "tag": "b12_kids"
+        },
+        {
+          "identifiers": [
+            "cedarmont-kids-vhs-releases",
+            "Action_Bible_Songs_1995_Cedarmont_Kids_Video",
+            "toddler-tunes-mp-4",
+            "childrens-songs-1",
+            "ceadermont-kids-20th-anniversary-dvd",
+            "dvd-transfer-185",
+            "bible-sing-along",
+            "Popcornarchive-psaltyTheSongBook-PsaltysFuntasticPraiseParty",
+            "kids-praise-5-psaltys-camping-adventure...-count-it-all-joy-full-vhs"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 7,
+          "tag": "b12_kids"
         }
       ]
     },
