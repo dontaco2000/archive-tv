@@ -616,7 +616,10 @@
     "evil.toons.1992.1080p.bluray.x264-_yts.am___5a9fe25147684",
     "living-single-1993/Cast of Living Single Reflects on Shows Impact _ #LivingSingle25.mp4",
     "living-single-1993/Living Single Turns 25_ Is A Reboot Coming_.mp4",
-    "living-single-1993/Living single vs friends Living single’s maxine shaw gets david schwimmer together #livingsingle.mp4"
+    "living-single-1993/Living single vs friends Living single’s maxine shaw gets david schwimmer together #livingsingle.mp4",
+    "general-hospital-german",
+    "tvi-ficcao-santa-barbara",
+    "tvi-ficcao-promo-santa-barbara"
   ],
   "channels": [
     {
@@ -6201,51 +6204,20 @@
       "genre": "TV",
       "sources": [
         {
-          "identifiers": [
-            "falcon-crest-1981-1990-complete-series"
-          ],
+          "query": "(title:(\"dark shadows\" OR \"ryan's hope\" OR \"search for tomorrow\" OR \"as the world turns\" OR \"guiding light\" OR \"edge of night\" OR \"secret storm\" OR \"love of life\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR jpn OR chi OR hin OR kor OR tur) AND -collection:(audio_sermons OR audio_religion) AND -subject:(sermon OR tbn OR worship OR \"praise the lord\") AND -collection:(tvnews OR tvarchive OR mirrortube OR social-media-video OR video_blender OR fringe OR deemphasize OR feature_films OR movie_trailers OR anime_miscellaneous OR gamevideos OR vlogs) AND -identifier:(youtube-*) AND -title:(\"vhs #\" OR \"vhs tape\" OR \"blank vhs\" OR \"tape #\" OR \"dvd+r\" OR \"dvd-\" OR \"market box\" OR \"retro tv\" OR promo OR commercials OR trailer OR bloopers OR intro OR credits OR clip OR clips OR teaser OR preview OR kelo OR kdlt OR ksfy OR \"nightly news\" OR dateline OR \"11pm news\" OR nypd) AND -title:(scenes OR sponsor OR sponsorship OR \"ad breaks\" OR \"vintage tv\" OR \"various tv\" OR \"television parts\" OR kron OR nightmare OR lorimar OR \"beta #\" OR legendas OR \"archive - #\" OR \"weakest link\" OR \"price is right\" OR \"dvd game\" OR \"eyewitness news\" OR \"sunday today\" OR \"afl today\" OR wrestling OR boxing) AND -collection:community_media AND -title:(\"house of dark shadows\" OR \"night of dark shadows\" OR \"2004 pilot\" OR \"soap opera digest\" OR tennille OR \"christmas 1998\") AND -title:(novela OR telenovela OR capitulo OR ficcao OR deutsch OR televisa) AND -subject:(novela OR telenovela OR televisa OR univision OR telemundo)",
+          "ignoreYear": true
+        },
+        {
+          "query": "(title:(\"general hospital\" OR \"days of our lives\" OR \"one life to live\" OR \"young and the restless\" OR \"bold and the beautiful\" OR \"port charles\" OR \"sunset beach\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR jpn OR chi OR hin OR kor OR tur) AND -collection:(audio_sermons OR audio_religion) AND -subject:(sermon OR tbn OR worship OR \"praise the lord\") AND -collection:(tvnews OR tvarchive OR mirrortube OR social-media-video OR video_blender OR fringe OR deemphasize OR feature_films OR movie_trailers OR anime_miscellaneous OR gamevideos OR vlogs) AND -identifier:(youtube-*) AND -title:(\"vhs #\" OR \"vhs tape\" OR \"blank vhs\" OR \"tape #\" OR \"dvd+r\" OR \"dvd-\" OR \"market box\" OR \"retro tv\" OR promo OR commercials OR trailer OR bloopers OR intro OR credits OR clip OR clips OR teaser OR preview OR kelo OR kdlt OR ksfy OR \"nightly news\" OR dateline OR \"11pm news\" OR nypd) AND -title:(scenes OR sponsor OR sponsorship OR \"ad breaks\" OR \"vintage tv\" OR \"various tv\" OR \"television parts\" OR kron OR nightmare OR lorimar OR \"beta #\" OR legendas OR \"archive - #\" OR \"weakest link\" OR \"price is right\" OR \"dvd game\" OR \"eyewitness news\" OR \"sunday today\" OR \"afl today\" OR wrestling OR boxing) AND -collection:community_media AND -title:(\"resident evil\" OR \"on young and\" OR \"crisis at\" OR blackadder OR \"black adder\" OR aerobic OR \"oil spill\" OR marley OR concert) AND -title:(novela OR telenovela OR capitulo OR ficcao OR deutsch OR televisa) AND -subject:(novela OR telenovela OR televisa OR univision OR telemundo)",
+          "ignoreYear": true
+        },
+        {
+          "query": "(title:(\"all my children\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR jpn OR chi OR hin OR kor OR tur) AND -collection:(audio_sermons OR audio_religion) AND -subject:(sermon OR tbn OR worship OR \"praise the lord\") AND -collection:(tvnews OR tvarchive OR mirrortube OR social-media-video OR video_blender OR fringe OR deemphasize OR feature_films OR movie_trailers OR anime_miscellaneous OR gamevideos OR vlogs) AND -identifier:(youtube-*) AND -title:(\"vhs #\" OR \"vhs tape\" OR \"blank vhs\" OR \"tape #\" OR \"dvd+r\" OR \"dvd-\" OR \"market box\" OR \"retro tv\" OR promo OR commercials OR trailer OR bloopers OR intro OR credits OR clip OR clips OR teaser OR preview OR kelo OR kdlt OR ksfy OR \"nightly news\" OR dateline OR \"11pm news\" OR nypd) AND -title:(scenes OR sponsor OR sponsorship OR \"ad breaks\" OR \"vintage tv\" OR \"various tv\" OR \"television parts\" OR kron OR nightmare OR lorimar OR \"beta #\" OR legendas OR \"archive - #\" OR \"weakest link\" OR \"price is right\" OR \"dvd game\" OR \"eyewitness news\" OR \"sunday today\" OR \"afl today\" OR wrestling OR boxing) AND -collection:community_media AND -title:(\"soap opera digest\") AND -title:(novela OR telenovela OR capitulo OR ficcao OR deutsch OR televisa) AND -subject:(novela OR telenovela OR televisa OR univision OR telemundo)",
           "ignoreYear": true,
-          "maxEntriesPerItem": 195,
-          "claim": true
+          "maxEntriesPerItem": 30
         },
         {
-          "identifiers": [
-            "knots-landing-1979-1993"
-          ],
-          "ignoreYear": true,
-          "maxEntriesPerItem": 191,
-          "claim": true
-        },
-        {
-          "identifiers": [
-            "peyton-place_202308"
-          ],
-          "ignoreYear": true,
-          "maxEntriesPerItem": 365,
-          "claim": true
-        },
-        {
-          "query": "(title:(\"dark shadows\" OR \"ryan's hope\" OR \"search for tomorrow\" OR \"as the world turns\" OR \"guiding light\" OR \"edge of night\" OR \"secret storm\" OR \"love of life\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR jpn OR chi OR hin OR kor OR tur) AND -collection:(audio_sermons OR audio_religion) AND -subject:(sermon OR tbn OR worship OR \"praise the lord\") AND -collection:(tvnews OR tvarchive OR mirrortube OR social-media-video OR video_blender OR fringe OR deemphasize OR feature_films OR movie_trailers OR anime_miscellaneous OR gamevideos OR vlogs) AND -identifier:(youtube-*) AND -title:(\"vhs #\" OR \"vhs tape\" OR \"blank vhs\" OR \"tape #\" OR \"dvd+r\" OR \"dvd-\" OR \"market box\" OR \"retro tv\" OR promo OR commercials OR trailer OR bloopers OR intro OR credits OR clip OR clips OR teaser OR preview OR kelo OR kdlt OR ksfy OR \"nightly news\" OR dateline OR \"11pm news\" OR nypd) AND -title:(scenes OR sponsor OR sponsorship OR \"ad breaks\" OR \"vintage tv\" OR \"various tv\" OR \"television parts\" OR kron OR nightmare OR lorimar OR \"beta #\" OR legendas OR \"archive - #\" OR \"weakest link\" OR \"price is right\" OR \"dvd game\" OR \"eyewitness news\" OR \"sunday today\" OR \"afl today\" OR wrestling OR boxing) AND -collection:community_media AND -title:(\"house of dark shadows\" OR \"night of dark shadows\" OR \"2004 pilot\" OR \"soap opera digest\" OR tennille OR \"christmas 1998\")",
-          "ignoreYear": true
-        },
-        {
-          "query": "(title:(\"general hospital\" OR \"days of our lives\" OR \"one life to live\" OR \"young and the restless\" OR \"bold and the beautiful\" OR \"port charles\" OR \"sunset beach\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR jpn OR chi OR hin OR kor OR tur) AND -collection:(audio_sermons OR audio_religion) AND -subject:(sermon OR tbn OR worship OR \"praise the lord\") AND -collection:(tvnews OR tvarchive OR mirrortube OR social-media-video OR video_blender OR fringe OR deemphasize OR feature_films OR movie_trailers OR anime_miscellaneous OR gamevideos OR vlogs) AND -identifier:(youtube-*) AND -title:(\"vhs #\" OR \"vhs tape\" OR \"blank vhs\" OR \"tape #\" OR \"dvd+r\" OR \"dvd-\" OR \"market box\" OR \"retro tv\" OR promo OR commercials OR trailer OR bloopers OR intro OR credits OR clip OR clips OR teaser OR preview OR kelo OR kdlt OR ksfy OR \"nightly news\" OR dateline OR \"11pm news\" OR nypd) AND -title:(scenes OR sponsor OR sponsorship OR \"ad breaks\" OR \"vintage tv\" OR \"various tv\" OR \"television parts\" OR kron OR nightmare OR lorimar OR \"beta #\" OR legendas OR \"archive - #\" OR \"weakest link\" OR \"price is right\" OR \"dvd game\" OR \"eyewitness news\" OR \"sunday today\" OR \"afl today\" OR wrestling OR boxing) AND -collection:community_media AND -title:(\"resident evil\" OR \"on young and\" OR \"crisis at\" OR blackadder OR \"black adder\" OR aerobic OR \"oil spill\" OR marley OR concert)",
-          "ignoreYear": true
-        },
-        {
-          "query": "(title:(\"all my children\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR jpn OR chi OR hin OR kor OR tur) AND -collection:(audio_sermons OR audio_religion) AND -subject:(sermon OR tbn OR worship OR \"praise the lord\") AND -collection:(tvnews OR tvarchive OR mirrortube OR social-media-video OR video_blender OR fringe OR deemphasize OR feature_films OR movie_trailers OR anime_miscellaneous OR gamevideos OR vlogs) AND -identifier:(youtube-*) AND -title:(\"vhs #\" OR \"vhs tape\" OR \"blank vhs\" OR \"tape #\" OR \"dvd+r\" OR \"dvd-\" OR \"market box\" OR \"retro tv\" OR promo OR commercials OR trailer OR bloopers OR intro OR credits OR clip OR clips OR teaser OR preview OR kelo OR kdlt OR ksfy OR \"nightly news\" OR dateline OR \"11pm news\" OR nypd) AND -title:(scenes OR sponsor OR sponsorship OR \"ad breaks\" OR \"vintage tv\" OR \"various tv\" OR \"television parts\" OR kron OR nightmare OR lorimar OR \"beta #\" OR legendas OR \"archive - #\" OR \"weakest link\" OR \"price is right\" OR \"dvd game\" OR \"eyewitness news\" OR \"sunday today\" OR \"afl today\" OR wrestling OR boxing) AND -collection:community_media AND -title:(\"soap opera digest\")",
-          "ignoreYear": true
-        },
-        {
-          "query": "(title:(\"another world\" OR \"santa barbara\") AND collection:(vhstvshows OR classic_tv OR television_inbox)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR jpn OR chi OR hin OR kor OR tur) AND -collection:(audio_sermons OR audio_religion) AND -subject:(sermon OR tbn OR worship OR \"praise the lord\") AND -collection:(tvnews OR tvarchive OR mirrortube OR social-media-video OR video_blender OR fringe OR deemphasize OR feature_films OR movie_trailers OR anime_miscellaneous OR gamevideos OR vlogs) AND -identifier:(youtube-*) AND -title:(\"vhs #\" OR \"vhs tape\" OR \"blank vhs\" OR \"tape #\" OR \"dvd+r\" OR \"dvd-\" OR \"market box\" OR \"retro tv\" OR promo OR commercials OR trailer OR bloopers OR intro OR credits OR clip OR clips OR teaser OR preview OR kelo OR kdlt OR ksfy OR \"nightly news\" OR dateline OR \"11pm news\" OR nypd) AND -title:(scenes OR sponsor OR sponsorship OR \"ad breaks\" OR \"vintage tv\" OR \"various tv\" OR \"television parts\" OR kron OR nightmare OR lorimar OR \"beta #\" OR legendas OR \"archive - #\" OR \"weakest link\" OR \"price is right\" OR \"dvd game\" OR \"eyewitness news\" OR \"sunday today\" OR \"afl today\" OR wrestling OR boxing) AND -collection:community_media AND -title:(handyman OR saitou OR hindi OR isekai OR longplay OR tvi OR parte OR \"oil spill\" OR marley OR concert)",
-          "ignoreYear": true
-        },
-        {
-          "query": "(title:(\"peyton place\" OR \"knots landing\" OR \"falcon crest\" OR \"the colbys\" OR \"flamingo road\" OR \"melrose place\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR jpn OR chi OR hin OR kor OR tur) AND -collection:(audio_sermons OR audio_religion) AND -subject:(sermon OR tbn OR worship OR \"praise the lord\") AND -collection:(tvnews OR tvarchive OR mirrortube OR social-media-video OR video_blender OR fringe OR deemphasize OR feature_films OR movie_trailers OR anime_miscellaneous OR gamevideos OR vlogs) AND -identifier:(youtube-*) AND -title:(\"vhs #\" OR \"vhs tape\" OR \"blank vhs\" OR \"tape #\" OR \"dvd+r\" OR \"dvd-\" OR \"market box\" OR \"retro tv\" OR promo OR commercials OR trailer OR bloopers OR intro OR credits OR clip OR clips OR teaser OR preview OR kelo OR kdlt OR ksfy OR \"nightly news\" OR dateline OR \"11pm news\" OR nypd) AND -title:(scenes OR sponsor OR sponsorship OR \"ad breaks\" OR \"vintage tv\" OR \"various tv\" OR \"television parts\" OR kron OR nightmare OR lorimar OR \"beta #\" OR legendas OR \"archive - #\" OR \"weakest link\" OR \"price is right\" OR \"dvd game\" OR \"eyewitness news\" OR \"sunday today\" OR \"afl today\" OR wrestling OR boxing) AND -collection:community_media AND -title:(unauthorized OR \"return to peyton place\" OR \"joan crawford\" OR autoline OR \"cross company\" OR \"improvements coming\" OR parte OR tvi)",
-          "ignoreYear": true
-        },
-        {
-          "query": "(title:(\"coronation street\" OR \"eastenders\" OR \"emmerdale\" OR \"brookside\" OR \"home and away\" OR \"number 96\" OR \"sons and daughters\" OR \"young doctors\" OR \"a country practice\") OR (title:neighbours AND collection:(opensource_movies OR television_inbox OR vhstvshows))) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR jpn OR chi OR hin OR kor OR tur) AND -collection:(audio_sermons OR audio_religion) AND -subject:(sermon OR tbn OR worship OR \"praise the lord\") AND -collection:(tvnews OR tvarchive OR mirrortube OR social-media-video OR video_blender OR fringe OR deemphasize OR feature_films OR movie_trailers OR anime_miscellaneous OR gamevideos OR vlogs) AND -identifier:(youtube-*) AND -title:(\"vhs #\" OR \"vhs tape\" OR \"blank vhs\" OR \"tape #\" OR \"dvd+r\" OR \"dvd-\" OR \"market box\" OR \"retro tv\" OR promo OR commercials OR trailer OR bloopers OR intro OR credits OR clip OR clips OR teaser OR preview OR kelo OR kdlt OR ksfy OR \"nightly news\" OR dateline OR \"11pm news\" OR nypd) AND -title:(scenes OR sponsor OR sponsorship OR \"ad breaks\" OR \"vintage tv\" OR \"various tv\" OR \"television parts\" OR kron OR nightmare OR lorimar OR \"beta #\" OR legendas OR \"archive - #\" OR \"weakest link\" OR \"price is right\" OR \"dvd game\" OR \"eyewitness news\" OR \"sunday today\" OR \"afl today\" OR wrestling OR boxing) AND -collection:community_media AND -title:(\"eat the neighbours\" OR bluey OR \"christmas 1998\" OR \"sale of the century\")",
+          "query": "(title:(\"another world\" OR \"santa barbara\") AND collection:(vhstvshows OR classic_tv OR television_inbox)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR jpn OR chi OR hin OR kor OR tur) AND -collection:(audio_sermons OR audio_religion) AND -subject:(sermon OR tbn OR worship OR \"praise the lord\") AND -collection:(tvnews OR tvarchive OR mirrortube OR social-media-video OR video_blender OR fringe OR deemphasize OR feature_films OR movie_trailers OR anime_miscellaneous OR gamevideos OR vlogs) AND -identifier:(youtube-*) AND -title:(\"vhs #\" OR \"vhs tape\" OR \"blank vhs\" OR \"tape #\" OR \"dvd+r\" OR \"dvd-\" OR \"market box\" OR \"retro tv\" OR promo OR commercials OR trailer OR bloopers OR intro OR credits OR clip OR clips OR teaser OR preview OR kelo OR kdlt OR ksfy OR \"nightly news\" OR dateline OR \"11pm news\" OR nypd) AND -title:(scenes OR sponsor OR sponsorship OR \"ad breaks\" OR \"vintage tv\" OR \"various tv\" OR \"television parts\" OR kron OR nightmare OR lorimar OR \"beta #\" OR legendas OR \"archive - #\" OR \"weakest link\" OR \"price is right\" OR \"dvd game\" OR \"eyewitness news\" OR \"sunday today\" OR \"afl today\" OR wrestling OR boxing) AND -collection:community_media AND -title:(handyman OR saitou OR hindi OR isekai OR longplay OR tvi OR parte OR \"oil spill\" OR marley OR concert) AND -title:(novela OR telenovela OR capitulo OR ficcao OR deutsch OR televisa) AND -subject:(novela OR telenovela OR televisa OR univision OR telemundo)",
           "ignoreYear": true
         }
       ]
@@ -7776,6 +7748,71 @@
             25,
             26
           ]
+        }
+      ]
+    },
+    {
+      "number": 71,
+      "name": "Bubbles",
+      "logo": "Logos/4x3/bubbles.png",
+      "genre": "TV",
+      "sources": [
+        {
+          "identifiers": [
+            "falcon-crest-1981-1990-complete-series"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 40,
+          "claim": true
+        },
+        {
+          "identifiers": [
+            "knots-landing-1979-1993"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 40,
+          "claim": true
+        },
+        {
+          "identifiers": [
+            "peyton-place_202308"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 80,
+          "claim": true
+        },
+        {
+          "query": "(title:(\"peyton place\" OR \"knots landing\" OR \"falcon crest\" OR \"the colbys\" OR \"flamingo road\" OR \"melrose place\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR jpn OR chi OR hin OR kor OR tur) AND -collection:(audio_sermons OR audio_religion) AND -subject:(sermon OR tbn OR worship OR \"praise the lord\") AND -collection:(tvnews OR tvarchive OR mirrortube OR social-media-video OR video_blender OR fringe OR deemphasize OR feature_films OR movie_trailers OR anime_miscellaneous OR gamevideos OR vlogs) AND -identifier:(youtube-*) AND -title:(\"vhs #\" OR \"vhs tape\" OR \"blank vhs\" OR \"tape #\" OR \"dvd+r\" OR \"dvd-\" OR \"market box\" OR \"retro tv\" OR promo OR commercials OR trailer OR bloopers OR intro OR credits OR clip OR clips OR teaser OR preview OR kelo OR kdlt OR ksfy OR \"nightly news\" OR dateline OR \"11pm news\" OR nypd) AND -title:(scenes OR sponsor OR sponsorship OR \"ad breaks\" OR \"vintage tv\" OR \"various tv\" OR \"television parts\" OR kron OR nightmare OR lorimar OR \"beta #\" OR legendas OR \"archive - #\" OR \"weakest link\" OR \"price is right\" OR \"dvd game\" OR \"eyewitness news\" OR \"sunday today\" OR \"afl today\" OR wrestling OR boxing) AND -collection:community_media AND -title:(unauthorized OR \"return to peyton place\" OR \"joan crawford\" OR autoline OR \"cross company\" OR \"improvements coming\" OR parte OR tvi) AND -title:(novela OR telenovela OR capitulo OR ficcao OR deutsch OR televisa) AND -subject:(novela OR telenovela OR televisa OR univision OR telemundo)",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 40
+        },
+        {
+          "identifiers": [
+            "savannah_202505",
+            "dallas-s-08-1080p",
+            "dallas-1987-09-25-season-11-episode-1",
+            "dallas-s-01-e-01-diggers-daughter-april-2-1978",
+            "dynasty-the-reunion-part-01-october-20-1991-by-abc-veronica-inc.-ltd.",
+            "knots-landing-season-1-episode-10",
+            "knots-landing-season-1-episode-7",
+            "knots-landing-the-last-season-12-the-last-final-episode-may-13-1993-by-cbs-inc.-ltd.",
+            "models-inc.-intro"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 30
+        }
+      ]
+    },
+    {
+      "number": 75,
+      "name": "Pond",
+      "logo": "Logos/4x3/pond.png",
+      "genre": "TV",
+      "sources": [
+        {
+          "query": "(title:(\"coronation street\" OR \"eastenders\" OR \"emmerdale\" OR \"brookside\" OR \"home and away\" OR \"number 96\" OR \"sons and daughters\" OR \"young doctors\" OR \"a country practice\") OR (title:neighbours AND collection:(opensource_movies OR television_inbox OR vhstvshows))) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR jpn OR chi OR hin OR kor OR tur) AND -collection:(audio_sermons OR audio_religion) AND -subject:(sermon OR tbn OR worship OR \"praise the lord\") AND -collection:(tvnews OR tvarchive OR mirrortube OR social-media-video OR video_blender OR fringe OR deemphasize OR feature_films OR movie_trailers OR anime_miscellaneous OR gamevideos OR vlogs) AND -identifier:(youtube-*) AND -title:(\"vhs #\" OR \"vhs tape\" OR \"blank vhs\" OR \"tape #\" OR \"dvd+r\" OR \"dvd-\" OR \"market box\" OR \"retro tv\" OR promo OR commercials OR trailer OR bloopers OR intro OR credits OR clip OR clips OR teaser OR preview OR kelo OR kdlt OR ksfy OR \"nightly news\" OR dateline OR \"11pm news\" OR nypd) AND -title:(scenes OR sponsor OR sponsorship OR \"ad breaks\" OR \"vintage tv\" OR \"various tv\" OR \"television parts\" OR kron OR nightmare OR lorimar OR \"beta #\" OR legendas OR \"archive - #\" OR \"weakest link\" OR \"price is right\" OR \"dvd game\" OR \"eyewitness news\" OR \"sunday today\" OR \"afl today\" OR wrestling OR boxing) AND -collection:community_media AND -title:(\"eat the neighbours\" OR bluey OR \"christmas 1998\" OR \"sale of the century\") AND -title:(novela OR telenovela OR capitulo OR ficcao OR deutsch OR televisa) AND -subject:(novela OR telenovela OR televisa OR univision OR telemundo)",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 25
         }
       ]
     }
