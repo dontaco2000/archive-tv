@@ -440,7 +440,9 @@
     "evangelion-the-full-series/3.65A Neon Genesis Evangelion Movie 2 (SUB) 1920x1080 - End of Evangelion.mp4",
     "evangelion-the-full-series/3.65A Neon Genesis Evangelion Movie 2 (SUB) 1920x1080 - End of Evangelion.ia.mp4",
     "evangelion-the-full-series/3.65B Neon Genesis Evangelion Movie 2 (DUB) 1920x1080 - End of Evangelion.mp4",
-    "evangelion-the-full-series/3.65B Neon Genesis Evangelion Movie 2 (DUB) 1920x1080 - End of Evangelion.ia.mp4"
+    "evangelion-the-full-series/3.65B Neon Genesis Evangelion Movie 2 (DUB) 1920x1080 - End of Evangelion.ia.mp4",
+    "tales-of-the-gold-monkey/Tales of the Gold Monkey Full Episodes in Order/Episode 7 - Tales of the Gold Monkey 1982  -Türkçe Altyazılı.mp4",
+    "baywatch_202212/001-Panic At Malibu Pier(ORIGINAL UNEDITED VERSION).mp4"
   ],
   "channels": [
     {
@@ -2247,6 +2249,413 @@
         {
           "query": "(title:(\"remote control\" OR \"mtv next\" OR \"singled out\" OR \"idiot box\" OR \"parental control\" OR \"room raiders\" OR \"price is right\" OR \"family feud\" OR jeopardy OR \"wheel of fortune\" OR \"match game\" OR \"hollywood squares\" OR \"press your luck\" OR \"card sharks\") AND -collection:tvnews) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -collection:(link-tv-archive OR dvdtray OR vhstvshows) AND -title:(\"dvd transfer\" OR \"commercial collection\" OR \"juego interactivo\") AND -language:(spa OR spanish OR pol OR fre OR ger OR ita OR por OR rus) AND -title:(\"dvd game\" OR \"interactive dvd\" OR \"vhs #\") AND -identifier:(\"017395\" OR \"012145\") AND -collection:(videogameprev OR gamevideos)",
           "maxEntriesPerItem": 150
+        }
+      ]
+    },
+    {
+      "number": 22,
+      "name": "Rerun",
+      "logo": "Logos/4x3/rerun.png",
+      "genre": "TV",
+      "minSeconds": 900,
+      "primeTime": {
+        "start": "18:00",
+        "slots": 6,
+        "slotMinutes": 60
+      },
+      "serials": [
+        {
+          "start": "18:00",
+          "epoch": "2026-11-13",
+          "perDay": 1,
+          "shows": [
+            {
+              "title": "Knight Rider",
+              "identifiers": [
+                "knight-rider-tv-series-1982-1986-complete-series-tv-pg"
+              ],
+              "episode": "S(\\d\\d)E(\\d\\d)"
+            },
+            {
+              "title": "Street Hawk",
+              "identifiers": [
+                "street-hawk-complete-series-1985"
+              ],
+              "episode": "S(\\d\\d)E(\\d\\d)"
+            },
+            {
+              "title": "Airwolf",
+              "identifiers": [
+                "e_20251020"
+              ],
+              "episode": "S(\\d\\d)E(\\d\\d)"
+            },
+            {
+              "title": "Blue Thunder",
+              "identifiers": [
+                "blue-thunder-complete-series-1984"
+              ],
+              "episode": "S(\\d\\d)E(\\d\\d)"
+            }
+          ]
+        },
+        {
+          "start": "19:00",
+          "epoch": "2026-11-13",
+          "perDay": 1,
+          "shows": [
+            {
+              "title": "The A-Team",
+              "identifiers": [
+                "the-a-team-tv-series-1983-1987-complete-series-tv-pg"
+              ],
+              "episode": "S(\\d\\d)E(\\d\\d)"
+            },
+            {
+              "title": "The Fall Guy",
+              "identifiers": [
+                "the-fall-guy-1981-1986"
+              ],
+              "episode": "^S(\\d\\d) E(\\d\\d) "
+            }
+          ]
+        },
+        {
+          "start": "20:00",
+          "epoch": "2026-11-13",
+          "perDay": 1,
+          "shows": [
+            {
+              "title": "MacGyver",
+              "identifiers": [
+                "macgyver-collection-1985--to-1994"
+              ],
+              "episode": "S(\\d\\d)E(\\d\\d)"
+            },
+            {
+              "title": "Hardcastle and McCormick",
+              "identifiers": [
+                "s_20251114"
+              ],
+              "order": "natural"
+            }
+          ]
+        },
+        {
+          "start": "21:00",
+          "epoch": "2026-11-13",
+          "perDay": 1,
+          "shows": [
+            {
+              "title": "Baywatch",
+              "identifiers": [
+                "baywatch_202212"
+              ],
+              "exclude": "UNEDITED|^000-",
+              "episode": "^(\\d{3})-"
+            }
+          ]
+        },
+        {
+          "start": "22:00",
+          "epoch": "2026-11-13",
+          "perDay": 1,
+          "shows": [
+            {
+              "title": "Miami Vice",
+              "identifiers": [
+                "miami-vice-1984-1990-complete-series"
+              ],
+              "episode": "^S(\\d\\d) E(\\d\\d)"
+            },
+            {
+              "title": "Wiseguy",
+              "identifiers": [
+                "ot_20251116"
+              ],
+              "episode": "S(\\d\\d)E(\\d\\d)"
+            }
+          ]
+        },
+        {
+          "start": "23:00",
+          "epoch": "2026-11-13",
+          "perDay": 1,
+          "shows": [
+            {
+              "title": "Hunter",
+              "identifiers": [
+                "hunter-tv-series-1984-1991-complete-uncut"
+              ],
+              "episode": "S(\\d\\d)E(\\d\\d)"
+            },
+            {
+              "title": "Highlander: The Series",
+              "identifiers": [
+                "highlander-the-series-detelecined"
+              ],
+              "episode": "(\\d)X(\\d\\d) "
+            }
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "identifiers": [
+            "the-a-team-tv-series-1983-1987-complete-series-tv-pg"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 40
+        },
+        {
+          "identifiers": [
+            "knight-rider-tv-series-1982-1986-complete-series-tv-pg"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 40
+        },
+        {
+          "identifiers": [
+            "baywatch_202212"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 45
+        },
+        {
+          "identifiers": [
+            "miami-vice-1984-1990-complete-series"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 30
+        },
+        {
+          "identifiers": [
+            "macgyver-collection-1985--to-1994"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 30
+        },
+        {
+          "identifiers": [
+            "magnum-pi-3hrs-off-wchs-1990",
+            "resolutions-full",
+            "memories-are-forever-sound",
+            "magnum-pi"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 2
+        },
+        {
+          "identifiers": [
+            "e_20251020"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 25
+        },
+        {
+          "identifiers": [
+            "street-hawk-complete-series-1985"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 14
+        },
+        {
+          "identifiers": [
+            "the-fall-guy-1981-1986"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 30
+        },
+        {
+          "identifiers": [
+            "hunter-tv-series-1984-1991-complete-uncut"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 30
+        },
+        {
+          "query": "(identifier:(chips-1x-*) AND -identifier:(*_202108)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR mirrortube OR movie_trailers OR podcasts-video) AND -title:(trailer OR promo OR intro OR commercials)",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1
+        },
+        {
+          "identifiers": [
+            "hart-to-hart-s01",
+            "hart-to-hart-s02",
+            "hart-to-hart-s04",
+            "hart-to-hart-s05"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 7
+        },
+        {
+          "identifiers": [
+            "remington.steele.remux.complete"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 25
+        },
+        {
+          "identifiers": [
+            "moonlighting-season-1-e-01",
+            "moonlighting-season-2-01",
+            "moonlighting-s-3-e-1-the-son-also-rises",
+            "moonlighting-season-4-episode-2-come-back-little-shiksa",
+            "moonlighting-season-5-episode-1-a-womb-with-a-view"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 5
+        },
+        {
+          "identifiers": [
+            "jake.-and.-the.-fatman.-s-01",
+            "jake-and-the-fatman-s02",
+            "jake-and-the-fatman-s03",
+            "jake-and-the-fatman-s04",
+            "jake-and-the-fatman-s05"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 5
+        },
+        {
+          "identifiers": [
+            "s-1-e-1-pilot_202603",
+            "s-2-e-2-the-orange-grove",
+            "s-3-e-3-does-not-compute"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 8
+        },
+        {
+          "identifiers": [
+            "ot_20251116"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 20
+        },
+        {
+          "identifiers": [
+            "21-jump-street_202404"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 25
+        },
+        {
+          "identifiers": [
+            "cagney-lacey-s-01",
+            "cagney-and-lacey-season-2",
+            "cagney-lacey-s-03",
+            "cagney-lacey-s-04"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 6
+        },
+        {
+          "identifiers": [
+            "hill.-street.-blues.-s-01",
+            "hill.-street.-blues.-season-2",
+            "hill.street.blues.s-03",
+            "hill.street.blues.s-05",
+            "hill.street.blues.s-06",
+            "hill.street.blues.s-07"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 4
+        },
+        {
+          "identifiers": [
+            "highlander-the-series-detelecined"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 25
+        },
+        {
+          "identifiers": [
+            "xena-s01",
+            "xena-s02",
+            "xena-s03",
+            "xena-s04"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 6
+        },
+        {
+          "query": "(identifier:(hercules-the-legendary-journeys-*)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR mirrortube OR movie_trailers OR podcasts-video) AND -title:(trailer OR promo OR intro OR commercials)",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1,
+          "maxEntries": 40
+        },
+        {
+          "identifiers": [
+            "the-greatest-american-hero-s-01-e-01-pilot-in-stereo",
+            "the-greatest-american-hero-s-02-e-06-the-beast-in-the-black-",
+            "vhs-tape-the-greatest-american-hero-tape-5-of-8",
+            "vhs-tape-the-greatest-american-hero-tape-6-of-8",
+            "vhs-tape-the-greatest-american-hero-tape-7-of-8"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 2
+        },
+        {
+          "identifiers": [
+            "automan-complete-series-1983",
+            "manimal-complete-series-1983",
+            "misfits-of-science-complete-series-1985"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 16
+        },
+        {
+          "identifiers": [
+            "s-1-e-01-pilot_202510"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 20
+        },
+        {
+          "identifiers": [
+            "s_20251114"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 20
+        },
+        {
+          "identifiers": [
+            "scarecrow_mrs_king_complete_series"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 25,
+          "maxSeconds": 6000
+        },
+        {
+          "identifiers": [
+            "pacific-blue-s01",
+            "pacific-blue-S02",
+            "pacific-blue-s03"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 6
+        },
+        {
+          "identifiers": [
+            "blue-thunder-complete-series-1984",
+            "tales-of-the-gold-monkey",
+            "team-knight-rider"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 12
+        },
+        {
+          "identifiers": [
+            "northern-exposure-s01",
+            "northern-exposure-s02",
+            "northern-exposure-s03",
+            "northern-exposure-s04",
+            "northern-exposure-s05",
+            "northern-exposure-s06"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 4
         }
       ]
     },
