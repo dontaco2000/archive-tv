@@ -4352,16 +4352,6 @@
         },
         {
           "identifiers": [
-            "magnum-pi-3hrs-off-wchs-1990",
-            "resolutions-full",
-            "memories-are-forever-sound",
-            "magnum-pi"
-          ],
-          "ignoreYear": true,
-          "maxEntriesPerItem": 2
-        },
-        {
-          "identifiers": [
             "e_20251020"
           ],
           "ignoreYear": true,
@@ -4503,10 +4493,7 @@
         {
           "identifiers": [
             "the-greatest-american-hero-s-01-e-01-pilot-in-stereo",
-            "the-greatest-american-hero-s-02-e-06-the-beast-in-the-black-",
-            "vhs-tape-the-greatest-american-hero-tape-5-of-8",
-            "vhs-tape-the-greatest-american-hero-tape-6-of-8",
-            "vhs-tape-the-greatest-american-hero-tape-7-of-8"
+            "the-greatest-american-hero-s-02-e-06-the-beast-in-the-black-"
           ],
           "ignoreYear": true,
           "maxEntriesPerItem": 2
@@ -4571,6 +4558,80 @@
           ],
           "ignoreYear": true,
           "maxEntriesPerItem": 4
+        },
+        {
+          "identifiers": [
+            "murder-she-wrote-s-01",
+            "murder-she-wrote-s-02",
+            "murder-she-wrote-s-03",
+            "murder-she-wrote-s-04",
+            "murder-she-wrote-s-05",
+            "murder-she-wrote-s-06",
+            "murder-she-wrote-s-07",
+            "murder-she-wrote-s-08",
+            "murder-she-wrote-s-09",
+            "murder-she-wrote-s-10",
+            "murder-she-wrote-s-11",
+            "murder-she-wrote-s-12"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 5,
+          "tag": "rerun2"
+        },
+        {
+          "identifiers": [
+            "sledge-hammer-season-01",
+            "sledge-hammer-s-02-e-01-a-clockwork-hammer"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 8,
+          "tag": "rerun2"
+        },
+        {
+          "identifiers": [
+            "father-dowling-mysteries"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 20,
+          "tag": "rerun2"
+        },
+        {
+          "identifiers": [
+            "highway-to-heaven"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 30,
+          "maxSeconds": 2900,
+          "tag": "rerun2"
+        },
+        {
+          "identifiers": [
+            "mancuso-fbi-s-01"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 12,
+          "tag": "rerun2"
+        },
+        {
+          "identifiers": [
+            "the-rockford-files-movie-collection-1",
+            "the-rockford-files-movie-collection-2",
+            "the-rockford-files-movie-collection-3"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 3,
+          "tag": "rerun2"
+        },
+        {
+          "identifiers": [
+            "cover-up-complete-series-1984",
+            "outlaws-complete-series-1986",
+            "bring-em-back-alive-complete-series-1982",
+            "dempsey-and-makepeace-complete-series-1985"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 12,
+          "tag": "rerun2"
         }
       ]
     },
