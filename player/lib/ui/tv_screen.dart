@@ -822,21 +822,8 @@ class _TvScreenState extends State<TvScreen> {
 
   // ---- Phone / tablet (widget.touch): the TV frame beside an on-screen remote (ui/touch.dart).
   bool _touchFull = false; // tap the video: the video alone, no remote
-  double _touchAspect = 4 / 3; // the frame follows the picture: 4:3 or 16:9
   double _swipe = 0; // horizontal swipe on the video: volume
   DateTime? _powerArmed;
-
-  /// 4:3 or 16:9 from the playing file (after the Picture crop); Picture FILL and the weather stay 4:3.
-  double _aspectNow() {
-    final p = tv.player.state.videoParams, c = tv.crop;
-    final dw = (p.dw ?? 0) * (c?.w ?? 1), dh = (p.dh ?? 0) * (c?.h ?? 1);
-    if (_weather || settings.picture == 'fill') {
-      _touchAspect = 4 / 3;
-    } else if (!tv.standBy && dw > 0 && dh > 0) {
-      _touchAspect = dw / dh > 1.55 ? 16 / 9 : 4 / 3;
-    } // STAND BY keeps the last shape, so the remote doesn't jump on every channel change
-    return _touchAspect;
-  }
 
   /// The touch remote's POWER: two taps within 3 s, like the Windows remote; then as the sleep timer.
   void _powerTap() {
@@ -848,7 +835,12 @@ class _TvScreenState extends State<TvScreen> {
     }
     _powerArmed = now;
     _flash('Tap POWER again to turn off');
+    Timer(const Duration(seconds: 3), () {
+      if (mounted) setState(() {}); // the key drops TAP AGAIN
+    });
   }
+
+  bool get _powerIsArmed => _powerArmed != null && DateTime.now().difference(_powerArmed!) < const Duration(seconds: 3);
 
   /// Video frame layers, back to front up to the typed channel number. [frameH]: frame height (captions).
   List<Widget> _layers(double frameH) => [
@@ -1060,7 +1052,7 @@ class _TvScreenState extends State<TvScreen> {
     final panels = [..._panels(), if (_pin != null) _pinPrompt()];
     return SafeArea(
       child: TouchLayout(
-        aspect: _aspectNow(),
+        aspect: 4 / 3, // always a 4:3 box, like the Windows window; the picture letterboxes in it (Picture FILL covers it)
         full: _touchFull,
         press: pressKey,
         // Tap: video only / back to the remote (or "stay awake" on the sleep card). Swipe up/down: channel, left/right: volume.
@@ -1093,6 +1085,7 @@ class _TvScreenState extends State<TvScreen> {
           press: pressKey,
           setVolume: _setVolume,
           onPower: _powerTap,
+          powerArmed: _powerIsArmed,
           onFullscreen: () => setState(() => _touchFull = true),
         ),
         panel: panels.isEmpty ? null : Stack(fit: StackFit.expand, children: panels),

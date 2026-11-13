@@ -45,11 +45,19 @@ void main() {
   final shotKey = GlobalKey();
 
   setUpAll(() async {
-    for (final f in [r'C:\Windows\Fonts\consola.ttf', r'C:\Windows\Fonts\consolab.ttf']) {
-      if (File(f).existsSync()) {
-        final loader = FontLoader('Consolas')..addFont(Future.value(ByteData.sublistView(File(f).readAsBytesSync())));
-        await loader.load();
+    // Real fonts when this PC has them, so the PNGs show text and icons instead of test boxes (Android draws
+    // the keys in Roboto). Without them the tests still run.
+    final fonts = Platform.environment['FLUTTER_ROOT'] ?? r'C:\srclutter';
+    for (final (family, files) in [
+      ('Consolas', [r'C:\Windows\Fonts\consola.ttf', r'C:\Windows\Fonts\consolab.ttf']),
+      ('Roboto', ['$fonts/bin/cache/artifacts/material_fonts/roboto-regular.ttf', '$fonts/bin/cache/artifacts/material_fonts/roboto-medium.ttf', '$fonts/bin/cache/artifacts/material_fonts/roboto-bold.ttf']),
+      ('MaterialIcons', ['$fonts/bin/cache/artifacts/material_fonts/materialicons-regular.otf']),
+    ]) {
+      final loader = FontLoader(family);
+      for (final f in files) {
+        if (File(f).existsSync()) loader.addFont(Future.value(ByteData.sublistView(File(f).readAsBytesSync())));
       }
+      await loader.load();
     }
   });
 
@@ -74,7 +82,7 @@ void main() {
     expect(r.width, 260);
     expect(v.right, lessThanOrEqualTo(r.left + 0.01));
     expect(v.width / v.height, closeTo(16 / 9, 0.001));
-    // Wide tablet with a 4:3 picture: the video is full height and the remote gets what is left.
+    // Wide tablet: the 4:3 video is full height and the remote gets what is left.
     (v, r) = touchSplit(const Size(1280, 752), 4 / 3);
     expect(v.height, 752);
     expect(r!.width, closeTo(1280 - 752 * 4 / 3, 0.01));
@@ -145,7 +153,7 @@ void main() {
 
   for (final MapEntry(key: name, value: size) in boundaryShots.entries) {
     testWidgets('layout $name: video and remote side by side, no overflow', (t) async {
-      await pumpLayout(t, size, aspect: name.startsWith('phone') ? 16 / 9 : 4 / 3);
+      await pumpLayout(t, size);
       final video = t.getRect(find.byKey(TouchLayout.videoKey));
       final remote = t.getRect(find.byKey(TouchLayout.remoteKey));
       if (size.height > size.width) {
@@ -156,8 +164,11 @@ void main() {
         expect(remote.left, greaterThanOrEqualTo(video.right - 0.01));
         expect(remote.right, size.width);
       }
-      // The remote's buttons stay finger-sized (>= 40 px) at every size.
-      expect(t.getSize(btn('GUIDE')).height, greaterThanOrEqualTo(40));
+      // The video box is always 4:3; the remote fills the rest: keys reach its bottom, no dead band.
+      expect(video.width / video.height, closeTo(4 / 3, 0.001));
+      expect(remote.bottom - t.getRect(btn('FULL')).bottom, lessThan(40));
+      // Keys stay finger-sized: >= 40 px tall in portrait, >= 30 px on a short landscape phone.
+      expect(t.getSize(btn('GUIDE')).height, greaterThanOrEqualTo(size.height > size.width ? 40 : 30));
       expect(t.takeException(), isNull);
       await shot(t, name);
     });
