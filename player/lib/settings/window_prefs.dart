@@ -124,20 +124,28 @@ class WindowPrefs with WindowListener {
       final b = await windowManager.getBounds();
       final t = snap4x3(b.size, client);
       if ((t.height - b.height).abs() > 1) await windowManager.setSize(t);
-      await windowManager.setAspectRatio(t.width / t.height);
     } on Object catch (e) {
       log('4:3 snap failed: $e');
     }
   }
 
-  @override
-  void onWindowResized() {
-    unawaited(snapToFourThree().then((_) => _changed()));
+  Timer? _snapTimer;
+
+  /// Snaps shortly AFTER the resize settles (a live drag or the exit from fullscreen sends a burst of events).
+  void _snapSoon() {
+    _snapTimer?.cancel();
+    _snapTimer = Timer(const Duration(milliseconds: 700), () => unawaited(snapToFourThree().then((_) => _changed())));
   }
+
+  @override
+  void onWindowResized() => _snapSoon();
   @override
   void onWindowMoved() => _changed();
   @override
   void onWindowEnterFullScreen() => _changed();
   @override
-  void onWindowLeaveFullScreen() => _changed();
+  void onWindowLeaveFullScreen() {
+    _changed();
+    _snapSoon();
+  }
 }
