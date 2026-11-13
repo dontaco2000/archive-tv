@@ -2154,6 +2154,159 @@
           "ignoreYear": true,
           "maxEntriesPerItem": 24,
           "tag": "diversity"
+        },
+        {
+          "query": "(title:(\"howdy doody\")) AND mediatype:movies AND -title:(chalkzone OR \"40 year\" OR \"40-year\" OR celebration OR clip) AND -identifier:(t-h-d-s-c-88 OR chalk*) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy) AND -language:(spa OR por OR fre OR ger OR ita OR rus OR jpn OR chi OR kor)",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1,
+          "tag": "vintage_kids",
+          "label": "Howdy Doody"
+        },
+        {
+          "identifiers": [
+            "WMAR_BOZO_1214_001_DIG",
+            "WMAR_BOZO_1214_002_DIG",
+            "WMAR_BOZO_1214_003_DIG",
+            "WMAR_BOZO_1214_004_DIG",
+            "WMAR_BOZO_1214_005_DIG",
+            "WMAR_BOZO_1214_006_DIG"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1,
+          "tag": "vintage_kids",
+          "label": "The Bozo Show (WMAR 1966)"
+        },
+        {
+          "identifiers": [
+            "bozo-the-worlds-most-famous-clown"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 30,
+          "tag": "vintage_kids",
+          "label": "Bozo the World's Most Famous Clown (cartoons)"
+        },
+        {
+          "identifiers": [
+            "kukla-fran-and-ollie-tv-series-1947-through-1957-mp4"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 14,
+          "tag": "vintage_kids",
+          "label": "Kukla, Fran and Ollie"
+        },
+        {
+          "identifiers": [
+            "Pinky_Lee_Show",
+            "Pinky_Lee_Show2",
+            "ThePinkyLeeShow",
+            "the-pinky-lee-show-unknown-airdate-3",
+            "the-pinky-lee-show-unknown-airdate-upgrade",
+            "the-pinky-lee-show-unknown-air-date"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1,
+          "tag": "vintage_kids",
+          "label": "The Pinky Lee Show"
+        },
+        {
+          "identifiers": [
+            "dingdongschool",
+            "DingDongSchoolMisc2"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1,
+          "tag": "vintage_kids",
+          "label": "Ding Dong School"
+        },
+        {
+          "identifiers": [
+            "WinkyDinkAndYou1",
+            "winky-dink-and-you-misc-episode-upgrade"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1,
+          "tag": "vintage_kids",
+          "label": "Winky Dink and You"
+        },
+        {
+          "identifiers": [
+            "TimeForBeany1953",
+            "TimeForBeany1955Puppets_201404",
+            "a-bob-clampett-cartoooooooooooooooon"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 10,
+          "tag": "vintage_kids",
+          "label": "Time for Beany / Beany and Cecil"
+        },
+        {
+          "identifiers": [
+            "Tom_Terrific"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 18,
+          "tag": "vintage_kids",
+          "label": "Tom Terrific"
+        },
+        {
+          "identifiers": [
+            "Super-Circus_1956",
+            "Circus_3",
+            "super-circus-misc-episode-6"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1,
+          "tag": "vintage_kids",
+          "label": "Super Circus"
+        },
+        {
+          "identifiers": [
+            "RootieKazootie"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1,
+          "tag": "vintage_kids",
+          "label": "Rootie Kazootie"
+        },
+        {
+          "identifiers": [
+            "Candy1955",
+            "PaulWinchellChristmas"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1,
+          "tag": "vintage_kids",
+          "label": "The Paul Winchell Show"
+        },
+        {
+          "identifiers": [
+            "magic1952clown",
+            "Magic_Clown_1951"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1,
+          "tag": "vintage_kids",
+          "label": "The Magic Clown"
+        },
+        {
+          "identifiers": [
+            "land-of-frooze-01",
+            "land-of-frooze-02",
+            "land-of-frooze-03"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1,
+          "tag": "vintage_kids",
+          "label": "The Land of Frooze"
+        },
+        {
+          "identifiers": [
+            "senseandnonsense1954"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1,
+          "tag": "vintage_kids",
+          "label": "Sense and Nonsense"
         }
       ]
     },
