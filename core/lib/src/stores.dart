@@ -133,6 +133,14 @@ class SnapshotStore {
       snap = _read(f);
       // A saved day is a whole shuffled pool: share the pool's Entry objects instead of keeping a second
       // copy of every entry per day (49 channels x 7 days of copies ran a 1 GB Fire Stick out of memory).
+      // A saved day whose shuffle hardly overlaps the pool belongs to another channel (a renumbered or removed
+      // channel's day file under this number, e.g. old Jingle commercials on Rerun): make the day again.
+      if (snap != null && pool.isNotEmpty && snap.$1.isNotEmpty) {
+        final items = {for (final e in pool) e.itemId};
+        // ponytail: < 10% item overlap = foreign; a channel whose own sources changed (e.g. Chuckles after the
+        // ROFL split, 16%) keeps today's day as designed.
+        if (snap.$1.where((e) => items.contains(e.itemId)).length * 10 < snap.$1.length) snap = null;
+      }
       if (snap != null) {
         final byId = {for (final e in pool) e.id: e};
         Entry same(Entry e) => byId[e.id] ?? e;
