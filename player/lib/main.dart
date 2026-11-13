@@ -97,6 +97,15 @@ Future<void> _main(List<String> args) async {
 
   await initWebView(windows: Platform.isWindows, dataDir: p.join(dataDir.path, 'webview2'), log: log);
 
+  // Channels were renumbered by theme (layout 2): move this folder's pools, saved days, favorites and locks along
+  // before anything reads them, so no channel ever loads another channel's old pool.
+  try {
+    final moved = migrateLayout(dataDir, await rootBundle.loadString('assets/renumber_map.json'));
+    if (moved != null) log(moved);
+  } on Object catch (e) {
+    log('channel layout migration: $e');
+  }
+
   final store = SettingsStore(File(p.join(dataDir.path, 'settings.json')));
   final settings = store.load();
   // archive_tv_settings.txt: easy settings + the one-shot parental reset; the save writes it back (reset=false, defaults on first run).

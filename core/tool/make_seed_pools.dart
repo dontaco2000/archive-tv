@@ -44,6 +44,7 @@ Future<void> main(List<String> argv) async {
     if (c.serials.isNotEmpty) eps = await buildSerialEpisodes(c, api, log: (m) => stderr.writeln('  $m'));
     lines.add(jsonEncode({
       'n': c.number,
+      'name': c.name, // _build\renumber\renumber.py maps seed lines by name
       'builtAt': builtAt,
       'entries': [for (final e in trimmed) compactEntry(e)],
       'serials': eps == null

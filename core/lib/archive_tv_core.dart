@@ -12,6 +12,7 @@ export 'src/probe.dart';
 export 'src/programme_info.dart';
 export 'src/query_builder.dart';
 export 'src/rated.dart';
+export 'src/renumber.dart';
 export 'src/scheduler.dart';
 export 'src/seed.dart';
 export 'src/seeded_random.dart';
