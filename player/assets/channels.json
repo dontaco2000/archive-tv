@@ -3552,6 +3552,23 @@
           "ignoreYear": true,
           "maxEntries": 16,
           "maxEntriesPerItem": 1
+        },
+        {
+          "identifiers": [
+            "the-terminator-1984-blu-ray-high-fzmovies.net-9c-39857d-9800e-712c-2047faad-157ecc-1",
+            "mad.-max.-1979.1080p.-blu-ray.x-265-rarbg",
+            "the-road-warrior-1982",
+            "robocop-1987_202311",
+            "they-live-1989-vhs",
+            "win-20220219-16-06-58-pro",
+            "escape-from-new-york-1981-john-carpenter-1080p",
+            "hardware-1990-pal-vhs",
+            "total.-recall.-mind.-bending.-edition.-1990.720p.-blu-ray.x-264.-yify_202408"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 4,
+          "rated": "R",
+          "tag": "adult_a"
         }
       ]
     },
@@ -3997,6 +4014,20 @@
           "ignoreYear": true,
           "maxEntriesPerItem": 14,
           "tag": "diversity"
+        },
+        {
+          "identifiers": [
+            "Fernwood2night-completeseries",
+            "forever-fernwood-78-03-31",
+            "1976-mary-hartman-e-99-1982-kbhk-san-francisco-720p",
+            "1976-mary-hartman-e-102-1982-kbhk-san-francisco-720p",
+            "1976-mary-hartman-e-112-1982-kbhk-san-francisco-720p",
+            "mary-hartman-mary-hartman-the-best-of-sid-haig"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 65,
+          "rated": "R",
+          "tag": "adult_a"
         }
       ],
       "timeBlocks": [
@@ -4305,6 +4336,20 @@
           "ignoreYear": true,
           "maxEntriesPerItem": 29,
           "tag": "diversity"
+        },
+        {
+          "identifiers": [
+            "TheLarrySandersShow",
+            "peep-show-series1",
+            "peep-show-series2",
+            "peep-show-series3",
+            "peep-show-series4",
+            "bottom-the-complete-series"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 45,
+          "rated": "R",
+          "tag": "adult_a"
         }
       ],
       "timeBlocks": [
@@ -4477,6 +4522,29 @@
           "ignoreYear": true,
           "maxEntriesPerItem": 6,
           "tag": "diversity"
+        },
+        {
+          "identifiers": [
+            "comedy-central-roast-of-denis-leary-uncensored",
+            "comedy-central-roast-of-jeff-foxworthy",
+            "comedy-central-roast-of-Pamela-Anderson",
+            "comedy-central-roast-of-william-shatner",
+            "comedy-central-roast-of-flavor-flav",
+            "comedy-central-roast-of-larry-the-cable-guy",
+            "comedy-central-roast-of-bob-saget-2008-ntsc-ac-3-remux",
+            "comedy-central-roast-of-joan-rivers-uncensored",
+            "comedy-central-roasts-s-01-e-09-comedy-central-roast-of-david-hasselhoff-extended-and-uncensored",
+            "comedy-central-roast-of-charlie-sheen",
+            "comedy-central-roasts-s-01-e-12-comedy-central-roast-of-roseanne-barr",
+            "Comedy_Central_Presents_The_NY_Friars_Club_Roast_of_Chevy_Chase",
+            "Comedy_Central_NY_Friars_Roast_of_Drew_Carey_J59666",
+            "The_NY_Friars_Club_Roast_of_Rob_Reiner_2000-10-10",
+            "the-n.-y.-friars-club-roast-of-jerry-stiller-october-27th-1999-woc"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 3,
+          "rated": "R",
+          "tag": "adult_a"
         }
       ]
     },
@@ -4557,6 +4625,18 @@
           "ignoreYear": true,
           "maxEntries": 50,
           "maxEntriesPerItem": 5
+        },
+        {
+          "identifiers": [
+            "TheChrisRockShowS03",
+            "TheChrisRockShowS04",
+            "TheChrisRockShowS05",
+            "the.-tom.-green.-show.-s-03-e-04.-the.-monica.-lewinski.-special"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 40,
+          "rated": "R",
+          "tag": "adult_a"
         }
       ]
     },
@@ -4602,6 +4682,20 @@
         },
         {
           "query": "(title:(\"comedy central presents\" OR \"evening at the improv\" OR \"comic strip live\" OR \"def comedy jam\" OR \"comedy club\" OR \"comedy special\" OR \"stand up special\" OR \"standup special\" OR \"stand-up special\" OR \"george carlin\" OR \"richard pryor\" OR \"eddie murphy\" OR \"robin williams\" OR \"brian regan\" OR \"jeff foxworthy\" OR \"sam kinison\" OR \"bill hicks\" OR \"steve martin\" OR \"rodney dangerfield\") AND -collection:tvnews AND -title:(newscast OR \"jeff foxworthy show\" OR quran OR \"dr. sex\" OR workaholics OR roast)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR spanish OR jpn OR japanese OR chi OR chinese OR zho OR pol OR polish OR fre OR french OR fra OR ger OR german OR deu OR ita OR italian OR por OR portuguese OR rus OR russian OR kor OR korean OR hin OR hindi OR ara OR arabic OR tur OR vie OR ind OR tha OR hmn) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -title:(thomas OR \"music video\" OR whatzupwitu OR \"livin la vida\" OR bratz OR \"exposed to porn\" OR \"full film\" OR \"speaking french\" OR \"spring break\" OR promo OR \"jamel comedy\") AND -identifier:(\"esd-explained-demonstrated-history-of-the-pink-polyethylene-\" OR \"the-distinguished-gentleman-full-film-eddie-murphy-1992\" OR \"harbin-hot-springs-reading-071603\" OR \"avseq-10_202111\") AND -title:(trailer OR commercials OR \"theme song\" OR flipnote OR rapido) AND -identifier:(\"some-prefer-cake\")"
+        },
+        {
+          "identifiers": [
+            "george-carlin-collection-re-upload",
+            "pryor_202009",
+            "andrew-dice-clay-no-apologies",
+            "bill-hicks-relentless-live",
+            "9884200012",
+            "dave-chappelle-killing-them-softly-vhs"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 12,
+          "rated": "R",
+          "tag": "adult_a"
         }
       ]
     },
@@ -5158,6 +5252,16 @@
           "ignoreYear": true,
           "maxEntriesPerItem": 12,
           "maxEntries": 60
+        },
+        {
+          "identifiers": [
+            "ElimiDate_Various_Episodes",
+            "capture-a-5474"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 40,
+          "rated": "R",
+          "tag": "adult_a"
         }
       ]
     },
@@ -5914,6 +6018,16 @@
           ],
           "ignoreYear": true,
           "maxEntriesPerItem": 30
+        },
+        {
+          "identifiers": [
+            "season-2-episode-8-drive-with-a-dead-girl",
+            "twin-peaks-fwwm-hd"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 40,
+          "rated": "R",
+          "tag": "adult_a"
         }
       ]
     },
@@ -7009,6 +7123,17 @@
           "maxEntriesPerItem": 8,
           "tag": "diversity",
           "rated": "R"
+        },
+        {
+          "identifiers": [
+            "american.-gothic.-s-01-e-06.-meet.the.-beetles.-480p.-web-dl.-aac-2.0.-h.-264-ma-g",
+            "walking-tall-1973",
+            "final-chapter-walking-tall"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 10,
+          "rated": "R",
+          "tag": "adult_a"
         }
       ]
     },
