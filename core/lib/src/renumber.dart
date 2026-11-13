@@ -29,20 +29,65 @@ String? migrateLayout(Directory dataDir, String mapJson) {
   dataDir.createSync(recursive: true);
   try {
     return _migrate(dataDir, layout, map, f, version);
-  } on FileSystemException catch (e) {
-    // ponytail: a locked/unwritable file mid-move. Pools and days are caches: drop them all (they rebuild,
-    // Android re-seeds) rather than risk another channel's pool under a number; settings may keep old numbers.
-    for (final sub in ['pools', 'days']) {
-      final d = Directory('${dataDir.path}${Platform.pathSeparator}$sub');
-      if (d.existsSync()) d.deleteSync(recursive: true);
+  } on Object catch (e) {
+    // ponytail: any failure mid-move (a locked file, malformed JSON...). Pools and days are caches: drop them all
+    // (they rebuild, Android re-seeds) rather than risk another channel's pool under a number. Settings must still
+    // follow the map (parental locks!), so finish that side; if it can't, fail closed (see _failClosed).
+    var note = '';
+    try {
+      for (final sub in ['pools', 'days']) {
+        final d = Directory('${dataDir.path}${Platform.pathSeparator}$sub');
+        if (d.existsSync()) d.deleteSync(recursive: true);
+      }
+      final pending = f('layout_version.pending');
+      if (!pending.existsSync()) {
+        // Phase 1 never finished: the originals still have the old numbers; drop half-written copies and redo.
+        for (final x in dataDir.listSync().whereType<File>().where((x) => x.path.endsWith('.renum-tmp'))) {
+          x.deleteSync();
+        }
+        _rewriteJson(f, map);
+      }
+      for (final name in _jsonFiles) {
+        final tmp = f('$name.renum-tmp');
+        if (tmp.existsSync()) tmp.renameSync(f(name).path);
+      }
+    } on Object catch (e2) {
+      note = '; settings could not follow the map ($e2)${_failClosed(f, map)}';
     }
-    for (final file in dataDir.listSync().whereType<File>().where((x) => x.path.endsWith('.renum-tmp'))) {
-      file.deleteSync();
+    for (final x in dataDir.listSync().whereType<File>().where((x) => x.path.endsWith('.renum-tmp'))) {
+      try {
+        x.deleteSync();
+      } on Object {}
     }
-    version.writeAsStringSync('$layout', flush: true);
+    _writeVersion(version, layout);
     final pending = f('layout_version.pending');
     if (pending.existsSync()) pending.deleteSync();
-    return 'channel layout $layout: migration failed ($e); pools and saved days cleared, they rebuild';
+    return 'channel layout $layout: migration failed ($e); pools and saved days cleared, they rebuild$note';
+  }
+}
+
+/// Atomic: a power cut must not leave an empty version file (that reads as "not migrated" and remaps twice).
+void _writeVersion(File version, int layout) {
+  final tmp = File('${version.path}.tmp')..writeAsStringSync('$layout', flush: true);
+  tmp.renameSync(version.path);
+}
+
+const _jsonFiles = ['settings.json', 'wrong_items.json', 'wrong_channel.jsonl'];
+
+/// Last resort when settings can't be remapped: keep the old locks AND lock every new number, so no channel the
+/// parent locked can end up unlocked. Returns a log suffix.
+String _failClosed(File Function(String, [String?]) f, Map<int, int> map) {
+  try {
+    final file = f('settings.json');
+    final s = jsonDecode(file.readAsStringSync());
+    if (s is Map<String, dynamic> && s['parental'] is Map && (s['parental']['locked'] as List?)?.isNotEmpty == true) {
+      s['parental']['locked'] = {...(s['parental']['locked'] as List), ...map.values}.toList()..sort();
+      file.writeAsStringSync(jsonEncode(s), flush: true);
+      return '; parental locks widened to every channel';
+    }
+    return '';
+  } on Object catch (e) {
+    return '; parental locks NOT updated ($e)';
   }
 }
 
@@ -72,54 +117,7 @@ String _migrate(Directory dataDir, int layout, Map<int, int> map, File Function(
       }
     }
 
-    int? mapN(Object? n) => n is int ? map[n] : null;
-    List<int> mapList(Object? l) => [for (final n in (l as List? ?? const [])) if (mapN(n) case final m?) m]..sort();
-    void rewrite(File file, String Function(String text) change) {
-      if (!file.existsSync()) return;
-      final String out;
-      try {
-        out = change(file.readAsStringSync());
-      } on FormatException {
-        return; // corrupt: the app treats it as empty anyway
-      }
-      File('${file.path}.renum-tmp').writeAsStringSync(out, flush: true);
-    }
-
-    rewrite(f('settings.json'), (t) {
-      final s = jsonDecode(t) as Map<String, dynamic>;
-      if (s['favorites'] is List) s['favorites'] = mapList(s['favorites']);
-      if (s.containsKey('lastChannel')) s['lastChannel'] = mapN(s['lastChannel']);
-      if (s['parental'] case final Map<String, dynamic> p when p['locked'] is List) p['locked'] = mapList(p['locked']);
-      return jsonEncode(s);
-    });
-    rewrite(f('wrong_items.json'), (t) {
-      final w = jsonDecode(t) as Map<String, dynamic>;
-      return jsonEncode({
-        for (final e in w.entries)
-          if (mapN(int.tryParse(e.key)) case final m?) '$m': e.value,
-      });
-    });
-    rewrite(f('wrong_channel.jsonl'), (t) {
-      final lines = [
-        for (final line in const LineSplitter().convert(t))
-          if (line.trim().isNotEmpty)
-            () {
-              try {
-                final r = jsonDecode(line) as Map<String, dynamic>;
-                if (mapN(r['channel']) case final m?) r['channel'] = m;
-                return jsonEncode(r);
-              } on Object {
-                return line;
-              }
-            }(),
-      ];
-      return lines.isEmpty ? '' : '${lines.join('\n')}\n';
-    });
-    // The folder's channels.json has the old numbers: set aside, re-seeded from the bundle at startup.
-    final config = f('channels.json');
-    if (config.existsSync()) config.renameSync(f('channels.json.pre-renumber').path);
-    final bundled = f('channels.bundled.json');
-    if (bundled.existsSync()) bundled.deleteSync();
+    _rewriteJson(f, map);
     pending.writeAsStringSync('$layout', flush: true);
   }
 
@@ -130,7 +128,61 @@ String _migrate(Directory dataDir, int layout, Map<int, int> map, File Function(
       if (file.path.endsWith('.renum-tmp')) file.renameSync(file.path.substring(0, file.path.length - '.renum-tmp'.length));
     }
   }
-  version.writeAsStringSync('$layout', flush: true);
+  _writeVersion(version, layout);
   pending.deleteSync();
   return 'channel layout $layout: $moved pool/day files renumbered, $dropped of removed channels deleted';
+}
+
+/// Writes number-remapped copies of settings.json, wrong_items.json, wrong_channel.jsonl as `.renum-tmp` beside the
+/// originals, and sets the folder's channels.json aside. A file that isn't the expected JSON shape is left alone
+/// (the app treats it as empty anyway).
+void _rewriteJson(File Function(String, [String?]) f, Map<int, int> map) {
+  int? mapN(Object? n) => n is int ? map[n] : null;
+  List<int> mapList(Object? l) => [for (final n in (l as List? ?? const [])) if (mapN(n) case final m?) m]..sort();
+  void rewrite(File file, String Function(String text) change) {
+    if (!file.existsSync()) return;
+    final String out;
+    try {
+      out = change(file.readAsStringSync());
+    } on Object {
+      return; // corrupt: the app treats it as empty anyway
+    }
+    File('${file.path}.renum-tmp').writeAsStringSync(out, flush: true);
+  }
+
+  rewrite(f('settings.json'), (t) {
+    final s = jsonDecode(t) as Map<String, dynamic>;
+    if (s['favorites'] is List) s['favorites'] = mapList(s['favorites']);
+    if (s.containsKey('lastChannel')) s['lastChannel'] = mapN(s['lastChannel']);
+    if (s['parental'] case final Map<String, dynamic> p when p['locked'] is List) p['locked'] = mapList(p['locked']);
+    return jsonEncode(s);
+  });
+  rewrite(f('wrong_items.json'), (t) {
+    final w = jsonDecode(t) as Map<String, dynamic>;
+    return jsonEncode({
+      for (final e in w.entries)
+        if (mapN(int.tryParse(e.key)) case final m?) '$m': e.value,
+    });
+  });
+  rewrite(f('wrong_channel.jsonl'), (t) {
+    final lines = [
+      for (final line in const LineSplitter().convert(t))
+        if (line.trim().isNotEmpty)
+          () {
+            try {
+              final r = jsonDecode(line) as Map<String, dynamic>;
+              if (mapN(r['channel']) case final m?) r['channel'] = m;
+              return jsonEncode(r);
+            } on Object {
+              return line;
+            }
+          }(),
+    ];
+    return lines.isEmpty ? '' : '${lines.join('\n')}\n';
+  });
+  // The folder's channels.json has the old numbers: set aside, re-seeded from the bundle at startup.
+  final config = f('channels.json');
+  if (config.existsSync()) config.renameSync(f('channels.json.pre-renumber').path);
+  final bundled = f('channels.bundled.json');
+  if (bundled.existsSync()) bundled.deleteSync();
 }

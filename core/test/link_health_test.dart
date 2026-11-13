@@ -168,6 +168,17 @@ void main() {
     expect(dead.length, 1);
   });
 
+  test('a first strike older than 24 h expires: not due forever, and a later miss starts over', () async {
+    final h = LinkHealth.load(dir);
+    await checker(fake({'1': 404}).client, h).checkChannel(1, 'A', pool, now: () => t0);
+    expect(h.hasDue(t0.add(const Duration(hours: 2))), isTrue);
+    expect(h.hasDue(t0.add(const Duration(hours: 25))), isFalse);
+    final later = t0.add(const Duration(days: 3));
+    final dead = await checker(fake({'1': 404}).client, h).checkChannel(1, 'A', [pool[0]], now: () => later);
+    expect(dead, isEmpty);
+    expect(h.strikes[pool[0].id]!['first'], later.toIso8601String());
+  });
+
   group('dead rechecks', () {
     final codes = <String, int>{'1': 404};
     final asked = <String>[];

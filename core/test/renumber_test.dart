@@ -161,5 +161,36 @@ void main() {
         expect(config.channel(j['n'] as int)?.name, j['name']);
       }
     });
+  
+  test('non-object JSON in settings/wrong_items does not abort the move or repeat it', () {
+    f('settings.json').writeAsStringSync('null');
+    f('wrong_items.json').writeAsStringSync('[]');
+    f('pools/pool-2.json').writeAsStringSync('old 2');
+    expect(migrateLayout(dir, map), contains('1 pool/day files renumbered'));
+    expect(read('pools/pool-3.json'), 'old 2');
+    expect(read('layout_version'), '2');
+    f('pools/pool-3.json').writeAsStringSync('new 3');
+    expect(migrateLayout(dir, map), isNull);
+    expect(read('pools/pool-3.json'), 'new 3');
   });
+
+  test('a locked-file failure still moves settings to the new numbers and writes layout_version atomically', () {
+    f('settings.json').writeAsStringSync(jsonEncode({'favorites': [2], 'lastChannel': 2, 'parental': {'locked': [2], 'lockOn': true}}));
+    f('pools/pool-2.json').writeAsStringSync('old 2');
+    f('pools/pool-9.json').writeAsStringSync('old 9');
+    // a non-empty directory where pool-2 must be renamed to makes the rename throw FileSystemException
+    f('pools/pool-3.json.renum-tmp/x').writeAsStringSync('block');
+    final log = migrateLayout(dir, map)!;
+    expect(log, contains('migration failed'));
+    final s = jsonDecode(read('settings.json')) as Map<String, dynamic>;
+    expect(s['favorites'], [3]);
+    expect(s['lastChannel'], 3);
+    expect(s['parental'], {'locked': [3], 'lockOn': true});
+    expect(Directory('${dir.path}${sep}pools').existsSync(), isFalse);
+    expect(read('layout_version'), '2');
+    expect(File('${dir.path}${sep}layout_version.tmp').existsSync(), isFalse);
+    expect(dir.listSync().whereType<File>().where((x) => x.path.endsWith('.renum-tmp')), isEmpty);
+    expect(migrateLayout(dir, map), isNull);
+  });
+});
 }

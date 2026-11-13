@@ -105,6 +105,12 @@ class WindowPrefs with WindowListener {
   @override
   Future<void> onWindowClose() async {
     try {
+      _snapTimer?.cancel();
+      windowManager.removeListener(this);
+      if (_debounce?.isActive ?? false) {
+        _debounce!.cancel();
+        await _save(); // a move/resize just before closing still counts
+      }
       onClose?.call();
     } on Object catch (e) {
       log('on close: $e');

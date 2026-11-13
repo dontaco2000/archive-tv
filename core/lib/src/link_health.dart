@@ -110,9 +110,20 @@ class LinkHealth {
   /// Dead files still being rechecked (the menu count).
   int get activeDead => dead.ids.where((id) => !isGone(id)).length;
 
-  /// Strikes whose first miss is at least [gap] old: due for their second check.
-  bool hasDue(DateTime now, {Duration gap = const Duration(hours: 1)}) =>
-      strikes.values.any((s) => now.difference(DateTime.parse(s['first'] as String)) >= gap);
+  /// Strikes whose first miss is at least [gap] old (and not past [maxAge]): due for their second check.
+  bool hasDue(DateTime now, {Duration gap = const Duration(hours: 1), Duration maxAge = const Duration(hours: 24)}) =>
+      strikes.values.any((s) {
+        final age = now.difference(DateTime.parse(s['first'] as String));
+        return age >= gap && age < maxAge;
+      });
+
+  /// Drops first strikes older than [maxAge]: one whose file left the checked window would never be rechecked,
+  /// and a miss days later is not "two independent misses". Returns true if any went.
+  bool expire(DateTime now, {Duration maxAge = const Duration(hours: 24)}) {
+    final n = strikes.length;
+    strikes.removeWhere((_, s) => now.difference(DateTime.parse(s['first'] as String)) >= maxAge);
+    return strikes.length != n;
+  }
 
   /// Dead files (not gone) last checked at least [every] ago (or never), as entries to check.
   List<Entry> dueRechecks(DateTime now, {Duration every = const Duration(days: 6)}) {
@@ -210,6 +221,7 @@ class DeadLinkChecker {
   /// to [LinkHealth.dead] and the log). [now] is read per check (passes can take a while).
   Future<List<Entry>> checkChannel(int channel, String name, List<Entry> entries, {DateTime Function()? now}) async {
     final clock = now ?? DateTime.now;
+    health.expire(clock());
     final todo = [
       for (final e in entries)
         if (!health.dead.ids.contains(e.id) && !(clock().difference(health.okAt[e.id] ?? DateTime(0)) < okFor)) e
