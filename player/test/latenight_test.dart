@@ -123,8 +123,8 @@ void main() {
 
       final all = night();
       expect(all.where((l) => l.startsWith(ratedMarker)), isNotEmpty);
-      expect(all.where((l) => l.startsWith(ratedMarker)).every((l) => l.contains('film')), isTrue);
-      expect(all.where((l) => l.contains('film')).every((l) => l.startsWith(ratedMarker)), isTrue);
+      expect(all.where((l) => l.startsWith(ratedMarker)).every((l) => l.toLowerCase().contains('film')), isTrue);
+      expect(all.where((l) => l.toLowerCase().contains('film')).every((l) => l.startsWith(ratedMarker)), isTrue);
       engine.adultMode = false;
       expect(night().where((l) => l.startsWith(ratedMarker)), isEmpty);
     });

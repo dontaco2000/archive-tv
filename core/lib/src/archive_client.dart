@@ -3,6 +3,8 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
+import 'programme_info.dart';
+
 /// One search hit.
 class ItemSummary {
   final String identifier;
@@ -137,6 +139,30 @@ class ArchiveClient implements ArchiveApi {
           ),
       ],
     );
+  }
+
+  /// Title/creator/date/description of up to 50 items in one advancedsearch call (see `idBatches`, which keeps
+  /// the query under Archive's 2,048-character limit). Unknown ids are simply missing from the result.
+  Future<List<ItemInfo>> itemInfos(List<String> ids) async {
+    final uri = Uri.https(host, '/advancedsearch.php', {
+      'q': idQuery(ids),
+      'fl[]': ['identifier', 'title', 'creator', 'date', 'description'],
+      'rows': '${ids.length}',
+      'output': 'json',
+    });
+    final response = (jsonDecode(await _get(uri)) as Map)['response'];
+    if (response is! Map) throw ArchiveException('item info search returned no response');
+    return [
+      for (final d in (response['docs'] as List).cast<Map<String, dynamic>>())
+        ItemInfo(d['identifier'] as String,
+            title: _firstString(d['title']),
+            creator: _firstString(d['creator']),
+            date: _firstString(d['date'])?.split('T').first,
+            description: plainDescription(switch (d['description']) {
+              final List l => l.join(' '),
+              final v => v?.toString(),
+            })),
+    ];
   }
 
   /// GET with a timeout, retrying on 429, 5xx, timeouts and connection errors.

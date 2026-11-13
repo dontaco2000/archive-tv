@@ -12,6 +12,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:window_manager/window_manager.dart';
 
 import 'engine/tv_engine.dart';
+import 'guide/guide_model.dart';
 import 'input/gamepad.dart';
 import 'player/player_controller.dart';
 import 'remote/remote_server.dart';
@@ -171,6 +172,7 @@ Future<void> _main(List<String> args) async {
         home: ErrorScreen(message: 'Cannot read channels.json\n\n${e is ConfigException ? e.message : e}\n\n${configFile.path}')));
     return;
   }
+  itemInfoOf = (id) => engine.items[id]; // programme titles in every guide (guide_model.dart)
   engine.adultMode = settings.parental.adultMode; // parental "Late night adult mode"
   final tv = PlayerController(engine, log: log)..isLocked = ((c) => settings.parental.isLocked(c.number));
   tv.setVolume(settings.muted ? 0 : settings.volume);
@@ -231,6 +233,9 @@ Future<void> _main(List<String> args) async {
     if (tv.channel == null && open != null) unawaited(tv.tune(open));
   }
   final first = engine.tunable;
+  // Programme titles for date/number-only file names (Android: those only; Windows: every item, for descriptions).
+  Future<void> titles() => engine.enrichTitles(all: !Platform.isAndroid);
+  unawaited(titles());
 
   // Midnight: refresh day-old pools, save the new week, probe the new day, stay on the right slot.
   // Checked once a minute (not one long timer) so sleep/hibernate and DST can't make it miss.
@@ -243,6 +248,7 @@ Future<void> _main(List<String> args) async {
     refreshing = true;
     try {
       await engine.dailyRefresh(now, busy: Platform.isAndroid ? busy : null);
+      await titles(); // new pools may have new items
     } finally {
       refreshing = false;
       linksDue = true;

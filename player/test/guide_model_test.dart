@@ -222,4 +222,36 @@ void main() {
     m.moveProgram(1);
     expect(m.selectedSlot!.entry.title, 'After');
   });
+
+  test('programme titles: date-only files show the Archive item title, group by it, and update as info arrives', () {
+    Slot dated(String day, DateTime start, int minutes) => Slot(
+          Entry(id: 'carson/$day.mp4', itemId: 'carson', file: '$day.mp4', title: day, durationSeconds: minutes * 60.0, url: 'u'),
+          start,
+          start.add(Duration(minutes: minutes)),
+        );
+    GuideModel m() => GuideModel(
+          channels: [a],
+          now: now,
+          tunableNumbers: {1},
+          slotsFor: (_) => [
+            dated('1987-03-12', at(10), 60),
+            slot('Plan 9 from Outer Space', at(11), 90),
+            dated('19870313', at(12, 30), 60),
+            dated('1987-03-14', at(13, 30), 60),
+          ],
+        );
+    List<String> labels(GuideModel g) => g.rowsInView(1).single.cells.map((c) => c.label).toList();
+    addTearDown(() => itemInfoOf = null);
+
+    itemInfoOf = null; // nothing looked up yet: the item id and a readable date
+    final g = m();
+    expect(labels(g), ['Carson: Mar 12, 1987', 'Plan 9 from Outer Space', 'Carson Marathon']); // 12:30 + 13:30: one 2-hour block
+    const info = ItemInfo('carson', title: 'The Tonight Show Starring Johnny Carson', description: 'Late night.');
+    itemInfoOf = (id) => id == 'carson' ? info : null;
+    g.refreshTitles();
+    expect(labels(g), ['The Tonight Show Starring Johnny Carson: Mar 12, 1987', 'Plan 9 from Outer Space', 'The Tonight Show Starring Johnny Carson Marathon']);
+    final e = g.rowsInView(1).single.cells.first.slot!.entry;
+    expect(programmeOf(e).description, 'Late night.');
+    expect(e.title, '1987-03-12'); // display only: the entry is unchanged
+  });
 }

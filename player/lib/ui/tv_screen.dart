@@ -92,6 +92,7 @@ class _TvScreenState extends State<TvScreen> {
     tv.addListener(_changed);
     tv.onLocked = _askUnlock;
     tv.engine.poolsChanged.addListener(_poolsChanged);
+    tv.engine.titlesChanged.addListener(_titlesChanged);
     if (!settings.noticeAccepted) mode = TvMode.about; // one-time content notice
     widget.remote
       ?..state = _remoteState
@@ -115,7 +116,7 @@ class _TvScreenState extends State<TvScreen> {
     final c = tv.channel, a = tv.airing, od = tv.onDemand;
     return {
       'channel': c == null ? null : {'number': c.number, 'name': c.name},
-      'title': od != null ? cleanTitle(od.title) : (a == null ? null : cleanTitle(a.slot.entry.title)),
+      'title': od != null ? displayTitle(od) : (a == null ? null : displayTitle(a.slot.entry)),
       'minutesLeft': od == null && a != null ? a.remaining.inMinutes : null,
       'onDemand': od != null,
       'rated': _ratedOnScreen,
@@ -620,6 +621,12 @@ class _TvScreenState extends State<TvScreen> {
     });
   }
 
+  /// Archive item titles arrived: the guide, banner and On Demand re-read programme titles.
+  void _titlesChanged() {
+    if (!mounted) return;
+    setState(() => _guide?.refreshTitles());
+  }
+
   /// A pool finished loading/building: an open guide picks up channels that went on (or off) air.
   void _poolsChanged() {
     final g = _guide, engine = tv.engine;
@@ -806,6 +813,7 @@ class _TvScreenState extends State<TvScreen> {
   void dispose() {
     tv.removeListener(_changed);
     tv.engine.poolsChanged.removeListener(_poolsChanged);
+    tv.engine.titlesChanged.removeListener(_titlesChanged);
     _entryTimer?.cancel();
     _bannerTimer?.cancel();
     _noticeTimer?.cancel();
@@ -1302,10 +1310,10 @@ class InfoBanner extends StatelessWidget {
     final a = airing, ch = channel ?? airing?.channel, place = weatherPlace, od = onDemand;
     if (ch == null || (a == null && place == null && od == null)) return const SizedBox.shrink();
     final lines = od != null
-        ? ['On Demand: ${cleanTitle(od.title)}', '${(od.durationSeconds / 60).round()} min  (OK pause, Left/Right skip, Back: live)']
+        ? ['On Demand: ${displayTitle(od)}', '${(od.durationSeconds / 60).round()} min  (OK pause, Left/Right skip, Back: live)']
         : place != null
-        ? ['Local weather for $place', if (a != null) 'Music: ${cleanTitle(a.slot.entry.title)}']
-        : ['${cleanTitle(a!.slot.entry.title)}  (${_left(a.remaining)})', if (a.next != null) 'Next: ${cleanTitle(a.next!.entry.title)}'];
+        ? ['Local weather for $place', if (a != null) 'Music: ${displayTitle(a.slot.entry)}']
+        : ['${displayTitle(a!.slot.entry)}  (${_left(a.remaining)})', if (a.next != null) 'Next: ${displayTitle(a.next!.entry)}'];
     return Align(
       alignment: Alignment.bottomCenter,
       child: Container(
@@ -1460,7 +1468,7 @@ class NextCard extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            'Next: ${cleanTitle(entry.title)}',
+            'Next: ${displayTitle(entry)}',
             textAlign: TextAlign.center,
             style: const TextStyle(color: Colors.white, fontSize: 28, fontFamily: 'Consolas', fontWeight: FontWeight.bold),
           ),

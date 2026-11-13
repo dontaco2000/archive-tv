@@ -56,10 +56,13 @@ class TvEngine {
   /// Archive metadata fetches in flight during a pool build (lower on 1 GB Android TV sticks).
   final int buildConcurrency;
 
+  /// Archive item titles/dates/descriptions for the guides (item_info.json); see [enrichTitles].
+  final ItemInfoStore items;
+
   final Map<int, List<Entry>> _pool = {};
 
   TvEngine._(this.config, this.api, this.pools, this.snapshots, this.blocklist, this.slow, this.noSubs, this.wrong, this.wrongLog,
-      this.health, this.probeClient, this.log, this.buildConcurrency);
+      this.health, this.probeClient, this.log, this.buildConcurrency, this.items);
 
   /// [configText] is the contents of channels.json, [ratedText] of rated.json (null: no R list, default
   /// window); [dataDir] holds pools, snapshots, blocklist.
@@ -72,9 +75,10 @@ class TvEngine {
     void Function(String)? log,
     int buildConcurrency = 4,
   }) {
+    final archive = api ?? ArchiveClient();
     return TvEngine._(
       parseChannelConfig(configText, ratedText: ratedText),
-      api ?? ArchiveClient(),
+      archive,
       PoolStore(Directory(p.join(dataDir.path, 'pools'))),
       SnapshotStore(Directory(p.join(dataDir.path, 'days'))),
       Blocklist.load(dataDir),
@@ -86,6 +90,8 @@ class TvEngine {
       probeClient,
       log ?? (_) {},
       buildConcurrency,
+      ItemInfoStore(File(p.join(dataDir.path, 'item_info.json')),
+          fetch: archive is ArchiveClient ? archive.itemInfos : null, log: log), // test fakes: offline
     );
   }
 
@@ -429,6 +435,21 @@ class TvEngine {
   void planWeek(Channel channel, DateTime now) {
     snapshots.ensureWeek(channel.number, now, _shufflePool(channel), serials: _blocksFor(channel));
     snapshots.prune(now);
+  }
+
+  /// Bumped as Archive item titles arrive (see [enrichTitles]), so open screens re-read programme titles.
+  final ValueNotifier<int> titlesChanged = ValueNotifier(0);
+
+  /// Looks up, in the background, the Archive item titles of loaded programmes whose file title is only a date,
+  /// number or file name (all items with [all]: descriptions for every programme). Cached for good in
+  /// item_info.json; failures are retried on the next call. Display only: pools and schedules are untouched.
+  Future<void> enrichTitles({bool all = false}) async {
+    try {
+      final n = await items.enrich([for (final l in _pool.values) ...l], all: all, onUpdate: () => titlesChanged.value++);
+      if (n > 0) log('item info: $n items looked up (${items.length} cached)');
+    } on Object catch (e) {
+      log('item info: $e');
+    }
   }
 
   /// The once-a-day job (launch and each local midnight): rebuilds pools older than [maxAge],
