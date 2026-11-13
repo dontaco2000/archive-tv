@@ -21,9 +21,12 @@ String cleanTitle(String raw) {
   t = t.replaceFirst(RegExp(r'\.(mp4|m4v|mkv|avi|mov|mpe?g|ogv|webm)$', caseSensitive: false), '');
   t = t.replaceAll('_', ' ');
   if (!t.trim().contains(' ')) t = t.replaceAll('.', ' ');
-  t = t.replaceFirst(_junk, '');
+  t = t.trim().replaceFirst(_track, '');
+  // the release tail; a release tag in front ("BluRay - An Idiot Abroad") loses just the tag
+  final junk = _junk.firstMatch(t);
+  if (junk != null) t = junk.start == 0 ? t.replaceFirst(RegExp(r'^\S+[\s\-:]*'), '') : t.substring(0, junk.start);
   t = t.replaceAll(RegExp(r'(?<=[A-Za-z]{2})\.(?=\w)'), ' '); // "Block.44", "Mr.Wizard"; not "U.S.A" or "Dr. Who"
-  t = t.trim().replaceFirst(_track, '').replaceFirst(_tailIds, '');
+  t = t.replaceFirst(_tailIds, '');
   t = t.replaceAllMapped(RegExp(r'\bS0*(\d{1,2})\b(?!\s*[-.]?\s*E\d)', caseSensitive: false), (m) => 'Season ${m[1]}');
   t = t.replaceAll(RegExp(r'\s+'), ' ').replaceFirst(RegExp(r'[\s\-.(]+$'), '').trim();
   return t.isEmpty ? raw.trim() : t;

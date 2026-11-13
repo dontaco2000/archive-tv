@@ -153,17 +153,13 @@ String _caps(String s) => s != s.toLowerCase()
         return RegExp(r'^s\d+e\d+$').hasMatch(w) ? w.toUpperCase() : w[0].toUpperCase() + w.substring(1);
       });
 
-/// [label] without the words of [title] in front ("blue planet ii 01 one ocean" minus "Blue Planet II" ->
-/// "01 one ocean"); null if nothing is left; [label] itself if it does not start with [title].
+/// [label] without its leading words that are also in [title] ("blue planet ii 01 one ocean" minus
+/// "Blue Planet II" -> "01 one ocean"); null if nothing is left; [label] itself if its first word is not in [title].
 String? _after(String label, String title) {
   final t = _words(title).toList(), l = _words(label).toList();
-  var i = 0;
-  while (i < t.length && i < l.length && t[i] == l[i]) {
-    i++;
-  }
   if (t.join().contains(l.join())) return null; // "AMERICA1900" vs "America 1900", "lostmovie" vs "The Lost Movie"
-  if (i < t.length) return label;
-  return i == l.length ? null : l.skip(i).join(' ');
+  final i = l.indexWhere((w) => !t.contains(w)); // "clueless season 02" minus "Clueless (1996-99)": "season 02"
+  return switch (i) { -1 => null, 0 => label, _ => l.skip(i).join(' ') };
 }
 
 /// Title, sub-title, description and air date for a programme, for every guide (app guide, info banner,
@@ -175,23 +171,39 @@ String? _after(String label, String title) {
 ProgrammeInfo programmeInfo(Entry e, [ItemInfo? item]) {
   final clean = cleanTitle(e.title);
   final description = plainDescription(item?.description);
-  final fileDate = dateIn(clean);
+  // "20240101 152838": a capture time stamp, not an air date, once the item's own title is known
+  final stamp = item?.title != null && RegExp(r'(?:19|20)\d{6}[ _-]?\d{4,6}(?!\d)').hasMatch(clean);
+  final fileDate = stamp ? null : dateIn(clean);
   final airDate = fileDate ?? dateIn(item?.date);
   if (!needsItemInfo(e)) return ProgrammeInfo(clean, description: description, airDate: airDate);
+  // Archive's own title/creator are written by people: "M*A*S*H Season 3", "Pi" and "1776" count.
+  String? named(String? s) => switch (s == null ? null : cleanTitle(s)) {
+        final t? when _real(t).join().length >= 2 || RegExp(r'^\d{3,4}$').hasMatch(t) => t,
+        _ => null,
+      };
   String? pick(String? s) => s != null && titleIsInformative(cleanTitle(s)) ? cleanTitle(s) : null;
-  final title = pick(item?.title) ??
+  final title = named(item?.title) ??
       (titleIsInformative(clean) ? clean : null) ??
-      pick(item?.creator) ??
+      named(item?.creator) ??
       (_real(clean).join().length < 2 ? pick(_prettyId(cleanTitle(e.itemId))) : null) ?? // not "Pi"
       clean;
   if (title == clean) {
     // nothing better known: a bare date at least reads as one ("01-28-89" -> "Jan 28, 1989")
-    final t = fileDate != null && !titleIsInformative(clean) ? formatDate(fileDate) : _caps(title);
+    final t = fileDate != null && !titleIsInformative(clean)
+        ? formatDate(fileDate)
+        : _caps(clean.contains(' ') ? clean : clean.replaceAll('-', ' ')); // "an-idiot-abroad" -> "An Idiot Abroad"
     return ProgrammeInfo(t, description: description, airDate: airDate);
   }
   final rest = _after(clean, title);
   String? sub() {
-    if (fileDate != null) return formatDate(fileDate);
+    if (stamp) return null;
+    if (fileDate != null) {
+      // "conan 2010 11 16 harrison ford" under "CONAN TBS 2010": "Nov 16, 2010 - Harrison Ford"
+      final t = _words(title).toSet();
+      final extra = rest == null ? '' : _caps(_real(rest).where((w) => !t.contains(w) && dateIn(w) == null).join(' '));
+      final date = dateIn(title) == fileDate ? null : formatDate(fileDate); // the title already has it
+      return [if (date != null) date, if (extra.isNotEmpty) extra].join(' - ').nullIfEmpty;
+    }
     if (rest == null) return null;
     if (RegExp(r'^\d{1,4}$').hasMatch(rest)) return '#${int.parse(rest)}';
     final vts = RegExp(r'^vts \d+ (\d+)$', caseSensitive: false).firstMatch(rest); // DVD title-set file
@@ -203,6 +215,10 @@ ProgrammeInfo programmeInfo(Entry e, [ItemInfo? item]) {
 
   final subTitle = sub();
   return ProgrammeInfo(_caps(title), subTitle: subTitle, description: description, airDate: airDate);
+}
+
+extension on String {
+  String? get nullIfEmpty => isEmpty ? null : this;
 }
 
 /// Splits [ids] into advancedsearch batches of at most [maxIds] whose `identifier:("a" OR "b")` query stays

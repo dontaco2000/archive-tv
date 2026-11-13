@@ -20,6 +20,7 @@ void main() {
       expect(cleanTitle('Cops S1 E5'), 'Cops S1 E5');
       expect(cleanTitle('Mr.Wizard_512kb'), 'Mr Wizard');
       expect(cleanTitle('Show.Name.S01E02.480i.TVRip.AAC2.0'), 'Show Name S01E02');
+      expect(cleanTitle('06. BluRay - An Idiot Abroad Season 1 Episode 3 - Jordan'), 'An Idiot Abroad Season 1 Episode 3 - Jordan');
     });
 
     test('real titles with numbers survive', () {
@@ -76,7 +77,8 @@ void main() {
         expect(i.description, "Johnny's guests: Bob Hope & friends.");
         expect(i.airDate, DateTime(1987, 3, 12));
       }
-      expect(programmeInfo(entry('20240727_20240727_0523'), carson).subTitle, 'Jul 27, 2024');
+      expect(programmeInfo(entry('20240727_20240727_0523'), carson).subTitle, isNull); // a capture stamp, not an air date
+      expect(programmeInfo(entry('20240727_20240727_0523')).label, 'Some Item: Jul 27, 2024'); // no item info: the item id
     });
 
     test('generic labels become the sub-title', () {
@@ -121,6 +123,30 @@ void main() {
       expect(programmeInfo(entry('01-28-89', item: '06-10-89')).label, 'Jan 28, 1989');
       expect(programmeInfo(entry('Episode 12', item: 'x44az75')).label, 'Episode 12');
       expect(programmeInfo(entry('S25E01', item: 'cops-s-28-e-22-1080p-amazon-web-dl')).title, 'Cops S 28 E 22');
+    });
+
+    test('real data shapes (2026-11-12 warm-up)', () {
+      const conan = ItemInfo('c', title: 'CONAN TBS 2010');
+      expect(programmeInfo(entry('conan.2010.11.16.harrison.ford.720p.hdtv.x264-bff'), conan).label,
+          'CONAN TBS 2010: Nov 16, 2010 - Harrison Ford');
+      const clueless = ItemInfo('c', title: 'Clueless (1996-99) TV series');
+      expect(programmeInfo(entry('clueless- season 02 - episode 18 a friend'), clueless).subTitle, 'Season 02 Episode 18 A Friend');
+      const mash = ItemInfo('m', title: 'M*A*S*H Season 3', creator: 'Alan Alda');
+      expect(programmeInfo(entry('5 - O.R.'), mash).label, 'M*A*S*H Season 3: O.R');
+      const film = ItemInfo('f', title: '1776', creator: 'American Broadcasting Company');
+      expect(programmeInfo(entry('1776 20170302reel1'), film).title, '1776');
+      const ql = ItemInfo('q', title: 'Quantum Leap Season 1');
+      expect(programmeInfo(entry('Episode 2'), ql).label, 'Quantum Leap Season 1: Episode 2');
+    });
+
+    test('time stamps, dates already in the title, hyphen slugs', () {
+      const oakley = ItemInfo('o', title: "105 Rosie O'Donnell MON 1999 OCT 18");
+      final r = programmeInfo(entry('20240218_033429'), oakley);
+      expect(r.label, "105 Rosie O'Donnell MON 1999 OCT 18");
+      expect(r.airDate, isNull);
+      const snl = ItemInfo('s', title: 'Saturday Night Live - Richard Pryor - February 6, 1980');
+      expect(programmeInfo(entry('dvd-6658-saturday-night-live-richard-pryor-1980-02-06'), snl).subTitle, isNull);
+      expect(programmeInfo(entry('an-idiot-abroad-season-1-episode-1')).label, 'An Idiot Abroad Season 1 Episode 1');
     });
 
     test('item title that is itself a date falls back to the creator', () {
