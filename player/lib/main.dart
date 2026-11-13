@@ -189,24 +189,30 @@ Future<void> _main(List<String> args) async {
   tv.captionsOn = settings.captionsOn;
   tv.audioDelayFor = (id) => settings.audioDelays[id] ?? 0;
   unawaited(tv.setPicture(settings.picture));
-  // Remote control window (Windows only): a local web page that presses the same keys as the keyboard.
-  RemoteServer? remote;
-  if (Platform.isWindows) {
-    remote = RemoteServer(settings, log: log);
+  // Remote control: a local web page that presses the same keys as the keyboard. Windows: the remote window
+  // (loopback) and, when on, phones on the Wi-Fi. Android TV / Fire TV: the phone remote only, while it is on
+  // and the app is in the foreground. Phones/tablets have the on-screen remote instead. POWER: TvScreen.
+  final RemoteServer? remote = touch ? null : RemoteServer(settings, log: log);
+  if (remote != null) {
     if (remote.ensurePin()) store.save(settings);
-    await remote.start().catchError((Object e) => log('remote: start failed: $e'));
+    await remote.start();
+    if (Platform.isAndroid) {
+      AppLifecycleListener(onStateChange: (s) {
+        if (s == AppLifecycleState.resumed) unawaited(remote.start());
+        if (s == AppLifecycleState.paused) unawaited(remote.stop());
+      });
+    }
   }
-  // The remote's POWER button closes the TV window like its X: onClose below, then the app ends.
-  remote?.power = () => unawaited(windowManager.close());
   windowPrefs?.onClose = () {
     remote?.closeWindowOnExit();
+    unawaited(remote?.stop());
     crash.running(false);
   };
   runApp(MaterialApp(
       debugShowCheckedModeBanner: false,
       home: TvScreen(controller: tv, settings: settings, store: store, windowPrefs: windowPrefs, remote: remote, crash: crash, touch: touch)));
   installGamepad(log: log); // pads act as the keyboard: XInput on Windows, button keys on Android
-  if (args.contains('--remote') && remote != null) {
+  if (args.contains('--remote') && remote != null && remote.windows) {
     // After the TV window has its restored bounds / fullscreen, so the remote lands beside it.
     unawaited(Future<void>.delayed(const Duration(milliseconds: 1500), remote.openWindow));
   }

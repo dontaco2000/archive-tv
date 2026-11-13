@@ -55,7 +55,7 @@ volume_leveling=${s.volumeLeveling}
 # Picture: auto (crop black borders), fill (also fill the screen) or off.
 picture=${s.picture}
 
-# Windows only: let phones on the same Wi-Fi use the remote (true/false; the PIN is shown in the menu).
+# Windows and Fire TV / Android TV: let phones on the same Wi-Fi use the remote (true/false; QR code and PIN: Menu > Remote > Phone remote).
 remote_on_wifi=${_b(s.remoteLan)}
 ''';
 

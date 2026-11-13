@@ -14,14 +14,14 @@ const _panel = Color(0xE6101A5C); // same dark translucent blue as the guide
 const _yellow = Color(0xFFFFEB3B);
 const _cellBg = Color(0xFF1E2C8A);
 
-enum _Item { back, onDemand, favorite, favoritesOnly, volume, mute, leveling, captions, captionSize, picture, startFullscreen, cornerBug, block, wrongChannel, sleep, refresh, weatherMode, weatherLocation, openRemote, remoteLan, remoteInfo, parental, lastError, deadLinks, openLog, openSettings, credits, about, close }
+enum _Item { back, onDemand, favorite, favoritesOnly, volume, mute, leveling, captions, captionSize, picture, startFullscreen, cornerBug, block, wrongChannel, sleep, refresh, weatherMode, weatherLocation, openRemote, phoneRemote, remoteLan, remoteInfo, parental, lastError, deadLinks, openLog, openSettings, credits, about, close }
 
 /// Top-level categories, in menu order, and the items each one opens.
 enum _Cat {
   channels('Channels & Guide', [_Item.onDemand, _Item.favorite, _Item.favoritesOnly, _Item.refresh]),
   pictureSound('Picture & Sound', [_Item.volume, _Item.mute, _Item.leveling, _Item.picture, _Item.captions, _Item.captionSize, _Item.startFullscreen, _Item.cornerBug]),
   weather('Weather', [_Item.weatherMode, _Item.weatherLocation]),
-  remote('Remote', [_Item.openRemote, _Item.remoteLan, _Item.remoteInfo]),
+  remote('Remote', [_Item.openRemote, _Item.phoneRemote, _Item.remoteLan, _Item.remoteInfo]),
   tools('Sleep & Tools', [_Item.sleep, _Item.wrongChannel, _Item.block, _Item.lastError, _Item.deadLinks, _Item.openLog, _Item.openSettings]),
   about('About & Credits', [_Item.about, _Item.credits]);
 
@@ -75,6 +75,9 @@ class MenuOverlay extends StatefulWidget {
   /// Whether the remote window is open (the remote item shows ON/OFF and toggles it).
   final bool remoteOpen;
 
+  /// Opens the phone remote's QR card (Windows and Android TV; null hides it).
+  final VoidCallback? onPhoneRemote;
+
   /// The phone address and PIN, shown while the remote is on Wi-Fi.
   final String? remoteLanInfo;
 
@@ -115,6 +118,7 @@ class MenuOverlay extends StatefulWidget {
     this.onOpenLogFolder,
     this.levelingAvailable = true,
     this.onOpenRemote,
+    this.onPhoneRemote,
     this.remoteLanInfo,
     this.remoteOpen = false,
     this.onWrongChannel,
@@ -133,10 +137,12 @@ class MenuOverlayState extends State<MenuOverlay> {
   int _sel = 0;
   _Cat? _cat; // null: the top level
 
-  // Android TV is always fullscreen, so its menu has no window-mode item; the remote is Windows only.
+  // Android TV is always fullscreen, so its menu has no window-mode item; the remote window is Windows only.
   bool _shown(_Item i) =>
       !(Platform.isAndroid && i == _Item.startFullscreen) &&
-      !(widget.onOpenRemote == null && (i == _Item.openRemote || i == _Item.remoteLan)) &&
+      !(widget.onOpenRemote == null && i == _Item.openRemote) &&
+      !(widget.onPhoneRemote == null && i == _Item.phoneRemote) &&
+      !(widget.onOpenRemote == null && widget.onPhoneRemote == null && i == _Item.remoteLan) &&
       !(widget.remoteLanInfo == null && i == _Item.remoteInfo) &&
       !(widget.onOpenLogFolder == null && i == _Item.openLog) &&
       !(widget.onWrongChannel == null && i == _Item.wrongChannel) &&
@@ -249,6 +255,8 @@ class MenuOverlayState extends State<MenuOverlay> {
         if (dir == 0) widget.onWeatherLocation?.call();
       case _Item.openRemote:
         if (dir == 0) widget.onOpenRemote?.call();
+      case _Item.phoneRemote:
+        if (dir == 0) widget.onPhoneRemote?.call();
       case _Item.remoteLan:
         _change(() => s.remoteLan = !s.remoteLan);
       case _Item.remoteInfo || _Item.deadLinks:
@@ -334,6 +342,7 @@ class MenuOverlayState extends State<MenuOverlay> {
       _Item.weatherMode => 'Weather view: ${s.weatherMode == 'native' ? 'CLASSIC' : 'WEATHERSTAR'}',
       _Item.weatherLocation => 'Weather: ${s.weatherPlace}',
       _Item.openRemote => 'Remote window: ${_onOff(widget.remoteOpen)}',
+      _Item.phoneRemote => 'Phone remote (QR code)',
       _Item.remoteLan => 'Remote on Wi-Fi: ${_onOff(s.remoteLan)}',
       _Item.remoteInfo => widget.remoteLanInfo ?? '',
     };

@@ -30,8 +30,10 @@ class Settings {
   String weatherMode = Platform.isAndroid ? 'native' : 'web';
 
   /// Remote control reachable from phones on the LAN (off: this PC only), and its 4-digit PIN.
+  /// [remoteToken]: random key in the phone-remote QR code (scan, no typing); a new one each time the LAN remote turns on.
   bool remoteLan = false;
   String? remotePin;
+  String? remoteToken;
 
   /// Evens out loudness between channels and programs: 'off', 'normal' or 'strong' (see [levelingFilter]).
   String volumeLeveling = 'normal';
@@ -72,6 +74,7 @@ class Settings {
         _weatherKey: weatherMode,
         'remoteLan': remoteLan,
         'remotePin': remotePin,
+        'remoteToken': remoteToken,
         'volumeLeveling': volumeLeveling,
         'noticeAccepted': noticeAccepted,
         'captionsOn': captionsOn,
@@ -109,6 +112,8 @@ class Settings {
     s.remoteLan = bool_('remoteLan', s.remoteLan);
     final pin = j['remotePin'];
     if (pin is String && RegExp(r'^\d{4}$').hasMatch(pin)) s.remotePin = pin;
+    final token = j['remoteToken'];
+    if (token is String && RegExp(r'^[A-Za-z0-9_-]{16,64}$').hasMatch(token)) s.remoteToken = token;
     if (levelingModes.contains(j['volumeLeveling'])) s.volumeLeveling = j['volumeLeveling'] as String;
     s.noticeAccepted = bool_('noticeAccepted', s.noticeAccepted);
     s.captionsOn = bool_('captionsOn', s.captionsOn);

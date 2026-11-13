@@ -31,10 +31,11 @@ import 'guide_overlay.dart';
 import 'menu_overlay.dart';
 import 'arcade_entry.dart';
 import 'on_demand_overlay.dart';
+import 'phone_remote_card.dart';
 import 'touch.dart';
 import 'weather_web.dart';
 
-enum TvMode { watch, guide, menu, onDemand, location, about, credits, parental }
+enum TvMode { watch, guide, menu, onDemand, location, about, credits, parental, phoneRemote }
 
 /// The whole TV: a 4:3 frame holding the video, STAND BY card, info banner and number entry.
 class TvScreen extends StatefulWidget {
@@ -45,7 +46,8 @@ class TvScreen extends StatefulWidget {
   /// Null on Android TV / Fire TV, which are always fullscreen.
   final WindowPrefs? windowPrefs;
 
-  /// The remote-control server (Windows only); null hides the remote menu items and R key.
+  /// The remote-control server (Windows: remote window + phone remote; Android TV: phone remote only);
+  /// null (phones/tablets, tests) hides the remote menu items and R key.
   final RemoteServer? remote;
 
   /// The crash log (last error, log folder); null in tests.
@@ -100,9 +102,10 @@ class _TvScreenState extends State<TvScreen> {
       ..channel = _remoteTune
       ..setting = _remoteSetting
       ..parentalPin = ((pin) => _pin?.onPin(pin))
+      ..power = (() => unawaited(_goToSleep())) // POWER: Windows closes like the X, Android goes home
       ..logo = _logoBytes;
     final r = widget.remote;
-    if (r != null) {
+    if (r != null && r.windows) {
       _remoteWatch = Timer.periodic(const Duration(seconds: 1), (_) {
         final open = r.isWindowOpen();
         if (open != _remoteOpen && mounted) setState(() => _remoteOpen = open);
@@ -137,6 +140,7 @@ class _TvScreenState extends State<TvScreen> {
       'picture': settings.picture,
       'audioDelay': tv.itemId == null ? 0 : settings.audioDelays[tv.itemId] ?? 0,
       'remoteLan': settings.remoteLan,
+      'canFullscreen': widget.windowPrefs != null,
       'sleep': sleepMinutesLeft(_sleepAt, DateTime.now()),
       'pinPrompt': _pin == null ? null : {'id': _pin!.id, 'title': _pin!.title, 'hint': _pin!.hint},
     };
@@ -260,6 +264,25 @@ class _TvScreenState extends State<TvScreen> {
     if (!open) _flash('Remote closed');
   }
 
+  /// Windows: the remote window (R key, menu item, REMOTE corner button) exists.
+  bool get _hasWindow => widget.remote?.windows ?? false;
+
+  /// Menu > Remote > Phone remote: the QR card. Opening it turns the phone remote on (that is what it is for);
+  /// OK on the card turns it off again. The address is looked up again, in case the network changed.
+  void _openPhoneRemote() {
+    final r = widget.remote;
+    if (r == null) return;
+    if (!settings.remoteLan) {
+      settings.remoteLan = true;
+      _settingsChanged(); // makes the PIN and QR token, binds the LAN server
+    } else {
+      unawaited(r.refreshLanIp().then((_) {
+        if (mounted) setState(() {});
+      }));
+    }
+    _openOverlay(TvMode.phoneRemote);
+  }
+
   // Remote window state, re-read each second so closing it with its X turns the button back to OFF.
   bool _remoteOpen = false;
   Timer? _remoteWatch;
@@ -356,7 +379,7 @@ class _TvScreenState extends State<TvScreen> {
   /// Windows: the same clean shutdown as the window's X and the remote's POWER. Android: stop and go to the
   /// home screen so the stick can sleep.
   Future<void> _goToSleep() async {
-    tv.log('sleep timer: turning off');
+    tv.log('turning off (sleep timer or POWER)');
     if (!Platform.isAndroid) return windowManager.close();
     await tv.player.stop();
     _sleepStep = 0;
@@ -757,7 +780,7 @@ class _TvScreenState extends State<TvScreen> {
         _settingsChanged();
         _flash('Picture: ${settings.picture.toUpperCase()}');
       case TvAction.remote:
-        if (widget.remote == null) return KeyEventResult.ignored;
+        if (!_hasWindow) return KeyEventResult.ignored;
         unawaited(_toggleRemote());
       case TvAction.audioEarlier:
         _nudgeAudio(-audioDelayStepMs);
@@ -945,13 +968,14 @@ class _TvScreenState extends State<TvScreen> {
                     unawaited(openExternal(widget.crash!.dir.path, tv.log));
                   },
             levelingAvailable: tv.levelingAvailable,
-            onOpenRemote: widget.remote == null
+            onOpenRemote: !_hasWindow
                 ? null
                 : () {
                     _closeMenu();
                     unawaited(_toggleRemote());
                   },
             remoteOpen: _remoteOpen,
+            onPhoneRemote: widget.remote == null ? null : _openPhoneRemote,
             onWrongChannel: _wrongChannel,
             onSleep: _cycleSleep,
             sleepStep: _sleepStep,
@@ -994,6 +1018,21 @@ class _TvScreenState extends State<TvScreen> {
             onCredits: () => _openOverlay(TvMode.credits),
           ),
         if (mode == TvMode.credits) CreditsOverlay(onClose: _closeMenu, log: tv.log),
+        if (mode == TvMode.phoneRemote && widget.remote != null)
+          PhoneRemoteCard(
+            on: settings.remoteLan,
+            qrUrl: widget.remote!.phoneUrl,
+            url: widget.remote!.lanUrl,
+            pin: settings.remotePin,
+            finding: widget.remote!.findingIp || (settings.remoteLan && !widget.remote!.lanListening && !widget.remote!.failed),
+            failed: settings.remoteLan && widget.remote!.failed,
+            firewallNote: Platform.isWindows,
+            onToggle: () {
+              settings.remoteLan = !settings.remoteLan;
+              _settingsChanged(); // new PIN/token as needed, re-binds or stops the server
+            },
+            onClose: _closeMenu,
+          ),
         if (mode == TvMode.parental)
           ParentalOverlay(
             parental: settings.parental,
@@ -1113,7 +1152,7 @@ class _TvScreenState extends State<TvScreen> {
         autofocus: true,
         onKeyEvent: _onKey,
         child: MouseRegion(
-          onHover: widget.remote == null ? null : (_) => _mouseMoved(),
+          onHover: !_hasWindow ? null : (_) => _mouseMoved(),
           child: Stack(
             fit: StackFit.expand,
             children: [
@@ -1121,7 +1160,7 @@ class _TvScreenState extends State<TvScreen> {
                 onDoubleTap: widget.windowPrefs?.toggleFullScreen,
                 child: Scaffold(backgroundColor: Colors.black, body: widget.touch ? _touchBody() : _tvBody()),
               ),
-              if (widget.remote != null)
+              if (_hasWindow)
                 Positioned(
                   top: 10,
                   right: 10,

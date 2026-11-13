@@ -45,6 +45,7 @@ dependencies:
   archive_tv_core:
     path: ../core
   flutter_inappwebview: ^6.1.5
+  qr_flutter: ^4.1.0 # phone remote QR code (pure Dart, BSD-3 like its qr dependency: GPL-3.0 compatible)
 
 dev_dependencies:
   flutter_test:

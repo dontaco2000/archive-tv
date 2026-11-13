@@ -161,7 +161,7 @@ const remotePage = r'''<!DOCTYPE html>
     <button id="numOpen" title="Number pad">123</button>
     <button data-key="last" title="Last channel: back to the one before">LAST</button>
     <button data-key="sleep" id="sleep" title="Sleep timer: Off, 15, 30, 60, 90, 120 min">SLEEP</button>
-    <button data-key="fullscreen" title="Fullscreen">FULL</button>
+    <button data-key="fullscreen" id="full" title="Fullscreen">FULL</button>
   </div>
 </div>
 
@@ -178,7 +178,7 @@ const remotePage = r'''<!DOCTYPE html>
 
 <div id="pin"><div>
   <div id="pinTitle" style="font-weight:700;letter-spacing:2px">ENTER PIN</div>
-  <div class="hint" id="pinHint">Shown in Archive TV: Menu &gt; Remote on Wi-Fi</div>
+  <div class="hint" id="pinHint">Scan the QR code again (Menu &gt; Remote &gt; Phone remote) or type the PIN shown there</div>
   <input id="pinIn" type="password" inputmode="numeric" maxlength="4" autocomplete="off">
   <button id="pinGo" style="width:100%">CONNECT</button>
   <button id="pinNo" style="width:100%;margin-top:5px;display:none">CANCEL</button>
@@ -187,6 +187,9 @@ const remotePage = r'''<!DOCTYPE html>
 <script>
 (() => {
   const $ = id => document.getElementById(id);
+  // The QR code's address carries a key (?k=...): kept like a typed PIN, then dropped from the address bar.
+  const qrKey = new URLSearchParams(location.search).get('k');
+  if (qrKey) { localStorage.setItem('atvPin', qrKey); history.replaceState(null, '', location.pathname); }
   let pin = localStorage.getItem('atvPin') || '';
   let logoFor = null, dragging = false;
 
@@ -205,7 +208,7 @@ const remotePage = r'''<!DOCTYPE html>
     pinMode = mode || 'remote';
     const tv = pinMode === 'tv';
     $('pinTitle').textContent = tv ? p.title.toUpperCase() : 'ENTER PIN';
-    $('pinHint').textContent = tv ? (p.hint || 'Parental controls PIN') : 'Shown in Archive TV: Menu > Remote on Wi-Fi';
+    $('pinHint').textContent = tv ? (p.hint || 'Parental controls PIN') : 'Scan the QR code again (Menu > Remote > Phone remote) or type the PIN shown there';
     $('pinGo').textContent = tv ? 'OK' : 'CONNECT';
     $('pinNo').style.display = tv ? 'block' : 'none';
     $('pinIn').value = '';
@@ -288,6 +291,7 @@ const remotePage = r'''<!DOCTYPE html>
     $('fav').classList.toggle('fav-on', !!s.favorite);
     $('sleep').textContent = s.sleep == null ? 'SLEEP' : 'SLP ' + s.sleep;
     $('sleep').classList.toggle('fav-on', s.sleep != null);
+    $('full').style.visibility = s.canFullscreen === false ? 'hidden' : ''; // Fire TV: always fullscreen
     const n = c ? c.number : null;
     if (n !== logoFor) { logoFor = n; $('logo').style.visibility = 'hidden'; if (n != null) $('logo').src = '/logo/' + n + '.png'; }
   }
