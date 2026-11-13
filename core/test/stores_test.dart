@@ -34,6 +34,20 @@ void main() {
     expect(dir.listSync().where((f) => f.path.contains('day-5-')), hasLength(5));
   });
 
+  test('a saved day from another channel (no item in the pool) is made again; an overlapping one stays', () {
+    final dir = Directory.systemTemp.createTempSync('snap');
+    addTearDown(() => dir.deleteSync(recursive: true));
+    final first = SnapshotStore(dir).day(5, day, pool).map((s) => s.entry.id).toList();
+    // a later pool sharing half the items: today's saved day stays as it was
+    final mixed = [entry('a', 25), entry('b', 50), entry('x', 60), entry('y', 60)];
+    expect(SnapshotStore(dir).day(5, day, mixed).map((s) => s.entry.id), first);
+    // a pool with none of the saved items (the number now belongs to another channel): remade from the pool
+    final other = [entry('p', 30), entry('q', 45)];
+    final remade = SnapshotStore(dir).day(5, day, other);
+    expect(remade.map((s) => s.entry.itemId).toSet(), {'p', 'q'});
+    expect(SnapshotStore(dir).day(5, day, other).map((s) => s.entry.id), remade.map((s) => s.entry.id)); // saved
+  });
+
   test('dropAfter forgets the channel\'s later days only (today and other channels stay)', () {
     final dir = Directory.systemTemp.createTempSync('snap');
     addTearDown(() => dir.deleteSync(recursive: true));
