@@ -243,12 +243,12 @@ class TvEngine {
     if (saved != null) _serials[c.number] = saved;
   }
 
-  /// The pool the day's shuffle is made from: serial episodes and rare-source entries never air in it.
+  /// The pool the day's shuffle is made from: serial episodes, rare-source and block-only entries never air in it.
   List<Entry> _shufflePool(Channel c) {
     final pool = _pool[c.number] ?? const <Entry>[];
     final eps = _serials[c.number];
     final ids = {if (eps != null) for (final slot in eps) for (final show in slot) for (final e in show) e.id};
-    return [for (final e in pool) if (!ids.contains(e.id) && !isRare(c, e)) e];
+    return [for (final e in pool) if (!ids.contains(e.id) && !isRare(c, e) && !isBlockOnly(c, e)) e];
   }
 
   /// Serial, rare-source (`perDay`) and themed time blocks for a day; null when the channel has none.

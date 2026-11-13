@@ -129,6 +129,9 @@ bool isRare(Channel c, Entry e) => switch (_sourceOf(c, e)) {
       _ => false,
     };
 
+/// Entry comes from a `blockOnly` source: it airs only as a themed time block pick, never in the shuffle.
+bool isBlockOnly(Channel c, Entry e) => _sourceOf(c, e)?.blockOnly ?? false;
+
 /// The guide label for [e]'s source (`blockLabel`), or null. For a `perDay` source only its rare
 /// entries get it, so a short clip from the shuffle next to the day's race doesn't make a "Marathon".
 String? blockLabelOf(Channel c, Entry e) => switch (_sourceOf(c, e)) {
