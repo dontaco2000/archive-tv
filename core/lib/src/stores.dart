@@ -236,6 +236,12 @@ class Blocklist {
     if (f != null) _writeJson(f, ids.toList()..sort());
   }
 
+  void remove(String id) {
+    if (!ids.remove(id)) return;
+    final f = _f;
+    if (f != null) _writeJson(f, ids.toList()..sort());
+  }
+
   /// [pool] without blocked entries (matched by entry id or by whole item id).
   List<Entry> apply(List<Entry> pool) =>
       [for (final e in pool) if (!ids.contains(e.id) && !ids.contains(e.itemId)) e];

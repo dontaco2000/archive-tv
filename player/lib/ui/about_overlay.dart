@@ -8,7 +8,7 @@ const aboutLines = [
   'All video and audio comes from the Internet Archive (archive.org) and its uploaders. '
       'Archive TV only finds and plays it; we are not responsible for the content and are not '
       'affiliated with or endorsed by the Internet Archive.',
-  'Some channels (such as Headliner, Teaser and Haunt) can include mature content.',
+  'Some channels (such as Headliner and Haunt) can include mature content.',
   'Weather: WeatherStar 4000+ by Matt Walsh (MIT licence); data from Open-Meteo and the US National Weather Service.',
   'Hobby project, provided as is.',
 ];

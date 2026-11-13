@@ -217,6 +217,94 @@ void main() {
     expect(again.statusOf(bytes), PoolStatus.ready);
   });
 
+  test('checkLinks: a file missing on two passes an hour apart leaves pools and guide; earlier slots stay put', () async {
+    // 30 one-hour items: each airs once a day, as on a real channel
+    final big = FakeApi({for (var i = 0; i < 30; i++) 'i$i': 60});
+    final e = TvEngine.open(configText: configText, dataDir: dir, api: big);
+    final bytes = e.channels.first;
+    await e.ensurePool(bytes);
+    final now = DateTime(2026, 11, 11, 15, 20, 5);
+    final before = e.guideFor(bytes, now);
+    final victim = before[3].entry;
+    final asked = <String>[];
+    final client = MockClient((req) async {
+      asked.add('${req.method} ${req.url.path}');
+      return http.Response('', req.url.path.endsWith('/${victim.file}') ? 404 : 200);
+    });
+    DeadLinkChecker checker() => DeadLinkChecker(client, e.health, delay: Duration.zero);
+    expect(await e.checkLinks(now, checker()), 0);
+    expect(asked.every((a) => a.startsWith('HEAD ')), isTrue);
+    expect(asked, isNot(contains('HEAD /download/${before[0].entry.id}'))); // airing now: not checked
+    expect(e.health.struck(victim.id), isTrue);
+    expect(e.guideFor(bytes, now).any((s) => s.entry.id == victim.id), isTrue); // one miss changes nothing
+
+    asked.clear();
+    expect(await e.checkLinks(now.add(const Duration(minutes: 61)), checker(), onlyStruck: true), 1);
+    expect(asked, ['HEAD /download/${victim.id}']);
+    expect(e.deadLinks, 1);
+    expect(e.poolOf(bytes).any((x) => x.id == victim.id), isFalse);
+    final after = e.guideFor(bytes, now);
+    expect(after.any((s) => s.entry.id == victim.id), isFalse);
+    for (var i = 0; i < 3; i++) {
+      expect((after[i].entry.id, after[i].start), (before[i].entry.id, before[i].start));
+    }
+    expect(after[3].start, before[3].start); // the next file moves up into the dead one's slot
+    expect(File('${dir.path}/dead_links.log').readAsStringSync(), contains('ch 2 Bytes'));
+
+    final again = TvEngine.open(configText: configText, dataDir: dir, api: big); // restart: still gone
+    await again.ensurePool(bytes);
+    expect(again.deadLinks, 1);
+    expect(again.poolOf(bytes).any((x) => x.id == victim.id), isFalse);
+  });
+
+  test('checkLinks rechecks dead files weekly: revived stays off today only; gone for good leaves saved pools', () async {
+    final big = FakeApi({for (var i = 0; i < 30; i++) 'i$i': 60});
+    final e = TvEngine.open(configText: configText, dataDir: dir, api: big);
+    final bytes = e.channels.first;
+    await e.ensurePool(bytes);
+    var now = DateTime(2026, 11, 11, 15, 20, 5);
+    final victim = e.guideFor(bytes, now)[3].entry;
+    var code = 404;
+    final client = MockClient((req) async => http.Response('', req.url.path.endsWith('/${victim.file}') ? code : 200));
+    DeadLinkChecker checker({Duration every = const Duration(days: 6)}) =>
+        DeadLinkChecker(client, e.health, delay: Duration.zero, recheckEvery: every);
+    e.planWeek(bytes, now); // today and the next days are saved with the victim in them
+    final midnight = DateTime(now.year, now.month, now.day);
+    final saved = e.guideFor(bytes, midnight, hours: 24);
+    await e.checkLinks(now, checker());
+    await e.checkLinks(now.add(const Duration(minutes: 61)), checker(), onlyStruck: true);
+    expect(e.deadLinks, 1);
+    final without = e.guideFor(bytes, midnight, hours: 24);
+    expect((saved.any((s) => s.entry.id == victim.id), without.any((s) => s.entry.id == victim.id)), (true, false));
+
+    // it answers again later the same day (recheck spacing zeroed here): revived, but today's slots don't move
+    now = now.add(const Duration(hours: 3));
+    e.health.okAt.clear();
+    code = 200;
+    await e.checkLinks(now, checker(every: Duration.zero));
+    expect(e.deadLinks, 0);
+    expect(e.health.dead.ids, isEmpty);
+    expect(e.guideFor(bytes, midnight, hours: 24).map((s) => (s.entry.id, s.start)), without.map((s) => (s.entry.id, s.start)));
+    final tomorrow = DateTime(now.year, now.month, now.day + 1);
+    expect(e.guideFor(bytes, tomorrow, hours: 24).length, greaterThanOrEqualTo(1));
+
+    // dead again, then three failed weekly rechecks: gone for good, out of the rebuilt saved pool
+    code = 404;
+    e.health.okAt.clear();
+    e.health.dead.add(victim.id);
+    e.health.deadInfo[victim.id] = {'lastCheck': now.toIso8601String(), 'rechecks': 0, 'url': victim.url};
+    expect(e.deadLinks, 1);
+    for (var w = 1; w <= 3; w++) {
+      e.health.okAt.clear();
+      await e.checkLinks(now.add(Duration(days: 7 * w)), checker());
+    }
+    expect(e.health.isGone(victim.id), isTrue);
+    expect(e.deadLinks, 0); // the menu counts only files still being rechecked
+    await e.ensurePool(bytes, maxAge: Duration.zero); // a rebuild
+    expect(e.pools.load(bytes.number)!.any((x) => x.id == victim.id), isFalse);
+    expect(File('${dir.path}/dead_links.log').readAsStringSync(), allOf(contains('revived'), contains('removed for good')));
+  });
+
   test('probeUpcoming keeps slow-start files out of the schedule and remembers them', () async {
     final bytes = engine.channels.first;
     await engine.ensurePool(bytes);

@@ -14,7 +14,7 @@ const _panel = Color(0xE6101A5C); // same dark translucent blue as the guide
 const _yellow = Color(0xFFFFEB3B);
 const _cellBg = Color(0xFF1E2C8A);
 
-enum _Item { back, onDemand, favorite, favoritesOnly, volume, mute, leveling, captions, captionSize, picture, startFullscreen, cornerBug, block, wrongChannel, sleep, refresh, weatherMode, weatherLocation, openRemote, remoteLan, remoteInfo, parental, lastError, openLog, openSettings, credits, about, close }
+enum _Item { back, onDemand, favorite, favoritesOnly, volume, mute, leveling, captions, captionSize, picture, startFullscreen, cornerBug, block, wrongChannel, sleep, refresh, weatherMode, weatherLocation, openRemote, remoteLan, remoteInfo, parental, lastError, deadLinks, openLog, openSettings, credits, about, close }
 
 /// Top-level categories, in menu order, and the items each one opens.
 enum _Cat {
@@ -22,7 +22,7 @@ enum _Cat {
   pictureSound('Picture & Sound', [_Item.volume, _Item.mute, _Item.leveling, _Item.picture, _Item.captions, _Item.captionSize, _Item.startFullscreen, _Item.cornerBug]),
   weather('Weather', [_Item.weatherMode, _Item.weatherLocation]),
   remote('Remote', [_Item.openRemote, _Item.remoteLan, _Item.remoteInfo]),
-  tools('Sleep & Tools', [_Item.sleep, _Item.wrongChannel, _Item.block, _Item.lastError, _Item.openLog, _Item.openSettings]),
+  tools('Sleep & Tools', [_Item.sleep, _Item.wrongChannel, _Item.block, _Item.lastError, _Item.deadLinks, _Item.openLog, _Item.openSettings]),
   about('About & Credits', [_Item.about, _Item.credits]);
 
   final String title;
@@ -92,7 +92,11 @@ class MenuOverlay extends StatefulWidget {
   /// Windows only: opens archive_tv_settings.txt in Notepad (null hides the item).
   final VoidCallback? onOpenSettingsFile;
 
+  /// Files the link checker found gone from Archive (null hides the row).
+  final int? deadLinks;
+
   const MenuOverlay({
+    this.deadLinks,
     this.onParental,
     this.onOpenSettingsFile,
     super.key,
@@ -138,7 +142,8 @@ class MenuOverlayState extends State<MenuOverlay> {
       !(widget.onWrongChannel == null && i == _Item.wrongChannel) &&
       !(widget.onSleep == null && i == _Item.sleep) &&
       !(widget.onParental == null && i == _Item.parental) &&
-      !(widget.onOpenSettingsFile == null && i == _Item.openSettings);
+      !(widget.onOpenSettingsFile == null && i == _Item.openSettings) &&
+      !(widget.deadLinks == null && i == _Item.deadLinks);
 
   /// Rows of the current level: a [_Cat] opens it, an [_Item] acts. Parental controls sits
   /// on the top level itself (its own screen is the sub-menu).
@@ -246,7 +251,7 @@ class MenuOverlayState extends State<MenuOverlay> {
         if (dir == 0) widget.onOpenRemote?.call();
       case _Item.remoteLan:
         _change(() => s.remoteLan = !s.remoteLan);
-      case _Item.remoteInfo:
+      case _Item.remoteInfo || _Item.deadLinks:
         break;
       case _Item.leveling:
         _change(() => s.volumeLeveling = cycleLeveling(s.volumeLeveling, dir == 0 ? 1 : dir));
@@ -314,6 +319,7 @@ class MenuOverlayState extends State<MenuOverlay> {
       _Item.parental => 'Parental controls: ${!s.parental.hasPin ? 'OFF' : s.parental.lockOn ? 'LOCK ON' : 'LOCK OFF'}',
       _Item.openSettings => 'Open settings file',
       _Item.lastError => lastErrorLabel(widget.lastError),
+      _Item.deadLinks => 'Dead links found: ${widget.deadLinks}',
       _Item.captions => 'Captions: ${_onOff(s.captionsOn)}',
       _Item.captionSize => 'Caption size ${'#' * s.captionSize}${'.' * (7 - s.captionSize)} ${s.captionSize}',
       _Item.picture => 'Picture: ${s.picture.toUpperCase()}',

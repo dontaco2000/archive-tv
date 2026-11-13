@@ -25,6 +25,7 @@ void main() {
             onCredits: () => calls.add('credits'),
             onCopyLastError: () => calls.add('copy'),
             onOpenLogFolder: () => calls.add('log'),
+            deadLinks: 3,
             onOpenRemote: () => calls.add('remote'),
             remoteLanInfo: lanInfo,
             onWrongChannel: () => calls.add('wrong'),
@@ -153,7 +154,7 @@ void main() {
       'Caption size ####... 4', 'Start fullscreen: OFF', 'Corner bug: OFF',
       'Weather view: WEATHERSTAR', 'Weather: Hattiesburg, Mississippi',
       'Remote window: OFF', 'Remote on Wi-Fi: OFF', 'Phone: http://192.168.1.5:8765/remote  PIN 1234',
-      'Sleep timer: OFF', 'Wrong channel for this program', 'Block this item', 'Last error: none', 'Open log folder',
+      'Sleep timer: OFF', 'Wrong channel for this program', 'Block this item', 'Last error: none', 'Dead links found: 3', 'Open log folder',
       'Open settings file', 'About', 'Credits',
     ]) {
       expect(seen, contains(label));
