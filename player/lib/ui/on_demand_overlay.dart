@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import '../input/gamepad.dart' show keyEvent;
 import 'arcade_entry.dart';
 import 'touch.dart';
+import '../guide/guide_model.dart';
 
 const _font = 'Consolas';
 const _panel = Color(0xF0101A5C);
@@ -64,7 +65,7 @@ class _OnDemandOverlayState extends State<OnDemandOverlay> {
     final all = [
       for (final c in widget.channels)
         for (final e in widget.poolOf(c))
-          if (cleanTitle(e.title) case final t) (t.toLowerCase(), naturalKey(t), c, e),
+          if (displayTitle(e) case final t) (t.toLowerCase(), naturalKey(t), c, e),
     ]..sort((a, b) => a.$2.compareTo(b.$2));
     return [for (final x in all) (x.$1, x.$3, x.$4)];
   }();
@@ -211,7 +212,7 @@ class _OnDemandOverlayState extends State<OnDemandOverlay> {
                 row(searching ? (_search.text.trim().isEmpty ? 'Pick letters to search' : 'No matches') : 'Nothing here yet', false),
               for (var i = _scroll; i < _items.length && i < _scroll + visible; i++)
                 row(
-                  cleanTitle(_items[i].$2.title),
+                  displayTitle(_items[i].$2),
                   showSel && i == _sel,
                   right: searching ? '${_items[i].$1.name}  ${_len(_items[i].$2)}' : _len(_items[i].$2),
                   onTap: _view == _View.searchEntry ? null : () => tap(() => _sel = i),

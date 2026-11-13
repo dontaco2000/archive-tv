@@ -1,5 +1,19 @@
 import 'package:archive_tv_core/archive_tv_core.dart';
 
+/// Archive item info for the programme titles (set by main to the engine's `ItemInfoStore`); null: file titles only.
+/// ponytail: one process-wide lookup so every widget showing a title gets it without threading the store through.
+ItemInfo? Function(String itemId)? itemInfoOf;
+
+/// [programmeInfo] with the item info known so far.
+ProgrammeInfo programmeOf(Entry e) => programmeInfo(e, itemInfoOf?.call(e.itemId));
+
+/// One-line programme title for every screen: "Title: Sub-title" (e.g. "The Tonight Show: Mar 12, 1987").
+String displayTitle(Entry e) => programmeOf(e).label;
+
+/// Guide grouping for files with no usable title of their own ("1987-03-12", "Episode 4"): their programme
+/// title, so a run of them from one item becomes one "`<Show>`" / "`<Show>` Marathon" block. Null for the rest.
+String? _showOfUntitled(Entry e) => titleIsInformative(cleanTitle(e.title)) ? null : programmeOf(e).title;
+
 /// Guide cell for a channel whose pool is still building.
 const buildingLabel = 'BUILDING...';
 
@@ -89,7 +103,10 @@ class GuideModel {
 
   /// The row's guide blocks (see `guideBlocks`): short items, same-show runs and short-content
   /// channels are grouped for display; tuning still plays the real schedule.
-  List<Slot> _slotsOf(Channel c) => lockedNumbers.contains(c.number) ? const [] : _slots[c.number] ??= guideBlocks(slotsFor(c), shortContent: c.shortContent, labelOf: (e) => blockLabelOf(c, e), themeOf: (s) => themeLabelOf(c, s));
+  List<Slot> _slotsOf(Channel c) => lockedNumbers.contains(c.number) ? const [] : _slots[c.number] ??= guideBlocks(slotsFor(c), shortContent: c.shortContent, labelOf: (e) => blockLabelOf(c, e) ?? _showOfUntitled(e), themeOf: (s) => themeLabelOf(c, s));
+
+  /// Item titles arrived: re-group the rows (labels are read fresh on every build anyway).
+  void refreshTitles() => _slots.clear();
 
   Slot? get selectedSlot => _tunable(selectedChannel) ? slotAt(_slotsOf(selectedChannel), selectedTime) : null;
 
@@ -147,7 +164,7 @@ class GuideModel {
     return GuideRow(c, true, [
       for (final s in _slotsOf(c))
         if (s.end.isAfter(windowStart) && s.start.isBefore(end))
-          GuideCell(s, '${isRated?.call(c, s.entry) ?? false ? ratedMarker : ''}${cleanTitle(s.entry.title)}', frac(s.start).clamp(0.0, 1.0), frac(s.end).clamp(0.0, 1.0)),
+          GuideCell(s, '${isRated?.call(c, s.entry) ?? false ? ratedMarker : ''}${displayTitle(s.entry)}', frac(s.start).clamp(0.0, 1.0), frac(s.end).clamp(0.0, 1.0)),
     ]);
   }
 }

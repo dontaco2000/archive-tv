@@ -170,7 +170,10 @@ class _GuideOverlayState extends State<GuideOverlay> {
                       child: _text(
                         slot == null
                             ? '${selectedCh.name}  ${m.buildingNumbers.contains(selectedCh.number) ? buildingDetail : rows.firstWhere((r) => r.channel == selectedCh).cells.firstOrNull?.label ?? ''}'
-                            : '${cleanTitle(slot.entry.title)}  ${_day(slot.start, m.now)}${_clock(slot.start)}-${_clock(slot.end)}',
+                            : '${displayTitle(slot.entry)}  ${_day(slot.start, m.now)}${_clock(slot.start)}-${_clock(slot.end)}${switch (programmeOf(slot.entry).description) {
+                                final d? => '  $d',
+                                null => '',
+                              }}',
                         _style(font, Colors.white, bold: true),
                       ),
                     ),
