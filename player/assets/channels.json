@@ -7238,6 +7238,15 @@
           "maxEntries": 25,
           "maxSeconds": 3600,
           "maxEntriesPerItem": 2
+        },
+        {
+          "query": "(title:(\"VICE News Tonight\" OR \"VICE on HBO\") AND title:(\"full episode\" OR season)) AND -title:(porno OR porn OR sex OR \"sneak peek\" OR trailer OR preview OR promo) AND -identifier:(youtube-* OR twitter-* OR tiktok-* OR facebook-* OR CNNW_* OR MSNBCW_* OR FOXNEWSW_*)",
+          "ignoreYear": true,
+          "maxEntries": 80,
+          "maxEntriesPerItem": 1,
+          "maxSeconds": 3600,
+          "rated": "R",
+          "tag": "adult_b"
         }
       ]
     },
@@ -7390,6 +7399,28 @@
           "query": "(subject:(documentary OR documentaries) AND -subject:(music OR concert OR band)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie OR game_replays OR us_congress) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR CLE-* OR NJY-* OR VHS-0* OR mubd1234ama-*) AND -title:(trailer OR promo OR promos OR teaser OR commercial OR commercials OR credits OR intro OR opening OR bumper OR parody OR spoof OR \"vhs tape\" OR \"vhs fb\" OR \"random tv\" OR \"taped over\" OR review OR reaction OR \"every movie ever\" OR longplay OR mashup) AND -subject:(gore OR shockumentary OR mondo OR infowars OR \"alex jones\" OR conspiracy OR \"true crime\" OR crime OR murder OR \"serial killer\" OR forensic OR police OR propaganda OR nazi OR hitler OR christian OR religion OR bible OR ufo OR bigfoot OR paranormal OR strippers) AND -title:(forensic OR murder OR killer OR crime OR \"of death\" OR zeitgeist OR fascism OR hellstorm OR \"never told\" OR \"last battle\" OR hitler OR \"g-string\" OR lesborama OR massage OR \"jane eyre\" OR knife OR cadaver OR \"junk films\" OR \"killing of america\" OR \"frat house\" OR \"romanian revolution\" OR \"star wars\" OR ewok OR orozco OR \"trey parker\" OR \"cf tease\" OR \"how not to make\" OR jfk) AND -title:(\"world at war\" OR civilisation OR \"cosmos: a personal\" OR \"cosmos a personal\" OR \"connections by james burke\") AND -collection:(prelinger OR classic_tv)",
           "maxEntries": 90,
           "maxEntriesPerItem": 3
+        },
+        {
+          "identifiers": [
+            "BehindBarsInSanQuentin-LouisTheroux",
+            "LawAndDisorderInJohannesburg-LouisTheroux",
+            "LawAndDisorderInLagosNigeria-LouisTheroux",
+            "LawAndDisorderInPhiladelphia-LouisTheroux",
+            "louis-theroux-the-most-hated-family-in-america-2007",
+            "LouisTheroux-Whites",
+            "louis_theroux_drinking_to_oblivion",
+            "louis-theroux-louis-and-the-nazis",
+            "y-2meta.app-docu-bowling-for-columbine-michael-moore-2002-480p",
+            "yt-5s.io-fahrenheit-9-11-2004-480p",
+            "dancing-outlaw-ii-jesco-goes-to-hollywood",
+            "bellevue-hospital-inside-out-2001-hbo-doc-serie-america-undercover",
+            "multiple-personality-disorder",
+            "vhs-discovery-grizzly-man"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 4,
+          "rated": "R",
+          "tag": "adult_b"
         }
       ]
     },
@@ -7466,11 +7497,32 @@
         },
         {
           "identifiers": [
-            "cops-too-hot-for-tv-2-s-vhs-transfer"
+            "cops-too-hot-for-tv-2-s-vhs-transfer",
+            "cops-too-hot-for-tv-2-s-vhs-transfer-360p",
+            "cops-too-hot-for-tv-2-s-vhs-transfer_202111",
+            "cops-too-hot-for-tv-2-96-vhs",
+            "youtube-zGvamsr7gL4",
+            "cops-too-hot-for-tv-s-vhs-transfer",
+            "cops-too-hot-for-tv-vol-1",
+            "cops-volume-1",
+            "yt-5s.com-cops-too-hot-for-tv-deluxe-edition-95-vhs",
+            "the-best-of-cops-vhs-uncensored-o-60-fps-1996",
+            "TheVistaGroup-TheBestOfCOPSUncensored",
+            "cops-special-crimes-of-passion-uncensored",
+            "cops-special-extreme-cops-2002-partially-uncensored",
+            "cops-uncut",
+            "copsshotsfired1",
+            "scaredstraight",
+            "ScaredStraight1978",
+            "scraedstraight_201705",
+            "beyond-scared-straight-2011-2015-ae-originals_202409",
+            "season-1-episode-1-chowchilla"
           ],
           "ignoreYear": true,
-          "maxEntriesPerItem": 1,
-          "claim": true
+          "maxEntriesPerItem": 40,
+          "claim": true,
+          "rated": "R",
+          "tag": "adult_b"
         },
         {
           "query": "(title:(cops OR \"real stories of the highway patrol\" OR \"police women\" OR \"scariest police chases\" OR \"police chases\" OR \"police pursuits\") AND -collection:tvnews AND -language:(fre OR French OR chi OR jpn OR ger OR spa OR rus OR ita OR por OR ara) AND -title:(\"music moments\" OR \"rock and roll\" OR \"girl 27\" OR \"daniel called\" OR fucked OR \"when cops go bad\" OR brutality OR \"sam hyde\" OR \"timmy throws\" OR contra OR committee OR battlefield OR cartoon OR katt OR sayanim OR kappy OR \"mega drive\" OR \"married with children\" OR \"combat cops\" OR \"officer vi\" OR \"fight scene\" OR \"caught in the middle\" OR \"williamstown\" OR \"fox cops\" OR \"durham cops\" OR \"parker stands\" OR \"stray dog\" OR \"future cops\" OR \"star cops\" OR \"beast cops\" OR \"animal cops\" OR \"a.c.a.b\" OR acab OR keystone OR keaton OR \"karma police\" OR atari OR \"i love cops\" OR \"alexis\" OR \"all cops are\" OR \"kerberos\" OR \"life on mars\" OR \"angel cop\" OR \"tokyo private\" OR \"let's be cops\" OR \"funky cops\" OR \"paris cops\" OR \"no good cops\" OR \"who cops out\" OR \"highway patrol s\" OR \"adam 12\" OR \"the bill\")) AND -title:(\"dvd+r\" OR mtv OR oprah OR \"hard copy\" OR \"entertainment tonight\" OR \"justice probe\" OR \"cops & kids\" OR \"cops and kids\" OR \"cop beat\" OR copbeat OR \"crime tv\" OR trailer OR promo OR commercial OR commercials OR sheehan OR \"funny or die\" OR \"quick look\" OR \"x-play\" OR gameplay OR prototype OR gta OR ps1 OR \"cnn money\" OR \"short film\") AND -collection:(movie_trailers OR loyolamarymountuniversity OR californiarevealed) AND -identifier:(youtube-* OR g4tv.com-* OR gb-2300-*) AND -title:(\"saturday morning\" OR \"cops n boxes\" OR \"walk with cops\" OR \"talking to the cops\" OR \"k 9 cops\" OR \"blind cops\" OR \"class cops\" OR \"gen x\" OR \"ask a favor\" OR \"cops and culture\" OR \"count the cops\" OR \"santa cops\" OR epidurals OR \"funk cops\")",
@@ -7530,6 +7582,27 @@
           "ignoreYear": true,
           "maxEntries": 40,
           "maxEntriesPerItem": 5
+        },
+        {
+          "identifiers": [
+            "deadly-women-s6",
+            "deadly-women-s9",
+            "deadly-women-s10",
+            "deadly-women-s11_202509",
+            "episode-07-ice-cold",
+            "most-evil-killers",
+            "hitman-serial-killer-richard-kuklinski-the-iceman-interview-documentary",
+            "youtube-6kvXzG8ICV0",
+            "America_Undercover_Teen_Killers_A_Second_Chance_HBO_1998-10",
+            "America_Undercover_Gang_War_Bangin_in_Little_Rock_1994-08-02",
+            "the-co-ed-killer-documentary-on-serial-killer-edmund-kemper",
+            "TheBoneyardSerialKillersLeonardLakeCharlesNgFullCrimeDocumentary",
+            "paradise-lost-the-child-murders-at-robin-hood-hills-1996"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 30,
+          "rated": "R",
+          "tag": "adult_b"
         }
       ]
     },
@@ -7647,6 +7720,20 @@
           "ignoreYear": true,
           "maxEntries": 25,
           "maxEntriesPerItem": 2
+        },
+        {
+          "identifiers": [
+            "By_Satan_Possessed_Search_For_The_Devil_HBO_Incomplete_1993",
+            "heavens-gate-the-cult-of-cults",
+            "challenge-of-the-occult-teen-satanism-satanic-panic-documentary-vhs-rip-circa-1980s",
+            "satanic-panic-beyond-belief",
+            "Jonestown_The_Life_and_Death_of_Peoples_Temple",
+            "Jonestown_Terror_in_the.Jungle"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 6,
+          "rated": "R",
+          "tag": "adult_b"
         }
       ]
     },
@@ -7994,6 +8081,44 @@
           "maxSeconds": 600,
           "maxEntries": 500,
           "maxEntriesPerItem": 25
+        },
+        {
+          "identifiers": [
+            "SOCts",
+            "eminem-role-model-official-video-dirty-version",
+            "eminem-my-name-is-banned-uncensored-version-official-music-video-1080-ytshorts.savetube.me",
+            "guilty-conscience...",
+            "eminem-lose-yourself-official-video-explicit",
+            "eminem-white-america-original-explicit-version-official-music-video",
+            "eminem-the-way-i-am-dirty-version",
+            "you-cut-20260325-113044540",
+            "EminemRapGodExplicit",
+            "Eminem---No-Love--Explicit-Version--ft--Lil-Wayne-mp4-gnmq",
+            "dr.-dre-ice-cube-natural-born-killaz-explicit-music-video-without-intro-480p",
+            "youtube-c7tOAGY59uQ",
+            "eazy-e-real-muthaphuckkin-g-s-hd-director-s-cut-explicit-1080-ytshorts.savetube.me",
+            "wu-tang-clan-triumph-explicit-video-ft.-cappadonna",
+            "youtube-_vroLokIrCo",
+            "The-Game--Ice-Cube---Rollin--ft--Cypress-Hill--Explicit-Video--2024-mp4-nymb",
+            "dmx-party-up-1999-uncensored-dvd-ntsc",
+            "youtube-FF2J2TGxPo8",
+            "youtube-lL0UG8vwBZE",
+            "n.-o.-r.-e.-banned-from-tv-feat.-nature-big-pun-camron-jadakiss-styles-p-music-video",
+            "snoop-dogg-ft-wiz-khalifa-bruno-mars-young-wild-and-free-2011-explicit",
+            "breakstuff",
+            "limp-bizkit-nookie-uncensored-hd-video-2001",
+            "papa-roach-last-resort-uncensored-official-music-video",
+            "korn-yall-want-a-single-dirty",
+            "untitled-2_20260424",
+            "untitled-2_20260424_1822",
+            "green-day-american-idiot-uncensored-music-video",
+            "jerry-cantrell-my-song-official-uncensored-music-video"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1,
+          "maxSeconds": 600,
+          "rated": "R",
+          "tag": "adult_b"
         }
       ],
       "minSeconds": 90,
@@ -8123,6 +8248,28 @@
           "ignoreYear": true,
           "maxEntriesPerItem": 4,
           "tag": "diversity"
+        },
+        {
+          "identifiers": [
+            "sex-pistols-live-in-the-usa-1978-vhsrip",
+            "sex-pistols-live-at-winterland-1978-vhsrip",
+            "sex-pistols-live-at-the-longhorn-1978",
+            "dead-kennedys-live-at-grove-street-san-francisco-ca-1979-01-26-60fps",
+            "marilyn-manson-guns-god-and-government-live-in-l.-a.",
+            "Manson-Live-RockamRing-2003",
+            "TheVistaGroup-MarilynMansonLive121695TheEdgeFtLauderdaleFL1995",
+            "TheVistaGroup-MinistryLiveinDallas1-28-90",
+            "pantera-live-at-santiago-98",
+            "icp-live-on-the-ringmaster-tour",
+            "rage-against-the-machine-live-pinkpop-festival-landgraaf-nl-23.05.1994",
+            "NIN_2000-06-02_video",
+            "NIN_1999-11-25_video",
+            "NIN_2000-05-09_video"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 3,
+          "rated": "R",
+          "tag": "adult_b"
         }
       ]
     },
@@ -8623,7 +8770,8 @@
             "season4-lucha-underground"
           ],
           "ignoreYear": true,
-          "maxEntriesPerItem": 30
+          "maxEntriesPerItem": 30,
+          "rated": "R"
         },
         {
           "query": "(title:(\"nwa usa\" OR \"nwa 73\" OR \"nwa 74\" OR \"nwa 75\" OR \"nwa hard times\" OR \"mlw underground\") AND -title:(podcast OR interview OR preview OR trailer OR gameplay OR promo OR review OR reaction OR highlights OR countdown OR \"pre-show\" OR \"pre show\" OR \"free matches\" OR surge OR czw OR gcw OR deathmatch OR \"death match\" OR hardcore OR ultraviolence OR \"ultra violence\") AND -language:(spa OR fre OR ger OR por OR ita OR rus OR jpn)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -title:(photoshoot OR commericals OR commercials OR qvc) AND -title:(swimsuit OR \"pillow fight\" OR lingerie)",
@@ -8853,7 +9001,8 @@
         },
         {
           "query": "(title:(ecw OR \"extreme championship wrestling\" OR \"hardcore tv\") AND -title:(divas OR bikini OR interview OR rai OR cyberring OR powerdisk OR \"video game\" OR playstation OR xbox OR nintendo) AND -collection:(tvnews OR videogameprev OR gamevideos) AND -language:(spa OR fre OR ger OR por OR ita OR rus OR jpn)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -title:(photoshoot OR commericals OR commercials OR qvc) AND -title:(swimsuit OR \"pillow fight\" OR lingerie)",
-          "minDownloads": 15
+          "minDownloads": 15,
+          "rated": "R"
         },
         {
           "query": "(title:(awa) AND title:(wrestling OR wretling OR verne OR bockwinkel OR gagne OR hogan OR vhs OR champions OR championship OR classic OR superclash OR highlights OR matches OR road OR sherri OR wendi OR larry OR ventura) AND -title:(divas OR bikini OR interview OR rai OR cyberring OR powerdisk OR \"video game\" OR playstation OR xbox OR nintendo) AND -collection:(tvnews OR videogameprev OR gamevideos) AND -language:(spa OR fre OR ger OR por OR ita OR rus OR jpn)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -title:(photoshoot OR commericals OR commercials OR qvc) AND -title:(swimsuit OR \"pillow fight\" OR lingerie)",
@@ -9021,6 +9170,32 @@
         {
           "query": "(subject:(bbc OR itv OR \"channel 4\" OR \"australian television\" OR \"british television\") AND -collection:tvnews AND -title:(pokemon OR \"world news\" OR \"tokyo bound\" OR everwood OR tweenies OR balamory OR \"peter rabbit\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR spanish OR jpn OR japanese OR chi OR chinese OR zho OR pol OR polish OR fre OR french OR fra OR ger OR german OR deu OR ita OR italian OR por OR portuguese OR rus OR russian OR kor OR korean OR hin OR hindi OR ara OR arabic OR tur OR vie OR ind OR tha OR hmn) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -title:(vf OR \"version française\" OR jazzwoche OR \"dancing outlaw\" OR \"alvin and the chipmunks\") AND -title:(commercial) AND -title:(thomas OR pingu OR \"postman pat\" OR \"bob the builder\" OR \"zoo lane\" OR pocoyo OR \"yo gabba\" OR \"fourways farm\" OR \"wish wellingtons\" OR teletubbies OR tweenies OR noddy OR \"fireman sam\" OR \"in the night garden\" OR cbeebies OR cbbc) AND -subject:(children OR kids OR cbeebies OR preschool OR \"children's television\")",
           "maxEntriesPerItem": 25
+        },
+        {
+          "identifiers": [
+            "the-league-of-gentlemen-the-entire-first-series-2000-uk-vhs",
+            "the-league-of-gentlemen-the-entire-second-series-2001-uk-vhs",
+            "the-league-of-gentlemen-christmas-special-2002-uk-vhs",
+            "the-league-of-gentlemen-live-at-drury-lane-2001-uk-vhs",
+            "brass-eye-all4",
+            "peep-show-series1",
+            "peep-show-series2",
+            "peep-show-series3",
+            "peep-show-series4",
+            "the-thick-of-it-04x-01",
+            "the-inbetweeners-series1",
+            "shameless-series-one-2004-uk-dvd-disc-one",
+            "shameless-series-one-2004-uk-dvd-disc-two",
+            "monkey-dust-s-01e-06-div-x-640x-352",
+            "monkey-dust-2x-1_202108",
+            "monkey-dust-s-3-e-01",
+            "bo-selecta",
+            "filthy-rich-catflap-s-01-e-01"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 25,
+          "rated": "R",
+          "tag": "adult_b"
         }
       ]
     },
@@ -9206,6 +9381,18 @@
             "the-singing-ringing-tree"
           ],
           "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "come-and-see-english-subtitles",
+            "hard-boiled-1992-subtitled-and-dubbed",
+            "infernal-affairs-2002-eng-sub",
+            "violent-cop-1989_202412"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1,
+          "rated": "R",
+          "tag": "adult_b"
         }
       ]
     },
@@ -9336,6 +9523,18 @@
             "chinese-banquet-yan-can-cook-kqed"
           ],
           "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "boiling-point-miniseries",
+            "kitchen-nightmares-uncensored-season-1-episode-17-full-episode",
+            "one-hour-of-gordon-ramsay-uncensored-rapid-fire-insults",
+            "gordon-ramsay-uncensored-rapid-fire-highlights-1"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 4,
+          "rated": "R",
+          "tag": "adult_b"
         }
       ],
       "yearRange": [
@@ -9484,6 +9683,16 @@
           "query": "(subject:(\"public access\" OR \"cable access\" OR \"community access\" OR \"public-access\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR porn OR pornography OR softcore OR nudity OR nude OR sexploitation) AND -title:(xxx OR nsfw OR porn OR erotic OR nude OR naked OR nudity OR topless OR sexy OR sex OR stripper OR striptease OR underwear OR lingerie OR fetish OR bikini OR \"belly dancer\" OR \"ugly george\" OR \"boys for sale\" OR burlesque OR playboy) AND -language:(spa OR jpn OR chi OR zho OR pol OR fre OR ger OR ita OR por OR rus OR kor OR hin OR ara OR tur OR vie OR hmn) AND -title:(hmong OR espanol) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR gospel OR church OR sermon OR bible OR ministry OR religious) AND -title:(church OR sermon OR ministry OR bible OR gospel OR preacher) AND -title:(loop OR loops OR raw OR \"raw footage\" OR \"raw tape\" OR bonus OR unedited OR \"test roll\" OR \"camera roll\" OR \"b-roll\" OR broll OR \"call break\" OR callbreak OR callbreaks OR outtake OR outtakes OR audition OR auditions OR \"dead air\" OR \"test pattern\" OR \"color bars\" OR footage OR preview OR previews OR promo OR psa OR \"station id\" OR intro OR sampler OR \"annual meeting\" OR \"board meeting\" OR \"city council\" OR \"school committee\" OR hearing OR \"town meeting\" OR \"market box\" OR \"blank vhs\" OR \"golden girls\" OR vaccines OR \"coming soon\" OR borat OR montage) AND -identifier:(*Raw* OR *raw* OR *Loop* OR *loop*) AND -title:(sesame OR barney OR teletubbies OR \"kids talent\" OR cartoon OR cartoons OR elmo OR muppet OR puppet) AND -collection:(tvnews OR tvarchive OR movie_trailers OR mirrortube OR twitchstreams OR podcasts OR fringe OR deemphasize OR funnyordie) AND -identifier:(twitter-* OR TikTok-* OR BridgingHmongAmerican OR jim-spagg*)",
           "maxEntries": 50,
           "maxEntriesPerItem": 2
+        },
+        {
+          "identifiers": [
+            "MWF_553_TVPartyLongerDemo",
+            "bill-hicks-austin-public-access"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 2,
+          "rated": "R",
+          "tag": "adult_b"
         }
       ]
     },
@@ -9678,6 +9887,27 @@
         {
           "query": "(title:(\"psa\" OR \"psas\" OR \"psa's\" OR \"public service announcement\" OR \"public service announcements\" OR \"public service film\" OR \"the more you know\" OR \"smokey bear\" OR \"smokey the bear\" OR \"mcgruff\" OR \"partnership for a drug-free\" OR \"drug-free america\" OR \"this is your brain on drugs\" OR \"ad council\" OR \"one to grow on\" OR \"duck and cover\" OR \"crash test dummies psa\" OR \"vince and larry\") AND title:19* AND collection:opensource_movies) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR por OR fre OR ger OR jpn OR chi) AND -identifier:(youtube-* OR yt_*) AND -title:(promo OR trailer OR parody OR spoof OR logo OR logos) AND -title:(vote OR voting OR voter OR election OR campaign OR political OR candidate OR president OR republican OR democrat OR church OR lds OR mormon OR homefront OR jesus OR god OR bible OR scientology OR spanish OR fanmade OR \"what if\" OR uberduck OR mashup OR lesson OR covid OR podcast OR episode OR radio OR censorship OR minitrue OR \"terror firmer\" OR hermaphrodite OR \"blu ray\" OR bluray OR x265 OR 720p OR pod OR malaysia OR slovakia OR philippines OR manyika OR manila OR japan OR steelt OR franciscans OR \"marriage encounter\" OR \"red vs\" OR mattel OR readjustments OR narconon OR vca OR \"safe sex\" OR \"spook show\" OR \"channel change\" OR ctam OR international OR \"home movie\" OR jeopardy OR oprah OR roseanne OR sss OR purge OR coa OR \"voice acting\" OR integral OR homosexuality OR homo OR obama OR \"great americans\" OR \"round up\") AND -collection:(funnyordie OR roosterteetharchive OR miscpublicaccess) AND -identifier:driving_psa",
           "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "Signal301959",
+            "Signal301959_2",
+            "61704HighwayOfAgonyVwr",
+            "RedAshaltI1960",
+            "43804MechanizedDeath",
+            "WheelsofTragedy",
+            "xd-47814-the-last-prom-tw-vwr",
+            "red-asphalt-ii",
+            "red-asphalt-iii",
+            "red-asphalt-iv",
+            "red-asphalt-v",
+            "OptionsToLive1979",
+            "top10scariestdrinkdrivingcommercials"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 2,
+          "rated": "R",
+          "tag": "adult_b"
         }
       ],
       "yearRange": [
