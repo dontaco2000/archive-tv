@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io' show exit;
 import 'dart:math';
 
 import 'package:flutter/services.dart';
@@ -106,13 +105,10 @@ class WindowPrefs with WindowListener {
   @override
   Future<void> onWindowClose() async {
     try {
-      await windowManager.hide(); // the TV goes first, then its remote window; teardown happens unseen
       onClose?.call();
     } on Object catch (e) {
       log('on close: $e');
     } finally {
-      // Releasing libmpv can take seconds; don't leave the process hanging after the window is gone.
-      Timer(const Duration(seconds: 3), () => exit(0));
       await windowManager.destroy();
     }
   }
