@@ -3294,35 +3294,146 @@
       "sources": [
         {
           "identifiers": [
-            "20230323_20230323_1949"
-          ],
-          "ignoreYear": true,
-          "maxEntriesPerItem": 174,
-          "claim": true
-        },
-        {
-          "identifiers": [
-            "pilot-eps-from-youtuber-the-viewing-room"
-          ],
-          "ignoreYear": true,
-          "maxEntriesPerItem": 131,
-          "claim": true
-        },
-        {
-          "identifiers": [
-            "familymatters_202507"
-          ],
-          "ignoreYear": true,
-          "maxEntriesPerItem": 176,
-          "claim": true
-        },
-        {
-          "identifiers": [
             "the-golden-girls-complete-480p-x264"
           ],
           "ignoreYear": true,
-          "maxEntriesPerItem": 153,
-          "claim": true
+          "maxEntriesPerItem": 75
+        },
+        {
+          "identifiers": [
+            "the-jeffersons-Lando18"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 75
+        },
+        {
+          "identifiers": [
+            "good-times-Lando18"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 75
+        },
+        {
+          "identifiers": [
+            "diffrent-strokes-Lando18"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 75
+        },
+        {
+          "identifiers": [
+            "perfect-strangers-Lando18"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 75
+        },
+        {
+          "identifiers": [
+            "growing-pains-complete-series"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 75
+        },
+        {
+          "identifiers": [
+            "rhoda-Lando18"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 75
+        },
+        {
+          "identifiers": [
+            "barney-miller"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 75
+        },
+        {
+          "identifiers": [
+            "TheBobNewhartShow"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 75
+        },
+        {
+          "identifiers": [
+            "NewhartSeries",
+            "NewhartSeries2",
+            "NewhartSeries3",
+            "NewhartSeries4",
+            "NewhartSeries5",
+            "NewhartSeries6",
+            "NewhartSeries7"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 14
+        },
+        {
+          "identifiers": [
+            "wkrp-s-1-e-20-young-master-carlson"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 75
+        },
+        {
+          "identifiers": [
+            "the-dick-van-dyke-show-season-1-of-5-mkv",
+            "the-dick-van-dyke-show-season-2-of-5-mkv",
+            "the-dick-van-dyke-show-season-3-of-5-mkv",
+            "the-dick-van-dyke-show-season-4-of-5-mkv",
+            "the-dick-van-dyke-show-season-5-of-5-mkv"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 16
+        },
+        {
+          "identifiers": [
+            "the-honeymooners-DVD"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 40
+        },
+        {
+          "identifiers": [
+            "make-room-for-daddy"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 46
+        },
+        {
+          "identifiers": [
+            "f-troop-1965-complete-series"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 60
+        },
+        {
+          "identifiers": [
+            "happy-days-season-4"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 24
+        },
+        {
+          "identifiers": [
+            "duet-open-house"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 40
+        },
+        {
+          "identifiers": [
+            "square-pegs-1982-83-sjp",
+            "flo-1980-81-sitcom",
+            "down-to-earth-1984",
+            "filthy-rich-1982-s-01e-01",
+            "Its_Your_Move_1984",
+            "The_Tortellis",
+            "amen-season-1",
+            "theconeheads1983"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 30
         },
         {
           "identifiers": [
@@ -3338,69 +3449,6 @@
           ],
           "ignoreYear": true,
           "maxEntriesPerItem": 40,
-          "tag": "diversity"
-        },
-        {
-          "identifiers": [
-            "amen-season-1",
-            "amen-season-2",
-            "amen-season-3",
-            "amen-season-4",
-            "amen-season-5"
-          ],
-          "ignoreYear": true,
-          "maxEntriesPerItem": 8,
-          "tag": "diversity"
-        },
-        {
-          "identifiers": [
-            "living-single-1993",
-            "livingsingle-season5episodes"
-          ],
-          "ignoreYear": true,
-          "maxEntriesPerItem": 20,
-          "tag": "diversity"
-        },
-        {
-          "identifiers": [
-            "sister-sister-1x-02-first-dates",
-            "sister-sister-s-3",
-            "sister-sister-s-4",
-            "sister-sister-s-5",
-            "sister-sister-s-6"
-          ],
-          "ignoreYear": true,
-          "maxEntriesPerItem": 8,
-          "tag": "diversity"
-        },
-        {
-          "identifiers": [
-            "moesha-season-1-202312",
-            "moesha-season-2-202312-202312-202312",
-            "moesha-season-3"
-          ],
-          "ignoreYear": true,
-          "maxEntriesPerItem": 11,
-          "tag": "diversity"
-        },
-        {
-          "identifiers": [
-            "my-wife-and-kids-complete-series_202511"
-          ],
-          "ignoreYear": true,
-          "maxEntriesPerItem": 30,
-          "tag": "diversity"
-        },
-        {
-          "identifiers": [
-            "bernie-mac-season-1",
-            "bernie-mac-season-2",
-            "bernie-mac-season-3",
-            "bernie-mac-season-4",
-            "bernie-mac-season-5"
-          ],
-          "ignoreYear": true,
-          "maxEntriesPerItem": 7,
           "tag": "diversity"
         },
         {
@@ -3421,26 +3469,10 @@
         },
         {
           "identifiers": [
-            "diffrent-strokes-Lando18"
+            "chico-the-man"
           ],
           "ignoreYear": true,
           "maxEntriesPerItem": 30,
-          "tag": "diversity"
-        },
-        {
-          "identifiers": [
-            "SmartGuySeason3Episode18Crushed"
-          ],
-          "ignoreYear": true,
-          "maxEntriesPerItem": 20,
-          "tag": "diversity"
-        },
-        {
-          "identifiers": [
-            "mrcoopers"
-          ],
-          "ignoreYear": true,
-          "maxEntriesPerItem": 22,
           "tag": "diversity"
         },
         {
@@ -3453,38 +3485,6 @@
         },
         {
           "identifiers": [
-            "chico-the-man"
-          ],
-          "ignoreYear": true,
-          "maxEntriesPerItem": 30,
-          "tag": "diversity"
-        },
-        {
-          "identifiers": [
-            "gl-fullseries"
-          ],
-          "ignoreYear": true,
-          "maxEntriesPerItem": 26,
-          "tag": "diversity"
-        },
-        {
-          "identifiers": [
-            "the-brothers-garcia"
-          ],
-          "ignoreYear": true,
-          "maxEntriesPerItem": 25,
-          "tag": "diversity"
-        },
-        {
-          "identifiers": [
-            "all-american-girl-1994-margaret-cho"
-          ],
-          "ignoreYear": true,
-          "maxEntriesPerItem": 29,
-          "tag": "diversity"
-        },
-        {
-          "identifiers": [
             "SanfordSeason1",
             "sanfordseason2_202605",
             "Sanford-Arms-1977"
@@ -3492,9 +3492,6 @@
           "ignoreYear": true,
           "maxEntriesPerItem": 14,
           "tag": "diversity"
-        },
-        {
-          "query": "(subject:(sitcom OR sitcoms) OR title:(\"malcolm in the middle\" OR newsradio)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR spanish OR jpn OR japanese OR chi OR chinese OR zho OR pol OR polish OR fre OR french OR fra OR ger OR german OR deu OR ita OR italian OR por OR portuguese OR rus OR russian OR kor OR korean OR hin OR hindi OR ara OR arabic OR tur OR vie OR ind OR tha OR hmn) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -subject:(argentina OR \"en español\" OR latino) AND -title:(\"casados con hijos\" OR \"vhs tape\")"
         }
       ],
       "timeBlocks": [
@@ -3511,14 +3508,14 @@
           "end": "21:00",
           "sources": [
             0,
+            1,
             2,
             3,
             4,
             5,
-            6,
-            10,
-            11,
-            19
+            18,
+            19,
+            20
           ]
         }
       ]
@@ -8059,6 +8056,315 @@
           "maxEntries": 80,
           "maxEntriesPerItem": 6,
           "blockLabel": "Music Videos"
+        }
+      ]
+    },
+    {
+      "number": 74,
+      "name": "ROFL",
+      "logo": "Logos/4x3/rofl.png",
+      "genre": "TV",
+      "sources": [
+        {
+          "identifiers": [
+            "20230323_20230323_1949"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 100
+        },
+        {
+          "identifiers": [
+            "familymatters_202507"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 100
+        },
+        {
+          "identifiers": [
+            "home-improvement-complete-dvd-rip"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 100
+        },
+        {
+          "identifiers": [
+            "roseanne-tv-series"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 100
+        },
+        {
+          "identifiers": [
+            "the-king-of-queens-complete-series-dvd"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 100
+        },
+        {
+          "identifiers": [
+            "mad-about-you-complete-series"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 100
+        },
+        {
+          "identifiers": [
+            "the-nanny-complete-series_20260128"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 100
+        },
+        {
+          "identifiers": [
+            "savedbythebell_202507"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 90
+        },
+        {
+          "identifiers": [
+            "newsradio-1995-99"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 90
+        },
+        {
+          "identifiers": [
+            "pilot-eps-from-youtuber-the-viewing-room"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 60
+        },
+        {
+          "identifiers": [
+            "everybody-loves-raymond-season-1_202601",
+            "everybody-loves-raymond-season-3_202601",
+            "everybody-loves-raymond-season-4_202601",
+            "everybody-loves-raymond-season-5_202601",
+            "everybody-loves-raymond-season-6_202601",
+            "everybody-loves-raymond-season-7_202601"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 22
+        },
+        {
+          "identifiers": [
+            "will-grace-season-1",
+            "will-grace-season-2_202407",
+            "will-grace-season-3",
+            "will-grace-season-4"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 24
+        },
+        {
+          "identifiers": [
+            "that-70s-show-season-1",
+            "that-70s-show-season-2",
+            "that-70s-show-season-3",
+            "that.70s.show.specials"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 24
+        },
+        {
+          "identifiers": [
+            "3rd-rock-from-the-sun-s-01-e-16",
+            "3rd-rock-from-the-sun-s-02-e-26",
+            "3rd-rock-from-the-sun-s-04-e-07"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 20
+        },
+        {
+          "identifiers": [
+            "dharma-and-greg-season-1",
+            "dharma-and-greg-season-2",
+            "dharma-and-greg-season-3"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 24
+        },
+        {
+          "identifiers": [
+            "5x22WereGoingToDisneyWorld1"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 80
+        },
+        {
+          "identifiers": [
+            "3-e-21"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 80
+        },
+        {
+          "identifiers": [
+            "living-single-1993",
+            "livingsingle-season5episodes"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 80
+        },
+        {
+          "identifiers": [
+            "sister-sister-1x-02-first-dates",
+            "sister-sister-s-4"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 40
+        },
+        {
+          "identifiers": [
+            "moesha-season-1-202312",
+            "moesha-season-2-202312-202312-202312",
+            "moesha-season-3"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 11
+        },
+        {
+          "identifiers": [
+            "gl-fullseries"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 52
+        },
+        {
+          "identifiers": [
+            "bernie-mac-season-1",
+            "still-standing-season-1",
+            "less-than-perfect-2002-06-sitcom",
+            "out-of-practice-2005",
+            "geena-davis-show"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 40
+        },
+        {
+          "identifiers": [
+            "parker-lewis-cant-lose-1990-and-ferris-bueller-the",
+            "clueless-1996-99",
+            "daves-world",
+            "jesse-1998-2000-sitcom",
+            "so-little-time",
+            "fired-up-1997-98",
+            "ThePowersThatBe1992",
+            "two-of-a-kind-1998",
+            "movie-stars-1999",
+            "High_Society_1995-1996",
+            "odd-man-out-1999-2000",
+            "you-wish-1997-1998",
+            "hot-properties",
+            "StyleAndSubstance1998",
+            "townies.-s-01-e-04-the-mcp",
+            "hot-springs-hotel-complete-series",
+            "Brothers_Keeper_ABC_Rarities"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 40
+        },
+        {
+          "identifiers": [
+            "hey-dude_202211",
+            "Anything-but-Love-sitcom",
+            "free-spirit-1989-sitcom",
+            "just-the-ten-of-us-1988-90",
+            "Aliens-in-the-Family",
+            "The_5_Mrs_Buchanans",
+            "dilbert-season-1-episode-05-testing",
+            "george-and-leo",
+            "ThatsMyBush",
+            "on-the-air-s-1e-5",
+            "on-the-air-s-01e-01-e-03"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 40
+        },
+        {
+          "identifiers": [
+            "the-wonder-years-complete-series"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 60
+        },
+        {
+          "identifiers": [
+            "red-dwarf-bodysnatcher",
+            "keeping-up-appearances_202402",
+            "father-ted_202601",
+            "vo-d-s-01-e-04-the-window-and-the-weather.avi",
+            "black-books-tv-series-2000-2004"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 40
+        },
+        {
+          "identifiers": [
+            "my-wife-and-kids-complete-series_202511"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 30,
+          "tag": "diversity"
+        },
+        {
+          "identifiers": [
+            "SmartGuySeason3Episode18Crushed"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 20,
+          "tag": "diversity"
+        },
+        {
+          "identifiers": [
+            "mrcoopers"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 22,
+          "tag": "diversity"
+        },
+        {
+          "identifiers": [
+            "the-brothers-garcia"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 25,
+          "tag": "diversity"
+        },
+        {
+          "identifiers": [
+            "all-american-girl-1994-margaret-cho"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 29,
+          "tag": "diversity"
+        }
+      ],
+      "timeBlocks": [
+        {
+          "label": "Weeknight Sitcom Block",
+          "days": [
+            "mon",
+            "tue",
+            "wed",
+            "thu",
+            "fri"
+          ],
+          "start": "19:00",
+          "end": "21:00",
+          "sources": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            26,
+            27,
+            28
+          ]
         }
       ]
     }
