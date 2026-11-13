@@ -612,7 +612,8 @@
     "stevewilkosseason1/Steve vs a pedophiles.mp4",
     "jerry-springer-1991-2018-part-1",
     "tales-of-the-gold-monkey/Tales of the Gold Monkey Full Episodes in Order/Episode 7 - Tales of the Gold Monkey 1982  -Türkçe Altyazılı.mp4",
-    "baywatch_202212/001-Panic At Malibu Pier(ORIGINAL UNEDITED VERSION).mp4"
+    "baywatch_202212/001-Panic At Malibu Pier(ORIGINAL UNEDITED VERSION).mp4",
+    "evil.toons.1992.1080p.bluray.x264-_yts.am___5a9fe25147684"
   ],
   "channels": [
     {
@@ -741,8 +742,681 @@
           "tag": "cartoons_overseas"
         },
         {
-          "query": "(subject:(cartoon OR cartoons)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR spanish OR jpn OR japanese OR chi OR chinese OR zho OR pol OR polish OR fre OR french OR fra OR ger OR german OR deu OR ita OR italian OR por OR portuguese OR rus OR russian OR kor OR korean OR hin OR hindi OR ara OR arabic OR tur OR vie OR ind OR tha OR hmn) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -subject:(banned OR \"adult swim\" OR \"foamy the squirrel\" OR \"ill will press\" OR \"hypnotic eye\") AND -identifier:(\"ReadingRainbowTVSeries\" OR \"FWRRTVSeries\" OR \"xavierrenegadeangel\" OR \"demashita_powerpuff_girls_z_full_series_japanese_dub\" OR \"krishna-balram-in-kalvakra-2009\" OR \"5_More_Minutes\") AND -title:(\"drawn together\") AND -title:(superman OR batman OR \"super friends\" OR superfriends OR \"justice league\" OR \"mighty mouse\" OR underdog OR hulk OR \"fantastic four\" OR \"marvel super heroes\" OR \"teen titans\" OR \"the tick\" OR freakazoid OR \"captain planet\" OR \"iron man\" OR \"silver surfer\") AND -title:(beavis OR butthead OR \"butt-head\" OR duckman OR \"home movies\" OR \"renegade angel\" OR \"south park\" OR \"king of the hill\" OR \"aqua teen\" OR \"harvey birdman\" OR sealab OR boondocks OR \"moral orel\" OR \"dr. katz\" OR \"dr katz\" OR \"venture bros\" OR \"brak show\" OR \"12 oz\" OR stroker OR \"perfect hair\" OR \"celebrity deathmatch\" OR undergrads OR minoriteam OR \"china, il\" OR \"space ghost coast\" OR oblongs OR \"mission hill\" OR \"the critic\" OR superjail OR \"tom goes to the mayor\")",
-          "maxEntriesPerItem": 40
+          "identifiers": [
+            "Tom-and-Jerry-Cartoons-Complete-Collection-1940-2007"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 30,
+          "tag": "funnies_saturday",
+          "label": "Tom and Jerry (MGM shorts 1940-58)",
+          "era": "classic"
+        },
+        {
+          "identifiers": [
+            "ThePinkPanther-cartoons",
+            "the-pink-panther-cartoon-collection",
+            "the-inspector-the-original-pink-panther-series"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 14,
+          "tag": "funnies_saturday",
+          "label": "Pink Panther / The Inspector (DePatie-Freleng)",
+          "era": "classic"
+        },
+        {
+          "identifiers": [
+            "walter-lantzs-ww-cartoons",
+            "the-woody-woodpecker-and-friends-cartunes"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 16,
+          "tag": "funnies_saturday",
+          "label": "Woody Woodpecker (Walter Lantz)",
+          "era": "classic"
+        },
+        {
+          "identifiers": [
+            "casper-the-friendly-ghost-the-complete-collection-1950-59"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 24,
+          "tag": "funnies_saturday",
+          "label": "Casper the Friendly Ghost (1950-59)",
+          "era": "classic"
+        },
+        {
+          "identifiers": [
+            "HeckleAndJeckleTheater",
+            "Heckle_and_Jeckle"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 12,
+          "tag": "funnies_saturday",
+          "label": "Heckle and Jeckle (Terrytoons)",
+          "era": "classic"
+        },
+        {
+          "identifiers": [
+            "title_t02_202601",
+            "b-1-t-00_20221130"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 12,
+          "tag": "funnies_saturday",
+          "label": "Mr. Magoo",
+          "era": "classic"
+        },
+        {
+          "identifiers": [
+            "treasureofmontezoomvhsquality",
+            "videoplayback_20200209_0254",
+            "rockybullwinkle3onlinevideocutter.com"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 10,
+          "tag": "funnies_saturday",
+          "label": "Rocky and Bullwinkle (Jay Ward)",
+          "era": "classic"
+        },
+        {
+          "identifiers": [
+            "The_Archie_Show_1968_Complete",
+            "Groovie_Goolies_Lando18",
+            "Groovie-Goolies-Collection"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 14,
+          "tag": "funnies_saturday",
+          "label": "The Archie Show (1968) / Groovie Goolies (Filmation)",
+          "era": "classic"
+        },
+        {
+          "identifiers": [
+            "the-jackson-5ive",
+            "harlem-globetrotters_202403"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 14,
+          "tag": "funnies_saturday",
+          "label": "The Jackson 5ive / Harlem Globetrotters (Rankin/Bass, H-B)",
+          "era": "classic"
+        },
+        {
+          "identifiers": [
+            "fat-albert-72"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 20,
+          "tag": "funnies_saturday",
+          "label": "Fat Albert and the Cosby Kids (Filmation)",
+          "era": "classic"
+        },
+        {
+          "identifiers": [
+            "flintstonescomedyshowcomplete",
+            "fangface-s-01-e-03-the-great-ape-escape",
+            "the-richie-rich-scooby-doo-show-ep-1",
+            "richie-rich-e-01"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 12,
+          "tag": "funnies_saturday",
+          "label": "The Flintstone Comedy Show / Fangface / Richie Rich",
+          "era": "classic"
+        },
+        {
+          "identifiers": [
+            "1455AS",
+            "395AS",
+            "1072AS",
+            "396AS"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 4,
+          "tag": "funnies_saturday",
+          "label": "Disney cartoon classics (laserdiscs)",
+          "era": "classic"
+        },
+        {
+          "query": "(title:(popeye) AND -title:(jap OR japs OR nazi OR \"blunder below\" OR \"seein red\" OR \"spinach fer britain\" OR \"scrap the\" OR \"sap, mr\" OR 1980 OR \"robin williams\" OR movie OR game OR nes OR arcade OR commercial OR toy OR trailer OR review OR \"popeye's\" OR vhs OR dvd OR banned OR censored OR uncensored OR colorized OR sindbad OR sinbad OR \"ali baba\" OR \"ali baba's\" OR babas OR aladdin OR collection OR compilation OR volume OR \"1933 to\" OR \"1943 to\" OR \"public domain\" OR complete OR episodes OR \"in color\" OR animatic OR \"more popeye\" OR best OR disc OR breakdowns OR woc OR \"w/o/c\" OR c64 OR classics OR shorts OR hour OR \"75th\" OR anniversary OR hijo OR longplay OR snes OR wnew)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR porn OR hentai) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut)",
+          "ignoreYear": true,
+          "maxEntries": 40,
+          "maxEntriesPerItem": 2,
+          "label": "Popeye the Sailor (shorts)",
+          "era": "classic",
+          "tag": "funnies_saturday"
+        },
+        {
+          "identifiers": [
+            "the-smurfs-1981_202601",
+            "the-smurfs-classic-720p-season-1"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 20,
+          "tag": "funnies_saturday",
+          "label": "The Smurfs (NBC 1981-89)",
+          "era": "80s"
+        },
+        {
+          "identifiers": [
+            "snorks_202301",
+            "snorksseason2"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 14,
+          "tag": "funnies_saturday",
+          "label": "Snorks",
+          "era": "80s"
+        },
+        {
+          "identifiers": [
+            "muppet_babies",
+            "JHMB84"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 18,
+          "tag": "funnies_saturday",
+          "label": "Jim Henson's Muppet Babies (CBS)",
+          "era": "80s"
+        },
+        {
+          "identifiers": [
+            "1983-alvin-and-the-chipmunks-complete",
+            "000-alvin-the-chipmunks-1987-film-the-chipmunk-adventure_202402"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 18,
+          "tag": "funnies_saturday",
+          "label": "Alvin and the Chipmunks (1983)",
+          "era": "80s"
+        },
+        {
+          "identifiers": [
+            "garfield-and-friends-complete-series"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 30,
+          "tag": "funnies_saturday",
+          "label": "Garfield and Friends (CBS, with U.S. Acres)",
+          "era": "80s"
+        },
+        {
+          "identifiers": [
+            "the-real-ghostbusters",
+            "slimer-complete-series",
+            "filmations-ghostbusters-19860"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 18,
+          "tag": "funnies_saturday",
+          "label": "The Real Ghostbusters / Slimer / Filmation Ghostbusters",
+          "era": "80s"
+        },
+        {
+          "identifiers": [
+            "gummi-bears-s-01-e-09-a-gummi-by-any-other-name",
+            "gummi-bears-s-02-e-12-my-gummi-lies-over-the-ocean",
+            "gummi-bears-s-03-e-07-day-of-the-beevilweevils",
+            "gummi-bears-s-04-e-15-top-gum",
+            "gummi-bears-s-05-e-11-beg-burrow-and-steal",
+            "gummi-bears-s-06-e-19-wings-over-dunwyn"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 5,
+          "tag": "funnies_saturday",
+          "label": "Disney's Adventures of the Gummi Bears",
+          "era": "80s"
+        },
+        {
+          "identifiers": [
+            "Ducktales-Complete-Series",
+            "ducktales-1987_202601"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 16,
+          "tag": "funnies_saturday",
+          "label": "DuckTales (1987)",
+          "era": "80s"
+        },
+        {
+          "identifiers": [
+            "care-bears-dic",
+            "the-care-bears-family-youtube"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 14,
+          "tag": "funnies_saturday",
+          "label": "Care Bears (DiC / Nelvana)",
+          "era": "80s"
+        },
+        {
+          "identifiers": [
+            "inspector-gadget-go-go-gadget-series"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 24,
+          "tag": "funnies_saturday",
+          "label": "Inspector Gadget",
+          "era": "80s"
+        },
+        {
+          "identifiers": [
+            "heathcliff-and-the-catillac-cats-1984-complete-series"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 20,
+          "tag": "funnies_saturday",
+          "label": "Heathcliff and the Catillac Cats",
+          "era": "80s"
+        },
+        {
+          "identifiers": [
+            "pound-puppies-complete",
+            "popples_202109",
+            "TheWuzzlesKlutzOnTheClutch",
+            "b-1-t-00_20240227"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 10,
+          "tag": "funnies_saturday",
+          "label": "Pound Puppies / Popples / Wuzzles / Shirt Tales",
+          "era": "80s"
+        },
+        {
+          "identifiers": [
+            "rainbow-brite-complete-vhs-set",
+            "strawberry-shortcake-1980s-episodes-archive",
+            "my-little-pony-80s"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 10,
+          "tag": "funnies_saturday",
+          "label": "Rainbow Brite / Strawberry Shortcake / My Little Pony (G1)",
+          "era": "80s"
+        },
+        {
+          "identifiers": [
+            "Jem_and_the_Holograms",
+            "s-03-e-04-video-wars"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 10,
+          "tag": "funnies_saturday",
+          "label": "Jem and the Holograms",
+          "era": "80s"
+        },
+        {
+          "identifiers": [
+            "he-man-and-the-masters-of-the-universe-s01",
+            "motu-season-2",
+            "shera1",
+            "shera2"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 8,
+          "tag": "funnies_saturday",
+          "label": "He-Man and She-Ra (Filmation)",
+          "era": "80s"
+        },
+        {
+          "identifiers": [
+            "Thundercats_Cartoon",
+            "thundercats_20250306",
+            "silverhawks-hd"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 10,
+          "tag": "funnies_saturday",
+          "label": "ThunderCats / SilverHawks",
+          "era": "80s"
+        },
+        {
+          "identifiers": [
+            "transformers-season-1",
+            "thetransformers1986",
+            "challenge-of-the-gobots"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 10,
+          "tag": "funnies_saturday",
+          "label": "Transformers (G1) / Challenge of the GoBots",
+          "era": "80s"
+        },
+        {
+          "identifiers": [
+            "g.i.-joe-a-real-american-hero-sunbow-dvd-rips",
+            "mask-01-the-deathstone-sg-1",
+            "centurions-ep.-58-the-better-half-part-1-480p-dvdrip"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 12,
+          "tag": "funnies_saturday",
+          "label": "G.I. Joe / M.A.S.K. / The Centurions",
+          "era": "80s"
+        },
+        {
+          "identifiers": [
+            "visionaries-full-series",
+            "jayce-and-the-wheeled-warriors-e-59",
+            "starcomtheu.s.spaceforceUpscale",
+            "DinoRidersEpisode1TheAdventureBegins",
+            "bravestarr-english"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 8,
+          "tag": "funnies_saturday",
+          "label": "Visionaries / Jayce / Starcom / Dino-Riders / BraveStarr",
+          "era": "80s"
+        },
+        {
+          "identifiers": [
+            "dungeons-dragons-tv-series"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 16,
+          "tag": "funnies_saturday",
+          "label": "Dungeons & Dragons (CBS)",
+          "era": "80s"
+        },
+        {
+          "identifiers": [
+            "kidd-video-complete",
+            "rubiktheamazingcube",
+            "dragons-lair-complete-series-1984",
+            "TurboTeenCollection",
+            "galaxy-high-school-full-series"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 8,
+          "tag": "funnies_saturday",
+          "label": "Kidd Video / Rubik / Dragon's Lair / Turbo Teen / Galaxy High",
+          "era": "80s"
+        },
+        {
+          "identifiers": [
+            "HulkHoganSRockNWrestlingAllTimeChampSpecialAnima",
+            "alf-the-animated-series",
+            "alf-the-animated-series-s2",
+            "gilligans-planet-s-01-e-05-amazing-colossal-gilligan"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 8,
+          "tag": "funnies_saturday",
+          "label": "Hulk Hogan's Rock 'n' Wrestling / ALF animated / Gilligan's Planet",
+          "era": "80s"
+        },
+        {
+          "identifiers": [
+            "monchhichis-complete-series-1983",
+            "the-biskitts-e-13-the-swamp-monster-may-the-best-biskitt-win-ai-enhanced",
+            "trollkins_202607",
+            "wildfire-1986",
+            "spartakus-and-the-sun-beneath-the-sea"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 8,
+          "tag": "funnies_saturday",
+          "label": "Monchhichis / Biskitts / Trollkins / Wildfire / Spartakus",
+          "era": "80s"
+        },
+        {
+          "identifiers": [
+            "the-adventures-of-teddy-ruxpin",
+            "kissyfur_1986_dvd",
+            "TheLittles",
+            "s-02e-12-one-million-years-bc",
+            "fraggle-toon"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 8,
+          "tag": "funnies_saturday",
+          "label": "Teddy Ruxpin / Kissyfur / The Littles / Camp Candy / Fraggle Rock (animated)",
+          "era": "80s"
+        },
+        {
+          "identifiers": [
+            "the-tom-and-jerry-comedy-show-1980",
+            "denver-the-last-dinosaur"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 10,
+          "tag": "funnies_saturday",
+          "label": "The Tom and Jerry Comedy Show (1980) / Denver, the Last Dinosaur",
+          "era": "80s"
+        },
+        {
+          "identifiers": [
+            "tiny-toon-adventures-1990-1995_202512"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 24,
+          "tag": "funnies_saturday",
+          "label": "Tiny Toon Adventures",
+          "era": "90s"
+        },
+        {
+          "identifiers": [
+            "animaniacs-1993-1998-movie_202601"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 24,
+          "tag": "funnies_saturday",
+          "label": "Animaniacs",
+          "era": "90s"
+        },
+        {
+          "identifiers": [
+            "pinky.and.the.-brain.-s-01-e-12.-a.-pinky.and.the.-brain.-christmas.-1080p.-upsc",
+            "s-01-e-05-brainania_202608"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 12,
+          "tag": "funnies_saturday",
+          "label": "Pinky and the Brain",
+          "era": "90s"
+        },
+        {
+          "identifiers": [
+            "63_20240517",
+            "tazmaniametvtoons",
+            "the-sylvester-tweety-mysteries-s-01-e-02-platinum-wheel-of-fortune"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 10,
+          "tag": "funnies_saturday",
+          "label": "Taz-Mania / The Sylvester & Tweety Mysteries",
+          "era": "90s"
+        },
+        {
+          "identifiers": [
+            "bobbysworlds1ep11insearchoftheringbear480x640_201911"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 20,
+          "tag": "funnies_saturday",
+          "label": "Bobby's World (Fox Kids)",
+          "era": "90s"
+        },
+        {
+          "identifiers": [
+            "eekthecats01e01misereekextendedcut"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 20,
+          "tag": "funnies_saturday",
+          "label": "Eek! the Cat",
+          "era": "90s"
+        },
+        {
+          "identifiers": [
+            "tom-and-jerry-kids-show-complete",
+            "yo-yogi-the-complete-series"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 14,
+          "tag": "funnies_saturday",
+          "label": "Tom and Jerry Kids / Yo Yogi!",
+          "era": "90s"
+        },
+        {
+          "identifiers": [
+            "darkwing-duck_20240119",
+            "darkwing-duck-1991_202601",
+            "tale-spin-1990-complete-series"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 12,
+          "tag": "funnies_saturday",
+          "label": "Darkwing Duck / TaleSpin",
+          "era": "90s"
+        },
+        {
+          "identifiers": [
+            "disney-bonkers-season-1",
+            "disney-bonkers-season-2",
+            "disney-bonkers-season-3",
+            "disney-bonkers-season-4",
+            "MightyDucks118BuzzBlitzmanMightyDuck"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 6,
+          "tag": "funnies_saturday",
+          "label": "Bonkers / Mighty Ducks",
+          "era": "90s"
+        },
+        {
+          "identifiers": [
+            "rockos-modern-life_202412",
+            "doug-cartoon-all-seasons",
+            "hey-arnold-1996"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 16,
+          "tag": "funnies_saturday",
+          "label": "Rocko's Modern Life / Doug / Hey Arnold!",
+          "era": "90s"
+        },
+        {
+          "identifiers": [
+            "recessfullseries",
+            "pepper-ann-full-series"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 16,
+          "tag": "funnies_saturday",
+          "label": "Recess / Pepper Ann",
+          "era": "90s"
+        },
+        {
+          "identifiers": [
+            "beetlejuice-1989-complete-animated-series"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 20,
+          "tag": "funnies_saturday",
+          "label": "Beetlejuice (animated)",
+          "era": "90s"
+        },
+        {
+          "identifiers": [
+            "the-new-woody-woodpecker-show"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 14,
+          "tag": "funnies_saturday",
+          "label": "The New Woody Woodpecker Show",
+          "era": "90s"
+        },
+        {
+          "identifiers": [
+            "dexters-laboratory-the-complete-series",
+            "powerpuff-girls-complete-series",
+            "courage-the-cowardly-dog-1080p-ai-upscale",
+            "ed-edd-n-eddy-full-series-1999-2009"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 14,
+          "tag": "funnies_saturday",
+          "label": "Dexter's Laboratory / The Powerpuff Girls / Courage / Ed, Edd n Eddy",
+          "era": "90s"
+        },
+        {
+          "identifiers": [
+            "earthworm-jim-complete-series-1995-1996",
+            "biker-mice-from-mars_202507",
+            "StreetSharksSharkWarsSeason3Episode13FullEpisode",
+            "Mighty-Max-Cartoon-Part-1-of-2",
+            "swatkats_202006"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 10,
+          "tag": "funnies_saturday",
+          "label": "Earthworm Jim / Biker Mice from Mars / Street Sharks / Mighty Max / SWAT Kats",
+          "era": "90s"
+        },
+        {
+          "identifiers": [
+            "cadillacs-and-dinosaurs-ep.-13-wildfire-480p-amzn-web-dl_202502",
+            "wild-west-c.-o.-w.-boys-of-moo-mesa-complete",
+            "bill-teds-excellent-adventures-s02e04",
+            "1991-bill-ted-excellent-adv-toon-mp-4",
+            "03-s-1-e-03-tomato-from-the-black-lagoon-19900922-vhs-1pq-98-xvid-512x-384"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 8,
+          "tag": "funnies_saturday",
+          "label": "Cadillacs and Dinosaurs / Moo Mesa / Bill & Ted / Killer Tomatoes",
+          "era": "90s"
+        },
+        {
+          "identifiers": [
+            "jumanji-the-animated-series_202101",
+            "men-in-black-the-series-1997",
+            "TMASFS"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 10,
+          "tag": "funnies_saturday",
+          "label": "Jumanji / Men in Black / The Mask (animated)",
+          "era": "90s"
+        },
+        {
+          "identifiers": [
+            "histeria-1998-2000-the-complete-series",
+            "mad-jack-the-pirate-complete-series-1998-1999",
+            "The-Shnookums-and-Meat-Funny-Cartoon-Show",
+            "sheep-in-the-big-city-s-1-e-03-to-bleat-or-not-to-bleat-myrak"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 8,
+          "tag": "funnies_saturday",
+          "label": "Histeria! / Mad Jack the Pirate / Shnookums & Meat / Sheep in the Big City",
+          "era": "90s"
+        },
+        {
+          "identifiers": [
+            "bump-in-the-night-complete-tv-series-and-special",
+            "life-with-louie",
+            "SabrinaTheAnimatedSeriesFieldTrippin",
+            "littlestpetshop1995",
+            "gadget-boy-and-heather-01x-01-dont-burst-my-bubble"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 8,
+          "tag": "funnies_saturday",
+          "label": "Bump in the Night / Life with Louie / Sabrina / Littlest Pet Shop / Gadget Boy",
+          "era": "90s"
+        },
+        {
+          "identifiers": [
+            "PocketDragonAdventuresComplete",
+            "rescue-heroes-s-01-e-11-the-fire-of-field-13_202509"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 8,
+          "tag": "funnies_saturday",
+          "label": "Pocket Dragon Adventures / Rescue Heroes",
+          "era": "90s"
         }
       ],
       "timeBlocks": [
@@ -751,15 +1425,93 @@
           "days": [
             "sat"
           ],
-          "start": "07:00",
-          "end": "12:00",
+          "start": "06:00",
+          "end": "08:00",
           "sources": [
             0,
             1,
             2,
             3,
             4,
-            5
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18
+          ]
+        },
+        {
+          "label": "Saturday Morning: The 80s",
+          "days": [
+            "sat"
+          ],
+          "start": "08:00",
+          "end": "10:00",
+          "sources": [
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43
+          ]
+        },
+        {
+          "label": "Saturday Morning: The 90s",
+          "days": [
+            "sat"
+          ],
+          "start": "10:00",
+          "end": "12:00",
+          "sources": [
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63
           ]
         }
       ]
@@ -1059,6 +1811,109 @@
       "genre": "Kids & Animation",
       "sources": [
         {
+          "identifiers": [
+            "thomas-and-friends-s01-s17",
+            "thomas-the-tank-engine-friends-the-complete-series-1-5-1984-98"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 40,
+          "claim": true,
+          "tag": "funnies_saturday",
+          "label": "Thomas & Friends / Thomas the Tank Engine (Railway Series stories)"
+        },
+        {
+          "identifiers": [
+            "CliffordTheBigRedDogTVSeries"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 24,
+          "claim": true,
+          "tag": "funnies_saturday",
+          "label": "Clifford the Big Red Dog (series)"
+        },
+        {
+          "identifiers": [
+            "MarthaSpeaksTVSeries"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 24,
+          "claim": true,
+          "tag": "funnies_saturday",
+          "label": "Martha Speaks (series)"
+        },
+        {
+          "identifiers": [
+            "WGTVSeries2007"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 24,
+          "claim": true,
+          "tag": "funnies_saturday",
+          "label": "WordGirl (series)"
+        },
+        {
+          "identifiers": [
+            "WWTVSeries20072011"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 24,
+          "claim": true,
+          "tag": "funnies_saturday",
+          "label": "WordWorld"
+        },
+        {
+          "identifiers": [
+            "DragonTalesTVSeries"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 24,
+          "claim": true,
+          "tag": "funnies_saturday",
+          "label": "Dragon Tales (series)"
+        },
+        {
+          "identifiers": [
+            "PFBTVSeries2004"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 16,
+          "claim": true,
+          "tag": "funnies_saturday",
+          "label": "Postcards from Buster"
+        },
+        {
+          "identifiers": [
+            "angelina-ballerina-classic-complete-series"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 24,
+          "claim": true,
+          "tag": "funnies_saturday",
+          "label": "Angelina Ballerina"
+        },
+        {
+          "identifiers": [
+            "classicmax-and-ruby"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 24,
+          "claim": true,
+          "tag": "funnies_saturday",
+          "label": "Max & Ruby"
+        },
+        {
+          "identifiers": [
+            "CTVSeriesAMZN19972010",
+            "c-tv-series-puppet-segments",
+            "caillou-tv-series"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 12,
+          "claim": true,
+          "tag": "funnies_saturday",
+          "label": "Caillou"
+        },
+        {
           "query": "(title:(\"reading rainbow\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie OR game_replays OR us_congress) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR CLE-* OR NJY-* OR VHS-0* OR mubd1234ama-*) AND -title:(trailer OR promo OR promos OR teaser OR commercial OR commercials OR credits OR intro OR opening OR bumper OR parody OR spoof OR \"vhs tape\" OR \"vhs fb\" OR \"random tv\" OR \"taped over\" OR review OR reaction OR \"every movie ever\" OR longplay OR mashup) AND -title:(cantonese OR korean OR romanian OR albanian OR french OR polish OR spanish OR multilingual OR multilanguage OR \"en/es\" OR dubbed OR ytp OR \"youtube poop\" OR poop OR games OR gameplay OR walkthrough OR funding OR fundings OR interstitial OR interstitials OR \"program break\" OR \"program breaks\" OR idents OR logo OR \"station id\" OR closing OR comparison OR comparision OR screener OR \"cd-rom\") AND -subject:(christian OR christianity OR gospel OR church OR sermon OR bible OR biblical OR ministry OR religious) AND -title:(\"star trek\" OR theme OR \"pbs kids promo\")",
           "ignoreYear": true,
           "maxEntries": 40,
@@ -1114,6 +1969,16 @@
       "logo": "Logos/4x3/homeroom.png",
       "genre": "Kids & Animation",
       "sources": [
+        {
+          "identifiers": [
+            "STSKTVSeries"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 24,
+          "claim": true,
+          "tag": "funnies_saturday",
+          "label": "Sid the Science Kid (series)"
+        },
         {
           "query": "(title:(\"mister rogers' neighborhood\" OR \"mister rogers neighborhood\" OR \"mr rogers neighborhood\" OR \"mr. rogers' neighborhood\" OR \"nighttime in mister rogers\" OR \"mister rogers:\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie OR game_replays OR us_congress) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR CLE-* OR NJY-* OR VHS-0* OR mubd1234ama-*) AND -title:(trailer OR promo OR promos OR teaser OR commercial OR commercials OR credits OR intro OR opening OR bumper OR parody OR spoof OR \"vhs tape\" OR \"vhs fb\" OR \"random tv\" OR \"taped over\" OR review OR reaction OR \"every movie ever\" OR longplay OR mashup) AND -title:(cantonese OR korean OR romanian OR albanian OR french OR polish OR spanish OR multilingual OR multilanguage OR \"en/es\" OR dubbed OR ytp OR \"youtube poop\" OR poop OR games OR gameplay OR walkthrough OR funding OR fundings OR interstitial OR interstitials OR \"program break\" OR \"program breaks\" OR idents OR logo OR \"station id\" OR closing OR comparison OR comparision OR screener OR \"cd-rom\") AND -subject:(christian OR christianity OR gospel OR church OR sermon OR bible OR biblical OR ministry OR religious) AND -title:(\"parking deck\" OR retires OR cnn OR tribute OR \"b-boy\" OR \"news report\" OR arthur OR \"who is\" OR \"talks with parents\" OR \"daniel tiger\" OR \"super why\" OR \"rick steves\" OR carson OR luray OR kloss OR \"behind the scenes\" OR \"sign off\")",
           "ignoreYear": true,
