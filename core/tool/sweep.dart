@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 
 /// Usage (from app\core, copied to tool\): dart run tool/sweep.dart CHANNELS_JSON OUT_DIR CACHE_DIR [n,n,...]
 /// Builds every channel's pool exactly as the app does (no faststart probes), item metadata cached on disk so
-/// re-runs after edits only fetch new items. OUT_DIR/<n>.tsv: source, minutes, item, language, title.
+/// re-runs after edits only fetch new items. `OUT_DIR/<n>.tsv`: source, minutes, item, language, title.
 class CachingClient extends http.BaseClient {
   final http.Client inner = http.Client();
   final Directory dir;
