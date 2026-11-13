@@ -4100,7 +4100,7 @@
             "judge-judy-25th-anniversary"
           ],
           "ignoreYear": true,
-          "maxEntriesPerItem": 41,
+          "maxEntriesPerItem": 10,
           "claim": true
         },
         {
@@ -4108,7 +4108,7 @@
             "judge-judy-s-15"
           ],
           "ignoreYear": true,
-          "maxEntriesPerItem": 42,
+          "maxEntriesPerItem": 10,
           "claim": true
         },
         {
@@ -4116,7 +4116,7 @@
             "judge-judy-s-8"
           ],
           "ignoreYear": true,
-          "maxEntriesPerItem": 42,
+          "maxEntriesPerItem": 10,
           "claim": true
         },
         {
@@ -4124,12 +4124,14 @@
             "judge-judy-14th-season"
           ],
           "ignoreYear": true,
-          "maxEntriesPerItem": 41,
+          "maxEntriesPerItem": 10,
           "claim": true
         },
         {
           "query": "(title:(\"judge judy\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR jpn OR chi OR hin OR kor OR tur) AND -collection:(audio_sermons OR audio_religion OR sermonindex) AND -subject:(sermon OR tbn OR worship OR \"praise the lord\") AND -collection:(tvnews OR tvarchive OR mirrortube OR social-media-video OR fringe OR deemphasize OR community_media OR movie_trailers OR funnyordie OR roosterteetharchive OR podcasts OR bliptv OR vlogs OR gamevideos) AND -identifier:(youtube-* OR yt_*) AND -title:(promo OR trailer OR bloopers OR intro OR credits OR logos OR teaser OR preview OR parody OR spoof OR \"funny or die\" OR \"vhs #\" OR \"tape #\" OR \"dvd+r\" OR \"market box\") AND -title:(clip OR clips OR opening OR commercials OR \"closing\" OR snl OR \"warner bros\" OR trump OR obama OR biden OR bernie OR impeachment OR mindblowing OR couric OR roseanne OR \"snark week\" OR \"monkey knife\" OR \"in mars\" OR \"drunk girl\" OR baby OR snow OR larson OR \"cade newton\" OR \"file #\" OR pokemon OR wendy OR \"days of our lives\" OR \"one life\" OR soccer OR gala OR \"5 pm news\" OR \"ten news\" OR neighbours OR tmz OR \"media funhouse\" OR \"it takes two\" OR \"real life\" OR \"throws shade\" OR \"vows to stop\" OR raped OR rape OR murder OR \"jayi\" OR \"beauty queens\" OR \"drug test\" OR promotion OR commercial OR \"al-angry\" OR firebat OR pops) AND -identifier:(00047349-*)",
-          "ignoreYear": true
+          "maxEntriesPerItem": 6,
+      "maxEntries": 70,
+      "ignoreYear": true
         },
         {
           "query": "(title:(\"people's court\" OR \"judge joe brown\" OR \"judge mathis\" OR \"mathis court\" OR \"divorce court\" OR \"judge david young\" OR \"hot bench\" OR \"judge alex\" OR \"judge mills lane\" OR \"judge hatchett\" OR \"texas justice\" OR \"judge wapner\") OR (title:\"superior court\" AND collection:vhstvshows)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR jpn OR chi OR hin OR kor OR tur) AND -collection:(audio_sermons OR audio_religion OR sermonindex) AND -subject:(sermon OR tbn OR worship OR \"praise the lord\") AND -collection:(tvnews OR tvarchive OR mirrortube OR social-media-video OR fringe OR deemphasize OR community_media OR movie_trailers OR funnyordie OR roosterteetharchive OR podcasts OR bliptv OR vlogs OR gamevideos) AND -identifier:(youtube-* OR yt_*) AND -title:(promo OR trailer OR bloopers OR intro OR credits OR logos OR teaser OR preview OR parody OR spoof OR \"funny or die\" OR \"vhs #\" OR \"tape #\" OR \"dvd+r\" OR \"market box\") AND -title:(clip OR clips OR opening OR commercials OR \"closing\" OR snl OR \"warner bros\" OR trump OR obama OR biden OR bernie OR impeachment OR mindblowing OR couric OR roseanne OR \"snark week\" OR \"monkey knife\" OR \"in mars\" OR \"drunk girl\" OR baby OR snow OR larson OR \"cade newton\" OR \"file #\" OR pokemon OR wendy OR \"days of our lives\" OR \"one life\" OR soccer OR gala OR \"5 pm news\" OR \"ten news\" OR neighbours OR tmz OR \"media funhouse\" OR \"it takes two\" OR \"real life\" OR \"throws shade\" OR \"vows to stop\" OR raped OR rape OR murder OR \"jayi\" OR \"beauty queens\" OR \"drug test\" OR promotion OR commercial OR \"al-angry\" OR firebat OR pops) AND -identifier:(00047349-*)",
