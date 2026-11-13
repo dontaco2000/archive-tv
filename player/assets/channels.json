@@ -2161,38 +2161,146 @@
       "sources": [
         {
           "identifiers": [
-            "20230323_20230323_1949"
-          ],
-          "ignoreYear": true,
-          "maxEntriesPerItem": 174,
-          "claim": true
-        },
-        {
-          "identifiers": [
-            "pilot-eps-from-youtuber-the-viewing-room"
-          ],
-          "ignoreYear": true,
-          "maxEntriesPerItem": 131,
-          "claim": true
-        },
-        {
-          "identifiers": [
-            "familymatters_202507"
-          ],
-          "ignoreYear": true,
-          "maxEntriesPerItem": 176,
-          "claim": true
-        },
-        {
-          "identifiers": [
             "the-golden-girls-complete-480p-x264"
           ],
           "ignoreYear": true,
-          "maxEntriesPerItem": 153,
-          "claim": true
+          "maxEntriesPerItem": 75
         },
         {
-          "query": "(subject:(sitcom OR sitcoms) OR title:(\"malcolm in the middle\" OR newsradio)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR spanish OR jpn OR japanese OR chi OR chinese OR zho OR pol OR polish OR fre OR french OR fra OR ger OR german OR deu OR ita OR italian OR por OR portuguese OR rus OR russian OR kor OR korean OR hin OR hindi OR ara OR arabic OR tur OR vie OR ind OR tha OR hmn) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -subject:(argentina OR \"en español\" OR latino) AND -title:(\"casados con hijos\" OR \"vhs tape\")"
+          "identifiers": [
+            "the-jeffersons-Lando18"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 75
+        },
+        {
+          "identifiers": [
+            "good-times-Lando18"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 75
+        },
+        {
+          "identifiers": [
+            "diffrent-strokes-Lando18"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 75
+        },
+        {
+          "identifiers": [
+            "perfect-strangers-Lando18"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 75
+        },
+        {
+          "identifiers": [
+            "growing-pains-complete-series"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 75
+        },
+        {
+          "identifiers": [
+            "rhoda-Lando18"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 75
+        },
+        {
+          "identifiers": [
+            "barney-miller"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 75
+        },
+        {
+          "identifiers": [
+            "TheBobNewhartShow"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 75
+        },
+        {
+          "identifiers": [
+            "NewhartSeries",
+            "NewhartSeries2",
+            "NewhartSeries3",
+            "NewhartSeries4",
+            "NewhartSeries5",
+            "NewhartSeries6",
+            "NewhartSeries7"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 14
+        },
+        {
+          "identifiers": [
+            "wkrp-s-1-e-20-young-master-carlson"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 75
+        },
+        {
+          "identifiers": [
+            "the-dick-van-dyke-show-season-1-of-5-mkv",
+            "the-dick-van-dyke-show-season-2-of-5-mkv",
+            "the-dick-van-dyke-show-season-3-of-5-mkv",
+            "the-dick-van-dyke-show-season-4-of-5-mkv",
+            "the-dick-van-dyke-show-season-5-of-5-mkv"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 16
+        },
+        {
+          "identifiers": [
+            "the-honeymooners-DVD"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 40
+        },
+        {
+          "identifiers": [
+            "make-room-for-daddy"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 46
+        },
+        {
+          "identifiers": [
+            "f-troop-1965-complete-series"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 60
+        },
+        {
+          "identifiers": [
+            "happy-days-season-4"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 24
+        },
+        {
+          "identifiers": [
+            "duet-open-house"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 40
+        },
+        {
+          "identifiers": [
+            "square-pegs-1982-83-sjp",
+            "flo-1980-81-sitcom",
+            "down-to-earth-1984",
+            "filthy-rich-1982-s-01e-01",
+            "Its_Your_Move_1984",
+            "The_Tortellis",
+            "amen-season-1",
+            "theconeheads1983"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 30
         }
       ],
       "timeBlocks": [
@@ -2209,8 +2317,277 @@
           "end": "21:00",
           "sources": [
             0,
+            1,
             2,
-            3
+            3,
+            4,
+            5
+          ]
+        }
+      ]
+    },
+    {
+      "number": 74,
+      "name": "ROFL",
+      "logo": "Logos/4x3/rofl.png",
+      "genre": "TV",
+      "sources": [
+        {
+          "identifiers": [
+            "20230323_20230323_1949"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 100
+        },
+        {
+          "identifiers": [
+            "familymatters_202507"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 100
+        },
+        {
+          "identifiers": [
+            "home-improvement-complete-dvd-rip"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 100
+        },
+        {
+          "identifiers": [
+            "roseanne-tv-series"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 100
+        },
+        {
+          "identifiers": [
+            "the-king-of-queens-complete-series-dvd"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 100
+        },
+        {
+          "identifiers": [
+            "mad-about-you-complete-series"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 100
+        },
+        {
+          "identifiers": [
+            "the-nanny-complete-series_20260128"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 100
+        },
+        {
+          "identifiers": [
+            "savedbythebell_202507"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 90
+        },
+        {
+          "identifiers": [
+            "newsradio-1995-99"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 90
+        },
+        {
+          "identifiers": [
+            "pilot-eps-from-youtuber-the-viewing-room"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 60
+        },
+        {
+          "identifiers": [
+            "everybody-loves-raymond-season-1_202601",
+            "everybody-loves-raymond-season-3_202601",
+            "everybody-loves-raymond-season-4_202601",
+            "everybody-loves-raymond-season-5_202601",
+            "everybody-loves-raymond-season-6_202601",
+            "everybody-loves-raymond-season-7_202601"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 22
+        },
+        {
+          "identifiers": [
+            "will-grace-season-1",
+            "will-grace-season-2_202407",
+            "will-grace-season-3",
+            "will-grace-season-4"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 24
+        },
+        {
+          "identifiers": [
+            "that-70s-show-season-1",
+            "that-70s-show-season-2",
+            "that-70s-show-season-3",
+            "that.70s.show.specials"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 24
+        },
+        {
+          "identifiers": [
+            "3rd-rock-from-the-sun-s-01-e-16",
+            "3rd-rock-from-the-sun-s-02-e-26",
+            "3rd-rock-from-the-sun-s-04-e-07"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 20
+        },
+        {
+          "identifiers": [
+            "dharma-and-greg-season-1",
+            "dharma-and-greg-season-2",
+            "dharma-and-greg-season-3"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 24
+        },
+        {
+          "identifiers": [
+            "5x22WereGoingToDisneyWorld1"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 80
+        },
+        {
+          "identifiers": [
+            "3-e-21"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 80
+        },
+        {
+          "identifiers": [
+            "living-single-1993",
+            "livingsingle-season5episodes"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 80
+        },
+        {
+          "identifiers": [
+            "sister-sister-1x-02-first-dates",
+            "sister-sister-s-4"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 40
+        },
+        {
+          "identifiers": [
+            "moesha-season-1-202312",
+            "moesha-season-2-202312-202312-202312",
+            "moesha-season-3"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 11
+        },
+        {
+          "identifiers": [
+            "gl-fullseries"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 52
+        },
+        {
+          "identifiers": [
+            "bernie-mac-season-1",
+            "still-standing-season-1",
+            "less-than-perfect-2002-06-sitcom",
+            "out-of-practice-2005",
+            "geena-davis-show"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 40
+        },
+        {
+          "identifiers": [
+            "parker-lewis-cant-lose-1990-and-ferris-bueller-the",
+            "clueless-1996-99",
+            "daves-world",
+            "jesse-1998-2000-sitcom",
+            "so-little-time",
+            "fired-up-1997-98",
+            "ThePowersThatBe1992",
+            "two-of-a-kind-1998",
+            "movie-stars-1999",
+            "High_Society_1995-1996",
+            "odd-man-out-1999-2000",
+            "you-wish-1997-1998",
+            "hot-properties",
+            "StyleAndSubstance1998",
+            "townies.-s-01-e-04-the-mcp",
+            "hot-springs-hotel-complete-series",
+            "Brothers_Keeper_ABC_Rarities"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 40
+        },
+        {
+          "identifiers": [
+            "hey-dude_202211",
+            "Anything-but-Love-sitcom",
+            "free-spirit-1989-sitcom",
+            "just-the-ten-of-us-1988-90",
+            "Aliens-in-the-Family",
+            "The_5_Mrs_Buchanans",
+            "dilbert-season-1-episode-05-testing",
+            "george-and-leo",
+            "ThatsMyBush",
+            "on-the-air-s-1e-5",
+            "on-the-air-s-01e-01-e-03"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 40
+        },
+        {
+          "identifiers": [
+            "the-wonder-years-complete-series"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 60
+        },
+        {
+          "identifiers": [
+            "red-dwarf-bodysnatcher",
+            "keeping-up-appearances_202402",
+            "father-ted_202601",
+            "vo-d-s-01-e-04-the-window-and-the-weather.avi",
+            "black-books-tv-series-2000-2004"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 40
+        }
+      ],
+      "timeBlocks": [
+        {
+          "label": "Weeknight Sitcom Block",
+          "days": [
+            "mon",
+            "tue",
+            "wed",
+            "thu",
+            "fri"
+          ],
+          "start": "19:00",
+          "end": "21:00",
+          "sources": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
           ]
         }
       ]
@@ -2615,96 +2992,96 @@
           "ignoreYear": true,
           "maxEntries": 40,
           "maxSeconds": 3600,
-      "maxEntriesPerItem": 2
+          "maxEntriesPerItem": 2
         },
         {
           "query": "((title:(\"abc 20 20\" OR \"abc news 20 20\" OR \"abc's 20 20\" OR \"20 20 downtown\")) OR (title:\"20 20\" AND collection:(vhsnews OR vhsvault OR flemishdog OR gorelicktv))) AND -subject:(xxx OR nsfw OR erotica OR erotic OR porn OR pornography OR softcore OR nudity) AND -title:(xxx OR porn OR erotic OR nude OR naked OR topless OR sexy OR stripper OR \"girls gone wild\" OR sex OR pornography OR milf OR striptease) AND -language:(spa OR por OR fre OR ger OR ita OR rus OR chi OR jpn OR kor) AND -title:(japan OR japanese OR russian) AND -collection:(tvnews OR tvarchive OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR bliptv OR industry-archives OR vlogs OR funnyordie) AND -identifier:(youtube-* OR twitter-* OR TikTok-* OR g4tv.com-* OR CLE-*) AND -title:(trailer OR promo OR promos OR bumper OR parody OR spoof OR blooper OR reaction) AND -title:(\"9 11\" OR \"september 11\" OR \"sept 11\" OR wtc OR \"world trade center\" OR \"twin towers\" OR \"attack on america\" OR \"america under attack\" OR \"ground zero\" OR \"war on terror\" OR \"bin laden\" OR \"strikes back\" OR 20010911 OR 20010912 OR 20010913 OR 20010914) AND -title:(mystery OR predator OR murder OR murders OR killer OR homicide OR \"cold case\" OR mcveigh OR epstein OR \"o. j.\" OR \"o.j.\" OR \"crime scene\" OR bundy OR menendez OR dahmer OR manson OR columbine OR satanic OR satanism OR satanists) AND -title:(\"vhs tape\" OR \"blank vhs\" OR \"market box\" OR \"dvd transfer\" OR \"vhs recording\" OR woc OR commercials OR \"sign off\" OR letterman OR oprah OR cartoons OR \"split screen\" OR \"random tv\" OR \"you tube\") AND -title:(\"dancing israelis\" OR lewinsky OR \"death in the classroom\" OR \"unfaithfully\" OR \"split screen\" OR \"disney 100\" OR jimmy OR freddy OR \"20 20 20\" OR glitch OR catsouras OR pussycat OR \"music videos\" OR tvp OR concord OR \"home movies\" OR twitter)",
           "ignoreYear": true,
           "maxEntries": 40,
           "maxSeconds": 3600,
-      "maxEntriesPerItem": 2
+          "maxEntriesPerItem": 2
         },
         {
           "query": "(title:(\"dateline nbc\" OR \"dateline special\" OR \"a dateline nbc special\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR porn OR pornography OR softcore OR nudity) AND -title:(xxx OR porn OR erotic OR nude OR naked OR topless OR sexy OR stripper OR \"girls gone wild\" OR sex OR pornography OR milf OR striptease) AND -language:(spa OR por OR fre OR ger OR ita OR rus OR chi OR jpn OR kor) AND -title:(japan OR japanese OR russian) AND -collection:(tvnews OR tvarchive OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR bliptv OR industry-archives OR vlogs OR funnyordie) AND -identifier:(youtube-* OR twitter-* OR TikTok-* OR g4tv.com-* OR CLE-*) AND -title:(trailer OR promo OR promos OR bumper OR parody OR spoof OR blooper OR reaction) AND -title:(\"9 11\" OR \"september 11\" OR \"sept 11\" OR wtc OR \"world trade center\" OR \"twin towers\" OR \"attack on america\" OR \"america under attack\" OR \"ground zero\" OR \"war on terror\" OR \"bin laden\" OR \"strikes back\" OR 20010911 OR 20010912 OR 20010913 OR 20010914) AND -title:(mystery OR predator OR murder OR murders OR killer OR homicide OR \"cold case\" OR mcveigh OR epstein OR \"o. j.\" OR \"o.j.\" OR \"crime scene\" OR bundy OR menendez OR dahmer OR manson OR columbine OR satanic OR satanism OR satanists) AND -title:(\"vhs tape\" OR \"blank vhs\" OR \"market box\" OR \"dvd transfer\" OR \"vhs recording\" OR woc OR commercials OR \"sign off\" OR letterman OR oprah OR cartoons OR \"split screen\" OR \"random tv\" OR \"you tube\") AND -title:(\"catch a predator\" OR \"long island\" OR tomorrow OR britain OR \"study in evil\" OR opening OR sexnet OR chatline OR intro OR wings OR \"eric harris\") AND -identifier:(NBCNEWS_*) AND -title:(\"Sept. 11, 2001\" OR \"Sept. 12, 2001\" OR \"Sept. 13, 2001\" OR \"September 11, 2001\" OR \"9/11\" OR \"9-11\")",
           "ignoreYear": true,
           "maxEntries": 40,
           "maxSeconds": 3600,
-      "maxEntriesPerItem": 2
+          "maxEntriesPerItem": 2
         },
         {
           "query": "(title:(frontline OR \"pbs frontline\") AND -title:(\"medal of honor\" OR katyusha OR \"frontline doctors\" OR \"system fail\" OR \"frontline diaries\" OR \"dvd isos\" OR \"on pbs\" OR assembly OR girls OR nhs OR \"on the frontline\" OR leadership OR \"music group\" OR \"behind the frontline\" OR \"death from\" OR \"frontline vhs\" OR sports OR nightmare OR jesus OR confessions OR customs OR soulfly OR various OR beta)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR porn OR pornography OR softcore OR nudity) AND -title:(xxx OR porn OR erotic OR nude OR naked OR topless OR sexy OR stripper OR \"girls gone wild\" OR sex OR pornography OR milf OR striptease) AND -language:(spa OR por OR fre OR ger OR ita OR rus OR chi OR jpn OR kor) AND -title:(japan OR japanese OR russian) AND -collection:(tvnews OR tvarchive OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR bliptv OR industry-archives OR vlogs OR funnyordie) AND -identifier:(youtube-* OR twitter-* OR TikTok-* OR g4tv.com-* OR CLE-*) AND -title:(trailer OR promo OR promos OR bumper OR parody OR spoof OR blooper OR reaction) AND -title:(\"9 11\" OR \"september 11\" OR \"sept 11\" OR wtc OR \"world trade center\" OR \"twin towers\" OR \"attack on america\" OR \"america under attack\" OR \"ground zero\" OR \"war on terror\" OR \"bin laden\" OR \"strikes back\" OR 20010911 OR 20010912 OR 20010913 OR 20010914) AND -title:(mystery OR predator OR murder OR murders OR killer OR homicide OR \"cold case\" OR mcveigh OR epstein OR \"o. j.\" OR \"o.j.\" OR \"crime scene\" OR bundy OR menendez OR dahmer OR manson OR columbine OR satanic OR satanism OR satanists) AND -title:(\"vhs tape\" OR \"blank vhs\" OR \"market box\" OR \"dvd transfer\" OR \"vhs recording\" OR woc OR commercials OR \"sign off\" OR letterman OR oprah OR cartoons OR \"split screen\" OR \"random tv\" OR \"you tube\") AND -identifier:(frontline_collection OR FrontlineISOs OR frontline_202009)",
           "ignoreYear": true,
           "maxEntries": 40,
           "maxSeconds": 3600,
-      "maxEntriesPerItem": 2
+          "maxEntriesPerItem": 2
         },
         {
           "query": "(title:(\"cbs sunday morning\" OR \"cbs news sunday morning\" OR \"sunday morning with charles kuralt\" OR \"meet the press\" OR \"face the nation\" OR \"this week with david brinkley\" OR \"this week with sam donaldson\" OR \"washington week\" OR \"mclaughlin group\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR porn OR pornography OR softcore OR nudity) AND -title:(xxx OR porn OR erotic OR nude OR naked OR topless OR sexy OR stripper OR \"girls gone wild\" OR sex OR pornography OR milf OR striptease) AND -language:(spa OR por OR fre OR ger OR ita OR rus OR chi OR jpn OR kor) AND -title:(japan OR japanese OR russian) AND -collection:(tvnews OR tvarchive OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR bliptv OR industry-archives OR vlogs OR funnyordie) AND -identifier:(youtube-* OR twitter-* OR TikTok-* OR g4tv.com-* OR CLE-*) AND -title:(trailer OR promo OR promos OR bumper OR parody OR spoof OR blooper OR reaction) AND -title:(\"9 11\" OR \"september 11\" OR \"sept 11\" OR wtc OR \"world trade center\" OR \"twin towers\" OR \"attack on america\" OR \"america under attack\" OR \"ground zero\" OR \"war on terror\" OR \"bin laden\" OR \"strikes back\" OR 20010911 OR 20010912 OR 20010913 OR 20010914) AND -title:(mystery OR predator OR murder OR murders OR killer OR homicide OR \"cold case\" OR mcveigh OR epstein OR \"o. j.\" OR \"o.j.\" OR \"crime scene\" OR bundy OR menendez OR dahmer OR manson OR columbine OR satanic OR satanism OR satanists) AND -title:(\"vhs tape\" OR \"blank vhs\" OR \"market box\" OR \"dvd transfer\" OR \"vhs recording\" OR woc OR commercials OR \"sign off\" OR letterman OR oprah OR cartoons OR \"split screen\" OR \"random tv\" OR \"you tube\") AND -title:(\"vintage news channel\" OR \"princess bride\" OR beadles OR \"squizzy\" OR \"finding the way home\" OR \"sports tonight\" OR inflight OR sesame)",
           "ignoreYear": true,
           "maxEntries": 45,
           "maxSeconds": 3600,
-      "maxEntriesPerItem": 2
+          "maxEntriesPerItem": 2
         },
         {
           "query": "((title:\"48 hours\" AND (title:(cbs OR rather) OR collection:(vhsnews OR vhsvault OR flemishdog))) OR title:(\"primetime live\" OR \"prime time live\" OR \"primetime thursday\" OR \"west 57th\" OR \"eye to eye with connie chung\" OR \"street stories\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR porn OR pornography OR softcore OR nudity) AND -title:(xxx OR porn OR erotic OR nude OR naked OR topless OR sexy OR stripper OR \"girls gone wild\" OR sex OR pornography OR milf OR striptease) AND -language:(spa OR por OR fre OR ger OR ita OR rus OR chi OR jpn OR kor) AND -title:(japan OR japanese OR russian) AND -collection:(tvnews OR tvarchive OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR bliptv OR industry-archives OR vlogs OR funnyordie) AND -identifier:(youtube-* OR twitter-* OR TikTok-* OR g4tv.com-* OR CLE-*) AND -title:(trailer OR promo OR promos OR bumper OR parody OR spoof OR blooper OR reaction) AND -title:(\"9 11\" OR \"september 11\" OR \"sept 11\" OR wtc OR \"world trade center\" OR \"twin towers\" OR \"attack on america\" OR \"america under attack\" OR \"ground zero\" OR \"war on terror\" OR \"bin laden\" OR \"strikes back\" OR 20010911 OR 20010912 OR 20010913 OR 20010914) AND -title:(mystery OR predator OR murder OR murders OR killer OR homicide OR \"cold case\" OR mcveigh OR epstein OR \"o. j.\" OR \"o.j.\" OR \"crime scene\" OR bundy OR menendez OR dahmer OR manson OR columbine OR satanic OR satanism OR satanists) AND -title:(\"vhs tape\" OR \"blank vhs\" OR \"market box\" OR \"dvd transfer\" OR \"vhs recording\" OR woc OR commercials OR \"sign off\" OR letterman OR oprah OR cartoons OR \"split screen\" OR \"random tv\" OR \"you tube\") AND -title:(\"48 hours mystery\" OR \"to live\" OR \"last 48\" OR uwn OR ellen OR \"porn in\" OR \"moscow vice\" OR \"in 48 hours\" OR siegel OR sesame OR \"visit london\" OR oras OR \"science rock\" OR \"split credits\")",
           "ignoreYear": true,
           "maxEntries": 40,
           "maxSeconds": 3600,
-      "maxEntriesPerItem": 2
+          "maxEntriesPerItem": 2
         },
         {
           "query": "(title:(\"abc nightline\" OR \"abc news nightline\" OR \"nightline with ted koppel\" OR newshour OR \"macneil lehrer\" OR \"macneil/lehrer\" OR \"news hour with jim lehrer\" OR \"newshour with jim lehrer\" OR \"larry king live\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR porn OR pornography OR softcore OR nudity) AND -title:(xxx OR porn OR erotic OR nude OR naked OR topless OR sexy OR stripper OR \"girls gone wild\" OR sex OR pornography OR milf OR striptease) AND -language:(spa OR por OR fre OR ger OR ita OR rus OR chi OR jpn OR kor) AND -title:(japan OR japanese OR russian) AND -collection:(tvnews OR tvarchive OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR bliptv OR industry-archives OR vlogs OR funnyordie) AND -identifier:(youtube-* OR twitter-* OR TikTok-* OR g4tv.com-* OR CLE-*) AND -title:(trailer OR promo OR promos OR bumper OR parody OR spoof OR blooper OR reaction) AND -title:(\"9 11\" OR \"september 11\" OR \"sept 11\" OR wtc OR \"world trade center\" OR \"twin towers\" OR \"attack on america\" OR \"america under attack\" OR \"ground zero\" OR \"war on terror\" OR \"bin laden\" OR \"strikes back\" OR 20010911 OR 20010912 OR 20010913 OR 20010914) AND -title:(mystery OR predator OR murder OR murders OR killer OR homicide OR \"cold case\" OR mcveigh OR epstein OR \"o. j.\" OR \"o.j.\" OR \"crime scene\" OR bundy OR menendez OR dahmer OR manson OR columbine OR satanic OR satanism OR satanists) AND -title:(\"vhs tape\" OR \"blank vhs\" OR \"market box\" OR \"dvd transfer\" OR \"vhs recording\" OR woc OR commercials OR \"sign off\" OR letterman OR oprah OR cartoons OR \"split screen\" OR \"random tv\" OR \"you tube\") AND -title:(\"khan academy\" OR \"on drugs\" OR \"town meeting\" OR spanish OR nightmare) AND -identifier:(NonprofitPbs*)",
           "ignoreYear": true,
           "maxEntries": 40,
           "maxSeconds": 3600,
-      "maxEntriesPerItem": 2
+          "maxEntriesPerItem": 2
         },
         {
           "query": "(title:(\"cbs reports\" OR \"nbc white paper\" OR \"abc news closeup\" OR \"cnn presents\" OR \"abc news special\" OR \"nbc news special\" OR \"cbs news special\" OR \"cbs news special report\" OR \"peter jennings reporting\" OR \"nbc reports\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR porn OR pornography OR softcore OR nudity) AND -title:(xxx OR porn OR erotic OR nude OR naked OR topless OR sexy OR stripper OR \"girls gone wild\" OR sex OR pornography OR milf OR striptease) AND -language:(spa OR por OR fre OR ger OR ita OR rus OR chi OR jpn OR kor) AND -title:(japan OR japanese OR russian) AND -collection:(tvnews OR tvarchive OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR bliptv OR industry-archives OR vlogs OR funnyordie) AND -identifier:(youtube-* OR twitter-* OR TikTok-* OR g4tv.com-* OR CLE-*) AND -title:(trailer OR promo OR promos OR bumper OR parody OR spoof OR blooper OR reaction) AND -title:(\"9 11\" OR \"september 11\" OR \"sept 11\" OR wtc OR \"world trade center\" OR \"twin towers\" OR \"attack on america\" OR \"america under attack\" OR \"ground zero\" OR \"war on terror\" OR \"bin laden\" OR \"strikes back\" OR 20010911 OR 20010912 OR 20010913 OR 20010914) AND -title:(mystery OR predator OR murder OR murders OR killer OR homicide OR \"cold case\" OR mcveigh OR epstein OR \"o. j.\" OR \"o.j.\" OR \"crime scene\" OR bundy OR menendez OR dahmer OR manson OR columbine OR satanic OR satanism OR satanists) AND -title:(\"vhs tape\" OR \"blank vhs\" OR \"market box\" OR \"dvd transfer\" OR \"vhs recording\" OR woc OR commercials OR \"sign off\" OR letterman OR oprah OR cartoons OR \"split screen\" OR \"random tv\" OR \"you tube\") AND -title:(walker OR \"golden leaf\" OR \"bookie\" OR fbi OR elon OR jesus OR god OR \"false video\")",
           "ignoreYear": true,
           "maxEntries": 30,
           "maxSeconds": 3600,
-      "maxEntriesPerItem": 2
+          "maxEntriesPerItem": 2
         },
         {
           "query": "(title:(\"inside edition\" OR \"a current affair\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR porn OR pornography OR softcore OR nudity) AND -title:(xxx OR porn OR erotic OR nude OR naked OR topless OR sexy OR stripper OR \"girls gone wild\" OR sex OR pornography OR milf OR striptease) AND -language:(spa OR por OR fre OR ger OR ita OR rus OR chi OR jpn OR kor) AND -title:(japan OR japanese OR russian) AND -collection:(tvnews OR tvarchive OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR bliptv OR industry-archives OR vlogs OR funnyordie) AND -identifier:(youtube-* OR twitter-* OR TikTok-* OR g4tv.com-* OR CLE-*) AND -title:(trailer OR promo OR promos OR bumper OR parody OR spoof OR blooper OR reaction) AND -title:(\"9 11\" OR \"september 11\" OR \"sept 11\" OR wtc OR \"world trade center\" OR \"twin towers\" OR \"attack on america\" OR \"america under attack\" OR \"ground zero\" OR \"war on terror\" OR \"bin laden\" OR \"strikes back\" OR 20010911 OR 20010912 OR 20010913 OR 20010914) AND -title:(mystery OR predator OR murder OR murders OR killer OR homicide OR \"cold case\" OR mcveigh OR epstein OR \"o. j.\" OR \"o.j.\" OR \"crime scene\" OR bundy OR menendez OR dahmer OR manson OR columbine OR satanic OR satanism OR satanists) AND -title:(\"vhs tape\" OR \"blank vhs\" OR \"market box\" OR \"dvd transfer\" OR \"vhs recording\" OR woc OR commercials OR \"sign off\" OR letterman OR oprah OR cartoons OR \"split screen\" OR \"random tv\" OR \"you tube\") AND -title:(opener OR closer OR \"partial bulletin\" OR update OR \"hard copy\" OR babes OR signpost OR article OR \"sale of the century\") AND -title:(\"Sept. 11, 2001\" OR \"Sept. 12, 2001\" OR \"Sept. 13, 2001\" OR \"September 11, 2001\" OR \"9/11\" OR \"9-11\")",
           "ignoreYear": true,
           "maxEntries": 15,
           "maxSeconds": 3600,
-      "maxEntriesPerItem": 1
+          "maxEntriesPerItem": 1
         },
         {
           "query": "(subject:(\"news broadcast\" OR newscast OR \"evening news\" OR \"local news\" OR \"tv news\" OR \"television news\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR porn OR pornography OR softcore OR nudity) AND -title:(xxx OR porn OR erotic OR nude OR naked OR topless OR sexy OR stripper OR \"girls gone wild\" OR sex OR pornography OR milf OR striptease) AND -language:(spa OR por OR fre OR ger OR ita OR rus OR chi OR jpn OR kor) AND -title:(japan OR japanese OR russian) AND -collection:(tvnews OR tvarchive OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR bliptv OR industry-archives OR vlogs OR funnyordie) AND -identifier:(youtube-* OR twitter-* OR TikTok-* OR g4tv.com-* OR CLE-*) AND -title:(trailer OR promo OR promos OR bumper OR parody OR spoof OR blooper OR reaction) AND -title:(\"9 11\" OR \"september 11\" OR \"sept 11\" OR wtc OR \"world trade center\" OR \"twin towers\" OR \"attack on america\" OR \"america under attack\" OR \"ground zero\" OR \"war on terror\" OR \"bin laden\" OR \"strikes back\" OR 20010911 OR 20010912 OR 20010913 OR 20010914) AND -title:(mystery OR predator OR murder OR murders OR killer OR homicide OR \"cold case\" OR mcveigh OR epstein OR \"o. j.\" OR \"o.j.\" OR \"crime scene\" OR bundy OR menendez OR dahmer OR manson OR columbine OR satanic OR satanism OR satanists) AND -title:(\"vhs tape\" OR \"blank vhs\" OR \"market box\" OR \"dvd transfer\" OR \"vhs recording\" OR woc OR commercials OR \"sign off\" OR letterman OR oprah OR cartoons OR \"split screen\" OR \"random tv\" OR \"you tube\") AND -subject:(christian OR religion OR church OR sermon OR bible OR ministry OR evangelist) AND -title:(church OR sermon OR ministry OR cult OR cults) AND -title:(\"star trek\" OR \"discovery channel\" OR \"channel surfing\" OR negativland OR \"charlie chan\" OR \"life of grime\" OR \"vhs #\" OR \"care bears\" OR miniseries OR wrestling OR undertaker OR \"child bride\")",
           "maxEntries": 50,
           "maxSeconds": 3600,
-      "maxEntriesPerItem": 2
+          "maxEntriesPerItem": 2
         },
         {
           "query": "(title:(newscast OR \"evening news\" OR \"nightly news\" OR \"eyewitness news\" OR \"world news tonight\" OR \"action news\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR porn OR pornography OR softcore OR nudity) AND -title:(xxx OR porn OR erotic OR nude OR naked OR topless OR sexy OR stripper OR \"girls gone wild\" OR sex OR pornography OR milf OR striptease) AND -language:(spa OR por OR fre OR ger OR ita OR rus OR chi OR jpn OR kor) AND -title:(japan OR japanese OR russian) AND -collection:(tvnews OR tvarchive OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR bliptv OR industry-archives OR vlogs OR funnyordie) AND -identifier:(youtube-* OR twitter-* OR TikTok-* OR g4tv.com-* OR CLE-*) AND -title:(trailer OR promo OR promos OR bumper OR parody OR spoof OR blooper OR reaction) AND -title:(\"9 11\" OR \"september 11\" OR \"sept 11\" OR wtc OR \"world trade center\" OR \"twin towers\" OR \"attack on america\" OR \"america under attack\" OR \"ground zero\" OR \"war on terror\" OR \"bin laden\" OR \"strikes back\" OR 20010911 OR 20010912 OR 20010913 OR 20010914) AND -title:(mystery OR predator OR murder OR murders OR killer OR homicide OR \"cold case\" OR mcveigh OR epstein OR \"o. j.\" OR \"o.j.\" OR \"crime scene\" OR bundy OR menendez OR dahmer OR manson OR columbine OR satanic OR satanism OR satanists) AND -title:(\"vhs tape\" OR \"blank vhs\" OR \"market box\" OR \"dvd transfer\" OR \"vhs recording\" OR woc OR commercials OR \"sign off\" OR letterman OR oprah OR cartoons OR \"split screen\" OR \"random tv\" OR \"you tube\") AND -subject:(christian OR religion OR church OR sermon OR bible OR ministry OR evangelist) AND -title:(church OR sermon OR ministry OR cult OR cults) AND -title:(\"star trek\" OR \"channel surfing\" OR \"vhs #\" OR miniseries)",
           "maxEntries": 50,
           "maxSeconds": 3600,
-      "maxEntriesPerItem": 2
+          "maxEntriesPerItem": 2
         },
         {
           "query": "(subject:(newsreel OR newsreels OR \"news reel\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR porn OR pornography OR softcore OR nudity) AND -title:(xxx OR porn OR erotic OR nude OR naked OR topless OR sexy OR stripper OR \"girls gone wild\" OR sex OR pornography OR milf OR striptease) AND -language:(spa OR por OR fre OR ger OR ita OR rus OR chi OR jpn OR kor) AND -title:(japan OR japanese OR russian) AND -collection:(tvnews OR tvarchive OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR bliptv OR industry-archives OR vlogs OR funnyordie) AND -identifier:(youtube-* OR twitter-* OR TikTok-* OR g4tv.com-* OR CLE-*) AND -title:(trailer OR promo OR promos OR bumper OR parody OR spoof OR blooper OR reaction) AND -title:(\"9 11\" OR \"september 11\" OR \"sept 11\" OR wtc OR \"world trade center\" OR \"twin towers\" OR \"attack on america\" OR \"america under attack\" OR \"ground zero\" OR \"war on terror\" OR \"bin laden\" OR \"strikes back\" OR 20010911 OR 20010912 OR 20010913 OR 20010914) AND -subject:(christian OR religion OR church OR sermon OR bible OR ministry OR evangelist) AND -title:(church OR sermon OR ministry OR cult OR cults) AND -title:(wochenschau OR deutsche OR monatsschau) AND -title:(\"Sept. 11, 2001\" OR \"Sept. 12, 2001\" OR \"Sept. 13, 2001\" OR \"September 11, 2001\" OR \"9/11\" OR \"9-11\")",
           "ignoreYear": true,
           "maxEntries": 50,
           "maxSeconds": 3600,
-      "maxEntriesPerItem": 2
+          "maxEntriesPerItem": 2
         },
         {
           "query": "(collection:classic_tv AND subject:(\"news magazine\" OR \"current affairs\" OR \"public affairs\" OR \"see it now\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR porn OR pornography OR softcore OR nudity) AND -title:(xxx OR porn OR erotic OR nude OR naked OR topless OR sexy OR stripper OR \"girls gone wild\" OR sex OR pornography OR milf OR striptease) AND -language:(spa OR por OR fre OR ger OR ita OR rus OR chi OR jpn OR kor) AND -title:(japan OR japanese OR russian) AND -collection:(tvnews OR tvarchive OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR bliptv OR industry-archives OR vlogs OR funnyordie) AND -identifier:(youtube-* OR twitter-* OR TikTok-* OR g4tv.com-* OR CLE-*) AND -title:(trailer OR promo OR promos OR bumper OR parody OR spoof OR blooper OR reaction) AND -title:(\"9 11\" OR \"september 11\" OR \"sept 11\" OR wtc OR \"world trade center\" OR \"twin towers\" OR \"attack on america\" OR \"america under attack\" OR \"ground zero\" OR \"war on terror\" OR \"bin laden\" OR \"strikes back\" OR 20010911 OR 20010912 OR 20010913 OR 20010914) AND -title:(mystery OR predator OR murder OR murders OR killer OR homicide OR \"cold case\" OR mcveigh OR epstein OR \"o. j.\" OR \"o.j.\" OR \"crime scene\" OR bundy OR menendez OR dahmer OR manson OR columbine OR satanic OR satanism OR satanists) AND -title:(\"vhs tape\" OR \"blank vhs\" OR \"market box\" OR \"dvd transfer\" OR \"vhs recording\" OR woc OR commercials OR \"sign off\" OR letterman OR oprah OR cartoons OR \"split screen\" OR \"random tv\" OR \"you tube\") AND -subject:(christian OR religion OR church OR sermon OR bible OR ministry OR evangelist) AND -title:(church OR sermon OR ministry OR cult OR cults) AND -title:(brigada OR \"i-witness\" OR saksi OR viewpoint OR \"public life\" OR \"firing-line\" OR \"senior times\")",
           "ignoreYear": true,
           "maxEntries": 30,
           "maxSeconds": 3600,
-      "maxEntriesPerItem": 2
+          "maxEntriesPerItem": 2
         },
         {
           "query": "(collection:(nasa) AND subject:(documentary OR mission OR apollo OR shuttle)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR porn OR pornography OR softcore OR nudity) AND -title:(xxx OR porn OR erotic OR nude OR naked OR topless OR sexy OR stripper OR \"girls gone wild\" OR sex OR pornography OR milf OR striptease) AND -language:(spa OR por OR fre OR ger OR ita OR rus OR chi OR jpn OR kor) AND -title:(japan OR japanese OR russian) AND -collection:(tvnews OR tvarchive OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR bliptv OR industry-archives OR vlogs OR funnyordie) AND -identifier:(youtube-* OR twitter-* OR TikTok-* OR g4tv.com-* OR CLE-*) AND -title:(trailer OR promo OR promos OR bumper OR parody OR spoof OR blooper OR reaction) AND -title:(\"9 11\" OR \"september 11\" OR \"sept 11\" OR wtc OR \"world trade center\" OR \"twin towers\" OR \"attack on america\" OR \"america under attack\" OR \"ground zero\" OR \"war on terror\" OR \"bin laden\" OR \"strikes back\" OR 20010911 OR 20010912 OR 20010913 OR 20010914) AND -title:(\"Sept. 11, 2001\" OR \"Sept. 12, 2001\" OR \"Sept. 13, 2001\" OR \"September 11, 2001\" OR \"9/11\" OR \"9-11\")",
           "ignoreYear": true,
           "maxEntries": 25,
           "maxSeconds": 3600,
-      "maxEntriesPerItem": 2
+          "maxEntriesPerItem": 2
         }
       ]
     },
@@ -4205,8 +4582,8 @@
         {
           "query": "(title:(\"judge judy\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR jpn OR chi OR hin OR kor OR tur) AND -collection:(audio_sermons OR audio_religion OR sermonindex) AND -subject:(sermon OR tbn OR worship OR \"praise the lord\") AND -collection:(tvnews OR tvarchive OR mirrortube OR social-media-video OR fringe OR deemphasize OR community_media OR movie_trailers OR funnyordie OR roosterteetharchive OR podcasts OR bliptv OR vlogs OR gamevideos) AND -identifier:(youtube-* OR yt_*) AND -title:(promo OR trailer OR bloopers OR intro OR credits OR logos OR teaser OR preview OR parody OR spoof OR \"funny or die\" OR \"vhs #\" OR \"tape #\" OR \"dvd+r\" OR \"market box\") AND -title:(clip OR clips OR opening OR commercials OR \"closing\" OR snl OR \"warner bros\" OR trump OR obama OR biden OR bernie OR impeachment OR mindblowing OR couric OR roseanne OR \"snark week\" OR \"monkey knife\" OR \"in mars\" OR \"drunk girl\" OR baby OR snow OR larson OR \"cade newton\" OR \"file #\" OR pokemon OR wendy OR \"days of our lives\" OR \"one life\" OR soccer OR gala OR \"5 pm news\" OR \"ten news\" OR neighbours OR tmz OR \"media funhouse\" OR \"it takes two\" OR \"real life\" OR \"throws shade\" OR \"vows to stop\" OR raped OR rape OR murder OR \"jayi\" OR \"beauty queens\" OR \"drug test\" OR promotion OR commercial OR \"al-angry\" OR firebat OR pops) AND -identifier:(00047349-*)",
           "maxEntriesPerItem": 6,
-      "maxEntries": 70,
-      "ignoreYear": true
+          "maxEntries": 70,
+          "ignoreYear": true
         },
         {
           "query": "(title:(\"people's court\" OR \"judge joe brown\" OR \"judge mathis\" OR \"mathis court\" OR \"divorce court\" OR \"judge david young\" OR \"hot bench\" OR \"judge alex\" OR \"judge mills lane\" OR \"judge hatchett\" OR \"texas justice\" OR \"judge wapner\") OR (title:\"superior court\" AND collection:vhstvshows)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR jpn OR chi OR hin OR kor OR tur) AND -collection:(audio_sermons OR audio_religion OR sermonindex) AND -subject:(sermon OR tbn OR worship OR \"praise the lord\") AND -collection:(tvnews OR tvarchive OR mirrortube OR social-media-video OR fringe OR deemphasize OR community_media OR movie_trailers OR funnyordie OR roosterteetharchive OR podcasts OR bliptv OR vlogs OR gamevideos) AND -identifier:(youtube-* OR yt_*) AND -title:(promo OR trailer OR bloopers OR intro OR credits OR logos OR teaser OR preview OR parody OR spoof OR \"funny or die\" OR \"vhs #\" OR \"tape #\" OR \"dvd+r\" OR \"market box\") AND -title:(clip OR clips OR opening OR commercials OR \"closing\" OR snl OR \"warner bros\" OR trump OR obama OR biden OR bernie OR impeachment OR mindblowing OR couric OR roseanne OR \"snark week\" OR \"monkey knife\" OR \"in mars\" OR \"drunk girl\" OR baby OR snow OR larson OR \"cade newton\" OR \"file #\" OR pokemon OR wendy OR \"days of our lives\" OR \"one life\" OR soccer OR gala OR \"5 pm news\" OR \"ten news\" OR neighbours OR tmz OR \"media funhouse\" OR \"it takes two\" OR \"real life\" OR \"throws shade\" OR \"vows to stop\" OR raped OR rape OR murder OR \"jayi\" OR \"beauty queens\" OR \"drug test\" OR promotion OR commercial OR \"al-angry\" OR firebat OR pops) AND -identifier:(00047349-*)",
