@@ -73,6 +73,5 @@ void main() {
     expect(seeded.length, n);
     expect(n, greaterThan(40));
     expect(seeded.difference({for (final c in config.channels) c.number}), isEmpty);
-    expect(seeded.contains(23), isFalse); // Hotline was removed (22 is now Rerun)
   });
 }

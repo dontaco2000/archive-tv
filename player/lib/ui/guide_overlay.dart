@@ -18,10 +18,11 @@ const _rows = 5;
 (Color, Color) genreColors(String genre) => switch (genre) {
       'Kids & Animation' => (const Color(0xFFD32F2F), const Color(0xFFFFEB3B)), // red / yellow
       'Movies' => (const Color(0xFF5E1A7A), const Color(0xFFFF4FD8)), // purple / magenta
-      'TV' => (const Color(0xFF00796B), const Color(0xFFFF9800)), // teal / orange
+      'Comedy & Variety' => (const Color(0xFF00796B), const Color(0xFFFF9800)), // teal / orange
+      'Drama & Classic TV' => (const Color(0xFF4E342E), const Color(0xFFFFD180)), // brown / amber
       'News & Docs' => (const Color(0xFF0D1B4A), const Color(0xFFFFC94D)), // navy / gold
       'Music & Sports' => (const Color(0xFFE91E8C), const Color(0xFF00E5FF)), // hot pink / electric blue
-      'International' => (const Color(0xFFC62828), const Color(0xFFFFFFFF)), // red / white (green edge)
+      'World & Lifestyle' => (const Color(0xFFC62828), const Color(0xFFFFFFFF)), // red / white (green edge)
       _ => (const Color(0xFF37474F), const Color(0xFFFFFFFF)),
     };
 
