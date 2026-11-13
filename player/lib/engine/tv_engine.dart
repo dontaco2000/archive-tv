@@ -200,8 +200,9 @@ class TvEngine {
         if (saved != null) _pool[channel.number] = _blocked(channel).apply(saved);
         return;
       }
-      pools.save(channel.number, built);
-      _pool[channel.number] = _blocked(channel).apply(built); // the old pool served until this line
+      final keep = [for (final e in built) if (!health.isGone(e.id)) e]; // files gone for good never re-enter a pool
+      pools.save(channel.number, keep);
+      _pool[channel.number] = _blocked(channel).apply(keep); // the old pool served until this line
       if (raw != null) snapshots.dropAfter(channel.number, DateTime.now()); // later days from the new pool
       _queueProbe(channel);
     } on Object catch (e) {
@@ -309,7 +310,7 @@ class TvEngine {
       ]);
     }
     return snapshots.day(c.number, day, _shufflePool(c),
-        blocklist: _blocked(c).union(_skipped).union(slow).union(noSubs).union(noRated),
+        blocklist: _blocked(c).union(_skipped).union(slow).union(noSubs).union(noRated).union(_revivedToday(day)),
         serials: _blocksFor(c),
         inShuffle: (e) => fits(e) && !rare.contains(e.id) && (adultMode || !r(e)),
         rated: r,
@@ -356,13 +357,22 @@ class TvEngine {
     return bad.length;
   }
 
-  /// How many files the link checker has found gone from Archive (menu "Dead links found").
-  int get deadLinks => health.dead.ids.length;
+  /// How many dead files are still being rechecked (menu "Dead links found"); gone-for-good ones not counted.
+  int get deadLinks => health.activeDead;
+
+  final Map<String, String> _revived = {}; // entry id -> dayKey it was revived on
+
+  /// Revived files stay off the day they came back (this run), so today's slots don't shift under the viewer.
+  Blocklist _revivedToday(DateTime day) =>
+      Blocklist.session()..ids.addAll([for (final MapEntry(:key, :value) in _revived.entries) if (value == dayKey(day)) key]);
 
   /// One dead-link pass: HEADs every file due to air in the next [hours] hours on each channel (not the ones
   /// airing now), through [checker] (throttled, see [DeadLinkChecker]). [onlyStruck]: just the files with a first
   /// miss waiting for their second check. A file found dead leaves the pools now and the guide at its next
   /// layout (saved days keep their order, so only later slots of that day shift, as for a blocked item).
+  /// A full pass (not [onlyStruck]) then rechecks dead files due (about weekly, see [DeadLinkChecker.recheckDead]):
+  /// revived ones air again from tomorrow (later saved days still hold them; pools at their next load), and ones
+  /// gone for good stay blocked and are left out of every pool saved from then on.
   /// Returns how many files became dead.
   /// ponytail: a dead id leaves the whole day's order, so on a pool under 24 h (files repeat within the day) an
   /// earlier, already-aired copy drops too and shifts what airs now, as markBad does; real pools are far bigger.
@@ -390,6 +400,13 @@ class TvEngine {
         _pool[n] = health.dead.apply(_pool[n]!); // the same file can sit on several channels
       }
       poolsChanged.value++; // open guides re-lay without it
+    }
+    if (!onlyStruck) {
+      final r = await checker.recheckDead(now: () => now.add(sw.elapsed));
+      for (final id in r.revived) {
+        _revived[id] = dayKey(now);
+      }
+      if (r.revived.isNotEmpty || r.gone.isNotEmpty) poolsChanged.value++;
     }
     return found;
   }

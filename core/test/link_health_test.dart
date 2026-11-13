@@ -167,4 +167,125 @@ void main() {
     final dead = await checker(fake({'1': 404}).client, again).checkChannel(1, 'A', [pool[0]], now: () => t0.add(const Duration(hours: 3)));
     expect(dead.length, 1);
   });
+
+  group('dead rechecks', () {
+    final codes = <String, int>{'1': 404};
+    final asked = <String>[];
+    final client = MockClient((req) async {
+      final id = RegExp(r'item(\w+)/').firstMatch(req.url.path)!.group(1)!;
+      asked.add(id);
+      return http.Response('', codes[id] ?? 200);
+    });
+    final day = const Duration(days: 1);
+
+    /// A full pass at [t]: the healthy rest of the pool, then the dead rechecks.
+    Future<({List<String> revived, List<String> gone})> pass(LinkHealth h, DateTime t, {List<Entry>? channel}) async {
+      h.okAt.clear();
+      final c = checker(client, h);
+      await c.checkChannel(1, 'A', channel ?? pool.sublist(1), now: () => t);
+      return c.recheckDead(now: () => t);
+    }
+
+    Future<LinkHealth> deadOne() async {
+      codes
+        ..clear()
+        ..['1'] = 404;
+      final h = LinkHealth.load(dir);
+      await checker(client, h).checkChannel(1, 'A', [pool[0]], now: () => t0);
+      await checker(client, h).checkChannel(1, 'A', [pool[0]], now: () => t0.add(const Duration(hours: 1)));
+      expect(h.dead.ids, {pool[0].id});
+      expect(h.deadInfo[pool[0].id]!['url'], pool[0].url);
+      return h;
+    }
+
+    test('weekly spacing: no recheck before 6 days, then one', () async {
+      final h = await deadOne();
+      asked.clear();
+      await pass(h, t0.add(day * 5));
+      expect(asked, isNot(contains('1')));
+      await pass(h, t0.add(day * 6 + const Duration(hours: 1)));
+      expect(asked.where((a) => a == '1').length, 1);
+      expect(h.deadInfo[pool[0].id]!['rechecks'], 1);
+      asked.clear();
+      await pass(h, t0.add(day * 8)); // two days after that recheck: not again
+      expect(asked, isNot(contains('1')));
+    });
+
+    test('a dead file that answers again is revived: off dead.json, logged', () async {
+      final h = await deadOne();
+      codes['1'] = 200;
+      final r = await pass(h, t0.add(day * 7));
+      expect(r.revived, [pool[0].id]);
+      expect(h.dead.ids, isEmpty);
+      expect(h.deadInfo, isEmpty);
+      expect(LinkHealth.load(dir).dead.ids, isEmpty);
+      expect(h.logFile.readAsStringSync(), contains('revived  "Title 1"'));
+    });
+
+    test('three failed rechecks: gone for good, still blocked, never asked again', () async {
+      final h = await deadOne();
+      for (var week = 1; week <= 3; week++) {
+        final r = await pass(h, t0.add(day * 7 * week));
+        expect(r.gone, week == 3 ? [pool[0].id] : isEmpty);
+      }
+      expect(h.isGone(pool[0].id), isTrue);
+      expect(h.dead.ids, {pool[0].id}); // still blocked
+      expect(h.activeDead, 0);
+      expect(h.logFile.readAsStringSync(), contains('removed for good  "Title 1"'));
+      asked.clear();
+      await pass(h, t0.add(day * 100));
+      expect(asked, isNot(contains('1')));
+    });
+
+    test('inconclusive rechecks count for nothing and stay due', () async {
+      final h = await deadOne();
+      codes['1'] = 500;
+      await pass(h, t0.add(day * 7));
+      expect(h.deadInfo[pool[0].id]!['rechecks'], 0);
+      expect(h.dead.ids, {pool[0].id});
+      asked.clear();
+      await pass(h, t0.add(day * 7 + const Duration(hours: 12)));
+      expect(asked, contains('1')); // still due
+    });
+
+    test('valve: no rechecks when the channel pass was discarded or nothing answered OK', () async {
+      final h = await deadOne();
+      codes
+        ..['2'] = 404
+        ..['3'] = 404
+        ..['4'] = 404; // 3 of 9 miss: the channel pass is discarded
+      asked.clear();
+      final r = await pass(h, t0.add(day * 7));
+      expect(r.revived, isEmpty);
+      expect(asked, isNot(contains('1')));
+      expect(h.deadInfo[pool[0].id]!['rechecks'], 0);
+      codes
+        ..remove('2')
+        ..remove('3')
+        ..remove('4')
+        ..['1'] = 200;
+      h.okAt.clear();
+      // nothing else checked in this pass, nothing OK within the hour: put off
+      expect((await checker(client, h).recheckDead(now: () => t0.add(day * 7))).revived, isEmpty);
+      expect(h.dead.ids, {pool[0].id});
+      // a healthy pass revives it
+      expect((await pass(h, t0.add(day * 7))).revived, [pool[0].id]);
+    });
+
+    test('recheck counts persist; the old strikes-only link_health.json and a bare dead.json still load', () async {
+      final h = await deadOne();
+      await pass(h, t0.add(day * 7));
+      expect(LinkHealth.load(dir).deadInfo[pool[0].id]!['rechecks'], 1);
+
+      final old = Directory.systemTemp.createTempSync('linkold');
+      addTearDown(() => old.deleteSync(recursive: true));
+      File('${old.path}/link_health.json').writeAsStringSync('{"a/b.mp4": {"first": "2026-11-12T10:00:00.000", "code": 404}}');
+      File('${old.path}/dead.json').writeAsStringSync('["item1/f1.mp4"]');
+      final o = LinkHealth.load(old);
+      expect(o.struck('a/b.mp4'), isTrue);
+      expect(o.dueRechecks(t0).single.url, 'https://archive.org/download/item1/f1.mp4'); // no record: due now
+      o.save();
+      expect(LinkHealth.load(old).struck('a/b.mp4'), isTrue);
+    });
+  });
 }
