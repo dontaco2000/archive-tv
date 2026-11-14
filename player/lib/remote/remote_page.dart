@@ -100,6 +100,40 @@ const remotePage = r'''<!DOCTYPE html>
   #power:hover { background:#d32f2f; }
   #power.arm { background:#ff3b30; padding:0 10px; box-shadow:0 0 10px #ff3b30aa; }
   #power svg { width:15px; height:15px; flex-shrink:0; }
+
+  /* Phones/tablets and big windows: the remote fills the WHOLE screen. Rows grow with the height, the D-pad stays
+     square and as large as fits, text scales with the height. The small 260x370 Windows window keeps the compact layout above. */
+  @media (min-height:520px) and (min-width:300px) {
+    .remote { max-width:640px; padding:12px; justify-content:stretch; gap:clamp(8px, 1.7vh, 20px); }
+    .remote > * { flex-shrink:1; min-height:0; }
+    .top { flex:0 0 auto; margin-bottom:0; }
+    .top .mute, #power { height:clamp(32px, 5vh, 48px); font-size:clamp(11px, 1.8vh, 15px); border-radius:24px; min-width:clamp(44px, 6vh, 64px); }
+    #power svg { width:clamp(16px, 2.6vh, 24px); height:clamp(16px, 2.6vh, 24px); }
+    .lcd { flex:1.5 1 0; min-height:96px; padding:10px 14px; gap:clamp(8px, 2vw, 16px); border-radius:14px; }
+    .lcd img { width:clamp(44px, 14vw, 100px); height:auto; aspect-ratio:4/3; border-radius:8px; }
+    .lcd .txt { padding-right:44px; }
+    .lcd .ch { font-size:clamp(16px, 3.6vh, 34px); }
+    .lcd .title { font-size:clamp(14px, 2.9vh, 26px); }
+    .lcd .sub { font-size:clamp(12px, 2.3vh, 20px); }
+    .brand { font-size:clamp(7px, 1.2vh, 10px); right:12px; top:8px; }
+    #ccBtn { height:clamp(20px, 3vh, 30px); font-size:clamp(10px, 1.6vh, 14px); line-height:1; right:10px; bottom:8px; }
+    .remote > .grid { flex:.55 1 0; gap:clamp(6px, 1.2vh, 14px); }
+    .remote > .grid button { height:100%; min-height:0; font-size:clamp(12px, 2.1vh, 18px); border-radius:16px; }
+    .mid { flex:3.4 1 0; gap:clamp(8px, 2vw, 18px); grid-template-columns:var(--side) 1fr var(--side); container-type:size; --side:clamp(60px, 16.5vw, 120px); }
+    .side { justify-content:stretch; gap:clamp(8px, 1.6vh, 18px); }
+    .side button { flex:1; min-height:0; font-size:clamp(12px, 2.2vh, 20px); border-radius:16px; }
+    .pad { height:min(100cqh, calc(100cqw - 2 * var(--side) - 2 * clamp(8px, 2vw, 18px))); aspect-ratio:1/1; width:auto; justify-self:center; grid-template-columns:repeat(3,1fr); grid-template-rows:repeat(3,1fr);
+      gap:clamp(2px, .5vh, 6px); padding:clamp(4px, .8vh, 10px); align-self:center; }
+    .pad button { font-size:clamp(16px, 3.2vh, 30px); border-radius:14px; }
+    .vol { flex:.5 1 0; gap:clamp(6px, 1.4vw, 14px); }
+    .vol button { height:100%; min-height:0; width:clamp(46px, 14vw, 76px); font-size:clamp(20px, 3.6vh, 32px); border-radius:16px; }
+    .bar { height:100%; border-radius:16px; display:flex; align-items:center; justify-content:center; }
+    .bar b { position:static; font-size:clamp(13px, 2.4vh, 20px); line-height:1; }
+    .lcd.set { flex:1; }
+    #settings { font-size:clamp(11px, 1.8vh, 15px); gap:clamp(5px, 1vh, 10px); }
+    #settings button { height:clamp(22px, 3.4vh, 34px); font-size:clamp(10px, 1.6vh, 14px); }
+    #settings .row > span:first-child { width:clamp(58px, 18vw, 96px); }
+  }
 </style>
 </head>
 <body>
