@@ -13,9 +13,11 @@ A retro "satellite TV" app. It plays video from the [Internet Archive](https://a
 
 ## Install
 
+**Latest release: [github.com/dontaco2000/archive-tv/releases/latest](https://github.com/dontaco2000/archive-tv/releases/latest)** (always the newest version, with release notes).
+
 **Windows**
 
-1. Download and run `ArchiveTV-Setup.exe` (per-user install, no admin needed).
+1. Download [`ArchiveTV-Setup.exe`](https://github.com/dontaco2000/archive-tv/releases/latest/download/ArchiveTV-Setup.exe) and run it (per-user install, no admin needed).
 2. Windows SmartScreen may warn that the installer is unsigned. Click **More info**, then **Run anyway**.
 3. The Microsoft WebView2 runtime is downloaded automatically if your PC doesn't have it.
 4. An internet connection is required (every channel streams from archive.org). On first run press **Refresh channels** in the menu.
@@ -26,8 +28,8 @@ The APKs are signed with a debug key and must be sideloaded (they are not on any
 
 | Device | APK |
 |---|---|
-| Fire TV Stick Lite, most Fire TV / Android TV boxes, older phones | `ArchiveTV-32bit.apk` |
-| Modern phones and tablets (64-bit) | `ArchiveTV-64bit.apk` |
+| Fire TV Stick Lite, most Fire TV / Android TV boxes, older phones | [`ArchiveTV-32bit.apk`](https://github.com/dontaco2000/archive-tv/releases/latest/download/ArchiveTV-32bit.apk) |
+| Modern phones and tablets (64-bit) | [`ArchiveTV-64bit.apk`](https://github.com/dontaco2000/archive-tv/releases/latest/download/ArchiveTV-64bit.apk) |
 
 On a phone or tablet the video is a 4:3 box with an on-screen remote below or beside it. On a TV, use the remote's D-pad.
 
