@@ -11,7 +11,7 @@
 A retro "satellite TV" app. It plays video from the [Internet Archive](https://archive.org) as live, clock-synced channels with an on-screen guide, a menu, and a remote control. Turn it on and something is always "on", just like a TV.
 
 - **Windows** (primary) and **Android** (Fire TV, Android TV, phones and tablets).
-- 61 channels, 15-minute guide, favorites, On Demand shelves, sleep timer, parental controls (PIN), a night-only adult mode (R-rated and similar content airs only from 22:00 to 05:00), and a WeatherStar-style weather channel.
+- 61 channels, 15-minute guide, favorites, On Demand by genre and show with search, sleep timer, parental controls (PIN), a night-only adult mode (R-rated and similar content airs only from 22:00 to 05:00; On Demand lists it any time, marked R, unless parental controls turn adult mode off), and a WeatherStar-style weather channel.
 - A **phone remote**: scan the QR code in the menu (Remote > Phone remote) and control Archive TV from any phone browser on the same Wi-Fi (Windows and Fire TV / Android TV).
 - Built with Flutter, media_kit and libmpv. A pure-Dart core (`core/`) handles channels, pools and scheduling; the app is in `player/`.
 

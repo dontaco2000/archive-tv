@@ -998,6 +998,7 @@ class _TvScreenState extends State<TvScreen> {
                 if (c.type == 'archive') c,
             ],
             poolOf: tv.engine.onDemandPoolOf,
+            isRated: tv.engine.showsRated,
             onPlay: (c, e) {
               _closeMenu();
               unawaited(tv.playOnDemand(c, e));

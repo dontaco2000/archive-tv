@@ -455,7 +455,7 @@ void main() {
     expect(File('${dir.path}/pools/serials-2.json').existsSync(), isTrue);
   });
 
-  test('rated.json: listed items air only 22:00-05:00 and leave On Demand by day', () async {
+  test('rated.json: listed items air only 22:00-05:00; On Demand lists them any time unless adult mode is OFF', () async {
     final films = {for (var i = 0; i < 6; i++) 'film$i': 95};
     final e = TvEngine.open(
         configText: configText,
@@ -469,9 +469,10 @@ void main() {
     expect(rated.where((s) => s.start.hour >= 5 && s.start.hour < 22), isEmpty);
     expect(rated, isNotEmpty);
     bool hasFilm(List<Entry> l) => l.any((x) => x.itemId.startsWith('film'));
-    expect(hasFilm(e.onDemandPoolOf(c, now: DateTime(2026, 11, 12, 14))), isFalse);
-    expect(hasFilm(e.onDemandPoolOf(c, now: DateTime(2026, 11, 12, 23))), isTrue);
-    expect(e.onDemandPoolOf(c, now: DateTime(2026, 11, 12, 14)).length, 30);
+    expect(hasFilm(e.onDemandPoolOf(c)), isTrue); // daytime or not
+    e.adultMode = false;
+    expect(hasFilm(e.onDemandPoolOf(c)), isFalse);
+    expect(e.onDemandPoolOf(c).length, 30);
   });
 }
 

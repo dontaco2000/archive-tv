@@ -21,8 +21,8 @@ class Parental {
   bool lockOn = false;
   Set<int> locked = {};
 
-  /// "Late night adult mode" (default ON): R-rated programmes air in the late-night window. OFF (PIN to change):
-  /// they never air. Reset (file or Remove PIN) sets it back ON.
+  /// "Late night adult mode" (default ON): R-rated programmes air in the late-night window and are in On Demand at
+  /// any hour. OFF (PIN to change): they never air and On Demand hides them. Reset (file or Remove PIN) sets it back ON.
   bool adultMode = true;
 
   /// Wrong PINs in a row, and the end of the 30 s lockout after [maxTries] of them (saved, so a restart can't skip it).

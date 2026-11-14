@@ -71,9 +71,9 @@ void main() {
       }
       final today = engine.guideFor(haunt, DateTime(2026, 11, 12, 0, 0, 1), hours: 24);
       expect(today.last.end.isBefore(DateTime(2026, 11, 13)), isFalse); // no dead air: the day is still full
-      expect(hasFilm(engine.onDemandPoolOf(haunt, now: night)), isFalse);
+      expect(hasFilm(engine.onDemandPoolOf(haunt)), isFalse);
       engine.adultMode = true;
-      expect(hasFilm(engine.onDemandPoolOf(haunt, now: night)), isTrue);
+      expect(hasFilm(engine.onDemandPoolOf(haunt)), isTrue);
     });
 
     test('lateNightOn: window x adult mode x channel has rated entries', () async {

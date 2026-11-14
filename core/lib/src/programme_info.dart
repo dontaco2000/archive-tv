@@ -79,6 +79,7 @@ bool needsItemInfo(Entry e) {
 
 final _ymd = RegExp(r'(?<!\d)((?:19|20)\d\d)[-._ /]?(0[1-9]|1[0-2])[-._ /]?(0[1-9]|[12]\d|3[01])(?!\d)');
 final _mdy = RegExp(r'(?<![\d/])(1[0-2]|0?[1-9])[-./](3[01]|[12]\d|0?[1-9])[-./](\d{4}|\d\d)(?![\d/])');
+final _digit = RegExp(r'\d');
 const _months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 const _monthName = r'(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\.?';
 final _dMonY = RegExp(r'(?<!\d)(\d{1,2})(?:st|nd|rd|th)? ' + _monthName + r',? ((?:19|20)\d\d)(?!\d)', caseSensitive: false);
@@ -94,7 +95,7 @@ int _month(String name) => _months.indexWhere((m) => m.toLowerCase() == name.sub
 /// The first full date in [s]: "1987-03-12", "19870312", "20240727_0523", "1-17-87", "12/4/1987",
 /// "10 October 2005", "March 12, 1987"; else null. Two-digit years: 30-99 are 19xx, else 20xx.
 DateTime? dateIn(String? s) {
-  if (s == null) return null;
+  if (s == null || !_digit.hasMatch(s)) return null; // every form has digits; the full regexes are slow
   if (_ymd.firstMatch(s) case final m?) return _valid(int.parse(m[1]!), int.parse(m[2]!), int.parse(m[3]!));
   if (_dMonY.firstMatch(s) case final m?) return _valid(int.parse(m[3]!), _month(m[2]!), int.parse(m[1]!));
   if (_monDY.firstMatch(s) case final m?) return _valid(int.parse(m[3]!), _month(m[1]!), int.parse(m[2]!));
@@ -144,6 +145,9 @@ String _prettyId(String id) => id
     .where((w) => w.isNotEmpty && !RegExp(r'^\d{6,}$').hasMatch(w))
     .map((w) => w[0].toUpperCase() + w.substring(1))
     .join(' ');
+
+/// [_prettyId] for On Demand's show grouping.
+String prettyItemId(String id) => _prettyId(id);
 
 /// All-lower-case text capitalised word by word ("keeping up appearances s04e01" -> "Keeping Up Appearances S04E01").
 String _caps(String s) => s != s.toLowerCase()

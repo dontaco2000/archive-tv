@@ -119,11 +119,11 @@ class TvEngine {
     return adultMode && !w.unrestricted && w.contains(now) && poolOf(c).any(ratedOf(c));
   }
 
-  /// [poolOf] for On Demand: outside the channel's rated window (daytime) R-rated entries are hidden, as they
-  /// are off the air then.
-  List<Entry> onDemandPoolOf(Channel c, {DateTime? now}) {
+  /// [poolOf] for On Demand (user decision 2026-11-13): R-rated entries are listed and playable at any hour while
+  /// [adultMode] is ON (the rated window only shapes the live schedule); adult mode OFF hides them, as on the air.
+  List<Entry> onDemandPoolOf(Channel c) {
     final pool = poolOf(c);
-    if (adultMode && ratedWindowOf(c, config).contains(now ?? DateTime.now())) return pool;
+    if (adultMode) return pool;
     final r = ratedOf(c);
     return [for (final e in pool) if (!r(e)) e];
   }
