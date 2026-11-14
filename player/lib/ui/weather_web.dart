@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
 import '../weather/weather.dart';
-import 'weatherstar.dart';
+import 'cumulus_weather.dart';
 
 /// The real WeatherStar 4000+ (github.com/netbymatt/ws4kp, MIT), shown in a WebView on the weather channel.
 const weatherStarSite = 'https://weatherstar.netbymatt.com/';
@@ -101,7 +101,7 @@ class WeatherLayers extends StatelessWidget {
     final webKey = ValueKey(('ws-web', place)), nativeKey = ValueKey(('ws-native', place));
     return Stack(fit: StackFit.expand, children: [
       if (web) webViewForTest?.call(webKey) ?? WeatherWebView(key: webKey, url: url, onLoaded: onLoaded, onFailed: onFailed),
-      if (!web || !webLoaded) WeatherStarScreen(key: nativeKey, load: load),
+      if (!web || !webLoaded) CumulusWeatherScreen(key: nativeKey, load: load, place: place),
       if (web && webLoaded)
         const Positioned(
           right: 8,

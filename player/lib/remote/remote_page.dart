@@ -155,7 +155,7 @@ const remotePage = r'''<!DOCTYPE html>
       <div class="row"><span>CC SIZE</span><button class="sz" id="sizeDown" title="Smaller">&minus;</button><b id="sizeLevel">----</b><button class="sz" id="sizeUp" title="Bigger">+</button></div>
       <div id="sample">Sample caption</div>
       <div class="row" id="setLeveling"><span>LEVELING</span><button data-v="off">OFF</button><button data-v="normal">NORM</button><button data-v="strong">STRONG</button></div>
-      <div class="row" id="setWeather"><span>WEATHER</span><button data-v="web">WXSTAR</button><button data-v="native">CLASSIC</button></div>
+      <div class="row" id="setWeather"><span>WEATHER</span><button data-v="web">WXSTAR</button><button data-v="native">NATIVE</button></div>
       <div class="row" id="setPicture"><span>PICTURE</span><button data-v="auto">AUTO</button><button data-v="fill">FILL</button><button data-v="off">OFF</button></div>
       <div class="row"><span>A/V SYNC</span><button class="sz" data-key="audioEarlier" title="Audio earlier 50 ms">&minus;</button><b id="avDelay">0 ms</b><button class="sz" data-key="audioLater" title="Audio later 50 ms">+</button><button class="sz" data-key="audioReset" title="Reset">0</button></div>
       <div class="row"><span>WI-FI</span><b id="wifi">--</b></div>

@@ -46,7 +46,7 @@ reset_parental_controls=false
 # Windows only: start in fullscreen (true/false).
 start_fullscreen=${_b(s.startFullscreen)}
 
-# Weather channel picture: web (WeatherStar 4000+ page) or native (classic screens).
+# Weather channel picture: web (WeatherStar 4000+ page) or native (Cumulus screens drawn by the app).
 weather_mode=${s.weatherMode}
 
 # Even out loudness between programs: off, normal or strong.

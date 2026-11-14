@@ -3,7 +3,7 @@ import 'dart:convert';
 
 import 'package:archive_tv_player/settings/settings_store.dart';
 import 'package:archive_tv_player/ui/weather_web.dart';
-import 'package:archive_tv_player/ui/weatherstar.dart';
+import 'package:archive_tv_player/ui/cumulus_weather.dart';
 import 'package:archive_tv_player/weather/weather.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -59,11 +59,11 @@ void main() {
     await pump(web: true, loaded: false); // loading: page under the native cover
     expect(t.takeException(), isNull);
     expect(find.byType(ColoredBox), findsWidgets);
-    expect(find.byType(WeatherStarScreen), findsOneWidget);
+    expect(find.byType(CumulusWeatherScreen), findsOneWidget);
     await pump(web: true, loaded: true);
-    expect(find.byType(WeatherStarScreen), findsNothing);
+    expect(find.byType(CumulusWeatherScreen), findsNothing);
     await pump(web: false, loaded: false); // native / fallback
-    expect(find.byType(WeatherStarScreen), findsOneWidget);
+    expect(find.byType(CumulusWeatherScreen), findsOneWidget);
     expect(t.takeException(), isNull);
   });
 

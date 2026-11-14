@@ -339,7 +339,7 @@ class MenuOverlayState extends State<MenuOverlay> {
       _Item.refresh => 'Refresh channels',
       _Item.close => 'Close',
       _Item.onDemand => 'On Demand',
-      _Item.weatherMode => 'Weather view: ${s.weatherMode == 'native' ? 'CLASSIC' : 'WEATHERSTAR'}',
+      _Item.weatherMode => 'Weather view: ${s.weatherMode == 'native' ? 'NATIVE' : 'WEATHERSTAR'}',
       _Item.weatherLocation => 'Weather: ${s.weatherPlace}',
       _Item.openRemote => 'Remote window: ${_onOff(widget.remoteOpen)}',
       _Item.phoneRemote => 'Phone remote (QR code)',
