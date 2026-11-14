@@ -1,3 +1,11 @@
+<p align="center"><img src="docs/branding/banner.png" alt="Archive TV: retro satellite TV from the Internet Archive" width="720"></p>
+
+<p align="center">
+<a href="https://github.com/dontaco2000/archive-tv/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/dontaco2000/archive-tv?color=f87d28&label=release"></a>
+<a href="LICENSE"><img alt="License: GPL-3.0" src="https://img.shields.io/badge/license-GPL--3.0-3fa7a0"></a>
+<img alt="Platforms" src="https://img.shields.io/badge/platforms-Windows%20%7C%20Fire%20TV%20%7C%20Android-5a3a22">
+</p>
+
 # Archive TV
 
 A retro "satellite TV" app. It plays video from the [Internet Archive](https://archive.org) as live, clock-synced channels with an on-screen guide, a menu, and a remote control. Turn it on and something is always "on", just like a TV.
