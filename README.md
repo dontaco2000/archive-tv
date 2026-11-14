@@ -3,12 +3,13 @@
 A retro "satellite TV" app. It plays video from the [Internet Archive](https://archive.org) as live, clock-synced channels with an on-screen guide, a menu, and a remote control. Turn it on and something is always "on", just like a TV.
 
 - **Windows** (primary) and **Android** (Fire TV, Android TV, phones and tablets).
-- 51 channels, 15-minute guide, favorites, On Demand shelves, sleep timer, parental controls (PIN), late-night adult mode, and a WeatherStar-style weather channel.
+- 61 channels, 15-minute guide, favorites, On Demand shelves, sleep timer, parental controls (PIN), a night-only adult mode (R-rated and similar content airs only from 22:00 to 05:00), and a WeatherStar-style weather channel.
+- A **phone remote**: scan the QR code in the menu (Remote > Phone remote) and control Archive TV from any phone browser on the same Wi-Fi (Windows and Fire TV / Android TV).
 - Built with Flutter, media_kit and libmpv. A pure-Dart core (`core/`) handles channels, pools and scheduling; the app is in `player/`.
 
 ## Content disclaimer
 
-**We are not responsible for the content.** All video and audio comes from the Internet Archive (archive.org) and its uploaders. Archive TV only indexes and plays it. Archive TV is **not affiliated with or endorsed by the Internet Archive.** Some channels (such as Headliner, Teaser and Haunt) can include mature content; parental controls can lock them. The weather page is third-party (WeatherStar 4000+ by Matt Walsh, MIT) and weather data comes from Open-Meteo and the National Weather Service.
+**We are not responsible for the content.** All video and audio comes from the Internet Archive (archive.org) and its uploaders. Archive TV only indexes and plays it. Archive TV is **not affiliated with or endorsed by the Internet Archive.** Some channels (such as Headliner, Teaser, Haunt and Bedlam) and the night-time blocks on many others can include mature content (strong language, violence, crude humor, sports like MMA); parental controls can lock them. The weather page is third-party (WeatherStar 4000+ by Matt Walsh, MIT) and weather data comes from Open-Meteo and the National Weather Service.
 
 ## Install
 
@@ -34,6 +35,7 @@ On a phone or tablet the video is a 4:3 box with an on-screen remote below or be
 
 - Windows: tested on real hardware.
 - Fire Stick Lite: the 32-bit APK, TV layout, tested on a real device.
+- Phone remote (QR code, browser page): tested on a real iPhone against the Windows app; the Fire TV side of it is untested on a real network. Windows may ask to allow the app on private networks the first time you turn it on.
 - **The phone and tablet version (touch layout, 64-bit APK) was only tested in an emulator (BlueStacks), not on real phones or tablets.** Expect rough edges.
 
 ## Known limits
