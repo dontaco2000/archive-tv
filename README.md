@@ -11,9 +11,66 @@
 A retro "satellite TV" app. It plays video from the [Internet Archive](https://archive.org) as live, clock-synced channels with an on-screen guide, a menu, and a remote control. Turn it on and something is always "on", just like a TV.
 
 - **Windows** (primary) and **Android** (Fire TV, Android TV, phones and tablets).
-- 61 channels, 15-minute guide, favorites, On Demand by genre and show with search, sleep timer, parental controls (PIN), a night-only adult mode (R-rated and similar content airs only from 22:00 to 05:00; On Demand lists it any time, marked R, unless parental controls turn adult mode off), and a WeatherStar-style weather channel.
-- A **phone remote**: scan the QR code in the menu (Remote > Phone remote) and control Archive TV from any phone browser on the same Wi-Fi (Windows and Fire TV / Android TV).
 - Built with Flutter, media_kit and libmpv. A pure-Dart core (`core/`) handles channels, pools and scheduling; the app is in `player/`.
+
+## Features
+
+### Live channels
+- **61 channels**, each themed, grouped by number: 2-9 Kids & Animation, 10-19 Movies, 20-28 Comedy & Variety, 30-39 Drama & Classic TV, 40-47 News & Docs, 50-59 Music & Sports, 60-69 World & Lifestyle (Champs 48 and Bowl 49 sit just before the Music & Sports block).
+- **Clock-synced**: every channel has a schedule built from Internet Archive items, and what is "on" depends on the time of day, like real TV. Tune in mid-show; it is the same moment for everyone with the same channel data.
+- **Programming blocks**: serial blocks (prime-time shows run in order), themed time blocks (for example Saturday-morning cartoons, Friday-night creature features, weekend sports), and rare-item scheduling (a big event airs once a day or as a Sunday marathon).
+- A "BUILDING..." notice while a channel's pool is first built, a "STAND BY..." card between programs, and NO SIGNAL when a stream can't be reached. Missing or deleted files are detected, retried weekly, and dropped for good after repeated failures.
+- Programme titles are cleaned up (track numbers, release tags and tape ids removed) and filled in from Internet Archive metadata when file names are meaningless.
+
+### Guide, menu and On Demand
+- **On-screen guide**: three hours in 15-minute columns, scrollable through the end of the saved week. Select a program to tune in. Repetitive content is grouped into readable blocks ("Marathon", "Shorts", "More Commercials").
+- **Menu** with a live clock, organised into Channels & Guide, Picture & Sound, Weather, Remote, Sleep & Tools, About & Credits and Parental controls.
+- **On Demand**: browse Genre > Show > Episode, or search by typing. Rated content is shown with an R tag (hidden if parental controls turn adult mode off). There is no channel level.
+- **Favorites**, last-channel recall, and resume on the channel you were watching.
+
+### Picture and sound
+- **Auto picture crop** (Windows): detects baked-in black bars and crops them. Choose Auto, Fill or Off (P key).
+- **Volume leveling** (Windows): off, normal or strong, so loud and quiet programs sit closer together.
+- **A/V sync** nudge keys per item, for files whose audio is off.
+- **Window**: size, position and fullscreen are remembered; the windowed picture stays 4:3.
+
+### Weather channel
+- **Cumulus** (channel 41) shows four WeatherStar-style screens (Now, Hourly, Today, Extended) with weather alerts, over smooth-jazz music from the Archive. Set your location in the menu (the default is Hattiesburg, MS). Data: Open-Meteo and the National Weather Service.
+- A WeatherStar 4000+ web view is available as an option on Windows.
+
+### Control and safety
+- **Sleep timer** (15 to 120 minutes, with a fade and a "Going to sleep" card; any key cancels).
+- **Parental controls (PIN)**: lock channels, and turn the night-only adult mode on or off.
+- **Night-only adult mode**: R-rated and similar content (strong language, violence, crude humor, MMA and so on) airs only from 22:00 to 05:00. It is not about explicit content: sexually explicit material is excluded entirely.
+- **Wrong channel** key (X): report a program that doesn't belong on a channel; it is blocked on that channel only.
+- Crash log and "last error" in the menu, to help bug reports.
+
+### Remotes
+- **TV remote / keyboard**:
+
+| Action | Remote | Keyboard (Windows) |
+|---|---|---|
+| Channel up / down | Up / Down, or FF / Rew | Up / Down |
+| Volume | Left / Right | Left / Right |
+| Guide (then tune) | Select | Enter |
+| Menu | Menu | M |
+| Back / close overlay | Back | Esc |
+| Mute | Play / Pause | Space or U |
+| Fullscreen | | Alt+Enter |
+| Last channel | | L |
+| Sleep timer | | T |
+| Wrong channel | | X |
+| Picture mode | | P |
+| Remote window | | R |
+| A/V sync | | `[` `]` and `\` |
+
+- **Visual remote window** (Windows): a small on-screen remote beside the TV, with Power, Mute, volume, channel, guide and more. Open it with R or from the menu.
+- **Phone remote**: scan the QR code in the menu (Remote > Phone remote) and control Archive TV from any phone browser on the same Wi-Fi, no app needed (Windows and Fire TV / Android TV). Off by default, LAN only, protected by a token in the QR code. An optional Wi-Fi remote on Windows can also use a PIN.
+- **Gamepad** support on Windows (XInput) and Android.
+- **Phone and tablet layout**: a 4:3 video box with a built-in remote; swipe up/down for channels, left/right for volume.
+
+### Plex
+- The companion project [archive-tv-server](https://github.com/dontaco2000/archive-tv-server) turns the same channels into a Plex Live TV tuner with a guide, a weather channel and guide music.
 
 ## Content disclaimer
 
