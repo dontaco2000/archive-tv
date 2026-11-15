@@ -129,12 +129,13 @@ void main() {
       'Comedy & Variety': 2,
       'Drama & Classic TV': 3,
       'News & Docs': 4,
-      'Music & Sports': 5,
+      'Music': 5,
+      'Sports': 5,
       'World & Lifestyle': 6,
     };
 
-    // Music & Sports (50-59) is full: Champs 48 and Bowl 49 (added 2026-11-13) sit right below it.
-    const overflow = {48: 'Music & Sports', 49: 'Music & Sports'};
+    // Music is 48-51 (layout 3): 48 and 49 sit just below the 50s block, Sports is 52-59.
+    const overflow = {48: 'Music', 49: 'Music'};
 
     test('numbers are unique, in order, and each channel sits in its genre\'s block (2-9, 10-19, ... 60-69)', () {
       final numbers = [for (final c in config.channels) c.number];
@@ -152,8 +153,8 @@ void main() {
       expect(values.toSet(), hasLength(values.length));
       final numbers = {for (final c in config.channels) c.number};
       expect(numbers.containsAll(values), isTrue);
-      expect(numbers.difference(values.toSet()), {48, 49}); // Champs, Bowl: new after layout 2, no old data
-      expect(bundled['layout'], greaterThanOrEqualTo(2));
+      expect(numbers.difference(values.toSet()), isEmpty); // layout 3 maps every channel
+      expect(bundled['layout'], 3);
     });
 
     test('the seed is keyed by the new numbers and names', () {

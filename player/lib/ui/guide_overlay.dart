@@ -21,7 +21,8 @@ const _rows = 5;
       'Comedy & Variety' => (const Color(0xFF00796B), const Color(0xFFFF9800)), // teal / orange
       'Drama & Classic TV' => (const Color(0xFF4E342E), const Color(0xFFFFD180)), // brown / amber
       'News & Docs' => (const Color(0xFF0D1B4A), const Color(0xFFFFC94D)), // navy / gold
-      'Music & Sports' => (const Color(0xFFE91E8C), const Color(0xFF00E5FF)), // hot pink / electric blue
+      'Music' => (const Color(0xFFE91E8C), const Color(0xFF00E5FF)), // hot pink / electric blue
+      'Sports' => (const Color(0xFF2E7D32), const Color(0xFFFFEB3B)), // green / yellow
       'World & Lifestyle' => (const Color(0xFFC62828), const Color(0xFFFFFFFF)), // red / white (green edge)
       _ => (const Color(0xFF37474F), const Color(0xFFFFFFFF)),
     };

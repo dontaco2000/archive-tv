@@ -16,7 +16,7 @@ A retro "satellite TV" app. It plays video from the [Internet Archive](https://a
 ## Features
 
 ### Live channels
-- **61 channels**, each themed, grouped by number: 2-9 Kids & Animation, 10-19 Movies, 20-28 Comedy & Variety, 30-39 Drama & Classic TV, 40-47 News & Docs, 50-59 Music & Sports, 60-69 World & Lifestyle (Champs 48 and Bowl 49 sit just before the Music & Sports block).
+- **61 channels**, each themed, grouped by number: 2-9 Kids & Animation, 10-19 Movies, 20-28 Comedy & Variety, 30-39 Drama & Classic TV, 40-47 News & Docs, 48-51 Music, 52-59 Sports, 60-69 World & Lifestyle.
 - **Clock-synced**: every channel has a schedule built from Internet Archive items, and what is "on" depends on the time of day, like real TV. Tune in mid-show; it is the same moment for everyone with the same channel data.
 - **Programming blocks**: serial blocks (prime-time shows run in order), themed time blocks (for example Saturday-morning cartoons, Friday-night creature features, weekend sports), and rare-item scheduling (a big event airs once a day or as a Sunday marathon).
 - A "BUILDING..." notice while a channel's pool is first built, a "STAND BY..." card between programs, and NO SIGNAL when a stream can't be reached. Missing or deleted files are detected, retried weekly, and dropped for good after repeated failures.
