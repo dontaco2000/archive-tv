@@ -225,4 +225,18 @@ void main() {
     expect(built.map((e) => e.source), [0, 0]);
     expect(built.every(ratedTest(c, config)), isTrue);
   });
+
+  test('adult priority: inside the window rated entries air first, unrated fill the rest', () {
+    final unrated = [for (var i = 0; i < 40; i++) entry('p$i', 25)];
+    final films = [for (var i = 0; i < 6; i++) entry('r$i', 50)];
+    final d = DateTime(2026, 11, 12);
+    final day = layoutSerialDay(dayOrder([...unrated, ...films], 'ch13', d), d, const [], rated: ratedId, window: night);
+    final inWindow = [for (final s in day) if (night.allows(s.start, Duration.zero) || minuteOf(s.start) >= 22 * 60) s];
+    // The six films (300 min) fill the 22:00-05:00 window from its start before any unrated item airs there.
+    final tonight = [for (final s in day) if (minuteOf(s.start) >= 22 * 60) s];
+    expect(tonight.take(2).every((s) => ratedId(s.entry)), isTrue);
+    expect(inWindow, isNotEmpty);
+    expect(outOfWindow(day), isEmpty);
+    expectNoGaps(day, d);
+  });
 }

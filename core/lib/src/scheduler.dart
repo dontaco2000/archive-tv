@@ -270,7 +270,8 @@ Duration _len(Entry e) => Duration(milliseconds: (e.durationSeconds * 1000).roun
 /// R-rated dayparting: entries [rated] says yes to may only start (and must end) inside [window]. Outside it
 /// they are skipped (left in the queue for the night); block episodes too, a block's spares standing in. When
 /// nothing else can air (a channel of only rated entries) they air anyway: never dead air. With no rated
-/// entry in the day (or no [rated]/[window]) the layout is exactly what it was without them.
+/// entry in the day (or no [rated]/[window]) the layout is exactly what it was without them. Inside the window
+/// rated entries get priority: they air first, unrated programming fills what is left.
 List<Slot> layoutSerialDay(List<Entry> order, DateTime day, List<SerialBlock> blocks,
     {bool Function(Entry)? rated, RatedWindow? window}) {
   final restrict = rated != null &&
@@ -291,6 +292,11 @@ List<Slot> layoutSerialDay(List<Entry> order, DateTime day, List<SerialBlock> bl
       if (queue.isEmpty) queue.addAll(pool);
       final left = until.difference(t);
       int pick() {
+        // Adult priority: inside the window, rated entries that fit go first (unrated programming fills the rest).
+        if (restrict) {
+          final r = queue.indexWhere((e) => rated(e) && _len(e) <= left && window.allows(t, _len(e)));
+          if (r >= 0) return r;
+        }
         final i = queue.indexWhere((e) => _len(e) <= left && ok(e));
         return i >= 0 ? i : queue.indexWhere(ok);
       }
