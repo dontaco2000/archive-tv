@@ -85,7 +85,7 @@ A retro "satellite TV" app. It plays video from the [Internet Archive](https://a
 1. Download [`ArchiveTV-Setup.exe`](https://github.com/dontaco2000/archive-tv/releases/latest/download/ArchiveTV-Setup.exe) and run it (per-user install, no admin needed).
 2. Windows SmartScreen may warn that the installer is unsigned. Click **More info**, then **Run anyway**.
 3. The Microsoft WebView2 runtime is downloaded automatically if your PC doesn't have it.
-4. An internet connection is required (every channel streams from archive.org). On first run press **Refresh channels** in the menu.
+4. An internet connection is required (every channel streams from archive.org). Channels build themselves on first run (a channel shows "BUILDING..." until ready) and refresh automatically every midnight. After an update you can press **Refresh channels** in the menu to pick up new content right away.
 
 **Android**
 
