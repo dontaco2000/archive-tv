@@ -5175,6 +5175,63 @@
         },
         {
           "query": "(collection:home_movies) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR spanish OR jpn OR japanese OR chi OR chinese OR zho OR pol OR polish OR fre OR french OR fra OR ger OR german OR deu OR ita OR italian OR por OR portuguese OR rus OR russian OR kor OR korean OR hin OR hindi OR ara OR arabic OR tur OR vie OR ind OR tha OR hmn) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR biblical OR ministry OR religious OR evangelist) AND -subject:(cartoon OR animation OR \"adult swim\" OR \"brendon small\" OR documentary OR \"short film\" OR experimental) AND -title:(\"vhs tape\" OR \"adult swim\" OR \"de palma\" OR placenta OR kkk) AND -identifier:(\"home-movies-season-1-DVDs\" OR \"20230725_20230725_0704\" OR \"hitchcock-selznick-and-the-end-of-hollywood-1999-american-ma\" OR \"abelasia\" OR \"mama-mirabelle\" OR \"Not_This_War_USA2006\" OR \"GDH_DC_65min\" OR Tracegarden-*) AND -title:(\"entertainment tonight\" OR \"celebrity special\" OR \"season one\") AND -identifier:(\"home-movies-s1\" OR \"TheSalesman1991\")"
+        },
+        {
+          "identifiers": [
+            "the-blair-witch-project-1999-vhs-rip",
+            "LakeMungo2008DvDripEngFXG",
+            "LakeCounty",
+            "Ghostwatch",
+            "jackasscompleteseries"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 20,
+          "rated": "R",
+          "tag": "adult3"
+        },
+        {
+          "identifiers": [
+            "jackass-the-lost-tapes"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 6,
+          "rated": "R",
+          "tag": "adult3"
+        },
+        {
+          "identifiers": [
+            "Wildboyz"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 10,
+          "rated": "R",
+          "tag": "adult3"
+        },
+        {
+          "identifiers": [
+            "jackass-24-hour-takeover"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 2,
+          "rated": "R",
+          "tag": "adult3"
+        },
+        {
+          "identifiers": [
+            "vivalabam",
+            "cky_series",
+            "cky-documentary",
+            "bamsunholyunion",
+            "the.dudesons.in.america",
+            "steve-ospecials",
+            "vts-05-1_202304",
+            "steve-o-career-ender",
+            "homewrecker_2005"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 18,
+          "rated": "R",
+          "tag": "adult3"
         }
       ]
     },
@@ -5492,6 +5549,56 @@
           "ignoreYear": true,
           "maxEntriesPerItem": 12,
           "maxEntries": 60
+        },
+        {
+          "identifiers": [
+            "ElimiDate_Various_Episodes",
+            "capture-a-5474"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 100,
+          "rated": "R",
+          "tag": "adult3"
+        },
+        {
+          "identifiers": [
+            "series-7-the-contenders-2001-dvdrip-hj",
+            "slumdog-millionaire-2008-dv-drip-x-264-esubs-ddr"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1,
+          "rated": "R",
+          "tag": "adult3"
+        },
+        {
+          "identifiers": [
+            "mtv-a-shot-at-love",
+            "flavor-of-love-season-1-episode-1-reality-tv-full-episodes-480p",
+            "flavor-of-love-season-1-episode-1-reality-tv-full-episodes",
+            "flavor-of-love-season-1-episode-3-reality-tv-full-episodes-480p",
+            "rock-of-love-charm-school-s-01-e-01",
+            "real-chance-of-love-s-1-ep-1",
+            "real-chance-of-love-s-1-ep-2",
+            "blind-date-2001-episode",
+            "mtv-dis-missed-miami.-rafael-priscilla-yakira-danielle-joey-justin-season-3",
+            "mtv-dis-missed-miami.-kymie-jack-joe-yasmine-jasmine-owen-season-3",
+            "mtv-dis-missed.-richard-cat-jaime-s-2-brandon-jessica-kristy-s-1",
+            "mtv-dis-missed.-erin-mikey-doug-danica-steven-chris-season-1",
+            "mtv-dis-missed.-venessa-tommy-david-kevin-kristine-ana-season-2_202603",
+            "mtv-dis-missed.-melinda-chad-steve-johnny-sherrae-faloon.-season-3",
+            "mtv-dis-missed.-mark-arielle-esperanza-joselynne-paul-tommy.-season-3",
+            "mtv-dis-missed.-brandon-amy-arlen-natasha-marty-rob.-season-1_202603",
+            "mtv-dis-missed-miami.-elizabeth-jarrod-john-blake-janice-jennifer-season-3",
+            "mtv-dis-missed-miami.-john-adam-kim-jullian-annie-maria-season-3",
+            "mtv-dis-missed.-kitty-sean-brendan-chris-varelie-danielle-season-3",
+            "mtv-dis-missed-miami.-matt-lisa-cyra-ingrid-daniel-christian-season-3_202609",
+            "mtv-dis-missed.-josh-jenna-angela-adrienne-che-solomon.-season-2",
+            "mtv-dis-missed-miami.-celine-grant-josh-daniel-leah-janelle-season-3"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 30,
+          "rated": "R",
+          "tag": "adult3"
         }
       ]
     },
@@ -5584,6 +5691,35 @@
           "ignoreYear": true,
           "maxEntriesPerItem": 3,
           "maxEntries": 40
+        },
+        {
+          "identifiers": [
+            "8-out-of-10-cats-does-countdown",
+            "banzai.uk.comedy.tv.show.2001"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 20,
+          "rated": "R",
+          "tag": "adult3"
+        },
+        {
+          "identifiers": [
+            "big-brother-uk_202306"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 25,
+          "rated": "R",
+          "tag": "adult3"
+        },
+        {
+          "identifiers": [
+            "celebrity-big-brother-3_202504",
+            "i-m-a-celebrity-2012-final-episode"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 99,
+          "rated": "R",
+          "tag": "adult3"
         }
       ]
     },
@@ -6196,6 +6332,60 @@
         {
           "query": "(title:(\"another world\" OR \"santa barbara\") AND collection:(vhstvshows OR classic_tv OR television_inbox)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR jpn OR chi OR hin OR kor OR tur) AND -collection:(audio_sermons OR audio_religion) AND -subject:(sermon OR tbn OR worship OR \"praise the lord\") AND -collection:(tvnews OR tvarchive OR mirrortube OR social-media-video OR video_blender OR fringe OR deemphasize OR feature_films OR movie_trailers OR anime_miscellaneous OR gamevideos OR vlogs) AND -identifier:(youtube-*) AND -title:(\"vhs #\" OR \"vhs tape\" OR \"blank vhs\" OR \"tape #\" OR \"dvd+r\" OR \"dvd-\" OR \"market box\" OR \"retro tv\" OR promo OR commercials OR trailer OR bloopers OR intro OR credits OR clip OR clips OR teaser OR preview OR kelo OR kdlt OR ksfy OR \"nightly news\" OR dateline OR \"11pm news\" OR nypd) AND -title:(scenes OR sponsor OR sponsorship OR \"ad breaks\" OR \"vintage tv\" OR \"various tv\" OR \"television parts\" OR kron OR nightmare OR lorimar OR \"beta #\" OR legendas OR \"archive - #\" OR \"weakest link\" OR \"price is right\" OR \"dvd game\" OR \"eyewitness news\" OR \"sunday today\" OR \"afl today\" OR wrestling OR boxing) AND -collection:community_media AND -title:(handyman OR saitou OR hindi OR isekai OR longplay OR tvi OR parte OR \"oil spill\" OR marley OR concert) AND -title:(novela OR telenovela OR capitulo OR ficcao OR deutsch OR televisa) AND -subject:(novela OR telenovela OR televisa OR univision OR telemundo)",
           "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "lace-1984-tv-miniseries",
+            "harold-robbins-79-park-avenue-1977",
+            "the.-bitch.-1979.720p.-blu-ray.x-264.-aac",
+            "8-u-e-08-s-04f-i-vc-s-1"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 12,
+          "rated": "R",
+          "tag": "adult3"
+        },
+        {
+          "identifiers": [
+            "cheaters-joey-greco-goes-to-hospital",
+            "wife-swap-haigwood-hess-webb",
+            "celebrity-wife-swap-john-mccririck",
+            "bad-girls-club-season-1",
+            "bad-girls-club-season-2",
+            "bad-girls-club-season-3",
+            "bad-girls-club-season-4",
+            "bad-girls-club-season-5",
+            "bad-girls-club-season-6",
+            "bad-girls-club-season-7",
+            "bad-girls-club-season-8",
+            "bad-girls-club-season-9",
+            "bad-girls-club-season-10",
+            "bad-girls-club-season-11",
+            "bad-girls-club-season-12",
+            "bad-girls-club-season-13",
+            "bad-girls-club-season-14",
+            "bad-girls-club-season-15",
+            "bad-girls-club-season-16",
+            "bad-girls-club-season-17",
+            "bad-girls-club-all-star-battle-s01",
+            "bad-girls-club-all-star-battle-s02",
+            "bad-girls-club-specials"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 3,
+          "rated": "R",
+          "tag": "adult3"
+        },
+        {
+          "identifiers": [
+            "unfaithful-adrian-lyne-2002-vhs",
+            "Bitter-Moon_1992_AI_1080p.BluRay.10b.HEVC.AAC.2.0_BLUDUAINE",
+            "the-last-seduction-1994_202608"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1,
+          "rated": "R",
+          "tag": "adult3"
         }
       ]
     },
@@ -6281,6 +6471,50 @@
           "maxEntriesPerItem": 1,
           "rated": "R",
           "tag": "adult2_m"
+        },
+        {
+          "identifiers": [
+            "rrasaiu",
+            "the-challenge-season-2",
+            "the-challenge-season-3",
+            "the-challenge-season-4",
+            "the-challenge-season-5",
+            "the-challenge-season-6",
+            "the-challenge-season-7",
+            "the-challenge-season-8",
+            "challengecutthroat",
+            "the-challenge-cutthroat-bonus-episodes",
+            "thechallenge-dirty30-reunion"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 99,
+          "rated": "R",
+          "tag": "adult3"
+        },
+        {
+          "identifiers": [
+            "road-rules-semester-at-sea",
+            "road-rules-the-quest",
+            "s-11-e-01",
+            "road-rules-south-pacific",
+            "road-rules-x-treme",
+            "the-real-world-philadelphia",
+            "real-world-seattle-ep-17-1998",
+            "The_Real_World_You_Never_Saw_1997_MTV_Tape"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 99,
+          "rated": "R",
+          "tag": "adult3"
+        },
+        {
+          "identifiers": [
+            "the-simple-life-season-1-5-complete-series"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 20,
+          "rated": "R",
+          "tag": "adult3"
         }
       ]
     },
@@ -6294,6 +6528,34 @@
           "query": "(title:(\"coronation street\" OR \"eastenders\" OR \"emmerdale\" OR \"brookside\" OR \"home and away\" OR \"number 96\" OR \"sons and daughters\" OR \"young doctors\" OR \"a country practice\") OR (title:neighbours AND collection:(opensource_movies OR television_inbox OR vhstvshows))) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR jpn OR chi OR hin OR kor OR tur) AND -collection:(audio_sermons OR audio_religion) AND -subject:(sermon OR tbn OR worship OR \"praise the lord\") AND -collection:(tvnews OR tvarchive OR mirrortube OR social-media-video OR video_blender OR fringe OR deemphasize OR feature_films OR movie_trailers OR anime_miscellaneous OR gamevideos OR vlogs) AND -identifier:(youtube-*) AND -title:(\"vhs #\" OR \"vhs tape\" OR \"blank vhs\" OR \"tape #\" OR \"dvd+r\" OR \"dvd-\" OR \"market box\" OR \"retro tv\" OR promo OR commercials OR trailer OR bloopers OR intro OR credits OR clip OR clips OR teaser OR preview OR kelo OR kdlt OR ksfy OR \"nightly news\" OR dateline OR \"11pm news\" OR nypd) AND -title:(scenes OR sponsor OR sponsorship OR \"ad breaks\" OR \"vintage tv\" OR \"various tv\" OR \"television parts\" OR kron OR nightmare OR lorimar OR \"beta #\" OR legendas OR \"archive - #\" OR \"weakest link\" OR \"price is right\" OR \"dvd game\" OR \"eyewitness news\" OR \"sunday today\" OR \"afl today\" OR wrestling OR boxing) AND -collection:community_media AND -title:(\"eat the neighbours\" OR bluey OR \"christmas 1998\" OR \"sale of the century\") AND -title:(novela OR telenovela OR capitulo OR ficcao OR deutsch OR televisa) AND -subject:(novela OR telenovela OR televisa OR univision OR telemundo)",
           "ignoreYear": true,
           "maxEntriesPerItem": 25
+        },
+        {
+          "identifiers": [
+            "footballers.wives"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 20,
+          "rated": "R",
+          "tag": "adult3"
+        },
+        {
+          "identifiers": [
+            "big-brother-au",
+            "big-brother-australia-uncut"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 18,
+          "rated": "R",
+          "tag": "adult3"
+        },
+        {
+          "identifiers": [
+            "celebrity-big-brother-2002_202504"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 99,
+          "rated": "R",
+          "tag": "adult3"
         }
       ]
     },
