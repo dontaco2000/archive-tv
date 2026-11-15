@@ -85,6 +85,14 @@ void main() {
     expect(identical(refilterPool(config.channels[0], config, clean), clean), isTrue);
   });
 
+  test('refilterPool drops saved entries of a source that was removed from the config', () {
+    final config = parseChannelConfig('{"channels": [{"number": 1, "name": "A", "sources": [{"query": "q"}, {"query": "r"}]}]}');
+    Entry e(String id, int? source) =>
+        Entry(id: '$id/f.mp4', itemId: id, file: 'f.mp4', title: id, durationSeconds: 600, url: 'u', source: source);
+    final pool = [e('a', 0), e('b', 1), e('gone', 2), e('untagged', null)];
+    expect(refilterPool(config.channels[0], config, pool).map((e) => e.itemId), ['a', 'b', 'untagged']);
+  });
+
   test('builds a pool from search + metadata and skips excluded ids', () async {
     final api = FakeApi({'a': (1990, 30), 'b': (1995, 30), 'c': (2001, 60)});
     final pool = await buildPool(channel, config(minHours: 1, exclude: {'b'}), api);

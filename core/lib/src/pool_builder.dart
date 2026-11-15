@@ -82,7 +82,11 @@ bool Function(Entry) poolFilter(Channel c, ChannelConfig config) {
   final minS = _minSeconds(c);
   final caps = [for (final s in c.sources) s.maxSeconds];
   final maxS = caps.isEmpty || caps.contains(null) ? 6 * 3600 : caps.cast<int>().reduce((a, b) => a > b ? a : b);
-  return (e) => !_excluded(config, e) && e.durationSeconds >= minS && e.durationSeconds <= maxS;
+  final n = c.sources.length;
+  // A saved entry tagged with a source index past the end came from a source since removed (e.g. a stripped
+  // rated source): it leaves the pool instead of airing as if untagged.
+  return (e) =>
+      !_excluded(config, e) && e.durationSeconds >= minS && e.durationSeconds <= maxS && (e.source ?? 0) < n;
 }
 
 /// An excludeIdentifiers entry is an item id, or an entry id (`item/file`) to drop one file of a good item.
