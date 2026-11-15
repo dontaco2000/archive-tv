@@ -41,7 +41,7 @@ A retro "satellite TV" app. It plays video from the [Internet Archive](https://a
 ### Control and safety
 - **Sleep timer** (15 to 120 minutes, with a fade and a "Going to sleep" card; any key cancels).
 - **Parental controls (PIN)**: lock channels, and turn the night-only adult mode on or off.
-- **Night-only adult mode**: R-rated and similar content (strong language, violence, crude humor, MMA and so on) airs only from 22:00 to 05:00. It is not about explicit content: sexually explicit material is excluded entirely.
+- **Night-only adult mode**: R-rated and similar content (strong language, violence, crude humor, MMA and so on) airs only from 22:00 to 05:00. Night blocks can include R-rated and NC-17 material, which may contain nudity. Hardcore and X-rated content is excluded.
 - **Wrong channel** key (X): report a program that doesn't belong on a channel; it is blocked on that channel only.
 - Crash log and "last error" in the menu, to help bug reports.
 
@@ -74,7 +74,7 @@ A retro "satellite TV" app. It plays video from the [Internet Archive](https://a
 
 ## Content disclaimer
 
-**We are not responsible for the content.** All video and audio comes from the Internet Archive (archive.org) and its uploaders. Archive TV only indexes and plays it. Archive TV is **not affiliated with or endorsed by the Internet Archive.** Some channels (such as Headliner, Teaser, Haunt and Bedlam) and the night-time blocks on many others can include mature content (strong language, violence, crude humor, sports like MMA); parental controls can lock them. The weather page is third-party (WeatherStar 4000+ by Matt Walsh, MIT) and weather data comes from Open-Meteo and the National Weather Service.
+**We are not responsible for the content.** All video and audio comes from the Internet Archive (archive.org) and its uploaders. Archive TV only indexes and plays it. Archive TV is **not affiliated with or endorsed by the Internet Archive.** Some channels (such as Headliner, Teaser, Haunt and Bedlam) and the night-time blocks on many others can include mature content (strong language, violence, nudity, crude humor, sports like MMA); parental controls can lock them. The weather page is third-party (WeatherStar 4000+ by Matt Walsh, MIT) and weather data comes from Open-Meteo and the National Weather Service.
 
 ## Install
 
