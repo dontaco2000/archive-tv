@@ -6255,7 +6255,7 @@
             "twin-peaks-fwwm-hd"
           ],
           "ignoreYear": true,
-          "maxEntriesPerItem": 40,
+          "maxEntriesPerItem": 6,
           "rated": "R",
           "tag": "adult_a"
         },
