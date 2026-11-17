@@ -61,6 +61,22 @@ void main() {
     expect(await installSeed(Stream.value(seed()), dir), 0); // stamp: already installed
   });
 
+  test('installSeed onlyMissing leaves a channel that has any pool alone, even an older one', () async {
+    final dir = Directory.systemTemp.createTempSync('seed');
+    addTearDown(() => dir.deleteSync(recursive: true));
+    final at = DateTime.now();
+    final seed = gzip.encode(utf8.encode([
+      jsonEncode({'seed': 1, 'builtAt': at.toIso8601String()}),
+      for (final n in [1, 2])
+        jsonEncode({'n': n, 'builtAt': at.toIso8601String(), 'entries': [compactEntry(entry('s$n', 0, 30))]}),
+    ].join('\n')));
+    final store = PoolStore(dir);
+    store.save(2, [entry('mine', 0, 30)], builtAt: at.subtract(const Duration(days: 3))); // older than the seed
+    expect(await installSeed(Stream.value(seed), dir, onlyMissing: true), 1);
+    expect(store.load(1)!.single.itemId, 's1');
+    expect(store.load(2)!.single.itemId, 'mine');
+  });
+
   test('the shipped seed installs and only has channels from the bundled config', () async {
     final config = parseChannelConfig(File('../player/assets/channels.json').readAsStringSync());
     final dir = Directory.systemTemp.createTempSync('seed');

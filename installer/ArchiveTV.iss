@@ -2,7 +2,7 @@
 ; ISCC ArchiveTV.iss [/DReleaseDir=...] [/DCrtDir=...]
 
 #define AppName "Archive TV"
-#define AppVersion "0.9.18"
+#define AppVersion "0.9.19"
 #define AppExe "archive_tv_player.exe"
 #ifndef ReleaseDir
   #define ReleaseDir "C:\src\at_rel\player\build\windows\x64\runner\Release"
@@ -59,6 +59,30 @@ Filename: "{app}\{#AppExe}"; Description: "{cm:LaunchProgram,{#AppName}}"; Flags
 // Any failure is ignored: the app then shows its native weather screens.
 const WV2Key = '\Microsoft\EdgeUpdate\Clients\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}';
 
+var TownPage: TInputQueryWizardPage;
+
+// Fresh installs only: an existing settings.json means the weather location was already chosen.
+function HasSettings: Boolean;
+begin
+  Result := FileExists(ExpandConstant('{userappdata}\Archive TV\Archive TV\ArchiveTV\settings.json'));
+end;
+
+procedure InitializeWizard;
+begin
+  TownPage := CreateInputQueryPage(wpSelectTasks, 'Your town',
+    'Where are you watching from?',
+    'Archive TV uses your town only for the weather channel (Cumulus), so its forecast and alerts match where you live. ' +
+    'It is saved on this PC and sent only to the weather services (Open-Meteo and the National Weather Service) to get your forecast. ' +
+    'Nothing else uses it.' + #13#10 + #13#10 +
+    'You can leave this blank and set it later in the menu under Weather.');
+  TownPage.Add('Town and state, or ZIP code (for example: Hattiesburg, Mississippi):', False);
+end;
+
+function ShouldSkipPage(PageID: Integer): Boolean;
+begin
+  Result := (PageID = TownPage.ID) and HasSettings;
+end;
+
 function HasWebView2(Root: Integer; Key: String): Boolean;
 var V: String;
 begin
@@ -69,6 +93,8 @@ procedure CurStepChanged(CurStep: TSetupStep);
 var RC: Integer;
 begin
   if CurStep <> ssPostInstall then Exit;
+  if Trim(TownPage.Values[0]) <> '' then
+    SaveStringToFile(ExpandConstant('{app}\town.txt'), Trim(TownPage.Values[0]), False);
   if HasWebView2(HKLM, 'SOFTWARE\WOW6432Node' + WV2Key) or HasWebView2(HKCU, 'Software' + WV2Key) then Exit;
   try
     DownloadTemporaryFile('https://go.microsoft.com/fwlink/p/?LinkId=2124703', 'MicrosoftEdgeWebview2Setup.exe', '', nil);

@@ -44,8 +44,10 @@ Entry expandEntry(Map<String, dynamic> j) => Entry.fromJson({
 
 /// Writes the seed's pools (and serial lists) into [poolDir] for channels whose pool is missing or older
 /// than the seed, one channel at a time from the gzip stream. Skips everything when [poolDir]'s
-/// `seed.stamp` already names this seed. Returns how many channels were written.
-Future<int> installSeed(Stream<List<int>> gz, Directory poolDir) async {
+/// `seed.stamp` already names this seed. With [onlyMissing] a channel that already has its own pool is never
+/// touched (Windows: the seed is a trimmed copy, so it only fills channels that have nothing yet).
+/// Returns how many channels were written.
+Future<int> installSeed(Stream<List<int>> gz, Directory poolDir, {bool onlyMissing = false}) async {
   final stamp = File('${poolDir.path}${Platform.pathSeparator}seed.stamp');
   final pools = PoolStore(poolDir);
   String? seedAt;
@@ -61,6 +63,7 @@ Future<int> installSeed(Stream<List<int>> gz, Directory poolDir) async {
     final n = j['n'] as int;
     final builtAt = DateTime.parse(j['builtAt'] as String);
     final age = pools.age(n);
+    if (onlyMissing && age != null) continue;
     if (age != null && !DateTime.now().subtract(age).isBefore(builtAt)) continue; // own pool is newer
     pools.save(n, [for (final e in (j['entries'] as List).cast<Map<String, dynamic>>()) expandEntry(e)], builtAt: builtAt);
     final serials = j['serials'];

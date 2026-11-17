@@ -19,6 +19,7 @@ import 'remote/remote_server.dart';
 import 'settings/crash_log.dart';
 import 'settings/rotating_log.dart';
 import 'settings/settings_file.dart';
+import 'settings/install_town.dart';
 import 'settings/settings_store.dart';
 import 'settings/window_prefs.dart';
 import 'ui/touch.dart';
@@ -118,6 +119,14 @@ Future<void> _main(List<String> args) async {
   } on Object catch (e) {
     log('settings save failed: $e');
   }
+  if (desktop) {
+    // The installer's "Your town" answer (town.txt beside the exe) becomes the weather location once.
+    final client = http.Client();
+    if (await applyInstallTown(File(p.join(p.dirname(Platform.resolvedExecutable), 'town.txt')), settings, client, log)) {
+      store.save(settings);
+    }
+    client.close();
+  }
   WindowPrefs? windowPrefs;
   if (desktop) {
     await windowManager.waitUntilReadyToShow(
@@ -153,12 +162,14 @@ Future<void> _main(List<String> args) async {
   }
   seededFile.writeAsStringSync(bundled);
 
-  // Android: pools built on the PC ship in the APK, so a first launch has a full guide without building.
-  if (Platform.isAndroid) {
+  // Pools built on the PC ship in the app, so a first launch has a full guide without building. Android
+  // takes any newer seed pool; Windows only fills channels that have no pool (its own are full-size).
+  {
     try {
       final sw = Stopwatch()..start();
       final gz = (await rootBundle.load('assets/seed_pools.jsonl.gz')).buffer.asUint8List();
-      final n = await installSeed(Stream.value(gz), Directory(p.join(dataDir.path, 'pools')));
+      final n = await installSeed(Stream.value(gz), Directory(p.join(dataDir.path, 'pools')),
+          onlyMissing: !Platform.isAndroid);
       if (n > 0) log('seeded $n channel pools in ${sw.elapsedMilliseconds} ms');
     } on Object catch (e) {
       log('seed pools: $e');
