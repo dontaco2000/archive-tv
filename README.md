@@ -13,6 +13,15 @@ A retro "satellite TV" app. It plays video from the [Internet Archive](https://a
 - **Windows** (primary) and **Android** (Fire TV, Android TV, phones and tablets).
 - Built with Flutter, media_kit and libmpv. A pure-Dart core (`core/`) handles channels, pools and scheduling; the app is in `player/`.
 
+## Screenshots
+
+| | |
+|---|---|
+| ![Live TV](docs/screenshots/live.jpg) **Live channels**: something is always on, clock-synced | ![Guide](docs/screenshots/guide.png) **Guide**: 3 hours in 15-minute columns, with channel logos |
+| ![Menu](docs/screenshots/menu.png) **Menu** with a live clock | ![Settings](docs/screenshots/settings.png) **Picture & Sound** settings: volume leveling, picture mode, captions |
+| ![On Demand](docs/screenshots/on-demand.png) **On Demand**: Genre, Show, Episode, or search | ![Weather](docs/screenshots/weather.png) **Weather** channel (Cumulus / WeatherStar 4000+) |
+| ![Windows remote](docs/screenshots/remote.png) **Windows remote** window | ![Phone remote](docs/screenshots/phone-remote.png) **Phone remote** (scan the QR code in the menu) |
+
 ## Features
 
 ### Live channels
