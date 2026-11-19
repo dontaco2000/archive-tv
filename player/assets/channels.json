@@ -11785,6 +11785,242 @@
         1950,
         2005
       ]
+    },
+    {
+      "number": 96,
+      "name": "Boo",
+      "logo": "Logos/4x3/boo.png",
+      "genre": "Movies",
+      "sources": [
+        {
+          "query": "(title:(\"cassandra peterson episode\" OR \"movie macabre\" OR thrillervideo OR \"thriller video\" OR \"movies to die for\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -identifier:(youtube-* OR yt_* OR twitter-* OR facebook-* OR TikTok-* OR bliptv-* OR g4tv.com-* OR fb-video-*) AND -collection:(mirrortube OR bliptv OR podcasts OR podcasts-video OR twitchstreams OR social-media-video OR tiktoks OR fringe OR deemphasize OR movie_trailers OR altcensored OR gamevideos) AND -title:(trailer OR \"search for the next\" OR mtv OR vh1 OR \"top 21\")",
+          "ignoreYear": true,
+          "maxEntries": 45,
+          "maxEntriesPerItem": 2
+        },
+        {
+          "query": "(title:(svengoolie)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -identifier:(youtube-* OR yt_* OR twitter-* OR facebook-* OR TikTok-* OR bliptv-* OR g4tv.com-* OR fb-video-*) AND -collection:(mirrortube OR bliptv OR podcasts OR podcasts-video OR twitchstreams OR social-media-video OR tiktoks OR fringe OR deemphasize OR movie_trailers OR altcensored OR gamevideos) AND -title:(trailer OR promo OR intro OR clip OR clips OR \"san andreas\" OR \"magnum\" OR \"clean copy\")",
+          "ignoreYear": true,
+          "maxEntries": 55,
+          "maxEntriesPerItem": 1
+        },
+        {
+          "query": "(title:(monstervision OR \"monster vision\" OR \"joe bob\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -identifier:(youtube-* OR yt_* OR twitter-* OR facebook-* OR TikTok-* OR bliptv-* OR g4tv.com-* OR fb-video-*) AND -collection:(mirrortube OR bliptv OR podcasts OR podcasts-video OR twitchstreams OR social-media-video OR tiktoks OR fringe OR deemphasize OR movie_trailers OR altcensored OR gamevideos) AND -title:(\"drive in theatre\" OR \"drive-in theater\" OR \"drive in theater\" OR \"last drive\" OR \"dead in concert\" OR song OR intro OR trailer OR bootleg OR \"my vhs saga\")",
+          "ignoreYear": true,
+          "maxEntries": 40,
+          "maxEntriesPerItem": 1
+        },
+        {
+          "query": "((title:(\"up all night\") AND title:(usa OR uan)) OR title:(\"commander usa\" OR \"groovie movies\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -identifier:(youtube-* OR yt_* OR twitter-* OR facebook-* OR TikTok-* OR bliptv-* OR g4tv.com-* OR fb-video-*) AND -collection:(mirrortube OR bliptv OR podcasts OR podcasts-video OR twitchstreams OR social-media-video OR tiktoks OR fringe OR deemphasize OR movie_trailers OR altcensored OR gamevideos) AND -title:(babes OR sorority OR \"pom-pom\" OR \"pom pom\" OR cheerleader* OR \"school for sex\" OR \"slammer girls\" OR porky* OR bikini OR \"hot splash\" OR \"state park\" OR \"the girl i want\" OR \"beach balls\" OR \"vice academy\" OR \"cave girl\" OR \"mankillers\" OR nude OR stripper OR \"penthouse\" OR playboy OR \"cannibal women\" OR \"witch academy\" OR \"monster high\") AND -title:(bumpers OR commercialz OR commercials OR \"best of lng\" OR worst OR \"three in the attic\" OR intro) AND -identifier:(usa-up-all-night-beach-balls)",
+          "ignoreYear": true,
+          "maxEntries": 45,
+          "maxEntriesPerItem": 1
+        },
+        {
+          "query": "(title:(morgus OR ghoulardi OR \"ghoul show\" OR \"ghoul vs\" OR bclj OR \"big chuck\" OR \"hoolihan\" OR \"vampira show\" OR zacherley OR \"sammy terry\" OR \"host and rodney\" OR \"count gore\" OR \"creature features\" OR \"house of frightenstein\" OR \"super scary saturday\" OR \"horror incorporated\" OR \"off beat cinema\" OR \"chiller theatre\" OR \"chiller theater\" OR \"shock theater\" OR \"shock theatre\" OR \"sir graves\" OR \"crematia\" OR \"dr. shock\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -identifier:(youtube-* OR yt_* OR twitter-* OR facebook-* OR TikTok-* OR bliptv-* OR g4tv.com-* OR fb-video-*) AND -collection:(mirrortube OR bliptv OR podcasts OR podcasts-video OR twitchstreams OR social-media-video OR tiktoks OR fringe OR deemphasize OR movie_trailers OR altcensored OR gamevideos) AND -title:(interview OR memorial OR \"hall of fame\" OR tribute OR promo OR trailer OR \"midnight shock\" OR \"from the vaults\" OR \"son of ghoul\" OR \"bugs bunny\" OR winston* OR \"at the bijou\" OR \"really wild\" OR bitchute OR christmas OR \"scratch and dent\" OR scooby* OR bunny* OR 1933 OR 1975 OR carlson OR colorized OR remembering) AND -collection:(cdromsoftware OR cd-roms)",
+          "ignoreYear": true,
+          "maxEntries": 45,
+          "maxEntriesPerItem": 2
+        },
+        {
+          "query": "(title:(mst3k OR \"mystery science theater\" OR \"mystery science theatre\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -identifier:(youtube-* OR yt_* OR twitter-* OR facebook-* OR TikTok-* OR bliptv-* OR g4tv.com-* OR fb-video-*) AND -collection:(mirrortube OR bliptv OR podcasts OR podcasts-video OR twitchstreams OR social-media-video OR tiktoks OR fringe OR deemphasize OR movie_trailers OR altcensored OR gamevideos) AND -title:(rifftrax OR \"cinematic titanic\" OR \"film crew\" OR podcast OR interview OR panel OR convention OR con OR trailer OR promo OR \"behind the\" OR documentary OR reaction OR \"ka-converted\" OR shorts OR \"the movie\" OR \"every movie ever\" OR originals OR unriffed)",
+          "ignoreYear": true,
+          "maxEntries": 24,
+          "maxEntriesPerItem": 1
+        },
+        {
+          "query": "(title:(\"midnight shock theater\" OR \"night chills theatre\" OR \"the golden horde episode\" OR \"house of mystery s\" OR \"dead and buried treasures\" OR frightmares OR \"midnight chillers\" OR \"cinema insomnia\" OR \"meet cleaver\" OR \"morbid mansion theater\" OR \"wild weird west\" OR \"super unusual theater\" OR \"tales from the dump\" OR \"it came from the basement\" OR \"saturday fright theater\" OR \"atomic monster party\" OR \"basement of baron morbid\" OR \"castle cat tv\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -identifier:(youtube-* OR yt_* OR twitter-* OR facebook-* OR TikTok-* OR bliptv-* OR g4tv.com-* OR fb-video-*) AND -collection:(mirrortube OR bliptv OR podcasts OR podcasts-video OR twitchstreams OR social-media-video OR tiktoks OR fringe OR deemphasize OR movie_trailers OR altcensored OR gamevideos) AND -title:(preview OR teaserama OR trailer OR promo OR intro OR outro)",
+          "ignoreYear": true,
+          "maxEntries": 35,
+          "maxEntriesPerItem": 1
+        },
+        {
+          "query": "(title:(\"monster movie night\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -identifier:(youtube-* OR yt_* OR twitter-* OR facebook-* OR TikTok-* OR bliptv-* OR g4tv.com-* OR fb-video-*) AND -collection:(mirrortube OR bliptv OR podcasts OR podcasts-video OR twitchstreams OR social-media-video OR tiktoks OR fringe OR deemphasize OR movie_trailers OR altcensored OR gamevideos) AND -title:(rolie OR preview OR trailer OR promo)",
+          "ignoreYear": true,
+          "maxEntries": 20,
+          "maxEntriesPerItem": 1
+        }
+      ]
+    },
+    {
+      "number": 97,
+      "name": "Affiliate",
+      "logo": "Logos/4x3/affiliate.png",
+      "genre": "Kids & Animation",
+      "minSeconds": 60,
+      "sources": [
+        {
+          "identifiers": [
+            "WMAR_BOZO_1214_001_DIG",
+            "WMAR_BOZO_1214_002_DIG",
+            "WMAR_BOZO_1214_003_DIG",
+            "WMAR_BOZO_1214_004_DIG",
+            "WMAR_BOZO_1214_005_DIG",
+            "WMAR_BOZO_1214_006_DIG",
+            "bozos-circus",
+            "bozo-show",
+            "romperroom83",
+            "romper-room-part-2.2",
+            "Romper_Room_Roberto_Solo_Broadcast_Various_Network_Television",
+            "jp-patches-and-robot",
+            "PatchesPalPranksVHS",
+            "sc21wa-The_J.P._Patches_and_Stan_Boreson_Holiday_Special",
+            "chief-halftown-and-his-friends",
+            "chief-halftown-and-his-friends-1997",
+            "chief-halftown-and-his-friends-1994",
+            "chief-halftown-and-his-friends-partial-broadcast",
+            "wallace-and-ladmo-tribute-1999",
+            "ray-rayner-04-26-1978",
+            "ray-rayner-11-5-1979",
+            "ray-rayner-11-28-1980",
+            "ray-rayner-11-22-79",
+            "ray-rayner-11-27-79",
+            "ray-rayner-12-11-1978",
+            "ray-rayner-11-1978-x-264",
+            "ray-rayner-05-16-1980",
+            "ray-rayner-7-23-1980",
+            "uncle-al-the-great-pumpkin-robbery-october-1968",
+            "1980-uncle-al-tv-show-cincinnati-oh",
+            "1981-uncle-al-tv-show-cincinnati-oh",
+            "1982-uncle-al-tv-show-cincinnati-oh",
+            "uncle-al-through-the-years-1989",
+            "cincinnati-s-uncle-al-a-wcpo-9-documentay",
+            "hot_fudge_thursday",
+            "hot-fudge-show-full-complete-pilot-episode-from-1974-hosted-by-arte-johnson",
+            "hot-fudge-show-season-2-episode-10-responsibility-with-theme-song-karaoke-lyrics",
+            "hot-fudge-show-season-2-episode-3-halloween-fears-and-anxiety",
+            "hot-fudge-show-season-2-episode-1-friendship",
+            "hot-fudge-show-season-2-episode-4-feelings",
+            "hot-fudge-show-season-two-episode-2-cooperation",
+            "t-fue-w-n-2-e-2",
+            "fuzzymemories.tv-wls-channel-7-hot-fudge-show-excerpt-1980",
+            "1989-king-koopas-kool-kartoons-on-fox-kids-club-longlost-mario-bros-show-480p",
+            "don-mahoney-and-jeanna-clare-with-their-kiddie-troupers-dec-1970"
+          ],
+          "maxEntriesPerItem": 4,
+          "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "SoupySalesShow-Outtake",
+            "14_20251117",
+            "sandy-becker-sonny-fox-bloopers",
+            "mp_1991_Wonderama_Footage",
+            "kids-are-people-too-wonderama-documentary",
+            "kidsarepeopletootheyrejustyoungerpeoplethatsall",
+            "the-great-space-coaster-episode-69-tgsc-including-hello-texas-and-la-linea",
+            "TheGreatSpaceCoasterEpisode1BrainFreeze",
+            "mark-hamill-great-space-coaster-1981"
+          ],
+          "maxEntriesPerItem": 4,
+          "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "wacky-adventures-of-ronald-mc-donald-s-01-e-01-scared-silly-1998",
+            "wacky-adventures-of-ronald-mc-donald-s-01-e-02-the-legend-of-grimace-island-1999",
+            "wacky-adventures-of-ronald-mc-donald-s-01-e-03-visitors-from-outer-space-1999",
+            "wacky-adventures-of-ronald-mc-donald-s-01-e-04-birthday-world-2000",
+            "wacky-adventures-of-ronald-mc-donald-s-01-e-05-have-time-will-travel-2001",
+            "wacky-adventures-of-ronald-mc-donald-s-01-e-06-the-legend-o-mc-donaldland-loch-2001",
+            "ronald-mc-donald-mc-treasure-island-vhs",
+            "RonaldMcDonaldAndTheAdventureMachine1987",
+            "Popcornarchive-ronaldMcdonaldInMakinMoviescomplete"
+          ],
+          "maxEntriesPerItem": 1,
+          "ignoreYear": true
+        },
+        {
+          "query": "((title:(\"saturday morning\") AND title:(woc OR \"w/o/c\" OR commercials OR \"full broadcast\" OR \"with commercials\")) OR title:(\"kids commercials\" OR \"kids' commercials\" OR \"toy commercials\" OR \"cereal commercials\" OR \"fox kids club\" OR \"kids club\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -identifier:(youtube-* OR yt_* OR twitter-* OR facebook-* OR TikTok-* OR bliptv-* OR g4tv.com-* OR fb-video-*) AND -collection:(mirrortube OR bliptv OR podcasts OR podcasts-video OR twitchstreams OR social-media-video OR tiktoks OR fringe OR deemphasize OR movie_trailers OR altcensored OR gamevideos) AND -title:(\"cartoon network\" OR nickelodeon OR nick OR \"disney channel\" OR \"adult swim\" OR pbs OR tbn OR qubo OR logos OR \"toonami\" OR \"boomerang\" OR \"nypd\" OR christmas OR \"compilation of\" OR review OR reaction OR curtain OR niv OR \"gina d\" OR tempo OR bible) AND -collection:(community_media)",
+          "ignoreYear": true,
+          "maxEntries": 40,
+          "maxEntriesPerItem": 1,
+          "perDay": 1,
+          "perDayMinMinutes": 90,
+          "blockLabel": "Off-Air Tape"
+        }
+      ]
+    },
+    {
+      "number": 98,
+      "name": "Prank",
+      "logo": "Logos/4x3/prank.png",
+      "genre": "Comedy & Variety",
+      "sources": [
+        {
+          "query": "((title:(\"funniest home videos\") OR (title:afv AND title:(season OR episode OR funniest OR marathon OR honorable OR s* OR x*))) AND -title:(australia* OR australian OR \"you've been framed\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -identifier:(youtube-* OR yt_* OR twitter-* OR facebook-* OR TikTok-* OR bliptv-* OR g4tv.com-* OR fb-video-*) AND -collection:(mirrortube OR bliptv OR podcasts OR podcasts-video OR twitchstreams OR social-media-video OR tiktoks OR fringe OR deemphasize OR movie_trailers OR altcensored OR gamevideos) AND -title:(promo OR promos OR opener OR \"blank vhs\" OR commercials OR trailer OR reaction OR podcast OR roblox OR minecraft OR mario OR halo OR smosh OR \"fan film\" OR penthouse OR playmate OR playboy OR porn OR sexy OR drunk OR columbine OR jihad OR \"fail compilation\" OR \"faces of death\" OR wrestling OR \"foxy boxing\" OR \"behind the scenes\" OR \"end credits\" OR \"logo bloopers\" OR \"news casters\" OR \"nine news\" OR iso OR isos) AND -title:(\"unwrapped\" OR \"battle of the best\") AND -collection:(vhscommercials OR classic_tv_commercials) AND -identifier:(vhs-tape-* OR dvd-transfer-*)",
+          "ignoreYear": true,
+          "maxEntries": 110,
+          "maxEntriesPerItem": 3
+        },
+        {
+          "query": "(title:(\"you've been framed\" OR \"youve been framed\" OR \"you ve been framed\" OR \"australia's funniest home videos\" OR \"australias funniest home videos\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -identifier:(youtube-* OR yt_* OR twitter-* OR facebook-* OR TikTok-* OR bliptv-* OR g4tv.com-* OR fb-video-*) AND -collection:(mirrortube OR bliptv OR podcasts OR podcasts-video OR twitchstreams OR social-media-video OR tiktoks OR fringe OR deemphasize OR movie_trailers OR altcensored OR gamevideos) AND -title:(promo OR promos OR opener OR \"blank vhs\" OR commercials OR trailer OR reaction OR podcast OR roblox OR minecraft OR mario OR halo OR smosh OR \"fan film\" OR penthouse OR playmate OR playboy OR porn OR sexy OR drunk OR columbine OR jihad OR \"fail compilation\" OR \"faces of death\" OR wrestling OR \"foxy boxing\" OR \"behind the scenes\" OR \"end credits\" OR \"logo bloopers\" OR \"news casters\" OR \"nine news\" OR iso OR isos)",
+          "ignoreYear": true,
+          "maxEntries": 45,
+          "maxEntriesPerItem": 2
+        },
+        {
+          "identifiers": [
+            "CandidCamera1953",
+            "EarlyCandidCamera",
+            "candid-camera",
+            "candid-camera-comedy-shopping-spree-special-may-4-1990",
+            "candid-camera-the-first-40-years-special-1987",
+            "candid-camera-first-40-years-1987",
+            "candid-camera-christmas-special",
+            "candid-camera-6",
+            "candid-camera-1974-first-scene-filmaker-looking-for-a-completely-natural-commercial",
+            "candid_202310"
+          ],
+          "maxEntriesPerItem": 6,
+          "ignoreYear": true
+        },
+        {
+          "query": "(title:(\"bloopers & practical jokes\" OR \"bloopers and practical jokes\" OR \"censored bloopers\" OR \"super bloopers\" OR \"practical jokes\" OR \"bloopermania\" OR \"all-star tv bloopers\" OR \"all star tv bloopers\" OR \"hollywood's greatest bloopers\" OR \"classic tv bloopers\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -identifier:(youtube-* OR yt_* OR twitter-* OR facebook-* OR TikTok-* OR bliptv-* OR g4tv.com-* OR fb-video-*) AND -collection:(mirrortube OR bliptv OR podcasts OR podcasts-video OR twitchstreams OR social-media-video OR tiktoks OR fringe OR deemphasize OR movie_trailers OR altcensored OR gamevideos) AND -title:(promo OR promos OR opener OR \"blank vhs\" OR commercials OR trailer OR reaction OR podcast OR roblox OR minecraft OR mario OR halo OR smosh OR \"fan film\" OR penthouse OR playmate OR playboy OR porn OR sexy OR drunk OR columbine OR jihad OR \"fail compilation\" OR \"faces of death\" OR wrestling OR \"foxy boxing\" OR \"behind the scenes\" OR \"end credits\" OR \"logo bloopers\" OR \"news casters\" OR \"nine news\" OR iso OR isos) AND -identifier:(vhs-tape-* OR dvd-transfer-*) AND -title:(tweenies OR cbeebies OR wiggles OR project OR bailiffs OR zig OR \"split screen\" OR grimreaper OR sports OR \"visitors of the night\") AND -identifier:(vts-05-1_20210116)",
+          "ignoreYear": true,
+          "maxEntries": 30,
+          "maxEntriesPerItem": 2
+        },
+        {
+          "query": "(title:(\"that's incredible\" OR \"thats incredible\" OR \"real people\" OR \"you asked for it\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -identifier:(youtube-* OR yt_* OR twitter-* OR facebook-* OR TikTok-* OR bliptv-* OR g4tv.com-* OR fb-video-*) AND -collection:(mirrortube OR bliptv OR podcasts OR podcasts-video OR twitchstreams OR social-media-video OR tiktoks OR fringe OR deemphasize OR movie_trailers OR altcensored OR gamevideos) AND -title:(promo OR promos OR opener OR \"blank vhs\" OR commercials OR trailer OR reaction OR podcast OR roblox OR minecraft OR mario OR halo OR smosh OR \"fan film\" OR penthouse OR playmate OR playboy OR porn OR sexy OR drunk OR columbine OR jihad OR \"fail compilation\" OR \"faces of death\" OR wrestling OR \"foxy boxing\" OR \"behind the scenes\" OR \"end credits\" OR \"logo bloopers\" OR \"news casters\" OR \"nine news\" OR iso OR isos) AND -title:(\"real people real\" OR divorc* OR gardening OR \"how to guide\" OR \"ken roberts\" OR stories OR \"mud wrestling\" OR \"oil wrestling\" OR jello OR christmas) AND -title:(atomic OR connolly OR \"top notch\" OR \"fake videos\" OR filmstrip OR \"the truth\" OR boom OR gamer OR \"cable cars\" OR \"look here first\" OR \"roller derby\" OR beta) AND -identifier:(wolcottchristianchurch* OR beta*) AND -collection:(community_media OR newsandpublicaffairs)",
+          "ignoreYear": true,
+          "maxEntries": 40,
+          "maxEntriesPerItem": 2
+        },
+        {
+          "identifiers": [
+            "capture-a-3400",
+            "capture-a-3437",
+            "capture-a-11012",
+            "totally-hidden-video",
+            "totally-hidden-video-rock-n-roller-1991",
+            "totally-hidden-video-ads-10-29-07-91",
+            "scare-tactics-full-episodes_202402",
+            "scare-tactics-animal-rights-2004",
+            "Obliviou2001",
+            "D018Oblivious",
+            "trigger-happy-tv-series1",
+            "trigger-happy-tv-best-of-series-one-2000-uk-vhs",
+            "trigger-happy-tv-3-2002-uk-dvd",
+            "trigger-happy-tv-rare-u.-s.-version-2003_202602",
+            "trigger-happy-tv-best-of-series-1",
+            "trigger-happy-tv-best-of-series-2",
+            "trigger-happy-tv-best-of-series-3",
+            "just-for-laughs-gags",
+            "just-for-laughs-gags-season-9",
+            "BestBromas",
+            "the-best-of-beadles-about-volume-one-1990-uk-vhs"
+          ],
+          "maxEntriesPerItem": 4,
+          "ignoreYear": true
+        },
+        {
+          "query": "(title:(\"funniest pets\" OR \"world's funniest videos\" OR \"the world's funniest!\" OR \"worlds funniest videos\" OR \"world's funniest outtakes\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -identifier:(youtube-* OR yt_* OR twitter-* OR facebook-* OR TikTok-* OR bliptv-* OR g4tv.com-* OR fb-video-*) AND -collection:(mirrortube OR bliptv OR podcasts OR podcasts-video OR twitchstreams OR social-media-video OR tiktoks OR fringe OR deemphasize OR movie_trailers OR altcensored OR gamevideos) AND -title:(promo OR promos OR opener OR \"blank vhs\" OR commercials OR trailer OR reaction OR podcast OR roblox OR minecraft OR mario OR halo OR smosh OR \"fan film\" OR penthouse OR playmate OR playboy OR porn OR sexy OR drunk OR columbine OR jihad OR \"fail compilation\" OR \"faces of death\" OR wrestling OR \"foxy boxing\" OR \"behind the scenes\" OR \"end credits\" OR \"logo bloopers\" OR \"news casters\" OR \"nine news\" OR iso OR isos) AND -title:(qubo OR \"funniest man\" OR animals OR weather OR \"split screen\" OR nielsen OR \"fan-made\")",
+          "ignoreYear": true,
+          "maxEntries": 25,
+          "maxEntriesPerItem": 3
+        }
+      ]
     }
   ]
 }
