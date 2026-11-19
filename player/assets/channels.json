@@ -13717,6 +13717,88 @@
           "maxEntriesPerItem": 10
         }
       ]
+    },
+    {
+      "number": 101,
+      "name": "Hooligan",
+      "logo": "Logos/4x3/hooligan.png",
+      "genre": "Sports",
+      "sources": [
+        {
+          "query": "((subject:(soccer OR football OR \"association football\") OR title:(\"fa cup\" OR \"premier league\" OR \"champions league\" OR ucl OR \"european cup\" OR \"world cup\" OR \"euro 96\" OR \"euro 2020\" OR \"league cup\" OR \"cup final\" OR \"match of the day\" OR motd OR \"big match\")) AND -title:(nfl OR afc OR nfc OR \"super bowl\" OR superbowl OR ncaa OR \"college football\" OR bowl OR afl OR vfl OR rugby OR cricket OR \"american football\") AND -identifier:(dvd-transfer-* OR superbowl* OR cbs* OR nbc* OR monday* OR BeDoFanSub*) AND title:(english OR eng OR bbc OR itv OR \"sky sports\" OR \"bt sport\" OR \"match of the day\" OR motd OR \"big match\" OR \"fox\" OR fs1 OR espn)) AND -title:(relato OR partido OR completo OR fecha OR vuelta OR ida OR jogo OR jornada OR narracion OR \"narración\" OR comentarios OR italian OR italiano OR spanish OR espanol OR \"español\" OR arabic OR \"beIN\" OR francia OR \"países\" OR alemania OR inglaterra OR mundial OR copa OR \"sub español\" OR castellano OR \"hindi\" OR japan OR japanese) AND -subject:(xxx OR nsfw OR porn OR erotic OR fetish) AND -title:(nsfw OR xxx OR porn OR nude OR naked OR sexy) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -title:(gameplay OR ea OR sega OR xbox OR playstation OR ps2 OR ps3 OR ps4 OR wii OR trailer OR promo OR commercial OR ident OR riot OR riots OR hooligans OR hooliganism OR fight OR fights OR brawl OR stampede OR disaster OR hillsborough OR heysel OR \"live streaming\" OR anime OR \"step-mom\" OR lingerie OR fascism OR \"how to\" OR tutorial OR training) AND -collection:(tvnews OR tvarchive OR movie_trailers OR game_replays OR gamevideos OR videogameprev OR mirrortube OR social-media-video OR twitter-social-media-video OR fringe OR deemphasize OR community_media OR vhscommercials) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR mubd1234ama-* OR nratv_* OR htvod-* OR img-*)",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 2,
+          "maxEntries": 150
+        },
+        {
+          "query": "(identifier:ucl-* AND title:\"uefa champions league\") AND -title:(relato OR partido OR completo OR fecha OR vuelta OR ida OR jogo OR jornada OR narracion OR \"narración\" OR comentarios OR italian OR italiano OR spanish OR espanol OR \"español\" OR arabic OR \"beIN\" OR francia OR \"países\" OR alemania OR inglaterra OR mundial OR copa OR \"sub español\" OR castellano OR \"hindi\" OR japan OR japanese) AND -subject:(xxx OR nsfw OR porn OR erotic OR fetish) AND -title:(nsfw OR xxx OR porn OR nude OR naked OR sexy) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -title:(gameplay OR ea OR sega OR xbox OR playstation OR ps2 OR ps3 OR ps4 OR wii OR trailer OR promo OR commercial OR ident OR riot OR riots OR hooligans OR hooliganism OR fight OR fights OR brawl OR stampede OR disaster OR hillsborough OR heysel OR \"live streaming\" OR anime OR \"step-mom\" OR lingerie OR fascism OR \"how to\" OR tutorial OR training) AND -collection:(tvnews OR tvarchive OR movie_trailers OR game_replays OR gamevideos OR videogameprev OR mirrortube OR social-media-video OR twitter-social-media-video OR fringe OR deemphasize OR community_media OR vhscommercials) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR mubd1234ama-* OR nratv_* OR htvod-* OR img-*)",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1,
+          "maxEntries": 70
+        },
+        {
+          "identifiers": [
+            "1966.-wc.-final.-england-w.-germany",
+            "1970-fifa-world-cup-final-brazil-italy",
+            "1994-fifa-world-cup-all-goals",
+            "1998-fifa-world-cup-all-goals",
+            "argentina-vs-croatia-fifa-world-cup-2022",
+            "croatia-vs-brazil-fifa-world-cup-2022",
+            "marocco-vs-portugal-fifa-world-cup-2022",
+            "england-vs-france-fifa-world-cup-2022",
+            "netherlands-vs-argentina-fifa-world-cup-2022",
+            "france-vs-marocco-fifa-world-cup-2022",
+            "football-documentaries",
+            "liv_vs_mun_epl_2023_full_hd_eng",
+            "101GreatGoals_201307",
+            "TheMostBeautifulGoalsInHistory"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 2
+        },
+        {
+          "query": "((subject:(soccer OR football OR \"association football\") OR title:(\"fa cup\" OR \"premier league\" OR \"champions league\" OR ucl OR \"european cup\" OR \"world cup\" OR \"euro 96\" OR \"euro 2020\" OR \"league cup\" OR \"cup final\" OR \"match of the day\" OR motd OR \"big match\")) AND -title:(nfl OR afc OR nfc OR \"super bowl\" OR superbowl OR ncaa OR \"college football\" OR bowl OR afl OR vfl OR rugby OR cricket OR \"american football\") AND -identifier:(dvd-transfer-* OR superbowl* OR cbs* OR nbc* OR monday* OR BeDoFanSub*) AND collection:(louisbbcvhs OR vhssports OR ephemeralvhs OR flemishdog)) AND -title:(\"monday night\" OR \"pro football\" OR \"flag football\" OR \"d-vhs\" OR aerobics OR \"strike force\" OR americas OR trophyman OR \"fan sub\" OR japanese OR spanish) AND -subject:(nfl OR \"american football\") AND -identifier:(81-WaCoHi* OR football-full OR americas-cup-* OR 91-cik-*) AND -subject:(xxx OR nsfw OR porn OR erotic OR fetish) AND -title:(nsfw OR xxx OR porn OR nude OR naked OR sexy) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -title:(gameplay OR ea OR sega OR xbox OR playstation OR ps2 OR ps3 OR ps4 OR wii OR trailer OR promo OR commercial OR ident OR riot OR riots OR hooligans OR hooliganism OR fight OR fights OR brawl OR stampede OR disaster OR hillsborough OR heysel OR \"live streaming\" OR anime OR \"step-mom\" OR lingerie OR fascism OR \"how to\" OR tutorial OR training) AND -collection:(tvnews OR tvarchive OR movie_trailers OR game_replays OR gamevideos OR videogameprev OR mirrortube OR social-media-video OR twitter-social-media-video OR fringe OR deemphasize OR community_media OR vhscommercials) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR mubd1234ama-* OR nratv_* OR htvod-* OR img-*)",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 2,
+          "maxEntries": 80
+        },
+        {
+          "query": "(title:(rugby OR bledisloe OR \"all blacks\" OR wallabies OR springboks OR \"six nations\" OR \"five nations\") AND title:(\"world cup\" OR \"six nations\" OR \"five nations\" OR \"rugby championship\" OR \"tri nations\" OR lions OR \"all blacks\" OR wallabies OR springboks OR \"super rugby\" OR bledisloe OR \"heineken cup\" OR \"premiership\" OR test OR vs OR v OR final)) AND -title:(wisconsin OR \"high school\" OR college OR women OR womens OR utica OR \"fort drum\" OR \"national high\" OR binghamton OR cortland OR klubs OR paradigm OR \"king of all blacks\" OR artie) AND -identifier:(Klubs* OR Binghamton* OR Cortland* OR Maleny* OR 20200223123003lyor92 OR 20200222151700itasco OR 20200307145909belesp OR 20200131181620sharksvbulls) AND -subject:(xxx OR nsfw OR porn OR erotic OR fetish) AND -title:(nsfw OR xxx OR porn OR nude OR naked OR sexy) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -title:(gameplay OR ea OR sega OR xbox OR playstation OR ps2 OR ps3 OR ps4 OR wii OR trailer OR promo OR commercial OR ident OR riot OR riots OR hooligans OR hooliganism OR fight OR fights OR brawl OR stampede OR disaster OR hillsborough OR heysel OR \"live streaming\" OR anime OR \"step-mom\" OR lingerie OR fascism OR \"how to\" OR tutorial OR training) AND -collection:(tvnews OR tvarchive OR movie_trailers OR game_replays OR gamevideos OR videogameprev OR mirrortube OR social-media-video OR twitter-social-media-video OR fringe OR deemphasize OR community_media OR vhscommercials) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR mubd1234ama-* OR nratv_* OR htvod-* OR img-*)",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 2,
+          "maxEntries": 120
+        },
+        {
+          "query": "((title:(\"state of origin\" OR nrl OR \"rugby league\" OR \"challenge cup\" OR \"super league\" OR nswrl OR \"winfield cup\" OR \"greatest games of all\") OR (title:(\"grand final\") AND title:(rugby OR league OR \"st george\" OR wests OR canterbury OR parramatta OR manly OR balmain OR penrith OR brisbane OR canberra)))) AND -title:(afl OR vfl OR sanfl OR eurovision OR stardom OR noah OR \"funniest\" OR \"live and kicking\" OR \"business week\" OR sockers OR politics OR presentation OR \"can-am\" OR \"grand prix\" OR rodeo OR aboriginal) AND -identifier:(ellinikopodosferosuperleague OR nrl OR Bps* OR PoliticsOf* OR tree-mini-*) AND -subject:(xxx OR nsfw OR porn OR erotic OR fetish) AND -title:(nsfw OR xxx OR porn OR nude OR naked OR sexy) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -title:(gameplay OR ea OR sega OR xbox OR playstation OR ps2 OR ps3 OR ps4 OR wii OR trailer OR promo OR commercial OR ident OR riot OR riots OR hooligans OR hooliganism OR fight OR fights OR brawl OR stampede OR disaster OR hillsborough OR heysel OR \"live streaming\" OR anime OR \"step-mom\" OR lingerie OR fascism OR \"how to\" OR tutorial OR training) AND -collection:(tvnews OR tvarchive OR movie_trailers OR game_replays OR gamevideos OR videogameprev OR mirrortube OR social-media-video OR twitter-social-media-video OR fringe OR deemphasize OR community_media OR vhscommercials) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR mubd1234ama-* OR nratv_* OR htvod-* OR img-*)",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 2,
+          "maxEntries": 80
+        },
+        {
+          "query": "(title:(\"grand final\") AND title:(vfl OR afl OR sanfl OR wafl) AND -title:(\"footy show\" OR \"footy shows\")) AND -subject:(xxx OR nsfw OR porn OR erotic OR fetish) AND -title:(nsfw OR xxx OR porn OR nude OR naked OR sexy) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -title:(gameplay OR ea OR sega OR xbox OR playstation OR ps2 OR ps3 OR ps4 OR wii OR trailer OR promo OR commercial OR ident OR riot OR riots OR hooligans OR hooliganism OR fight OR fights OR brawl OR stampede OR disaster OR hillsborough OR heysel OR \"live streaming\" OR anime OR \"step-mom\" OR lingerie OR fascism OR \"how to\" OR tutorial OR training) AND -collection:(tvnews OR tvarchive OR movie_trailers OR game_replays OR gamevideos OR videogameprev OR mirrortube OR social-media-video OR twitter-social-media-video OR fringe OR deemphasize OR community_media OR vhscommercials) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR mubd1234ama-* OR nratv_* OR htvod-* OR img-*)",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1,
+          "maxEntries": 30
+        },
+        {
+          "query": "(title:(cricket) AND title:(test OR \"world cup\" OR ashes OR odi OR \"one day\" OR t20 OR innings OR highlights OR \"v\" OR vs OR final OR \"world series\" OR wwos)) AND -title:(\"times square\" OR yankee OR jiminy OR \"very merry\" OR ants OR salem OR templates OR \"funny cricket\" OR \"how to bat\" OR \"quick look\" OR bowling OR \"colourised\" OR \"great local derby\" OR accrington OR \"cricket club\" OR \"cricket academy\" OR \"cricket association\" OR waman OR vlog OR \"patriot act\" OR \"legends league\" OR \"2mate\" OR youtube OR caboolture OR palmwoods OR pointless) AND -subject:(xxx OR nsfw OR porn OR erotic OR fetish) AND -title:(nsfw OR xxx OR porn OR nude OR naked OR sexy) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -title:(gameplay OR ea OR sega OR xbox OR playstation OR ps2 OR ps3 OR ps4 OR wii OR trailer OR promo OR commercial OR ident OR riot OR riots OR hooligans OR hooliganism OR fight OR fights OR brawl OR stampede OR disaster OR hillsborough OR heysel OR \"live streaming\" OR anime OR \"step-mom\" OR lingerie OR fascism OR \"how to\" OR tutorial OR training) AND -collection:(tvnews OR tvarchive OR movie_trailers OR game_replays OR gamevideos OR videogameprev OR mirrortube OR social-media-video OR twitter-social-media-video OR fringe OR deemphasize OR community_media OR vhscommercials) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR mubd1234ama-* OR nratv_* OR htvod-* OR img-*)",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 2,
+          "maxEntries": 80
+        },
+        {
+          "query": "(title:(hurling OR \"gaelic football\" OR \"all-ireland\" OR \"all ireland\") AND -title:(language OR tintin OR minstrels OR committee OR druid OR \"nova scotia\" OR \"speaking our\" OR dinosaurs OR news OR trump)) AND -subject:(xxx OR nsfw OR porn OR erotic OR fetish) AND -title:(nsfw OR xxx OR porn OR nude OR naked OR sexy) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -title:(gameplay OR ea OR sega OR xbox OR playstation OR ps2 OR ps3 OR ps4 OR wii OR trailer OR promo OR commercial OR ident OR riot OR riots OR hooligans OR hooliganism OR fight OR fights OR brawl OR stampede OR disaster OR hillsborough OR heysel OR \"live streaming\" OR anime OR \"step-mom\" OR lingerie OR fascism OR \"how to\" OR tutorial OR training) AND -collection:(tvnews OR tvarchive OR movie_trailers OR game_replays OR gamevideos OR videogameprev OR mirrortube OR social-media-video OR twitter-social-media-video OR fringe OR deemphasize OR community_media OR vhscommercials) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR mubd1234ama-* OR nratv_* OR htvod-* OR img-*)",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 2,
+          "maxEntries": 30
+        },
+        {
+          "query": "(title:(\"commonwealth games\")) AND -title:(ident OR \"meter maids\" OR trailer OR goodies OR \"totally wild\") AND -subject:(xxx OR nsfw OR porn OR erotic OR fetish) AND -title:(nsfw OR xxx OR porn OR nude OR naked OR sexy) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -title:(gameplay OR ea OR sega OR xbox OR playstation OR ps2 OR ps3 OR ps4 OR wii OR trailer OR promo OR commercial OR ident OR riot OR riots OR hooligans OR hooliganism OR fight OR fights OR brawl OR stampede OR disaster OR hillsborough OR heysel OR \"live streaming\" OR anime OR \"step-mom\" OR lingerie OR fascism OR \"how to\" OR tutorial OR training) AND -collection:(tvnews OR tvarchive OR movie_trailers OR game_replays OR gamevideos OR videogameprev OR mirrortube OR social-media-video OR twitter-social-media-video OR fringe OR deemphasize OR community_media OR vhscommercials) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR mubd1234ama-* OR nratv_* OR htvod-* OR img-*)",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 2,
+          "maxEntries": 25
+        }
+      ]
     }
   ]
 }
