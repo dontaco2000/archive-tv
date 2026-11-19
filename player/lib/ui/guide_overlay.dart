@@ -243,7 +243,12 @@ class _GuideOverlayState extends State<GuideOverlay> {
           SizedBox(width: nameW * 0.3, child: ChannelLogo(channel: r.channel, height: font * 1.8)),
           const SizedBox(width: 4),
           _text('${m.lockedNumbers.contains(r.channel.number) ? '\u{1F512}' : ''}${r.channel.number} ', _style(font, fg, bold: true)),
-          Expanded(child: _text(r.channel.name, _style(font, fg, bold: true))),
+          // Long names ("Cablecast East") shrink to fit instead of clipping to a name another row also shows.
+          Expanded(
+              child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  alignment: Alignment.centerLeft,
+                  child: _text(r.channel.name, _style(font, fg, bold: true)))),
         ]),
       )),
       Expanded(

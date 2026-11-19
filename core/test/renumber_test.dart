@@ -135,7 +135,8 @@ void main() {
     };
 
     // Music is 48-51 (layout 3): 48 and 49 sit just below the 50s block, Sports is 52-59.
-    const overflow = {48: 'Music', 49: 'Music'};
+    // 99/100: newch_d's temporary numbers (Cablecast West, Telly) until the lead places them in the 60s block
+    const overflow = {48: 'Music', 49: 'Music', 99: 'World & Lifestyle', 100: 'World & Lifestyle'};
 
     test('numbers are unique, in order, and each channel sits in its genre\'s block (2-9, 10-19, ... 60-69)', () {
       final numbers = [for (final c in config.channels) c.number];
