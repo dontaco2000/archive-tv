@@ -1522,7 +1522,10 @@
         },
         {
           "identifiers": [
-            "tiny-toon-adventures-1990-1995_202512"
+            "tiny-toon-adventures-the-big-beginning-part-1_202507",
+            "tinytoonadventureshowispentmyvacationN2KMaster",
+            "tinytoonsnightghoulery1995_202003",
+            "tinytoonspringbreak_201912"
           ],
           "ignoreYear": true,
           "maxEntriesPerItem": 24,
@@ -1532,7 +1535,9 @@
         },
         {
           "identifiers": [
-            "animaniacs-1993-1998-movie_202601"
+            "Fox_Kids_Animaniacs_WOC_1994-12",
+            "warner-family-entertainment",
+            "9-13540-8"
           ],
           "ignoreYear": true,
           "maxEntriesPerItem": 24,
@@ -6946,42 +6951,6 @@
           "maxEntries": 60
         },
         {
-          "query": "(title:(\"you bet your life\")) AND (collection:(classic_tv_1950s OR classic_tv_1960s OR classic_tv OR television_inbox) OR identifier:(ybylcollection OR you-bet-your-life_202105)) AND -title:(chair OR water) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR mirrortube OR movie_trailers OR podcasts OR podcasts-video OR cdromsoftware OR vintagesoftware OR videogameprev OR gamevideos OR audio_sermons OR audio_religion OR link-tv-archive) AND -title:(trailer OR promo OR \"dvd game\" OR \"interactive dvd\" OR longplay OR wii OR reaction OR capcut OR template OR \"secret word\" OR bloopers OR \"clock\")",
-          "ignoreYear": true,
-          "maxEntriesPerItem": 3,
-          "maxEntries": 35
-        },
-        {
-          "query": "(title:(\"what's my line\" OR \"what's my line?\" OR \"i've got a secret\" OR \"to tell the truth\" OR \"whats my line\" OR \"ive got a secret\")) AND (collection:(classic_tv_1950s OR classic_tv_1960s OR classic_tv OR television_inbox) OR identifier:(totellthetruth* OR toTellTheTruth* OR whatsMyLine)) AND -title:(lenny OR swear OR commercial) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR mirrortube OR movie_trailers OR podcasts OR podcasts-video OR cdromsoftware OR vintagesoftware OR videogameprev OR gamevideos OR audio_sermons OR audio_religion OR link-tv-archive) AND -title:(trailer OR promo OR \"dvd game\" OR \"interactive dvd\" OR longplay OR wii OR reaction OR capcut OR template OR \"secret word\" OR bloopers OR \"clock\")",
-          "ignoreYear": true,
-          "maxEntriesPerItem": 3,
-          "maxEntries": 70
-        },
-        {
-          "query": "(identifier:(Password*Vs* OR gsc-pass-*)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR mirrortube OR movie_trailers OR podcasts OR podcasts-video OR cdromsoftware OR vintagesoftware OR videogameprev OR gamevideos OR audio_sermons OR audio_religion OR link-tv-archive) AND -title:(trailer OR promo OR \"dvd game\" OR \"interactive dvd\" OR longplay OR wii OR reaction OR capcut OR template OR \"secret word\" OR bloopers OR \"clock\")",
-          "ignoreYear": true,
-          "maxEntriesPerItem": 1,
-          "maxEntries": 35
-        },
-        {
-          "query": "(title:(\"beat the clock\" OR \"truth or consequences\" OR \"queen for a day\" OR \"strike it rich\" OR \"break the bank\" OR \"tic-tac-dough\" OR \"tic tac dough\" OR \"twenty one\" OR \"the $64,000 question\" OR \"the $64,000 challenge\" OR \"dotto\" OR \"do you trust your wife\" OR \"who do you trust\")) AND (collection:(classic_tv_1950s OR classic_tv_1960s OR classic_tv OR television_inbox)) AND -title:(1990 OR 1980) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR mirrortube OR movie_trailers OR podcasts OR podcasts-video OR cdromsoftware OR vintagesoftware OR videogameprev OR gamevideos OR audio_sermons OR audio_religion OR link-tv-archive) AND -title:(trailer OR promo OR \"dvd game\" OR \"interactive dvd\" OR longplay OR wii OR reaction OR capcut OR template OR \"secret word\" OR bloopers OR \"clock\")",
-          "ignoreYear": true,
-          "maxEntriesPerItem": 3,
-          "maxEntries": 60
-        },
-        {
-          "query": "(title:(\"stump the stars\" OR \"play your hunch\" OR \"take a good look\" OR \"treasure hunt\" OR \"concentration\" OR \"jeopardy\" OR \"pantomime quiz\" OR \"the price is right\" OR \"price is right\" OR \"sense and nonsense\" OR \"the face is familiar\" OR \"people are funny\" OR \"masquerade party\" OR \"video village\" OR \"juvenile jury\" OR \"dollar a second\" OR \"down you go\" OR \"name that tune\")) AND (collection:(classic_tv_1950s OR classic_tv_1960s OR classic_tv OR television_inbox) OR collection:(gameshow_jeopardy)) AND -title:(nazi OR camps OR camp OR holocaust OR 1990 OR 1985 OR 1983 OR 1984 OR 1982 OR 1981 OR 1980 OR 1979 OR 1978 OR 1977 OR 1976 OR 1975 OR 1974 OR 1973 OR 1972) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR mirrortube OR movie_trailers OR podcasts OR podcasts-video OR cdromsoftware OR vintagesoftware OR videogameprev OR gamevideos OR audio_sermons OR audio_religion OR link-tv-archive) AND -title:(trailer OR promo OR \"dvd game\" OR \"interactive dvd\" OR longplay OR wii OR reaction OR capcut OR template OR \"secret word\" OR bloopers OR \"clock\")",
-          "ignoreYear": true,
-          "maxEntriesPerItem": 3,
-          "maxEntries": 80
-        },
-        {
-          "query": "(subject:(\"game show\" OR \"quiz show\" OR \"game shows\" OR \"quiz shows\") AND date:[1945-01-01 TO 1969-12-31] AND collection:(classic_tv_1950s OR classic_tv_1960s OR classic_tv OR television_inbox) AND -title:(nazi OR concentration OR trailer)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR mirrortube OR movie_trailers OR podcasts OR podcasts-video OR cdromsoftware OR vintagesoftware OR videogameprev OR gamevideos OR audio_sermons OR audio_religion OR link-tv-archive) AND -title:(trailer OR promo OR \"dvd game\" OR \"interactive dvd\" OR longplay OR wii OR reaction OR capcut OR template OR \"secret word\" OR bloopers OR \"clock\")",
-          "ignoreYear": true,
-          "maxEntriesPerItem": 3,
-          "maxEntries": 80
-        },
-        {
           "query": "(subject:(\"game show\" OR \"game shows\") AND -title:(\"this or that\" OR \"crystal maze\" OR knightmare OR \"weakest link\" OR \"deal or no deal\" OR \"the chase\" OR takeshi OR \"university challenge\" OR mtv OR gamesmaster OR taskmaster OR skatoony) AND -identifier:(TT* OR T-T* OR \"017395\" OR \"012145\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR mirrortube OR movie_trailers OR podcasts OR podcasts-video OR cdromsoftware OR vintagesoftware OR videogameprev OR gamevideos OR audio_sermons OR audio_religion OR link-tv-archive) AND -title:(trailer OR promo OR \"dvd game\" OR \"interactive dvd\" OR longplay OR wii OR reaction OR capcut OR template OR \"secret word\" OR bloopers OR \"clock\") AND -collection:(dvdtray OR vhstvshows OR classic_tv_1950s OR classic_tv_1960s) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR religious OR evangelist)",
           "ignoreYear": true,
           "maxEntriesPerItem": 12,
@@ -10207,19 +10176,19 @@
           "query": "(title:\"longines chronoscope\" AND identifier:(gov.archives.arc.956* OR gov.archives.arc.957*)) AND -title:(atrocity OR atrocities OR \"murder mills\" OR \"war crime\" OR \"war crimes\" OR \"concentration camp\" OR \"concentration camps\" OR camps OR holocaust OR belsen OR buchenwald OR dachau OR auschwitz OR execution OR executions OR executed OR assassination OR assassinated OR massacre OR lynching OR corpses OR hiroshima OR nagasaki OR jap OR japs OR captured OR wochenschau OR \"giornale luce\" OR fascist OR propaganda OR girlie OR \"off the pig\" OR \"black panther\" OR klan OR kkk OR \"triumph of the will\" OR homosexuals OR hitlerites OR \"german newsreel\" OR \"japanese newsreel\" OR \"nazi newsreels\") AND -subject:(\"concentration camps\" OR atrocities OR holocaust OR executions OR propaganda) AND -identifier:(NPC-* OR ADC-* OR 111-adc-* OR 428-npc-* OR CSPAN* OR tobacco_* OR scm-* OR openmind_* OR youtube-xYxX3hdnDnk OR NBC-News) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR tvarchive OR movie_trailers)",
           "ignoreYear": true,
           "maxEntriesPerItem": 1,
-          "maxEntries": 40
+          "maxEntries": 15
         },
         {
           "query": "(title:\"longines chronoscope\" AND identifier:gov.archives* AND -identifier:(gov.archives.arc.956* OR gov.archives.arc.957*)) AND -title:(atrocity OR atrocities OR \"murder mills\" OR \"war crime\" OR \"war crimes\" OR \"concentration camp\" OR \"concentration camps\" OR camps OR holocaust OR belsen OR buchenwald OR dachau OR auschwitz OR execution OR executions OR executed OR assassination OR assassinated OR massacre OR lynching OR corpses OR hiroshima OR nagasaki OR jap OR japs OR captured OR wochenschau OR \"giornale luce\" OR fascist OR propaganda OR girlie OR \"off the pig\" OR \"black panther\" OR klan OR kkk OR \"triumph of the will\" OR homosexuals OR hitlerites OR \"german newsreel\" OR \"japanese newsreel\" OR \"nazi newsreels\") AND -subject:(\"concentration camps\" OR atrocities OR holocaust OR executions OR propaganda) AND -identifier:(NPC-* OR ADC-* OR 111-adc-* OR 428-npc-* OR CSPAN* OR tobacco_* OR scm-* OR openmind_* OR youtube-xYxX3hdnDnk OR NBC-News) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR tvarchive OR movie_trailers)",
           "ignoreYear": true,
           "maxEntriesPerItem": 1,
-          "maxEntries": 40
+          "maxEntries": 15
         },
         {
           "query": "(title:\"longines chronoscope\" AND -identifier:gov.archives*) AND -title:(atrocity OR atrocities OR \"murder mills\" OR \"war crime\" OR \"war crimes\" OR \"concentration camp\" OR \"concentration camps\" OR camps OR holocaust OR belsen OR buchenwald OR dachau OR auschwitz OR execution OR executions OR executed OR assassination OR assassinated OR massacre OR lynching OR corpses OR hiroshima OR nagasaki OR jap OR japs OR captured OR wochenschau OR \"giornale luce\" OR fascist OR propaganda OR girlie OR \"off the pig\" OR \"black panther\" OR klan OR kkk OR \"triumph of the will\" OR homosexuals OR hitlerites OR \"german newsreel\" OR \"japanese newsreel\" OR \"nazi newsreels\") AND -subject:(\"concentration camps\" OR atrocities OR holocaust OR executions OR propaganda) AND -identifier:(NPC-* OR ADC-* OR 111-adc-* OR 428-npc-* OR CSPAN* OR tobacco_* OR scm-* OR openmind_* OR youtube-xYxX3hdnDnk OR NBC-News) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR tvarchive OR movie_trailers)",
           "ignoreYear": true,
           "maxEntriesPerItem": 1,
-          "maxEntries": 40
+          "maxEntries": 15
         },
         {
           "query": "(title:(\"march of time\" OR \"the march of time\")) AND date:[1930-01-01 TO 1969-12-31] AND -title:(charley) AND -title:(atrocity OR atrocities OR \"murder mills\" OR \"war crime\" OR \"war crimes\" OR \"concentration camp\" OR \"concentration camps\" OR camps OR holocaust OR belsen OR buchenwald OR dachau OR auschwitz OR execution OR executions OR executed OR assassination OR assassinated OR massacre OR lynching OR corpses OR hiroshima OR nagasaki OR jap OR japs OR captured OR wochenschau OR \"giornale luce\" OR fascist OR propaganda OR girlie OR \"off the pig\" OR \"black panther\" OR klan OR kkk OR \"triumph of the will\" OR homosexuals OR hitlerites OR \"german newsreel\" OR \"japanese newsreel\" OR \"nazi newsreels\") AND -subject:(\"concentration camps\" OR atrocities OR holocaust OR executions OR propaganda) AND -identifier:(NPC-* OR ADC-* OR 111-adc-* OR 428-npc-* OR CSPAN* OR tobacco_* OR scm-* OR openmind_* OR youtube-xYxX3hdnDnk OR NBC-News) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR tvarchive OR movie_trailers)",
