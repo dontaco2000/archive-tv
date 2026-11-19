@@ -947,7 +947,9 @@
     "zatch-bell-collection/Zatch Bell/Movies/Zatch Bell Movie 02 - Attack of The Mechavulcan.mp4",
     "bobobo_bo_bo_bobo/Boboboubo Boubobo - Rcap Episode  (2).mp4",
     "bobobo_bo_bo_bobo/Boboboubo Boubobo - Rcap Episode .mp4",
-    "dws-8.5.40_202302"
+    "dws-8.5.40_202302",
+    "TheAdventuresOfLongJohnSilverMissPuritysBirthday",
+    "TheAdventuresOfLongJohnSilverSwordOfVengeance.3gp"
   ],
   "channels": [
     {
@@ -11540,8 +11542,8 @@
     },
     {
       "number": 67,
-      "name": "Cablecast",
-      "logo": "Logos/4x3/cablecast.png",
+      "name": "Cablecast East",
+      "logo": "Logos/4x3/cablecasteast.png",
       "genre": "World & Lifestyle",
       "sources": [
         {
@@ -11551,19 +11553,7 @@
           "maxEntriesPerItem": 1
         },
         {
-          "query": "(identifier:AV_* AND title:(\"alternative views\" OR AV)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR porn OR pornography OR softcore OR nudity OR nude OR sexploitation) AND -title:(xxx OR nsfw OR porn OR erotic OR nude OR naked OR nudity OR topless OR sexy OR sex OR stripper OR striptease OR underwear OR lingerie OR fetish OR bikini OR \"belly dancer\" OR \"ugly george\" OR \"boys for sale\" OR burlesque OR playboy) AND -language:(spa OR jpn OR chi OR zho OR pol OR fre OR ger OR ita OR por OR rus OR kor OR hin OR ara OR tur OR vie OR hmn) AND -title:(hmong OR espanol) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR gospel OR church OR sermon OR bible OR ministry OR religious) AND -title:(church OR sermon OR ministry OR bible OR gospel OR preacher) AND -title:(loop OR loops OR raw OR \"raw footage\" OR \"raw tape\" OR bonus OR unedited OR \"test roll\" OR \"camera roll\" OR \"b-roll\" OR broll OR \"call break\" OR callbreak OR callbreaks OR outtake OR outtakes OR audition OR auditions OR \"dead air\" OR \"test pattern\" OR \"color bars\" OR footage OR preview OR previews OR promo OR psa OR \"station id\" OR intro OR sampler OR \"annual meeting\" OR \"board meeting\" OR \"city council\" OR \"school committee\" OR hearing OR \"town meeting\" OR \"market box\" OR \"blank vhs\" OR \"golden girls\" OR vaccines OR \"coming soon\" OR borat OR montage) AND -identifier:(*Raw* OR *raw* OR *Loop* OR *loop*) AND -title:(sesame OR barney OR teletubbies OR \"kids talent\" OR cartoon OR cartoons OR elmo OR muppet OR puppet) AND -collection:(tvnews OR tvarchive OR movie_trailers OR mirrortube OR twitchstreams OR podcasts OR fringe OR deemphasize OR funnyordie) AND -identifier:(twitter-* OR TikTok-* OR BridgingHmongAmerican OR jim-spagg*)",
-          "ignoreYear": true,
-          "maxEntries": 30,
-          "maxEntriesPerItem": 1
-        },
-        {
           "query": "(collection:somervillecommunityaccesstelevision AND identifier:scatv-*) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR porn OR pornography OR softcore OR nudity OR nude OR sexploitation) AND -title:(xxx OR nsfw OR porn OR erotic OR nude OR naked OR nudity OR topless OR sexy OR sex OR stripper OR striptease OR underwear OR lingerie OR fetish OR bikini OR \"belly dancer\" OR \"ugly george\" OR \"boys for sale\" OR burlesque OR playboy) AND -language:(spa OR jpn OR chi OR zho OR pol OR fre OR ger OR ita OR por OR rus OR kor OR hin OR ara OR tur OR vie OR hmn) AND -title:(hmong OR espanol) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR gospel OR church OR sermon OR bible OR ministry OR religious) AND -title:(church OR sermon OR ministry OR bible OR gospel OR preacher) AND -title:(loop OR loops OR raw OR \"raw footage\" OR \"raw tape\" OR bonus OR unedited OR \"test roll\" OR \"camera roll\" OR \"b-roll\" OR broll OR \"call break\" OR callbreak OR callbreaks OR outtake OR outtakes OR audition OR auditions OR \"dead air\" OR \"test pattern\" OR \"color bars\" OR footage OR preview OR previews OR promo OR psa OR \"station id\" OR intro OR sampler OR \"annual meeting\" OR \"board meeting\" OR \"city council\" OR \"school committee\" OR hearing OR \"town meeting\" OR \"market box\" OR \"blank vhs\" OR \"golden girls\" OR vaccines OR \"coming soon\" OR borat OR montage) AND -identifier:(*Raw* OR *raw* OR *Loop* OR *loop*) AND -title:(sesame OR barney OR teletubbies OR \"kids talent\" OR cartoon OR cartoons OR elmo OR muppet OR puppet) AND -collection:(tvnews OR tvarchive OR movie_trailers OR mirrortube OR twitchstreams OR podcasts OR fringe OR deemphasize OR funnyordie) AND -identifier:(twitter-* OR TikTok-* OR BridgingHmongAmerican OR jim-spagg*)",
-          "maxEntries": 40,
-          "maxEntriesPerItem": 2
-        },
-        {
-          "query": "(collection:(vhstvshows OR vhsvault OR classic_tv OR classic_tv_1980s OR classic_tv_1990s) AND title:(\"public access\" OR \"cable access\" OR \"community access\" OR \"local access\" OR \"access tv\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR porn OR pornography OR softcore OR nudity OR nude OR sexploitation) AND -title:(xxx OR nsfw OR porn OR erotic OR nude OR naked OR nudity OR topless OR sexy OR sex OR stripper OR striptease OR underwear OR lingerie OR fetish OR bikini OR \"belly dancer\" OR \"ugly george\" OR \"boys for sale\" OR burlesque OR playboy) AND -language:(spa OR jpn OR chi OR zho OR pol OR fre OR ger OR ita OR por OR rus OR kor OR hin OR ara OR tur OR vie OR hmn) AND -title:(hmong OR espanol) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR gospel OR church OR sermon OR bible OR ministry OR religious) AND -title:(church OR sermon OR ministry OR bible OR gospel OR preacher) AND -title:(loop OR loops OR raw OR \"raw footage\" OR \"raw tape\" OR bonus OR unedited OR \"test roll\" OR \"camera roll\" OR \"b-roll\" OR broll OR \"call break\" OR callbreak OR callbreaks OR outtake OR outtakes OR audition OR auditions OR \"dead air\" OR \"test pattern\" OR \"color bars\" OR footage OR preview OR previews OR promo OR psa OR \"station id\" OR intro OR sampler OR \"annual meeting\" OR \"board meeting\" OR \"city council\" OR \"school committee\" OR hearing OR \"town meeting\" OR \"market box\" OR \"blank vhs\" OR \"golden girls\" OR vaccines OR \"coming soon\" OR borat OR montage) AND -identifier:(*Raw* OR *raw* OR *Loop* OR *loop*) AND -title:(sesame OR barney OR teletubbies OR \"kids talent\" OR cartoon OR cartoons OR elmo OR muppet OR puppet) AND -collection:(tvnews OR tvarchive OR movie_trailers OR mirrortube OR twitchstreams OR podcasts OR fringe OR deemphasize OR funnyordie) AND -identifier:(twitter-* OR TikTok-* OR BridgingHmongAmerican OR jim-spagg*)",
-          "ignoreYear": true,
           "maxEntries": 40,
           "maxEntriesPerItem": 2
         },
@@ -11574,9 +11564,78 @@
           "maxEntriesPerItem": 1
         },
         {
-          "query": "(subject:(\"public access\" OR \"cable access\" OR \"community access\" OR \"public-access\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR porn OR pornography OR softcore OR nudity OR nude OR sexploitation) AND -title:(xxx OR nsfw OR porn OR erotic OR nude OR naked OR nudity OR topless OR sexy OR sex OR stripper OR striptease OR underwear OR lingerie OR fetish OR bikini OR \"belly dancer\" OR \"ugly george\" OR \"boys for sale\" OR burlesque OR playboy) AND -language:(spa OR jpn OR chi OR zho OR pol OR fre OR ger OR ita OR por OR rus OR kor OR hin OR ara OR tur OR vie OR hmn) AND -title:(hmong OR espanol) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR gospel OR church OR sermon OR bible OR ministry OR religious) AND -title:(church OR sermon OR ministry OR bible OR gospel OR preacher) AND -title:(loop OR loops OR raw OR \"raw footage\" OR \"raw tape\" OR bonus OR unedited OR \"test roll\" OR \"camera roll\" OR \"b-roll\" OR broll OR \"call break\" OR callbreak OR callbreaks OR outtake OR outtakes OR audition OR auditions OR \"dead air\" OR \"test pattern\" OR \"color bars\" OR footage OR preview OR previews OR promo OR psa OR \"station id\" OR intro OR sampler OR \"annual meeting\" OR \"board meeting\" OR \"city council\" OR \"school committee\" OR hearing OR \"town meeting\" OR \"market box\" OR \"blank vhs\" OR \"golden girls\" OR vaccines OR \"coming soon\" OR borat OR montage) AND -identifier:(*Raw* OR *raw* OR *Loop* OR *loop*) AND -title:(sesame OR barney OR teletubbies OR \"kids talent\" OR cartoon OR cartoons OR elmo OR muppet OR puppet) AND -collection:(tvnews OR tvarchive OR movie_trailers OR mirrortube OR twitchstreams OR podcasts OR fringe OR deemphasize OR funnyordie) AND -identifier:(twitter-* OR TikTok-* OR BridgingHmongAmerican OR jim-spagg*)",
-          "maxEntries": 50,
-          "maxEntriesPerItem": 2
+          "query": "(title:(\"atomic tv\" OR \"atomic teevee\")) AND -title:(adult OR nude OR naked OR nudity OR nudist OR sex OR sexy OR erotic OR fetish OR spank OR spanking OR burlesque OR stripper OR striptease OR topless OR lingerie OR goddess OR xxx OR porn OR playboy OR \"ugly george\" OR \"boys for sale\" OR \"after ten\" OR \"libre film\" OR \"dr. moze\" OR \"susan block\" OR \"naked truth\") AND -subject:(adult OR nudity OR nude OR erotica OR erotic OR porn OR xxx OR nsfw OR sexuality OR burlesque) AND -title:(church OR sermon OR ministry OR bible OR gospel OR preacher OR worship OR mass OR prayer OR jesus OR christian OR catholic OR baptist OR lutheran OR methodist OR synagogue OR mosque OR islam OR rosary) AND -subject:(religion OR christian OR church OR sermon OR ministry OR bible OR gospel OR worship) AND -title:(hellstorm OR holocaust OR nazi OR genocide OR \"false flag\" OR \"new world order\" OR illuminati OR chemtrails OR \"inside job\" OR awpt OR c4i OR satan OR satanic) AND -subject:(conspiracy OR \"9-11\" OR truther)",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1,
+          "maxEntries": 30
+        },
+        {
+          "query": "(title:(\"electra elf\" OR \"i've got munchies\" OR \"madame chao\" OR \"madame-chao\" OR \"church of shooting yourself\" OR \"chronic rift\")) AND -title:(adult OR nude OR naked OR nudity OR nudist OR sex OR sexy OR erotic OR fetish OR spank OR spanking OR burlesque OR stripper OR striptease OR topless OR lingerie OR goddess OR xxx OR porn OR playboy OR \"ugly george\" OR \"boys for sale\" OR \"after ten\" OR \"libre film\" OR \"dr. moze\" OR \"susan block\" OR \"naked truth\") AND -subject:(adult OR nudity OR nude OR erotica OR erotic OR porn OR xxx OR nsfw OR sexuality OR burlesque) AND -title:(church OR sermon OR ministry OR bible OR gospel OR preacher OR worship OR mass OR prayer OR jesus OR christian OR catholic OR baptist OR lutheran OR methodist OR synagogue OR mosque OR islam OR rosary) AND -subject:(religion OR christian OR church OR sermon OR ministry OR bible OR gospel OR worship) AND -title:(hellstorm OR holocaust OR nazi OR genocide OR \"false flag\" OR \"new world order\" OR illuminati OR chemtrails OR \"inside job\" OR awpt OR c4i OR satan OR satanic) AND -subject:(conspiracy OR \"9-11\" OR truther)",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 2,
+          "maxEntries": 40
+        },
+        {
+          "query": "(title:(\"jon hammond show\") AND -title:(preview OR promo)) AND -title:(adult OR nude OR naked OR nudity OR nudist OR sex OR sexy OR erotic OR fetish OR spank OR spanking OR burlesque OR stripper OR striptease OR topless OR lingerie OR goddess OR xxx OR porn OR playboy OR \"ugly george\" OR \"boys for sale\" OR \"after ten\" OR \"libre film\" OR \"dr. moze\" OR \"susan block\" OR \"naked truth\") AND -subject:(adult OR nudity OR nude OR erotica OR erotic OR porn OR xxx OR nsfw OR sexuality OR burlesque) AND -title:(church OR sermon OR ministry OR bible OR gospel OR preacher OR worship OR mass OR prayer OR jesus OR christian OR catholic OR baptist OR lutheran OR methodist OR synagogue OR mosque OR islam OR rosary) AND -subject:(religion OR christian OR church OR sermon OR ministry OR bible OR gospel OR worship) AND -title:(hellstorm OR holocaust OR nazi OR genocide OR \"false flag\" OR \"new world order\" OR illuminati OR chemtrails OR \"inside job\" OR awpt OR c4i OR satan OR satanic) AND -subject:(conspiracy OR \"9-11\" OR truther)",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1,
+          "maxEntries": 12
+        },
+        {
+          "query": "(collection:(vhstvshows OR vhsvault OR vhsconcerts_music) AND title:(\"new york public access\" OR \"new york pub\" OR \"syracuse public access\" OR \"two italian guys\" OR \"coco colos\" OR \"lobster farm\" OR \"media funhouse\" OR \"my craft show\" OR \"piano requests\" OR \"out in the 90s\" OR \"empire show\" OR \"allyson starr\" OR \"richie rich's midtown\" OR \"g street live\" OR \"reel people\" OR \"mac's acts\" OR \"catskills on broadway\" OR \"arthur of new york\" OR \"amazing dr. d\" OR \"fun time in the usa\" OR \"glendora\" OR \"biograph days\")) AND -title:(adult OR nude OR naked OR nudity OR nudist OR sex OR sexy OR erotic OR fetish OR spank OR spanking OR burlesque OR stripper OR striptease OR topless OR lingerie OR goddess OR xxx OR porn OR playboy OR \"ugly george\" OR \"boys for sale\" OR \"after ten\" OR \"libre film\" OR \"dr. moze\" OR \"susan block\" OR \"naked truth\") AND -subject:(adult OR nudity OR nude OR erotica OR erotic OR porn OR xxx OR nsfw OR sexuality OR burlesque) AND -title:(church OR sermon OR ministry OR bible OR gospel OR preacher OR worship OR mass OR prayer OR jesus OR christian OR catholic OR baptist OR lutheran OR methodist OR synagogue OR mosque OR islam OR rosary) AND -subject:(religion OR christian OR church OR sermon OR ministry OR bible OR gospel OR worship) AND -title:(hellstorm OR holocaust OR nazi OR genocide OR \"false flag\" OR \"new world order\" OR illuminati OR chemtrails OR \"inside job\" OR awpt OR c4i OR satan OR satanic) AND -subject:(conspiracy OR \"9-11\" OR truther)",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1,
+          "maxEntries": 45
+        },
+        {
+          "query": "(((title:(\"c-19\") AND title:(peabody OR \"cable access\")) OR identifier:(MinimumWage* OR RabbitEarsMediaMinimumWage* OR whatsyourproblem_201909 OR stonehamtv_The_Total_Woman*)) AND -title:(school)) AND -title:(adult OR nude OR naked OR nudity OR nudist OR sex OR sexy OR erotic OR fetish OR spank OR spanking OR burlesque OR stripper OR striptease OR topless OR lingerie OR goddess OR xxx OR porn OR playboy OR \"ugly george\" OR \"boys for sale\" OR \"after ten\" OR \"libre film\" OR \"dr. moze\" OR \"susan block\" OR \"naked truth\") AND -subject:(adult OR nudity OR nude OR erotica OR erotic OR porn OR xxx OR nsfw OR sexuality OR burlesque) AND -title:(church OR sermon OR ministry OR bible OR gospel OR preacher OR worship OR mass OR prayer OR jesus OR christian OR catholic OR baptist OR lutheran OR methodist OR synagogue OR mosque OR islam OR rosary) AND -subject:(religion OR christian OR church OR sermon OR ministry OR bible OR gospel OR worship) AND -title:(hellstorm OR holocaust OR nazi OR genocide OR \"false flag\" OR \"new world order\" OR illuminati OR chemtrails OR \"inside job\" OR awpt OR c4i OR satan OR satanic) AND -subject:(conspiracy OR \"9-11\" OR truther)",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1,
+          "maxEntries": 30
+        },
+        {
+          "query": "(title:(\"stoneham cinema\")) AND -title:(adult OR nude OR naked OR nudity OR nudist OR sex OR sexy OR erotic OR fetish OR spank OR spanking OR burlesque OR stripper OR striptease OR topless OR lingerie OR goddess OR xxx OR porn OR playboy OR \"ugly george\" OR \"boys for sale\" OR \"after ten\" OR \"libre film\" OR \"dr. moze\" OR \"susan block\" OR \"naked truth\") AND -subject:(adult OR nudity OR nude OR erotica OR erotic OR porn OR xxx OR nsfw OR sexuality OR burlesque) AND -title:(church OR sermon OR ministry OR bible OR gospel OR preacher OR worship OR mass OR prayer OR jesus OR christian OR catholic OR baptist OR lutheran OR methodist OR synagogue OR mosque OR islam OR rosary) AND -subject:(religion OR christian OR church OR sermon OR ministry OR bible OR gospel OR worship) AND -title:(hellstorm OR holocaust OR nazi OR genocide OR \"false flag\" OR \"new world order\" OR illuminati OR chemtrails OR \"inside job\" OR awpt OR c4i OR satan OR satanic) AND -subject:(conspiracy OR \"9-11\" OR truther)",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1,
+          "maxEntries": 12
+        },
+        {
+          "query": "(title:(\"joe's basement\" OR \"joes basement\" OR \"vast wasteland\" OR \"theater for ideas\" OR \"30 minutes of madness\" OR \"idiot box savant\" OR \"haunted indiana\") AND -title:(viewer mail) AND -identifier:(openmind_*)) AND -title:(adult OR nude OR naked OR nudity OR nudist OR sex OR sexy OR erotic OR fetish OR spank OR spanking OR burlesque OR stripper OR striptease OR topless OR lingerie OR goddess OR xxx OR porn OR playboy OR \"ugly george\" OR \"boys for sale\" OR \"after ten\" OR \"libre film\" OR \"dr. moze\" OR \"susan block\" OR \"naked truth\") AND -subject:(adult OR nudity OR nude OR erotica OR erotic OR porn OR xxx OR nsfw OR sexuality OR burlesque) AND -title:(church OR sermon OR ministry OR bible OR gospel OR preacher OR worship OR mass OR prayer OR jesus OR christian OR catholic OR baptist OR lutheran OR methodist OR synagogue OR mosque OR islam OR rosary) AND -subject:(religion OR christian OR church OR sermon OR ministry OR bible OR gospel OR worship) AND -title:(hellstorm OR holocaust OR nazi OR genocide OR \"false flag\" OR \"new world order\" OR illuminati OR chemtrails OR \"inside job\" OR awpt OR c4i OR satan OR satanic) AND -subject:(conspiracy OR \"9-11\" OR truther)",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1,
+          "maxEntries": 50
+        },
+        {
+          "query": "(title:(\"slack pack\" OR \"lou tuner\" OR bronxtalk OR \"bronx live\" OR \"bronx currents\") AND -title:(psa OR promo)) AND -title:(adult OR nude OR naked OR nudity OR nudist OR sex OR sexy OR erotic OR fetish OR spank OR spanking OR burlesque OR stripper OR striptease OR topless OR lingerie OR goddess OR xxx OR porn OR playboy OR \"ugly george\" OR \"boys for sale\" OR \"after ten\" OR \"libre film\" OR \"dr. moze\" OR \"susan block\" OR \"naked truth\") AND -subject:(adult OR nudity OR nude OR erotica OR erotic OR porn OR xxx OR nsfw OR sexuality OR burlesque) AND -title:(church OR sermon OR ministry OR bible OR gospel OR preacher OR worship OR mass OR prayer OR jesus OR christian OR catholic OR baptist OR lutheran OR methodist OR synagogue OR mosque OR islam OR rosary) AND -subject:(religion OR christian OR church OR sermon OR ministry OR bible OR gospel OR worship) AND -title:(hellstorm OR holocaust OR nazi OR genocide OR \"false flag\" OR \"new world order\" OR illuminati OR chemtrails OR \"inside job\" OR awpt OR c4i OR satan OR satanic) AND -subject:(conspiracy OR \"9-11\" OR truther)",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1,
+          "maxEntries": 20
+        },
+        {
+          "query": "(identifier:(VVAA_MMCTV-*) AND -title:(police OR selectboard OR hearing OR sports OR hockey OR psa OR promo OR safety OR meeting OR drb OR candidates OR forum OR seminar OR business)) AND -title:(adult OR nude OR naked OR nudity OR nudist OR sex OR sexy OR erotic OR fetish OR spank OR spanking OR burlesque OR stripper OR striptease OR topless OR lingerie OR goddess OR xxx OR porn OR playboy OR \"ugly george\" OR \"boys for sale\" OR \"after ten\" OR \"libre film\" OR \"dr. moze\" OR \"susan block\" OR \"naked truth\") AND -subject:(adult OR nudity OR nude OR erotica OR erotic OR porn OR xxx OR nsfw OR sexuality OR burlesque) AND -title:(church OR sermon OR ministry OR bible OR gospel OR preacher OR worship OR mass OR prayer OR jesus OR christian OR catholic OR baptist OR lutheran OR methodist OR synagogue OR mosque OR islam OR rosary) AND -subject:(religion OR christian OR church OR sermon OR ministry OR bible OR gospel OR worship) AND -title:(hellstorm OR holocaust OR nazi OR genocide OR \"false flag\" OR \"new world order\" OR illuminati OR chemtrails OR \"inside job\" OR awpt OR c4i OR satan OR satanic) AND -subject:(conspiracy OR \"9-11\" OR truther)",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1,
+          "maxEntries": 10
+        },
+        {
+          "query": "(collection:community_media AND ((subject:(Maine OR \"New Hampshire\" OR Vermont OR Massachusetts OR \"Rhode Island\" OR Connecticut OR \"New York\" OR \"New Jersey\" OR Pennsylvania OR Delaware OR Maryland OR \"District of Columbia\" OR Virginia OR \"West Virginia\" OR \"North Carolina\" OR \"South Carolina\" OR Georgia OR Florida OR Alabama OR Mississippi OR Tennessee OR Kentucky OR Ohio OR Michigan OR Indiana OR Illinois OR Wisconsin) OR collection:(ctncrmn) OR subject:(Blaine AND Minnesota)) AND -subject:(Louisiana)) AND title:(cooking OR kitchen OR recipe OR recipes OR chef OR baking OR barbecue OR bbq OR grill OR grilling OR cookin OR cuisine) AND -title:(\"cooking with georgia\" OR meth)) AND -title:(adult OR nude OR naked OR nudist OR sex OR sexy OR erotic OR fetish OR spank* OR burlesque OR strip* OR topless OR goddess OR xxx OR porn OR \"after ten\" OR \"libre film\" OR moze OR \"susan block\") AND -subject:(adult OR nudity OR erotica OR sexuality) AND -title:(church OR sermon OR ministry OR bible OR gospel OR worship OR mass OR prayer OR jesus OR christian) AND -subject:(religion OR church) AND -title:(hellstorm OR holocaust OR nazi OR genocide OR illuminati OR awpt OR c4i OR satan* OR swastika*) AND -title:(meeting OR council OR board OR commission OR committee OR hearing OR budget OR election OR candidat* OR debate OR graduation OR police OR forum OR briefing OR update OR conference OR hockey OR football OR basketball OR baseball OR soccer) AND -title:(trailer OR promo OR psa OR preview OR raw OR footage OR loop OR cinema OR movie OR film OR dialogo OR podcast OR class OR workshop OR \"red carpet\" OR barney OR sesame OR peppa OR disney OR \"magic school bus\" OR \"rocky horror\") AND -language:(spa OR chi OR vie OR kor OR rus OR hmn) AND -identifier:(aufstx-* OR caltvca-*)",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1
+        },
+        {
+          "query": "(collection:community_media AND ((subject:(Maine OR \"New Hampshire\" OR Vermont OR Massachusetts OR \"Rhode Island\" OR Connecticut OR \"New York\" OR \"New Jersey\" OR Pennsylvania OR Delaware OR Maryland OR \"District of Columbia\" OR Virginia OR \"West Virginia\" OR \"North Carolina\" OR \"South Carolina\" OR Georgia OR Florida OR Alabama OR Mississippi OR Tennessee OR Kentucky OR Ohio OR Michigan OR Indiana OR Illinois OR Wisconsin) OR collection:(ctncrmn) OR subject:(Blaine AND Minnesota)) AND -subject:(Louisiana)) AND title:(polka OR concert OR \"live music\" OR jazz OR bluegrass OR fiddle OR blues OR jam OR \"open mic\" OR songwriter OR songwriters OR folk OR \"in concert\" OR \"live at\" OR acoustic OR orchestra OR \"big band\") AND -title:(school OR chorus OR grade OR \"video jam\" OR fitness OR workout)) AND -title:(adult OR nude OR naked OR nudist OR sex OR sexy OR erotic OR fetish OR spank* OR burlesque OR strip* OR topless OR goddess OR xxx OR porn OR \"after ten\" OR \"libre film\" OR moze OR \"susan block\") AND -subject:(adult OR nudity OR erotica OR sexuality) AND -title:(church OR sermon OR ministry OR bible OR gospel OR worship OR mass OR prayer OR jesus OR christian) AND -subject:(religion OR church) AND -title:(hellstorm OR holocaust OR nazi OR genocide OR illuminati OR awpt OR c4i OR satan* OR swastika*) AND -title:(meeting OR council OR board OR commission OR committee OR hearing OR budget OR election OR candidat* OR debate OR graduation OR police OR forum OR briefing OR update OR conference OR hockey OR football OR basketball OR baseball OR soccer) AND -title:(trailer OR promo OR psa OR preview OR raw OR footage OR loop OR cinema OR movie OR film OR dialogo OR podcast OR class OR workshop OR \"red carpet\" OR barney OR sesame OR peppa OR disney OR \"magic school bus\" OR \"rocky horror\") AND -language:(spa OR chi OR vie OR kor OR rus OR hmn) AND -identifier:(aufstx-* OR caltvca-*)",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1
+        },
+        {
+          "query": "(collection:community_media AND ((subject:(Maine OR \"New Hampshire\" OR Vermont OR Massachusetts OR \"Rhode Island\" OR Connecticut OR \"New York\" OR \"New Jersey\" OR Pennsylvania OR Delaware OR Maryland OR \"District of Columbia\" OR Virginia OR \"West Virginia\" OR \"North Carolina\" OR \"South Carolina\" OR Georgia OR Florida OR Alabama OR Mississippi OR Tennessee OR Kentucky OR Ohio OR Michigan OR Indiana OR Illinois OR Wisconsin) OR collection:(ctncrmn) OR subject:(Blaine AND Minnesota)) AND -subject:(Louisiana)) AND title:(\"talk show\" OR interview OR interviews OR \"call-in\" OR history OR historical OR heritage OR garden OR gardening OR fishing OR outdoors OR travel OR \"senior\" OR veterans OR storytelling OR stories OR poetry OR artist OR artists OR crafts OR antiques OR \"farmers market\")) AND -title:(adult OR nude OR naked OR nudist OR sex OR sexy OR erotic OR fetish OR spank* OR burlesque OR strip* OR topless OR goddess OR xxx OR porn OR \"after ten\" OR \"libre film\" OR moze OR \"susan block\") AND -subject:(adult OR nudity OR erotica OR sexuality) AND -title:(church OR sermon OR ministry OR bible OR gospel OR worship OR mass OR prayer OR jesus OR christian) AND -subject:(religion OR church) AND -title:(hellstorm OR holocaust OR nazi OR genocide OR illuminati OR awpt OR c4i OR satan* OR swastika*) AND -title:(meeting OR council OR board OR commission OR committee OR hearing OR budget OR election OR candidat* OR debate OR graduation OR police OR forum OR briefing OR update OR conference OR hockey OR football OR basketball OR baseball OR soccer) AND -title:(trailer OR promo OR psa OR preview OR raw OR footage OR loop OR cinema OR movie OR film OR dialogo OR podcast OR class OR workshop OR \"red carpet\" OR barney OR sesame OR peppa OR disney OR \"magic school bus\" OR \"rocky horror\") AND -language:(spa OR chi OR vie OR kor OR rus OR hmn) AND -identifier:(aufstx-* OR caltvca-*)",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1
+        },
+        {
+          "query": "(collection:community_media AND ((subject:(Maine OR \"New Hampshire\" OR Vermont OR Massachusetts OR \"Rhode Island\" OR Connecticut OR \"New York\" OR \"New Jersey\" OR Pennsylvania OR Delaware OR Maryland OR \"District of Columbia\" OR Virginia OR \"West Virginia\" OR \"North Carolina\" OR \"South Carolina\" OR Georgia OR Florida OR Alabama OR Mississippi OR Tennessee OR Kentucky OR Ohio OR Michigan OR Indiana OR Illinois OR Wisconsin) OR collection:(ctncrmn) OR subject:(Blaine AND Minnesota)) AND -subject:(Louisiana)) AND title:(comedy OR comedian OR comedians OR sketch OR \"variety show\" OR \"talent show\" OR magic OR magician OR puppet OR puppets OR horror OR \"late night\" OR \"game show\" OR parody OR improv OR monster OR monsters OR halloween OR \"public access\" OR \"cable access\")) AND -title:(adult OR nude OR naked OR nudist OR sex OR sexy OR erotic OR fetish OR spank* OR burlesque OR strip* OR topless OR goddess OR xxx OR porn OR \"after ten\" OR \"libre film\" OR moze OR \"susan block\") AND -subject:(adult OR nudity OR erotica OR sexuality) AND -title:(church OR sermon OR ministry OR bible OR gospel OR worship OR mass OR prayer OR jesus OR christian) AND -subject:(religion OR church) AND -title:(hellstorm OR holocaust OR nazi OR genocide OR illuminati OR awpt OR c4i OR satan* OR swastika*) AND -title:(meeting OR council OR board OR commission OR committee OR hearing OR budget OR election OR candidat* OR debate OR graduation OR police OR forum OR briefing OR update OR conference OR hockey OR football OR basketball OR baseball OR soccer) AND -title:(trailer OR promo OR psa OR preview OR raw OR footage OR loop OR cinema OR movie OR film OR dialogo OR podcast OR class OR workshop OR \"red carpet\" OR barney OR sesame OR peppa OR disney OR \"magic school bus\" OR \"rocky horror\") AND -language:(spa OR chi OR vie OR kor OR rus OR hmn) AND -identifier:(aufstx-* OR caltvca-*)",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1
         }
       ]
     },
@@ -13348,6 +13407,314 @@
           "ignoreYear": true,
           "maxEntries": 25,
           "maxEntriesPerItem": 3
+        }
+      ]
+    },
+    {
+      "number": 99,
+      "name": "Cablecast West",
+      "logo": "Logos/4x3/cablecastwest.png",
+      "genre": "World & Lifestyle",
+      "sources": [
+        {
+          "query": "(identifier:AV_* AND title:(\"alternative views\" OR AV)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR porn OR pornography OR softcore OR nudity OR nude OR sexploitation) AND -title:(xxx OR nsfw OR porn OR erotic OR nude OR naked OR nudity OR topless OR sexy OR sex OR stripper OR striptease OR underwear OR lingerie OR fetish OR bikini OR \"belly dancer\" OR \"ugly george\" OR \"boys for sale\" OR burlesque OR playboy) AND -language:(spa OR jpn OR chi OR zho OR pol OR fre OR ger OR ita OR por OR rus OR kor OR hin OR ara OR tur OR vie OR hmn) AND -title:(hmong OR espanol) AND -collection:(audio_sermons OR audio_religion) AND -subject:(christian OR gospel OR church OR sermon OR bible OR ministry OR religious) AND -title:(church OR sermon OR ministry OR bible OR gospel OR preacher) AND -title:(loop OR loops OR raw OR \"raw footage\" OR \"raw tape\" OR bonus OR unedited OR \"test roll\" OR \"camera roll\" OR \"b-roll\" OR broll OR \"call break\" OR callbreak OR callbreaks OR outtake OR outtakes OR audition OR auditions OR \"dead air\" OR \"test pattern\" OR \"color bars\" OR footage OR preview OR previews OR promo OR psa OR \"station id\" OR intro OR sampler OR \"annual meeting\" OR \"board meeting\" OR \"city council\" OR \"school committee\" OR hearing OR \"town meeting\" OR \"market box\" OR \"blank vhs\" OR \"golden girls\" OR vaccines OR \"coming soon\" OR borat OR montage) AND -identifier:(*Raw* OR *raw* OR *Loop* OR *loop*) AND -title:(sesame OR barney OR teletubbies OR \"kids talent\" OR cartoon OR cartoons OR elmo OR muppet OR puppet) AND -collection:(tvnews OR tvarchive OR movie_trailers OR mirrortube OR twitchstreams OR podcasts OR fringe OR deemphasize OR funnyordie) AND -identifier:(twitter-* OR TikTok-* OR BridgingHmongAmerican OR jim-spagg*)",
+          "ignoreYear": true,
+          "maxEntries": 30,
+          "maxEntriesPerItem": 1
+        },
+        {
+          "query": "(title:(\"hypnotic eye\" OR \"raw time\" OR \"public access prank calls\" OR \"bill hicks on austin\" OR \"roland's quick\" OR \"roland wonders\" OR \"chicken caldo\" OR \"springtime65\") AND -title:(promo)) AND -title:(adult OR nude OR naked OR nudity OR nudist OR sex OR sexy OR erotic OR fetish OR spank OR spanking OR burlesque OR stripper OR striptease OR topless OR lingerie OR goddess OR xxx OR porn OR playboy OR \"ugly george\" OR \"boys for sale\" OR \"after ten\" OR \"libre film\" OR \"dr. moze\" OR \"susan block\" OR \"naked truth\") AND -subject:(adult OR nudity OR nude OR erotica OR erotic OR porn OR xxx OR nsfw OR sexuality OR burlesque) AND -title:(church OR sermon OR ministry OR bible OR gospel OR preacher OR worship OR mass OR prayer OR jesus OR christian OR catholic OR baptist OR lutheran OR methodist OR synagogue OR mosque OR islam OR rosary) AND -subject:(religion OR christian OR church OR sermon OR ministry OR bible OR gospel OR worship) AND -title:(hellstorm OR holocaust OR nazi OR genocide OR \"false flag\" OR \"new world order\" OR illuminati OR chemtrails OR \"inside job\" OR awpt OR c4i OR satan OR satanic) AND -subject:(conspiracy OR \"9-11\" OR truther)",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1,
+          "maxEntries": 40
+        },
+        {
+          "query": "(collection:thejohnmoreartyarchive AND title:(\"talking it through\") AND -title:(raw OR iraq OR sanctions OR \"9\" OR tyranny OR \"in plane site\")) AND -title:(adult OR nude OR naked OR nudity OR nudist OR sex OR sexy OR erotic OR fetish OR spank OR spanking OR burlesque OR stripper OR striptease OR topless OR lingerie OR goddess OR xxx OR porn OR playboy OR \"ugly george\" OR \"boys for sale\" OR \"after ten\" OR \"libre film\" OR \"dr. moze\" OR \"susan block\" OR \"naked truth\") AND -subject:(adult OR nudity OR nude OR erotica OR erotic OR porn OR xxx OR nsfw OR sexuality OR burlesque) AND -title:(church OR sermon OR ministry OR bible OR gospel OR preacher OR worship OR mass OR prayer OR jesus OR christian OR catholic OR baptist OR lutheran OR methodist OR synagogue OR mosque OR islam OR rosary) AND -subject:(religion OR christian OR church OR sermon OR ministry OR bible OR gospel OR worship) AND -title:(hellstorm OR holocaust OR nazi OR genocide OR \"false flag\" OR \"new world order\" OR illuminati OR chemtrails OR \"inside job\" OR awpt OR c4i OR satan OR satanic) AND -subject:(conspiracy OR \"9-11\" OR truther)",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1,
+          "maxEntries": 25
+        },
+        {
+          "query": "((title:(\"portland cable access\" OR \"cable access hijack\" OR \"odd pdx\" OR oddpdx) OR identifier:(addicted-to-chess-1996 OR this-is-it-cable-access-show-portland-oregon-june-* OR youtube-i61KOw5LJYU)) AND -title:(promo OR preview)) AND -title:(adult OR nude OR naked OR nudity OR nudist OR sex OR sexy OR erotic OR fetish OR spank OR spanking OR burlesque OR stripper OR striptease OR topless OR lingerie OR goddess OR xxx OR porn OR playboy OR \"ugly george\" OR \"boys for sale\" OR \"after ten\" OR \"libre film\" OR \"dr. moze\" OR \"susan block\" OR \"naked truth\") AND -subject:(adult OR nudity OR nude OR erotica OR erotic OR porn OR xxx OR nsfw OR sexuality OR burlesque) AND -title:(church OR sermon OR ministry OR bible OR gospel OR preacher OR worship OR mass OR prayer OR jesus OR christian OR catholic OR baptist OR lutheran OR methodist OR synagogue OR mosque OR islam OR rosary) AND -subject:(religion OR christian OR church OR sermon OR ministry OR bible OR gospel OR worship) AND -title:(hellstorm OR holocaust OR nazi OR genocide OR \"false flag\" OR \"new world order\" OR illuminati OR chemtrails OR \"inside job\" OR awpt OR c4i OR satan OR satanic) AND -subject:(conspiracy OR \"9-11\" OR truther)",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 3,
+          "maxEntries": 40
+        },
+        {
+          "query": "(identifier:(2021.84.*) OR title:(\"movie geek show\")) AND -title:(adult OR nude OR naked OR nudity OR nudist OR sex OR sexy OR erotic OR fetish OR spank OR spanking OR burlesque OR stripper OR striptease OR topless OR lingerie OR goddess OR xxx OR porn OR playboy OR \"ugly george\" OR \"boys for sale\" OR \"after ten\" OR \"libre film\" OR \"dr. moze\" OR \"susan block\" OR \"naked truth\") AND -subject:(adult OR nudity OR nude OR erotica OR erotic OR porn OR xxx OR nsfw OR sexuality OR burlesque) AND -title:(church OR sermon OR ministry OR bible OR gospel OR preacher OR worship OR mass OR prayer OR jesus OR christian OR catholic OR baptist OR lutheran OR methodist OR synagogue OR mosque OR islam OR rosary) AND -subject:(religion OR christian OR church OR sermon OR ministry OR bible OR gospel OR worship) AND -title:(hellstorm OR holocaust OR nazi OR genocide OR \"false flag\" OR \"new world order\" OR illuminati OR chemtrails OR \"inside job\" OR awpt OR c4i OR satan OR satanic) AND -subject:(conspiracy OR \"9-11\" OR truther)",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 2,
+          "maxEntries": 40
+        },
+        {
+          "query": "(identifier:(ATV_*) OR title:(\"mystic babylon\" OR \"skip e lowe\" OR \"skip e. lowe\" OR \"public access hollywood\" OR \"video art music\" OR \"opening access\" OR \"viacom public access\")) AND -title:(adult OR nude OR naked OR nudity OR nudist OR sex OR sexy OR erotic OR fetish OR spank OR spanking OR burlesque OR stripper OR striptease OR topless OR lingerie OR goddess OR xxx OR porn OR playboy OR \"ugly george\" OR \"boys for sale\" OR \"after ten\" OR \"libre film\" OR \"dr. moze\" OR \"susan block\" OR \"naked truth\") AND -subject:(adult OR nudity OR nude OR erotica OR erotic OR porn OR xxx OR nsfw OR sexuality OR burlesque) AND -title:(church OR sermon OR ministry OR bible OR gospel OR preacher OR worship OR mass OR prayer OR jesus OR christian OR catholic OR baptist OR lutheran OR methodist OR synagogue OR mosque OR islam OR rosary) AND -subject:(religion OR christian OR church OR sermon OR ministry OR bible OR gospel OR worship) AND -title:(hellstorm OR holocaust OR nazi OR genocide OR \"false flag\" OR \"new world order\" OR illuminati OR chemtrails OR \"inside job\" OR awpt OR c4i OR satan OR satanic) AND -subject:(conspiracy OR \"9-11\" OR truther)",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1,
+          "maxEntries": 30
+        },
+        {
+          "query": "((title:(\"living room\") AND subject:(\"joel sanderson\")) OR identifier:(Countrockula* OR DancingGanesh OR survival-wpg-pub-axs)) AND -title:(adult OR nude OR naked OR nudity OR nudist OR sex OR sexy OR erotic OR fetish OR spank OR spanking OR burlesque OR stripper OR striptease OR topless OR lingerie OR goddess OR xxx OR porn OR playboy OR \"ugly george\" OR \"boys for sale\" OR \"after ten\" OR \"libre film\" OR \"dr. moze\" OR \"susan block\" OR \"naked truth\") AND -subject:(adult OR nudity OR nude OR erotica OR erotic OR porn OR xxx OR nsfw OR sexuality OR burlesque) AND -title:(church OR sermon OR ministry OR bible OR gospel OR preacher OR worship OR mass OR prayer OR jesus OR christian OR catholic OR baptist OR lutheran OR methodist OR synagogue OR mosque OR islam OR rosary) AND -subject:(religion OR christian OR church OR sermon OR ministry OR bible OR gospel OR worship) AND -title:(hellstorm OR holocaust OR nazi OR genocide OR \"false flag\" OR \"new world order\" OR illuminati OR chemtrails OR \"inside job\" OR awpt OR c4i OR satan OR satanic) AND -subject:(conspiracy OR \"9-11\" OR truther)",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1,
+          "maxEntries": 40
+        },
+        {
+          "query": "(creator:marnebass AND title:(pp OR \"planetary persuader\") AND -title:(raw OR segments)) AND -title:(adult OR nude OR naked OR nudity OR nudist OR sex OR sexy OR erotic OR fetish OR spank OR spanking OR burlesque OR stripper OR striptease OR topless OR lingerie OR goddess OR xxx OR porn OR playboy OR \"ugly george\" OR \"boys for sale\" OR \"after ten\" OR \"libre film\" OR \"dr. moze\" OR \"susan block\" OR \"naked truth\") AND -subject:(adult OR nudity OR nude OR erotica OR erotic OR porn OR xxx OR nsfw OR sexuality OR burlesque) AND -title:(church OR sermon OR ministry OR bible OR gospel OR preacher OR worship OR mass OR prayer OR jesus OR christian OR catholic OR baptist OR lutheran OR methodist OR synagogue OR mosque OR islam OR rosary) AND -subject:(religion OR christian OR church OR sermon OR ministry OR bible OR gospel OR worship) AND -title:(hellstorm OR holocaust OR nazi OR genocide OR \"false flag\" OR \"new world order\" OR illuminati OR chemtrails OR \"inside job\" OR awpt OR c4i OR satan OR satanic) AND -subject:(conspiracy OR \"9-11\" OR truther)",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1,
+          "maxEntries": 10
+        },
+        {
+          "query": "(collection:community_media AND ((subject:(Washington OR Oregon OR California OR Nevada OR Idaho OR Montana OR Wyoming OR Utah OR Colorado OR Arizona OR \"New Mexico\" OR Alaska OR Hawaii OR Texas OR Oklahoma OR Kansas OR Nebraska OR \"South Dakota\" OR \"North Dakota\" OR Iowa OR Missouri OR Arkansas) OR collection:(nwctc OR mcammn OR cctvmnv OR cctvmn OR lmccmn OR nucatmn OR ntvmnv OR hctvmn OR cfctvmn OR latvmn)) AND -subject:(\"District of Columbia\" OR Virginia OR Maryland OR Louisiana)) AND title:(cooking OR kitchen OR recipe OR recipes OR chef OR baking OR barbecue OR bbq OR grill OR grilling OR cookin OR cuisine) AND -title:(\"cooking with georgia\" OR meth)) AND -title:(adult OR nude OR naked OR nudist OR sex OR sexy OR erotic OR fetish OR spank* OR burlesque OR strip* OR topless OR goddess OR xxx OR porn OR \"after ten\" OR \"libre film\" OR moze OR \"susan block\") AND -subject:(adult OR nudity OR erotica OR sexuality) AND -title:(church OR sermon OR ministry OR bible OR gospel OR worship OR mass OR prayer OR jesus OR christian) AND -subject:(religion OR church) AND -title:(hellstorm OR holocaust OR nazi OR genocide OR illuminati OR awpt OR c4i OR satan* OR swastika*) AND -title:(meeting OR council OR board OR commission OR committee OR hearing OR budget OR election OR candidat* OR debate OR graduation OR police OR forum OR briefing OR update OR conference OR hockey OR football OR basketball OR baseball OR soccer) AND -title:(trailer OR promo OR psa OR preview OR raw OR footage OR loop OR cinema OR movie OR film OR dialogo OR podcast OR class OR workshop OR \"red carpet\" OR barney OR sesame OR peppa OR disney OR \"magic school bus\" OR \"rocky horror\") AND -language:(spa OR chi OR vie OR kor OR rus OR hmn) AND -identifier:(aufstx-* OR caltvca-*)",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1
+        },
+        {
+          "query": "(collection:community_media AND ((subject:(Washington OR Oregon OR California OR Nevada OR Idaho OR Montana OR Wyoming OR Utah OR Colorado OR Arizona OR \"New Mexico\" OR Alaska OR Hawaii OR Texas OR Oklahoma OR Kansas OR Nebraska OR \"South Dakota\" OR \"North Dakota\" OR Iowa OR Missouri OR Arkansas) OR collection:(nwctc OR mcammn OR cctvmnv OR cctvmn OR lmccmn OR nucatmn OR ntvmnv OR hctvmn OR cfctvmn OR latvmn)) AND -subject:(\"District of Columbia\" OR Virginia OR Maryland OR Louisiana)) AND title:(polka OR concert OR \"live music\" OR jazz OR bluegrass OR fiddle OR blues OR jam OR \"open mic\" OR songwriter OR songwriters OR folk OR \"in concert\" OR \"live at\" OR acoustic OR orchestra OR \"big band\") AND -title:(school OR chorus OR grade OR \"video jam\" OR fitness OR workout)) AND -title:(adult OR nude OR naked OR nudist OR sex OR sexy OR erotic OR fetish OR spank* OR burlesque OR strip* OR topless OR goddess OR xxx OR porn OR \"after ten\" OR \"libre film\" OR moze OR \"susan block\") AND -subject:(adult OR nudity OR erotica OR sexuality) AND -title:(church OR sermon OR ministry OR bible OR gospel OR worship OR mass OR prayer OR jesus OR christian) AND -subject:(religion OR church) AND -title:(hellstorm OR holocaust OR nazi OR genocide OR illuminati OR awpt OR c4i OR satan* OR swastika*) AND -title:(meeting OR council OR board OR commission OR committee OR hearing OR budget OR election OR candidat* OR debate OR graduation OR police OR forum OR briefing OR update OR conference OR hockey OR football OR basketball OR baseball OR soccer) AND -title:(trailer OR promo OR psa OR preview OR raw OR footage OR loop OR cinema OR movie OR film OR dialogo OR podcast OR class OR workshop OR \"red carpet\" OR barney OR sesame OR peppa OR disney OR \"magic school bus\" OR \"rocky horror\") AND -language:(spa OR chi OR vie OR kor OR rus OR hmn) AND -identifier:(aufstx-* OR caltvca-*)",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1
+        },
+        {
+          "query": "(collection:community_media AND ((subject:(Washington OR Oregon OR California OR Nevada OR Idaho OR Montana OR Wyoming OR Utah OR Colorado OR Arizona OR \"New Mexico\" OR Alaska OR Hawaii OR Texas OR Oklahoma OR Kansas OR Nebraska OR \"South Dakota\" OR \"North Dakota\" OR Iowa OR Missouri OR Arkansas) OR collection:(nwctc OR mcammn OR cctvmnv OR cctvmn OR lmccmn OR nucatmn OR ntvmnv OR hctvmn OR cfctvmn OR latvmn)) AND -subject:(\"District of Columbia\" OR Virginia OR Maryland OR Louisiana)) AND title:(\"talk show\" OR interview OR interviews OR \"call-in\" OR history OR historical OR heritage OR garden OR gardening OR fishing OR outdoors OR travel OR \"senior\" OR veterans OR storytelling OR stories OR poetry OR artist OR artists OR crafts OR antiques OR \"farmers market\")) AND -title:(adult OR nude OR naked OR nudist OR sex OR sexy OR erotic OR fetish OR spank* OR burlesque OR strip* OR topless OR goddess OR xxx OR porn OR \"after ten\" OR \"libre film\" OR moze OR \"susan block\") AND -subject:(adult OR nudity OR erotica OR sexuality) AND -title:(church OR sermon OR ministry OR bible OR gospel OR worship OR mass OR prayer OR jesus OR christian) AND -subject:(religion OR church) AND -title:(hellstorm OR holocaust OR nazi OR genocide OR illuminati OR awpt OR c4i OR satan* OR swastika*) AND -title:(meeting OR council OR board OR commission OR committee OR hearing OR budget OR election OR candidat* OR debate OR graduation OR police OR forum OR briefing OR update OR conference OR hockey OR football OR basketball OR baseball OR soccer) AND -title:(trailer OR promo OR psa OR preview OR raw OR footage OR loop OR cinema OR movie OR film OR dialogo OR podcast OR class OR workshop OR \"red carpet\" OR barney OR sesame OR peppa OR disney OR \"magic school bus\" OR \"rocky horror\") AND -language:(spa OR chi OR vie OR kor OR rus OR hmn) AND -identifier:(aufstx-* OR caltvca-*)",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1
+        },
+        {
+          "query": "(collection:community_media AND ((subject:(Washington OR Oregon OR California OR Nevada OR Idaho OR Montana OR Wyoming OR Utah OR Colorado OR Arizona OR \"New Mexico\" OR Alaska OR Hawaii OR Texas OR Oklahoma OR Kansas OR Nebraska OR \"South Dakota\" OR \"North Dakota\" OR Iowa OR Missouri OR Arkansas) OR collection:(nwctc OR mcammn OR cctvmnv OR cctvmn OR lmccmn OR nucatmn OR ntvmnv OR hctvmn OR cfctvmn OR latvmn)) AND -subject:(\"District of Columbia\" OR Virginia OR Maryland OR Louisiana)) AND title:(comedy OR comedian OR comedians OR sketch OR \"variety show\" OR \"talent show\" OR magic OR magician OR puppet OR puppets OR horror OR \"late night\" OR \"game show\" OR parody OR improv OR monster OR monsters OR halloween OR \"public access\" OR \"cable access\")) AND -title:(adult OR nude OR naked OR nudist OR sex OR sexy OR erotic OR fetish OR spank* OR burlesque OR strip* OR topless OR goddess OR xxx OR porn OR \"after ten\" OR \"libre film\" OR moze OR \"susan block\") AND -subject:(adult OR nudity OR erotica OR sexuality) AND -title:(church OR sermon OR ministry OR bible OR gospel OR worship OR mass OR prayer OR jesus OR christian) AND -subject:(religion OR church) AND -title:(hellstorm OR holocaust OR nazi OR genocide OR illuminati OR awpt OR c4i OR satan* OR swastika*) AND -title:(meeting OR council OR board OR commission OR committee OR hearing OR budget OR election OR candidat* OR debate OR graduation OR police OR forum OR briefing OR update OR conference OR hockey OR football OR basketball OR baseball OR soccer) AND -title:(trailer OR promo OR psa OR preview OR raw OR footage OR loop OR cinema OR movie OR film OR dialogo OR podcast OR class OR workshop OR \"red carpet\" OR barney OR sesame OR peppa OR disney OR \"magic school bus\" OR \"rocky horror\") AND -language:(spa OR chi OR vie OR kor OR rus OR hmn) AND -identifier:(aufstx-* OR caltvca-*)",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1
+        }
+      ]
+    },
+    {
+      "number": 100,
+      "name": "Telly",
+      "logo": "Logos/4x3/telly.png",
+      "genre": "World & Lifestyle",
+      "sources": [
+        {
+          "identifiers": [
+            "KindHeartsAndCoronets1949",
+            "TheLavenderHillMob1951",
+            "PassportToPimlico1949",
+            "whisky-galore",
+            "TheManInTheWhiteSuit1951_201810",
+            "hue-cry",
+            "the-maggie",
+            "champagne-charlie",
+            "dead-of-night_20210519",
+            "it-always-rains-on-sunday",
+            "went-the-day-well",
+            "TheBlueLamp1950",
+            "the-cruel-sea-1953",
+            "pool-of-london-1951",
+            "the-lady-vanishes-1938",
+            "Sabotage_1936",
+            "Hitchcock_Secret_Agent",
+            "YoungandInnocentTheGirlWasYoung",
+            "Jamaica_Inn",
+            "blackmail_1929",
+            "RichAndStrange_923",
+            "TheSkinGameUk",
+            "the-lodger-a-story-of-the-london-fog-1927",
+            "the-manxman_1929",
+            "the-ring-1927-by-alfred-hitchcock",
+            "Oh_Mr.Porter_1937",
+            "youtube-AtmsyXwpvzY",
+            "youtube-vDraFl_IpqM",
+            "youtube-MBVIV9x3js8",
+            "omrju8843534",
+            "youtube-tVHcV8xYebQ",
+            "things_to_come_ipod"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1
+        },
+        {
+          "identifiers": [
+            "TheManWhoCouldWorkMiracles",
+            "ThePrivateLifeofHenryVIII.",
+            "Pygmalion",
+            "TheScarletPimpernel",
+            "Q-Planes",
+            "fire-over-england-1937",
+            "In_Which_We_Serve",
+            "49thParallel",
+            "ACanterburyTale_201605",
+            "i-know-where-im-going-1945",
+            "brief-encounter-1946",
+            "Oliver.Twist.1948",
+            "a-christmas-carol-scrooge-1951",
+            "brighton-rock-1948",
+            "odd-man-out-1947-james-mason-kathleen-ryan-robert-newton-cyril-cusack",
+            "the.fallen.idol.1948",
+            "seven-days-to-noon-1950",
+            "night-of-the-demon-1957_202405",
+            "village-of-the-damned",
+            "whistle-down-the-wind-1961",
+            "CarryOnSergeant1958",
+            "hobsons-choice-1954",
+            "the-card-1952",
+            "05875_Gfd",
+            "night-mail-1936",
+            "fires-were-started-humphrey-jennings-1943",
+            "the-four-just-men",
+            "TheGhostTrain",
+            "NightTrainToMunich",
+            "TheStarsLookDown1940",
+            "LoveOnTheDole_476",
+            "hell-drivers-1957"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1
+        },
+        {
+          "identifiers": [
+            "ice.-cold.-in.-alex.-1958_202510",
+            "the-small-back-room-1949",
+            "TheGhoul",
+            "TheManWhoChangedHisMind",
+            "The_Sign_OF_Four",
+            "Murder_At_The_Baskervilles",
+            "TheSleepingCardinal",
+            "The_Triumph_of_Sherlock_Holmes",
+            "thearsenalstadiummystery",
+            "TheEvilMind",
+            "king_solomans_mine",
+            "TheWickedLady1945",
+            "TheManInGrey",
+            "cast-a-dark-shadow-1955",
+            "time-without-pity-1957",
+            "crimes-at-the-dark-house-1940",
+            "TheFaceAtTheWindow",
+            "sexton_blake_sexton_hooded_terror",
+            "Inspector_Hornleigh_Goes_to_It",
+            "InspectorHornleighOnHolliday",
+            "InspectorHornleigh",
+            "Evergreen",
+            "its-never-too-late-to-mend-1937",
+            "bc4445782",
+            "eureka-stockade",
+            "the-shiralee",
+            "Sentimental_bloke",
+            "ForTheTermOfHisNaturalLife",
+            "manOfAran1934"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1
+        },
+        {
+          "identifiers": [
+            "hancock-half-hour-1",
+            "hancock-2",
+            "hancock-3",
+            "hancock-6"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 8
+        },
+        {
+          "identifiers": [
+            "danger-man-1960"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 14
+        },
+        {
+          "identifiers": [
+            "the-adventures-of-robin-hood-1955-1",
+            "the-adventures-of-robin-hood-1955-2",
+            "the-adventures-of-robin-hood-1955-3",
+            "the-adventures-of-robin-hood-1955-4"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 6
+        },
+        {
+          "identifiers": [
+            "the-buccaneers-1957",
+            "20191123_20191123_0300",
+            "sword.of.-freedom.-s-01",
+            "sir-francis-drake",
+            "s-01-e-01-the-hostage"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 6
+        },
+        {
+          "query": "(identifier:(WilliamTell1x* OR THE_BUCCANEERS_* OR TheAdventuresOfSirLancelot* OR Ivanhoe1x* OR IvanhoeThe* OR TheAdventuresOfLongJohnSilver*)) AND -title:(colorized OR colourised OR colorised OR \"in color\" OR \"in colour\" OR trailer) AND -collection:(colorized-movies OR movie_trailers_unsorted)",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1,
+          "maxEntries": 40
+        },
+        {
+          "identifiers": [
+            "01-interpol-calling-tv-series-the-angola-brights",
+            "z-cars-series-1",
+            "z-cars-series-3-1963-1964",
+            "the-human-jungle-s-0",
+            "t-s-s-0-e-0-c",
+            "gideons.-way.",
+            "the.-four.-just.-men-1",
+            "dial.-999.-s",
+            "mark-saber-of-the-homicide-squad.",
+            "sherlock-holmes-1965-s1-douglas-wilmer"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 6
+        },
+        {
+          "query": "(identifier:(Colonel_March* OR colonel-march-of-scotland-yard* OR edgar-wallace-mysteries* OR NoHidingPlace* OR ViseIfThisBeMurder* OR Dial999*)) AND -title:(colorized OR colourised OR colorised OR \"in color\" OR \"in colour\" OR trailer) AND -collection:(colorized-movies OR movie_trailers_unsorted)",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1,
+          "maxEntries": 30
+        },
+        {
+          "identifiers": [
+            "the-invisible-man-complete-series-1958"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 8
+        },
+        {
+          "identifiers": [
+            "armchair-theatre-the-omega-mystery",
+            "armchair-theatre-the-cupboard",
+            "armchair-theatre-the-cherry-on-the-top",
+            "armchair-theatre-dead-silence.",
+            "armchair-theatre-compensation-alice-1967",
+            "come-buttercup-come-daisy",
+            "lambda-1",
+            "itv-play-of-the-week-a-midsummer-nights-dream",
+            "skin-of-our-teeth-the-1959",
+            "talesfromdickensachristmascarol"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 4
+        },
+        {
+          "identifiers": [
+            "h-aur-ay-w-1-s-01-e-0",
+            "m-i-t-d-a-g-1-l-b-w.-c.-f",
+            "JukeBoxJury29thOctober",
+            "whats-my-line-uk"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 6
+        },
+        {
+          "query": "(identifier:(TheLarkins1x*)) AND -title:(colorized OR colourised OR colorised OR \"in color\" OR \"in colour\" OR trailer) AND -collection:(colorized-movies OR movie_trailers_unsorted)",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1,
+          "maxEntries": 8
+        },
+        {
+          "identifiers": [
+            "hawkeye_last_mohicans",
+            "seaway-s-01-e-29-gunpowder-and-paint-part-1"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 10
         }
       ]
     }
