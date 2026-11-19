@@ -123,38 +123,72 @@ void main() {
   group('bundled layout', () {
     final config = parseChannelConfig(File('../player/assets/channels.json').readAsStringSync());
     final bundled = jsonDecode(File('../player/assets/renumber_map.json').readAsStringSync()) as Map<String, dynamic>;
+    // Layout 4 blocks (inclusive).
     const blocks = {
-      'Kids & Animation': 0,
-      'Movies': 1,
-      'Comedy & Variety': 2,
-      'Drama & Classic TV': 3,
-      'News & Docs': 4,
-      'Music': 5,
-      'Sports': 5,
-      'World & Lifestyle': 6,
+      'Kids & Animation': (2, 9),
+      'Movies': (10, 19),
+      'Comedy & Variety': (20, 30),
+      'Drama & Classic TV': (31, 40),
+      'News & Docs': (41, 49),
+      'Music': (50, 53),
+      'Sports': (54, 63),
+      'World & Lifestyle': (64, 75),
     };
 
-    // Music is 48-51 (layout 3): 48 and 49 sit just below the 50s block, Sports is 52-59.
-    const overflow = {48: 'Music', 49: 'Music'};
-
-    test('numbers are unique, in order, and each channel sits in its genre\'s block (2-9, 10-19, ... 60-69)', () {
+    test('numbers are unique, in order, and each channel sits in its genre\'s block', () {
       final numbers = [for (final c in config.channels) c.number];
       expect(numbers.toSet(), hasLength(numbers.length));
       expect(numbers, [...numbers]..sort());
       for (final c in config.channels) {
-        expect(overflow[c.number] == c.genre || blocks[c.genre] == c.number ~/ 10, isTrue,
-            reason: '${c.number} ${c.name} (${c.genre})');
-        expect(c.number, greaterThanOrEqualTo(2));
+        final (lo, hi) = blocks[c.genre]!;
+        expect(c.number >= lo && c.number <= hi, isTrue, reason: '${c.number} ${c.name} (${c.genre})');
       }
     });
 
-    test('renumber_map.json is one-to-one and lands on the channel numbers (channels added since: none to move)', () {
+    test('renumber_map.json is one-to-one and lands on the channel numbers; only the new layout-4 channels are unmapped', () {
       final values = (bundled['oldToNew'] as Map).values.cast<int>().toList();
       expect(values.toSet(), hasLength(values.length));
       final numbers = {for (final c in config.channels) c.number};
       expect(numbers.containsAll(values), isTrue);
-      expect(numbers.difference(values.toSet()), isEmpty); // layout 3 maps every channel
-      expect(bundled['layout'], 3);
+      // added in layout 4: Affiliate, SHUSH, Matinee, Boo, Groucho, Prank, OldNews, Leather, Hooligan, Cablecast West, Telly
+      expect(numbers.difference(values.toSet()), {8, 16, 17, 18, 29, 30, 49, 62, 63, 72, 75});
+      expect((bundled['oldToNew'] as Map).keys.map((k) => int.parse(k as String)).where((n) => n > 69), isEmpty); // no temporary numbers
+      expect(bundled['layout'], 4);
+    });
+
+    test('layout 3 -> 4 sample: data moves with its channel, nothing lands on a new channel', () {
+      final m = jsonEncode(bundled);
+      // layout 3: 30 Rerun, 41 Cumulus, 47 Uncanny, 48 Twang, 59 Suplex, 60 Overseas, 67 Cablecast, 69 Notice
+      for (final n in [2, 30, 41, 47, 48, 59, 60, 67, 69]) {
+        f('pools/pool-$n.json').writeAsStringSync('pool of old $n');
+        f('days/day-$n-2026-11-19.json').writeAsStringSync('day of old $n');
+      }
+      f('layout_version').writeAsStringSync('3');
+      f('settings.json').writeAsStringSync(jsonEncode({
+        'favorites': [41, 67, 59],
+        'lastChannel': 48,
+        'parental': {'locked': [30, 69], 'lockOn': true},
+      }));
+      f('wrong_items.json').writeAsStringSync(jsonEncode({'60': ['a']}));
+      f('wrong_channel.jsonl').writeAsStringSync('${jsonEncode({'channel': 47, 'item': 'b'})}\n');
+
+      expect(migrateLayout(dir, m), contains('18 pool/day files renumbered, 0 of removed channels deleted'));
+      for (final (o, n) in [(2, 2), (30, 31), (41, 42), (47, 48), (48, 50), (59, 61), (60, 64), (67, 71), (69, 74)]) {
+        expect(read('pools/pool-$n.json'), 'pool of old $o');
+        expect(read('days/day-$n-2026-11-19.json'), 'day of old $o');
+        expect(config.channel(n), isNotNull);
+      }
+      for (final n in [8, 16, 17, 18, 29, 30, 49, 62, 63, 72, 75]) {
+        expect(f('pools/pool-$n.json').existsSync(), isFalse, reason: 'new channel $n starts empty');
+      }
+      final s = jsonDecode(read('settings.json')) as Map<String, dynamic>;
+      expect(s['favorites'], [42, 61, 71]);
+      expect(s['lastChannel'], 50);
+      expect(s['parental'], {'locked': [31, 74], 'lockOn': true});
+      expect(jsonDecode(read('wrong_items.json')), {'64': ['a']});
+      expect(jsonDecode(read('wrong_channel.jsonl').trim()), {'channel': 48, 'item': 'b'});
+      expect(read('layout_version'), '4');
+      expect(migrateLayout(dir, m), isNull);
     });
 
     test('the seed is keyed by the new numbers and names', () {
