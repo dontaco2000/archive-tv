@@ -7320,6 +7320,77 @@
       ]
     },
     {
+      "number": 86,
+      "name": "Afterhours",
+      "logo": "Logos/4x3/afterhours.png",
+      "genre": "Comedy & Variety",
+      "sources": [
+        {
+          "identifiers": [
+            "late-late-show-craig-kilborn-ass-eps"
+          ],
+          "maxEntriesPerItem": 700,
+          "ignoreYear": true,
+          "tag": "newch_i"
+        },
+        {
+          "identifiers": [
+            "the-kilborn-file-complete"
+          ],
+          "maxEntriesPerItem": 30,
+          "ignoreYear": true,
+          "tag": "newch_i"
+        },
+        {
+          "identifiers": [
+            "last-call-with-carson-daly",
+            "capture-a-5652",
+            "later-with-greg-kinnear-july-18-1995",
+            "later-with-greg-kinnear-2-15-1995",
+            "Timothy_Leary_Archives_023.dv"
+          ],
+          "maxEntriesPerItem": 44,
+          "ignoreYear": true,
+          "tag": "newch_i"
+        },
+        {
+          "query": "(title:(\"real time with bill maher\")) AND -collection:(tvnews OR tvarchive OR mirrortube OR bliptv OR podcasts OR social-media-video OR deemphasize) AND -identifier:(youtube-* OR BitChute-* OR CNNW*) AND -title:(cnnw OR \"new rule\" OR dawkins OR milo OR \"bill burr\" OR shinoda OR clip OR interview OR \"overtime\")",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1,
+          "rated": "R",
+          "tag": "newch_i"
+        },
+        {
+          "identifiers": [
+            "insomniac-with-dave-attell_202506"
+          ],
+          "maxEntriesPerItem": 44,
+          "ignoreYear": true,
+          "tag": "newch_i",
+          "rated": "R"
+        },
+        {
+          "identifiers": [
+            "toughcrowd"
+          ],
+          "maxEntriesPerItem": 156,
+          "ignoreYear": true,
+          "tag": "newch_i",
+          "rated": "R"
+        },
+        {
+          "identifiers": [
+            "the-tom-green-show-mtv-vhsrip",
+            "the-best-of-mtvs-the-tom-green-show"
+          ],
+          "maxEntriesPerItem": 30,
+          "ignoreYear": true,
+          "tag": "newch_i",
+          "rated": "R"
+        }
+      ]
+    },
+    {
       "number": 31,
       "name": "Rerun",
       "logo": "Logos/4x3/rerun.png",
