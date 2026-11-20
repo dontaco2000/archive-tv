@@ -7037,27 +7037,6 @@
         },
         {
           "identifiers": [
-            "the-young-ones-s-01-ep-04-bomb"
-          ],
-          "ignoreYear": true,
-          "maxEntriesPerItem": 12,
-          "rated": "R",
-          "tag": "adult2_a"
-        },
-        {
-          "identifiers": [
-            "HistoryOfTheWorldPartI",
-            "cheech-chong-next-movie1980lordload",
-            "Police_Academy_-_1984",
-            "the.-blues.-brothers.-1980.-extended.-1080p.-blu-ray.-h-264.-aac-rarbg"
-          ],
-          "ignoreYear": true,
-          "maxEntriesPerItem": 1,
-          "rated": "R",
-          "tag": "adult2_m"
-        },
-        {
-          "identifiers": [
             "thewonderyear"
           ],
           "ignoreYear": true,
@@ -7280,16 +7259,16 @@
             3,
             7,
             8,
-            15,
+            13,
+            16,
+            17,
             18,
             19,
-            20,
             21,
+            22,
             23,
             24,
-            25,
-            26,
-            34
+            32
           ]
         }
       ]
@@ -9421,39 +9400,6 @@
           "ignoreYear": true,
           "maxEntriesPerItem": 14,
           "tag": "diversity"
-        },
-        {
-          "identifiers": [
-            "Fernwood2night-completeseries",
-            "forever-fernwood-78-03-31",
-            "1976-mary-hartman-e-99-1982-kbhk-san-francisco-720p",
-            "1976-mary-hartman-e-102-1982-kbhk-san-francisco-720p",
-            "1976-mary-hartman-e-112-1982-kbhk-san-francisco-720p",
-            "mary-hartman-mary-hartman-the-best-of-sid-haig"
-          ],
-          "ignoreYear": true,
-          "maxEntriesPerItem": 65,
-          "rated": "R",
-          "tag": "adult_a"
-        },
-        {
-          "identifiers": [
-            "steambath-1984"
-          ],
-          "ignoreYear": true,
-          "maxEntriesPerItem": 12,
-          "rated": "R",
-          "tag": "adult2_a"
-        },
-        {
-          "identifiers": [
-            "blazing-saddles-1974_202210",
-            "the-jerk-1979"
-          ],
-          "ignoreYear": true,
-          "maxEntriesPerItem": 1,
-          "rated": "R",
-          "tag": "adult2_m"
         },
         {
           "identifiers": [
