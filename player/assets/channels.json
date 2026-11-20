@@ -16419,6 +16419,142 @@
           "rated": "R"
         }
       ]
+    },
+    {
+      "number": 87,
+      "name": "Starbase",
+      "logo": "Logos/4x3/starbase.png",
+      "genre": "Movies",
+      "primeTime": {
+        "start": "19:00",
+        "slots": 5,
+        "slotMinutes": 60
+      },
+      "serials": [
+        {
+          "start": "19:00",
+          "epoch": "2026-11-20",
+          "perDay": 1,
+          "shows": [
+            {
+              "title": "Star Trek",
+              "identifiers": [
+                "star-trek-1x-01-the-cage_20231231"
+              ],
+              "episode": "^Star Trek - (\\d)x(\\d\\d) "
+            },
+            {
+              "title": "Star Trek: The Animated Series",
+              "identifiers": [
+                "star-trek-tas-s-01-e-05"
+              ],
+              "episode": "^Star Trek TAS S(\\d\\d)E(\\d\\d)"
+            }
+          ]
+        },
+        {
+          "start": "20:00",
+          "epoch": "2026-11-20",
+          "perDay": 1,
+          "shows": [
+            {
+              "title": "Star Trek: The Next Generation",
+              "identifiers": [
+                "ST9_mp4"
+              ],
+              "episode": "\\.TNG-s(\\d\\d)e(\\d\\d)",
+              "include": "\\.TNG-s"
+            }
+          ]
+        },
+        {
+          "start": "21:00",
+          "epoch": "2026-11-20",
+          "perDay": 1,
+          "shows": [
+            {
+              "title": "Star Trek: Deep Space Nine",
+              "identifiers": [
+                "ST9_mp4"
+              ],
+              "episode": "\\.DS9-s(\\d\\d)e(\\d\\d)",
+              "include": "\\.DS9-s"
+            }
+          ]
+        },
+        {
+          "start": "22:00",
+          "epoch": "2026-11-20",
+          "perDay": 1,
+          "shows": [
+            {
+              "title": "Star Trek: Voyager",
+              "identifiers": [
+                "ST9_mp4"
+              ],
+              "episode": "\\.VOY-s(\\d\\d)e(\\d\\d)",
+              "include": "\\.VOY-s"
+            }
+          ]
+        },
+        {
+          "start": "23:00",
+          "epoch": "2026-11-20",
+          "perDay": 1,
+          "shows": [
+            {
+              "title": "Star Trek: Enterprise",
+              "identifiers": [
+                "star-trek-enterprise-complete"
+              ],
+              "episode": "S(\\d\\d)E(\\d\\d)"
+            }
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "identifiers": [
+            "star-trek-1x-01-the-cage_20231231",
+            "star-trek-tas-s-01-e-05"
+          ],
+          "maxEntriesPerItem": 100,
+          "ignoreYear": true,
+          "tag": "newch_j"
+        },
+        {
+          "identifiers": [
+            "ST9_mp4"
+          ],
+          "maxEntriesPerItem": 600,
+          "ignoreYear": true,
+          "tag": "newch_j"
+        },
+        {
+          "identifiers": [
+            "star-trek-enterprise-complete"
+          ],
+          "maxEntriesPerItem": 100,
+          "ignoreYear": true,
+          "tag": "newch_j"
+        },
+        {
+          "identifiers": [
+            "star-trek-new-voyages-phase-ii-2004"
+          ],
+          "maxEntriesPerItem": 12,
+          "ignoreYear": true,
+          "tag": "newch_j"
+        },
+        {
+          "identifiers": [
+            "star-trek-25th-anniversary-special"
+          ],
+          "maxEntriesPerItem": 1,
+          "ignoreYear": true,
+          "tag": "newch_j"
+        }
+      ]
     }
   ]
 }
