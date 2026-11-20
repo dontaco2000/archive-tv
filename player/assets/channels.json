@@ -4156,24 +4156,6 @@
           "maxEntriesPerItem": 1,
           "tag": "movies",
           "label": "Letterboxd films"
-        },
-        {
-          "identifiers": [
-            "DarkAngel1990",
-            "John-Wck-4",
-            "blood-debts",
-            "first-blood-1982-2160p-4-k-blu-ray-5.1",
-            "john-wick-chapter-2-2017_202605",
-            "kill-bill-vol.-1-2003",
-            "kill-bill-vol.-2-2004_202605",
-            "kiss-of-the-dragon",
-            "the-perfect-weapon"
-          ],
-          "ignoreYear": true,
-          "maxEntriesPerItem": 1,
-          "rated": "R",
-          "tag": "movies",
-          "label": "Letterboxd films (R)"
         }
       ]
     },
@@ -9516,10 +9498,12 @@
             "Buffalo.66.iro",
             "Clockers",
             "ControljoyDivisionAngeeParaZoowoman.website",
+            "DarkAngel1990",
             "DeadRingers1988Www.DesiPirates.tkBRRip720pAC3HindiEnglish_201608",
             "DeathWish3",
             "Dog-Day-Afternoon_1975_AI_1080p.BluRay.10b.HEVC.DD.1.0_BLUDUAINE",
             "Fruitvale.Station.2013.1080p",
+            "John-Wck-4",
             "Killer.JoeVose",
             "Listzomania",
             "MediumCoolAmericaAmericaZo",
@@ -9535,9 +9519,7 @@
             "Shallow_Grave_UPN33_WOC_2000-03",
             "Sins_of_the_Fleshapoids_1965",
             "TDG_WS_20230906",
-            "The-Godfather-III_1990_AI_Remastered.1080p.BluRay.10b.HEVC.DTS-HD.MA.TrueHD.5.1_",
-            "The-Godfather-II_1974_AI_Remastered.1080p.BluRay.10b.HEVC.DTS-HD.MA.TrueHD.5.1_B",
-            "The-Last-Temptation-of-Christ_1988_AI_1080p.BluRay.10b.HEVC.DTS-HD.MA.5.1_BLUDUA"
+            "The-Godfather-III_1990_AI_Remastered.1080p.BluRay.10b.HEVC.DTS-HD.MA.TrueHD.5.1_"
           ],
           "ignoreYear": true,
           "maxEntriesPerItem": 1,
@@ -9547,6 +9529,8 @@
         },
         {
           "identifiers": [
+            "The-Godfather-II_1974_AI_Remastered.1080p.BluRay.10b.HEVC.DTS-HD.MA.TrueHD.5.1_B",
+            "The-Last-Temptation-of-Christ_1988_AI_1080p.BluRay.10b.HEVC.DTS-HD.MA.5.1_BLUDUA",
             "TheGirlOnAMotorcycle",
             "TheGirlfriendExperienceViaZoowoman",
             "TheNakedKiss",
@@ -9573,6 +9557,7 @@
             "before.-the.-devil.-knows.-youre.-dead.-2007.-bdrip.-720p",
             "better-luck-tomorrow-2002-ac-3",
             "bigshave",
+            "blood-debts",
             "blue-valentine-2010",
             "body-double-1984_202509",
             "bound-1996",
@@ -9583,10 +9568,7 @@
             "bush-mama-1979",
             "but-im-a-cheerleader-jamie-babbit-1999",
             "butch.camp.1996",
-            "chelsea_girls",
-            "citizen-ruth",
-            "clean-shaven-1993-lodge-kerrigan",
-            "clerks-first-cut"
+            "chelsea_girls"
           ],
           "ignoreYear": true,
           "maxEntriesPerItem": 1,
@@ -9596,6 +9578,9 @@
         },
         {
           "identifiers": [
+            "citizen-ruth",
+            "clean-shaven-1993-lodge-kerrigan",
+            "clerks-first-cut",
             "cmon-cmon_202511",
             "coffee-and-cigarettes-2003",
             "constantine_202507",
@@ -9624,6 +9609,7 @@
             "fast.-company.-1979.1080p.-blu-ray.-h-264.-aac",
             "fear-and-loathing-in-las-vegas-1998_202501",
             "fight.club.10th.anniversary.edition.1999.1080p.brrip.x264.yify_201908",
+            "first-blood-1982-2160p-4-k-blu-ray-5.1",
             "five-easy-pieces-1970",
             "freddy-got-fingered",
             "full-size-render_20221030_1935",
@@ -9631,11 +9617,7 @@
             "ghostdogthewayofthesamurai1999_201911",
             "gimme.-danger.-2016.1080p.-blu-ray.x-264-yts.-ag",
             "god.-bless.-america.-2011.1080p.-blu-ray.x-265",
-            "goodfellas.-1990.1080p.-blu-ray.x-264-yts.-am",
-            "gr_20230827",
-            "h4pp1n355",
-            "harley-davidson-and-the-marlboro-man-1991-1hr-34min",
-            "henry-9-til-5"
+            "goodfellas.-1990.1080p.-blu-ray.x-264-yts.-am"
           ],
           "ignoreYear": true,
           "maxEntriesPerItem": 1,
@@ -9645,14 +9627,22 @@
         },
         {
           "identifiers": [
+            "gr_20230827",
+            "h4pp1n355",
+            "harley-davidson-and-the-marlboro-man-1991-1hr-34min",
+            "henry-9-til-5",
             "hfdrwez-ko-xxh",
             "hi.-mom.-1970.-dvdrip.x-264-handjob",
             "how-high_202210",
             "husbands.-1970.1080p.-blu-ray.x-264.-dts-fgt",
             "i.-saw.-the.-tv.-glow.-2024.1080p.-webrip.x-264.-aac-5.1-yts.-mx",
+            "john-wick-chapter-2-2017_202605",
             "julien-donkey-boy-harmony-korine",
+            "kill-bill-vol.-1-2003",
+            "kill-bill-vol.-2-2004_202605",
             "killer-bean-forever-4-k-official-full-movie_202103",
             "kingdomofheaven2005_201909",
+            "kiss-of-the-dragon",
             "kiss-of-the-spider-woman-1985-1080p-blu-ray-x-265-10bit-tigole",
             "kiss.-me.-stupid.-1964.720p.-blu-ray.x-264.-yify",
             "kissed-1996_202512",
@@ -9676,15 +9666,7 @@
             "mennakedfight",
             "merry.-christmas.-mr.-lawrence.-1983.1080p.-blu-ray.x-265-rarbg",
             "midnight-cowboy-1969deluxe-25th-anniversary-edition",
-            "midnight.-express.-1978.720p.-blu-ray.x-264-yts.-ag",
-            "millers-crossing-1990-joel-coen",
-            "misery-1990-1080p-blu-ray",
-            "my-hustler-1965",
-            "nashville.-1975.1080p.-blu-ray.x-264.-aac-5.1-yts.-mx",
-            "nightcrawler.-2014.720p.-blu-ray.x-264.-yify_202406",
-            "nitram-2021",
-            "no.-country.-for.-old.-men.-2007.1080p.-br-rip.x-264.-yify",
-            "of-an-age"
+            "midnight.-express.-1978.720p.-blu-ray.x-264-yts.-ag"
           ],
           "ignoreYear": true,
           "maxEntriesPerItem": 1,
@@ -9694,6 +9676,14 @@
         },
         {
           "identifiers": [
+            "millers-crossing-1990-joel-coen",
+            "misery-1990-1080p-blu-ray",
+            "my-hustler-1965",
+            "nashville.-1975.1080p.-blu-ray.x-264.-aac-5.1-yts.-mx",
+            "nightcrawler.-2014.720p.-blu-ray.x-264.-yify_202406",
+            "nitram-2021",
+            "no.-country.-for.-old.-men.-2007.1080p.-br-rip.x-264.-yify",
+            "of-an-age",
             "once-upon-a-time-in-america_202110",
             "once-upon-a-time-in-hollywood-2019-1080p-blu-ray-yts.-mx",
             "pO65tJRUkNO4",
@@ -9725,15 +9715,7 @@
             "see-no-evil-hear-no-evil-1989-4x-3-open-matte",
             "serial-mom-1994_202603",
             "sexy.-beast.-2000",
-            "short-cuts-1993",
-            "shottas_202001",
-            "snakes-on-a-plane-2006_202508",
-            "sorcerer_202204",
-            "spartan_2004",
-            "straw.-dogs.-1971.1080p.-blu-ray.x-264-yts.-am_202405",
-            "streets-of-fire-1984_202601",
-            "superbad-tv-version-usa",
-            "swingers-the-movie"
+            "short-cuts-1993"
           ],
           "ignoreYear": true,
           "maxEntriesPerItem": 1,
@@ -9743,10 +9725,17 @@
         },
         {
           "identifiers": [
+            "shottas_202001",
+            "snakes-on-a-plane-2006_202508",
+            "sorcerer_202204",
+            "spartan_2004",
+            "straw.-dogs.-1971.1080p.-blu-ray.x-264-yts.-am_202405",
+            "streets-of-fire-1984_202601",
+            "superbad-tv-version-usa",
+            "swingers-the-movie",
             "synecdoche.-new.-york.-2008.1080p.-blu-ray.-h-264.-aac-rarbg",
             "tangerine_202102",
             "tell-me-that-you-love-me-junie-moon-1970",
-            "terminator-2-judgment-day-vhs-mkv-encode",
             "that-cold-day-in-the-park-1969-brrip-oldies",
             "the-acid-house",
             "the-bad-lieutenant-port-of-call-new-orleans-2009.720p.-br-rip.x-264.-yify",
@@ -9767,6 +9756,7 @@
             "the-mean-season_202506",
             "the-music-lovers-1971-richard-chamberlain-glenda-jackson",
             "the-pawnbroker-1964-sidney-lumet",
+            "the-perfect-weapon",
             "the-perverts-guide-to-ideology-zizek-2012",
             "the-piano-1993",
             "the-plot-against-harry-1971",
@@ -9774,15 +9764,7 @@
             "the-specials-2000",
             "the-spook-who-sat-by-the-door-1973",
             "the-telephone-book-1971",
-            "the-thomas-crown-affair-1999",
-            "the-usual-suspects-1995.vie",
-            "the-watermelon-woman-1997",
-            "the.-adventures.-of.-priscilla.-queen.-of.-the.-desert.-1994.1080p.-blu-ray.x-265-rarbg",
-            "the.-killing.-of.-a.-chinese.-bookie.-1976.720p",
-            "the.-long.-goodbye.-1973.1080p.-blu-ray.-x-264-amiable",
-            "the.-panic.in.-needle.-park.-1971",
-            "the.-player.-1992.1080p.-blu-ray.x-264-yts.-ag",
-            "themroc-ethnomite-pux-soundtrack-2021"
+            "the-thomas-crown-affair-1999"
           ],
           "ignoreYear": true,
           "maxEntriesPerItem": 1,
@@ -9792,6 +9774,14 @@
         },
         {
           "identifiers": [
+            "the-usual-suspects-1995.vie",
+            "the-watermelon-woman-1997",
+            "the.-adventures.-of.-priscilla.-queen.-of.-the.-desert.-1994.1080p.-blu-ray.x-265-rarbg",
+            "the.-killing.-of.-a.-chinese.-bookie.-1976.720p",
+            "the.-long.-goodbye.-1973.1080p.-blu-ray.-x-264-amiable",
+            "the.-panic.in.-needle.-park.-1971",
+            "the.-player.-1992.1080p.-blu-ray.x-264-yts.-ag",
+            "themroc-ethnomite-pux-soundtrack-2021",
             "there-will-be-blood-2007-daniel-day-lewis-paul-dano-based-on-oil-by-upton-sinclair_202409",
             "theroom2003",
             "they-cloned-tyrone_202608",
