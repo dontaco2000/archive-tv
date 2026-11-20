@@ -5912,6 +5912,52 @@
           "maxEntriesPerItem": 12,
           "rated": "R",
           "tag": "adult4"
+        },
+        {
+          "identifiers": [
+            "teen-angel-1997-1998",
+            "going-places-abc-1990",
+            "hi-honey-im-home"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 20,
+          "tag": "foldin_b"
+        },
+        {
+          "identifiers": [
+            "my-vhs-saga-part-4-woc",
+            "1997-11-07-the-tgif-time-warp",
+            "TGIF_ABC_WOC_1997-05-09"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1,
+          "tag": "foldin_b"
+        },
+        {
+          "identifiers": [
+            "alf-complete"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 40,
+          "tag": "foldin_b"
+        },
+        {
+          "identifiers": [
+            "out-of-this-world-s01-s02-missing-episodes",
+            "out-of-this-world-s03-s04-incomplete"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 22,
+          "tag": "foldin_b"
+        },
+        {
+          "identifiers": [
+            "The-New-Gidget-1986-Series",
+            "get-a-life-sitcom"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 24,
+          "tag": "foldin_b"
         }
       ],
       "timeBlocks": [
@@ -5921,8 +5967,7 @@
             "mon",
             "tue",
             "wed",
-            "thu",
-            "fri"
+            "thu"
           ],
           "start": "19:00",
           "end": "21:00",
@@ -5937,6 +5982,20 @@
             26,
             27,
             28
+          ]
+        },
+        {
+          "label": "TGIF",
+          "days": [
+            "fri"
+          ],
+          "start": "19:00",
+          "end": "22:00",
+          "sources": [
+            1,
+            15,
+            34,
+            35
           ]
         }
       ]
@@ -10932,6 +10991,26 @@
           "maxEntriesPerItem": 2,
           "rated": "R",
           "tag": "adult2_d"
+        },
+        {
+          "identifiers": [
+            "woodstock94_bootleg"
+          ],
+          "ignoreYear": true,
+          "perDay": {
+            "sat": 4
+          },
+          "perDayMinMinutes": 20,
+          "blockLabel": "Woodstock '94",
+          "tag": "foldin_b"
+        },
+        {
+          "identifiers": [
+            "moscow-music-peace-festival-1989"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 2,
+          "tag": "foldin_b"
         }
       ]
     },
@@ -12154,7 +12233,9 @@
             17,
             18,
             19,
-            20
+            20,
+            23,
+            24
           ]
         }
       ],
@@ -12318,6 +12399,22 @@
           "maxEntriesPerItem": 14,
           "rated": "R",
           "tag": "adult2_d"
+        },
+        {
+          "identifiers": [
+            "1982.05.22-portland-wrestling-tv-may-22-1982"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 17,
+          "tag": "foldin_b"
+        },
+        {
+          "identifiers": [
+            "cwa-88-10-08-wmc"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 20,
+          "tag": "foldin_b"
         }
       ]
     },
@@ -12966,6 +13063,24 @@
           "maxEntriesPerItem": 1,
           "blockOnly": true,
           "tag": "maple_sports"
+        },
+        {
+          "identifiers": [
+            "Welcome-Frehsmen-1991-Series",
+            "swans-crossing-1992"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 26,
+          "tag": "foldin_b"
+        },
+        {
+          "identifiers": [
+            "california-dreams-1992-season-one",
+            "california-dreams-1992-season-two"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 18,
+          "tag": "foldin_b"
         }
       ],
       "timeBlocks": [
@@ -13426,6 +13541,21 @@
           "query": "(collection:community_media AND ((subject:(Maine OR \"New Hampshire\" OR Vermont OR Massachusetts OR \"Rhode Island\" OR Connecticut OR \"New York\" OR \"New Jersey\" OR Pennsylvania OR Delaware OR Maryland OR \"District of Columbia\" OR Virginia OR \"West Virginia\" OR \"North Carolina\" OR \"South Carolina\" OR Georgia OR Florida OR Alabama OR Mississippi OR Tennessee OR Kentucky OR Ohio OR Michigan OR Indiana OR Illinois OR Wisconsin) OR collection:(ctncrmn) OR subject:(Blaine AND Minnesota)) AND -subject:(Louisiana)) AND title:(comedy OR comedian OR comedians OR sketch OR \"variety show\" OR \"talent show\" OR magic OR magician OR puppet OR puppets OR horror OR \"late night\" OR \"game show\" OR parody OR improv OR monster OR monsters OR halloween OR \"public access\" OR \"cable access\")) AND -title:(adult OR nude OR naked OR nudist OR sex OR sexy OR erotic OR fetish OR spank* OR burlesque OR strip* OR topless OR goddess OR xxx OR porn OR \"after ten\" OR \"libre film\" OR moze OR \"susan block\") AND -subject:(adult OR nudity OR erotica OR sexuality) AND -title:(church OR sermon OR ministry OR bible OR gospel OR worship OR mass OR prayer OR jesus OR christian) AND -subject:(religion OR church) AND -title:(hellstorm OR holocaust OR nazi OR genocide OR illuminati OR awpt OR c4i OR satan* OR swastika*) AND -title:(meeting OR council OR board OR commission OR committee OR hearing OR budget OR election OR candidat* OR debate OR graduation OR police OR forum OR briefing OR update OR conference OR hockey OR football OR basketball OR baseball OR soccer) AND -title:(trailer OR promo OR psa OR preview OR raw OR footage OR loop OR cinema OR movie OR film OR dialogo OR podcast OR class OR workshop OR \"red carpet\" OR barney OR sesame OR peppa OR disney OR \"magic school bus\" OR \"rocky horror\") AND -language:(spa OR chi OR vie OR kor OR rus OR hmn) AND -identifier:(aufstx-* OR caltvca-*)",
           "ignoreYear": true,
           "maxEntriesPerItem": 1
+        },
+        {
+          "identifiers": [
+            "the-uncle-floyd-show-1-of-6",
+            "the-uncle-floyd-show-2-of-6",
+            "the-uncle-floyd-show-3-of-6",
+            "the-uncle-floyd-show-4-of-6",
+            "the-uncle-floyd-show-5-of-6",
+            "the-uncle-floyd-show-6-of-6",
+            "the-uncle-floyd-show-halloween-special-10-30-1998-ram",
+            "1989-08-19-beyond-vaudeville-ep-20-brother-theodore-oddville-public-access-the-burbs"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1,
+          "tag": "foldin_b"
         }
       ]
     },
@@ -13502,6 +13632,16 @@
           "query": "(collection:community_media AND ((subject:(Washington OR Oregon OR California OR Nevada OR Idaho OR Montana OR Wyoming OR Utah OR Colorado OR Arizona OR \"New Mexico\" OR Alaska OR Hawaii OR Texas OR Oklahoma OR Kansas OR Nebraska OR \"South Dakota\" OR \"North Dakota\" OR Iowa OR Missouri OR Arkansas) OR collection:(nwctc OR mcammn OR cctvmnv OR cctvmn OR lmccmn OR nucatmn OR ntvmnv OR hctvmn OR cfctvmn OR latvmn)) AND -subject:(\"District of Columbia\" OR Virginia OR Maryland OR Louisiana)) AND title:(comedy OR comedian OR comedians OR sketch OR \"variety show\" OR \"talent show\" OR magic OR magician OR puppet OR puppets OR horror OR \"late night\" OR \"game show\" OR parody OR improv OR monster OR monsters OR halloween OR \"public access\" OR \"cable access\")) AND -title:(adult OR nude OR naked OR nudist OR sex OR sexy OR erotic OR fetish OR spank* OR burlesque OR strip* OR topless OR goddess OR xxx OR porn OR \"after ten\" OR \"libre film\" OR moze OR \"susan block\") AND -subject:(adult OR nudity OR erotica OR sexuality) AND -title:(church OR sermon OR ministry OR bible OR gospel OR worship OR mass OR prayer OR jesus OR christian) AND -subject:(religion OR church) AND -title:(hellstorm OR holocaust OR nazi OR genocide OR illuminati OR awpt OR c4i OR satan* OR swastika*) AND -title:(meeting OR council OR board OR commission OR committee OR hearing OR budget OR election OR candidat* OR debate OR graduation OR police OR forum OR briefing OR update OR conference OR hockey OR football OR basketball OR baseball OR soccer) AND -title:(trailer OR promo OR psa OR preview OR raw OR footage OR loop OR cinema OR movie OR film OR dialogo OR podcast OR class OR workshop OR \"red carpet\" OR barney OR sesame OR peppa OR disney OR \"magic school bus\" OR \"rocky horror\") AND -language:(spa OR chi OR vie OR kor OR rus OR hmn) AND -identifier:(aufstx-* OR caltvca-*)",
           "ignoreYear": true,
           "maxEntriesPerItem": 1
+        },
+        {
+          "identifiers": [
+            "EXPTVSalinaPublicAccess101",
+            "EXPTVSalinaPublicAccess102",
+            "video-art-music-1984"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 1,
+          "tag": "foldin_b"
         }
       ]
     },
