@@ -150,8 +150,8 @@ void main() {
       expect(values.toSet(), hasLength(values.length));
       final numbers = {for (final c in config.channels) c.number};
       expect(numbers.containsAll(values), isTrue);
-      // added in layout 5: Syndi-Toons, Starbase, Cliffhanger, Afterhours, Date-Night, Anthology, Filmstrip, VJ
-      expect(numbers.difference(values.toSet()), {4, 14, 19, 26, 30, 37, 51, 61});
+      // added in layout 5: Syndi-Toons, Starbase, Cliffhanger, Afterhours, Date-Night, Anthology, Filmstrip, VJ; plus Regen (47, Doctor Who, layout-5 spare)
+      expect(numbers.difference(values.toSet()), {4, 14, 19, 26, 30, 37, 47, 51, 61});
       final keys = (bundled['oldToNew'] as Map).keys.map((k) => int.parse(k as String)).toSet();
       expect(keys, hasLength(72)); // every layout-4 channel, no temporary numbers (80-87)
       expect(keys.where((n) => n > 75), isEmpty);
