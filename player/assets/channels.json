@@ -949,7 +949,10 @@
     "bobobo_bo_bo_bobo/Boboboubo Boubobo - Rcap Episode .mp4",
     "dws-8.5.40_202302",
     "TheAdventuresOfLongJohnSilverMissPuritysBirthday",
-    "TheAdventuresOfLongJohnSilverSwordOfVengeance.3gp"
+    "TheAdventuresOfLongJohnSilverSwordOfVengeance.3gp",
+    "mysterious-cities-of-gold-1982-eng/S00E01 - Interview with the Dubbing Cast.mp4",
+    "mysterious-cities-of-gold-1982-eng/S00E02 - The Story Of The Production.mp4",
+    "mysterious-cities-of-gold-1982-eng/S00E03 - Dubbing Scene Recreation.mp4"
   ],
   "channels": [
     {
@@ -14081,6 +14084,275 @@
           ],
           "ignoreYear": true,
           "maxEntriesPerItem": 10
+        }
+      ]
+    },
+    {
+      "number": 80,
+      "name": "Syndi-Toons",
+      "logo": "Logos/4x3/synditoons.png",
+      "genre": "Kids & Animation",
+      "primeTime": {
+        "start": "15:00",
+        "slots": 3,
+        "slotMinutes": 60
+      },
+      "serials": [
+        {
+          "start": "15:00",
+          "epoch": "2026-11-19",
+          "perDay": 2,
+          "shows": [
+            {
+              "title": "Galaxy Rangers",
+              "identifiers": [
+                "adventures-of-the-galaxy-rangers-complete-series-1986"
+              ],
+              "episode": "\\(Ep\\. (\\d+)\\)"
+            }
+          ]
+        },
+        {
+          "start": "16:00",
+          "epoch": "2026-11-19",
+          "perDay": 2,
+          "shows": [
+            {
+              "title": "Defenders of the Earth",
+              "identifiers": [
+                "defenders-of-the-earth-complete-series-1986"
+              ],
+              "episode": "Episode # (\\d+) ",
+              "exclude": "Episode # 00"
+            }
+          ]
+        },
+        {
+          "start": "17:00",
+          "epoch": "2026-11-19",
+          "perDay": 2,
+          "shows": [
+            {
+              "title": "Bionic Six",
+              "identifiers": [
+                "bionic-six"
+              ],
+              "episode": "S(\\d\\d)E(\\d\\d)",
+              "include": "S\\d\\dE\\d\\d"
+            }
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "identifiers": [
+            "bionic-six",
+            "dinosaucers_202608"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 20,
+          "tag": "newch_f"
+        },
+        {
+          "identifiers": [
+            "adventures-of-the-galaxy-rangers-complete-series-1986",
+            "defenders-of-the-earth-complete-series-1986"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 20,
+          "tag": "newch_f"
+        },
+        {
+          "identifiers": [
+            "mighty-orbots",
+            "the-pirates-of-dark-water-1991-hd",
+            "the-bots-master"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 20,
+          "tag": "newch_f"
+        },
+        {
+          "identifiers": [
+            "sectaurs-s-01-e-05-battle-of-the-hyve",
+            "sky_commanders",
+            "skysurfer-strike-force-s01",
+            "skysurfer-strike-force-s02",
+            "blackstar-complete-series-1981",
+            "Thundarr_the_Barbarian"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 20,
+          "tag": "newch_f"
+        },
+        {
+          "identifiers": [
+            "ulysses-31-1981",
+            "mysterious-cities-of-gold-1982-eng",
+            "saber-rider-and-the-star-sheriffs-complete-series",
+            "buckyohareandthetoadwarsAIUpscale"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 20,
+          "tag": "newch_f"
+        },
+        {
+          "identifiers": [
+            "extreme-dinosaurs-1997",
+            "extreme-ghostbusters-complete-series-1997",
+            "toxic-crusaders-1991_202403",
+            "lazer-tag-academy-complete-series-1986",
+            "MummiesAliveEpisode10Paws",
+            "conan-the-adventurer-complete-series-1992"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 20,
+          "tag": "newch_f"
+        },
+        {
+          "identifiers": [
+            "rambo_the_force_of_freedom",
+            "police-academy-Lando18",
+            "51.-the-darkness-within",
+            "action-man-1995_202512"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 20,
+          "tag": "newch_f"
+        },
+        {
+          "identifiers": [
+            "18FaceOfFury",
+            "mega-man-the-complete-tv-series-collection",
+            "dragon-flyz-s-01-e-09-bugz",
+            "wild-c.-a.-t.-s.-ep.-08-betrayed-480p-rp-dvdrip_202503"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 20,
+          "tag": "newch_f"
+        }
+      ]
+    },
+    {
+      "number": 81,
+      "name": "Anthology",
+      "logo": "Logos/4x3/anthology.png",
+      "genre": "Drama & Classic TV",
+      "sources": [
+        {
+          "identifiers": [
+            "the-twilight-zone-1959-s-01-e-00-original-pilot",
+            "the-twilight-zone-1959-s-02-e-11-the-night-of-the-meek",
+            "the-twilight-zone-1959-s-03-e-15-a-quality-of-mercy",
+            "the-twilight-zone-1959-s-04-e-16-on-thursday-we-leave-for-home",
+            "the-twilight-zone-1959-s-05-e-22-an-occurrence-at-owl-creek-bridge",
+            "twilight-zone-1985-1x-01-shatterday",
+            "the-twilight-zone-1985-s-02-e-01-the-once-and-future-king",
+            "the-twilight-zone-1985-s-03-e-01-the-curious-case-of-edgar-witherspoon",
+            "the.-twilight.-zone.-2002.-s-01.480p.-dvd-rip.-x-264.-will-1869"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 20,
+          "tag": "newch_f"
+        },
+        {
+          "identifiers": [
+            "the-outer-limits-s-1e-1-1963-colorized",
+            "the-outer-limits-s-2e-3-1964-colorized-576p-sd",
+            "OuterLimitsPilot"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 14,
+          "tag": "newch_f"
+        },
+        {
+          "identifiers": [
+            "one-step-beyond",
+            "tales-of-tomorrow-1951-53",
+            "science-fiction-theatre-season-1",
+            "science-fiction-theatre-season-2",
+            "WayOut1961",
+            "04-a-quiet-funeral-make-up"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 14,
+          "tag": "newch_f"
+        },
+        {
+          "identifiers": [
+            "alfred-hitchcock-presents-s-1e-1-colorized-720p-hd",
+            "alfred-hitchcock-presents-s-2e-13-colorized-sd",
+            "alfred-hitchcock-presents-s-3e-1-colorized-sd",
+            "alfred-hitchcock-presents-s-4e-1-colorized-sd",
+            "alfred-hitchcock-presents-1959-s-5e-1-colorized-sd",
+            "alfred-hitchcock-presents-s-6e-1-colorized-sd",
+            "alfred-hitchcock-presents-s-7e-1-colorized-sd"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 18,
+          "tag": "newch_f"
+        },
+        {
+          "identifiers": [
+            "the-new-alfred-hitchcock-presents-complete",
+            "the-alfred-hitchcock-hour-s-01-complete-first-season",
+            "the-alfred-hitchcock-hour-s-02-the-complete-second-season",
+            "the-alfred-hitchcock-hour-s-03-the-complete-third-season"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 12,
+          "tag": "newch_f"
+        },
+        {
+          "identifiers": [
+            "thriller-karloff",
+            "night-gallery-101-the-cemetery-eyes-the-escape-route",
+            "kolchak-the-night-stalker-complete-series-1972",
+            "ghost-story-circle-of-fear-complete"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 12,
+          "tag": "newch_f"
+        },
+        {
+          "identifiers": [
+            "tales-from-the-darkside-s01-en",
+            "tales-from-the-darkside-s02-en",
+            "RayBradburyTheater",
+            "amazing-stories-1985-1987-complete-series"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 14,
+          "tag": "newch_f"
+        },
+        {
+          "identifiers": [
+            "tales-of-the-unexpected-1979-88"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 24,
+          "tag": "newch_f"
+        },
+        {
+          "identifiers": [
+            "freddys-nightmares-complete-tv-series",
+            "fridaythe13thseason1",
+            "FridayThe13th.TheSeries3x0102TheProphecies"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 20,
+          "tag": "newch_f",
+          "rated": "R"
+        },
+        {
+          "identifiers": [
+            "the-outer-limits-1995_202304",
+            "hammer-house-of-horror-the-complete-series-1980"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 20,
+          "tag": "newch_f",
+          "rated": "R"
         }
       ]
     }
