@@ -11252,21 +11252,6 @@
               "episode": "S(\\d\\d)E(\\d\\d) "
             }
           ]
-        },
-        {
-          "start": "20:00",
-          "epoch": "2026-11-20",
-          "perDay": 1,
-          "shows": [
-            {
-              "title": "K-9",
-              "identifiers": [
-                "k9-tv-show"
-              ],
-              "include": "^S\\d\\d - E\\d\\d - ",
-              "episode": "^S(\\d\\d) - E(\\d\\d) - "
-            }
-          ]
         }
       ],
       "sources": [
@@ -11300,7 +11285,7 @@
             "k9-tv-show",
             "k-9-and-company-pilot-a-girls-best-friend-1981"
           ],
-          "maxEntriesPerItem": 30,
+          "maxEntriesPerItem": 8,
           "ignoreYear": true,
           "tag": "regen"
         },
