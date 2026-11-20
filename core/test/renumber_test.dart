@@ -139,7 +139,10 @@ void main() {
       final numbers = [for (final c in config.channels) c.number];
       expect(numbers.toSet(), hasLength(numbers.length));
       expect(numbers, [...numbers]..sort());
+      // merge6: Moshpit (89) and Smoky (90) are Music channels on temporary numbers until layout 6.
+      const temporary = {89, 90};
       for (final c in config.channels) {
+        if (temporary.contains(c.number)) continue;
         final (lo, hi) = blocks[c.genre]!;
         expect(c.number >= lo && c.number <= hi, isTrue, reason: '${c.number} ${c.name} (${c.genre})');
       }
@@ -150,8 +153,9 @@ void main() {
       expect(values.toSet(), hasLength(values.length));
       final numbers = {for (final c in config.channels) c.number};
       expect(numbers.containsAll(values), isTrue);
-      // added in layout 5: Syndi-Toons, Starbase, Cliffhanger, Afterhours, Date-Night, Anthology, Filmstrip (renamed Trainee), VJ
-      expect(numbers.difference(values.toSet()), {4, 14, 19, 26, 30, 37, 51, 61});
+      // added in layout 5: Syndi-Toons, Starbase, Cliffhanger, Afterhours, Date-Night, Anthology, Filmstrip (renamed Trainee), VJ;
+      // added after layout 5 (merge6, not renumbered yet): Marquee 21, Smiles 35, Regen 47, Sockhop 64, Moshpit 89, Smoky 90
+      expect(numbers.difference(values.toSet()), {4, 14, 19, 21, 26, 30, 35, 37, 47, 51, 61, 64, 89, 90});
       final keys = (bundled['oldToNew'] as Map).keys.map((k) => int.parse(k as String)).toSet();
       expect(keys, hasLength(72)); // every layout-4 channel, no temporary numbers (80-87)
       expect(keys.where((n) => n > 75), isEmpty);
