@@ -32,6 +32,15 @@ void main() {
     expect([for (final ch in c.channels) ch.mature], [true, false]);
   });
 
+  test('per-channel excludeIdentifiers parse; bad entries are an error', () {
+    final c = parseChannelConfig('{"channels": [{"number": 2, "name": "A", "excludeIdentifiers": ["x", "y/f.mp4"], '
+        '"sources": [{"query": "q"}]}, {"number": 3, "name": "B", "sources": [{"query": "q"}]}]}');
+    expect(c.channel(2)!.excludeIdentifiers, {'x', 'y/f.mp4'});
+    expect(c.channel(3)!.excludeIdentifiers, isEmpty);
+    expectError('{"channels": [{"number": 2, "name": "A", "excludeIdentifiers": [1], "sources": [{"query": "q"}]}]}',
+        'excludeIdentifiers');
+  });
+
   test('parses a valid config', () {
     final c = parseChannelConfig(_good);
     expect(c.yearRange, const YearRange(1980, 2010));

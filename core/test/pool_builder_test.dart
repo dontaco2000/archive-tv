@@ -109,6 +109,17 @@ void main() {
     expect(refilterPool(channel, cfg, old).map((e) => e.id), ['a/a.mp4']);
   });
 
+  test('a channel-level exclude applies to that channel only (build and saved pool)', () async {
+    final api = FakeApi({'a': (1990, 30), 'b': (1995, 30)});
+    const mine = Channel(number: 5, name: 'Mine', sources: [Source(query: 'q')], excludeIdentifiers: {'b'});
+    final cfg = config(minHours: 1, exclude: {'zz'});
+    expect((await buildPool(mine, cfg, api)).map((e) => e.itemId), ['a']);
+    expect((await buildPool(channel, cfg, api)).map((e) => e.itemId), unorderedEquals(['a', 'b']));
+    final saved = [for (final i in ['a', 'b']) Entry(id: '$i/f.mp4', itemId: i, file: 'f.mp4', title: i, durationSeconds: 300, url: 'u')];
+    expect(refilterPool(mine, cfg, saved).map((e) => e.itemId), ['a']);
+    expect(refilterPool(channel, cfg, saved).map((e) => e.itemId), ['a', 'b']);
+  });
+
   test('thin channel widens to the fallback year and rebuilds', () async {
     final api = FakeApi({'new': (1990, 30), 'old': (1970, 120)});
     final pool = await buildPool(channel, config(), api);

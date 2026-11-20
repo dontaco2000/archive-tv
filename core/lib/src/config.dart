@@ -92,6 +92,7 @@ ChannelConfig _parse(String jsonText, RatedRules rated) {
       shortContent: raw['shortContent'] as String?,
       minSeconds: _int(raw['minSeconds'], 'channel $number minSeconds'),
       mature: raw['mature'] == true,
+      excludeIdentifiers: _stringSet(raw['excludeIdentifiers'], 'channel $number excludeIdentifiers'),
       ratedWindow: raw.containsKey('ratedWindow') ? parseRatedWindow(raw['ratedWindow'], 'channel $number ratedWindow') : null,
     ));
   }
@@ -109,6 +110,12 @@ ChannelConfig _parse(String jsonText, RatedRules rated) {
       for (final x in (decoded['blockCollections'] as List? ?? const [])) x as String,
     ],
   );
+}
+
+Set<String> _stringSet(Object? raw, String what) {
+  if (raw == null) return const {};
+  if (raw is! List || raw.any((x) => x is! String)) throw ConfigException('$what must be a list of strings');
+  return {...raw.cast<String>()};
 }
 
 Source _source(Object? raw, int channel) {
