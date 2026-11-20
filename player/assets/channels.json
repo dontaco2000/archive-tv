@@ -17687,58 +17687,6 @@
         },
         {
           "identifiers": [
-            "sex-pistols-live-in-the-usa-1978-vhsrip",
-            "sex-pistols-live-at-winterland-1978-vhsrip",
-            "sex-pistols-live-at-the-longhorn-1978",
-            "dead-kennedys-live-at-grove-street-san-francisco-ca-1979-01-26-60fps",
-            "marilyn-manson-guns-god-and-government-live-in-l.-a.",
-            "Manson-Live-RockamRing-2003",
-            "TheVistaGroup-MarilynMansonLive121695TheEdgeFtLauderdaleFL1995",
-            "TheVistaGroup-MinistryLiveinDallas1-28-90",
-            "pantera-live-at-santiago-98",
-            "icp-live-on-the-ringmaster-tour",
-            "rage-against-the-machine-live-pinkpop-festival-landgraaf-nl-23.05.1994",
-            "NIN_2000-06-02_video",
-            "NIN_1999-11-25_video",
-            "NIN_2000-05-09_video"
-          ],
-          "ignoreYear": true,
-          "maxEntriesPerItem": 3,
-          "rated": "R",
-          "tag": "adult_b"
-        },
-        {
-          "identifiers": [
-            "motley-crue-uncensored-1986",
-            "the-decline-of-western-civilization-1981",
-            "declineofwesternciv2",
-            "the-filth-and-the-fury-a-sex-pistols-film",
-            "sex-pistols-the-great-rock-n-roll-swindle_1980",
-            "the-punk-rock-movie",
-            "PinkFloyd-TheWall1982",
-            "rolling-stones-gimme-shelter-1970",
-            "dig-2004-wearethelastbeatniks",
-            "until-the-light-takes-us"
-          ],
-          "ignoreYear": true,
-          "maxEntriesPerItem": 2,
-          "rated": "R",
-          "tag": "adult2_d"
-        },
-        {
-          "identifiers": [
-            "woodstock94_bootleg"
-          ],
-          "ignoreYear": true,
-          "perDay": {
-            "sat": 4
-          },
-          "perDayMinMinutes": 20,
-          "blockLabel": "Woodstock '94",
-          "tag": "foldin_b"
-        },
-        {
-          "identifiers": [
             "moscow-music-peace-festival-1989"
           ],
           "ignoreYear": true,
@@ -17925,7 +17873,17 @@
         "musikladen-beat-club-studio-the-best-of-abba-march-31-1976",
         "musikladen-beat-club-studio-the-ramones-september-13-1978",
         "the-midnight-special-1974",
-        "whitney-houston-live-in-concert-1"
+        "whitney-houston-live-in-concert-1",
+        "TheVistaGroup-MinistryLiveinDallas1-28-90",
+        "icp-live-on-the-ringmaster-tour",
+        "NIN_2000-05-09_video",
+        "motley-crue-uncensored-1986",
+        "sex-pistols-the-great-rock-n-roll-swindle_1980",
+        "the-punk-rock-movie",
+        "PinkFloyd-TheWall1982",
+        "rolling-stones-gimme-shelter-1970",
+        "dig-2004-wearethelastbeatniks",
+        "until-the-light-takes-us"
       ]
     },
     {
