@@ -4073,6 +4073,32 @@
           "maxEntriesPerItem": 1,
           "rated": "R",
           "tag": "adult2_m"
+        },
+        {
+          "identifiers": [
+            "space-cases-1996-complete-series-vhs"
+          ],
+          "maxEntriesPerItem": 26,
+          "ignoreYear": true,
+          "tag": "foldin_a"
+        },
+        {
+          "identifiers": [
+            "space-precinct-1994"
+          ],
+          "maxEntriesPerItem": 24,
+          "ignoreYear": true,
+          "tag": "foldin_a"
+        },
+        {
+          "identifiers": [
+            "lexx-season-one",
+            "lexx-season2"
+          ],
+          "maxEntriesPerItem": 20,
+          "ignoreYear": true,
+          "tag": "foldin_a",
+          "rated": "R"
         }
       ]
     },
@@ -6139,6 +6165,14 @@
       "genre": "Comedy & Variety",
       "sources": [
         {
+          "identifiers": [
+            "late-late-show-craig-kilborn-ass-eps"
+          ],
+          "maxEntriesPerItem": 16,
+          "ignoreYear": true,
+          "tag": "foldin_a"
+        },
+        {
           "query": "(title:(\"johnny carson\" OR \"tonight show starring johnny\" OR \"tonight show with johnny\" OR \"carson show\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR tvarchive OR mirrortube OR bliptv OR fringe OR podcasts OR social-media-video OR deemphasize OR gorelicktv OR industry-archives OR movie_trailers_unsorted OR funnyordie) AND -identifier:(youtube-* OR BitChute-* OR tobacco_* OR OakleyTapes_* OR dvd-6* OR craig-ferguson-2005-2006-monologues-paranoidfellow-channel OR 20240915_20240915_0137 OR 01-jay-leno OR saturday.night.live.bilarabi*) AND -title:(\"vhs tape\" OR \"random tv\" OR uncensored OR strips OR playboy OR \"foxy boxing\" OR promo OR promos OR trailer OR commercial OR commercials OR logo OR mtv OR \"wack pack\" OR hefner OR whore OR pussy OR shitty OR \"traci lords\" OR german OR español OR \"sub español\" OR arabi OR bilarabi OR rogan OR sennett OR maverick) AND -title:(password OR \"do you trust\" OR \"jack benny\" OR jell-o OR \"american masters\" OR rosie OR inaugural OR kit OR ben OR \"his favorite moments\" OR capitulo OR \"el show\" OR racist OR shorts OR park OR secret OR tennis OR reagan OR roast OR \"keeping up\" OR miscellaneous OR \"ordering information\" OR wcia OR wics OR donahue)",
           "ignoreYear": true,
           "maxEntries": 110,
@@ -6249,6 +6283,15 @@
           "maxEntriesPerItem": 99,
           "rated": "R",
           "tag": "adult4"
+        },
+        {
+          "identifiers": [
+            "insomniac-with-dave-attell_202506"
+          ],
+          "maxEntriesPerItem": 44,
+          "ignoreYear": true,
+          "tag": "foldin_a",
+          "rated": "R"
         }
       ]
     },
@@ -8746,6 +8789,14 @@
           "maxEntriesPerItem": 2,
           "maxEntries": 12,
           "rated": "R"
+        },
+        {
+          "identifiers": [
+            "talksoup"
+          ],
+          "maxEntriesPerItem": 24,
+          "ignoreYear": true,
+          "tag": "foldin_a"
         }
       ]
     },
@@ -8755,6 +8806,22 @@
       "logo": "Logos/4x3/gavel.png",
       "genre": "Drama & Classic TV",
       "sources": [
+        {
+          "identifiers": [
+            "JJBEC_202501"
+          ],
+          "maxEntriesPerItem": 6,
+          "ignoreYear": true,
+          "tag": "foldin_a"
+        },
+        {
+          "identifiers": [
+            "judge-judy-kids-fight-over-a-bat"
+          ],
+          "maxEntriesPerItem": 1,
+          "ignoreYear": true,
+          "tag": "foldin_a"
+        },
         {
           "identifiers": [
             "judge-judy-25th-anniversary"
@@ -8800,6 +8867,15 @@
         {
           "query": "(title:(\"judge rinder\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR jpn OR chi OR hin OR kor OR tur) AND -collection:(audio_sermons OR audio_religion OR sermonindex) AND -subject:(sermon OR tbn OR worship OR \"praise the lord\") AND -collection:(tvnews OR tvarchive OR mirrortube OR social-media-video OR fringe OR deemphasize OR community_media OR movie_trailers OR funnyordie OR roosterteetharchive OR podcasts OR bliptv OR vlogs OR gamevideos) AND -identifier:(youtube-* OR yt_*) AND -title:(promo OR trailer OR bloopers OR intro OR credits OR logos OR teaser OR preview OR parody OR spoof OR \"funny or die\" OR \"vhs #\" OR \"tape #\" OR \"dvd+r\" OR \"market box\") AND -title:(clip OR clips OR opening OR commercials OR \"closing\" OR snl OR \"warner bros\" OR trump OR obama OR biden OR bernie OR impeachment OR mindblowing OR couric OR roseanne OR \"snark week\" OR \"monkey knife\" OR \"in mars\" OR \"drunk girl\" OR baby OR snow OR larson OR \"cade newton\" OR \"file #\" OR pokemon OR wendy OR \"days of our lives\" OR \"one life\" OR soccer OR gala OR \"5 pm news\" OR \"ten news\" OR neighbours OR tmz OR \"media funhouse\" OR \"it takes two\" OR \"real life\" OR \"throws shade\" OR \"vows to stop\" OR raped OR rape OR murder OR \"jayi\" OR \"beauty queens\" OR \"drug test\" OR promotion OR commercial OR \"al-angry\" OR firebat OR pops) AND -identifier:(00047349-*)",
           "ignoreYear": true
+        },
+        {
+          "identifiers": [
+            "peoples-court-kwwl-1993",
+            "JoeBrown"
+          ],
+          "maxEntriesPerItem": 6,
+          "ignoreYear": true,
+          "tag": "foldin_a"
         }
       ]
     },
@@ -9925,6 +10001,55 @@
           "maxEntriesPerItem": 4,
           "rated": "R",
           "tag": "adult2_c"
+        },
+        {
+          "identifiers": [
+            "hard-copy-full-episodes",
+            "hard-copy-colleen-applegate-1990",
+            "inside-edition-elvis-presley-1992"
+          ],
+          "maxEntriesPerItem": 10,
+          "ignoreYear": true,
+          "tag": "foldin_a"
+        },
+        {
+          "identifiers": [
+            "hard-copy-11-27-1989",
+            "hard-copy-january-29-1994",
+            "Hard_Copy_Michael_Jackson_1993-11-22",
+            "hard-copy-march-13-1992",
+            "entertainment-tonight-hard-copy-may-8-1995",
+            "HardCopyO.J.SimpsonInTheDreamOfHamishMose",
+            "capture-a-280",
+            "capture-a-303",
+            "capture-a-5300",
+            "capture-a-8029",
+            "insideedition19980501",
+            "InsideEditionNovember81999",
+            "inside-edition-january-10-1991",
+            "may31993insideeditionrecordedoffwavytv10",
+            "InsideEditionMarch131991",
+            "InsideEditionMarch241992",
+            "insideeditioninsideweekend19971111",
+            "insideedition19961114",
+            "inside-edition-september-19th-1994",
+            "capture-a-1308",
+            "capture-a-2860",
+            "capture-a-4016",
+            "ACurrentAffairOctober171988",
+            "a-current-affair-11-25-1991-woc",
+            "a-current-affair-9-27-1990",
+            "a-current-affair-extra-october-24-1993",
+            "A_Current_Affair_FOX_WOC_1988-09-1x",
+            "wdsu-tv-new-orleans-a-current-affair-4-8-1993",
+            "a-current-affair-extra-3-10-1991",
+            "capture-a-6727",
+            "american-journal-february-5th-1997",
+            "capture-a-5310"
+          ],
+          "maxEntriesPerItem": 3,
+          "ignoreYear": true,
+          "tag": "foldin_a"
         }
       ]
     },
@@ -10114,6 +10239,56 @@
           "maxEntriesPerItem": 3,
           "rated": "R",
           "tag": "adult4"
+        },
+        {
+          "identifiers": [
+            "james-randi-psychic-investigator",
+            "crossing-over-still-a-skeptic-2004",
+            "SecretsofthePsychics",
+            "mysteries-of-the-unkown-psychic-powers-1988-hbovideo-vhs-rip"
+          ],
+          "maxEntriesPerItem": 6,
+          "ignoreYear": true,
+          "tag": "foldin_a"
+        },
+        {
+          "identifiers": [
+            "strange-but-true"
+          ],
+          "maxEntriesPerItem": 14,
+          "ignoreYear": true,
+          "tag": "foldin_a"
+        },
+        {
+          "identifiers": [
+            "AULVAC-ripleys-believe-it-or-not-2001-season-2-mpeg-4-xvi-d-avi",
+            "aulvac-ripleys-believe-it-or-not-2002-season-3-mpeg-4-xvi-d-avi_202405",
+            "AULVAC-ripleys-believe-it-or-not-2003-season-4-mpeg-4-xvi-d-avi"
+          ],
+          "maxEntriesPerItem": 6,
+          "ignoreYear": true,
+          "tag": "foldin_a"
+        },
+        {
+          "identifiers": [
+            "arthur-c-clarkes-mysterious-world-complete-series-1980",
+            "arthur-c-clarkes-world-of-strange-powers-complete-series-1985"
+          ],
+          "maxEntriesPerItem": 14,
+          "ignoreYear": true,
+          "tag": "foldin_a"
+        },
+        {
+          "identifiers": [
+            "The_Paranormal_Borderline_UPN_WOC_1996-03-19",
+            "Nostradamus_Sci-Fi_Channel_WOC_2000-10-14_12am",
+            "christopher-lee-ghosts-a-journey-into-the-paranormal-1991-full-paranormal-vhs-documentary-hd",
+            "haunted_lives_true_ghost_stories",
+            "encounters-bigfoot-aliens-ghosts-1994"
+          ],
+          "maxEntriesPerItem": 4,
+          "ignoreYear": true,
+          "tag": "foldin_a"
         }
       ]
     },
