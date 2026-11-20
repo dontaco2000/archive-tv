@@ -162,6 +162,16 @@ void main() {
         .channels.single.sources.single.maxSeconds, 600);
   });
 
+  test('a source maxBitrateKbps lifts the 3,000 kbps pick cap for that source only', () async {
+    final api = _SizedApi({'hd': 4100, 'sd': 1000}); // kbps of each item's only file
+    const lifted = Channel(number: 85, name: 'Date-Night', sources: [Source(query: 'x', maxBitrateKbps: 4500)]);
+    expect((await buildPool(lifted, config(minHours: 0), api)).map((e) => e.itemId), ['hd', 'sd']);
+    const plain = Channel(number: 27, name: 'Winners', sources: [Source(query: 'x')]);
+    expect((await buildPool(plain, config(minHours: 0), api)).map((e) => e.itemId), ['sd']);
+    expect(parseChannelConfig('{"channels":[{"number":85,"name":"D","sources":[{"query":"x","maxBitrateKbps":4500}]}]}')
+        .channels.single.sources.single.maxBitrateKbps, 4500);
+  });
+
   test('weatherstar channels have no pool', () async {
     const wx = Channel(number: 1, name: 'Cumulus', type: 'weatherstar');
     expect(await buildPool(wx, config(), FakeApi({})), isEmpty);
@@ -293,4 +303,15 @@ void main() {
     const both = Source(query: 'a', maxEntriesPerItem: 4, maxEntries: 5);
     expect(capPerSource(pool, (_) => both).map((x) => x.id), ['jazz/000', 'jazz/033', 'jazz/067', 'rock/000', 'rock/001']);
   });
+}
+
+/// One 30-minute h.264 file per item, sized to the given kbps.
+class _SizedApi extends FakeApi {
+  final Map<String, int> kbps;
+  _SizedApi(this.kbps) : super({for (final k in kbps.keys) k: (1990, 30)});
+
+  @override
+  Future<ItemMeta?> metadata(String identifier) async => ItemMeta(identifier, title: identifier, files: [
+        ArchiveFile('$identifier.mp4', format: 'h.264', length: 1800, size: kbps[identifier]! * 1000 * 1800 ~/ 8),
+      ]);
 }

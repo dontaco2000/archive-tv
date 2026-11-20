@@ -40,6 +40,11 @@ class Source {
   /// clips, not 3-hour VHS blocks). Null = the picker's default (6 h).
   final int? maxSeconds;
 
+  /// Bitrate cap (kbps) for this source's files, overriding the picker's default 3,000 kbps (which keeps 1080p-only
+  /// items from making a channel slow to start). Set only where a show exists only above it (Date-Night's ~4,100 kbps
+  /// Blind Date / 5th Wheel items); weak players (Fire TV Stick Lite) may stall on such files. Null = default.
+  final int? maxBitrateKbps;
+
   /// Rare long programming (e.g. full races): entries of this source per local weekday, Monday first (7 values).
   /// Its entries leave the daily shuffle and air only as that many a day, placed by the date (see `rareBlocks`).
   /// Null = a normal source.
@@ -76,6 +81,7 @@ class Source {
     this.maxEntries,
     this.maxEntriesPerItem,
     this.maxSeconds,
+    this.maxBitrateKbps,
     this.mediatype = 'movies',
   });
 }

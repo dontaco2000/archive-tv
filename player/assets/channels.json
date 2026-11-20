@@ -1425,18 +1425,6 @@
         },
         {
           "identifiers": [
-            "Thundercats_Cartoon",
-            "thundercats_20250306",
-            "silverhawks-hd"
-          ],
-          "ignoreYear": true,
-          "maxEntriesPerItem": 10,
-          "tag": "funnies_saturday",
-          "label": "ThunderCats / SilverHawks",
-          "era": "80s"
-        },
-        {
-          "identifiers": [
             "transformers-season-1",
             "thetransformers1986",
             "challenge-of-the-gobots"
@@ -1461,8 +1449,6 @@
         },
         {
           "identifiers": [
-            "visionaries-full-series",
-            "jayce-and-the-wheeled-warriors-e-59",
             "starcomtheu.s.spaceforceUpscale",
             "DinoRidersEpisode1TheAdventureBegins",
             "bravestarr-english"
@@ -1860,8 +1846,7 @@
             39,
             40,
             41,
-            42,
-            43
+            42
           ]
         },
         {
@@ -1872,6 +1857,7 @@
           "start": "10:00",
           "end": "12:00",
           "sources": [
+            43,
             44,
             45,
             46,
@@ -1890,8 +1876,7 @@
             59,
             60,
             61,
-            62,
-            63
+            62
           ]
         }
       ]
@@ -1920,7 +1905,6 @@
         {
           "identifiers": [
             "Batman1943Chapter01TheElectricalBrain",
-            "batman-and-robin-movie-serial-1949_202205",
             "batman.-the.-movie.-1966.i",
             "episode-1_202302"
           ],
@@ -1931,8 +1915,6 @@
           "identifiers": [
             "MaxFleischerSuperman",
             "TheAdventuresOfSuperman",
-            "superman-1948_202205",
-            "atom-man-vs-superman-serial",
             "superman-the-animated-series-season-1"
           ],
           "maxEntriesPerItem": 17,
@@ -2012,12 +1994,6 @@
           "ignoreYear": true
         },
         {
-          "query": "(identifier:(captain_america_ep* OR green_hornet_ep* OR AdventuresOfCaptainMarvelChapters112 OR ThePhantom1943Serial-15Chapters)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie OR game_replays OR us_congress) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR CLE-* OR NJY-* OR VHS-0* OR mubd1234ama-*) AND -title:(trailer OR promo OR promos OR teaser OR commercial OR commercials OR credits OR intro OR opening OR bumper OR parody OR spoof OR \"vhs tape\" OR \"vhs fb\" OR \"random tv\" OR \"taped over\" OR review OR reaction OR \"every movie ever\" OR longplay OR mashup)",
-          "ignoreYear": true,
-          "maxEntries": 45,
-          "maxEntriesPerItem": 15
-        },
-        {
           "identifiers": [
             "GreenHornetTV"
           ],
@@ -2093,11 +2069,11 @@
             9,
             10,
             11,
+            14,
             15,
             16,
             17,
-            18,
-            19
+            18
           ]
         }
       ]
@@ -3725,29 +3701,6 @@
       "sources": [
         {
           "identifiers": [
-            "star-trek-1x-01-the-cage_20231231",
-            "star-trek-tas-s-01-e-05"
-          ],
-          "maxEntriesPerItem": 30,
-          "ignoreYear": true
-        },
-        {
-          "identifiers": [
-            "ST9_mp4"
-          ],
-          "maxEntriesPerItem": 40,
-          "ignoreYear": true
-        },
-        {
-          "identifiers": [
-            "star-trek-voyager-s-1-e-1-caretaker",
-            "star-trek-enterprise-complete"
-          ],
-          "maxEntriesPerItem": 24,
-          "ignoreYear": true
-        },
-        {
-          "identifiers": [
             "stargate-movie",
             "season-2-ep-6-thors-chariot",
             "season-3-ep-7-deadman-switch",
@@ -3960,27 +3913,6 @@
         },
         {
           "identifiers": [
-            "twilight-zone-season-one-DVD",
-            "the-twilight-zone-season-2_202411",
-            "the-twilight-zone-s-2-e-1-colorized-720p-hd",
-            "the-twilight-zone-s-3e-1-colorized-720p-hd",
-            "the-twilight-zone-s-4e-3-colorized-720p-hd",
-            "twilight-zone-1985-1x-01-shatterday"
-          ],
-          "maxEntriesPerItem": 12,
-          "ignoreYear": true,
-          "maxEntries": 60
-        },
-        {
-          "identifiers": [
-            "the-outer-limits-1963-season-1",
-            "OuterLimitsPilot"
-          ],
-          "maxEntriesPerItem": 16,
-          "ignoreYear": true
-        },
-        {
-          "identifiers": [
             "buck-rogers-01-the-awakening",
             "buck-rogers-1939-serial-colorized"
           ],
@@ -4019,21 +3951,10 @@
           "ignoreYear": true
         },
         {
-          "query": "(title:(\"flash gordon\" OR \"rocky jones\" OR \"captain video\" OR \"space patrol\" OR \"tom corbett\" OR \"commando cody\" OR \"radar men from the moon\" OR \"zombies of the stratosphere\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie OR game_replays OR us_congress) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR CLE-* OR NJY-* OR VHS-0* OR mubd1234ama-*) AND -title:(trailer OR promo OR promos OR teaser OR commercial OR commercials OR credits OR intro OR opening OR bumper OR parody OR spoof OR \"vhs tape\" OR \"vhs fb\" OR \"random tv\" OR \"taped over\" OR review OR reaction OR \"every movie ever\" OR longplay OR mashup) AND -title:(longplay OR speedrun OR gameplay OR walkthrough OR c64 OR a2600 OR nes OR activision OR toy OR toys OR fan OR \"fan film\" OR reaction OR \"screen recording\") AND downloads:[2000 TO 99999999] AND -title:(1980 OR \"blu ray\" OR fzmovies OR vcd OR 2007 OR \"the movie\" OR comic OR audiobook OR radio OR \"otr\" OR mst3k OR \"mystery science\" OR rocketmen OR \"burns and allen\") AND -identifier:(GracieAllenSpaceGirls)",
+          "query": "(title:(\"rocky jones\" OR \"captain video\" OR \"space patrol\" OR \"tom corbett\" OR \"commando cody\" OR \"radar men from the moon\" OR \"zombies of the stratosphere\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR movie_trailers OR mirrortube OR fringe OR deemphasize OR podcasts OR gamevideos OR bliptv OR funnyordie OR game_replays OR us_congress) AND -identifier:(youtube-* OR yt_* OR twitter-* OR g4tv.com-* OR CLE-* OR NJY-* OR VHS-0* OR mubd1234ama-*) AND -title:(trailer OR promo OR promos OR teaser OR commercial OR commercials OR credits OR intro OR opening OR bumper OR parody OR spoof OR \"vhs tape\" OR \"vhs fb\" OR \"random tv\" OR \"taped over\" OR review OR reaction OR \"every movie ever\" OR longplay OR mashup) AND -title:(longplay OR speedrun OR gameplay OR walkthrough OR c64 OR a2600 OR nes OR activision OR toy OR toys OR fan OR \"fan film\" OR reaction OR \"screen recording\") AND downloads:[2000 TO 99999999] AND -title:(1980 OR \"blu ray\" OR fzmovies OR vcd OR 2007 OR \"the movie\" OR comic OR audiobook OR radio OR \"otr\" OR mst3k OR \"mystery science\" OR rocketmen OR \"burns and allen\") AND -identifier:(GracieAllenSpaceGirls)",
           "ignoreYear": true,
           "maxEntries": 30,
           "maxEntriesPerItem": 5
-        },
-        {
-          "identifiers": [
-            "tales-of-tomorrow-1951-53",
-            "science-fiction-theatre-season-1",
-            "science-fiction-theatre-season-2",
-            "one-step-beyond",
-            "AmazingStories"
-          ],
-          "maxEntriesPerItem": 12,
-          "ignoreYear": true
         },
         {
           "identifiers": [
@@ -6253,14 +6174,6 @@
       "genre": "Comedy & Variety",
       "sources": [
         {
-          "identifiers": [
-            "late-late-show-craig-kilborn-ass-eps"
-          ],
-          "maxEntriesPerItem": 16,
-          "ignoreYear": true,
-          "tag": "foldin_a"
-        },
-        {
           "query": "(title:(\"johnny carson\" OR \"tonight show starring johnny\" OR \"tonight show with johnny\" OR \"carson show\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR tvarchive OR mirrortube OR bliptv OR fringe OR podcasts OR social-media-video OR deemphasize OR gorelicktv OR industry-archives OR movie_trailers_unsorted OR funnyordie) AND -identifier:(youtube-* OR BitChute-* OR tobacco_* OR OakleyTapes_* OR dvd-6* OR craig-ferguson-2005-2006-monologues-paranoidfellow-channel OR 20240915_20240915_0137 OR 01-jay-leno OR saturday.night.live.bilarabi*) AND -title:(\"vhs tape\" OR \"random tv\" OR uncensored OR strips OR playboy OR \"foxy boxing\" OR promo OR promos OR trailer OR commercial OR commercials OR logo OR mtv OR \"wack pack\" OR hefner OR whore OR pussy OR shitty OR \"traci lords\" OR german OR español OR \"sub español\" OR arabi OR bilarabi OR rogan OR sennett OR maverick) AND -title:(password OR \"do you trust\" OR \"jack benny\" OR jell-o OR \"american masters\" OR rosie OR inaugural OR kit OR ben OR \"his favorite moments\" OR capitulo OR \"el show\" OR racist OR shorts OR park OR secret OR tennis OR reagan OR roast OR \"keeping up\" OR miscellaneous OR \"ordering information\" OR wcia OR wics OR donahue)",
           "ignoreYear": true,
           "maxEntries": 110,
@@ -6303,7 +6216,7 @@
           "maxEntriesPerItem": 4
         },
         {
-          "query": "(title:(\"late late show\" OR \"tom snyder\" OR \"tomorrow show\" OR \"tomorrow with tom\" OR kilborn OR \"craig ferguson\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR tvarchive OR mirrortube OR bliptv OR fringe OR podcasts OR social-media-video OR deemphasize OR gorelicktv OR industry-archives OR movie_trailers_unsorted OR funnyordie) AND -identifier:(youtube-* OR BitChute-* OR tobacco_* OR OakleyTapes_* OR dvd-6* OR craig-ferguson-2005-2006-monologues-paranoidfellow-channel OR 20240915_20240915_0137 OR 01-jay-leno OR saturday.night.live.bilarabi*) AND -title:(\"vhs tape\" OR \"random tv\" OR uncensored OR strips OR playboy OR \"foxy boxing\" OR promo OR promos OR trailer OR commercial OR commercials OR logo OR mtv OR \"wack pack\" OR hefner OR whore OR pussy OR shitty OR \"traci lords\" OR german OR español OR \"sub español\" OR arabi OR bilarabi OR rogan OR sennett OR maverick) AND -title:(corden OR lionel OR \"train layouts\" OR \"planet bluegrass\" OR survivor OR \"price is right\" OR \"maybe this time\" OR \"larry king\" OR weft OR alley OR tedx OR girl OR rté OR \"cliff richard\" OR locke OR vtv OR woio OR wcbs OR \"late late late\" OR dwi OR tvro OR \"prime time sunday\" OR \"tv guide awards\" OR \"peter fonda\")",
+          "query": "(title:(\"late late show\" OR \"tom snyder\" OR \"tomorrow show\" OR \"tomorrow with tom\" OR \"craig ferguson\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR tvarchive OR mirrortube OR bliptv OR fringe OR podcasts OR social-media-video OR deemphasize OR gorelicktv OR industry-archives OR movie_trailers_unsorted OR funnyordie) AND -identifier:(youtube-* OR BitChute-* OR tobacco_* OR OakleyTapes_* OR dvd-6* OR craig-ferguson-2005-2006-monologues-paranoidfellow-channel OR 20240915_20240915_0137 OR 01-jay-leno OR saturday.night.live.bilarabi* OR late-late-show-2008_202403 OR late-late-show-2010 OR late-late-show-2010-2) AND -title:(\"vhs tape\" OR \"random tv\" OR uncensored OR strips OR playboy OR \"foxy boxing\" OR promo OR promos OR trailer OR commercial OR commercials OR logo OR mtv OR \"wack pack\" OR hefner OR whore OR pussy OR shitty OR \"traci lords\" OR german OR español OR \"sub español\" OR arabi OR bilarabi OR rogan OR sennett OR maverick) AND -title:(corden OR lionel OR \"train layouts\" OR \"planet bluegrass\" OR survivor OR \"price is right\" OR \"maybe this time\" OR \"larry king\" OR weft OR alley OR tedx OR girl OR rté OR \"cliff richard\" OR locke OR vtv OR woio OR wcbs OR \"late late late\" OR dwi OR tvro OR \"prime time sunday\" OR \"tv guide awards\" OR \"peter fonda\" OR kilborn)",
           "ignoreYear": true,
           "maxEntries": 80,
           "maxEntriesPerItem": 5
@@ -6371,15 +6284,6 @@
           "maxEntriesPerItem": 99,
           "rated": "R",
           "tag": "adult4"
-        },
-        {
-          "identifiers": [
-            "insomniac-with-dave-attell_202506"
-          ],
-          "maxEntriesPerItem": 44,
-          "ignoreYear": true,
-          "tag": "foldin_a",
-          "rated": "R"
         }
       ]
     },
@@ -6979,20 +6883,6 @@
           "maxEntries": 25
         },
         {
-          "identifiers": [
-            "loveconnection-bmp"
-          ],
-          "ignoreYear": true,
-          "maxEntriesPerItem": 20,
-          "claim": true
-        },
-        {
-          "query": "(title:(\"newlywed game\" OR \"the new newlywed game\" OR \"dating game\" OR \"the dating game\" OR \"love connection\" OR \"tattletales\")) AND (collection:(gameshows OR gameshows_miscellaneous OR gameshow_tpir OR gameshow_jeopardy OR supermarket-sweep-shows OR password-gameshow)) AND -title:(uncensored OR adult OR \"x-rated\" OR bleeped) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR mirrortube OR movie_trailers OR podcasts OR podcasts-video OR cdromsoftware OR vintagesoftware OR videogameprev OR gamevideos OR audio_sermons OR audio_religion OR link-tv-archive) AND -title:(trailer OR promo OR \"dvd game\" OR \"interactive dvd\" OR longplay OR wii OR reaction OR capcut OR template OR \"secret word\" OR bloopers OR \"clock\")",
-          "ignoreYear": true,
-          "maxEntriesPerItem": 2,
-          "maxEntries": 45
-        },
-        {
           "query": "(title:(\"the gong show\" OR \"gong show\")) AND (collection:(gameshows OR gameshows_miscellaneous OR gameshow_tpir OR gameshow_jeopardy OR supermarket-sweep-shows OR password-gameshow)) AND -title:(movie OR \"chuck barris\") AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR mirrortube OR movie_trailers OR podcasts OR podcasts-video OR cdromsoftware OR vintagesoftware OR videogameprev OR gamevideos OR audio_sermons OR audio_religion OR link-tv-archive) AND -title:(trailer OR promo OR \"dvd game\" OR \"interactive dvd\" OR longplay OR wii OR reaction OR capcut OR template OR \"secret word\" OR bloopers OR \"clock\")",
           "ignoreYear": true,
           "maxEntriesPerItem": 1,
@@ -7082,20 +6972,10 @@
           "maxEntries": 60
         },
         {
-          "query": "(subject:(\"game show\" OR \"game shows\") AND -title:(\"this or that\" OR \"crystal maze\" OR knightmare OR \"weakest link\" OR \"deal or no deal\" OR \"the chase\" OR takeshi OR \"university challenge\" OR mtv OR gamesmaster OR taskmaster OR skatoony) AND -identifier:(TT* OR T-T* OR \"017395\" OR \"012145\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR mirrortube OR movie_trailers OR podcasts OR podcasts-video OR cdromsoftware OR vintagesoftware OR videogameprev OR gamevideos OR audio_sermons OR audio_religion OR link-tv-archive) AND -title:(trailer OR promo OR \"dvd game\" OR \"interactive dvd\" OR longplay OR wii OR reaction OR capcut OR template OR \"secret word\" OR bloopers OR \"clock\") AND -collection:(dvdtray OR vhstvshows OR classic_tv_1950s OR classic_tv_1960s) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR religious OR evangelist)",
+          "query": "(subject:(\"game show\" OR \"game shows\") AND -title:(\"this or that\" OR \"crystal maze\" OR knightmare OR \"weakest link\" OR \"deal or no deal\" OR \"the chase\" OR takeshi OR \"university challenge\" OR mtv OR gamesmaster OR taskmaster OR skatoony OR dating OR newlywed OR \"love connection\" OR elimidate OR \"blind date\" OR \"singled out\" OR tattletales) AND -identifier:(TT* OR T-T* OR \"017395\" OR \"012145\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -collection:(tvnews OR mirrortube OR movie_trailers OR podcasts OR podcasts-video OR cdromsoftware OR vintagesoftware OR videogameprev OR gamevideos OR audio_sermons OR audio_religion OR link-tv-archive) AND -title:(trailer OR promo OR \"dvd game\" OR \"interactive dvd\" OR longplay OR wii OR reaction OR capcut OR template OR \"secret word\" OR bloopers OR \"clock\") AND -collection:(dvdtray OR vhstvshows OR classic_tv_1950s OR classic_tv_1960s) AND -subject:(christian OR christianity OR gospel OR church OR sermon OR sermons OR \"praise the lord\" OR tbn OR worship OR bible OR religious OR evangelist)",
           "ignoreYear": true,
           "maxEntriesPerItem": 12,
           "maxEntries": 60
-        },
-        {
-          "identifiers": [
-            "ElimiDate_Various_Episodes",
-            "capture-a-5474"
-          ],
-          "ignoreYear": true,
-          "maxEntriesPerItem": 100,
-          "rated": "R",
-          "tag": "adult3"
         },
         {
           "identifiers": [
@@ -7104,36 +6984,6 @@
           ],
           "ignoreYear": true,
           "maxEntriesPerItem": 1,
-          "rated": "R",
-          "tag": "adult3"
-        },
-        {
-          "identifiers": [
-            "mtv-a-shot-at-love",
-            "flavor-of-love-season-1-episode-1-reality-tv-full-episodes-480p",
-            "flavor-of-love-season-1-episode-1-reality-tv-full-episodes",
-            "flavor-of-love-season-1-episode-3-reality-tv-full-episodes-480p",
-            "rock-of-love-charm-school-s-01-e-01",
-            "real-chance-of-love-s-1-ep-1",
-            "real-chance-of-love-s-1-ep-2",
-            "blind-date-2001-episode",
-            "mtv-dis-missed-miami.-rafael-priscilla-yakira-danielle-joey-justin-season-3",
-            "mtv-dis-missed-miami.-kymie-jack-joe-yasmine-jasmine-owen-season-3",
-            "mtv-dis-missed.-richard-cat-jaime-s-2-brandon-jessica-kristy-s-1",
-            "mtv-dis-missed.-erin-mikey-doug-danica-steven-chris-season-1",
-            "mtv-dis-missed.-venessa-tommy-david-kevin-kristine-ana-season-2_202603",
-            "mtv-dis-missed.-melinda-chad-steve-johnny-sherrae-faloon.-season-3",
-            "mtv-dis-missed.-mark-arielle-esperanza-joselynne-paul-tommy.-season-3",
-            "mtv-dis-missed.-brandon-amy-arlen-natasha-marty-rob.-season-1_202603",
-            "mtv-dis-missed-miami.-elizabeth-jarrod-john-blake-janice-jennifer-season-3",
-            "mtv-dis-missed-miami.-john-adam-kim-jullian-annie-maria-season-3",
-            "mtv-dis-missed.-kitty-sean-brendan-chris-varelie-danielle-season-3",
-            "mtv-dis-missed-miami.-matt-lisa-cyra-ingrid-daniel-christian-season-3_202609",
-            "mtv-dis-missed.-josh-jenna-angela-adrienne-che-solomon.-season-2",
-            "mtv-dis-missed-miami.-celine-grant-josh-daniel-leah-janelle-season-3"
-          ],
-          "ignoreYear": true,
-          "maxEntriesPerItem": 30,
           "rated": "R",
           "tag": "adult3"
         },
@@ -7153,13 +7003,9 @@
         },
         {
           "identifiers": [
-            "mtv-singled-out-marathon-dec.-1996",
-            "mtv-singled-out-marathon-dec.-1996_202209",
-            "singled-out-26-9-98",
             "mtvs-trashed-4-12-1994",
             "2023-02-10-22-17-17",
             "bromance.-s-01-e-03.-dsr.-xvi-d-sai-nts",
-            "mtv-ne-xt.-stephanie-evan.-season-2",
             "remote-control-spring-break"
           ],
           "ignoreYear": true,
@@ -8711,7 +8557,6 @@
             "jerry-springer-secrets-and-surprises",
             "jerry-springer-uk-october-1999-partial",
             "video-output-C1A9A143-74C6-44BE-A4B5-08BA04FFF16F-1",
-            "the-jerry-springer-show-various-episodes",
             "the-jerry-springer-show-various-episodes-pt-2"
           ],
           "ignoreYear": true,
@@ -8737,7 +8582,6 @@
             "the-richard-bey-show-two-timing-dads-1995",
             "the-richard-bey-show-3-strikes-and-youre-out-incomplete",
             "richard-bey-truster",
-            "mortdowneyjrcollection",
             "morton-downey-jr-show-heavy-metal-1989"
           ],
           "ignoreYear": true,
@@ -8885,6 +8729,24 @@
           "maxEntriesPerItem": 24,
           "ignoreYear": true,
           "tag": "foldin_a"
+        },
+        {
+          "identifiers": [
+            "the-jerry-springer-show-various-episodes"
+          ],
+          "maxEntriesPerItem": 17,
+          "ignoreYear": true,
+          "rated": "R",
+          "tag": "merge5"
+        },
+        {
+          "identifiers": [
+            "mortdowneyjrcollection"
+          ],
+          "maxEntriesPerItem": 18,
+          "ignoreYear": true,
+          "rated": "R",
+          "tag": "merge5"
         }
       ]
     },
@@ -10050,7 +9912,6 @@
             "deadly-women-s10",
             "deadly-women-s11_202509",
             "episode-07-ice-cold",
-            "most-evil-killers",
             "hitman-serial-killer-richard-kuklinski-the-iceman-interview-documentary",
             "youtube-6kvXzG8ICV0",
             "America_Undercover_Teen_Killers_A_Second_Chance_HBO_1998-10",
@@ -10138,6 +9999,15 @@
           "maxEntriesPerItem": 3,
           "ignoreYear": true,
           "tag": "foldin_a"
+        },
+        {
+          "identifiers": [
+            "most-evil-killers"
+          ],
+          "maxEntriesPerItem": 8,
+          "ignoreYear": true,
+          "rated": "R",
+          "tag": "merge5"
         }
       ]
     },
@@ -14256,6 +14126,18 @@
           "ignoreYear": true,
           "maxEntriesPerItem": 20,
           "tag": "newch_f"
+        },
+        {
+          "identifiers": [
+            "Thundercats_Cartoon",
+            "thundercats_20250306",
+            "silverhawks-hd",
+            "visionaries-full-series",
+            "jayce-and-the-wheeled-warriors-e-59"
+          ],
+          "ignoreYear": true,
+          "maxEntriesPerItem": 20,
+          "tag": "merge5"
         }
       ]
     },
@@ -16231,18 +16113,6 @@
           "maxEntriesPerItem": 1
         },
         {
-          "query": "(title:(\"yo! mtv raps\" OR \"yo mtv raps\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -identifier:(youtube-* OR twitter-* OR facebook-* OR TikTok-* OR bliptv-* OR g4tv.com-* OR dailymotion-* OR yt_*) AND -collection:(mirrortube OR bliptv OR podcasts OR twitchstreams OR tvnews OR tvarchive OR fringe OR deemphasize OR movie_trailers) AND -title:(reaction OR reacts OR review OR podcast OR karaoke OR tutorial OR gameplay OR \"full album\" OR remix OR \"lyric video\" OR loveline OR \"real world\" OR \"road rules\" OR jackass OR \"tom green\" OR \"fear factor\" OR \"parental control\" OR germany OR interview OR playlist OR medley OR \"ft.\" OR feat OR report)",
-          "ignoreYear": true,
-          "maxEntries": 30,
-          "maxEntriesPerItem": 2
-        },
-        {
-          "query": "(title:(\"mtv unplugged\") AND collection:(musictelevision OR vhsconcerts_music OR vhstvshows)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -identifier:(youtube-* OR twitter-* OR facebook-* OR TikTok-* OR bliptv-* OR g4tv.com-* OR dailymotion-* OR yt_*) AND -collection:(mirrortube OR bliptv OR podcasts OR twitchstreams OR tvnews OR tvarchive OR fringe OR deemphasize OR movie_trailers) AND -title:(reaction OR reacts OR review OR podcast OR karaoke OR tutorial OR gameplay OR \"full album\" OR remix OR \"lyric video\" OR loveline OR \"real world\" OR \"road rules\" OR jackass OR \"tom green\" OR \"fear factor\" OR \"parental control\" OR germany OR interview OR playlist OR medley OR \"ft.\" OR feat OR report)",
-          "ignoreYear": true,
-          "maxEntries": 25,
-          "maxEntriesPerItem": 1
-        },
-        {
           "query": "(title:(vh1 OR \"vh 1\" OR vh-1) AND collection:(musictelevision OR vhstvshows OR vhsconcerts_music) AND title:(storytellers OR \"behind the music\" OR legends OR classic OR countdown OR \"top 40\" OR \"top 20\" OR alternative OR heavy OR hits OR \"video hits\" OR \"rock\" OR videos)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -identifier:(youtube-* OR twitter-* OR facebook-* OR TikTok-* OR bliptv-* OR g4tv.com-* OR dailymotion-* OR yt_*) AND -collection:(mirrortube OR bliptv OR podcasts OR twitchstreams OR tvnews OR tvarchive OR fringe OR deemphasize OR movie_trailers) AND -title:(reaction OR reacts OR review OR podcast OR karaoke OR tutorial OR gameplay OR \"full album\" OR remix OR \"lyric video\" OR loveline OR \"real world\" OR \"road rules\" OR jackass OR \"tom green\" OR \"fear factor\" OR \"parental control\" OR germany OR interview OR playlist OR medley OR \"ft.\" OR feat OR report) AND -title:(\"pop-up\" OR \"pop up\" OR unplugged)",
           "ignoreYear": true,
           "maxEntries": 60,
@@ -16322,7 +16192,6 @@
             "singled-out-26-9-98",
             "20240920_20240920_2332",
             "mtv-a-shot-at-love",
-            "temptation-island",
             "flavor-of-love-season-1-episode-1-reality-tv-full-episodes-480p",
             "flavor-of-love-season-1-episode-3-reality-tv-full-episodes-480p",
             "real-chance-of-love-s-1-ep-1",
@@ -16340,12 +16209,36 @@
             "mtv-dis-missed.-kitty-sean-brendan-chris-varelie-danielle-season-3",
             "mtv-dis-missed-miami.-matt-lisa-cyra-ingrid-daniel-christian-season-3_202609",
             "mtv-dis-missed.-josh-jenna-angela-adrienne-che-solomon.-season-2",
-            "mtv-dis-missed-miami.-celine-grant-josh-daniel-leah-janelle-season-3"
+            "mtv-dis-missed-miami.-celine-grant-josh-daniel-leah-janelle-season-3",
+            "rock-of-love-charm-school-s-01-e-01",
+            "mtv-ne-xt.-stephanie-evan.-season-2"
           ],
           "maxEntriesPerItem": 3,
           "ignoreYear": true,
           "rated": "R",
           "tag": "newch_h"
+        },
+        {
+          "identifiers": [
+            "blind-date-chris-brenda-2000",
+            "5th-wheel-randy-redhead-2002",
+            "shipmates-natasha-jeff-2000"
+          ],
+          "maxEntriesPerItem": 40,
+          "ignoreYear": true,
+          "maxBitrateKbps": 4500,
+          "rated": "R",
+          "tag": "merge5"
+        },
+        {
+          "identifiers": [
+            "temptation-island"
+          ],
+          "maxEntriesPerItem": 10,
+          "ignoreYear": true,
+          "maxBitrateKbps": 4500,
+          "rated": "R",
+          "tag": "merge5"
         }
       ]
     },
@@ -16417,6 +16310,16 @@
           "ignoreYear": true,
           "tag": "newch_i",
           "rated": "R"
+        },
+        {
+          "identifiers": [
+            "late-late-show-2008_202403",
+            "late-late-show-2010",
+            "late-late-show-2010-2"
+          ],
+          "maxEntriesPerItem": 30,
+          "ignoreYear": true,
+          "tag": "merge5"
         }
       ]
     },

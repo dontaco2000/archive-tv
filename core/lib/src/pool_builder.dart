@@ -163,7 +163,8 @@ Future<List<Entry>> _collect(
   await forEachLimited(hitsToFetch, concurrency, (id) async {
     try {
       final maxS = sourceOf[id]?.maxSeconds;
-      final key = '$id|$maxS'; // the picks depend on the finding source's maxSeconds
+      final kbps = sourceOf[id]?.maxBitrateKbps;
+      final key = '$id|$maxS|$kbps'; // the picks depend on the finding source's maxSeconds and bitrate cap
       var picks = metas[key];
       if (picks == null) {
         final meta = await api.metadata(id);
@@ -171,7 +172,8 @@ Future<List<Entry>> _collect(
             ? const []
             : pickEntries(meta,
                 minSeconds: _minSeconds(channel),
-                maxSeconds: maxS == null ? 6 * 3600 : maxS.toDouble());
+                maxSeconds: maxS == null ? 6 * 3600 : maxS.toDouble(),
+                maxKbps: kbps?.toDouble() ?? 3000);
       }
       for (final e in picks) {
         if (!_excluded(config, e)) byId.putIfAbsent(e.id, () => e);
