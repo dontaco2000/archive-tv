@@ -13444,6 +13444,76 @@
       ]
     },
     {
+      "number": 64,
+      "name": "Sockhop",
+      "logo": "Logos/4x3/sockhop.png",
+      "genre": "Music",
+      "sources": [
+        {
+          "query": "(title:(\"american bandstand\") AND (date:[1950-01-01 TO 1979-12-31] OR title:(1950 OR 1951 OR 1952 OR 1953 OR 1954 OR 1955 OR 1956 OR 1957 OR 1958 OR 1959 OR 1960 OR 1961 OR 1962 OR 1963 OR 1964 OR 1965 OR 1966 OR 1967 OR 1968 OR 1969 OR 1970 OR 1971 OR 1972 OR 1973 OR 1974 OR 1975 OR 1976 OR 1977 OR 1978 OR 1979))) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -identifier:(youtube-* OR twitter-* OR facebook-* OR TikTok-* OR bliptv-* OR g4tv.com-* OR dailymotion-* OR yt_* OR OakleyTapes_*) AND -collection:(mirrortube OR bliptv OR podcasts OR twitchstreams OR tvnews OR tvarchive OR fringe OR deemphasize OR movie_trailers) AND -title:(reaction OR reacts OR review OR podcast OR karaoke OR tutorial OR remix OR \"lyric video\" OR interview OR interviews OR trailer OR promo OR commercial OR commercials OR \"vhs tape\" OR vh1 OR \"vh 1\" OR mtv OR cbeebies OR zingzillas OR cranium OR firefly OR documentary OR \"behind the music\") AND -title:(1980 OR 1981 OR 1982 OR 1983 OR 1984 OR 1985 OR 1986 OR 1987 OR 1988 OR 1989 OR 1990 OR 1991 OR 1992 OR 1993 OR 1994 OR 1995 OR 1996 OR 1997 OR 1998 OR 1999) AND -identifier:(tape-36-rare-music)",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 2
+        },
+        {
+          "query": "(title:(\"soul train\") AND ((date:[1950-01-01 TO 1979-12-31] OR title:(1950 OR 1951 OR 1952 OR 1953 OR 1954 OR 1955 OR 1956 OR 1957 OR 1958 OR 1959 OR 1960 OR 1961 OR 1962 OR 1963 OR 1964 OR 1965 OR 1966 OR 1967 OR 1968 OR 1969 OR 1970 OR 1971 OR 1972 OR 1973 OR 1974 OR 1975 OR 1976 OR 1977 OR 1978 OR 1979)) OR title:(\"season 1\" OR \"season 2\" OR \"season 3\" OR \"season 4\" OR \"season 5\" OR \"season 6\" OR \"season 7\" OR \"season 8\" OR \"season 9\"))) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -identifier:(youtube-* OR twitter-* OR facebook-* OR TikTok-* OR bliptv-* OR g4tv.com-* OR dailymotion-* OR yt_* OR OakleyTapes_*) AND -collection:(mirrortube OR bliptv OR podcasts OR twitchstreams OR tvnews OR tvarchive OR fringe OR deemphasize OR movie_trailers) AND -title:(reaction OR reacts OR review OR podcast OR karaoke OR tutorial OR remix OR \"lyric video\" OR interview OR interviews OR trailer OR promo OR commercial OR commercials OR \"vhs tape\" OR vh1 OR \"vh 1\" OR mtv OR cbeebies OR zingzillas OR cranium OR firefly OR documentary OR \"behind the music\") AND -title:(1980 OR 1981 OR 1982 OR 1983 OR 1984 OR 1985 OR 1986 OR 1987 OR 1988 OR 1989 OR 1990 OR 1991 OR 1992 OR 1993 OR 1994 OR 1995 OR 1996 OR 1997 OR 1998 OR 1999) AND -title:(awards OR phish OR \"line dance\" OR \"rap city\" OR hippy OR tribute OR \"soul train line\")",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 2
+        },
+        {
+          "query": "(title:(shindig OR hullabaloo OR \"where the action is\") AND (title:(1950 OR 1951 OR 1952 OR 1953 OR 1954 OR 1955 OR 1956 OR 1957 OR 1958 OR 1959 OR 1960 OR 1961 OR 1962 OR 1963 OR 1964 OR 1965 OR 1966 OR 1967 OR 1968 OR 1969 OR 1970 OR 1971 OR 1972 OR 1973 OR 1974 OR 1975 OR 1976 OR 1977 OR 1978 OR 1979)) OR title:(shindig OR hullabaloo OR \"where the action is\") AND collection:(classic_tv_1960s OR classic_tv)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -identifier:(youtube-* OR twitter-* OR facebook-* OR TikTok-* OR bliptv-* OR g4tv.com-* OR dailymotion-* OR yt_* OR OakleyTapes_*) AND -collection:(mirrortube OR bliptv OR podcasts OR twitchstreams OR tvnews OR tvarchive OR fringe OR deemphasize OR movie_trailers) AND -title:(reaction OR reacts OR review OR podcast OR karaoke OR tutorial OR remix OR \"lyric video\" OR interview OR interviews OR trailer OR promo OR commercial OR commercials OR \"vhs tape\" OR vh1 OR \"vh 1\" OR mtv OR cbeebies OR zingzillas OR cranium OR firefly OR documentary OR \"behind the music\") AND -title:(muse OR game OR dvd OR \"vhs\")",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 2
+        },
+        {
+          "query": "(title:(\"top of the pops\") AND (date:[1950-01-01 TO 1979-12-31] OR title:(1950 OR 1951 OR 1952 OR 1953 OR 1954 OR 1955 OR 1956 OR 1957 OR 1958 OR 1959 OR 1960 OR 1961 OR 1962 OR 1963 OR 1964 OR 1965 OR 1966 OR 1967 OR 1968 OR 1969 OR 1970 OR 1971 OR 1972 OR 1973 OR 1974 OR 1975 OR 1976 OR 1977 OR 1978 OR 1979))) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -identifier:(youtube-* OR twitter-* OR facebook-* OR TikTok-* OR bliptv-* OR g4tv.com-* OR dailymotion-* OR yt_* OR OakleyTapes_*) AND -collection:(mirrortube OR bliptv OR podcasts OR twitchstreams OR tvnews OR tvarchive OR fringe OR deemphasize OR movie_trailers) AND -title:(reaction OR reacts OR review OR podcast OR karaoke OR tutorial OR remix OR \"lyric video\" OR interview OR interviews OR trailer OR promo OR commercial OR commercials OR \"vhs tape\" OR vh1 OR \"vh 1\" OR mtv OR cbeebies OR zingzillas OR cranium OR firefly OR documentary OR \"behind the music\") AND -title:(1980 OR 1981 OR 1982 OR 1983 OR 1984 OR 1985 OR 1986 OR 1987 OR 1988 OR 1989 OR 1990 OR 1991 OR 1992 OR 1993 OR 1994 OR 1995 OR 1996 OR 1997 OR 1998 OR 1999) AND -identifier:(topofthepops) AND -title:(savile OR saville OR \"jimmy s\" OR \"my top of the pops\")",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 2
+        },
+        {
+          "query": "(title:(\"ready steady go\" OR \"beat-club\" OR \"beat club\" OR \"beat club studio\" OR musikladen OR \"beat beat beat\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -identifier:(youtube-* OR twitter-* OR facebook-* OR TikTok-* OR bliptv-* OR g4tv.com-* OR dailymotion-* OR yt_* OR OakleyTapes_*) AND -collection:(mirrortube OR bliptv OR podcasts OR twitchstreams OR tvnews OR tvarchive OR fringe OR deemphasize OR movie_trailers) AND -title:(reaction OR reacts OR review OR podcast OR karaoke OR tutorial OR remix OR \"lyric video\" OR interview OR interviews OR trailer OR promo OR commercial OR commercials OR \"vhs tape\" OR vh1 OR \"vh 1\" OR mtv OR cbeebies OR zingzillas OR cranium OR firefly OR documentary OR \"behind the music\") AND -title:(dj OR \"dj set\" OR mix OR pdf OR teletubbies)",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 2
+        },
+        {
+          "query": "(title:(\"the midnight special\" OR \"midnight special\" OR \"don kirshner\" OR \"rock concert\") AND (title:(\"midnight special\" AND (nbc OR wolfman OR 1972 OR 1973 OR 1974 OR 1975 OR 1976 OR 1977 OR 1978 OR 1979 OR 1980 OR 1981 OR tv)) OR title:(kirshner))) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -identifier:(youtube-* OR twitter-* OR facebook-* OR TikTok-* OR bliptv-* OR g4tv.com-* OR dailymotion-* OR yt_* OR OakleyTapes_*) AND -collection:(mirrortube OR bliptv OR podcasts OR twitchstreams OR tvnews OR tvarchive OR fringe OR deemphasize OR movie_trailers) AND -title:(reaction OR reacts OR review OR podcast OR karaoke OR tutorial OR remix OR \"lyric video\" OR interview OR interviews OR trailer OR promo OR commercial OR commercials OR \"vhs tape\" OR vh1 OR \"vh 1\" OR mtv OR cbeebies OR zingzillas OR cranium OR firefly OR documentary OR \"behind the music\") AND -title:(creedence OR \"ccr\" OR \"lead belly\" OR leadbelly OR \"johnny rivers\" OR song OR \"midnight special (1\" OR album OR 1980 OR 1981) AND -identifier:(tape-36-rare-music)",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 3
+        },
+        {
+          "query": "(title:(\"hollywood palace\" OR \"your hit parade\" OR \"lucky strike hit parade\" OR \"ed sullivan show\") AND (date:[1950-01-01 TO 1979-12-31] OR title:(1950 OR 1951 OR 1952 OR 1953 OR 1954 OR 1955 OR 1956 OR 1957 OR 1958 OR 1959 OR 1960 OR 1961 OR 1962 OR 1963 OR 1964 OR 1965 OR 1966 OR 1967 OR 1968 OR 1969 OR 1970 OR 1971 OR 1972 OR 1973 OR 1974 OR 1975 OR 1976 OR 1977 OR 1978 OR 1979))) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -identifier:(youtube-* OR twitter-* OR facebook-* OR TikTok-* OR bliptv-* OR g4tv.com-* OR dailymotion-* OR yt_* OR OakleyTapes_*) AND -collection:(mirrortube OR bliptv OR podcasts OR twitchstreams OR tvnews OR tvarchive OR fringe OR deemphasize OR movie_trailers) AND -title:(reaction OR reacts OR review OR podcast OR karaoke OR tutorial OR remix OR \"lyric video\" OR interview OR interviews OR trailer OR promo OR commercial OR commercials OR \"vhs tape\" OR vh1 OR \"vh 1\" OR mtv OR cbeebies OR zingzillas OR cranium OR firefly OR documentary OR \"behind the music\") AND -title:(gleason OR \"jack benny\" OR harpo OR honeymooners OR \"toast of the town\" OR \"episode\" OR berle OR mireille OR christmas)",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 3
+        },
+        {
+          "identifiers": [
+            "beechnut-march1-1958",
+            "dick-clarks-live-wednesday-october-4-1978",
+            "dick-clarks-live-wednesday-october-19-1978",
+            "dick-clarks-live-wednesday-october-25-1978",
+            "dickclarkslivewednesday10181978",
+            "dickclarkslivewednesday1181978",
+            "dickclarkslivewednesday11151978",
+            "dickclarkslivewednesday11291978",
+            "dickclarkslivewednesday12201978",
+            "dickclarkslivewednesday12271978",
+            "ABC_1978-12-31_Dick_Clark_New_Year",
+            "american-bandstand-50th-anniversary-celebration-2002",
+            "motown-25-yesterday-today-forever-may-16-1983",
+            "motown-returns-to-the-apollo-1985-001",
+            "stax-volt-review-live-in-norway-7-april-1967",
+            "wattstax.-1973.1080p"
+          ],
+          "maxEntriesPerItem": 2,
+          "ignoreYear": true
+        },
+        {
+          "query": "(title:(\"donny and marie\" OR \"donny & marie\" OR \"captain and tennille\" OR \"captain & tennille\" OR \"glen campbell goodtime\" OR \"glen campbell music\" OR \"tony orlando\" OR \"sha na na\" OR \"kraft music hall\" OR \"andy williams show\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -identifier:(youtube-* OR twitter-* OR facebook-* OR TikTok-* OR bliptv-* OR g4tv.com-* OR dailymotion-* OR yt_* OR OakleyTapes_*) AND -collection:(mirrortube OR bliptv OR podcasts OR twitchstreams OR tvnews OR tvarchive OR fringe OR deemphasize OR movie_trailers) AND -title:(reaction OR reacts OR review OR podcast OR karaoke OR tutorial OR remix OR \"lyric video\" OR interview OR interviews OR trailer OR promo OR commercial OR commercials OR \"vhs tape\" OR vh1 OR \"vh 1\" OR mtv OR cbeebies OR zingzillas OR cranium OR firefly OR documentary OR \"behind the music\") AND -title:(christmas OR commercial OR berle OR roast OR \"jack benny\" OR 1999 OR 2000 OR 2001) AND -identifier:(tobacco_*)",
+          "ignoreYear": true,
+          "maxEntriesPerItem": 2
+        }
+      ]
+    },
+    {
       "number": 65,
       "name": "Champs",
       "logo": "Logos/4x3/champs.png",
