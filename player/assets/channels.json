@@ -11601,8 +11601,8 @@
     },
     {
       "number": 51,
-      "name": "Filmstrip",
-      "logo": "Logos/4x3/filmstrip.png",
+      "name": "Trainee",
+      "logo": "Logos/4x3/trainee.png",
       "genre": "News & Docs",
       "sources": [
         {
@@ -11650,7 +11650,7 @@
           ],
           "maxEntriesPerItem": 3,
           "ignoreYear": true,
-          "tag": "newch_g_filmstrip_g"
+          "tag": "newch_g_trainee_g"
         },
         {
           "identifiers": [
@@ -11697,7 +11697,7 @@
           ],
           "maxEntriesPerItem": 3,
           "ignoreYear": true,
-          "tag": "newch_g_filmstrip_g"
+          "tag": "newch_g_trainee_g"
         },
         {
           "identifiers": [
@@ -11744,7 +11744,7 @@
           ],
           "maxEntriesPerItem": 3,
           "ignoreYear": true,
-          "tag": "newch_g_filmstrip_g"
+          "tag": "newch_g_trainee_g"
         },
         {
           "identifiers": [
@@ -11791,7 +11791,7 @@
           ],
           "maxEntriesPerItem": 3,
           "ignoreYear": true,
-          "tag": "newch_g_filmstrip_g"
+          "tag": "newch_g_trainee_g"
         },
         {
           "identifiers": [
@@ -11838,7 +11838,7 @@
           ],
           "maxEntriesPerItem": 3,
           "ignoreYear": true,
-          "tag": "newch_g_filmstrip_g"
+          "tag": "newch_g_trainee_g"
         },
         {
           "identifiers": [
@@ -11885,7 +11885,7 @@
           ],
           "maxEntriesPerItem": 3,
           "ignoreYear": true,
-          "tag": "newch_g_filmstrip_g"
+          "tag": "newch_g_trainee_g"
         },
         {
           "identifiers": [
@@ -11896,7 +11896,7 @@
           ],
           "maxEntriesPerItem": 3,
           "ignoreYear": true,
-          "tag": "newch_g_filmstrip_g"
+          "tag": "newch_g_trainee_g"
         },
         {
           "identifiers": [
@@ -11943,7 +11943,7 @@
           ],
           "maxEntriesPerItem": 3,
           "ignoreYear": true,
-          "tag": "newch_g_filmstrip_c"
+          "tag": "newch_g_trainee_c"
         },
         {
           "identifiers": [
@@ -11956,7 +11956,7 @@
           ],
           "maxEntriesPerItem": 3,
           "ignoreYear": true,
-          "tag": "newch_g_filmstrip_c"
+          "tag": "newch_g_trainee_c"
         },
         {
           "identifiers": [
@@ -12003,7 +12003,7 @@
           ],
           "maxEntriesPerItem": 3,
           "ignoreYear": true,
-          "tag": "newch_g_filmstrip_n"
+          "tag": "newch_g_trainee_n"
         },
         {
           "identifiers": [
@@ -12050,7 +12050,7 @@
           ],
           "maxEntriesPerItem": 3,
           "ignoreYear": true,
-          "tag": "newch_g_filmstrip_n"
+          "tag": "newch_g_trainee_n"
         },
         {
           "identifiers": [
@@ -12080,7 +12080,160 @@
           ],
           "maxEntriesPerItem": 3,
           "ignoreYear": true,
-          "tag": "newch_g_filmstrip_n"
+          "tag": "newch_g_trainee_n"
+        },
+        {
+          "identifiers": [
+            "mcdonalds-training-film-1972",
+            "mc-donalds-employee-training-video-doing-whatever-it-takes-1992",
+            "mc-donalds-clean-it-training-video",
+            "mcdonalds-orientation",
+            "mc-donalds-breakfast-mc-donalds-australia-training-video",
+            "quality-hiring-mc-donalds-manager-training-video",
+            "grill-products-mc-donalds-australia-training-video",
+            "mc-donalds-inside-custodial-duties-training-video",
+            "mc-donalds-employee-video-food-folks-fun-1990",
+            "mcdonalds-taylor-milkshake-machine-training-tape-autumn-1989",
+            "fried-products-mc-donalds-australia-training-video_202408",
+            "food-safety-mc-donalds-manager-training-video",
+            "mc-donalds-western-omelette-mc-muffin",
+            "mc-donalds-food-library-1988",
+            "burger-king-cd-i-training-philips-cd-i-1997-upscaledno-subs-vers_202610",
+            "mcdonaldstrainingvideo",
+            "wendys-training-video-hot-drinks",
+            "wendys-training-video-cold-drinks-360p",
+            "wendys-training-video-chili-can-be-served-with-cheese_202109",
+            "wendys-grill-skills",
+            "wendys-new-employee-training-video-1987",
+            "the-fry-guy-wendys-training-video-2007",
+            "pizza-hut-training",
+            "subway-supervisor-training",
+            "sub-shop-2000-clerk",
+            "videoplayback-1_20211202",
+            "hardees-training-video-summer-1988",
+            "jack-in-the-box-burgers-training.-welcome-to-a-winning-team",
+            "chuck-e-cheeses-university-training-1991-full-training",
+            "FUNDRAISINGTRAINDVD",
+            "chuck-e-cheese-orientation-video-11-07",
+            "birthday-training-dvd",
+            "TheVistaGroup-FastFoodKitchenOperations1990s"
+          ],
+          "maxEntriesPerItem": 3,
+          "ignoreYear": true,
+          "tag": "trainee_ff"
+        },
+        {
+          "identifiers": [
+            "HACCPrecipeforsafeeating",
+            "gov.ntis.ava19664vnb1.01",
+            "gov.ntis.ava18185vnb1",
+            "FoodSafety",
+            "N8i2psZeWcdRTj47W4KwgtZNNgMasa",
+            "11394-hospital-food-service-personal-traning-part-iii-vwr_202103",
+            "10914hospitalfoodservicepersonaltraningpartiivwr",
+            "gov.dod.dimoc.35814",
+            "gov.dod.dimoc.35815",
+            "Cooking-KitchenSafety",
+            "the-danger-zone-a-food-safety-program-for-teens-1990",
+            "Restaura1946",
+            "Hoteland",
+            "AboutWine1981",
+            "60384AmericasHeritageOfHospitality",
+            "your-video-guide-to-professional-video-bartending-full-vhs",
+            "62234RestAssured",
+            "88154YourCareerInHotelManagement",
+            "65894-the-great-tradition-hotels-vwr",
+            "HousekeepingLaundryOperations",
+            "Starmaker.Training.Series.The.Difficult.Guest.2002",
+            "The_Difficult_Guest_Understanding_and_Serving_Difficult_Customers"
+          ],
+          "maxEntriesPerItem": 3,
+          "ignoreYear": true,
+          "tag": "trainee_food"
+        },
+        {
+          "identifiers": [
+            "BBV.Customer.Service.VHSCap-CG",
+            "blockbuster-training-video-1990-buster-sales-pt-2",
+            "youtube-Pc_yHON1oiQ",
+            "hollywood-video-play-it-safe_202604",
+            "a-video-tapes-journey",
+            "who-cares-wins",
+            "KmartADARippedSource",
+            "sears-kmart-employee-orientation-2013",
+            "rs-fo-107-conducting-the-new-employee-orientation",
+            "welcome-to-the-disney-store-1992-introduction-training-video",
+            "disney-1",
+            "disney-2",
+            "1991-arco-ampm-employee-training-system-video-laserdisc",
+            "youtube-FbZxIEfi4GA",
+            "crystal-pepsi-employee-training-video-1992-480p",
+            "save-with-the-tiger-exxon-retail-employee-video-1991",
+            "sears-ma-selling-training",
+            "lily-tomlin-7-deadly-sins-of-customer-service",
+            "Quality_Through_the_Eyes_of_The_Customer_Quest_Zenger_Miller_Q05",
+            "Clarifying_Customer_Expectations_Zenger_Miller",
+            "Resolving_Customer_Satisfaction_Question_Zenger_Miller",
+            "volume-identifier.-title-1",
+            "appleretailsalespersonholidaysellingseason",
+            "first-place-orientation-video-1998",
+            "WelcomeToSanJoseJanuary1986",
+            "CheechakoAnEmployeeOrientationToAlaska1958",
+            "93464-behind-the-scenes-at-the-supermarket-vwr",
+            "BehindTheScenesAtTheSupermarket",
+            "0904_Sorting_Checking_and_Packing_Grocery_Orders_in_Self-Serve_Store_01_34_15_17",
+            "0388_Supermarket_The_20_31_00_00",
+            "follow-your-impulse-to-profits",
+            "Everyday1948",
+            "SocialCo1951",
+            "OfficeCo1952",
+            "Telephone_Courtesy",
+            "selling_as_a_career",
+            "87814-opportunity-unlimited"
+          ],
+          "maxEntriesPerItem": 3,
+          "ignoreYear": true,
+          "tag": "trainee_ret"
+        },
+        {
+          "identifiers": [
+            "S.S.KresgeTraining-StopShrinkage",
+            "S.S.KresgeTraining-CompleteTheSale",
+            "S.S.KresgeTraining-TheFinishingTouch",
+            "S.S.KresgeTraining-ShadeTalk",
+            "S.S.KresgeTraining-TremendousTrifles",
+            "S.S.KresgeTraining-YoullLoveKatyKresgesThriftyChargePlan",
+            "S.S.KresgeTraining-SpeakingOfMoney",
+            "S.S.KresgeTraining-CounterCare-TheKresgeWay",
+            "S.S.KresgeTraining-TheDiaryOfLadyLuck",
+            "S.S.KresgeTraining-YourSideOfTheCounter",
+            "S.S.KresgeTraining-WastingAway",
+            "S.S.KresgeTraining-TheCaseOfTheStarWitness",
+            "S.S.KresgeTraining-StarPerformer-TheKresgeWayIntroductionToCheck-out",
+            "S.S.KresgeTraining-LetsGetAcquaintedSeries-YourStore",
+            "S.S.KresgeTraining-TheABCsOfFriendlyService-HandlingCustomers",
+            "S.S.KresgeTraining-ARealFriendPersonalizedCustomerService",
+            "S.S.KresgeTraining-CSMeansCapableSaleslady-CheckingSheets",
+            "S.S.KresgeTraining-YoureInShowBusinessSectionCare",
+            "S.S.KresgeTraining-LetsGetAcquaintedSeries-YourJob",
+            "S.S.KresgeTraining-LetsGetAcquaintedSeries-YourCustomer",
+            "S.S.KresgeTraining-MissStarrTellsAll",
+            "S.S.KresgeTraining-TheABCsOfFriendlyService-MakingTheSale",
+            "S.S.KresgeTraining-BuyTheWay",
+            "S.S.KresgeTraining-LetsGetAcquaintedSeries-YourCompany",
+            "S.S.KresgeTraining-ASpecialGuestTheCheck-outCashier"
+          ],
+          "maxEntriesPerItem": 1,
+          "ignoreYear": true,
+          "tag": "trainee_kresge"
+        },
+        {
+          "identifiers": [
+            "intertan-PRSS-RSS"
+          ],
+          "maxEntriesPerItem": 1,
+          "ignoreYear": true,
+          "tag": "trainee_big"
         }
       ],
       "timeBlocks": [
@@ -12142,6 +12295,26 @@
             8
           ],
           "minMinutes": 5
+        },
+        {
+          "label": "Crew Orientation",
+          "days": [
+            "mon",
+            "tue",
+            "wed",
+            "thu",
+            "fri"
+          ],
+          "start": "18:00",
+          "end": "21:00",
+          "sources": [
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "minMinutes": 3
         }
       ]
     },
