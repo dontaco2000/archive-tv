@@ -1,5 +1,5 @@
 // Release gate: run before each installer/APK build, from app\core:
-//   dart run tool/release_gate.dart [--offline] [--channels=80] [--report=<file.md>]
+//   dart run tool/release_gate.dart [--offline] [--channels=81] [--report=<file.md>]
 // Checks channels.json (count, numbers, genre/name/logo, query length, duplicate excludes), that every
 // source still finds something on the live Archive (3 searches at a time), and the Android seed pools
 // (exactly the configured channels, each >= minContentHours; item share > 8% and adult/junk titles are
@@ -20,7 +20,7 @@ final _suspect = RegExp(
 
 Future<void> main(List<String> args) async {
   String? opt(String name) => args.where((a) => a.startsWith('--$name=')).map((a) => a.substring(name.length + 3)).firstOrNull;
-  final expected = int.parse(opt('channels') ?? '80');
+  final expected = int.parse(opt('channels') ?? '81');
   final reportFile = File(opt('report') ?? '../../_build/release_gate-report.md');
   final fails = <String>[], warns = <String>[], notes = <String>[];
 
