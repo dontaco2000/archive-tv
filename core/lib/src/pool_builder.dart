@@ -86,12 +86,16 @@ bool Function(Entry) poolFilter(Channel c, ChannelConfig config) {
   // A saved entry tagged with a source index past the end came from a source since removed (e.g. a stripped
   // rated source): it leaves the pool instead of airing as if untagged.
   return (e) =>
-      !_excluded(config, e) && e.durationSeconds >= minS && e.durationSeconds <= maxS && (e.source ?? 0) < n;
+      !_excluded(config, c, e) && e.durationSeconds >= minS && e.durationSeconds <= maxS && (e.source ?? 0) < n;
 }
 
 /// An excludeIdentifiers entry is an item id, or an entry id (`item/file`) to drop one file of a good item.
-bool _excluded(ChannelConfig config, Entry e) =>
-    config.excludeIdentifiers.contains(e.itemId) || config.excludeIdentifiers.contains(e.id);
+bool _excluded(ChannelConfig config, Channel c, Entry e) =>
+    _excludedId(config, c, e.itemId) || config.excludeIdentifiers.contains(e.id) || c.excludeIdentifiers.contains(e.id);
+
+/// Item-level check: the global list or this channel's own `excludeIdentifiers`.
+bool _excludedId(ChannelConfig config, Channel c, String itemId) =>
+    config.excludeIdentifiers.contains(itemId) || c.excludeIdentifiers.contains(itemId);
 
 /// [pool] cut by [poolFilter]; [pool] itself when nothing is dropped.
 List<Entry> refilterPool(Channel c, ChannelConfig config, List<Entry> pool) {
@@ -151,7 +155,7 @@ Future<List<Entry>> _collect(
       continue;
     }
     for (final hit in hits) {
-      if (config.excludeIdentifiers.contains(hit.identifier)) continue;
+      if (_excludedId(config, channel, hit.identifier)) continue;
       if (sourceOf.containsKey(hit.identifier)) continue;
       sourceOf[hit.identifier] = source;
       hitsToFetch.add(hit.identifier);
@@ -176,7 +180,7 @@ Future<List<Entry>> _collect(
                 maxKbps: kbps?.toDouble() ?? 3000);
       }
       for (final e in picks) {
-        if (!_excluded(config, e)) byId.putIfAbsent(e.id, () => e);
+        if (!_excluded(config, channel, e)) byId.putIfAbsent(e.id, () => e);
       }
     } on ArchiveException catch (e) {
       log?.call('skip $id: $e'); // one bad item must not sink the channel

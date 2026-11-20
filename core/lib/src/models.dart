@@ -122,7 +122,11 @@ class Channel {
   /// channels.json gives [RatedWindow.always] (no restriction).
   final RatedWindow? ratedWindow;
 
+  /// Item ids / entry ids (`item/file`) left out of THIS channel only (unioned with the global list).
+  final Set<String> excludeIdentifiers;
+
   const Channel({
+    this.excludeIdentifiers = const {},
     this.ratedWindow,
     this.mature = false,
     this.timeBlocks = const [],
