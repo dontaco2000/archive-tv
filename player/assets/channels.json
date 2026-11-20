@@ -7451,6 +7451,87 @@
       ]
     },
     {
+      "number": 85,
+      "name": "Date-Night",
+      "logo": "Logos/4x3/date-night.png",
+      "genre": "Comedy & Variety",
+      "sources": [
+        {
+          "identifiers": [
+            "loveconnection-bmp",
+            "loveconnection1998-bmp",
+            "love-connection-1.1",
+            "love-connection-1988.",
+            "love-connection-1989"
+          ],
+          "maxEntriesPerItem": 40,
+          "ignoreYear": true
+        },
+        {
+          "query": "(title:(\"dating game\") AND collection:(gameshows_miscellaneous OR gameshows OR classic_tv_1960s OR classic_tv_1970s OR classic_tv_1980s OR classic_tv_1990s OR vhstvshows OR vhsmisc)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -identifier:(youtube-* OR twitter-* OR facebook-* OR TikTok-* OR bliptv-* OR g4tv.com-* OR dailymotion-* OR yt_*) AND -collection:(mirrortube OR bliptv OR podcasts OR twitchstreams OR tvnews OR tvarchive OR fringe OR deemphasize OR movie_trailers) AND -title:(andy OR kaufman OR \"game of\" OR \"love connection\")",
+          "ignoreYear": true,
+          "maxEntries": 40,
+          "maxEntriesPerItem": 4
+        },
+        {
+          "query": "(title:(\"newlywed game\") AND collection:(gameshows_miscellaneous OR gameshows OR classic_tv_1960s OR classic_tv_1970s OR classic_tv_1980s OR classic_tv_1990s OR vhstvshows OR vhsmisc)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -identifier:(youtube-* OR twitter-* OR facebook-* OR TikTok-* OR bliptv-* OR g4tv.com-* OR dailymotion-* OR yt_*) AND -collection:(mirrortube OR bliptv OR podcasts OR twitchstreams OR tvnews OR tvarchive OR fringe OR deemphasize OR movie_trailers)",
+          "ignoreYear": true,
+          "maxEntries": 160,
+          "maxEntriesPerItem": 3
+        },
+        {
+          "query": "(title:(tattletales OR \"perfect match\" OR \"for love or money\" OR \"love at first sight\" OR \"studs\" OR \"personals\") AND collection:(gameshows_miscellaneous OR gameshows OR classic_tv_1980s OR classic_tv_1990s)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -identifier:(youtube-* OR twitter-* OR facebook-* OR TikTok-* OR bliptv-* OR g4tv.com-* OR dailymotion-* OR yt_*) AND -collection:(mirrortube OR bliptv OR podcasts OR twitchstreams OR tvnews OR tvarchive OR fringe OR deemphasize OR movie_trailers)",
+          "ignoreYear": true,
+          "maxEntries": 30,
+          "maxEntriesPerItem": 3
+        },
+        {
+          "identifiers": [
+            "ElimiDate_Various_Episodes"
+          ],
+          "maxEntriesPerItem": 110,
+          "ignoreYear": true,
+          "rated": "R",
+          "tag": "newch_h"
+        },
+        {
+          "identifiers": [
+            "elimidate-fabulous-over-fifty-2004",
+            "capture-a-5474",
+            "blind-date-2001-episode",
+            "mtv-singled-out-marathon-dec.-1996",
+            "mtv-singled-out-marathon-dec.-1996_202209",
+            "singled-out-26-9-98",
+            "20240920_20240920_2332",
+            "mtv-a-shot-at-love",
+            "temptation-island",
+            "flavor-of-love-season-1-episode-1-reality-tv-full-episodes-480p",
+            "flavor-of-love-season-1-episode-3-reality-tv-full-episodes-480p",
+            "real-chance-of-love-s-1-ep-1",
+            "real-chance-of-love-s-1-ep-2",
+            "mtv-dis-missed-miami.-rafael-priscilla-yakira-danielle-joey-justin-season-3",
+            "mtv-dis-missed-miami.-kymie-jack-joe-yasmine-jasmine-owen-season-3",
+            "mtv-dis-missed.-richard-cat-jaime-s-2-brandon-jessica-kristy-s-1",
+            "mtv-dis-missed.-erin-mikey-doug-danica-steven-chris-season-1",
+            "mtv-dis-missed.-venessa-tommy-david-kevin-kristine-ana-season-2_202603",
+            "mtv-dis-missed.-melinda-chad-steve-johnny-sherrae-faloon.-season-3",
+            "mtv-dis-missed.-mark-arielle-esperanza-joselynne-paul-tommy.-season-3",
+            "mtv-dis-missed.-brandon-amy-arlen-natasha-marty-rob.-season-1_202603",
+            "mtv-dis-missed-miami.-elizabeth-jarrod-john-blake-janice-jennifer-season-3",
+            "mtv-dis-missed-miami.-john-adam-kim-jullian-annie-maria-season-3",
+            "mtv-dis-missed.-kitty-sean-brendan-chris-varelie-danielle-season-3",
+            "mtv-dis-missed-miami.-matt-lisa-cyra-ingrid-daniel-christian-season-3_202609",
+            "mtv-dis-missed.-josh-jenna-angela-adrienne-che-solomon.-season-2",
+            "mtv-dis-missed-miami.-celine-grant-josh-daniel-leah-janelle-season-3"
+          ],
+          "maxEntriesPerItem": 3,
+          "ignoreYear": true,
+          "rated": "R",
+          "tag": "newch_h"
+        }
+      ]
+    },
+    {
       "number": 31,
       "name": "Rerun",
       "logo": "Logos/4x3/rerun.png",
@@ -11094,6 +11175,74 @@
           "sources": [
             1
           ]
+        }
+      ]
+    },
+    {
+      "number": 84,
+      "name": "VJ",
+      "logo": "Logos/4x3/vj.png",
+      "genre": "Music",
+      "sources": [
+        {
+          "query": "(title:(\"headbangers ball\" OR \"headbanger's ball\" OR \"headbangers halloween\" OR \"heavy metal mania\" OR \"decade of metal\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -identifier:(youtube-* OR twitter-* OR facebook-* OR TikTok-* OR bliptv-* OR g4tv.com-* OR dailymotion-* OR yt_*) AND -collection:(mirrortube OR bliptv OR podcasts OR twitchstreams OR tvnews OR tvarchive OR fringe OR deemphasize OR movie_trailers) AND -title:(reaction OR reacts OR review OR podcast OR karaoke OR tutorial OR gameplay OR \"full album\" OR remix OR \"lyric video\" OR loveline OR \"real world\" OR \"road rules\" OR jackass OR \"tom green\" OR \"fear factor\" OR \"parental control\" OR germany OR interview OR playlist OR medley OR \"ft.\" OR feat OR report)",
+          "ignoreYear": true,
+          "maxEntries": 60,
+          "maxEntriesPerItem": 1
+        },
+        {
+          "query": "(title:(\"120 minutes\" OR \"post modern mtv\" OR \"postmodern mtv\") AND title:(mtv OR \"120 minutes\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -identifier:(youtube-* OR twitter-* OR facebook-* OR TikTok-* OR bliptv-* OR g4tv.com-* OR dailymotion-* OR yt_*) AND -collection:(mirrortube OR bliptv OR podcasts OR twitchstreams OR tvnews OR tvarchive OR fringe OR deemphasize OR movie_trailers) AND -title:(reaction OR reacts OR review OR podcast OR karaoke OR tutorial OR gameplay OR \"full album\" OR remix OR \"lyric video\" OR loveline OR \"real world\" OR \"road rules\" OR jackass OR \"tom green\" OR \"fear factor\" OR \"parental control\" OR germany OR interview OR playlist OR medley OR \"ft.\" OR feat OR report)",
+          "ignoreYear": true,
+          "maxEntries": 90,
+          "maxEntriesPerItem": 1
+        },
+        {
+          "query": "(title:(\"alternative nation\") AND title:(mtv)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -identifier:(youtube-* OR twitter-* OR facebook-* OR TikTok-* OR bliptv-* OR g4tv.com-* OR dailymotion-* OR yt_*) AND -collection:(mirrortube OR bliptv OR podcasts OR twitchstreams OR tvnews OR tvarchive OR fringe OR deemphasize OR movie_trailers) AND -title:(reaction OR reacts OR review OR podcast OR karaoke OR tutorial OR gameplay OR \"full album\" OR remix OR \"lyric video\" OR loveline OR \"real world\" OR \"road rules\" OR jackass OR \"tom green\" OR \"fear factor\" OR \"parental control\" OR germany OR interview OR playlist OR medley OR \"ft.\" OR feat OR report)",
+          "ignoreYear": true,
+          "maxEntries": 30,
+          "maxEntriesPerItem": 1
+        },
+        {
+          "query": "(title:(\"pop-up video\" OR \"pop up video\") AND title:(vh1 OR \"vh 1\" OR vh-1) AND title:(\"vh1's\" OR \"vh 1's\" OR episode OR episodes OR special OR \"s0\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -identifier:(youtube-* OR twitter-* OR facebook-* OR TikTok-* OR bliptv-* OR g4tv.com-* OR dailymotion-* OR yt_*) AND -collection:(mirrortube OR bliptv OR podcasts OR twitchstreams OR tvnews OR tvarchive OR fringe OR deemphasize OR movie_trailers) AND -title:(reaction OR reacts OR review OR podcast OR karaoke OR tutorial OR gameplay OR \"full album\" OR remix OR \"lyric video\" OR loveline OR \"real world\" OR \"road rules\" OR jackass OR \"tom green\" OR \"fear factor\" OR \"parental control\" OR germany OR interview OR playlist OR medley OR \"ft.\" OR feat OR report) AND -identifier:(PopUpVideo2011 OR pornhub*)",
+          "ignoreYear": true,
+          "maxEntries": 60,
+          "maxEntriesPerItem": 1
+        },
+        {
+          "query": "(title:(\"yo! mtv raps\" OR \"yo mtv raps\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -identifier:(youtube-* OR twitter-* OR facebook-* OR TikTok-* OR bliptv-* OR g4tv.com-* OR dailymotion-* OR yt_*) AND -collection:(mirrortube OR bliptv OR podcasts OR twitchstreams OR tvnews OR tvarchive OR fringe OR deemphasize OR movie_trailers) AND -title:(reaction OR reacts OR review OR podcast OR karaoke OR tutorial OR gameplay OR \"full album\" OR remix OR \"lyric video\" OR loveline OR \"real world\" OR \"road rules\" OR jackass OR \"tom green\" OR \"fear factor\" OR \"parental control\" OR germany OR interview OR playlist OR medley OR \"ft.\" OR feat OR report)",
+          "ignoreYear": true,
+          "maxEntries": 30,
+          "maxEntriesPerItem": 2
+        },
+        {
+          "query": "(title:(\"mtv unplugged\") AND collection:(musictelevision OR vhsconcerts_music OR vhstvshows)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -identifier:(youtube-* OR twitter-* OR facebook-* OR TikTok-* OR bliptv-* OR g4tv.com-* OR dailymotion-* OR yt_*) AND -collection:(mirrortube OR bliptv OR podcasts OR twitchstreams OR tvnews OR tvarchive OR fringe OR deemphasize OR movie_trailers) AND -title:(reaction OR reacts OR review OR podcast OR karaoke OR tutorial OR gameplay OR \"full album\" OR remix OR \"lyric video\" OR loveline OR \"real world\" OR \"road rules\" OR jackass OR \"tom green\" OR \"fear factor\" OR \"parental control\" OR germany OR interview OR playlist OR medley OR \"ft.\" OR feat OR report)",
+          "ignoreYear": true,
+          "maxEntries": 25,
+          "maxEntriesPerItem": 1
+        },
+        {
+          "query": "(title:(vh1 OR \"vh 1\" OR vh-1) AND collection:(musictelevision OR vhstvshows OR vhsconcerts_music) AND title:(storytellers OR \"behind the music\" OR legends OR classic OR countdown OR \"top 40\" OR \"top 20\" OR alternative OR heavy OR hits OR \"video hits\" OR \"rock\" OR videos)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -identifier:(youtube-* OR twitter-* OR facebook-* OR TikTok-* OR bliptv-* OR g4tv.com-* OR dailymotion-* OR yt_*) AND -collection:(mirrortube OR bliptv OR podcasts OR twitchstreams OR tvnews OR tvarchive OR fringe OR deemphasize OR movie_trailers) AND -title:(reaction OR reacts OR review OR podcast OR karaoke OR tutorial OR gameplay OR \"full album\" OR remix OR \"lyric video\" OR loveline OR \"real world\" OR \"road rules\" OR jackass OR \"tom green\" OR \"fear factor\" OR \"parental control\" OR germany OR interview OR playlist OR medley OR \"ft.\" OR feat OR report) AND -title:(\"pop-up\" OR \"pop up\" OR unplugged)",
+          "ignoreYear": true,
+          "maxEntries": 60,
+          "maxEntriesPerItem": 1
+        },
+        {
+          "query": "(title:(\"top 100\" OR \"top 20 video\" OR \"video countdown\" OR \"top twenty\" OR \"top 40 hard rock\" OR \"friday night videos\" OR \"night tracks\") AND title:(mtv OR vh1 OR \"dr. demento\" OR \"friday night videos\" OR \"night tracks\" OR countdown OR videos)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -identifier:(youtube-* OR twitter-* OR facebook-* OR TikTok-* OR bliptv-* OR g4tv.com-* OR dailymotion-* OR yt_*) AND -collection:(mirrortube OR bliptv OR podcasts OR twitchstreams OR tvnews OR tvarchive OR fringe OR deemphasize OR movie_trailers) AND -title:(reaction OR reacts OR review OR podcast OR karaoke OR tutorial OR gameplay OR \"full album\" OR remix OR \"lyric video\" OR loveline OR \"real world\" OR \"road rules\" OR jackass OR \"tom green\" OR \"fear factor\" OR \"parental control\" OR germany OR interview OR playlist OR medley OR \"ft.\" OR feat OR report) AND -title:(unplugged)",
+          "ignoreYear": true,
+          "maxEntries": 70,
+          "maxEntriesPerItem": 1
+        },
+        {
+          "query": "((title:(\"total request live\" OR trl) AND title:mtv AND title:(woc OR incomplete OR archive OR episode OR hours)) OR title:(\"mtv spring break\" OR \"mtv rockumentary\" OR \"mtv beach house\")) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -identifier:(youtube-* OR twitter-* OR facebook-* OR TikTok-* OR bliptv-* OR g4tv.com-* OR dailymotion-* OR yt_*) AND -collection:(mirrortube OR bliptv OR podcasts OR twitchstreams OR tvnews OR tvarchive OR fringe OR deemphasize OR movie_trailers) AND -title:(reaction OR reacts OR review OR podcast OR karaoke OR tutorial OR gameplay OR \"full album\" OR remix OR \"lyric video\" OR loveline OR \"real world\" OR \"road rules\" OR jackass OR \"tom green\" OR \"fear factor\" OR \"parental control\" OR germany OR interview OR playlist OR medley OR \"ft.\" OR feat OR report)",
+          "ignoreYear": true,
+          "maxEntries": 45,
+          "maxEntriesPerItem": 1
+        },
+        {
+          "query": "(title:(mtv) AND title:(vj OR vjs OR hours OR \"hour\" OR woc OR recordings OR \"random programming\" OR overnight OR \"off air\" OR \"first four\") AND collection:(musictelevision OR vhstvshows OR vhsconcerts_music)) AND -subject:(xxx OR nsfw OR erotica OR erotic OR fetish OR sexploitation OR porn OR pornography OR softcore OR hentai OR ecchi OR nudity OR naturism) AND -title:(nsfw OR xxx OR porn OR hentai OR erotic OR nude OR naked OR topless OR sexy OR nudist OR naturisme OR tabou OR taboo OR \"real sex\" OR stripper) AND -language:(spa OR por OR pol OR fre OR ger OR ita OR rus OR chi OR hin OR kor OR tur OR ara OR dut OR jpn) AND -identifier:(youtube-* OR twitter-* OR facebook-* OR TikTok-* OR bliptv-* OR g4tv.com-* OR dailymotion-* OR yt_*) AND -collection:(mirrortube OR bliptv OR podcasts OR twitchstreams OR tvnews OR tvarchive OR fringe OR deemphasize OR movie_trailers) AND -title:(reaction OR reacts OR review OR podcast OR karaoke OR tutorial OR gameplay OR \"full album\" OR remix OR \"lyric video\" OR loveline OR \"real world\" OR \"road rules\" OR jackass OR \"tom green\" OR \"fear factor\" OR \"parental control\" OR germany OR interview OR playlist OR medley OR \"ft.\" OR feat OR report) AND -title:(\"120 minutes\" OR headbangers OR \"pop-up\" OR \"alternative nation\" OR unplugged OR \"top 100\" OR trl OR \"top 20\" OR \"yo mtv\" OR \"yo! mtv\" OR \"spring break\" OR spoof OR \"movie awards\")",
+          "ignoreYear": true,
+          "maxEntries": 140,
+          "maxEntriesPerItem": 1
         }
       ]
     },
