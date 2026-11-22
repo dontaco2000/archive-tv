@@ -31,7 +31,7 @@ Future<bool> isTvDevice() async {
   }
 }
 
-/// Phones and tablets: the screen stays on while Archive TV is in front (a TV never sleeps on its own).
+/// The screen stays on while Archive TV is in front (phones, tablets and Fire TV, whose screensaver would otherwise blank the picture).
 Future<void> keepScreenOn() async {
   try {
     await _device.invokeMethod<void>('keepScreenOn');

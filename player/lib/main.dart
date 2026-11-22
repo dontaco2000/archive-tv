@@ -64,10 +64,10 @@ Future<void> _main(List<String> args) async {
     await windowManager.ensureInitialized();
   } else {
     await SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
-    // TV: landscape as before (the manifest no longer fixes it, so phones can turn). Touch: any way up, screen kept on.
-    if (touch) {
-      await keepScreenOn();
-    } else {
+    // Screen kept on everywhere: Fire OS starts its screensaver / display sleep during long playback (audio kept going, picture off).
+    await keepScreenOn();
+    // TV: landscape as before (the manifest no longer fixes it, so phones can turn). Touch: any way up.
+    if (!touch) {
       await SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight]);
     }
   }
