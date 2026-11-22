@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Launch splash: app's navy background + logo, shown until Flutter draws its first frame -->
+<!-- Launch splash: the README banner (TV + ARCHIVE TV + tagline), full-bleed 16:9, shown until Flutter draws its first frame -->
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:drawable="@color/launch_bg" />
     <item>
-        <bitmap android:gravity="center" android:src="@drawable/launch_logo" />
+        <bitmap android:gravity="fill" android:src="@drawable/launch_splash" />
     </item>
 </layer-list>
