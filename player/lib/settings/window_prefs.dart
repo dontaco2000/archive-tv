@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:screen_retriever/screen_retriever.dart';
 import 'package:window_manager/window_manager.dart';
 
@@ -20,12 +19,8 @@ Rect clampToScreen(Rect saved, Rect screen) {
   );
 }
 
-/// Outer window size whose client area is exactly 4:3 for the same width: [outer] minus [client]
-/// is the title bar and borders, which the 4:3 shape must not include.
-Size snap4x3(Size outer, Size client) => Size(outer.width, (client.width * 3 / 4 + outer.height - client.height).roundToDouble());
-
-/// Aspect of the TV frame in a [w] x [h] area: 4:3, but an area within 1.5% of 4:3 is filled
-/// (no thin black bars from rounding); fullscreen 16:9 keeps its 4:3 pillarbox.
+/// Aspect of the 4:3 on-screen frame (cards, banner, menus) in a [w] x [h] area: 4:3, but an area within 1.5% of 4:3
+/// is filled (no thin black bars from rounding). The video itself is not bound to it.
 double frameAspect(double w, double h) {
   if (w <= 0 || h <= 0) return 4 / 3;
   final a = w / h;
@@ -105,7 +100,6 @@ class WindowPrefs with WindowListener {
   @override
   Future<void> onWindowClose() async {
     try {
-      _snapTimer?.cancel();
       windowManager.removeListener(this);
       if (_debounce?.isActive ?? false) {
         _debounce!.cancel();
@@ -119,32 +113,8 @@ class WindowPrefs with WindowListener {
     }
   }
 
-  /// Windowed: sets the height so the client area (not the whole window) is 4:3, and lets the live
-  /// drag keep that shape. Runs after a drag ends ('resized'), on launch, never while maximized/fullscreen.
-  Future<void> snapToFourThree() async {
-    try {
-      if (await windowManager.isFullScreen() || await windowManager.isMaximized()) return;
-      final view = WidgetsBinding.instance.platformDispatcher.views.first;
-      final client = view.physicalSize / view.devicePixelRatio;
-      if (client.isEmpty) return;
-      final b = await windowManager.getBounds();
-      final t = snap4x3(b.size, client);
-      if ((t.height - b.height).abs() > 1) await windowManager.setSize(t);
-    } on Object catch (e) {
-      log('4:3 snap failed: $e');
-    }
-  }
-
-  Timer? _snapTimer;
-
-  /// Snaps shortly AFTER the resize settles (a live drag or the exit from fullscreen sends a burst of events).
-  void _snapSoon() {
-    _snapTimer?.cancel();
-    _snapTimer = Timer(const Duration(milliseconds: 700), () => unawaited(snapToFourThree().then((_) => _changed())));
-  }
-
   @override
-  void onWindowResized() => _snapSoon();
+  void onWindowResized() => _changed();
   @override
   void onWindowMoved() => _changed();
   @override
@@ -152,6 +122,5 @@ class WindowPrefs with WindowListener {
   @override
   void onWindowLeaveFullScreen() {
     _changed();
-    _snapSoon();
   }
 }

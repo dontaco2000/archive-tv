@@ -6,6 +6,7 @@ import 'package:archive_tv_core/archive_tv_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
+import 'package:media_kit/media_kit.dart' show VideoParams;
 import 'package:media_kit_video/media_kit_video.dart';
 import 'package:window_manager/window_manager.dart';
 
@@ -874,11 +875,12 @@ class _TvScreenState extends State<TvScreen> {
   bool get _powerIsArmed => _powerArmed != null && DateTime.now().difference(_powerArmed!) < const Duration(seconds: 3);
 
   /// Video frame layers, back to front up to the typed channel number. [frameH]: frame height (captions).
-  List<Widget> _layers(double frameH) => [
-        // Widescreen video is letterboxed inside the 4:3 frame, never stretched; Picture FILL
-        // covers the frame instead (overflow cropped), and baked-in borders are cut (tv.crop).
-        // Captions sit at the bottom of the 4:3 frame, sized from its height (captions.dart).
-        _video(captionStyle(frameH, settings.captionSize, visible: tv.captionState == 'on' || tv.captionState == 'forced')),
+  List<Widget> _layers(double frameH, {bool video = true}) => [
+        // The video keeps its own shape (never stretched); Picture FILL covers the box instead
+        // (overflow cropped), and baked-in borders are cut (tv.crop). Windows/TV draw it in _tvBody,
+        // behind the 4:3 frame; the touch layout draws it here, in its own video box.
+        // Captions sit at the bottom of the video, sized from its height (captions.dart).
+        if (video) _video(captionStyle(frameH, settings.captionSize, visible: tv.captionState == 'on' || tv.captionState == 'forced')),
         // The weather channel shows the WeatherStar 4000+ page (spec 5.8); the player only carries its music.
         if (_weather)
           WeatherLayers(
@@ -1076,31 +1078,66 @@ class _TvScreenState extends State<TvScreen> {
         ),
       );
 
-  /// TV and Windows: everything inside one 4:3 frame.
+  /// TV and Windows: the video fills the whole area in its own shape (16:9 plays 16:9, 4:3 is pillarboxed);
+  /// the cards, banner and menus sit in a centred 4:3 frame on top, like an old TV's on-screen display.
+  /// While a menu/guide, STAND BY card or the weather is up, the video shrinks back to that frame.
   Widget _tvBody() => LayoutBuilder(
-        builder: (context, box) => Center(
-          child: AspectRatio(
-            aspectRatio: frameAspect(box.maxWidth, box.maxHeight),
-            child: Stack(
-              fit: StackFit.expand,
-              children: [
-                ..._layers(min(box.maxHeight, box.maxWidth / frameAspect(box.maxWidth, box.maxHeight))),
-                ..._panels(),
-                ..._tail(),
-                if (_pin != null) _pinPrompt(),
-                if (_flashText != null) _flashBox(),
-              ],
-            ),
-          ),
-        ),
+        builder: (context, box) {
+          final fa = frameAspect(box.maxWidth, box.maxHeight);
+          final fw = min(box.maxWidth, box.maxHeight * fa), fh = fw / fa;
+          final panels = _panels();
+          final framed = panels.isNotEmpty || tv.standBy || _weather;
+          final vw = framed ? fw : box.maxWidth, vh = framed ? fh : box.maxHeight;
+          return Stack(
+            fit: StackFit.expand,
+            children: [
+              Center(
+                child: SizedBox(
+                  width: vw,
+                  height: vh,
+                  child: _video(captionStyle(vh, settings.captionSize, visible: tv.captionState == 'on' || tv.captionState == 'forced')),
+                ),
+              ),
+              Center(
+                child: AspectRatio(
+                  aspectRatio: fa,
+                  child: Stack(
+                    fit: StackFit.expand,
+                    children: [
+                      ..._layers(fh, video: false),
+                      ...panels,
+                      ..._tail(),
+                      if (_pin != null) _pinPrompt(),
+                      if (_flashText != null) _flashBox(),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          );
+        },
       );
 
   /// Phone / tablet: video + on-screen remote; overlays open full screen with a touch D-pad bar.
   Widget _touchBody() {
     final panels = [..._panels(), if (_pin != null) _pinPrompt()];
     return SafeArea(
-      child: TouchLayout(
-        aspect: 4 / 3, // always a 4:3 box, like the Windows window; the picture letterboxes in it (Picture FILL covers it)
+      child: StreamBuilder<VideoParams>(
+        stream: tv.player.stream.videoParams,
+        builder: (context, _) => _touchLayout(panels),
+      ),
+    );
+  }
+
+  /// The video box takes the shape of the video (4:3 until a picture size is known; 16:9 plays 16:9).
+  Widget _touchLayout(List<Widget> panels) {
+    final p = tv.player.state.videoParams;
+    final dw = (p.dw ?? 0).toDouble(), dh = (p.dh ?? 0).toDouble();
+    final shown = tv.standBy || _weather || dw <= 0 || dh <= 0;
+    final aspect = shown ? 4 / 3 : (dw / dh).clamp(1.0, 2.4);
+    return Builder(
+      builder: (context) => TouchLayout(
+        aspect: aspect,
         full: _touchFull,
         press: pressKey,
         // Tap: video only / back to the remote (or "stay awake" on the sleep card). Swipe up/down: channel, left/right: volume.

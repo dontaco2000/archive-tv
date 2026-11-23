@@ -140,8 +140,6 @@ Future<void> _main(List<String> args) async {
     windowPrefs = WindowPrefs(settings, store, log)
       ..onClose = (() => crash.running(false))
       ..attach();
-    // Windowed mode keeps a 4:3 client area (the title bar is not part of the picture).
-    unawaited(Future<void>.delayed(const Duration(milliseconds: 300), windowPrefs.snapToFourThree));
   }
 
   final configFile = File(p.join(dataDir.path, 'channels.json'));
