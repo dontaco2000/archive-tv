@@ -150,8 +150,8 @@ void main() {
       expect(values.toSet(), hasLength(values.length));
       final numbers = {for (final c in config.channels) c.number};
       expect(numbers.containsAll(values), isTrue);
-      // added after layout 5 (merge6): Marquee 21, Smiles 35, Regen 47, Sockhop 64
-      expect(numbers.difference(values.toSet()), {21, 35, 47, 64});
+      // added after layout 5 (merge6): Marquee 21, Smiles 35, Regen 47, Sockhop 64; Sizzle 91 (2026-11-24)
+      expect(numbers.difference(values.toSet()), {21, 35, 47, 64, 91});
       final keys = (bundled['oldToNew'] as Map).keys.map((k) => int.parse(k as String)).toSet();
       // every layout-5 channel (80) + merge6's temporary Moshpit 89 / Smoky 90
       expect(keys, hasLength(82));
