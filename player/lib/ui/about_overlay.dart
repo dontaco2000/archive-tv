@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 /// Kept equal to pubspec.yaml's version by test/about_overlay_test.dart.
-const appVersion = '0.9.29';
+const appVersion = '0.9.30';
 
 const aboutLines = [
   'All video and audio comes from the Internet Archive (archive.org) and its uploaders. '
